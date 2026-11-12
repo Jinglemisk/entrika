@@ -1,0 +1,1384 @@
+{
+  "about": "Stills from Muhteşem Yüzyıl (Tims Productions, 2011-2014) for the private Entrika fan game. Keys are the manual's kind.id ids. Each candidate: file (in this folder, long edge <= 1600 px, JPEG ~80%), size [w,h], source_url (the image), source_page (the gallery it was found in), note (who or what is in frame, plus concerns), focus [x,y] = subject centre as fractions, usable as CSS object-position. First candidate is the pick.",
+  "not_covered": {
+    "amb.*": "Ambitions are icon-only by design; no stills.",
+    "term.hizmet / term.hiyanet": "The manual has no card ids for Kader cards, so their art uses the glossary ids.",
+    "ui.title": "Not a manual entity: title-screen key art."
+  },
+  "rights": "All stills belong to the producer and broadcasters. Private, non-commercial use among friends only; do not publish the game or these files.",
+  "entities": {
+    "char.suleyman": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.suleyman-1.jpg",
+          "size": [
+            1326,
+            1024
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/210/361/21036169_20130904162311166.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Halit Ergenç as Süleyman, season 3 promo still, tall ceremonial turban.",
+          "focus": [
+            0.279,
+            0.464
+          ]
+        },
+        {
+          "file": "char.suleyman-2.jpg",
+          "size": [
+            512,
+            768
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/19995204.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Süleyman seated by a candle, season 1 press still.",
+          "focus": [
+            0.42,
+            0.3
+          ]
+        }
+      ]
+    },
+    "char.hurrem": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.hurrem-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMGU5ZjU5MGItMGMxNy00NjU0LWEzZGMtNzY3OWE1ZWJiNjBkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Meryem Uzerli as Hürrem, close-up with crown and necklace.",
+          "focus": [
+            0.585,
+            0.4
+          ]
+        },
+        {
+          "file": "char.hurrem-2.jpg",
+          "size": [
+            536,
+            768
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20016557.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Hürrem in a tall jewelled headdress, press still.",
+          "focus": [
+            0.548,
+            0.558
+          ]
+        }
+      ]
+    },
+    "char.ibrahim": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.ibrahim-1.jpg",
+          "size": [
+            512,
+            768
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20016556.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Okan Yalabık as Pargalı İbrahim, press portrait.",
+          "focus": [
+            0.5,
+            0.27
+          ]
+        },
+        {
+          "file": "char.ibrahim-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNzY2NWFiYTYtNzg3OS00YjM1LTkxZDgtZDk2OGE4ZWM1NGZmXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Pargalı İbrahim close-up.",
+          "focus": [
+            0.347,
+            0.492
+          ]
+        }
+      ]
+    },
+    "char.mahidevran": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.mahidevran-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNjBhNWI0ZTctZDhkYi00Y2NlLWEzY2ItNTFiMDI2YzI5ZWRkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Nur Fettahoğlu as Mahidevran, crowned close-up.",
+          "focus": [
+            0.568,
+            0.608
+          ]
+        },
+        {
+          "file": "char.mahidevran-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjVjZjZhNTktMDA3Mi00ZmRmLWIwNmQtYWJkM2Q0Yjg2Yzk1XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Mahidevran in crown and veil, over-the-shoulder.",
+          "focus": [
+            0.622,
+            0.362
+          ]
+        }
+      ]
+    },
+    "char.bali": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.bali-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNmQzNzZlYzctNzRmNy00MTRjLWJlNjUtY2M0OWU2ODk2N2Y3XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Burak Özçivit as Malkoçoğlu Bali Bey in a green turban, outdoors.",
+          "focus": [
+            0.469,
+            0.441
+          ]
+        },
+        {
+          "file": "char.bali-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BY2ZmYTMyMTYtNTQ4MC00MWY4LWJlZDctMjg3Nzc5M2E2MDEzXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Bali Bey close-up against tiles.",
+          "focus": [
+            0.509,
+            0.386
+          ]
+        }
+      ]
+    },
+    "char.hatice": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.hatice-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNThhZjAyMzgtNmM3NC00Nzc0LWEwYTctNjljY2MxYzlhODRjXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Selma Ergeç as Hatice Sultan, veiled close-up.",
+          "focus": [
+            0.594,
+            0.485
+          ]
+        },
+        {
+          "file": "char.hatice-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMzNjNTIxYjEtYWQxYS00MGQ1LTkwZjUtZGRiMzM2ZWExMGQ5XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Hatice Sultan by candlelight.",
+          "focus": [
+            0.413,
+            0.354
+          ]
+        }
+      ]
+    },
+    "char.mihrimah": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.mihrimah-1.jpg",
+          "size": [
+            720,
+            368
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjNhZjQ3OGMtMGIwOS00OTc1LWExNzItZmMyMTdiZmU0M2JkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Pelin Karahan as Mihrimah Sultan, crowned close-up. Cropped to remove a fan-site watermark.",
+          "focus": [
+            0.571,
+            0.429
+          ]
+        },
+        {
+          "file": "char.mihrimah-2.jpg",
+          "size": [
+            720,
+            368
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYTBhYTk0ZTItYzYzMi00NGRkLWI5YzUtZDRmZTNmMTBiZWJmXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Mihrimah in a garden, crowned. Cropped to remove a fan-site watermark.",
+          "focus": [
+            0.48,
+            0.374
+          ]
+        }
+      ]
+    },
+    "char.rustem": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.rustem-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNzU0ZTRiZTItMzEyYS00NGY5LWE5MzMtYTA0NGI2OWU2MmUwXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Ozan Güven as Rüstem Paşa, turbaned close-up.",
+          "focus": [
+            0.499,
+            0.498
+          ]
+        },
+        {
+          "file": "char.rustem-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BOWUyYjg5ZDEtN2YzOC00ZDQ5LWIwNjAtYWVlODE2NWJkOTYzXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Rüstem Paşa close-up, bare-headed.",
+          "focus": [
+            0.55,
+            0.42
+          ]
+        }
+      ]
+    },
+    "comp.daye": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.daye-1.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNjEzMGU1NGItN2E5OC00OGU4LTk4NWMtYmQ3NGRkNDNlM2Y0XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Sema Keçik as Daye Hatun, close-up in veil.",
+          "focus": [
+            0.45,
+            0.395
+          ]
+        },
+        {
+          "file": "comp.daye-2.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BODE2YzA5NzMtNjVhYi00YWMyLWFhZjQtZTA0N2ViZmY0MzNhXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Daye Hatun, medium shot.",
+          "focus": [
+            0.411,
+            0.249
+          ]
+        }
+      ]
+    },
+    "comp.lokman": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.lokman-1.jpg",
+          "size": [
+            446,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMDJhZThhNGItNjE3OC00MDZiLWFlZjYtYTUyOTZiZTgwYTkxXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Kaya Akkaya as Lokman Ağa (left of frame); cropped out of a two-shot with Sümbül Ağa. Only one tagged still found.",
+          "focus": [
+            0.679,
+            0.498
+          ]
+        }
+      ]
+    },
+    "comp.ayas": {
+      "status": "missing",
+      "note": "No still of Fehmi Karaarslan as Ayas Paşa is tagged on IMDb or in the Beyazperde gallery. The only crops available were unidentified viziers in Divan line-ups, too small and possibly the wrong man, so the slot is empty. Options: a crop from a Divan scene with a caption saying \"Divan'dan bir vezir\", or a drawn silhouette.",
+      "candidates": []
+    },
+    "comp.matrakci": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.matrakci-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTc4OTAwMDYtY2NkOC00Y2VlLWJkNzYtNmM1YzE0YWIxNjI2XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Fatih Al as Matrakçı Nasuh, turbaned close-up.",
+          "focus": [
+            0.489,
+            0.458
+          ]
+        },
+        {
+          "file": "comp.matrakci-2.jpg",
+          "size": [
+            655,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZDc0ZGMxNTAtODYzNC00YmQxLTk1ODktMjc3Njg4NWQ2ZTQ1XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Matrakçı Nasuh, medium close-up. Cropped to remove a channel logo.",
+          "focus": [
+            0.443,
+            0.392
+          ]
+        }
+      ]
+    },
+    "comp.sumbul": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.sumbul-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTZiMWVlNTQtNmJjNS00MTk4LWE4YmUtMTcxNjM4NjkwMjJmXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Selim Bayraktar as Sümbül Ağa, close-up in turban.",
+          "focus": [
+            0.505,
+            0.451
+          ]
+        },
+        {
+          "file": "comp.sumbul-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BY2JmYzAyOWEtYzU2ZC00M2U0LWE3YmUtMWFjM2MxNDdmMmQ1XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Sümbül Ağa facing Hürrem (her back to camera).",
+          "focus": [
+            0.72,
+            0.45
+          ]
+        }
+      ]
+    },
+    "comp.nigar": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.nigar-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZDM4MWUzOWItZDdhNC00ZGU0LTk2YzItNzUwNTEyYzA3OTVmXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Filiz Ahmet as Nigar Kalfa, close-up.",
+          "focus": [
+            0.488,
+            0.539
+          ]
+        },
+        {
+          "file": "comp.nigar-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTk5ZjUwNjctNTg4NS00OWFkLWI0MDQtNTczNjEzZWE3ZjI1XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Nigar Kalfa in a headscarf.",
+          "focus": [
+            0.477,
+            0.344
+          ]
+        }
+      ]
+    },
+    "comp.ebussuud": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.ebussuud-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNWY5NGZhMmItNTVhMC00ZTI2LThmYTYtODZlMDY5NGQ2ZWMyXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Tuncel Kurtiz as Ebussuud Efendi, white turban close-up.",
+          "focus": [
+            0.62,
+            0.42
+          ]
+        },
+        {
+          "file": "comp.ebussuud-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNGQwODkyMjEtYTlmNy00NWQ2LTgzNTMtMzRmM2QzNzRjMGZiXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Ebussuud Efendi in a white skullcap.",
+          "focus": [
+            0.403,
+            0.36
+          ]
+        }
+      ]
+    },
+    "comp.gulsah": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.gulsah-1.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYTJhYTZjODctZTUzZi00ZGY2LTgwNjUtYTVjMjFjMzhlNzBlXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Nihan Büyükağaç as Gülşah Hatun, close-up.",
+          "focus": [
+            0.452,
+            0.491
+          ]
+        },
+        {
+          "file": "comp.gulsah-2.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMmU0ZjM3YjAtYWQ4NS00ZGIxLWJkYjUtZTJmMjM0ZWM3OTViXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Gülşah Hatun outdoors with a man (his back to camera).",
+          "focus": [
+            0.463,
+            0.285
+          ]
+        }
+      ]
+    },
+    "comp.seker": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.seker-1.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZGUzZjE5OTEtMDRkNC00ZmRjLWI3NzItMDE1MjM4OTI2ZDc4XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Yüksel Ünal as Şeker Ağa, the palace cook, in a white cap. Cropped to remove a channel logo.",
+          "focus": [
+            0.55,
+            0.45
+          ]
+        }
+      ]
+    },
+    "comp.gulfem": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.gulfem-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BM2VmYzIyNDAtMzU0Yi00ZjU4LWJiMjItOTFmMmEzN2RmMDMxXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Selen Öztürk as Gülfem Hatun, crowned.",
+          "focus": [
+            0.472,
+            0.334
+          ]
+        },
+        {
+          "file": "comp.gulfem-2.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMzdmNTMwYTEtOTU4MC00NmE0LTgyZTMtNjM0ODVlMDUzZGMxXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Gülfem Hatun close-up. Cropped to remove a channel logo.",
+          "focus": [
+            0.36,
+            0.368
+          ]
+        }
+      ]
+    },
+    "comp.kara-ahmed": {
+      "status": "missing",
+      "note": "No still of Yetkin Dikinciler as Kara Ahmed Paşa is tagged on IMDb or in the Beyazperde gallery. Slot left empty for the same reason as Ayas Paşa.",
+      "candidates": []
+    },
+    "comp.piri": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.piri-1.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZWVmMmNhYmMtMGM1Zi00YmVkLTlmNmYtZTJjODhkY2ExNTRkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Arif Erkin Güzelbeyoğlu as Piri Mehmet Paşa, tall white turban. Cropped to remove a channel logo.",
+          "focus": [
+            0.5,
+            0.42
+          ]
+        },
+        {
+          "file": "comp.piri-2.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTU2YTFkODItYjZjMC00MjMzLThkMjUtNGVhMWI5NDk2NDZmXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Piri Mehmet Paşa with İbrahim behind him. Cropped to remove a channel logo.",
+          "focus": [
+            0.48,
+            0.304
+          ]
+        }
+      ]
+    },
+    "comp.afife": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.afife-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZWJkMTQ3NTMtZjliMy00MTU1LTg5NmMtMjQ4MjM3Mjk1MTQ1XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Sabina Ajrula as Afife Hatun, close-up in black headdress.",
+          "focus": [
+            0.572,
+            0.459
+          ]
+        },
+        {
+          "file": "comp.afife-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYmM4YmVmNmMtOTRhNi00YTYzLTg3NmYtMTYxMjRkNDYyMDU4XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Afife Hatun scolding a young woman.",
+          "focus": [
+            0.8,
+            0.35
+          ]
+        }
+      ]
+    },
+    "comp.esma": {
+      "status": "stand-in",
+      "candidates": [
+        {
+          "file": "comp.esma-1.jpg",
+          "size": [
+            287,
+            512
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/19995203.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "STAND-IN: a servant in a yellow headscarf holding a baby beside Hürrem; not confirmed to be Esma Hatun. No tagged still of Sebahat Kumaş was found.",
+          "focus": [
+            0.171,
+            0.432
+          ]
+        }
+      ]
+    },
+    "crisis.yeniceri": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.yeniceri-1.jpg",
+          "size": [
+            536,
+            408
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/06/09/23/14/457412.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Janissaries in red with white börk caps surround a man in a stained shirt. Low resolution (536 px).",
+          "focus": [
+            0.506,
+            0.304
+          ]
+        },
+        {
+          "file": "crisis.yeniceri-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/04/22/42/525274.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Ranks of red-robed janissaries in a courtyard, Süleyman at the gate. Cropped to remove Star TV logos.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "crisis.hazine": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.hazine-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjIzNTRhYzgtMzU2My00ZGM4LTg2YWEtMjIyZDc5YTFkYzRkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Afife Hatun, the harem treasurer, holding her ledger. Same person as comp.afife.",
+          "focus": [
+            0.48,
+            0.291
+          ]
+        }
+      ]
+    },
+    "crisis.venedik": {
+      "status": "stand-in",
+      "candidates": [
+        {
+          "file": "crisis.venedik-1.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjc5NGY3MTgtNjVlYy00MmUxLWFjMTctMGRhNmVlMzU5YTVhXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "STAND-IN: an audience hall, viziers bowing toward the throne. No confirmed Venetian-envoy still found. Cropped to remove a channel logo.",
+          "focus": [
+            0.943,
+            0.661
+          ]
+        },
+        {
+          "file": "crisis.venedik-2.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMzY2NmFkZjUtYTQ2Ny00YTA0LWIzZjctZWJjMDc2YTFkYzgxXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "STAND-IN: İbrahim at a European-style dinner table with men in dark coats; not confirmed as the Venetian embassy.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "crisis.harem": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.harem-1.jpg",
+          "size": [
+            800,
+            533
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20041461.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Harem quarrel: Hürrem grabs a concubine by the throat while others look on.",
+          "focus": [
+            0.351,
+            0.471
+          ]
+        },
+        {
+          "file": "crisis.harem-2.jpg",
+          "size": [
+            720,
+            368
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZDI1NDQ1Y2UtODNkYS00YzcwLWE3MDItZDIwM2YzNGVmY2M0XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Concubines lined up in a harem corridor. Cropped to remove a fan-site watermark.",
+          "focus": [
+            0.213,
+            0.246
+          ]
+        }
+      ]
+    },
+    "crisis.macar": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.macar-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BOTk0MjE1ODIwNV5BMl5BanBnXkFtZTcwOTY1MzIxNg@@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Süleyman on a white horse at the head of the army, red banners. 4000 px original.",
+          "focus": [
+            0.201,
+            0.727
+          ]
+        },
+        {
+          "file": "crisis.macar-2.jpg",
+          "size": [
+            1600,
+            1183
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/14/02/21/09/12/374348.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Campaign camp: janissaries and helmeted soldiers carry a litter past a tent.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "crisis.muhur": {
+      "status": "stand-in",
+      "candidates": [
+        {
+          "file": "crisis.muhur-1.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/18/21/09/459024.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "STAND-IN mood still: shafts of light in a dusty storeroom, two figures searching. No seal in frame.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "crisis.muhur-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/25/22/23/510135.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "STAND-IN mood still: a dark hall, figures standing apart. No seal in frame.",
+          "focus": [
+            0.516,
+            0.591
+          ]
+        }
+      ]
+    },
+    "crisis.divan": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.divan-1.jpg",
+          "size": [
+            800,
+            598
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20298647.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Süleyman in the ceremonial turban with viziers behind him.",
+          "focus": [
+            0.619,
+            0.348
+          ]
+        },
+        {
+          "file": "crisis.divan-2.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZmY2NGE3YjAtM2Y2MC00N2JjLTgwMjQtYjVkZThlNjIzYmM0XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Süleyman enthroned, viziers in white turbans lining the room. Cropped to remove a channel logo.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "crisis.sehzade": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.sehzade-1.jpg",
+          "size": [
+            1024,
+            683
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/19995200.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Two young şehzades in white and gold, side by side.",
+          "focus": [
+            0.719,
+            0.257
+          ]
+        },
+        {
+          "file": "crisis.sehzade-2.jpg",
+          "size": [
+            1550,
+            1024
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/210/324/21032442_20130827165710714.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Three grown şehzades, season 3 promo (Mustafa centre).",
+          "focus": [
+            0.471,
+            0.223
+          ]
+        }
+      ]
+    },
+    "crisis.istanbul": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.istanbul-1.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/11/22/17/274167.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A street market in Istanbul, men among stalls.",
+          "focus": [
+            0.586,
+            0.349
+          ]
+        },
+        {
+          "file": "crisis.istanbul-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/11/22/17/273230.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A crowd in the street around a hooded woman.",
+          "focus": [
+            0.224,
+            0.445
+          ]
+        }
+      ]
+    },
+    "crisis.sinir": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.sinir-1.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/04/22/42/523242.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Swords drawn among men in black cloaks.",
+          "focus": [
+            0.23,
+            0.201
+          ]
+        },
+        {
+          "file": "crisis.sinir-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/04/20/20/59/398276.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Helmeted soldiers with a prince in the field.",
+          "focus": [
+            0.161,
+            0.256
+          ]
+        }
+      ]
+    },
+    "card.akil-hocasi": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.akil-hocasi-1.jpg",
+          "size": [
+            720,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYTU5YmJlZWMtOWMwMy00OTMwLWE5NDEtMTY5YjMxMDM2MzM0XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Ebussuud Efendi at Süleyman's shoulder, counselling.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "card.akil-hocasi-2.jpg",
+          "size": [
+            800,
+            534
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20449794.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "An old man in a white skullcap speaks quietly to Süleyman.",
+          "focus": [
+            0.721,
+            0.221
+          ]
+        }
+      ]
+    },
+    "card.muhur": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.muhur-1.jpg",
+          "size": [
+            800,
+            533
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20022999.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A man in a tall plumed cap hands a small object to another. Reads as a hand-off; the seal itself is not legible.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "card.muhur-2.jpg",
+          "size": [
+            1024,
+            683
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/19959369.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Süleyman holds up a paper before a woman in red.",
+          "focus": [
+            0.6,
+            0.389
+          ]
+        }
+      ]
+    },
+    "card.valide": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.valide-1.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMWJiZDlkZjItNDA2NS00MjEwLWEzOWMtMTY3YjMyZGM3YWFkXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Nebahat Çehre as the Valide Sultan, addressing someone over the shoulder.",
+          "focus": [
+            0.624,
+            0.38
+          ]
+        },
+        {
+          "file": "card.valide-2.jpg",
+          "size": [
+            704,
+            396
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZjBjMjc3YjctOWVkNy00N2U2LWE2MzYtNmE3OTgwNGVlNDE2XkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "The Valide Sultan, crowned close-up.",
+          "focus": [
+            0.491,
+            0.444
+          ]
+        }
+      ]
+    },
+    "card.divan-sirasi": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.divan-sirasi-1.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZmFlYmY2OGItOWM3ZS00ZWYxLWI4YzEtZTgwYjc2YTRhNmFjXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Viziers in white turbans standing in a row. Cropped to remove a channel logo.",
+          "focus": [
+            0.186,
+            0.561
+          ]
+        },
+        {
+          "file": "card.divan-sirasi-2.jpg",
+          "size": [
+            931,
+            608
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/18/21/09/460743.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Pashas in a line before a seated woman in blue.",
+          "focus": [
+            0.175,
+            0.28
+          ]
+        }
+      ]
+    },
+    "card.saray-dedikodusu": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.saray-dedikodusu-1.jpg",
+          "size": [
+            800,
+            534
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20298639.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Hürrem and another woman watching from behind a lattice balcony.",
+          "focus": [
+            0.676,
+            0.317
+          ]
+        },
+        {
+          "file": "card.saray-dedikodusu-2.jpg",
+          "size": [
+            800,
+            533
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20041460.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Two women conferring in a harem doorway.",
+          "focus": [
+            0.613,
+            0.322
+          ]
+        }
+      ]
+    },
+    "card.muhurlu-evrak": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.muhurlu-evrak-1.jpg",
+          "size": [
+            500,
+            750
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/18/21/09/463712.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A prince seated with a folded letter.",
+          "focus": [
+            0.513,
+            0.266
+          ]
+        },
+        {
+          "file": "card.muhurlu-evrak-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/04/27/22/47/389305.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A young man reads at a low desk between candles while another watches.",
+          "focus": [
+            0.272,
+            0.157
+          ]
+        }
+      ]
+    },
+    "card.saray-tabibi": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.saray-tabibi-1.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/04/13/21/10/120597.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A physician in a red cap takes a young woman's pulse.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "card.saray-tabibi-2.jpg",
+          "size": [
+            1024,
+            683
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20012028.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Women tend to a fainting woman at night.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "card.iftira": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.iftira-1.jpg",
+          "size": [
+            800,
+            535
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20405963.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Hürrem and a rival face each other across a room.",
+          "focus": [
+            0.576,
+            0.823
+          ]
+        },
+        {
+          "file": "card.iftira-2.jpg",
+          "size": [
+            960,
+            475
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20261108.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Promo composite: Hürrem and a rival in profile, facing each other.",
+          "focus": [
+            0.269,
+            0.546
+          ]
+        }
+      ]
+    },
+    "card.gozde": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.gozde-1.jpg",
+          "size": [
+            960,
+            640
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20263848.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A concubine in plum holds a purple handkerchief to her face.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "card.gozde-2.jpg",
+          "size": [
+            800,
+            534
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20298648.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Hürrem in a red veil and gold diadem, close to Süleyman.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        }
+      ]
+    },
+    "card.teftis": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.teftis-1.jpg",
+          "size": [
+            720,
+            368
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTM0NmU1ZjEtMDk5ZC00YjUwLTg5NWMtZGZlODQ5ZTY4MmUwXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "Süleyman (season 4) reading documents at his desk. Cropped to remove a fan-site watermark.",
+          "focus": [
+            0.317,
+            0.272
+          ]
+        },
+        {
+          "file": "card.teftis-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/18/21/09/461837.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Two princes over a map and papers by candlelight.",
+          "focus": [
+            0.171,
+            0.301
+          ]
+        }
+      ]
+    },
+    "term.hizmet": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "term.hizmet-1.jpg",
+          "size": [
+            800,
+            533
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20244993.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A man kneels to kiss the robe of a prince on the throne, guards behind.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "term.hizmet-2.jpg",
+          "size": [
+            800,
+            533
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20377161.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "Viziers stand before the seated Süleyman.",
+          "focus": [
+            0.834,
+            0.451
+          ]
+        }
+      ]
+    },
+    "term.hiyanet": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "term.hiyanet-1.jpg",
+          "size": [
+            800,
+            534
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20023001.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A blade raised behind a man's head.",
+          "focus": [
+            0.5,
+            0.45
+          ]
+        },
+        {
+          "file": "term.hiyanet-2.jpg",
+          "size": [
+            931,
+            607
+          ],
+          "source_url": "https://tr.web.img4.acsta.net/pictures/16/04/27/22/47/387586.jpg",
+          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
+          "note": "A man seized from behind in a garden, guards with swords.",
+          "focus": [
+            0.676,
+            0.386
+          ]
+        }
+      ]
+    },
+    "ui.title": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "ui.title-1.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://image.tmdb.org/t/p/original/1loyt0jdmckEYMsNnmWUza24tFq.jpg",
+          "source_page": "https://www.themoviedb.org/tv/34899-magnificent-century/images/backdrops",
+          "note": "Key art: Süleyman embraces Hürrem on a dark ground. Promotional art, no text.",
+          "focus": [
+            0.352,
+            0.263
+          ]
+        },
+        {
+          "file": "ui.title-2.jpg",
+          "size": [
+            1600,
+            899
+          ],
+          "source_url": "https://image.tmdb.org/t/p/original/xBTaNX6we4SORx98MF16LSpvvdo.jpg",
+          "source_page": "https://www.themoviedb.org/tv/34899-magnificent-century/images/backdrops",
+          "note": "Key art: Hürrem and Süleyman in the ceremonial turban against a dusk sky. Promotional art, no text.",
+          "focus": [
+            0.759,
+            0.459
+          ]
+        }
+      ]
+    }
+  }
+}

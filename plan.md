@@ -9,10 +9,10 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
 5. Then Full mode (Companions, Ambitions, Favor powers).
 
-## Browser game
-1. Settle the foundational questions: art direction, and the engine and multiplayer basics.
-2. Art direction pass (subagent): card layout, icon set, character portraits, popups.
-3. Engine skeleton: the rules as a plain state machine that both the phones and a paper game can be checked against.
+## Browser game (see `docs/direction.md`)
+1. Art direction: stills are in `art/stills/` (with `manifest.json`), and directions A and B are published side by side at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH (tokens in `art/directions/notes.md`). Waiting on the designer's pick. Ayas Paşa and Kara Ahmed Paşa still need art.
+2. Final art in the chosen direction: card templates, icon set, portraits, popups.
+3. First playable, built overnight end to end from the manual's current rules.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.
