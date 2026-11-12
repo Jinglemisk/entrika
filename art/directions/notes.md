@@ -1,122 +1,118 @@
-# Entrika: art directions A and B
+# Entrika: art direction
 
-The two directions shown in `index.html` (the published comparison page). Both use the same stills from `art/stills/`. The difference is the treatment: crop, frame, colour and ornament. When one is picked, its tokens below carry into the game. Everything is plain CSS and inline SVG.
+The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Its base is direction B, the Ottoman miniature: burnished paper, flat gold leaf, lapis and vermilion, and card backs taken from Ottoman bookbinding. The stills carry direction A's red-to-gold grade at reduced strength. Direction A's own card style, and the UI mocks from round 1, are gone. Everything is plain CSS and inline SVG.
 
-## Shared rules (both directions)
-
-**Card anatomy.** One skeleton for every card type, 5:7. All sizes are in container units (`cqw`), so the same component renders at hand size and at detail size.
-
-| Slot | Position and size | Intrigue | Character | Companion | Crisis | Kader |
-|---|---|---|---|---|---|---|
-| 1 Corner medallion | top-left, 14cqw circle | resolve order 1–10 | character icon | companion icon | crisis icon | seal, ticked or cracked |
-| 2 Name | top row, up to 2 lines | | | | | |
-| 3 Field badge | top-right pill | Harem / Divan | empty | the field of the card it recasts as | the field it opens | Sadakat / İhanet |
-| 4 Art window | 62cqw tall, full width | still | portrait | portrait | scene | scene |
-| 5 Effect text | flexible | effect | Base and Favor powers | recast rule | field rule plus a boxed draw line | track and Decree |
-| 6 Flavor line | one line, italic | | | | | |
-| 7 Footer badges | bottom row | claim/anonymous, category, ×copies | power badges | per-crisis, claim | night field, number | count in deck |
-
-- Under 150 px wide, a card shows only slots 1, 2 and 4 (`@container (max-width:150px)`). That is the hand view.
-- Card backs: Intrigue and Boş Mektup share one back. Hizmet and Hıyanet share another. That is a rule, not a style choice: a back must never tell the kinds apart.
-- Portrait crop: head and shoulders, eyes in the upper third. Each still in `manifest.json` has a `focus` point; use it as `object-position`.
-
-**Icons.** One sprite (`#i-*` symbols in the page). 24-unit grid, stroke 1.6, round caps and joins, no fills. 41 icons: all 37 in the manual's sprite, redrawn, plus `saray` (palace gate), `seal` (the Kader back), and separate `claim` (speech mark) and `anon` (hood) icons. The manual reuses the public and secret eyes for those two. Colour only marks meaning: fields, sides, Influence. Some choices are specific to the setting: Influence is an eight-point star, Süleyman is the ceremonial turban with its plume, Süleyman's death is an Ottoman headstone with a turban, Intrigue is a keyhole in a pointed arch, Court is a crescent.
-
-**Motion.** The reveal turns every placed card at the same moment (`rotateY(180deg)`, one class on the table). No stagger, because placement order is secret. `prefers-reduced-motion` swaps the turn for a fade.
-
-**Turkish UI terms (proposed).** The manual is in English. The page uses these Turkish terms, which should go into the string table:
-Character → Karakter, Companion → Musahip, Intrigue → Entrika, Crisis → Kriz, Influence → Nüfuz, First/Second Minister → Birinci/İkinci Vezir, Loyalist → Sadık, Traitor → Hain, Loyalty/Treason track → Sadakat/İhanet yolu, Court → Gece, Decree → Hüküm, Objection → İtiraz, Ambition → Emel, Base power → Temel güç, Favor power → Lütuf, must claim → Sahiplenilir, anonymous → İsimsiz, once per game → Oyunda bir, once per crisis → Krizde bir, always → Her zaman, Allegiance → Taraf, field → Alan, resolve order → çözüm sırası. Kader, Hizmet, Hıyanet, Boş Mektup, Divan, Harem and Saray stay as they are. "Musahip" (the sultan's companion) is the least obvious choice; "Yardımcı" is the plain alternative.
-
-**Turkish casing.** Put `lang="tr"` on the root. Without it, CSS uppercase turns "i" into "I" instead of "İ". Name boxes need a line-height of about 1.15: at 1.0, `overflow:hidden` clips the dot of İ.
-
-**Performance.** The page applies the colour treatments live with SVG filters. For the game, bake the treatment into the image files at build time (sharp or ImageMagick, same numbers as below) and keep only the overlays and frames in CSS. That is lighter on phones and avoids any filter differences in Safari.
-
-## A · Karanlık saray dramı (dark palace drama)
-
-Deep red, black and gold, lit by candles like the show's opening. Each still is reduced to a red-to-gold tritone and framed in a chamfered gold rule.
-
-**Palette**
-
-| Token | Hex | Use |
-|---|---|---|
-| `--ink` | `#0d0708` | ground, card face |
-| `--ink-2` | `#1b0c0f` | raised surfaces |
-| `--oxblood` | `#4a0e16` | velvet, Intrigue back |
-| `--crimson` | `#962230` | Traitor, Hıyanet, danger |
-| `--gold` | `#c9a14a` | frames, rules, icons |
-| `--gold-hi` | `#f0d48b` | names, highlights |
-| `--gold-lo` | `#7d6127` | inner frame line |
-| `--candle` | `#ffb45c` | glow, used only as light |
-| `--text` / `--text-2` | `#f1e3c8` / `#b9a07d` | body text / secondary |
-| field Harem | `#b8354a` (badge text `#f08c9b`) | Divan uses gold |
-| side Loyal | `#2d6a4e` (text `#9fe0b8`) | Hizmet, Sadakat |
-
-**Fonts** (all cover ğ ş ı İ ç ö ü):
-- Display: Bodoni Moda 600, italic 500 for flavor lines. Used for names, titles and numbers.
-- Body: Source Sans 3, 400 and 600. Used for rules text.
-- Label: Barlow Semi Condensed 600, uppercase, tracking 0.08–0.12em. Used for badges, steps and buttons.
-
-**Ornament rules**
-- Card frame: three inset rules, a thin dark-gold line, a black gap and a gold line (`box-shadow` insets).
-- Art window: corners cut at 3cqw (`clip-path` octagon) with a 0.5cqw gold hairline.
-- Intrigue back: oxblood velvet radial, a gold lattice at ±45° (the harem *kafes*), and a gold eight-point star medallion holding the keyhole. Kader back: black with faint gold rays and the same medallion holding the unbroken seal. Wordmark in Bodoni, tracked wide.
-- Buttons: gold gradient `#d6b25a → #a9832f`, dark text.
-- No other patterns. Darkness is the ornament.
-
-**Still treatment**
-1. Luminance → tritone (SVG `feComponentTransfer` tables):
-   R `0.035 0.29 0.64 0.93 1`, G `0.02 0.045 0.24 0.72 0.95`, B `0.025 0.06 0.14 0.46 0.82`.
-2. Mix 80% tritone with 20% original colour (`feComposite arithmetic k2=.8 k3=.2`), so skin stays human.
-3. Candle glow: radial `rgba(255,176,92,.38)` from the top-left, `mix-blend-mode:screen`.
-4. Vignette: radial to `rgba(8,3,4,.82)` at the edges.
-5. Crop: tight. Faces fill the window; for scenes, crop to the action.
-
-**Motion.** Cards turn in 0.78 s on `cubic-bezier(.3,.7,.2,1)`. A candle flare lights the table, then a gold glint sweeps each face.
-
-## B · Osmanlı minyatürü (Ottoman miniature)
-
-Burnished cream paper, flat gold leaf, lapis and vermilion. Each still is flattened into posterized colour planes, printed onto the paper, and seen through a pointed arch.
-
-**Palette**
+## Palette
 
 | Token | Hex | Use |
 |---|---|---|
 | `--paper` | `#f1e4c4` | ground, card face (burnished *aharlı* paper) |
-| `--paper-2` | `#e4d0a2` | table, shade |
+| `--paper-2` / `--paper-3` | `#e4d0a2` / `#d9c08a` | shade, table |
 | `--ink` | `#2a1c12` | text, outlines (soot ink) |
 | `--ink-2` | `#5b4630` | secondary text |
-| `--lapis` | `#1f3c86` | Divan, Intrigue back, primary buttons |
-| `--vermilion` | `#b3311d` | names (rubrication), Harem, Traitor |
-| `--malachite` | `#2d6a4e` | Loyal, Hizmet, Sadakat |
-| `--gold` / `--gold-hi` | `#b88a2e` / `#dcb456` | gold leaf, medallions |
+| `--lapis` | `#1f3c86` | Divan, Kul "Kılık", Intrigue back, primary buttons |
+| `--vermilion` | `#b3311d` | names (red manuscript headings), Harem, Traitor |
+| `--malachite` | `#2d6a4e` | Loyal, Hizmet, Kul "Özel" |
+| `--gold` / `--gold-hi` | `#b88a2e` / `#dcb456` | gold leaf, medallions, frames |
 | `--cherry` | `#5f1a22` | Kader back (*vişneçürüğü* leather) |
 
-**Fonts** (all cover ğ ş ı İ ç ö ü):
-- Display: Alegreya SC 700, set in vermilion like the red headings of a manuscript. Used for names and titles.
+Paper fibre: an SVG `feTurbulence` tile at 9% opacity over every paper surface. Apart from the paper, colour is flat.
+
+## Fonts
+
+All three cover ğ ş ı İ ç ö ü.
+- Display: Alegreya SC 700, in vermilion. Used for names and headings.
 - Body: Alegreya 400, 700 and italic. Used for rules text and flavor.
-- Label: Alegreya Sans SC 700. Used for badges, steps and buttons.
+- Label: Alegreya Sans SC 700. Used for panel labels, ribbons and buttons.
 
-**Ornament rules**
-- Card frame: the ruled border of a manuscript page (*cetvel*), drawn as inset rules: gold 1.4cqw, ink hairline, paper gap, lapis hairline.
-- Art window: a pointed arch (CSS `mask` with an SVG path), outlined in gold with a lapis inner line.
-- Card backs follow Ottoman bookbinding: a gold almond medallion (*şemse*) with pendants top and bottom, gold corner pieces (*köşebent*) and a double gold frame. Intrigue is lapis; Kader is cherry leather. The keyhole or the seal and the word sit inside the şemse.
-- Flavor lines sit between two small gold fleurons (❦).
-- Paper fibre: an SVG `feTurbulence` tile at 9% opacity over every paper surface.
-- No gradients except the paper. Colour is flat.
+Put `lang="tr"` on the root, or uppercase and small caps turn "i" into "I" instead of "İ". Name boxes need a line-height of about 1.15, or `overflow:hidden` clips the dot of İ.
 
-**Still treatment**
-1. Soften: `feGaussianBlur` 1.1, which stops posterization from turning JPEG noise into speckle.
-2. Lift: linear slope 1.18, intercept 0.04–0.06 per channel. Miniatures have few deep blacks.
-3. Saturate 1.2.
-4. Posterize to six warm steps (`feComponentTransfer discrete`):
-   R `0.32 0.50 0.66 0.80 0.92 0.99`, G `0.24 0.40 0.56 0.71 0.86 0.95`, B `0.22 0.33 0.46 0.60 0.74 0.84`.
-5. `mix-blend-mode:multiply` over paper, so highlights become paper.
-6. Crop: a little looser than A. The arch needs headroom; keep the face below the arch's shoulders.
+## Still treatment: the grade
 
-**Motion.** Cards turn like a page: 0.9 s on `cubic-bezier(.45,.05,.2,1)`, lifting 10 px at the midpoint, with an ink shadow that fades off each face.
+Every still on a card gets one SVG filter, with a single strength variable `s` (`GRADE` in the build, the slider on the page). It is set at 0.85 for now, and the designer settles the final value with the slider (50–100%).
+
+1. Luminance → red-to-gold tritone (`feComponentTransfer` tables):
+   R `0.035 0.29 0.64 0.93 1`, G `0.02 0.045 0.24 0.72 0.95`, B `0.025 0.06 0.14 0.46 0.82`.
+2. Mix with the original colour: `feComposite arithmetic k2 = 0.8·s, k3 = 1 − 0.8·s`. At `s = 1` that is A's round-1 grade; at 0.85 it is 68% tritone, 32% original.
+3. No vignette or glow. The paper frame does the framing.
+
+For the game, bake the grade into the image files at build time (sharp or ImageMagick, same tables, the chosen `s`) and drop the live filter. That is lighter on phones and avoids filter differences in Safari.
+
+## Portraits: the roster standard
+
+Every card that shows a person uses `art/stills/roster/<id>.jpg`. That covers Characters, Kul cards, and Intrigue cards that are just a person (so far Valide'nin Buyruğu).
+- Crop: 4:5, chest up, centred on the face. The eye line is at 37% from the top, and the face box is 36% of the height.
+- When a source is too tight for that framing, the crop zooms in and records a higher `face_share` in the manifest. Lokman Ağa (0.54) and the Esma stand-in (0.56) are the outliers.
+- Sources come in this order of preference: studio cast portraits from the producer's site (TIMS Productions), then posed season promo portraits (TVMaze character images, IMDb promo), then a chest-up screencap.
+- On the card, the 4:5 portrait sits in the art window at `object-position: 50% 18%`, which shows the head and shoulders.
+- Backgrounds still vary: black studio, patterned backdrop, white, outdoors, palace rooms. The grade evens out the colour but not the backdrop. Cutting out the backgrounds would make the set uniform; that has been proposed and is not done.
+
+## Card anatomy
+
+One skeleton for every card type, 5:7. All sizes are in container units (`cqw`), so the same component renders at every size.
+
+| Slot | What it holds |
+|---|---|
+| 1 Corner medallion (9.5cqw) | Intrigue: resolve order 1–10. Others: type icon. Kader: seal, ticked or cracked |
+| 2 Name (centred, up to 2 lines) | Vermilion. On Kul cards, paper-coloured on a lapis (Kılık) or malachite (Özel) plate |
+| 3 Field icon (9.5cqw disc, icon only) | Harem (vermilion) or Divan (lapis). The name is in `title` and `aria-label`. Saray shows a split disc. Kader shows its track. Characters leave it empty |
+| 4 Art window (60cqw tall) | Pointed arch with a gold and lapis line. Kul cards use a rounded arch with an inset frame |
+| 5 Kul ribbon | Kul cards only: "Kılık · krizde bir" (lapis) or "Özel · …" (malachite) |
+| 6 Effect text (centred) | Game terms carry their icon (see below). Characters: two separate panels, Temel güç (vermilion icon) and Lütuf (lapis, hatched, "Hırs ile açılır"). Crisis: a boxed draw line |
+| 7 Flavor line | One italic line between two gold fleurons. Never carries rules |
+
+- There are no footer badges. "Must claim" is written into the text ("Açılışta sahiplen"), and frequency sits in the panel label or the Kul ribbon.
+- Under 150 px wide, a card shows slots 1–4 only. That is the hand and table view.
+- Card backs follow Ottoman bookbinding: a gold almond medallion (*şemse*) with pendants, gold corner pieces (*köşebent*) and a double gold frame. Intrigue is lapis, Kader is cherry. Intrigue and Boş Mektup share a back, and Hizmet and Hıyanet share a back.
+
+## Inline term icons
+
+- `art/terms.json` lists every game term as `{ "id", "stems": [...], "icon" }`, with ids from the manual (`term.*`, `card.*`) and icons from the sprite (`#i-*`).
+- One renderer builds a single regex from all stems, longest first: `(?<![\p{L}\p{N}])(stems)(?:['’]\p{L}+|\p{L}*)` with flags `gu`. It wraps each hit as icon plus word, kept together by `nowrap`.
+- Suffixes stay attached: Nüfuzu, Vekile, Divan'da, Tertip'te.
+- `\b` cannot be used: it treats ı, ş and ğ as word breaks.
+- Matching is case-sensitive. Lowercase stems are listed only where a term is written in lowercase (sahiplen, krizde bir, oyunda bir).
+- A short stem also catches longer unrelated words that start with it, such as Kul in "Kullan". Avoid starting card text with such a word, or add an exception.
+- The renderer runs on elements marked `data-terms`: effect text, power text, Kul ribbon and draw line. It skips names, panel labels and flavor.
+
+## Icons
+
+- One sprite of 41 icons on a 24-unit grid: stroke 1.6, round caps and joins, no fills.
+- It covers all 37 icons in the manual's sprite, redrawn, plus `saray` (palace gate), `seal` (Kader back), `claim` (speech mark) and `anon` (hood).
+- Colour only marks meaning: Harem and Traitor are vermilion, Divan lapis, Loyal malachite, Influence and Süleyman gold.
+- They read at 16, 20 and 24 px. Inline in text they are 1.05em and inherit the meaning colour.
+
+## Landscape phone sizes
+
+The game is played with the phone held horizontally (852 × 393 CSS px on a current iPhone).
+- **Detail view.** A card fills the usable height: about 361 px tall, so 258 px wide. Body text is then 4.55cqw ≈ 11.7 px and panel text 4.25cqw ≈ 11 px, which is the floor. Do not show a full card smaller than about 240 px wide.
+- **Table and in-play cards.** Around 120 px wide, in the compact view: medallion, name, field icon and art.
+- **Hand.** Around 64 px wide, also compact. Four or five fit along the bottom edge, with room for the rest of the board above.
+- **Icons.** 16 px in running UI text, 20–24 px as buttons or track markers.
+- Portrait art is 4:5, but the art window is wider than tall. Because of the roster crop it still shows head and shoulders at every size.
+
+## Motion
+
+The reveal turns every placed card at the same moment: `rotateY(180deg)` over 0.9 s on `cubic-bezier(.45,.05,.2,1)`. The card lifts 10 px at the midpoint, like a page turning, and an ink shadow fades off each face. There is no stagger, because placement order is secret. `prefers-reduced-motion` swaps the turn for a fade.
+
+## Turkish terms (decided)
+
+| Concept | Term |
+|---|---|
+| Ministers | Birinci Vekil / İkinci Vekil (Vekil) |
+| Court step | Tertip |
+| Ambition | Hırs |
+| Companion | Kul |
+
+These are also used on the page:
+- Character → Karakter, Intrigue → Entrika, Crisis → Kriz, Influence → Nüfuz, Loyalist → Sadık, Traitor → Hain.
+- Loyalty/Treason track → Sadakat/İhanet yolu, Decree → Hüküm, Objection → İtiraz, Base power → Temel güç, Favor power → Lütuf.
+- must claim → Sahiplenilir, anonymous → İsimsiz, once per game → Oyunda bir, once per crisis → Krizde bir, always → Her zaman, Allegiance → Taraf.
+- Recast and Special Kul → Kılık and Özel.
 
 ## Known weak spots
 
-- Most portraits are 720×400 screencaps, which is enough for phone cards and soft at large sizes. A takes this better than B, because posterization exaggerates blur and compression.
-- Season 4 stills (older Süleyman, Vahide Perçin as Hürrem) are mixed in among the scenes. Portraits are from seasons 1–3.
-- See `art/stills/manifest.json` for missing slots (Ayas Paşa, Kara Ahmed Paşa), stand-ins and source concerns.
+- **Low-resolution promos.** Pargalı İbrahim, Bali Bey, Hatice, Nigar and the second candidates come from 300 px promo images (TVMaze), so they are soft at detail size.
+- **No posed photo.** Daye, Lokman, Matrakçı, Gülşah, Şeker, Gülfem, Piri and Afife only have candid screencaps cropped to the roster frame.
+- **Esma.** Still an unconfirmed stand-in.
+- **Ayas Paşa and Kara Ahmed Paşa.** Still missing; see `art/stills/manifest.json`.

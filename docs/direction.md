@@ -6,6 +6,7 @@ The standing brief for the browser game. Read it before starting any work on the
 
 - **Entrika** is the game's name. It replaces "Sarayda Hain Var!" everywhere.
 - A browser game played on phones (current iPhones, Safari/Chrome), either around one table or remotely. Phones only for now; a shared TV or table screen showing the board is a good later idea.
+- **Played in landscape.** Phones are held horizontally; every screen is designed for that.
 - It's for friends. No anti-cheat, no server-side bookkeeping, no accounts. People talk at the table or on their own WhatsApp call, so there's no in-app chat or voice.
 - The UI is in Turkish. English comes later through i18n, so every UI string goes through a string table from the start.
 - The digital game doesn't carry paper workarounds. Placement is private and simultaneous on each phone, so the eyes-closed night, the call order and Boş Mektup aren't needed.
@@ -27,9 +28,16 @@ The standing brief for the browser game. Read it before starting any work on the
 
 ## Art
 
-- Real stills from the show: portraits for the people (Characters, Companions), and scenes for the rest where a scene fits — e.g. a janissary riot for Yeniçeri İsyanı. Online sources are fine.
-- Consistent card layouts, one icon language, and clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
+- **Chosen direction:** B, Ottoman miniature (cream paper, gold leaf, lapis and vermilion, manuscript-style names), with stills graded in direction A's red-to-gold hue at reduced strength. Details live in `art/directions/notes.md`. Art direction and UI are separate tracks: the art page covers cards, icons and stills; UI is built on top of it.
+- Real stills from the show only, never AI-generated or regenerated. Any card showing a person uses a standard posed hero shot, like a cast promo or a roster image: same framing, same eye line, facing the viewer. Event cards use scenes, e.g. a janissary riot for Yeniçeri İsyanı. Online sources are fine.
+- Card layouts are consistent. Characters' two powers sit in clearly separate panels. Card titles and body text are centred. Harem and Divan show as icons only; tooltips carry the words.
+- **Terms carry their icons.** Wherever card or UI text names a game term, its icon is drawn in front of it ("play any [icon] Entrika card"). One renderer does this from a data table of terms, Turkish stems and icons, so it also catches suffixed forms.
+- Clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
 - Mobile-first and light. No heavy engines.
+
+## Turkish terms
+
+Decided so far (the full list is in `art/directions/notes.md`): Birinci Vekil / İkinci Vekil (Ministers), Tertip (Court), Hırs (Ambition), Kul (Companion), Entrika (Intrigue).
 
 ## Tech
 

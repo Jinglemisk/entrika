@@ -5,6 +5,7 @@
     "term.hizmet / term.hiyanet": "The manual has no card ids for Kader cards, so their art uses the glossary ids.",
     "ui.title": "Not a manual entity: title-screen key art."
   },
+  "roster": "roster/<id>.jpg holds the standard portrait for every person card: 4:5, centred on the face, eye line at 37% from the top, face box 36% of the height (face_share). Where the source is too tight the crop zooms in and face_share is higher. posed = an official promo or cast photo; otherwise a screencap, because no posed photo was found.",
   "rights": "All stills belong to the producer and broadcasters. Private, non-commercial use among friends only; do not publish the game or these files.",
   "entities": {
     "char.suleyman": {
@@ -13,32 +14,40 @@
         {
           "file": "char.suleyman-1.jpg",
           "size": [
-            1326,
-            1024
+            800,
+            1067
           ],
-          "source_url": "https://tr.web.img4.acsta.net/pictures/210/361/21036169_20130904162311166.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Halit Ergenç as Süleyman, season 3 promo still, tall ceremonial turban.",
+          "source_url": "https://framerusercontent.com/images/NRhGMzYCR4EppGNo7DW9N4Pg2xs.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Halit Ergenç as Süleyman, studio cast portrait in the ceremonial turban (producer site).",
           "focus": [
-            0.279,
-            0.464
-          ]
+            0.509,
+            0.378
+          ],
+          "posed": true
         },
         {
           "file": "char.suleyman-2.jpg",
           "size": [
-            512,
-            768
+            800,
+            1067
           ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/19995204.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Süleyman seated by a candle, season 1 press still.",
+          "source_url": "https://framerusercontent.com/images/39AyNGGjS0ISPZ1VcbV2ORMfsno.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Süleyman bareheaded, studio cast portrait (producer site).",
           "focus": [
-            0.42,
-            0.3
-          ]
+            0.531,
+            0.292
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.suleyman.jpg",
+        "from": "char.suleyman-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.hurrem": {
       "status": "found",
@@ -46,32 +55,40 @@
         {
           "file": "char.hurrem-1.jpg",
           "size": [
-            720,
-            400
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BMGU5ZjU5MGItMGMxNy00NjU0LWEzZGMtNzY3OWE1ZWJiNjBkXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Meryem Uzerli as Hürrem, close-up with crown and necklace.",
+          "source_url": "https://framerusercontent.com/images/78sMWFtbOlFdLGHVIjrZe85HQ.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Meryem Uzerli as Hürrem, studio cast portrait (producer site).",
           "focus": [
-            0.585,
-            0.4
-          ]
+            0.419,
+            0.347
+          ],
+          "posed": true
         },
         {
           "file": "char.hurrem-2.jpg",
           "size": [
-            536,
-            768
+            300,
+            380
           ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20016557.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Hürrem in a tall jewelled headdress, press still.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159287.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Hürrem in purple, season promo portrait (TVMaze character image, 300 px).",
           "focus": [
-            0.548,
-            0.558
-          ]
+            0.443,
+            0.287
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.hurrem.jpg",
+        "from": "char.hurrem-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.ibrahim": {
       "status": "found",
@@ -79,32 +96,39 @@
         {
           "file": "char.ibrahim-1.jpg",
           "size": [
+            300,
+            380
+          ],
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159288.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Okan Yalabık as Pargalı İbrahim, season promo portrait (TVMaze character image). Only 300 px wide.",
+          "focus": [
+            0.403,
+            0.268
+          ],
+          "posed": true
+        },
+        {
+          "file": "char.ibrahim-2.jpg",
+          "size": [
             512,
             768
           ],
           "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20016556.jpg",
           "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Okan Yalabık as Pargalı İbrahim, press portrait.",
+          "note": "Pargalı İbrahim, press still (not posed for the camera).",
           "focus": [
-            0.5,
-            0.27
-          ]
-        },
-        {
-          "file": "char.ibrahim-2.jpg",
-          "size": [
-            720,
-            400
-          ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNzY2NWFiYTYtNzg3OS00YjM1LTkxZDgtZDk2OGE4ZWM1NGZmXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Pargalı İbrahim close-up.",
-          "focus": [
-            0.347,
-            0.492
+            0.688,
+            0.224
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.ibrahim.jpg",
+        "from": "char.ibrahim-1.jpg",
+        "posed": true,
+        "face_share": 0.37
+      }
     },
     "char.mahidevran": {
       "status": "found",
@@ -112,32 +136,40 @@
         {
           "file": "char.mahidevran-1.jpg",
           "size": [
-            720,
-            400
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNjBhNWI0ZTctZDhkYi00Y2NlLWEzY2ItNTFiMDI2YzI5ZWRkXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Nur Fettahoğlu as Mahidevran, crowned close-up.",
+          "source_url": "https://framerusercontent.com/images/8BZpygTSUecxzfbbq0LHrovHBA.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Nur Fettahoğlu as Mahidevran, studio cast portrait (producer site).",
           "focus": [
-            0.568,
-            0.608
-          ]
+            0.561,
+            0.329
+          ],
+          "posed": true
         },
         {
           "file": "char.mahidevran-2.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYjVjZjZhNTktMDA3Mi00ZmRmLWIwNmQtYWJkM2Q0Yjg2Yzk1XkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Mahidevran in crown and veil, over-the-shoulder.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159299.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Mahidevran in red, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.622,
-            0.362
-          ]
+            0.492,
+            0.338
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.mahidevran.jpg",
+        "from": "char.mahidevran-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.bali": {
       "status": "found",
@@ -145,16 +177,17 @@
         {
           "file": "char.bali-1.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNmQzNzZlYzctNzRmNy00MTRjLWJlNjUtY2M0OWU2ODk2N2Y3XkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Burak Özçivit as Malkoçoğlu Bali Bey in a green turban, outdoors.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159292.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Burak Özçivit as Malkoçoğlu Bali Bey, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.469,
-            0.441
-          ]
+            0.507,
+            0.518
+          ],
+          "posed": true
         },
         {
           "file": "char.bali-2.jpg",
@@ -162,15 +195,21 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BY2ZmYTMyMTYtNTQ4MC00MWY4LWJlZDctMjg3Nzc5M2E2MDEzXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNmQzNzZlYzctNzRmNy00MTRjLWJlNjUtY2M0OWU2ODk2N2Y3XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Bali Bey close-up against tiles.",
+          "note": "Bali Bey in a green turban, screencap.",
           "focus": [
-            0.509,
-            0.386
+            0.469,
+            0.441
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.bali.jpg",
+        "from": "char.bali-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.hatice": {
       "status": "found",
@@ -178,16 +217,17 @@
         {
           "file": "char.hatice-1.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNThhZjAyMzgtNmM3NC00Nzc0LWEwYTctNjljY2MxYzlhODRjXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Selma Ergeç as Hatice Sultan, veiled close-up.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159295.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Selma Ergeç as Hatice Sultan, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.594,
-            0.485
-          ]
+            0.455,
+            0.307
+          ],
+          "posed": true
         },
         {
           "file": "char.hatice-2.jpg",
@@ -195,15 +235,21 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BMzNjNTIxYjEtYWQxYS00MGQ1LTkwZjUtZGRiMzM2ZWExMGQ5XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNThhZjAyMzgtNmM3NC00Nzc0LWEwYTctNjljY2MxYzlhODRjXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Hatice Sultan by candlelight.",
+          "note": "Hatice Sultan, veiled close-up, screencap.",
           "focus": [
-            0.413,
-            0.354
+            0.594,
+            0.485
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.hatice.jpg",
+        "from": "char.hatice-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.mihrimah": {
       "status": "found",
@@ -211,32 +257,40 @@
         {
           "file": "char.mihrimah-1.jpg",
           "size": [
-            720,
-            368
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYjNhZjQ3OGMtMGIwOS00OTc1LWExNzItZmMyMTdiZmU0M2JkXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Pelin Karahan as Mihrimah Sultan, crowned close-up. Cropped to remove a fan-site watermark.",
+          "source_url": "https://framerusercontent.com/images/tc6ZgNnVaiUBlI2xUJ4cPdQnLxs.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Pelin Karahan as Mihrimah Sultan, studio cast portrait (producer site).",
           "focus": [
-            0.571,
-            0.429
-          ]
+            0.496,
+            0.376
+          ],
+          "posed": true
         },
         {
           "file": "char.mihrimah-2.jpg",
           "size": [
-            720,
-            368
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYTBhYTk0ZTItYzYzMi00NGRkLWI5YzUtZDRmZTNmMTBiZWJmXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Mihrimah in a garden, crowned. Cropped to remove a fan-site watermark.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159296.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Mihrimah, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.48,
-            0.374
-          ]
+            0.49,
+            0.695
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.mihrimah.jpg",
+        "from": "char.mihrimah-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "char.rustem": {
       "status": "found",
@@ -244,32 +298,40 @@
         {
           "file": "char.rustem-1.jpg",
           "size": [
-            720,
-            400
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNzU0ZTRiZTItMzEyYS00NGY5LWE5MzMtYTA0NGI2OWU2MmUwXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Ozan Güven as Rüstem Paşa, turbaned close-up.",
+          "source_url": "https://framerusercontent.com/images/21FRBspi4BUCpeObu4VVV958lHE.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Ozan Güven as Rüstem Paşa, studio cast portrait (producer site).",
           "focus": [
-            0.499,
-            0.498
-          ]
+            0.516,
+            0.293
+          ],
+          "posed": true
         },
         {
           "file": "char.rustem-2.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BOWUyYjg5ZDEtN2YzOC00ZDQ5LWIwNjAtYWVlODE2NWJkOTYzXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Rüstem Paşa close-up, bare-headed.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159294.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Rüstem Paşa, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.55,
-            0.42
-          ]
+            0.467,
+            0.392
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/char.rustem.jpg",
+        "from": "char.rustem-1.jpg",
+        "posed": true,
+        "face_share": 0.39
+      }
     },
     "comp.daye": {
       "status": "found",
@@ -280,12 +342,12 @@
             704,
             396
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNjEzMGU1NGItN2E5OC00OGU4LTk4NWMtYmQ3NGRkNDNlM2Y0XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNzdkZmIzOTktNjVhNi00NzIxLWFmMmYtMjlhMTFmNGZkNTUyXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Sema Keçik as Daye Hatun, close-up in veil.",
+          "note": "Sema Keçik as Daye Hatun, chest-up screencap, looking down. No posed photo found.",
           "focus": [
-            0.45,
-            0.395
+            0.5,
+            0.45
           ]
         },
         {
@@ -294,15 +356,21 @@
             704,
             396
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BODE2YzA5NzMtNjVhYi00YWMyLWFhZjQtZTA0N2ViZmY0MzNhXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BNjEzMGU1NGItN2E5OC00OGU4LTk4NWMtYmQ3NGRkNDNlM2Y0XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Daye Hatun, medium shot.",
+          "note": "Daye Hatun, close-up in veil, screencap.",
           "focus": [
-            0.411,
-            0.249
+            0.45,
+            0.395
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.daye.jpg",
+        "from": "comp.daye-1.jpg",
+        "posed": false,
+        "face_share": 0.36
+      }
     },
     "comp.lokman": {
       "status": "found",
@@ -321,11 +389,17 @@
             0.498
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.lokman.jpg",
+        "from": "comp.lokman-1.jpg",
+        "posed": false,
+        "face_share": 0.54
+      }
     },
     "comp.ayas": {
       "status": "missing",
-      "note": "No still of Fehmi Karaarslan as Ayas Paşa is tagged on IMDb or in the Beyazperde gallery. The only crops available were unidentified viziers in Divan line-ups, too small and possibly the wrong man, so the slot is empty. Options: a crop from a Divan scene with a caption saying \"Divan'dan bir vezir\", or a drawn silhouette.",
+      "note": "Searched twice. No still of Fehmi Karaarslan as Ayas Paşa is tagged on IMDb (title and person galleries), and none is on Beyazperde, TVMaze, TheTVDB or the producer site. The only crops available were unidentified viziers in Divan line-ups, too small and possibly the wrong man, so the slot is empty. Options: a crop from a Divan scene with a caption saying \"Divan'dan bir vezir\", or a drawn silhouette.",
       "candidates": []
     },
     "comp.matrakci": {
@@ -337,29 +411,35 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZTc4OTAwMDYtY2NkOC00Y2VlLWJkNzYtNmM1YzE0YWIxNjI2XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMmJiZDBkODgtZmQ5Yy00Y2Q5LTkwY2ItNzExYzY4NWZmNmRkXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Fatih Al as Matrakçı Nasuh, turbaned close-up.",
+          "note": "Fatih Al as Matrakçı Nasuh, chest-up screencap in a turban. No posed photo found.",
           "focus": [
-            0.489,
-            0.458
+            0.52,
+            0.261
           ]
         },
         {
           "file": "comp.matrakci-2.jpg",
           "size": [
-            655,
+            720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZDc0ZGMxNTAtODYzNC00YmQxLTk1ODktMjc3Njg4NWQ2ZTQ1XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTc4OTAwMDYtY2NkOC00Y2VlLWJkNzYtNmM1YzE0YWIxNjI2XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Matrakçı Nasuh, medium close-up. Cropped to remove a channel logo.",
+          "note": "Matrakçı Nasuh, turbaned close-up, screencap.",
           "focus": [
-            0.443,
-            0.392
+            0.489,
+            0.458
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.matrakci.jpg",
+        "from": "comp.matrakci-1.jpg",
+        "posed": false,
+        "face_share": 0.36
+      }
     },
     "comp.sumbul": {
       "status": "found",
@@ -367,32 +447,40 @@
         {
           "file": "comp.sumbul-1.jpg",
           "size": [
-            720,
-            400
+            1067,
+            1600
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZTZiMWVlNTQtNmJjNS00MTk4LWE4YmUtMTcxNjM4NjkwMjJmXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjIyNzA0MzAtZGFkMC00ZWY1LTkxZGYtNDk4NGY1OTVjZDIzXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Selim Bayraktar as Sümbül Ağa, close-up in turban.",
+          "note": "POSED: Selim Bayraktar as Sümbül Ağa, full-length promo photo in a palace room (IMDb).",
           "focus": [
-            0.505,
-            0.451
-          ]
+            0.432,
+            0.282
+          ],
+          "posed": true
         },
         {
           "file": "comp.sumbul-2.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BY2JmYzAyOWEtYzU2ZC00M2U0LWE3YmUtMWFjM2MxNDdmMmQ1XkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Sümbül Ağa facing Hürrem (her back to camera).",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159310.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Sümbül Ağa on a white background, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.72,
-            0.45
-          ]
+            0.617,
+            0.305
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.sumbul.jpg",
+        "from": "comp.sumbul-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "comp.nigar": {
       "status": "found",
@@ -400,16 +488,17 @@
         {
           "file": "comp.nigar-1.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZDM4MWUzOWItZDdhNC00ZGU0LTk2YzItNzUwNTEyYzA3OTVmXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Filiz Ahmet as Nigar Kalfa, close-up.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159300.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Filiz Ahmet as Nigar Kalfa, promo portrait outdoors (TVMaze, 300 px).",
           "focus": [
-            0.488,
-            0.539
-          ]
+            0.45,
+            0.374
+          ],
+          "posed": true
         },
         {
           "file": "comp.nigar-2.jpg",
@@ -417,15 +506,21 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZTk5ZjUwNjctNTg4NS00OWFkLWI0MDQtNTczNjEzZWE3ZjI1XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZDM4MWUzOWItZDdhNC00ZGU0LTk2YzItNzUwNTEyYzA3OTVmXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Nigar Kalfa in a headscarf.",
+          "note": "Nigar Kalfa close-up, screencap.",
           "focus": [
-            0.477,
-            0.344
+            0.488,
+            0.539
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.nigar.jpg",
+        "from": "comp.nigar-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "comp.ebussuud": {
       "status": "found",
@@ -433,32 +528,40 @@
         {
           "file": "comp.ebussuud-1.jpg",
           "size": [
-            720,
-            400
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNWY5NGZhMmItNTVhMC00ZTI2LThmYTYtODZlMDY5NGQ2ZWMyXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Tuncel Kurtiz as Ebussuud Efendi, white turban close-up.",
+          "source_url": "https://framerusercontent.com/images/Kr2DxnXMGYX5lvPoRXAScxtNk0.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Tuncel Kurtiz as Ebussuud Efendi, studio cast portrait (producer site).",
           "focus": [
-            0.62,
-            0.42
-          ]
+            0.593,
+            0.418
+          ],
+          "posed": true
         },
         {
           "file": "comp.ebussuud-2.jpg",
           "size": [
-            720,
-            400
+            300,
+            380
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BNGQwODkyMjEtYTlmNy00NWQ2LTgzNTMtMzRmM2QzNzRjMGZiXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Ebussuud Efendi in a white skullcap.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159298.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: Ebussuud Efendi, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.403,
-            0.36
-          ]
+            0.5,
+            0.35
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.ebussuud.jpg",
+        "from": "comp.ebussuud-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "comp.gulsah": {
       "status": "found",
@@ -469,12 +572,12 @@
             704,
             396
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYTJhYTZjODctZTUzZi00ZGY2LTgwNjUtYTVjMjFjMzhlNzBlXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BY2Y1NTIzZDItZDMwYy00ZmM0LTliMWItMGM4NDA3MTNjZjA5XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Nihan Büyükağaç as Gülşah Hatun, close-up.",
+          "note": "Nihan Büyükağaç as Gülşah Hatun, chest-up screencap at three-quarters. No posed photo found.",
           "focus": [
-            0.452,
-            0.491
+            0.581,
+            0.285
           ]
         },
         {
@@ -483,15 +586,21 @@
             704,
             396
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BMmU0ZjM3YjAtYWQ4NS00ZGIxLWJkYjUtZTJmMjM0ZWM3OTViXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYTJhYTZjODctZTUzZi00ZGY2LTgwNjUtYTVjMjFjMzhlNzBlXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Gülşah Hatun outdoors with a man (his back to camera).",
+          "note": "Gülşah Hatun close-up, screencap.",
           "focus": [
-            0.463,
-            0.285
+            0.452,
+            0.491
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.gulsah.jpg",
+        "from": "comp.gulsah-1.jpg",
+        "posed": false,
+        "face_share": 0.36
+      }
     },
     "comp.seker": {
       "status": "found",
@@ -510,7 +619,13 @@
             0.45
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.seker.jpg",
+        "from": "comp.seker-1.jpg",
+        "posed": false,
+        "face_share": 0.37
+      }
     },
     "comp.gulfem": {
       "status": "found",
@@ -543,11 +658,17 @@
             0.368
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.gulfem.jpg",
+        "from": "comp.gulfem-1.jpg",
+        "posed": false,
+        "face_share": 0.4
+      }
     },
     "comp.kara-ahmed": {
       "status": "missing",
-      "note": "No still of Yetkin Dikinciler as Kara Ahmed Paşa is tagged on IMDb or in the Beyazperde gallery. Slot left empty for the same reason as Ayas Paşa.",
+      "note": "Searched twice. No still of Yetkin Dikinciler as Kara Ahmed Paşa is tagged on IMDb (his gallery has only other productions), and none is on Beyazperde, TVMaze, TheTVDB or the producer site. Slot left empty.",
       "candidates": []
     },
     "comp.piri": {
@@ -559,12 +680,12 @@
             641,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZWVmMmNhYmMtMGM1Zi00YmVkLTlmNmYtZTJjODhkY2ExNTRkXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZTU2YTFkODItYjZjMC00MjMzLThkMjUtNGVhMWI5NDk2NDZmXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Arif Erkin Güzelbeyoğlu as Piri Mehmet Paşa, tall white turban. Cropped to remove a channel logo.",
+          "note": "Arif Erkin Güzelbeyoğlu as Piri Mehmet Paşa, chest-up screencap facing camera, İbrahim behind. Cropped to remove a channel logo. No posed photo found.",
           "focus": [
-            0.5,
-            0.42
+            0.48,
+            0.304
           ]
         },
         {
@@ -573,15 +694,21 @@
             641,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZTU2YTFkODItYjZjMC00MjMzLThkMjUtNGVhMWI5NDk2NDZmXkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZWVmMmNhYmMtMGM1Zi00YmVkLTlmNmYtZTJjODhkY2ExNTRkXkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Piri Mehmet Paşa with İbrahim behind him. Cropped to remove a channel logo.",
+          "note": "Piri Mehmet Paşa in a tall white turban, screencap. Cropped to remove a channel logo.",
           "focus": [
-            0.48,
-            0.304
+            0.461,
+            0.531
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.piri.jpg",
+        "from": "comp.piri-1.jpg",
+        "posed": false,
+        "face_share": 0.39
+      }
     },
     "comp.afife": {
       "status": "found",
@@ -592,12 +719,12 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZWJkMTQ3NTMtZjliMy00MTU1LTg5NmMtMjQ4MjM3Mjk1MTQ1XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMDZlZWU2OGQtNGRmYS00MDlmLWFmYTktOTNjNzY2OGNkNzU3XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Sabina Ajrula as Afife Hatun, close-up in black headdress.",
+          "note": "Sabina Ajrula as Afife Hatun, chest-up screencap facing camera, women behind. No posed photo found.",
           "focus": [
-            0.572,
-            0.459
+            0.177,
+            0.264
           ]
         },
         {
@@ -606,15 +733,21 @@
             720,
             400
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYmM4YmVmNmMtOTRhNi00YTYzLTg3NmYtMTYxMjRkNDYyMDU4XkEyXkFqcGc@._V1_.jpg",
+          "source_url": "https://m.media-amazon.com/images/M/MV5BZWJkMTQ3NTMtZjliMy00MTU1LTg5NmMtMjQ4MjM3Mjk1MTQ1XkEyXkFqcGc@._V1_.jpg",
           "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Afife Hatun scolding a young woman.",
+          "note": "Afife Hatun close-up in black headdress, screencap.",
           "focus": [
-            0.8,
-            0.35
+            0.572,
+            0.459
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.afife.jpg",
+        "from": "comp.afife-1.jpg",
+        "posed": false,
+        "face_share": 0.36
+      }
     },
     "comp.esma": {
       "status": "stand-in",
@@ -633,7 +766,13 @@
             0.432
           ]
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/comp.esma.jpg",
+        "from": "comp.esma-1.jpg",
+        "posed": false,
+        "face_share": 0.56
+      }
     },
     "crisis.yeniceri": {
       "status": "found",
@@ -1023,32 +1162,40 @@
         {
           "file": "card.valide-1.jpg",
           "size": [
-            704,
-            396
+            800,
+            1067
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BMWJiZDlkZjItNDA2NS00MjEwLWEzOWMtMTY3YjMyZGM3YWFkXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Nebahat Çehre as the Valide Sultan, addressing someone over the shoulder.",
+          "source_url": "https://framerusercontent.com/images/uJlPnL0D3Znl5OEDooFasL0E.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Nebahat Çehre as the Valide Sultan, studio cast portrait (producer site).",
           "focus": [
-            0.624,
-            0.38
-          ]
+            0.385,
+            0.303
+          ],
+          "posed": true
         },
         {
           "file": "card.valide-2.jpg",
           "size": [
-            704,
-            396
+            300,
+            377
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZjBjMjc3YjctOWVkNy00N2U2LWE2MzYtNmE3OTgwNGVlNDE2XkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "The Valide Sultan, crowned close-up.",
+          "source_url": "https://static.tvmaze.com/uploads/images/original_untouched/63/159289.jpg",
+          "source_page": "https://www.tvmaze.com/shows/5858/muhtesem-yuzyil/cast",
+          "note": "POSED: the Valide Sultan in blue, season promo portrait (TVMaze, 300 px).",
           "focus": [
-            0.491,
-            0.444
-          ]
+            0.477,
+            0.424
+          ],
+          "posed": true
         }
-      ]
+      ],
+      "roster": {
+        "file": "roster/card.valide.jpg",
+        "from": "card.valide-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "card.divan-sirasi": {
       "status": "found",
