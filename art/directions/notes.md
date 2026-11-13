@@ -6,7 +6,7 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
 
 - **One name line.** The name cartouche sits at the same height on every card type: centre at y = 380 of 700, which is 181 px from the top at 258 px wide. Windows end there and text plates start below it.
   - On every type the text plate starts directly under the name (y 422) and runs to the bottom margin (y 650); there is no gap between name and plate.
-  - On full-art Crisis cards the scene runs behind the whole card. The plate is translucent paper over it (72–84% opacity with a light blur and the tuğra watermark), and the sentence is centred in it at 5.4cqw.
+  - On full-art Crisis cards the scene runs full-bleed from the top of the card down to the name and stops there (at 120 and 64 px it fills the card). Below the name the card is ferman paper, as on the other types. The plate is the same opaque paper as every other type, with no watermark; the sentence is centred in it at 5.4cqw. The tuğra appears only on the Crisis back.
   - The compact frame (under 150 px) keeps its own name bar at the bottom, as before.
 - **Frequency as icons only.** Oyunda bir, Krizde bir and Her zaman are small dark-bronze discs with a gold ring at the start of the effect. The words are in `title` and `aria-label`, like the field gems.
   - The icons, in the existing stroke style: `once` (circle with a serifed 1), `percrisis` (circular arrow around a dot), `always` (infinity). They stay distinct at 16 px.
@@ -33,7 +33,6 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
   - Character powers are once per game, except İbrahim's Divan Nüfuzu (always) and Süleyman's Lütuf (none).
 - **Real tuğra.** Süleyman's tuğra (Wikimedia Commons, public domain; see `art/stills/manifest.json` → `tugra`) replaces the drawn one.
   - It is embossed gold on black-green lacquer on the Kriz back.
-  - It is a faint watermark behind every Crisis text plate.
   - The sanitised SVG is `art/stills/tugra-suleyman.svg`, painted with `currentColor`.
 - **Boş Mektup removed** from the cards, the icon set and `terms.json`. The digital game doesn't need it.
 - **Text size.** Body text is 5cqw (12.9 px at 258), power text 4.7cqw (12.1 px), and the draw line 4.7cqw. Round 3 used 4.35 and 4.1.
@@ -116,7 +115,7 @@ Put `lang="tr"` on the root. Name boxes need a line-height of at least 1.05, or 
 - **İznik tile** (`p-iznik`, `p-saz`): a cobalt tulip, turquoise leaves and a red dot, for the Entrika band and field.
 - **Zerefşan** (`p-zerefsan`): gold flecks on ferman paper, for Crisis.
 - **Ebru** (`g-ebru` plus `f-ebru`): striped colour bands bent through two turbulence displacements, for the Kader back and the Hırs art.
-- **Tuğra** (`s-tugra`): Süleyman the Magnificent's real tuğra, from a public-domain Wikimedia Commons trace (`art/stills/tugra-suleyman.svg`). It is sanitised to bare geometry and painted with `currentColor` plus a 5-unit stroke for body. It appears in embossed gold on the Crisis back and as a 16% gold watermark behind every Crisis text plate.
+- **Tuğra** (`s-tugra`): Süleyman the Magnificent's real tuğra, from a public-domain Wikimedia Commons trace (`art/stills/tugra-suleyman.svg`). It is sanitised to bare geometry and painted with `currentColor` plus a 5-unit stroke for body. It appears in embossed gold on the Crisis back only.
 - **Köşebent and şemse**: gold corner pieces at the bottom of every front, and on the backs. The şemse is the almond medallion with pendants on the Entrika back.
 - **Cetvel**: three coloured rules (lapis, vermilion, turquoise) on the paper cards.
 
