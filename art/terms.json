@@ -4,52 +4,319 @@
     "rule": "A stem matches at the start of a word and runs on through any following letters, so Turkish suffixes stay attached (Nüfuzu, Vekile, Divan'da). Matching is case-sensitive: list a lowercase stem only where the term is written in lowercase in running text. Try longer stems first, so Saray Dedikodusu wins over Saray and Birinci Vekil over Vekil.",
     "regex": "(?<![\\p{L}\\p{N}])(STEMS)(?:['’]\\p{L}+|\\p{L}*)",
     "flags": "gu",
-    "note": "Use \\p{L} with the u flag, not \\b: \\b treats ı, ş and ğ as word breaks. A short stem also matches longer unrelated words that start with it (Kul in Kullan), so avoid starting a sentence with such a word in card text."
+    "note": "Use \\p{L} with the u flag, not \\b: \\b treats ı, ş and ğ as word breaks. A short stem also matches longer unrelated words that start with it (Kul in Kullan), so avoid starting a sentence with such a word in card text. Elements marked data-noterms (frequency pills) and power names (class pn) are skipped, so a name like Kulis never picks up the Kul icon."
   },
   "terms": [
-    { "id": "term.suleyman", "stems": ["Süleyman", "Padişah"], "icon": "suleyman" },
-    { "id": "term.death", "stems": ["Süleyman'ın ölümü"], "icon": "death" },
-    { "id": "term.loyalist", "stems": ["Sadık", "Sadığ"], "icon": "loyalist" },
-    { "id": "term.traitor", "stems": ["Hain"], "icon": "traitor" },
-    { "id": "term.allegiance", "stems": ["Taraf"], "icon": "allegiance" },
-    { "id": "term.min1", "stems": ["Birinci Vekil"], "icon": "min1" },
-    { "id": "term.min2", "stems": ["İkinci Vekil"], "icon": "min2" },
-    { "id": "term.minister", "stems": ["Vekil"], "icon": "minister" },
-    { "id": "term.character", "stems": ["Karakter"], "icon": "character" },
-    { "id": "term.companion", "stems": ["Kul"], "icon": "companion" },
-    { "id": "term.crisis", "stems": ["Kriz"], "icon": "crisis" },
-    { "id": "term.court", "stems": ["Tertip"], "icon": "court" },
-    { "id": "term.objection", "stems": ["İtiraz"], "icon": "objection" },
-    { "id": "term.decree", "stems": ["Hüküm", "Hükm"], "icon": "decree" },
-    { "id": "term.kader", "stems": ["Kader"], "icon": "kader" },
-    { "id": "term.hizmet", "stems": ["Hizmet"], "icon": "hizmet" },
-    { "id": "term.hiyanet", "stems": ["Hıyanet"], "icon": "hiyanet" },
-    { "id": "term.intrigue", "stems": ["Entrika"], "icon": "intrigue" },
-    { "id": "term.bosmektup", "stems": ["Boş Mektup", "Boş Mektub"], "icon": "letter" },
-    { "id": "term.ambition", "stems": ["Hırs"], "icon": "ambition" },
-    { "id": "term.harem", "stems": ["Harem"], "icon": "harem" },
-    { "id": "term.divan", "stems": ["Divan"], "icon": "divan" },
-    { "id": "term.saray", "stems": ["Saray"], "icon": "saray" },
-    { "id": "term.influence", "stems": ["Nüfuz"], "icon": "influence" },
-    { "id": "term.base", "stems": ["Temel güç"], "icon": "base" },
-    { "id": "term.favor", "stems": ["Lütuf", "Lütf"], "icon": "favor" },
-    { "id": "term.loyalty", "stems": ["Sadakat"], "icon": "loyalty" },
-    { "id": "term.treason", "stems": ["İhanet"], "icon": "treason" },
-    { "id": "term.claim", "stems": ["Sahiplen", "sahiplen"], "icon": "claim" },
-    { "id": "term.anon", "stems": ["İsimsiz", "isimsiz"], "icon": "anon" },
-    { "id": "term.secret", "stems": ["Gizli", "gizli"], "icon": "secret" },
-    { "id": "term.once", "stems": ["Oyunda bir", "oyunda bir"], "icon": "once" },
-    { "id": "term.percrisis", "stems": ["Krizde bir", "krizde bir"], "icon": "percrisis" },
-    { "id": "term.always", "stems": ["Her zaman", "her zaman"], "icon": "always" },
-    { "id": "card.akil-hocasi", "stems": ["Akıl Hocası"], "icon": "intrigue" },
-    { "id": "card.muhur", "stems": ["Mühür"], "icon": "intrigue" },
-    { "id": "card.valide", "stems": ["Valide'nin Buyruğu"], "icon": "intrigue" },
-    { "id": "card.divan-sirasi", "stems": ["Divan Sırası"], "icon": "intrigue" },
-    { "id": "card.saray-dedikodusu", "stems": ["Saray Dedikodusu"], "icon": "intrigue" },
-    { "id": "card.muhurlu-evrak", "stems": ["Mühürlü Evrak"], "icon": "intrigue" },
-    { "id": "card.saray-tabibi", "stems": ["Saray Tabibi"], "icon": "intrigue" },
-    { "id": "card.iftira", "stems": ["İftira"], "icon": "intrigue" },
-    { "id": "card.gozde", "stems": ["Gözde'nin Hediyesi"], "icon": "intrigue" },
-    { "id": "card.teftis", "stems": ["Teftiş"], "icon": "intrigue" }
+    {
+      "id": "term.suleyman",
+      "stems": [
+        "Süleyman",
+        "Padişah"
+      ],
+      "icon": "suleyman"
+    },
+    {
+      "id": "term.death",
+      "stems": [
+        "Süleyman'ın ölümü"
+      ],
+      "icon": "death"
+    },
+    {
+      "id": "term.loyalist",
+      "stems": [
+        "Sadık",
+        "Sadığ"
+      ],
+      "icon": "loyalist"
+    },
+    {
+      "id": "term.traitor",
+      "stems": [
+        "Hain"
+      ],
+      "icon": "traitor"
+    },
+    {
+      "id": "term.allegiance",
+      "stems": [
+        "Taraf"
+      ],
+      "icon": "allegiance"
+    },
+    {
+      "id": "term.min1",
+      "stems": [
+        "Birinci Vekil"
+      ],
+      "icon": "min1"
+    },
+    {
+      "id": "term.min2",
+      "stems": [
+        "İkinci Vekil"
+      ],
+      "icon": "min2"
+    },
+    {
+      "id": "term.minister",
+      "stems": [
+        "Vekil"
+      ],
+      "icon": "minister"
+    },
+    {
+      "id": "term.character",
+      "stems": [
+        "Karakter"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "term.companion",
+      "stems": [
+        "Kul"
+      ],
+      "icon": "companion"
+    },
+    {
+      "id": "term.crisis",
+      "stems": [
+        "Kriz"
+      ],
+      "icon": "crisis"
+    },
+    {
+      "id": "term.court",
+      "stems": [
+        "Tertip"
+      ],
+      "icon": "court"
+    },
+    {
+      "id": "term.objection",
+      "stems": [
+        "İtiraz"
+      ],
+      "icon": "objection"
+    },
+    {
+      "id": "term.decree",
+      "stems": [
+        "Hüküm",
+        "Hükm"
+      ],
+      "icon": "decree"
+    },
+    {
+      "id": "term.kader",
+      "stems": [
+        "Kader"
+      ],
+      "icon": "kader"
+    },
+    {
+      "id": "term.hizmet",
+      "stems": [
+        "Hizmet"
+      ],
+      "icon": "hizmet"
+    },
+    {
+      "id": "term.hiyanet",
+      "stems": [
+        "Hıyanet"
+      ],
+      "icon": "hiyanet"
+    },
+    {
+      "id": "term.intrigue",
+      "stems": [
+        "Entrika"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "term.ambition",
+      "stems": [
+        "Hırs"
+      ],
+      "icon": "ambition"
+    },
+    {
+      "id": "term.harem",
+      "stems": [
+        "Harem"
+      ],
+      "icon": "harem"
+    },
+    {
+      "id": "term.divan",
+      "stems": [
+        "Divan"
+      ],
+      "icon": "divan"
+    },
+    {
+      "id": "term.saray",
+      "stems": [
+        "Saray"
+      ],
+      "icon": "saray"
+    },
+    {
+      "id": "term.influence",
+      "stems": [
+        "Nüfuz"
+      ],
+      "icon": "influence"
+    },
+    {
+      "id": "term.base",
+      "stems": [
+        "Temel güç"
+      ],
+      "icon": "base"
+    },
+    {
+      "id": "term.favor",
+      "stems": [
+        "Lütuf",
+        "Lütf"
+      ],
+      "icon": "favor"
+    },
+    {
+      "id": "term.loyalty",
+      "stems": [
+        "Sadakat"
+      ],
+      "icon": "loyalty"
+    },
+    {
+      "id": "term.treason",
+      "stems": [
+        "İhanet"
+      ],
+      "icon": "treason"
+    },
+    {
+      "id": "term.claim",
+      "stems": [
+        "Sahiplen",
+        "sahiplen"
+      ],
+      "icon": "claim"
+    },
+    {
+      "id": "term.anon",
+      "stems": [
+        "İsimsiz",
+        "isimsiz"
+      ],
+      "icon": "anon"
+    },
+    {
+      "id": "term.secret",
+      "stems": [
+        "Gizli",
+        "gizli"
+      ],
+      "icon": "secret"
+    },
+    {
+      "id": "term.once",
+      "stems": [
+        "Oyunda bir",
+        "oyunda bir"
+      ],
+      "icon": "once"
+    },
+    {
+      "id": "term.percrisis",
+      "stems": [
+        "Krizde bir",
+        "krizde bir"
+      ],
+      "icon": "percrisis"
+    },
+    {
+      "id": "term.always",
+      "stems": [
+        "Her zaman",
+        "her zaman"
+      ],
+      "icon": "always"
+    },
+    {
+      "id": "card.akil-hocasi",
+      "stems": [
+        "Akıl Hocası"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.muhur",
+      "stems": [
+        "Mühür"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.valide",
+      "stems": [
+        "Valide'nin Buyruğu"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.divan-sirasi",
+      "stems": [
+        "Divan Sırası"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.saray-dedikodusu",
+      "stems": [
+        "Saray Dedikodusu"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.muhurlu-evrak",
+      "stems": [
+        "Mühürlü Evrak"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.saray-tabibi",
+      "stems": [
+        "Saray Tabibi"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.iftira",
+      "stems": [
+        "İftira"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.gozde",
+      "stems": [
+        "Gözde'nin Hediyesi"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.teftis",
+      "stems": [
+        "Teftiş"
+      ],
+      "icon": "intrigue"
+    }
   ]
 }

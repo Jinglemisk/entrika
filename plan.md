@@ -10,12 +10,14 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 5. Then Full mode (Companions, Ambitions, Favor powers).
 
 ## Browser game (see `docs/direction.md`)
-1. Art direction: B picked. Round 3 (cards redrawn, grade softened to 15%) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
+1. Art direction: B picked. Round 4 (window art standard, cut-out Characters, full-art Crises, real tuğra) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
    - settle the grade strength with the slider;
-   - decide on background cut-outs for the portraits;
+   - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
+   - AI-generated textures (deferred);
    - find art for Ayas Paşa and Kara Ahmed Paşa.
 2. Final art in the chosen direction: card templates, icon set, portraits, popups.
-3. First playable, built overnight end to end from the manual's current rules.
+3. UI layout proposal (subagent), once the art is final, from the decisions in the UI section of `docs/direction.md`.
+4. First playable, built overnight end to end from the manual's current rules.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.

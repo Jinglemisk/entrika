@@ -35,6 +35,18 @@ The standing brief for the browser game. Read it before starting any work on the
 - Clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
 - Mobile-first and light. No heavy engines.
 
+## UI
+
+Decided with the designer on 2026-11-13. A UI agent proposes the layout once the art is final.
+
+- **Table.** The other players sit in seat order along an arc at the top, with Süleyman's seat marked; up to 7 must fit. The Crisis, the Hizmet and Hıyanet tracks and the two Vekils sit in the centre. Your Character, Influence, hand and Kul run along the bottom. Seat order matters because Objections go clockwise and some Crises draw for the players beside Süleyman.
+- **Pace.** Süleyman's phone taps "next" to close a step, for example after the Objections or after the reveal. No timers.
+- **Secret info.** Your hand is always visible. Allegiance and Hırs show only while you press and hold.
+- **Reveals play in sync** on every phone, so the table reacts together.
+- **Game log.** A drawer holds the full history, round by round: appointments, which cards resolved on whom, Kader results, Decrees.
+- **Private marks.** You can tag other players (şüpheli, güvenilir). Only you see your tags.
+- **Attention.** Visual cues always, plus sound effects, a quiet music loop and a buzz when you must act, each switchable. iPhone Safari has no web vibration, so the buzz may work on Android only.
+
 ## Turkish terms
 
 Decided so far (the full list is in `art/directions/notes.md`): Birinci Vekil / İkinci Vekil (Ministers), Tertip (Court), Hırs (Ambition), Kul (Companion), Entrika (Intrigue).

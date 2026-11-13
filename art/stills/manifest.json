@@ -48,6 +48,17 @@
         "from": "char.suleyman-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.suleyman.png",
+        "from": "char.suleyman-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -28.6,
+          "width_pct_of_window": 112.1,
+          "left_pct_of_window": -7.2
+        },
+        "soft_at_258": false
       }
     },
     "char.hurrem": {
@@ -89,6 +100,17 @@
         "from": "char.hurrem-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.hurrem.png",
+        "from": "char.hurrem-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -20.75,
+          "width_pct_of_window": 100.4,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": false
       }
     },
     "char.ibrahim": {
@@ -129,6 +151,17 @@
         "from": "char.ibrahim-1.jpg",
         "posed": true,
         "face_share": 0.37
+      },
+      "cutout": {
+        "file": "cutout/char.ibrahim.png",
+        "from": "char.ibrahim-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -11.22,
+          "width_pct_of_window": 102.3,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": true
       }
     },
     "char.mahidevran": {
@@ -170,6 +203,17 @@
         "from": "char.mahidevran-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.mahidevran.png",
+        "from": "char.mahidevran-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -19.17,
+          "width_pct_of_window": 101.6,
+          "left_pct_of_window": -1.6
+        },
+        "soft_at_258": false
       }
     },
     "char.bali": {
@@ -210,6 +254,17 @@
         "from": "char.bali-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.bali.png",
+        "from": "char.bali-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -36.49,
+          "width_pct_of_window": 100.3,
+          "left_pct_of_window": -0.3
+        },
+        "soft_at_258": true
       }
     },
     "char.hatice": {
@@ -250,6 +305,17 @@
         "from": "char.hatice-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.hatice.png",
+        "from": "char.hatice-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -15.05,
+          "width_pct_of_window": 101.9,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": true
       }
     },
     "char.mihrimah": {
@@ -291,6 +357,17 @@
         "from": "char.mihrimah-1.jpg",
         "posed": true,
         "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.mihrimah.png",
+        "from": "char.mihrimah-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -24.69,
+          "width_pct_of_window": 102.8,
+          "left_pct_of_window": -1.4
+        },
+        "soft_at_258": false
       }
     },
     "char.rustem": {
@@ -332,6 +409,17 @@
         "from": "char.rustem-1.jpg",
         "posed": true,
         "face_share": 0.39
+      },
+      "cutout": {
+        "file": "cutout/char.rustem.png",
+        "from": "char.rustem-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -14.55,
+          "width_pct_of_window": 100.2,
+          "left_pct_of_window": -0.2
+        },
+        "soft_at_258": false
       }
     },
     "comp.daye": {
@@ -806,7 +894,16 @@
             0.45
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 2,
+        "source_px": [
+          931,
+          607
+        ],
+        "device_px_per_css_px_at_258": 1.61,
+        "quality": "soft on retina"
+      }
     },
     "crisis.hazine": {
       "status": "found",
@@ -825,7 +922,16 @@
             0.291
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          720,
+          400
+        ],
+        "device_px_per_css_px_at_258": 1.06,
+        "quality": "low"
+      }
     },
     "crisis.venedik": {
       "status": "stand-in",
@@ -858,7 +964,16 @@
             0.45
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          641,
+          400
+        ],
+        "device_px_per_css_px_at_258": 1.06,
+        "quality": "low"
+      }
     },
     "crisis.harem": {
       "status": "found",
@@ -891,7 +1006,16 @@
             0.246
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          800,
+          533
+        ],
+        "device_px_per_css_px_at_258": 1.41,
+        "quality": "soft on retina"
+      }
     },
     "crisis.macar": {
       "status": "found",
@@ -924,7 +1048,16 @@
             0.45
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          1600,
+          1067
+        ],
+        "device_px_per_css_px_at_258": 2.82,
+        "quality": "ok"
+      }
     },
     "crisis.muhur": {
       "status": "stand-in",
@@ -957,7 +1090,16 @@
             0.591
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          931,
+          607
+        ],
+        "device_px_per_css_px_at_258": 1.61,
+        "quality": "soft on retina"
+      }
     },
     "crisis.divan": {
       "status": "found",
@@ -990,7 +1132,16 @@
             0.45
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          800,
+          598
+        ],
+        "device_px_per_css_px_at_258": 1.58,
+        "quality": "soft on retina"
+      }
     },
     "crisis.sehzade": {
       "status": "found",
@@ -1023,7 +1174,16 @@
             0.223
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 2,
+        "source_px": [
+          1550,
+          1024
+        ],
+        "device_px_per_css_px_at_258": 2.71,
+        "quality": "ok"
+      }
     },
     "crisis.istanbul": {
       "status": "found",
@@ -1056,7 +1216,16 @@
             0.445
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          931,
+          607
+        ],
+        "device_px_per_css_px_at_258": 1.61,
+        "quality": "soft on retina"
+      }
     },
     "crisis.sinir": {
       "status": "found",
@@ -1089,7 +1258,16 @@
             0.256
           ]
         }
-      ]
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          931,
+          607
+        ],
+        "device_px_per_css_px_at_258": 1.61,
+        "quality": "soft on retina"
+      }
     },
     "card.akil-hocasi": {
       "status": "found",
@@ -1528,5 +1706,13 @@
         }
       ]
     }
+  },
+  "tugra": {
+    "file": "tugra-suleyman.svg",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Tughra_Suleiman_Signature.svg",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Tughra_Suleiman_Signature.svg",
+    "licence": "Public domain (Wikimedia Commons: \"Public domain\"; 16th-century original). Trace by Gregors (2011), derived from Tughra_Suleiman.jpg.",
+    "note": "Downloaded into its own empty folder, then sanitised: only path/g geometry kept, defs, metadata, namedview, styles, scripts, foreignObject, on* attributes and hrefs dropped (none were present beyond defs/metadata). Recoloured with currentColor and a 5-unit stroke for body. Used on the Kriz back (embossed gold) and as a faint watermark on Kriz text plates.",
+    "rejected": "https://commons.wikimedia.org/wiki/File:Tughra_of_Suleiman_I_the_Magnificent.svg (also public domain, but a monoline trace without the calligraphic thick-thin stroke)."
   }
 }
