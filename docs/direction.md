@@ -10,6 +10,13 @@ The standing brief for the browser game. Read it before starting any work on the
 - It's for friends. No anti-cheat, no server-side bookkeeping, no accounts. People talk at the table or on their own WhatsApp call, so there's no in-app chat or voice.
 - The UI is in Turkish. English comes later through i18n, so every UI string goes through a string table from the start.
 - The digital game doesn't carry paper workarounds. Placement is private and simultaneous on each phone, so the eyes-closed night, the call order and Boş Mektup aren't needed.
+- **It's an online game, not a paper one.** Each phone shows only its owner's secrets and the game knows everything, so rules that exist to manage a physical table don't apply:
+  - Choose and look cards aren't claimed; the owner decides privately on their phone.
+  - Placed cards stay hidden until the reveal. Others only see that a player is ready, not whether they placed or passed.
+  - The phone enforces the rules; for example, a Sadık Vekil can't make an illegal Kader play.
+  - Peeking at a neighbour's phone isn't a design concern.
+
+  Questions like these are settled here, not put to the designer as rules questions.
 - The rules are the living manual (`manual.html`, published as an artifact). The first playable follows the manual's current version.
 
 ## Philosophy
