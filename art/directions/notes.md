@@ -5,7 +5,8 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
 ## Decisions (round 5)
 
 - **One name line.** The name cartouche sits at the same height on every card type: centre at y = 380 of 700, which is 181 px from the top at 258 px wide. Windows end there and text plates start below it.
-  - On full-art Crisis cards the art runs behind the name, and the plate is a short band at the bottom (y 528–650).
+  - On every type the text plate starts directly under the name (y 422) and runs to the bottom margin (y 650); there is no gap between name and plate.
+  - On full-art Crisis cards the scene runs behind the whole card. The plate is translucent paper over it (72–84% opacity with a light blur and the tuğra watermark), and the sentence is centred in it at 5.4cqw.
   - The compact frame (under 150 px) keeps its own name bar at the bottom, as before.
 - **Frequency as icons only.** Oyunda bir, Krizde bir and Her zaman are small dark-bronze discs with a gold ring at the start of the effect. The words are in `title` and `aria-label`, like the field gems.
   - The icons, in the existing stroke style: `once` (circle with a serifed 1), `percrisis` (circular arrow around a dot), `always` (infinity). They stay distinct at 16 px.
