@@ -5,6 +5,7 @@
     "term.hizmet / term.hiyanet": "The manual has no card ids for Kader cards, so their art uses the glossary ids.",
     "ui.title": "Not a manual entity: title-screen key art."
   },
+  "graded": "graded/ holds every file (and graded/roster/) with the colour grade baked in at s = 0.15: a warm umber-to-gold tritone mixed at 0.8*s = 12 %. Use these in the game; the originals stay ungraded.",
   "roster": "roster/<id>.jpg holds the standard portrait for every person card: 4:5, centred on the face, eye line at 37% from the top, face box 36% of the height (face_share). Where the source is too tight the crop zooms in and face_share is higher. posed = an official promo or cast photo; otherwise a screencap, because no posed photo was found.",
   "rights": "All stills belong to the producer and broadcasters. Private, non-commercial use among friends only; do not publish the game or these files.",
   "entities": {

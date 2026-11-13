@@ -10,7 +10,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 5. Then Full mode (Companions, Ambitions, Favor powers).
 
 ## Browser game (see `docs/direction.md`)
-1. Art direction: B picked, using A's red-to-gold grade on the stills. Round 2 is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
+1. Art direction: B picked. Round 3 (cards redrawn, grade softened to 15%) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
    - settle the grade strength with the slider;
    - decide on background cut-outs for the portraits;
    - find art for Ayas Paşa and Kara Ahmed Paşa.
