@@ -4,6 +4,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 
 ## Next
 1. Review the v0.6 manual; confirm the "Proposed" items and settle the open questions in Notes.
+   - Roster v0.7 proposal (the 1534 court: Mustafa, Barbaros and three Wildcards in; Malkoçoğlu becomes a Companion; Sadık/Hain motive lines): https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH. Once approved, merge it into the manual and add the new art to the art list.
 2. Paper prototype (index cards are fine) and 3–5 learning games in Basic mode.
 3. Log every game: player count, winner, final track state, minutes, what the losing side called unfair.
 4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
