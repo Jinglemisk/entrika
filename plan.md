@@ -10,7 +10,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 5. Then Full mode (Companions, Ambitions, Favor powers).
 
 ## Browser game (see `docs/direction.md`)
-1. Art direction: B picked. Round 4 (window art standard, cut-out Characters, full-art Crises, real tuğra) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
+1. Art direction: B picked. Round 5 (one name line, icon frequencies, studio-lit Character portraits) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
    - settle the grade strength with the slider;
    - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
    - AI-generated textures (deferred);

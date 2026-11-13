@@ -2,6 +2,21 @@
 
 The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Round 3 redrew every card after looking at published card games. Round 4 applied the designer's decisions on art placement, Kul cards, the tuğra and text size (see Decisions). The base is still direction B, the Ottoman miniature: paper, gold leaf, lapis and vermilion, and backs taken from Ottoman bookbinding. Each card type now has its own enamel or material, and the photos carry only a faint warm grade. All ornament is drawn in SVG and CSS; the show stills are the only photos.
 
+## Decisions (round 5)
+
+- **One name line.** The name cartouche sits at the same height on every card type: centre at y = 380 of 700, which is 181 px from the top at 258 px wide. Windows end there and text plates start below it.
+  - On full-art Crisis cards the art runs behind the name, and the plate is a short band at the bottom (y 528–650).
+  - The compact frame (under 150 px) keeps its own name bar at the bottom, as before.
+- **Frequency as icons only.** Oyunda bir, Krizde bir and Her zaman are small dark-bronze discs with a gold ring at the start of the effect. The words are in `title` and `aria-label`, like the field gems.
+  - The icons, in the existing stroke style: `once` (circle with a serifed 1), `percrisis` (circular arrow around a dot), `always` (infinity). They stay distinct at 16 px.
+  - In `terms.json` these three entries carry `"display": "icon"` and a `tooltip`.
+- **Character powers without tabs.** Each power reads "Name: description" in its own panel. The base power is roman in the red-edged panel. The Hırs-unlocked power is entirely italic (name and text) in the blue hatched panel.
+- **Crisis text.** One sentence from the manual, timed to the Crisis flip, with term icons. The "Tertip: yalnız …" line and the "Çekiliş." label are gone; the field gem carries the field.
+- **Portrait backdrop.** The Character cut-outs now sit on their own lit studio backdrop, not the frame's red velvet. It is a dark warm umber gradient (`#4d4238 → #120e0b`) with a soft gold halo behind the head (`#f0d6a0` at 75%, fading out) and a vignette. The figure separates from the frame, as in a cast promo.
+  - The alternative, shown on Hürrem and Süleyman, is a lapis dusk (`#2b4a8f → #0a1230`) with zerefşan gold flecks and a pale halo. It is more Ottoman, but cooler, and it competes with the Kul cards' lapis.
+- **Short Character names.** Süleyman, Hürrem, Pargalı, Mahidevran, Malkoçoğlu, Hatice, Mihrimah, Rüstem. They are used on the cards, in the roster and as `terms.json` stems (`char.*`, with the character icon; Süleyman stays `term.suleyman`). Kul names are unchanged.
+- **Fields are only tags.** Nothing on the page shows a Harem or Divan zone. Cards are played in front of the targeted Character; the field is the gem on the card.
+
 ## Decisions (round 4)
 
 - **Art placement.**
@@ -9,10 +24,10 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
   - **C, figure breaking the frame:** all eight Characters, at detail size.
     - Each portrait is cut out with macOS Vision (locally) and set on one shared backdrop: deep red velvet with the gold kaftan lattice.
     - Only the head breaks over the arch. The cut-out layer is a band 64% of the window wide, ending at the arch's spring line, so the hair and shoulders at the sides stay inside.
-    - At 120 and 64 px the compact frame shows the same cut-out on the same backdrop, without the break.
+    - At 120 and 64 px the compact frame shows the same cut-out on the same backdrop, without the break. (Round 5 replaced the shared red-velvet backdrop with a lit studio backdrop.)
   - **B, full art:** all ten Crisis cards. The scene fills the card inside the gold rim; the name cartouche and a translucent text plate sit on top.
 - **Kul: one look.** Lapis enamel, round arch, enamel cartouche with gold lettering. The Kılık/Özel ribbons and the malachite variant are gone.
-- **Frequency inline.** How often an effect works opens the effect text as a small dark pill with its icon: Oyunda bir, Krizde bir or Her zaman. Character powers use the same pill inside each panel, after the Temel güç or Lütuf tab.
+- **Frequency inline.** How often an effect works opens the effect text (round 5: as an icon only, words in a tooltip).
   - Frequencies come from the manual: recast Kul are once per crisis; Kara Ahmed, Piri and Esma are once per game; Afife is always on.
   - Character powers are once per game, except İbrahim's Divan Nüfuzu (always) and Süleyman's Lütuf (none).
 - **Real tuğra.** Süleyman's tuğra (Wikimedia Commons, public domain; see `art/stills/manifest.json` → `tugra`) replaces the drawn one.
@@ -21,8 +36,7 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
   - The sanitised SVG is `art/stills/tugra-suleyman.svg`, painted with `currentColor`.
 - **Boş Mektup removed** from the cards, the icon set and `terms.json`. The digital game doesn't need it.
 - **Text size.** Body text is 5cqw (12.9 px at 258), power text 4.7cqw (12.1 px), and the draw line 4.7cqw. Round 3 used 4.35 and 4.1.
-  - To make room, the Character window is shorter: the name line moved up to y = 340 of 700.
-  - Long power texts were tightened.
+  - Long power texts were tightened. (Round 5 then fixed the name line at y = 380 on every type.)
 - **AI-generated textures:** deferred.
 
 ## What makes the cards read as finished
@@ -133,7 +147,7 @@ The backs drop their word and plate under 150 px.
 - **Roster standard (unchanged).** `art/stills/roster/<id>.jpg`: 4:5, eye line at 37% from the top, face 36% of the height. On cards: `object-position: 50% 16–18%`.
 - **Character cut-outs (applied, fork C).** macOS Vision's foreground-mask request, run from a small Swift script, with no install and no upload.
   - It was run on all eight Character stills. The results are in `art/stills/cutout/` as full-size PNGs; the page uses 600 px WebP copies.
-  - Placement per character is in the manifest (`entities.char.*.cutout`). It is computed from the detected face: the face is 24cqw tall, centred at x 50, y 31, and the photo always covers the window.
+  - Placement per character is in `cutplace.json` on the page side and the manifest (`entities.char.*.cutout`). It is computed from the detected face: the face is 25cqw tall, centred at x 50, y 32, and the photo always covers the window down to the name line.
   - The masks are clean on the five studio portraits (Süleyman, Hürrem, Mahidevran, Mihrimah, Rüstem).
   - İbrahim, Bali and Hatice are cut from 300 px promo images. Their edges are fine, but the images are soft at 258 px on a retina screen (about 1.4 device px per CSS px; 2 is needed).
 
@@ -164,7 +178,7 @@ There are seven slots:
 2. field gem (icon only, with a tooltip);
 3. art window (arch per type, embossed molding);
 4. name cartouche;
-5. text plate (centred; every effect opens with a frequency pill: Oyunda bir, Krizde bir or Her zaman; Character has two panels, Temel güç with a red tab and Lütuf with a blue hatched tab, each opening with its pill; Crisis has a field line and a boxed draw line);
+5. text plate (centred; every effect opens with a frequency icon, its words in a tooltip; Character has two untitled panels, the base power roman and the Hırs power italic; Crisis has one sentence on who draws when it flips);
 6. flavor line between fleurons (none on Crisis cards);
 7. frame (rim, enamel band, inner rule, köşebent, bottom drop).
 

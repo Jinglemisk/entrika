@@ -54,11 +54,12 @@
         "from": "char.suleyman-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -28.6,
-          "width_pct_of_window": 112.1,
-          "left_pct_of_window": -7.2
+          "top_cqw_from_window": -29.48,
+          "width_pct_of_window": 116.8,
+          "left_pct_of_window": -9.6
         },
-        "soft_at_258": false
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.hurrem": {
@@ -106,11 +107,12 @@
         "from": "char.hurrem-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -20.75,
-          "width_pct_of_window": 100.4,
+          "top_cqw_from_window": -20.17,
+          "width_pct_of_window": 101.5,
           "left_pct_of_window": 0.0
         },
-        "soft_at_258": false
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.ibrahim": {
@@ -157,11 +159,12 @@
         "from": "char.ibrahim-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -11.22,
-          "width_pct_of_window": 102.3,
+          "top_cqw_from_window": -9.72,
+          "width_pct_of_window": 100.4,
           "left_pct_of_window": 0.0
         },
-        "soft_at_258": true
+        "soft_at_258": true,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.mahidevran": {
@@ -209,11 +212,12 @@
         "from": "char.mahidevran-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -19.17,
-          "width_pct_of_window": 101.6,
-          "left_pct_of_window": -1.6
+          "top_cqw_from_window": -18.58,
+          "width_pct_of_window": 102.8,
+          "left_pct_of_window": -2.8
         },
-        "soft_at_258": false
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.bali": {
@@ -260,11 +264,12 @@
         "from": "char.bali-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -36.49,
-          "width_pct_of_window": 100.3,
-          "left_pct_of_window": -0.3
+          "top_cqw_from_window": -36.09,
+          "width_pct_of_window": 101.4,
+          "left_pct_of_window": -1.2
         },
-        "soft_at_258": true
+        "soft_at_258": true,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.hatice": {
@@ -311,11 +316,12 @@
         "from": "char.hatice-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -15.05,
-          "width_pct_of_window": 101.9,
+          "top_cqw_from_window": -14.41,
+          "width_pct_of_window": 103.0,
           "left_pct_of_window": 0.0
         },
-        "soft_at_258": true
+        "soft_at_258": true,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.mihrimah": {
@@ -363,11 +369,12 @@
         "from": "char.mihrimah-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -24.69,
-          "width_pct_of_window": 102.8,
-          "left_pct_of_window": -1.4
+          "top_cqw_from_window": -22.94,
+          "width_pct_of_window": 101.0,
+          "left_pct_of_window": -0.4
         },
-        "soft_at_258": false
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "char.rustem": {
@@ -415,11 +422,12 @@
         "from": "char.rustem-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -14.55,
-          "width_pct_of_window": 100.2,
-          "left_pct_of_window": -0.2
+          "top_cqw_from_window": -13.91,
+          "width_pct_of_window": 101.3,
+          "left_pct_of_window": -1.3
         },
-        "soft_at_258": false
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
     "comp.daye": {

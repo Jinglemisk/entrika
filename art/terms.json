@@ -1,5 +1,5 @@
 {
-  "about": "Game terms that are drawn with their icon in front of them wherever they appear in card text. Icons are the #i-* symbols of the Entrika icon sprite. Ids follow the manual (term.*, card.*).",
+  "about": "Game terms that are drawn with their icon in front of them wherever they appear in card text. Icons are the #i-* symbols of the Entrika icon sprite. Ids follow the manual (term.*, card.*). Character names use the short forms from the manual (Süleyman is term.suleyman). Entries with \"display\": \"icon\" are drawn as the icon alone, with the words as a tooltip (title and aria-label), not inline text: the three use frequencies.",
   "match": {
     "rule": "A stem matches at the start of a word and runs on through any following letters, so Turkish suffixes stay attached (Nüfuzu, Vekile, Divan'da). Matching is case-sensitive: list a lowercase stem only where the term is written in lowercase in running text. Try longer stems first, so Saray Dedikodusu wins over Saray and Birinci Vekil over Vekil.",
     "regex": "(?<![\\p{L}\\p{N}])(STEMS)(?:['’]\\p{L}+|\\p{L}*)",
@@ -21,6 +21,55 @@
         "Süleyman'ın ölümü"
       ],
       "icon": "death"
+    },
+    {
+      "id": "char.hurrem",
+      "stems": [
+        "Hürrem"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.ibrahim",
+      "stems": [
+        "Pargalı"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.mahidevran",
+      "stems": [
+        "Mahidevran"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.bali",
+      "stems": [
+        "Malkoçoğlu"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.hatice",
+      "stems": [
+        "Hatice"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.mihrimah",
+      "stems": [
+        "Mihrimah"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.rustem",
+      "stems": [
+        "Rüstem"
+      ],
+      "icon": "character"
     },
     {
       "id": "term.loyalist",
@@ -230,7 +279,9 @@
         "Oyunda bir",
         "oyunda bir"
       ],
-      "icon": "once"
+      "icon": "once",
+      "display": "icon",
+      "tooltip": "Oyunda bir"
     },
     {
       "id": "term.percrisis",
@@ -238,7 +289,9 @@
         "Krizde bir",
         "krizde bir"
       ],
-      "icon": "percrisis"
+      "icon": "percrisis",
+      "display": "icon",
+      "tooltip": "Krizde bir"
     },
     {
       "id": "term.always",
@@ -246,7 +299,9 @@
         "Her zaman",
         "her zaman"
       ],
-      "icon": "always"
+      "icon": "always",
+      "display": "icon",
+      "tooltip": "Her zaman"
     },
     {
       "id": "card.akil-hocasi",
