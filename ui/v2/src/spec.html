@@ -1,0 +1,104 @@
+<section>
+  <span class="eyebrow">ENTRİKA · MASA · UI v2</span>
+  <h2>One round, played from any seat</h2>
+  <p class="lede">This is the spec for the first playable's game screen. Everything above is the real layout at 852×393: tap through crisis 4, Divan Kavgası, from the Crisis flip to the Decree. The game state is scripted and the other seats are bots; the rules the phone enforces are real.</p>
+  <ul>
+    <li><b>On an iPhone:</b> open the link and turn the phone sideways. On a phone the prototype fills the screen and drops the frame. Add <code>#full</code> to the link to force that on any device.</li>
+    <li><b>Change seat:</b> tap any portrait on the arc to become that player (dev switch). The bar under the phone jumps to Süleyman, a Sadık player (Selin) or a Hain player (Mert), and to any step.</li>
+    <li><b>Süleyman's button:</b> when you are not Süleyman, a dashed “DEV · SÜLEYMAN” plaque lets you close his step for him. It is removed with the switcher.</li>
+    <li><b>Press and hold</b> your own portrait (bottom left) to see your Taraf and Hırs. <b>Long-press</b> any seat for their card, powers and your private tag. <b>Long-press</b> a card in hand to read it full size.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>The screen</h2>
+  <p>Coordinates are in board units: a 734×372 board, which is exactly the safe area of an 852×393 iPhone Pro in landscape (59 px inset on each side, 21 px for the home indicator). The board is scaled uniformly to whatever safe area the phone reports, and centred. The floor, carpet and scrims bleed to the screen edges; nothing tappable does.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Zone</th><th>Where</th><th>What</th></tr></thead>
+    <tbody>
+      <tr><td>Arc of seats</td><td>ellipse centre (367, 212), radii 330×178, 146° spread, top</td><td>Other players in seat order, clockwise from your left. 56 px gold medallions, 64 px for Süleyman with a crimson ring and his tuğra as a crest. Name cartouche below; Nüfuz coin bottom-right; Kul chip bottom-left (striped when face down at 0 Nüfuz); Vekil tab I or II top-left.</td></tr>
+      <tr><td>Lacquer tray</td><td>148,114 → 586,264</td><td>Crisis card (80 px), the Hizmet row (4 niches) and Hıyanet row (5 niches, power icons in the empty niches), Kader deck with count, the two Vekil plates.</td></tr>
+      <tr><td>Placed cards</td><td>beside each seat, table side</td><td>Face-down Entrika backs, 30 px, fanned when several land on one player. Seats on the top of the arc get them below; side seats get them inward.</td></tr>
+      <tr><td>Your corner</td><td>0,262 → 180,372</td><td>Your portrait (72 px, hold for secrets), your Kul card, and your power pips: base (red), Hırs power (blue, locked until revealed), Kul recast (once per crisis).</td></tr>
+      <tr><td>Hand</td><td>bottom centre, 200 → 534</td><td>Fanned, 84 px cards, 7° per card, bleeding off the bottom edge like Hearthstone. Süleyman has no hand; his Vekil tablets sit here during Atama.</td></tr>
+      <tr><td>Action</td><td>bottom right</td><td>One primary control at a time: a wax seal with a paper ribbon for a commitment (Mühürle, İtiraz et, Gönder, Oyna), or a gilded plaque for Süleyman's step button. A paper slip above it for the decline (Pas geç, Geç).</td></tr>
+      <tr><td>Step cartouche</td><td>top left</td><td>Six beads (Kriz, Atama, Tertip, Kader, Sonuç, Hüküm) and the step name. One line under it: “Sıra sende” in coral when it is your move, otherwise who the table waits on. Tap it for a one-line explanation.</td></tr>
+      <tr><td>Bosses</td><td>top right</td><td>Two 44 px gold bosses: the log scroll (a red dot when something new was logged) and settings.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>How each step works</h2>
+  <h3>1 · Kriz</h3>
+  <p>Süleyman taps <b>Yeni Kriz</b>. On every phone the Crisis card lifts out of the tray to full detail size, turns over, holds for about two seconds and settles back. Then its draw runs: a card back flies from the Crisis slot to each player who draws (into your hand, face up, if it is you).</p>
+  <h3>2 · Atama and İtiraz</h3>
+  <p>Süleyman drags tablet I and tablet II onto two seats, or taps a tablet and then a seat. Legal seats glow; everyone else dims. Tapping a placed tab takes it back. <b>Atamayı ilan et</b> starts the ceremony on every phone: the tuğra, both Character cards rising side by side with their seat names, then the cards fly into the Vekil plates.</p>
+  <p>Objections then go clockwise from Süleyman's left. The seat whose turn it is carries a red hand token. On your turn: tap the Vekil plate you object to, then the wax seal (it shows the −1 Nüfuz cost). Mahidevran's free İtiraz is her red base pip: tap it, the cost disappears, and she picks the replacement. The removed Vekil draws. Players with no Nüfuz and no free objection are skipped automatically.</p>
+  <h3>3 · Tertip</h3>
+  <p>The table goes to night: a blue wash, the room dims, and every phone gets a turn cue. Cards you can play glow gold; cards outside the open field are greyed and shake when tapped. A card that only works through your Kul shows the Kul's face on its corner and is already recast when you lift it.</p>
+  <p>Play a card by dragging it to a glowing seat, or tap it (it lifts and shows its name ribbon) and tap the seat. While dragging, the card shrinks into the slot it will land in. The Kul recast is a lapis cartouche beside the lifted card; tapping it switches the card's identity, and the legal seats change with it. The card flies to the seat and flips face down. Tap it there to take it back. <b>Mühürle</b> commits; <b>Pas geç</b> commits nothing. Either way the other phones see only a red wax tick on your seat.</p>
+  <p>Süleyman sees the ticks fill and his plaque reads “7/7 hazır”. <b>Saray uyansın</b> is enabled only when everyone is ready.</p>
+  <h3>Açılış · the synced reveal</h3>
+  <p>The banner unrolls on every phone; all placed cards slide out from the centre into their spots face down, pause, and turn over together. Then they resolve in order: each card in turn grows to 2.5× in front of its seat, does its thing, and dims (done) or gets a red cross (cancelled or illegal). Effects animate where they happen: a coin flies off a seat, a seal stamps a Vekil plate, a card back flies to whoever draws. Choices happen privately on the owner's phone at the moment the card resolves (Valide'nin Buyruğu asks its owner to tap the new Vekil; Saray Dedikodusu opens the target's hand for its owner only). Others see an eye mark on the card while its owner looks.</p>
+  <h3>4 · Kader</h3>
+  <p>Silence. The Birinci Vekil's phone shows three big Kader cards. Tap one to discard: it drops and gets a red seal. Gönder sends the other two; they stack, take a wax seal and fly off. The İkinci Vekil sees two cards arrive, taps one to discard and plays the other. A Sadık Vekil cannot make an illegal play: the card the duty forbids carries a lock, shakes when tapped, and one line of the rule appears. Everyone else watches card backs fly between the two seats.</p>
+  <h3>5 · Sonuç</h3>
+  <p>The played card flies to the centre on every phone, turns over (green light for Hizmet, red for Hıyanet), then drops into its niche on the track; the tray jolts. A power space lights its niche and unrolls a red banner with the power's name; its choices follow as seat picks.</p>
+  <h3>6 · Hüküm</h3>
+  <p>Süleyman's phone unrolls a ferman: two Vekil medallions, tap one, then seal it. Every other phone sees the sealed ferman fall, the wax break, the scroll unroll with the name and the ±1, and the coin fly. Completed Hırs cards then flip face up for everyone, and their Favor pips unlock.</p>
+</section>
+
+<section>
+  <h2>Controls made of the game's materials</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Control</th><th>Material</th><th>States</th></tr></thead>
+    <tbody>
+      <tr><td>Commit (place, object, send, play, seal a decree)</td><td>Wax seal, irregular rim, the action's icon pressed in, paper ribbon with the verb</td><td>grey and unpressable → red with a slow glow when ready → squash on press, stamp sound</td></tr>
+      <tr><td>Süleyman's step button</td><td>Black-green lacquer plaque, halkâri, bevelled gold rim (the Kriz back's material)</td><td>dim text when the step can't close yet, with the reason below (“5/7 hazır”) → gold glow</td></tr>
+      <tr><td>Decline</td><td>Paper slip with a gold rule</td><td>always available while the ask is open</td></tr>
+      <tr><td>Use/skip a power in someone else's step</td><td>Ivory slip with the Character portrait, a red Kullan and a paper Geç</td><td>the step waits until the holder answers</td></tr>
+      <tr><td>Step label</td><td>Ivory cartouche with scrolled ends</td><td>red bead for the current step; coral sub-line when it is your move</td></tr>
+      <tr><td>Panels</td><td>Log: ferman scroll on a gold roller. Settings: lacquer tray. Moments: dark scrim, green for Kader.</td><td>slide in from the right; tap outside to close</td></tr>
+      <tr><td>Counts</td><td>Gold coin for Nüfuz, card-back stack with a counter for the Kader deck</td><td>grey coin at 0</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Kaynaklar</h2>
+  <p class="muted">What I looked at (store screenshots, official sites, wiki and press images) and what each one gave this layout.</p>
+  <div class="refs">
+    <div><b>Secret Hitler (secret-hitler.online, secrethitler.io)</b><p>Player tiles in a row with President and Chancellor placards on them, and the policy pick as two or three big cards you tap to discard. Taken: the Vekil tabs on seats, the Kader pick, the tracks as framed slots. Left behind: the flat web tiles and the status text.</p></div>
+    <div><b>Blood on the Clocktower (clocktower.online)</b><p>Seats on a circle, with small reminder tokens dropped beside a player's token. Taken: cards placed beside the seat they target, and private marks on a seat.</p></div>
+    <div><b>Town of Salem 2</b><p>Players around a 3D table, a day/night lighting change, your role card in a corner, and a lot of text and chat. Taken: the night wash for Tertip. Avoided: the text and the always-visible role card (ours is press-and-hold).</p></div>
+    <div><b>Wolvesville</b><p>Big round avatars with numbers, a moonlit night, vote markers stacked on avatars. Taken: per-seat state shown as a badge on the portrait (the ready tick).</p></div>
+    <div><b>Among Us, meeting screen</b><p>Tap a player tile, then confirm; an “I voted” badge appears on voters without saying for whom; Skip is a separate small button. Taken: select-then-confirm, the anonymous ready tick, decline as a secondary control.</p></div>
+    <div><b>Feign</b><p>Chunky cartoon portraits as the whole identity of a seat; roles shown as a big card. Taken: the portrait is the seat, with everything else hung on its rim.</p></div>
+    <div><b>Hearthstone (mobile)</b><p>Fanned hand at bottom centre that bleeds off the screen, cards that lift and grow when touched, a physical End Turn button on the right that glows when you're done, gems for counts. Taken: the fan, the lift, the glowing physical primary action, coins and gems instead of numbers in boxes.</p></div>
+    <div><b>Legends of Runeterra (mobile)</b><p>A “Your turn” banner that sweeps across the board, the pass button at the right edge. Taken: the step banner that unrolls and folds into the cartouche.</p></div>
+    <div><b>Balatro (mobile)</b><p>Selected cards rise out of the hand; two big buttons with different colours for play and discard. Taken: select = rise, and different materials for commit (wax) and decline (paper).</p></div>
+    <div><b>Slay the Spire (mobile)</b><p>Drag a card toward an enemy; the target lights and the card shrinks toward it. Taken: drag-to-target with the card settling into its landing slot.</p></div>
+    <div><b>Gwent (mobile)</b><p>The board darkens and focuses during a phase; ornate leader portraits. Taken: scrims that push the table back for big moments; portrait frames with real bevels.</p></div>
+    <div><b>MTG Arena (mobile)</b><p>Long-press to zoom a card to readable size; the phase row as a strip of small markers. Taken: long-press to read; the bead row in the cartouche.</p></div>
+    <div><b>Marvel Snap</b><p>Drag cards onto locations that glow when legal; almost no text; a single End Turn with a counter. Taken: glowing legal targets, the ready counter on Süleyman's plaque, card art over card text.</p></div>
+    <div><b>Board Game Arena (Coup, Love Letter, The Resistance)</b><p>Player panels on the side, a status bar with full sentences, plain blue buttons. Taken: one line naming whom the table waits on. Avoided: everything else.</p></div>
+    <div><b>Root and Wingspan (digital)</b><p>Your own mat at the bottom, physical tokens for resources, one clear prompt at a time. Taken: your corner as your own mat, coins as objects.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Decisions a builder needs</h2>
+  <ul>
+    <li><b>Every decision is an “ask”.</b> The engine sends an ask to one seat (place, object, pick a player, Kader discard, decree, use/skip a power, peek). The phone of that seat renders it; every other phone shows who is being waited on. In the prototype, unanswered asks for seats nobody is viewing are answered by bots; in the game, by the player.</li>
+    <li><b>Reveals are scheduled, not streamed.</b> The Crisis flip, the ceremony, Saray uyansın, the Kader result and the Decree are moments with a fixed script. The relay sends a start time; every phone plays the same script from it.</li>
+    <li><b>Legality lives in one place.</b> The same rule functions decide which hand cards glow, which seats glow and which Kader card is locked. The UI never shows an illegal option as available.</li>
+    <li><b>Placement is private.</b> Your own placed card shows (gold outline) on your phone only. Others see only the tick. Pas geç also gives a tick.</li>
+    <li><b>Seat order.</b> The arc always starts at your left, so it rotates per phone. Süleyman's crest marks him wherever he falls.</li>
+    <li><b>Powers outside your step.</b> Kulis, Göz Bebeği, Fısıltı and Himaye open a use/skip slip on their holder's phone; the step waits. Used powers turn grey and are struck through on your pips and on your seat sheet.</li>
+    <li><b>No timers.</b> Süleyman's plaque is the only pacing; it is dim with a reason until the step can close.</li>
+    <li><b>No scrolling</b> anywhere in game screens. Only the log scrolls, inside its scroll.</li>
+    <li><b>Attention.</b> The coral “Sıra sende” line, the glow on what you can touch, and a sound and a buzz once when your move begins. Sound, music and vibration are toggles; visual cues can't be turned off.</li>
+  </ul>
+  <p class="muted">No alternative table layout: the arc held seven opponents at 852×393 without overlap, so the decided layout stands.</p>
+</section>
