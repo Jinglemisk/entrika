@@ -5,7 +5,7 @@
    This is a prototype, not the engine: the content, hands and bot
    choices below are fake data for crisis 4 (Divan Kavgası). The rules
    that the UI has to enforce (fields, legal targets, Kul recast,
-   Loyalist duty, resolve order) are real, so free play stays legal.
+   Loyalist duty, Tertip waves, the simultaneous reveal) are real, so free play stays legal.
    ===================================================================== */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -18,10 +18,11 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 /* ---------------- strings (every UI string goes through here) ---------------- */
 const T = {
   step: ['Kriz', 'Atama', 'Tertip', 'Kader', 'Sonuç', 'Hüküm'],
-  newCrisis: 'Yeni Kriz', announce: 'Atamayı ilan et', sleep: 'Saray uyusun', wake: 'Saray uyansın', kader: 'Kader', decree: 'Hüküm',
+  newCrisis: 'Yeni Kriz', announce: 'Atamayı ilan et', sleep: 'Tertip', wake: 'Kartları aç', kader: 'Kader', decree: 'Hüküm',
   kulisEnd: 'Kulis bitti', seal: 'Mühürle', pass: 'Pas geç', object: 'İtiraz et', skip: 'Geç', send: 'Gönder', play: 'Oyna', use: 'Kullan', ok: 'Tamam',
   start: 'Oyunu başlat', join: 'Koda katıl', restart: 'Baştan', end: 'Oyun sonu', newGame: 'Yeni oyun',
-  min1: 'Birinci Vekil', min2: 'İkinci Vekil', yourTurn: 'Sıra sende', waiting: n => `${n} kişi bekleniyor`, waitingOne: 'Bekleniyor',
+  min1: 'Birinci Vekil', min2: 'İkinci Vekil', yourTurn: 'Sıra sende', waiting: n => `${n} bekleniyor`, waitingOne: 'Bekleniyor',
+  wave: n => `Tertip · ${n}. tur`, waveSub: 'Bir kart oyna ya da pas geç', reveal: 'Açılış', nobody: 'Kimse kart oynamadı', tertipEnd: 'Tertip bitti', limit: n => `Bu krizde ${n} kart oynadın`,
   ready: n => `${n} hazır`, hold: 'Basılı tut', tossOne: 'Birini at', sendTwo: 'İkisi İkinci Vekile gider', playOther: 'Diğeri oynanır',
   dutyH1: 'Sadık Birinci Vekil Hıyanet atar.', dutyH2: 'Sadık İkinci Vekil Hizmet oynar.', silent: 'Kimse konuşmaz',
   who: 'Yerine kim?', whoObj: 'İtiraz ettiğin Vekilin yerine kim?', whoFerman: 'Fermanla kimi atıyorsun?', fermanQ: 'Bir Vekili değiştir; Mühür’ü de aşar.',
@@ -38,31 +39,30 @@ const STEP_I = { lobi: -1, k0: 0, atama: 1, itiraz: 1, 'itiraz-done': 1, tertip:
 /* ---------------- content ---------------- */
 const CH = {
   suleyman: { n: 'Süleyman', base: ['Ferman', 'decree'] },
-  hurrem: { n: 'Hürrem', base: ['Fısıltı', 'decree'], favor: ['Çifte Oyun', 'court'] },
+  hurrem: { n: 'Hürrem', base: ['Fısıltı', 'decree'], favor: ['Çifte Oyun', 'intrigue'] },
   ibrahim: { n: 'Pargalı', base: ['Sadrazam', 'min1'], favor: ['Divan Nüfuzu', 'influence'] },
   mahidevran: { n: 'Mahidevran', base: ['İtiraz', 'objection'], favor: ['Sürgün', 'minister'] },
-  bali: { n: 'Malkoçoğlu', base: ['Muhafız', 'hiyanet'], favor: ['Gözcü', 'secret'] },
   hatice: { n: 'Hatice', base: ['Himaye', 'influence'], favor: ['Haber', 'ambition'] },
   mihrimah: { n: 'Mihrimah', base: ['Göz Bebeği', 'secret'], favor: ['Hediye', 'influence'] },
   rustem: { n: 'Rüstem', base: ['Kulis', 'secret'], favor: ['Yön Değiştir', 'intrigue'] },
 };
 const KUL = {
   sumbul: { n: 'Sümbül Ağa', as: 'saray-dedikodusu' }, daye: { n: 'Daye Hatun', as: 'valide' }, lokman: { n: 'Lokman Ağa', as: 'muhur' },
-  nigar: { n: 'Nigar Kalfa', as: 'muhurlu-evrak' }, gulsah: { n: 'Gülşah Hatun', as: 'iftira' }, piri: { n: 'Piri Mehmet Paşa' }, afife: { n: 'Afife Hatun' },
+  nigar: { n: 'Nigar Kalfa', as: 'muhurlu-evrak' }, gulsah: { n: 'Gülşah Hatun', as: 'iftira' }, bali: { n: 'Malkoçoğlu', as: 'muhur' }, afife: { n: 'Afife Hatun' },
 };
 // tg: who it may be placed on. min = a Vekil, self = yourself, other = anyone but you, any = anyone
 const INTR = {
-  'akil-d': { n: 'Akıl Hocası', no: 1, f: 'D', tg: 'any', img: 'card.akil-hocasi-1.jpg', pos: '50% 40%', t: 'Bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.', fl: 'Akıl, kılıçtan keskindir.' },
-  'akil-h': { n: 'Akıl Hocası', no: 1, f: 'H', tg: 'any', img: 'card.akil-hocasi-1.jpg', pos: '50% 40%', t: 'Bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.', fl: 'Akıl, kılıçtan keskindir.' },
-  muhur: { n: 'Mühür', no: 2, f: 'D', tg: 'min' },
-  valide: { n: "Valide'nin Buyruğu", no: 3, f: 'D', tg: 'min', t: 'Bir Vekile koy. Onu uygun bir oyuncuyla değiştir; kendini de seçebilirsin.' },
-  'divan-sirasi': { n: 'Divan Sırası', no: 4, f: 'D', tg: 'min', img: 'card.divan-sirasi-1.jpg', pos: '30% 50%', t: 'Bir Vekile koy. Birinci Vekil ile İkinci Vekil yer değiştirir.', fl: 'Divanda sıra, kaderdir.' },
-  'saray-dedikodusu': { n: 'Saray Dedikodusu', no: 5, f: 'H', tg: 'other', t: 'Bu oyuncunun eline ve Hırs kartına gizlice bak.' },
-  'muhurlu-evrak': { n: 'Mühürlü Evrak', no: 6, f: 'H', tg: 'self', img: 'card.muhurlu-evrak-1.jpg', pos: '50% 30%', t: 'Kendi önüne koy. Kader destesinin üstteki 3 kartına gizlice bak.', fl: 'Mühür kırılmadan sır saklanır.' },
-  'saray-tabibi': { n: 'Saray Tabibi', no: 7, f: 'H', tg: 'any' },
-  iftira: { n: 'İftira', no: 8, f: 'H', tg: 'any' },
-  gozde: { n: "Gözde'nin Hediyesi", no: 9, f: 'H', tg: 'other', img: 'card.gozde-1.jpg', pos: '50% 40%', t: 'Bu oyuncu (sen değil) 1 Nüfuz kazanır.', fl: 'Gözdenin hediyesi, borcun ilkidir.' },
-  teftis: { n: 'Teftiş', no: 10, f: 'D', tg: 'min', img: 'card.teftis-1.jpg', pos: '35% 30%', t: 'Bir Vekile koy. Kader adımından sonra attığı kartlara gizlice bak.', fl: 'Defterler yalan söylemez.' },
+  'akil-d': { n: 'Akıl Hocası', f: 'D', tg: 'any', img: 'card.akil-hocasi-1.jpg', pos: '50% 40%', t: 'Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.', fl: 'Akıl, kılıçtan keskindir.' },
+  'akil-h': { n: 'Akıl Hocası', f: 'H', tg: 'any', img: 'card.akil-hocasi-1.jpg', pos: '50% 40%', t: 'Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.', fl: 'Akıl, kılıçtan keskindir.' },
+  muhur: { n: 'Mühür', f: 'D', tg: 'min' },
+  valide: { n: "Valide'nin Buyruğu", f: 'D', tg: 'min' },
+  'divan-sirasi': { n: 'Divan Sırası', f: 'D', tg: 'min', img: 'card.divan-sirasi-1.jpg', pos: '30% 50%', t: 'Bir Vekile koy. Birinci Vekil ile İkinci Vekil yer değiştirir.', fl: 'Divanda sıra, kaderdir.' },
+  'saray-dedikodusu': { n: 'Saray Dedikodusu', f: 'H', tg: 'other' },
+  'muhurlu-evrak': { n: 'Mühürlü Evrak', f: 'H', tg: 'self', img: 'card.muhurlu-evrak-1.jpg', pos: '50% 30%', t: 'Kendi önüne koy. Kader destesinin üstteki 3 kartına gizlice bak.', fl: 'Mühür kırılmadan sır saklanır.' },
+  'saray-tabibi': { n: 'Saray Tabibi', f: 'H', tg: 'any' },
+  iftira: { n: 'İftira', f: 'H', tg: 'any' },
+  gozde: { n: "Gözde'nin Hediyesi", f: 'H', tg: 'other', img: 'card.gozde-1.jpg', pos: '50% 40%', t: 'Bu oyuncu (sen değil) 1 Nüfuz kazanır.', fl: 'Gözdenin hediyesi, borcun ilkidir.' },
+  teftis: { n: 'Teftiş', f: 'D', tg: 'min', img: 'card.teftis-1.jpg', pos: '35% 30%', t: 'Bir Vekile koy. Kader adımından sonra attığı kartlara gizlice bak.', fl: 'Defterler yalan söylemez.' },
 };
 const HIRS = {
   itirazci: { n: 'İtirazcı', t: 'Bir İtiraz yap.' }, koltuk: { n: 'Koltuk Kapmak', t: 'Bir Entrika kartıyla Vekil ol.' },
@@ -100,7 +100,6 @@ const cardCache = {};
 function patch(h, o) {
   if (o.label) h = h.replace(/aria-label="[^"]*"/, `aria-label="${esc(o.label)}"`).replace(/<h4 class="nm[^"]*">[^<]*<\/h4>/, `<h4 class="nm${o.label.length > 13 ? ' long' : ''}">${esc(o.label)}</h4>`);
   if (o.img) h = h.replace(/<img src="[^"]*" alt="" style="[^"]*"/, `<img src="img/${o.img}" alt="" style="object-position:${o.pos || '50% 35%'}"`);
-  if (o.no) h = h.replace(/<span class="mj"><b>\d+<\/b>/, `<span class="mj"><b>${o.no}</b>`);
   if (o.text) h = h.replace(/<p data-terms>[\s\S]*?<\/p>/, `<p data-terms>${o.text}</p>`);
   if (o.fl !== undefined) h = h.replace(/<p class="fl">[\s\S]*?<\/p>/, o.fl ? `<p class="fl">${o.fl}</p>` : '');
   if (o.field) {
@@ -116,20 +115,21 @@ function cardHTML(key) {
   const [kind, id] = key.split('.');
   if (kind === 'intr') {
     const d = INTR[id];
-    const own = { iftira: 1, valide: 1, muhur: 1, 'saray-tabibi': 1, 'saray-dedikodusu': 1 }[id];
-    if (own) h = patch(ART['intr.' + id], { text: d.t });
+    const own = { iftira: 'iftira', valide: 'valide', muhur: 'muhur', 'saray-tabibi': 'saray-tabibi', 'saray-dedikodusu': 'saray-dedikodusu', 'akil-d': 'akil', 'akil-h': 'akil' }[id];
+    if (own) h = ART['intr.' + own]; // the art page draws these: its text is the text
     else {
       const harem = d.f === 'H';
-      h = patch(ART[harem ? 'intr.iftira' : 'intr.muhur'], { label: d.n, img: d.img, pos: d.pos, no: d.no, text: d.t, fl: d.fl });
+      h = patch(ART[harem ? 'intr.iftira' : 'intr.muhur'], { label: d.n, img: d.img, pos: d.pos, text: d.t, fl: d.fl });
     }
     if (id === 'akil-h') h = patch(h, { field: ['cobalt', 'coral'] });
-    if (id === 'akil-d') h = patch(h, { field: ['coral', 'cobalt'] });
   } else if (kind === 'kul' && !h) {
     const k = KUL[id]; const as = INTR[k.as];
-    h = patch(ART['kul.sumbul'], { label: k.n, img: 'roster-comp.' + id + '.jpg', pos: '50% 22%', text: `Bir Entrika kartını ${as.n} olarak koy.`, fl: '' });
+    // built from Sümbül's card, so the wording and frequency icon follow the art page; only the specialty changes
+    const base = ART['kul.sumbul'], txt = (base.match(/<p data-terms>([\s\S]*?)<\/p>/) || [])[1] || '';
+    const fq = (txt.match(/^\s*<span class="fq"[\s\S]*?<\/span>/) || [''])[0], body = txt.slice(fq.length);
+    const line = body.includes('Saray Dedikodusu') ? body.split('Saray Dedikodusu').join(as.n) : ` Herhangi bir Entrika kartını ${as.n} olarak oyna.`;
+    h = patch(base, { label: k.n, img: 'roster-comp.' + id + '.jpg', pos: '50% 22%', fl: '' }).replace(/<p data-terms>[\s\S]*?<\/p>/, `<p data-terms>${fq}${line}</p>`);
     if (as.f === 'D') h = patch(h, { field: ['coral', 'cobalt'] });
-  } else if (kind === 'kul' && id === 'sumbul') {
-    h = patch(h, { text: 'Bir Entrika kartını Saray Dedikodusu olarak koy.' });
   } else if (kind === 'hirs' && id !== 'kulak') {
     h = patch(ART['hirs.kulak'], { label: HIRS[id].n, text: HIRS[id].t, fl: '' });
   }
@@ -200,16 +200,15 @@ const tugra = (cls = '') => `<svg class="${cls}" viewBox="0 0 140 86" aria-hidde
 
 /* ---------------- state ---------------- */
 let G, U;
-const ORDER = ['kerem', 'defne', 'can', 'selin', 'bora', 'ayse', 'elif', 'mert']; // clockwise from Süleyman
+const ORDER = ['kerem', 'defne', 'can', 'selin', 'ayse', 'elif', 'mert']; // clockwise from Süleyman
 function fresh() {
-  const P = (id, name, ch, o) => Object.assign({ id, name, ch, sul: false, taraf: null, kul: null, inf: 0, hand: [], hirs: null, pw: { base: 'ready', favor: 'locked' }, kulUsed: false }, o);
+  const P = (id, name, ch, o) => Object.assign({ id, name, ch, sul: false, taraf: null, kul: null, inf: 0, hand: [], hirs: null, pw: { base: 'ready', favor: 'locked' }, kulUsed: false, played: 0 }, o);
   let u = 0; const C = k => ({ uid: 'c' + (++u), k });
   const pl = {
     kerem: P('kerem', 'Kerem', 'suleyman', { sul: true, pw: { base: 'ready', favor: null } }),
     defne: P('defne', 'Defne', 'hurrem', { taraf: 'S', kul: 'lokman', inf: 2, hand: [C('muhur'), C('gozde')], hirs: { id: 'takdir', done: false } }),
-    can: P('can', 'Can', 'ibrahim', { taraf: 'H', kul: 'piri', inf: 1, hand: [C('valide'), C('divan-sirasi')], hirs: { id: 'divanda', done: false }, pw: { base: 'used', favor: 'locked' } }),
+    can: P('can', 'Can', 'ibrahim', { taraf: 'H', kul: 'bali', inf: 1, hand: [C('valide'), C('divan-sirasi')], hirs: { id: 'divanda', done: false }, pw: { base: 'used', favor: 'locked' } }),
     selin: P('selin', 'Selin', 'mahidevran', { taraf: 'S', kul: 'sumbul', inf: 1, hand: [C('akil-d'), C('saray-dedikodusu')], hirs: { id: 'itirazci', done: false } }),
-    bora: P('bora', 'Bora', 'bali', { taraf: 'S', kul: 'gulsah', inf: 2, hand: [C('saray-tabibi')], hirs: { id: 'supheli', done: false }, pw: { base: 'used', favor: 'locked' } }),
     ayse: P('ayse', 'Ayşe', 'hatice', { taraf: 'S', kul: 'afife', inf: 1, hand: [C('muhurlu-evrak'), C('akil-h')], hirs: { id: 'gozden', done: false } }),
     elif: P('elif', 'Elif', 'mihrimah', { taraf: 'H', kul: 'nigar', inf: 0, hand: [C('iftira')], hirs: { id: 'kulak', done: false } }),
     mert: P('mert', 'Mert', 'rustem', { taraf: 'H', kul: 'daye', inf: 2, hand: [C('iftira'), C('saray-tabibi')], hirs: { id: 'koltuk', done: false } }),
@@ -217,17 +216,17 @@ function fresh() {
   const iDeck = ['teftis', 'muhur', 'iftira', 'gozde', 'divan-sirasi', 'akil-d', 'valide', 'saray-dedikodusu', 'teftis', 'iftira'].map(C);
   return {
     step: 'lobi', crisisNo: 4, crisis: 'divan', crisisName: 'Divan Kavgası', field: 'D', order: ORDER.slice(), pl, me: G ? G.me : 'selin',
-    min: { 1: null, 2: null }, draft: { 1: null, 2: null }, lastMin: ['selin', 'bora'], track: { h: 1, x: 1 },
-    kDeck: ['h', 'x', 'x', 'x', 'h', 'h', 'x', 'h', 'x', 'h', 'x'], iDeck, placed: [], ready: {}, objTurn: null, objected: {},
+    min: { 1: null, 2: null }, draft: { 1: null, 2: null }, lastMin: ['selin', 'ayse'], track: { h: 2, x: 1 },
+    kDeck: ['h', 'x', 'x', 'x', 'h', 'h', 'x', 'h', 'x', 'h', 'x'], iDeck, placed: [], ready: {}, wave: 0, objTurn: null, objected: {},
     protect: {}, noLoss: {}, viaCard: {}, wasMin: {}, asks: [], fast: false, busy: false, played: null, lastDecree: null, teftis: [], kulis: false,
     tags: G ? G.tags : {}, dev: G ? G.dev : true, set: G ? G.set : { sound: true, music: false, vib: true },
     log: [
-      { c: 1, h: 'Macar Seferi', f: 'D' }, { i: 'min1', t: 'Atama: <b>Defne</b> Birinci, <b>Bora</b> İkinci Vekil.' }, { i: 'court', t: 'Açılış: Mühür → Defne. İftira → Elif.' },
-      { i: 'hizmet', cls: 'kh', t: 'Kader: <b>Hizmet</b>. Sadakat yolu 1.' }, { i: 'decree', t: 'Hüküm: <b>Bora</b> +1 Nüfuz.' },
-      { c: 2, h: 'Haremde Skandal', f: 'H' }, { i: 'min1', t: '<b>Can</b> Sadrazam kullandı: <b>Can</b> Birinci, <b>Defne</b> İkinci Vekil.' }, { i: 'court', t: 'Açılış: Gözde’nin Hediyesi → Mert. Saray Tabibi → Can.' },
+      { c: 1, h: 'Macar Seferi', f: 'D' }, { i: 'min1', t: 'Atama: <b>Defne</b> Birinci, <b>Ayşe</b> İkinci Vekil.' }, { i: 'intrigue', t: 'Tertip · 1. tur: Mühür → Defne, İftira → Elif.' }, { i: 'intrigue', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
+      { i: 'hizmet', cls: 'kh', t: 'Kader: <b>Hizmet</b>. Sadakat yolu 1.' }, { i: 'decree', t: 'Hüküm: <b>Ayşe</b> +1 Nüfuz.' },
+      { c: 2, h: 'Haremde Skandal', f: 'H' }, { i: 'min1', t: '<b>Can</b> Sadrazam kullandı: <b>Can</b> Birinci, <b>Defne</b> İkinci Vekil.' }, { i: 'intrigue', t: 'Tertip · 1. tur: Gözde’nin Hediyesi → Mert, Saray Tabibi → Can.' }, { i: 'intrigue', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
       { i: 'hiyanet', cls: 'kx', t: 'Kader: <b>Hıyanet</b>. İhanet yolu 1.' }, { i: 'decree', t: 'Hüküm: <b>Can</b> −1 Nüfuz; Saray Tabibi korudu.' },
-      { c: 3, h: 'Kaybolan Mühür', f: 'H' }, { i: 'min1', t: 'Atama: <b>Selin</b> Birinci, <b>Can</b> İkinci Vekil.' }, { i: 'objection', t: '<b>Mert</b> İtiraz etti: Can yerine <b>Bora</b>.' },
-      { i: 'hiyanet', cls: 'kx', t: 'Kader: <b>Hıyanet</b>; <b>Bora</b> Muhafız kullandı, kart ıskartaya.' }, { i: 'decree', t: 'Hüküm: <b>Selin</b> −1 Nüfuz.' },
+      { c: 3, h: 'Kaybolan Mühür', f: 'H' }, { i: 'min1', t: 'Atama: <b>Selin</b> Birinci, <b>Can</b> İkinci Vekil.' }, { i: 'objection', t: '<b>Mert</b> İtiraz etti: Can yerine <b>Ayşe</b>.' }, { i: 'intrigue', t: 'Tertip · 1. tur: kimse kart oynamadı.' },
+      { i: 'hizmet', cls: 'kh', t: 'Kader: <b>Hizmet</b>. Sadakat yolu 2.' }, { i: 'decree', t: 'Hüküm: <b>Selin</b> +1 Nüfuz.' },
     ],
   };
 }
@@ -256,8 +255,9 @@ function frontOf(id, k = 0, n = 1) {
   // in front of a seat = beside it on the table side, clear of the tray; extra cards fan outward
   if (id === G.me) return { x: 100 + k * 16, y: 250 - k * 4 };
   const p = posOf(id), s = P(id).sul ? 4 : 0;
-  if (p.y < 90) return { x: p.x + (k - (n - 1) / 2) * 17, y: p.y + 62 + s, r: (k - (n - 1) / 2) * 8 };
+  if (p.y < 90) { const sd = p.x <= B.cx + 1 ? 1 : -1; return { x: p.x + sd * (50 + s + k * 13), y: p.y + 10 + k * 3, r: sd * (k - (n - 1) / 2) * 9 }; }
   const side = p.x <= B.cx + 1 ? 1 : -1;
+  if (p.y > 110) return { x: p.x + side * (44 + k * 13), y: p.y + 24 + k * 3, r: side * (k - (n - 1) / 2) * 9 };
   return { x: p.x + side * (47 + s + k * 13), y: p.y - 25 + k * 3, r: side * (k - (n - 1) / 2) * 9 };
 }
 function boardXY(el) {
@@ -319,8 +319,11 @@ function music(on) {
 function buzz(p) { if (!G.fast && G.set.vib && navigator.vibrate) try { navigator.vibrate(p); } catch (e) { } }
 
 /* ---------------- motion helpers ---------------- */
-const wait = ms => G.fast ? Promise.resolve() : new Promise(r => setTimeout(r, ms));
-function anim(el, kf, o) { if (G.fast || !el) return Promise.resolve(); const a = el.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.2,.8,.25,1)' }, o)); return a.finished.catch(() => { }); }
+// a flow left running from a replaced game (dev jump, restart) stops at its next pause instead of touching the new game
+const STALE = new Error('stale flow');
+const live = g => { if (g !== G) throw STALE; };
+const wait = ms => { const g = G; return (G.fast ? Promise.resolve() : new Promise(r => setTimeout(r, ms))).then(() => live(g)); };
+function anim(el, kf, o) { const g = G; if (G.fast || !el) return Promise.resolve().then(() => live(g)); const a = el.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.2,.8,.25,1)' }, o)); return a.finished.catch(() => { }).then(() => live(g)); }
 function fxEl(html, x, y, w, layer = '#fx') {
   const d = document.createElement('div'); d.className = 'flyer'; d.style.cssText = `position:absolute;left:${x - w / 2}px;top:${y - w * .7}px;width:${w}px;z-index:30;pointer-events:none;perspective:700px`;
   d.innerHTML = html; $(layer).appendChild(d); return d;
@@ -408,7 +411,7 @@ function bot(a) {
   switch (kind) {
     case 'power': return { kulis: false, gozbebegi: true, fisilti: false, himaye: false }[data.p] || false;
     case 'object': return who === 'selin' && p.pw.base === 'ready' && G.min[2] ? { seat: 2, free: true } : null;
-    case 'pick': { const pref = ['ayse', 'defne', 'selin', 'bora', 'mert', 'elif', 'can'];
+    case 'pick': { const pref = ['ayse', 'defne', 'selin', 'mert', 'elif', 'can'];
       if (data.why === 'valide' && data.options.includes(who)) return who;
       return pref.find(x => data.options.includes(x)) || data.options[0]; }
     case 'place': return botPlace(who);
@@ -425,13 +428,20 @@ function bot(a) {
 }
 function botPlace(who) {
   const p = P(who); const pick = (k, tgt, as) => { const c = p.hand.find(c => c.k === k); return c && tgt ? { uid: c.uid, as: as || null, target: tgt } : null; };
-  switch (who) {
+  // wave 1: Mühür guards the Birinci Vekil, so Can's Valide on him fails; Mert's Kul turns İftira into Valide and takes the İkinci seat.
+  // wave 2: Can tries to swap the seats through Mert; Selin's Akıl Hocası on Mert cancels it and stays for the crisis. Wave 3: nobody plays.
+  const w = G.wave;
+  if (w === 1) switch (who) {
     case 'defne': return pick('muhur', G.min[1]);
     case 'can': return pick('valide', G.min[1]);
     case 'selin': return pick('teftis', G.min[1]);
-    case 'mert': return P('mert').inf > 0 ? pick('iftira', G.min[2], 'valide') : null;
-    default: return null;
+    case 'mert': return kulLive('mert') ? pick('iftira', G.min[2], 'kul') : null;
   }
+  if (w === 2) switch (who) {
+    case 'can': return pick('divan-sirasi', G.min[2]);
+    case 'selin': return pick('akil-d', G.min[2]);
+  }
+  return null;
 }
 // switching seats: whatever the new viewer owes becomes UI, the old viewer's asks go to bots
 function setViewer(id) {
@@ -447,8 +457,10 @@ function kulOf(id) { const p = P(id); return p.kul ? KUL[p.kul] : null; }
 function kulLive(id) { const p = P(id); const k = kulOf(id); return !!(k && k.as && p.inf >= 1 && !p.kulUsed); }
 function fieldOpen(f) { return G.field === 'S' || G.field === f; }
 function identity(c, recast, owner) { return recast ? kulOf(owner).as : c.k; }
+const TERTIP_LIMIT = 2; // Intrigue cards per player per crisis, recasts included
 function playOptions(owner, c) { // what this card can be placed as right now
   const opts = [];
+  if (P(owner).played >= TERTIP_LIMIT) return opts;
   if (fieldOpen(INTR[c.k].f)) opts.push(null);
   if (kulLive(owner) && fieldOpen(INTR[kulOf(owner).as].f) && kulOf(owner).as !== c.k) opts.push('kul');
   return opts;
@@ -467,7 +479,7 @@ function render() {
   if (!G) return;
   const lobby = G.step === 'lobi';
   $('#board').style.visibility = lobby ? 'hidden' : '';
-  $('#game').classList.toggle('is-night', G.step === 'tertip');
+  $('#game').classList.toggle('is-hush', G.step === 'tertip');
   if (lobby) { renderLobby(); return; }
   renderTray(); renderSeats(); renderPlaced(); renderMe(); renderHand(); renderAct(); renderHud(); renderPrompt();
 }
@@ -530,9 +542,9 @@ function renderPlaced() {
   const box = $('#placed');
   let list = [];
   if (G.step === 'tertip') {
-    list = G.placed.filter(c => c.owner === G.me);
+    list = G.placed.filter(c => !c.gone && (c.wave < G.wave || c.owner === G.me));
     if (U.draft) { const c = P(G.me).hand.find(c => c.uid === U.draft.uid); if (c) list = list.concat([{ uid: c.uid, k: c.k, as: U.draft.as ? kulOf(G.me).as : null, owner: G.me, target: U.draft.target, down: true, draft: true }]); }
-  } else if (['acilis', 'acilis-done', 'kader', 'sonuc', 'sonuc-done', 'hukum', 'son'].includes(G.step)) list = G.placed;
+  } else if (['acilis', 'acilis-done', 'kader', 'sonuc', 'sonuc-done', 'hukum', 'son'].includes(G.step)) list = G.placed.filter(c => !c.gone);
   const byT = {}; list.forEach(c => (byT[c.target] = byT[c.target] || []).push(c));
   const seen = new Set();
   list.forEach(c => {
@@ -592,6 +604,9 @@ function renderHand() {
     const kb = el.querySelector('.kulb'); if (kulOnly && !kb) el.insertAdjacentHTML('beforeend', `<span class="kulb"><img src="img/roster-comp.${p.kul}.jpg" alt=""></span>`); if (!kulOnly && kb) kb.parentNode.removeChild(kb);
   });
   $$('.hc', h).forEach(el => { if (!seen.has(el.dataset.uid)) h.removeChild(el); });
+  let hint = h.querySelector('.handhint'); const reason = place && p.played >= TERTIP_LIMIT ? T.limit(TERTIP_LIMIT) : '';
+  if (reason && !hint) { hint = document.createElement('div'); hint.className = 'handhint'; h.appendChild(hint); }
+  if (hint) { if (reason) hint.textContent = reason; else h.removeChild(hint); }
   if (U.sel && !U.dragging) {
     const c = p.hand.find(c => c.uid === U.sel); const i = cards.indexOf(c);
     if (c && i >= 0) {
@@ -661,12 +676,13 @@ function renderHud() {
   const mine = G.asks.some(a => a.who === G.me && a.kind !== 'peek') || (P(G.me).sul && stepButton() && stepButton()[1] && G.step !== 'son');
   let sub = '';
   const waitingOn = actingIds().filter(id => id !== G.me);
-  if (myAsk()) sub = `<span class="sub mine">${ico('court')}${T.yourTurn}</span>`;
-  else if (G.step === 'tertip') sub = `<span class="sub">${ico('court')}${waitingOn.length ? T.waiting(waitingOn.length) : T.ready('hepsi')}</span>`;
+  const wv = ['tertip', 'acilis'].includes(G.step) && G.wave ? T.wave(G.wave) + ' · ' : '';
+  if (myAsk()) sub = `<span class="sub mine">${ico('seal')}${wv}${T.yourTurn}</span>`;
+  else if (G.step === 'tertip') sub = `<span class="sub">${ico('intrigue')}${wv}${waitingOn.length ? T.waiting(waitingOn.length) : T.ready('hepsi')}</span>`;
   else if (G.step === 'kader') sub = `<span class="sub">${ico('kader')}${T.silent}</span>`;
-  else if (G.step === 'acilis') { const f = G.placed.find(c => c.focus); sub = `<span class="sub">${ico('court')}Açılış${f ? ' · ' + esc(INTR[f.as || f.k].n) : ''}</span>`; }
+  else if (G.step === 'acilis') { const f = G.placed.find(c => c.focus); sub = `<span class="sub">${ico('intrigue')}${wv}${f ? esc(INTR[f.as || f.k].n) : T.reveal}</span>`; }
   else if (G.step === 'sonuc-done') sub = `<span class="sub">${ico('minister')}${T.defend}</span>`;
-  else if (waitingOn.length === 1) sub = `<span class="sub">${ico('court')}${esc(P(waitingOn[0]).name)}</span>`;
+  else if (waitingOn.length === 1) sub = `<span class="sub">${ico('public')}${esc(P(waitingOn[0]).name)}</span>`;
   else sub = `<span class="sub">Kriz ${G.crisisNo}${G.step === 'k0' ? '' : ' · ' + esc(G.crisisName)}</span>`;
   const hadDot = hud.querySelector('.boss.log .dot');
   hud.innerHTML = `<div class="stepc${myAsk() ? ' mine' : ''}" data-act="stephelp"><div class="cbody">${cartSVG(196, 38)}
@@ -708,18 +724,18 @@ function renderPrompt() {
 let lobbyTimer = null;
 function renderLobby() {
   const joined = G.lobbyN ?? 1;
-  const ids = ['kerem', 'defne', 'can', 'selin', 'bora', 'ayse', 'elif', 'mert'];
+  const ids = G.order;
   moment(`<div class="lobby"><div class="bgart" style="background-image:url(img/ui.title-1.jpg)"></div>
     <div class="logo"><b>ENTRİKA</b><i>Sarayda bir hain var.</i></div>
     <div class="codebox"><span>${T.roomCode.toLocaleUpperCase('tr')}</span><div class="digits">${'4712'.split('').map(d => `<span class="digit">${d}</span>`).join('')}</div>
       <span style="color:#b9a27a;letter-spacing:.06em;font-size:11px">${T.share}</span></div>
-    <div class="joined"><h6>${T.joined.toLocaleUpperCase('tr')} · ${joined}/8</h6><div class="grid">${ids.map((id, i) => i < joined
+    <div class="joined"><h6>${T.joined.toLocaleUpperCase('tr')} · ${joined}/${ids.length}</h6><div class="grid">${ids.map((id, i) => i < joined
       ? `<figure><div class="lm">${medal(id, i === 0)}</div><figcaption class="${i === 0 ? 'host' : ''}">${esc(P(id).name)}</figcaption></figure>`
       : `<figure><div class="empty"></div><figcaption style="color:#7a6a55">${T.empty}</figcaption></figure>`).join('')}</div></div>
     <button class="slipb" data-act="join" style="left:18px;top:292px">${T.join}</button>
     <button class="plaque ${joined >= 5 ? 'ready' : 'off'}" data-act="start" style="right:4px;bottom:10px">${plaqueSVG(196, 56)}<span>${T.start}</span><small>5–8 oyuncu</small></button></div>`);
   $('#moment').style.zIndex = 21;
-  if (joined < 8 && !lobbyTimer) lobbyTimer = setTimeout(() => { lobbyTimer = null; if (G.step === 'lobi') { G.lobbyN = joined + 1; sfx('coin'); renderLobby(); } }, 650);
+  if (joined < ids.length && !lobbyTimer) lobbyTimer = setTimeout(() => { lobbyTimer = null; if (G.step === 'lobi') { G.lobbyN = joined + 1; sfx('coin'); renderLobby(); } }, 650);
 }
 function joinPad() {
   const m = $('#moment'); let code = '';
@@ -737,7 +753,7 @@ function joinPad() {
 async function gameEnd() {
   G.step = 'bitti'; closeSheet(); render(); $('#board').style.visibility = 'hidden';
   // scripted ending a few crises later: the Treason track reaches Süleyman's death
-  const inf = { defne: 3, can: 2, selin: 2, bora: 4, ayse: 1, elif: 1, mert: 3 };
+  const inf = { defne: 3, can: 2, selin: 2, ayse: 4, elif: 1, mert: 3 };
   const ids = G.order.filter(id => !P(id).sul);
   scrim(true);
   moment(`<div class="endv"><div class="head"><b>${T.death.toLocaleUpperCase('tr')}</b><i>${T.traitorsWin} · İhanet yolu 5/5</i></div>
@@ -758,7 +774,7 @@ async function gameEnd() {
 
 /* ---------------- step flows ---------------- */
 async function doStep() {
-  if (G.busy) return; G.busy = true; render();
+  if (G.busy) return; G.busy = true; render(); const g = G;
   try {
     switch (G.step) {
       case 'k0': await flowCrisis(); break;
@@ -769,7 +785,7 @@ async function doStep() {
       case 'sonuc-done': await flowDecree(); break;
       case 'son': G.protoEnd = true; break;
     }
-  } finally { G.busy = false; render(); }
+  } finally { if (g === G) { G.busy = false; render(); } }
 }
 async function flowCrisis() {
   // Step 1: the Crisis flips on every phone at once, then its draw line runs
@@ -823,7 +839,7 @@ async function kulisMoment() {
 }
 async function flowAnnounce() {
   // bot Süleyman (or a half-finished draft) completes the appointment
-  if (!G.draft[1]) G.draft[1] = 'bora'; if (!G.draft[2]) G.draft[2] = G.draft[1] === 'can' ? 'bora' : 'can';
+  if (!G.draft[1]) G.draft[1] = G.draft[2] === 'ayse' ? 'defne' : 'ayse'; if (!G.draft[2]) G.draft[2] = G.draft[1] === 'can' ? 'defne' : 'can';
   G.min = { 1: G.draft[1], 2: G.draft[2] }; G.draft = { 1: null, 2: null }; U.tablet = null;
   [1, 2].forEach(n => { G.wasMin[G.min[n]] = true; });
   log('min1', `Atama: <b>${P(G.min[1]).name}</b> Birinci, <b>${P(G.min[2]).name}</b> İkinci Vekil.`);
@@ -876,10 +892,16 @@ async function applyObjection(by, r) {
   if (!G.fast) { const v = boardXY($(`#tray .vk[data-vk="${seat}"]`)); dust(v.x, v.y, '#ffe6a0', 14); sfx('thud'); }
 }
 async function flowSleep() {
-  G.step = 'tertip'; G.ready = {}; G.placed = []; U = freshU(); render(); sfx('gong');
-  await banner(T.sleep, 'Tertip', {});
-  const ids = G.order.filter(id => !P(id).sul);
-  ids.forEach(id => ask(id, 'place').then(r => onPlaced(id, r)));
+  G.placed = []; G.wave = 0;
+  await openWave();
+}
+// Tertip runs in waves: everyone plays one card or passes, Süleyman wakes the palace, the cards act together.
+// A wave with cards opens the next one by itself; a wave where nobody plays ends Tertip.
+async function openWave() {
+  G.wave += 1; G.step = 'tertip'; G.ready = {}; U = freshU(); render(); sfx('gong');
+  await banner(T.wave(G.wave), T.waveSub, { hold: G.wave === 1 ? 900 : 600 });
+  const w = G.wave;
+  G.order.filter(id => !P(id).sul).forEach(id => ask(id, 'place').then(r => { if (G.wave === w) onPlaced(id, r); }));
   render();
 }
 function onPlaced(id, r) {
@@ -887,9 +909,9 @@ function onPlaced(id, r) {
   if (r) {
     const c = p.hand.find(c => c.uid === r.uid);
     if (c) {
-      p.hand = p.hand.filter(x => x !== c);
+      p.hand = p.hand.filter(x => x !== c); p.played += 1;
       if (r.as) p.kulUsed = true;
-      G.placed.push({ uid: c.uid, k: c.k, as: r.as ? kulOf(id).as : null, owner: id, target: r.target, down: true, state: 'wait' });
+      G.placed.push({ uid: c.uid, k: c.k, as: r.as ? kulOf(id).as : null, owner: id, target: r.target, down: true, state: 'wait', wave: G.wave });
     }
   }
   G.ready[id] = true; U.draft = id === G.me ? null : U.draft; if (id === G.me) U.sel = null;
@@ -897,20 +919,29 @@ function onPlaced(id, r) {
   if (!G.fast) { const el = $(`#seats .seat[data-id="${id}"] .tick`); if (el) anim(el, [{ transform: 'scale(2.2) rotate(-25deg)', opacity: 0 }, { transform: 'scale(1) rotate(-8deg)', opacity: 1 }], { duration: 300, easing: 'cubic-bezier(.3,1.5,.5,1)' }); sfx('seal'); }
 }
 async function flowWake() {
-  // Step 3b: the synced reveal. Cards appear face down in front of their targets, then all flip at once.
-  G.step = 'acilis'; render(); sfx('chime');
-  await banner(T.wake, 'Açılış');
+  // the synced reveal of one wave: this wave's cards appear face down in front of their targets, then all flip at once
+  const wave = G.placed.filter(c => c.wave === G.wave);
+  G.step = 'acilis'; render();
+  if (!wave.length) return endTertip();
+  sfx('chime');
+  await banner(T.reveal, T.wave(G.wave));
   if (!G.fast) {
-    const els = $$('#placed .pc');
+    const els = wave.map(c => $(`#placed .pc[data-pc="${c.uid}"]`)).filter(Boolean);
     await Promise.all(els.map((e, i) => { const r = boardXY(e); return anim(e, [{ transform: `translate(${367 - r.x}px,${190 - r.y}px) scale(.4)`, opacity: 0 }, { transform: 'translate(0,0) scale(1)', opacity: 1 }], { duration: 480, delay: i * 90 }); }));
     els.forEach(e => e.getAnimations().forEach(a => a.cancel()));
     await wait(650);
   }
-  G.placed.forEach(c => { c.down = false; }); render(); sfx('flip'); buzz(25);
-  await wait(1100);
-  await resolveAll();
-  log('court', 'Açılış: ' + (G.placed.length ? G.placed.map(c => `${INTR[c.as || c.k].n}${c.as ? ' (Kul)' : ''} → ${P(c.target).name}${c.state === 'void' ? ' ✗' : ''}`).join(', ') : 'kart yok') + '.');
-  // Süleyman's Ferman, after everything resolved
+  wave.forEach(c => { c.down = false; }); render(); sfx('flip'); buzz(25);
+  await wait(1000);
+  await resolveWave(wave);
+  log('intrigue', `${T.wave(G.wave)}: ` + wave.map(c => `${INTR[c.as || c.k].n}${c.as ? ' (Kul)' : ''} → ${P(c.target).name}${c.state === 'void' ? ' ✗' : ''}`).join(', ') + '.');
+  await collectWave(wave);
+  await openWave();
+}
+async function endTertip() {
+  // the empty wave: a short beat, then Süleyman's Ferman (once, only here), its draw, then Kader
+  log('intrigue', `${T.wave(G.wave)}: ${T.nobody.toLocaleLowerCase('tr')}.`);
+  await banner(T.nobody, T.tertipEnd, { hold: 700 });
   if (P(sul()).pw.base === 'ready') {
     const use = await ask(sul(), 'ferman', {});
     if (use) {
@@ -922,40 +953,76 @@ async function flowWake() {
   }
   G.step = 'acilis-done'; render();
 }
-async function resolveAll() {
+// cards whose effect lasts the crisis stay in front of their player; the rest are collected after the wave
+const LINGER = new Set(['akil-d', 'akil-h', 'muhur', 'saray-tabibi', 'teftis']);
+async function collectWave(wave) {
+  const go = wave.filter(c => !(c.state === 'done' && LINGER.has(c.as || c.k)));
+  if (!G.fast) {
+    const deck = { x: 367, y: 190 };
+    await Promise.all(go.map((c, i) => { const e = $(`#placed .pc[data-pc="${c.uid}"]`); if (!e) return null; const r = boardXY(e);
+      return anim(e, [{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${deck.x - r.x}px,${deck.y - r.y}px) scale(.5)`, opacity: 0 }], { duration: 420, delay: i * 60, easing: 'cubic-bezier(.5,0,.75,0)' }); }));
+  }
+  go.forEach(c => { c.gone = true; }); render();
+}
+async function resolveWave(wave) {
+  // Everything takes effect at once. The walk below is only how it is shown: it runs in seat order from
+  // Süleyman's left, and the result does not depend on that order.
   const S = G.order.indexOf(sul());
   const dist = id => (G.order.indexOf(id) - S + G.order.length) % G.order.length;
-  const list = G.placed.slice().sort((a, b) => INTR[a.as || a.k].no - INTR[b.as || b.k].no || dist(a.owner) - dist(b.owner));
-  for (const c of list) {
-    if (c.state === 'void') continue;
-    const k = c.as || c.k, d = INTR[k], t = c.target;
-    c.focus = true; render(); await wait(520);
-    let ok = true;
-    if (d.tg === 'min' && !isMin(t)) ok = false;
-    else if (k === 'akil-d' || k === 'akil-h') {
-      G.placed.forEach(o => { if (o !== c && o.target === t && INTR[o.as || o.k].f === d.f && !(o.as || o.k).startsWith('akil')) o.state = 'void'; });
-      sfx('seal');
-    } else if (k === 'muhur') { G.protect[t] = true; const v = $(`#tray .vk[data-vk="${seatOf(t)}"]`); if (v && !G.fast) { const r = boardXY(v); await stampAt(r.x + 40, r.y - 18, tickSVG(), 30); } }
+  const id_ = c => c.as || c.k;
+  const pulse = async cards => { if (!cards.length) return; cards.forEach(c => { c.focus = true; }); render(); await wait(560); cards.forEach(c => { c.focus = false; }); render(); };
+  // 1. at the flip: a card that needs a Vekil checks its target now; Akıl Hocası (this wave or earlier) cancels the other cards of its field on its player
+  const voided = [];
+  wave.forEach(c => { if (INTR[id_(c)].tg === 'min' && !isMin(c.target)) { c.state = 'void'; voided.push(c); } });
+  const akils = G.placed.filter(a => !a.gone && a.state !== 'void' && a.wave <= G.wave && id_(a).startsWith('akil'));
+  const shielding = new Set();
+  wave.forEach(c => {
+    if (c.state === 'void' || id_(c).startsWith('akil')) return;
+    const a = akils.find(a => a.target === c.target && INTR[id_(a)].f === INTR[id_(c)].f);
+    if (a) { c.state = 'void'; voided.push(c); shielding.add(a); }
+  });
+  await pulse([...shielding]);
+  if (voided.length) { render(); sfx('seal'); buzz(15); await wait(520); }
+  const live = wave.filter(c => c.state !== 'void');
+  // 2. lasting protections are in force for everything else this wave
+  live.forEach(c => { const k = id_(c); if (k === 'muhur') G.protect[c.target] = true; if (k === 'saray-tabibi') G.noLoss[c.target] = true; });
+  const delta = {}, draws = {}, replaced = {};
+  const add = (o, id, n) => { o[id] = (o[id] || 0) + n; };
+  for (const c of live.slice().sort((a, b) => dist(a.owner) - dist(b.owner))) {
+    const k = id_(c), t = c.target; let ok = true;
+    c.focus = true; render(); await wait(480);
+    if (k.startsWith('akil')) sfx('seal');
+    else if (k === 'muhur') { const v = $(`#tray .vk[data-vk="${seatOf(t)}"]`); if (v && !G.fast) { const r = boardXY(v); await stampAt(r.x + 40, r.y - 18, tickSVG(), 30); } }
     else if (k === 'valide') {
-      if (G.protect[t]) ok = false;
+      // owners choose in seat order; a second replacement of the same Vekil does nothing
+      if (G.protect[t] || replaced[t] || !isMin(t)) ok = false;
       else {
         const n = seatOf(t); c.focus = false; render();
-        const repl = await ask(c.owner, 'pick', { why: 'valide', options: eligible().concat(), icon: 'min' + n });
-        G.min[n] = repl; G.wasMin[repl] = true; G.viaCard[repl] = true;
+        const repl = await ask(c.owner, 'pick', { why: 'valide', options: eligible(), icon: 'min' + n });
+        G.min[n] = repl; G.wasMin[repl] = true; G.viaCard[repl] = true; replaced[t] = true; add(draws, t, 1);
         if (P(repl).hirs && P(repl).hirs.id === 'koltuk') P(repl).hirs.done = true;
         render(); if (!G.fast) { const r = boardXY($(`#tray .vk[data-vk="${n}"]`)); dust(r.x, r.y, '#ffe6a0', 16); sfx('thud'); }
-        await drawFx(t, 'seat');
       }
     } else if (k === 'divan-sirasi') { const a = G.min[1]; G.min[1] = G.min[2]; G.min[2] = a; render(); sfx('paper'); }
     else if (k === 'saray-dedikodusu') { c.eye = true; render(); if (c.owner === G.me) await ask(c.owner, 'peek', { kind: 'hand', target: t }); else await wait(500); }
     else if (k === 'muhurlu-evrak') { c.eye = true; render(); if (c.owner === G.me) await ask(c.owner, 'peek', { kind: 'top' }); else await wait(500); }
-    else if (k === 'saray-tabibi') { G.noLoss[t] = true; }
-    else if (k === 'iftira') { if (!G.noLoss[t] && P(t).inf > 0) { P(t).inf -= 1; coinFly(t, null, '−1'); render(); await drawFx(t, 'seat'); } else ok = false; }
-    else if (k === 'gozde') { if (t !== c.owner && !P(t).sul) { P(t).inf += 1; coinFly(null, t, '+1'); } else ok = false; }
+    else if (k === 'iftira') { if (P(t).sul) ok = false; else add(delta, t, -1); }
+    else if (k === 'gozde') { if (P(t).sul || t === c.owner) ok = false; else add(delta, t, 1); }
     else if (k === 'teftis') { G.teftis.push({ owner: c.owner, who: t }); c.eye = true; }
     c.focus = false; c.state = ok ? 'done' : 'void'; render();
-    await wait(ok ? 380 : 620);
+    await wait(ok ? 320 : 600);
   }
+  // 3. Influence: each player's changes are added up and applied once; Saray Tabibi turns a loss into 0
+  for (const id of Object.keys(delta).sort((a, b) => dist(a) - dist(b))) {
+    let d = delta[id]; if (d < 0 && G.noLoss[id]) d = 0;
+    const p = P(id), before = p.inf; p.inf = Math.max(0, p.inf + d);
+    if (p.inf > before) { coinFly(null, id, '+' + (p.inf - before)); if (p.hirs && p.hirs.id === 'yukselen') p.hirs.done = true; }
+    else if (p.inf < before) { coinFly(id, null, '−' + (before - p.inf)); add(draws, id, before - p.inf); }
+    else if (!G.fast) dust(posOf(id).x, posOf(id).y, '#e9d7ab', 8);
+  }
+  render(); if (Object.keys(delta).length) await wait(800);
+  // 4. draws come last: 1 per Influence point lost and 1 per lost seat
+  for (const id of Object.keys(draws).sort((a, b) => dist(a) - dist(b))) for (let i = 0; i < draws[id]; i++) await drawFx(id, 'seat');
 }
 async function flowKader() {
   G.step = 'kader'; G.kader = {}; render();
@@ -1385,8 +1452,8 @@ function act(a) {
   }
 }
 function stepHelp() {
-  const help = { k0: 'Süleyman yeni Krizi açar.', 'k0b': 'Kriz kartı çekenleri belirler.', atama: 'Süleyman iki Vekil seçer.', itiraz: 'Sırayla İtiraz: 1 Nüfuz öde, bir Vekili değiştirt.', 'itiraz-done': 'Süleyman geceyi başlatır.',
-    tertip: 'Bir Entrika kartını bir oyuncunun önüne koy ya da pas geç. Kimse kimin ne koyduğunu bilmez.', acilis: 'Kartlar sırayla çözülür: küçük numara önce.', 'acilis-done': 'Süleyman Kader’e geçer.',
+  const help = { k0: 'Süleyman yeni Krizi açar.', 'k0b': 'Kriz kartı çekenleri belirler.', atama: 'Süleyman iki Vekil seçer.', itiraz: 'Sırayla İtiraz: 1 Nüfuz öde, bir Vekili değiştirt.', 'itiraz-done': 'Süleyman Tertip’i başlatır.',
+    tertip: 'Bir Entrika kartı koy ya da pas geç. Kimse kart oynamayana kadar turlar sürer; krizde en çok 2 kart.', acilis: 'Kartlar birlikte açılır ve birlikte etki eder; Akıl Hocası önce iptal eder.', 'acilis-done': 'Süleyman Kader’e geçer.',
     kader: 'Birinci Vekil 3 kart çeker, birini atar; İkinci Vekil birini atar, birini oynar.', sonuc: 'Oynanan kart yoluna konur.', 'sonuc-done': 'Vekiller savunma yapar, sonra Hüküm.', hukum: 'Süleyman bir Vekile Nüfuz verir ya da alır.', son: 'Kriz bitti.' }[G.step] || '';
   const c = $('#hud .stepc'); if (!c || c.querySelector('.helpslip')) return;
   c.insertAdjacentHTML('beforeend', `<span class="helpslip" style="display:block;max-width:250px;margin-top:4px;padding:6px 10px;background:var(--ivory-grad);color:var(--ink);font:400 12.5px/1.25 var(--f-body);border-radius:3px;box-shadow:0 0 0 1px #b88a2e,0 3px 6px rgba(0,0,0,.5)">${esc(help)}</span>`);
@@ -1461,7 +1528,7 @@ async function jump(target) {
     if (gen !== jumpGen) return;
     G.busy = true;
     if (ti === 3) { G.fast = false; await flowWake(); }
-    else if (ti >= 4) await flowWake();
+    else if (ti >= 4) { while (G.step === 'tertip') { await flush(); await flowWake(); if (gen !== jumpGen) return; } }
     if (ti === 4) { G.fast = false; const pl = await flowKader(); await flowResult(pl); }
     else if (ti === 5) { const pl = await flowKader(); G.fast = false; await flowResult(pl); }
     else if (ti >= 6) { const pl = await flowKader(); await flowResult(pl); G.fast = false; await flowDecree(); }
@@ -1494,7 +1561,7 @@ function boot() {
   layout(); render(); devbar();
   addEventListener('resize', () => { layout(); render(); });
   addEventListener('hashchange', () => { document.documentElement.classList.toggle('full', location.hash === '#full' || (coarse && small)); layout(); render(); });
-  addEventListener('unhandledrejection', e => console.error('flow error', e.reason));
+  addEventListener('unhandledrejection', e => { if (e.reason === STALE) { e.preventDefault(); return; } console.error('flow error', e.reason); });
   addEventListener('orientationchange', () => setTimeout(() => { layout(); render(); }, 250));
   document.addEventListener('contextmenu', e => { if (e.target.closest('#game')) e.preventDefault(); });
   if (document.fonts) document.fonts.ready.then(() => render());
