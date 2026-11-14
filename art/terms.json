@@ -44,11 +44,11 @@
       "icon": "character"
     },
     {
-      "id": "char.bali",
+      "id": "comp.bali",
       "stems": [
         "Malkoçoğlu"
       ],
-      "icon": "character"
+      "icon": "companion"
     },
     {
       "id": "char.hatice",
@@ -68,6 +68,41 @@
       "id": "char.rustem",
       "stems": [
         "Rüstem"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.mustafa",
+      "stems": [
+        "Mustafa"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.barbaros",
+      "stems": [
+        "Barbaros"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.gritti",
+      "stems": [
+        "Gritti"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.sarlken",
+      "stems": [
+        "Şarlken"
+      ],
+      "icon": "character"
+    },
+    {
+      "id": "char.tahmasp",
+      "stems": [
+        "Şah Tahmasp"
       ],
       "icon": "character"
     },
@@ -250,22 +285,6 @@
         "İhanet"
       ],
       "icon": "treason"
-    },
-    {
-      "id": "term.claim",
-      "stems": [
-        "Sahiplen",
-        "sahiplen"
-      ],
-      "icon": "claim"
-    },
-    {
-      "id": "term.anon",
-      "stems": [
-        "İsimsiz",
-        "isimsiz"
-      ],
-      "icon": "anon"
     },
     {
       "id": "term.secret",

@@ -220,11 +220,11 @@
         "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
-    "char.bali": {
+    "comp.bali": {
       "status": "found",
       "candidates": [
         {
-          "file": "char.bali-1.jpg",
+          "file": "comp.bali-1.jpg",
           "size": [
             300,
             380
@@ -239,7 +239,7 @@
           "posed": true
         },
         {
-          "file": "char.bali-2.jpg",
+          "file": "comp.bali-2.jpg",
           "size": [
             720,
             400
@@ -254,14 +254,14 @@
         }
       ],
       "roster": {
-        "file": "roster/char.bali.jpg",
-        "from": "char.bali-1.jpg",
+        "file": "roster/comp.bali.jpg",
+        "from": "comp.bali-1.jpg",
         "posed": true,
         "face_share": 0.36
       },
       "cutout": {
-        "file": "cutout/char.bali.png",
-        "from": "char.bali-1.jpg",
+        "file": "cutout/comp.bali.png",
+        "from": "comp.bali-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
           "top_cqw_from_window": -36.09,
@@ -269,8 +269,10 @@
           "left_pct_of_window": -1.2
         },
         "soft_at_258": true,
-        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
-      }
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette",
+        "note": "Not used: Malkoçoğlu is a Kul from manual v0.7 and uses the windowed roster portrait."
+      },
+      "renamed_from": "char.bali"
     },
     "char.hatice": {
       "status": "found",
@@ -470,7 +472,7 @@
       }
     },
     "comp.lokman": {
-      "status": "found",
+      "status": "retired",
       "candidates": [
         {
           "file": "comp.lokman-1.jpg",
@@ -492,7 +494,8 @@
         "from": "comp.lokman-1.jpg",
         "posed": false,
         "face_share": 0.54
-      }
+      },
+      "note": "Not in the game since manual v0.7. Files kept in case the Companion returns."
     },
     "comp.ayas": {
       "status": "missing",
@@ -764,12 +767,12 @@
       }
     },
     "comp.kara-ahmed": {
-      "status": "missing",
-      "note": "Searched twice. No still of Yetkin Dikinciler as Kara Ahmed Paşa is tagged on IMDb (his gallery has only other productions), and none is on Beyazperde, TVMaze, TheTVDB or the producer site. Slot left empty.",
+      "status": "retired",
+      "note": "Not in the game since manual v0.7. Files kept in case the Companion returns.",
       "candidates": []
     },
     "comp.piri": {
-      "status": "found",
+      "status": "retired",
       "candidates": [
         {
           "file": "comp.piri-1.jpg",
@@ -805,7 +808,8 @@
         "from": "comp.piri-1.jpg",
         "posed": false,
         "face_share": 0.39
-      }
+      },
+      "note": "Not in the game since manual v0.7. Files kept in case the Companion returns."
     },
     "comp.afife": {
       "status": "found",
@@ -1235,11 +1239,11 @@
         "quality": "soft on retina"
       }
     },
-    "crisis.sinir": {
+    "crisis.irakeyn": {
       "status": "found",
       "candidates": [
         {
-          "file": "crisis.sinir-1.jpg",
+          "file": "crisis.irakeyn-1.jpg",
           "size": [
             931,
             607
@@ -1253,7 +1257,7 @@
           ]
         },
         {
-          "file": "crisis.sinir-2.jpg",
+          "file": "crisis.irakeyn-2.jpg",
           "size": [
             931,
             607
@@ -1275,7 +1279,8 @@
         ],
         "device_px_per_css_px_at_258": 1.61,
         "quality": "soft on retina"
-      }
+      },
+      "renamed_from": "crisis.sinir"
     },
     "card.akil-hocasi": {
       "status": "found",
@@ -1713,6 +1718,46 @@
           ]
         }
       ]
+    },
+    "char.mustafa": {
+      "status": "missing",
+      "note": "Mustafa joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "char.barbaros": {
+      "status": "missing",
+      "note": "Barbaros joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "char.gritti": {
+      "status": "missing",
+      "note": "Gritti joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "char.sarlken": {
+      "status": "missing",
+      "note": "Şarlken joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "char.tahmasp": {
+      "status": "missing",
+      "note": "Şah Tahmasp joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "comp.iskender": {
+      "status": "missing",
+      "note": "İskender Çelebi joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "comp.firuze": {
+      "status": "missing",
+      "note": "Firuze Hatun joined in manual v0.7; no still sourced yet.",
+      "candidates": []
+    },
+    "crisis.isabella": {
+      "status": "missing",
+      "note": "Isabella Fortuna joined in manual v0.7; no still sourced yet.",
+      "candidates": []
     }
   },
   "tugra": {
@@ -1722,5 +1767,6 @@
     "licence": "Public domain (Wikimedia Commons: \"Public domain\"; 16th-century original). Trace by Gregors (2011), derived from Tughra_Suleiman.jpg.",
     "note": "Downloaded into its own empty folder, then sanitised: only path/g geometry kept, defs, metadata, namedview, styles, scripts, foreignObject, on* attributes and hrefs dropped (none were present beyond defs/metadata). Recoloured with currentColor and a 5-unit stroke for body. Used on the Kriz back (embossed gold) and as a faint watermark on Kriz text plates.",
     "rejected": "https://commons.wikimedia.org/wiki/File:Tughra_of_Suleiman_I_the_Magnificent.svg (also public domain, but a monoline trace without the calligraphic thick-thin stroke)."
-  }
+  },
+  "manual_version": "v0.7 (ids follow its data-ref values)"
 }

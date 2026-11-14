@@ -2,6 +2,22 @@
 
 The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Round 3 redrew every card after looking at published card games. Round 4 applied the designer's decisions on art placement, Kul cards, the tuğra and text size (see Decisions). The base is still direction B, the Ottoman miniature: paper, gold leaf, lapis and vermilion, and backs taken from Ottoman bookbinding. Each card type now has its own enamel or material, and the photos carry only a faint warm grade. All ornament is drawn in SVG and CSS; the show stills are the only photos.
 
+## Decisions (round 9): manual v0.7
+
+The card texts follow manual v0.7: Court in waves, no claims, no resolve order.
+- **No claims.** Every "Açılışta sahiplen" is gone. Recast Kul read "Bir Entrika kartını X olarak oyna.": the recast is chosen when the card is played, not at a reveal. `term.claim` and `term.anon` are removed from `terms.json` and from the icon set (the `claim` and `anon` symbols stay in the sprite, unused).
+- **Waves.** The reveal demo is a wave: "Dalgayı aç" turns five Intrigue cards at once. Ferman applies when Court ends ("Tertip bitince"), and the removed Minister draws before Kader. Çifte Oyun and Yön Değiştir now speak of a wave. In Turkish, a wave is "dalga".
+- **Roster changes (manual v0.7).**
+  - Malkoçoğlu is now a Kul that recasts as Mühür. Its art moved from `char.bali` to `comp.bali`, files renamed.
+  - Sınırda İsyan is now Irakeyn Seferi (`crisis.irakeyn`, files renamed, same still).
+  - Piri Mehmet Paşa, Kara Ahmed Paşa and Lokman Ağa have left the game. Their files are kept, marked `retired` in the manifest.
+  - **New, no art yet:** Mustafa, Barbaros, and the outsider Characters Gritti, Şarlken and Şah Tahmasp; the Kul İskender Çelebi and Firuze Hatun; the Crisis Isabella Fortuna. They are listed as `missing` in the manifest, and their Character names are stems in `terms.json`.
+- **The Sultan's card.** Süleyman alone has a gold-leaf frame. His enamel band, spandrels and frame base are hammered gold leaf (the gold gradient under a dark grain) instead of red velvet. The rumi band and kaftan lattice are embossed in dark bronze (`p-rumi-dk`, `p-ogival-dk`), and the name sits on a crimson enamel cartouche in gold letters (`g-enamel-crimson`).
+  - In the compact frame he gets a thick bevelled gold band (30 units, against the 14-unit enamel line on other cards), so he reads as gold at 120 and 64 px.
+  - The structure is unchanged: the same name row, the plate right under it, opaque paper.
+  - The `palette="sultan"` option on `card()` selects it. In CSS the base layer is targeted as `.c3 > .base` because the base power panel also has the class `base`.
+- **Retired wording.** The page has no night, Boş Mektup, must-claim or anonymous wording left. The Tertip icon is still a crescent from the night version; the coming «Varak ve mine» icon set should redraw it.
+
 ## Decisions (round 8)
 
 - **No resolve order.** Intrigue cards no longer carry a 1–10 number. Their corner gem shows the Entrika icon (the keyhole arch), the same way every other type shows its own type icon.
@@ -24,7 +40,7 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
 - **Crisis text.** One sentence from the manual, timed to the Crisis flip, with term icons. The "Tertip: yalnız …" line and the "Çekiliş." label are gone; the field gem carries the field.
 - **Portrait backdrop.** The Character cut-outs now sit on their own lit studio backdrop, not the frame's red velvet. It is a dark warm umber gradient (`#4d4238 → #120e0b`) with a soft gold halo behind the head (`#f0d6a0` at 75%, fading out) and a vignette. The figure separates from the frame, as in a cast promo.
   - The alternative, shown on Hürrem and Süleyman, is a lapis dusk (`#2b4a8f → #0a1230`) with zerefşan gold flecks and a pale halo. It is more Ottoman, but cooler, and it competes with the Kul cards' lapis.
-- **Short Character names.** Süleyman, Hürrem, Pargalı, Mahidevran, Malkoçoğlu, Hatice, Mihrimah, Rüstem. They are used on the cards, in the roster and as `terms.json` stems (`char.*`, with the character icon; Süleyman stays `term.suleyman`). Kul names are unchanged.
+- **Short Character names.** Süleyman, Hürrem, Pargalı, Mahidevran, Hatice, Mihrimah, Rüstem (Malkoçoğlu became a Kul in round 9; Mustafa, Barbaros, Gritti, Şarlken and Şah Tahmasp joined). They are used on the cards, in the roster and as `terms.json` stems (`char.*`, with the character icon; Süleyman stays `term.suleyman`). Kul names are unchanged.
 - **Fields are only tags.** Nothing on the page shows a Harem or Divan zone. Cards are played in front of the targeted Character; the field is the gem on the card.
 
 ## Decisions (round 4)
@@ -38,7 +54,7 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
   - **B, full art:** all ten Crisis cards. The scene fills the card inside the gold rim; the name cartouche and a translucent text plate sit on top.
 - **Kul: one look.** Lapis enamel, round arch, enamel cartouche with gold lettering. The Kılık/Özel ribbons and the malachite variant are gone.
 - **Frequency inline.** How often an effect works opens the effect text (round 5: as an icon only, words in a tooltip).
-  - Frequencies come from the manual: recast Kul are once per crisis; Kara Ahmed, Piri and Esma are once per game; Afife is always on.
+  - Frequencies come from the manual: recast Kul are once per crisis; İskender Çelebi, Firuze Hatun and Esma are once per game; Afife is always on.
   - Character powers are once per game, except İbrahim's Divan Nüfuzu (always) and Süleyman's Lütuf (none).
 - **Real tuğra.** Süleyman's tuğra (Wikimedia Commons, public domain; see `art/stills/manifest.json` → `tugra`) replaces the drawn one.
   - It is embossed gold on black-green lacquer on the Kriz back.
@@ -158,7 +174,7 @@ The backs drop their word and plate under 150 px.
   - It was run on all eight Character stills. The results are in `art/stills/cutout/` as full-size PNGs; the page uses 600 px WebP copies.
   - Placement per character is in `cutplace.json` on the page side and the manifest (`entities.char.*.cutout`). It is computed from the detected face: the face is 25cqw tall, centred at x 50, y 32, and the photo always covers the window down to the name line.
   - The masks are clean on the five studio portraits (Süleyman, Hürrem, Mahidevran, Mihrimah, Rüstem).
-  - İbrahim, Bali and Hatice are cut from 300 px promo images. Their edges are fine, but the images are soft at 258 px on a retina screen (about 1.4 device px per CSS px; 2 is needed).
+  - İbrahim, Hatice (and Malkoçoğlu, before he became a Kul) are cut from 300 px promo images. Their edges are fine, but the images are soft at 258 px on a retina screen (about 1.4 device px per CSS px; 2 is needed).
 
 ## Crisis full art: resolution
 
@@ -169,7 +185,7 @@ A full-art card shows a 5:7 slice of a landscape still. At 258 px on a retina ph
 | Macar Seferi | 1600×1067 | 2.8 | sharp |
 | Şehzade Meselesi | 1550×1024 (candidate 2, promo) | 2.7 | sharp |
 | Yeniçeri İsyanı | 931×607 (candidate 2) | 1.6 | soft on retina |
-| Kaybolan Mühür, İstanbul'da Dedikodu, Sınırda İsyan | 931×607 | 1.6 | soft on retina |
+| Kaybolan Mühür, İstanbul'da Dedikodu, Irakeyn Seferi | 931×607 | 1.6 | soft on retina |
 | Divan Kavgası | 800×598 | 1.6 | soft on retina |
 | Haremde Skandal | 800×533 | 1.4 | soft on retina |
 | Hazine Açığı, Venedik Elçiliği | 720×400, 641×400 | 1.1 | low: needs a better still |
@@ -217,15 +233,15 @@ The phone is held horizontally, at 852 × 393.
 
 The rest are as in round 2:
 - Nüfuz, Sadık and Hain, Hüküm, İtiraz, Temel güç, Lütuf;
-- Sahiplenilir, İsimsiz, Oyunda bir, Krizde bir, Her zaman.
+- Oyunda bir, Krizde bir, Her zaman; wave → dalga.
 
 ## Known weak spots
 
 - **Photo versus painted art.** The stills are photos, while reference games use painted art, so the frame has to carry more of the "published" feel. Generated metal, leather and texture maps are deferred to a later round.
 - **Low resolution.**
-  - İbrahim, Bali, Hatice and Nigar come from 300 px promo images and are soft at detail size; the first three are Character cut-outs.
+  - İbrahim, Hatice, Nigar and Malkoçoğlu come from 300 px promo images and are soft at detail size; İbrahim and Hatice are Character cut-outs.
   - Hazine Açığı and Venedik Elçiliği are too low-res for full art.
-- **No posed photo.** Daye, Lokman, Matrakçı, Gülşah, Şeker, Gülfem, Piri and Afife are candid screencaps.
-- **Still missing.** Ayas Paşa and Kara Ahmed Paşa. Esma is an unconfirmed stand-in.
+- **No posed photo.** Daye, Matrakçı, Gülşah, Şeker, Gülfem and Afife are candid screencaps.
+- **Still missing.** Ayas Paşa, plus the v0.7 newcomers listed under round 9. Esma is an unconfirmed stand-in.
 - **Hırs and Taraf** have no photo by design. They use drawn emblems; ebru and the emblem are placeholders a designer could refine.
 - **Filter cost.** The page carries many SVG filters (bevel and shadow on every card). For the game, render each frame type once to an image, or keep the filters but bake the stills.
