@@ -2,6 +2,33 @@
 
 The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Round 3 redrew every card after looking at published card games. Round 4 applied the designer's decisions on art placement, Kul cards, the tuğra and text size (see Decisions). The base is still direction B, the Ottoman miniature: paper, gold leaf, lapis and vermilion, and backs taken from Ottoman bookbinding. Each card type now has its own enamel or material, and the photos carry only a faint warm grade. All ornament is drawn in SVG and CSS; the show stills are the only photos.
 
+## Decisions (round 11): the Varak ve mine icon set
+
+The page now uses the style-A icon set from `art/icons/set/` (49 icons; a 512 px master plus -144, -72 and -48 copies). Only the -48, -72 and -144 files it needs are copied to `art/directions/img/icons/` (98 files, about 1.3 MB), and the hand-drawn SVG sprite is gone.
+
+| Use | File | Shown at |
+|---|---|---|
+| Inline term icons (renderer, `terms.json`) | -48 | 1.2em, about 15 px on a 258 px card |
+| Frequency icon on its bronze disc | -48 | about 14 px |
+| Corner gem and field gem | -72 | 7.6cqw at 258 px; 13cqw and 16cqw in the compact frame |
+| Kader seal over the cartouche (`hizmet`, `hiyanet`) | -144 | 108 units |
+| Back medallions, Hırs art, page icon grid | -144 | 120–150 units, 40 px |
+
+- **Gems.** Gold bezel with an ivory enamel disc. The corner gem holds the type icon: character, companion, intrigue, crisis, kader, ambition, loyalist or traitor (Kader cards show hizmet or hiyanet). The field gem holds harem, divan or saray, or loyalty or treason on Kader cards.
+- **Backs.** All seven decks have a back with the type icon as the central medallion:
+  - Karakter: red velvet with the kaftan lattice and an ivory pointed-arch medallion.
+  - Kul: lapis with rumi and a scalloped medallion.
+  - Entrika: lapis binding with the şemse.
+  - Kriz: the tuğra stays on top, with the flame medallion below it.
+  - Kader: ebru with a scalloped seal.
+  - Hırs: plum with çintemani.
+  - Taraf: sealed letter, the mask on an ivory disc in the wax seal.
+- **`terms.json`.** New entry `char.suleyman.base` ("Ferman", icon `ferman`); İtiraz already maps to `objection`. The renderer and regex are unchanged; it now inserts `<img src="img/icons/<icon>-48.png">`.
+- **Size check.**
+  - The -48 files hold at 16 px on a 3x screen; İkinci Vekil's "II" badge stays distinct from Birinci Vekil's "I".
+  - Gem icons are clear at 258 and 120 px. At 64 px they are about 10 px and read by colour and silhouette, not detail. A larger file can't help at that size; only a bigger gem would.
+- **Retired with the sprite:** Tertip's crescent (now the kafes lattice) and the drawn tick or crack on the Kader seal (now the set's own seals).
+
 ## Decisions (round 9): manual v0.7
 
 The card texts follow manual v0.7: Court in waves, no claims, no resolve order.

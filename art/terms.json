@@ -1,5 +1,5 @@
 {
-  "about": "Game terms that are drawn with their icon in front of them wherever they appear in card text. Icons are the #i-* symbols of the Entrika icon sprite. Ids follow the manual (term.*, card.*). Character names use the short forms from the manual (Süleyman is term.suleyman). Entries with \"display\": \"icon\" are drawn as the icon alone, with the words as a tooltip (title and aria-label), not inline text: the three use frequencies.",
+  "about": "Game terms that are drawn with their icon in front of them wherever they appear in card text. Icons are the Varak ve mine set in art/icons/set (<icon>.png master, <icon>-144/-72/-48.png); inline text uses -48. Ids follow the manual (term.*, card.*). Character names use the short forms from the manual (Süleyman is term.suleyman). Entries with \"display\": \"icon\" are drawn as the icon alone, with the words as a tooltip (title and aria-label), not inline text: the three use frequencies.",
   "match": {
     "rule": "A stem matches at the start of a word and runs on through any following letters, so Turkish suffixes stay attached (Nüfuzu, Vekile, Divan'da). Matching is case-sensitive: list a lowercase stem only where the term is written in lowercase in running text. Try longer stems first, so Saray Dedikodusu wins over Saray and Birinci Vekil over Vekil.",
     "regex": "(?<![\\p{L}\\p{N}])(STEMS)(?:['’]\\p{L}+|\\p{L}*)",
@@ -193,6 +193,13 @@
         "Hükm"
       ],
       "icon": "decree"
+    },
+    {
+      "id": "char.suleyman.base",
+      "stems": [
+        "Ferman"
+      ],
+      "icon": "ferman"
     },
     {
       "id": "term.kader",
