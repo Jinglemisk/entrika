@@ -70,8 +70,53 @@ Avoid: outline-only line drawing, hatching, thin lines, text, letters, numerals,
 | Kul | `kul` | an Ottoman ewer (ibrik): a pear-shaped body on a small foot, a tall narrow neck with a lid, a long curved spout on the right and a curled handle on the left | the body is lapis enamel; neck, spout, handle and foot are gold |
 | Taraf | `taraf` | a masquerade eye mask (domino mask) with two almond-shaped eye holes and a short ribbon tie at each side, shown on its own, no face behind it | the mask is vermilion enamel with a gold rim; the eye holes are open |
 | Oyunda bir | `once` | a thick ring with one upright bar standing in its centre, like a numeral one inside a circle | the space inside the ring is lapis enamel; the ring and the bar are gold |
+| Saray | `saray` | an Ottoman palace gate seen from the front: one arched gateway between two slender towers with pointed conical roofs | the two tower roofs are vermilion enamel and the gateway arch is lapis enamel |
+| Kriz | `crisis` | a single tall flame with three tongues rising from a small shallow brazier bowl | the flame is vermilion enamel with a gold inner tongue; the bowl is gold |
+| Tertip | `court` | a square palace window frame filled with a bold diagonal lattice screen (kafes) of large diamond-shaped openings, about four openings across | the openings show lapis enamel behind the gold lattice bars |
+| Süleyman | `suleyman` | a tall Ottoman imperial crown in four stacked jewelled tiers, like Süleyman's Venetian helmet-crown, with a small upright plume on top; the crown alone, no head, no face, no person | a row of vermilion enamel jewels on each tier; the crown itself is gold |
+| Birinci Vekil | `min1` | the same kallavi turban as Image 2, with a large round medallion overlapping its lower right; the medallion carries one raised upright bar | the turban body is ivory enamel with its gold band; the medallion is vermilion enamel with a gold rim and one gold bar (second reference: `minister.png`) |
+| İkinci Vekil | `min2` | the same kallavi turban as Image 2, with a large round medallion overlapping its lower right; the medallion carries two raised upright bars side by side | the turban body is ivory enamel with its gold band; the medallion is lapis enamel with a gold rim and two gold bars (second reference: `minister.png`) |
+| Açık | `public` | a short, wide Ottoman herald's horn (nefir) bent into a half circle, its mouthpiece at the lower left and a large flared bell at the upper right; a chunky shape that fills the square | a lapis enamel band wraps the middle of the horn |
+| Gizli | `secret` | a folded letter seen from the front, its flap closed with a large round wax seal in the middle | the paper is ivory enamel; the wax seal is vermilion enamel |
+| Sadık | `loyalist` | a round Ottoman shield (kalkan) seen from the front, with a raised central boss and eight radiating ribs | the shield face between the ribs is malachite enamel; boss and ribs are gold |
+| Hain | `traitor` | a curved Ottoman dagger (hançer) standing upright, point down, with a jewelled hilt and a short crossguard | the grip is vermilion enamel; the blade is gold |
+| Sadakat yolu | `loyalty` | a staircase of four square tiles rising from lower left to upper right, each tile one step higher than the last, with a small round shield standing on the top tile; the whole shape fills the square | the four tiles are malachite enamel; the small shield is malachite enamel with a gold boss |
+| İhanet yolu | `treason` | a staircase of five square tiles rising from lower left to upper right, each tile one step higher than the last, with a small dagger standing point down on the top tile; the whole shape fills the square | the five tiles are vermilion enamel; the dagger is gold |
+| Süleyman'ın ölümü | `death` | an Ottoman headstone (mezar taşı): a tall narrow upright slab on a low base, topped by a small carved crown | the slab face is plum enamel; the crown and the base are gold |
+| Kader sırtı | `seal` | a round wax seal with an irregular wavy rim and a raised eight-petal rosette in its centre | the wax is vermilion enamel; the rosette is gold |
+| Karakter | `character` | an empty portrait frame shaped like a pointed Ottoman arch on a flat base, with a small finial (alem) on the apex; nothing inside the frame | the inside of the frame is vermilion enamel; frame and finial are gold |
+| Lütuf | `favor` | an ornate Ottoman padlock with its curved shackle swung open | the lock body is lapis enamel inside a gold rim |
+| Temel güç | `base` | an Ottoman mace (topuz): a round ribbed head on a short straight handle, standing upright | the mace head is vermilion enamel between gold ribs; the handle is gold |
+| Hüküm | `decree` | a balance scale: one horizontal beam on a central upright post, with a round pan hanging from each end | the two pans are lapis enamel; beam and post are gold |
+| Ferman | `ferman` | an imperial edict (ferman): a tall scroll unrolled from top to bottom, with abstract gold loops at the top that suggest a tuğra (not real letters) and a round wax seal hanging from the bottom | the scroll paper is ivory enamel; the hanging seal is vermilion enamel |
+| İtiraz | `objection` | two Ottoman halberds (teber) crossed in a bold X, each with a broad curved axe blade at the top | the axe blades are vermilion enamel; the shafts are gold |
+| Krizde bir | `percrisis` | a thick ring made of one curved arrow that runs almost all the way around, with a single arrowhead at its end, and a small round dot in the centre; same ring proportions as Image 2 | the space inside the ring is lapis enamel; the arrow ring and the dot are gold (second reference: `once.png`) |
+| Her zaman | `always` | a thick ring with a bold infinity sign (a figure-eight lying on its side) across its centre; same ring proportions as Image 2 | the space inside the ring is lapis enamel; the ring and the infinity sign are gold (second reference: `once.png`) |
+| Menü | `menu` | three thick horizontal bars of equal length stacked with equal gaps, rounded ends | a thin lapis enamel inlay runs along the middle of each stroke |
+| Kapat | `close` | a bold X made of two thick crossed bars with rounded ends | a thin lapis enamel inlay runs along the middle of each stroke |
+| Geri | `back` | a bold arrow pointing left: a thick straight shaft with a wide triangular head | a thin lapis enamel inlay runs along the middle of each stroke |
+| Sonraki | `chev-r` | one bold chevron pointing right, like a thick sideways V with rounded ends | a thin lapis enamel inlay runs along the middle of each stroke |
+| Hazır | `ready` | one bold check mark with rounded ends | a malachite enamel inlay runs along the middle of the check mark |
+| Pas | `pass` | a bold arrow that arcs over a small square block from left to right, its head pointing down on the right side of the block | the block is ivory enamel; the arrow is gold with a thin lapis inlay |
+| Günlük | `log` | a closed book in Ottoman leather binding, front cover facing the viewer, with an almond-shaped medallion (şemse) in the middle and corner pieces | the cover is lapis enamel; medallion and corner pieces are gold |
+| Ayarlar | `settings` | a cogwheel with eight broad square teeth and a round hole in the centre | a lapis enamel ring sits between the teeth and the centre hole |
+| Ses | `sound` | a loudspeaker: a small square box with a cone flaring to the right, and two thick curved sound waves to its right | the cone is lapis enamel |
+| Müzik | `music` | two musical eighth notes joined by one thick beam | the two note heads are lapis enamel |
+| Titreşim | `vibration` | a slim upright rounded rectangle (a handheld tablet) with two short thick zigzag lines on each side showing vibration | the screen face is lapis enamel |
+| Şüpheli | `suspect` | a bold question-mark shape with a round dot below it | vermilion enamel inside a gold rim |
+| Güvenilir | `trusted` | a heart shape with gently pointed lobes, like an Ottoman ornamental heart | malachite enamel inside a gold rim |
+| Devam | `next` | a bold right-pointing triangle, like a play symbol, with slightly rounded corners | lapis enamel inside a gold rim |
+| Önceki | `chev-l` | not generated: `chev-r` mirrored | — |
 
 Three motifs differ from the current SVG set:
 - **Vekil** is a kallavi turban instead of a bench.
 - **Kul** is an ewer instead of two human silhouettes, because the icons show no people.
 - **Hırs** adds an arrow to the target.
+
+## Full set (style A)
+
+Style A was picked. The full set is in `art/icons/set/`, made with the A template above, unchanged.
+- **File names** follow the `terms.json` icon ids. Four proposal files were renamed when copied: `vekil` → `minister`, `hirs` → `ambition`, `kul` → `companion`, `taraf` → `allegiance`. The other eight proposal icons were copied as they were, not regenerated.
+- **Second reference.** A few icons attach a second image, named in the Enamel column. Their Subject line says what to take from it: the turban for the two Vekil ranks, and the ring for the frequency icons.
+- **Retired icons are left out:** claim (sahiplen), anon (isimsiz) and letter (Boş Mektup).
+- **Tertip** is a kafes window screen. The crescent is gone, and the set has no night imagery.
