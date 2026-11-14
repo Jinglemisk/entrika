@@ -10,16 +10,13 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 5. Then Full mode (Companions, Ambitions, Favor powers).
 
 ## Browser game (see `docs/direction.md`)
-1. Art direction: B picked. Round 5 (one name line, icon frequencies, studio-lit Character portraits) is at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. Tokens are in `art/directions/notes.md`, roster portraits in `art/stills/roster/` and the term-icon table in `art/terms.json`. Still open:
-   - settle the grade strength with the slider;
+1. Art: direction B, at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. It covers v0.7 card texts, Süleyman's gold-leaf frame, backs for all seven decks and the Varak ve mine icons (set in `art/icons/set/`, sheet at https://claude.ai/artifact/9xBpkHTszW3Fca2HkSsnC1). Tokens are in `art/directions/notes.md`, the term-icon table in `art/terms.json`. Still open:
+   - stills for the v0.7 newcomers: Mustafa, Barbaros, Gritti, Şarlken, Şah Tahmasp, İskender Çelebi, Firuze Hatun, Isabella Fortuna;
    - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
-   - AI-generated textures (deferred);
-   - find art for Ayas Paşa;
-   - v0.7 roster art: hero shots for Mustafa, Barbaros, Gritti, Şarlken and Şah Tahmasp; Kul window art for Malkoçoğlu (his roster still is ready), İskender Çelebi and Firuze Hatun; full-art stills for Irakeyn Seferi and Isabella Fortuna;
-   - `art/terms.json`: add the five new Characters, and move Malkoçoğlu from Character to Kul.
-2. Final art in the chosen direction: card templates, icon set, portraits, popups.
-3. UI layout proposal (subagent), once the art is final, from the decisions in the UI section of `docs/direction.md`.
-4. First playable, built overnight end to end from the manual's current rules.
+   - confirm the grade strength (15%);
+   - AI-generated textures (deferred).
+2. UI: the landscape-phone prototype plays one crisis with Tertip in waves, at https://claude.ai/artifact/LRHXJ79aqaRtv5r4t5wipw (source in `ui/v2/src/`). Waiting on Jingle's feedback.
+3. First playable, built overnight end to end from the manual's current rules, reusing `art/terms.json`, the graded stills, the icon set and the UI prototype.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.
