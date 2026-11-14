@@ -23,6 +23,9 @@ root = re.search(r':root\{(.*?)\n\}', s, flags=re.S).group(1)
 fiber = re.search(r'--fiber:(url\(".*?"\));', root).group(1)
 leather = re.search(r'--leather:(url\(".*?"\));', root).group(1)
 card_css = (':root{--fiber:%s;--leather:%s}\n' % (fiber, leather)) + card_css
+# the Sultan's gold card, the PNG icon rules and the extra backs come after the page-only sections
+k = s.index('/* ---------- the Sultan')
+card_css += s[k:s.index('</style>', k)]
 card_css += '\n.sprite{position:absolute;width:0;height:0;overflow:hidden}\n'
 
 # ---- sprites
@@ -94,6 +97,22 @@ out = (shell.replace('/*@CSS@*/', css)
             .replace('<!--@SPEC@-->', spec)
             .replace('/*@JS@*/', jsrc))
 open(OUT, 'w', encoding='utf-8').write(out)
+# icons: every id the page can ask for, at the three game sizes (never the 512 masters)
+import shutil
+SET = os.path.join(REPO, 'art/icons/set')
+ids = {f.rsplit('-', 1)[0] for f in os.listdir(SET) if re.match(r'.+-(48|72|144)\.png$', f)}
+used = set(re.findall(r'icons/([a-z0-9-]+)-\d+\.png', out)) | {t['icon'] for t in terms_list}
+used |= {w for w in re.findall(r"'([a-z][a-z0-9-]*)'", jsrc) if w in ids}
+used |= {'vibration'}
+ICONS = os.path.join(REPO, 'ui/v2/img/icons'); os.makedirs(ICONS, exist_ok=True)
+for f in os.listdir(ICONS):
+    if f.rsplit('-', 1)[0] not in used: os.remove(os.path.join(ICONS, f))
+for i in sorted(used):
+    for sz in (48, 72, 144):
+        src = os.path.join(SET, f'{i}-{sz}.png')
+        if os.path.exists(src): shutil.copyfile(src, os.path.join(ICONS, f'{i}-{sz}.png'))
+print('icons:', len(used), sorted(used))
 imgs = sorted(set(re.findall(r'img/[\w.\-]+\.(?:jpg|webp|png)', out)))
 missing = [i for i in imgs if not os.path.exists(os.path.join(REPO, 'ui/v2', i))]
+missing += [f'icons/{i}' for i in sorted(used) if not os.path.exists(os.path.join(ICONS, f'{i}-48.png'))]
 print('wrote', OUT, len(out), 'bytes;', len(imgs), 'images referenced; missing:', missing)

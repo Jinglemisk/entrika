@@ -11,7 +11,9 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const ART = JSON.parse($('#art-cards').textContent);
 const TERMS = JSON.parse($('#art-terms').textContent);
-const ico = (n, c = 'ico') => `<svg class="${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const ICON_ALIAS = { vibrate: 'vibration' };
+const iconSrc = (n, sz) => `img/icons/${ICON_ALIAS[n] || n}-${sz}.png`;
+const ico = (n, c = 'ico') => `<img class="${c}" src="${iconSrc(n, 48)}" srcset="${iconSrc(n, 72)} 1.5x, ${iconSrc(n, 144)} 2x" alt="" aria-hidden="true" draggable="false">`;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
@@ -38,7 +40,7 @@ const STEP_I = { lobi: -1, k0: 0, atama: 1, itiraz: 1, 'itiraz-done': 1, tertip:
 
 /* ---------------- content ---------------- */
 const CH = {
-  suleyman: { n: 'Süleyman', base: ['Ferman', 'decree'] },
+  suleyman: { n: 'Süleyman', base: ['Ferman', 'ferman'] },
   hurrem: { n: 'Hürrem', base: ['Fısıltı', 'decree'], favor: ['Çifte Oyun', 'intrigue'] },
   ibrahim: { n: 'Pargalı', base: ['Sadrazam', 'min1'], favor: ['Divan Nüfuzu', 'influence'] },
   mahidevran: { n: 'Mahidevran', base: ['İtiraz', 'objection'], favor: ['Sürgün', 'minister'] },
@@ -105,7 +107,7 @@ function patch(h, o) {
   if (o.field) {
     const [from, to] = o.field;
     const nm = { coral: ['harem', 'Harem'], cobalt: ['divan', 'Divan'] };
-    h = h.split('j-' + from).join('j-' + to).split('#i-' + nm[from][0]).join('#i-' + nm[to][0]).split('Alan: ' + nm[from][1]).join('Alan: ' + nm[to][1]);
+    h = h.split('j-' + from).join('j-' + to).split('icons/' + nm[from][0] + '-').join('icons/' + nm[to][0] + '-').split('Alan: ' + nm[from][1]).join('Alan: ' + nm[to][1]);
   }
   return h;
 }
@@ -167,10 +169,9 @@ function waxSVG(icon, txt) {
   return `<svg viewBox="-40 -40 80 80" aria-hidden="true"><defs><radialGradient id="wx${icon}" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#e2584a"/><stop offset=".45" stop-color="#a3221b"/><stop offset="1" stop-color="#4f0b09"/></radialGradient></defs>
   <path d="M2 -36C12 -37 20 -31 27 -27C35 -22 37 -13 36 -4C38 5 35 13 31 20C27 30 18 36 8 36C1 39 -8 37 -15 34C-25 31 -33 23 -35 13C-38 4 -36 -6 -33 -14C-29 -24 -21 -31 -12 -34C-6 -36 -2 -36 2 -36Z" fill="url(#wx${icon})" filter="url(#f-shadow)"/>
   <circle r="24" fill="none" stroke="#5a0d07" stroke-width="2.4" opacity=".7"/><circle r="22.5" fill="none" stroke="#ff9a82" stroke-width=".9" opacity=".45"/>
-  <g transform="translate(-13 -13) scale(1.08)" style="color:#5a0d07"><use href="#i-${icon}" width="24" height="24" stroke="#5a0d07" fill="none" stroke-width="2.2" transform="translate(.6 1)"/></g>
-  <g transform="translate(-13 -13) scale(1.08)"><use href="#i-${icon}" width="24" height="24" stroke="#ffb3a0" fill="none" stroke-width="1.6" opacity=".75"/></g></svg>`;
+  <image href="${iconSrc(icon, 144)}" x="-17" y="-17" width="34" height="34" style="filter:drop-shadow(0 1.5px 1px rgba(60,5,3,.85))"/></svg>`;
 }
-const tickSVG = () => `<svg viewBox="-40 -40 80 80" aria-hidden="true"><path d="M2 -36C12 -37 20 -31 27 -27C35 -22 37 -13 36 -4C38 5 35 13 31 20C27 30 18 36 8 36C1 39 -8 37 -15 34C-25 31 -33 23 -35 13C-38 4 -36 -6 -33 -14C-29 -24 -21 -31 -12 -34C-6 -36 -2 -36 2 -36Z" fill="url(#j-crimson)" stroke="#3a0605" stroke-width="2"/><circle r="22" fill="none" stroke="#ffb3a0" stroke-width="2" opacity=".5"/><path d="M-13 1L-4 10L14 -10" fill="none" stroke="#ffe0d4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const disc = (n, cls = '') => `<span class="disc ${cls}">${ico(n)}</span>`;
 const xSVG = () => `<svg viewBox="-20 -20 40 40"><path d="M-12 -12L12 12M12 -12L-12 12" stroke="#4a0905" stroke-width="9" stroke-linecap="round"/><path d="M-12 -12L12 12M12 -12L-12 12" stroke="#e2402a" stroke-width="5.5" stroke-linecap="round"/></svg>`;
 function nicheSVG(kind) {
   const d = 'M1.5 41V16Q1.5 8 8 4.5Q13.5 2 15 0Q16.5 2 22 4.5Q28.5 8 28.5 16V41Z';
@@ -221,11 +222,11 @@ function fresh() {
     protect: {}, noLoss: {}, viaCard: {}, wasMin: {}, asks: [], fast: false, busy: false, played: null, lastDecree: null, teftis: [], kulis: false,
     tags: G ? G.tags : {}, dev: G ? G.dev : true, set: G ? G.set : { sound: true, music: false, vib: true },
     log: [
-      { c: 1, h: 'Macar Seferi', f: 'D' }, { i: 'min1', t: 'Atama: <b>Defne</b> Birinci, <b>Ayşe</b> İkinci Vekil.' }, { i: 'intrigue', t: 'Tertip · 1. tur: Mühür → Defne, İftira → Elif.' }, { i: 'intrigue', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
+      { c: 1, h: 'Macar Seferi', f: 'D' }, { i: 'min1', t: 'Atama: <b>Defne</b> Birinci, <b>Ayşe</b> İkinci Vekil.' }, { i: 'court', t: 'Tertip · 1. tur: Mühür → Defne, İftira → Elif.' }, { i: 'court', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
       { i: 'hizmet', cls: 'kh', t: 'Kader: <b>Hizmet</b>. Sadakat yolu 1.' }, { i: 'decree', t: 'Hüküm: <b>Ayşe</b> +1 Nüfuz.' },
-      { c: 2, h: 'Haremde Skandal', f: 'H' }, { i: 'min1', t: '<b>Can</b> Sadrazam kullandı: <b>Can</b> Birinci, <b>Defne</b> İkinci Vekil.' }, { i: 'intrigue', t: 'Tertip · 1. tur: Gözde’nin Hediyesi → Mert, Saray Tabibi → Can.' }, { i: 'intrigue', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
+      { c: 2, h: 'Haremde Skandal', f: 'H' }, { i: 'min1', t: '<b>Can</b> Sadrazam kullandı: <b>Can</b> Birinci, <b>Defne</b> İkinci Vekil.' }, { i: 'court', t: 'Tertip · 1. tur: Gözde’nin Hediyesi → Mert, Saray Tabibi → Can.' }, { i: 'court', t: 'Tertip · 2. tur: kimse kart oynamadı.' },
       { i: 'hiyanet', cls: 'kx', t: 'Kader: <b>Hıyanet</b>. İhanet yolu 1.' }, { i: 'decree', t: 'Hüküm: <b>Can</b> −1 Nüfuz; Saray Tabibi korudu.' },
-      { c: 3, h: 'Kaybolan Mühür', f: 'H' }, { i: 'min1', t: 'Atama: <b>Selin</b> Birinci, <b>Can</b> İkinci Vekil.' }, { i: 'objection', t: '<b>Mert</b> İtiraz etti: Can yerine <b>Ayşe</b>.' }, { i: 'intrigue', t: 'Tertip · 1. tur: kimse kart oynamadı.' },
+      { c: 3, h: 'Kaybolan Mühür', f: 'H' }, { i: 'min1', t: 'Atama: <b>Selin</b> Birinci, <b>Can</b> İkinci Vekil.' }, { i: 'objection', t: '<b>Mert</b> İtiraz etti: Can yerine <b>Ayşe</b>.' }, { i: 'court', t: 'Tertip · 1. tur: kimse kart oynamadı.' },
       { i: 'hizmet', cls: 'kh', t: 'Kader: <b>Hizmet</b>. Sadakat yolu 2.' }, { i: 'decree', t: 'Hüküm: <b>Selin</b> +1 Nüfuz.' },
     ],
   };
@@ -498,9 +499,9 @@ function renderSeats() {
       <div class="nm"><span class="cart">${esc(p.name)}</span></div>
       ${p.sul ? '' : `<div class="coin${p.inf ? '' : ' zero'}" title="Nüfuz">${p.inf}</div>`}
       ${p.kul ? `<div class="kp${p.inf ? '' : ' down'}" title="${esc(KUL[p.kul].n)}"><img src="img/roster-comp.${p.kul}.jpg" alt=""></div>` : ''}
-      ${s ? `<div class="vkb"><div class="vtab">${s === 1 ? 'I' : 'II'}</div></div>` : dr ? `<div class="vkb"><div class="vtab ghost">${dr === 1 ? 'I' : 'II'}</div></div>` : ''}
-      ${G.ready[id] && (G.step === 'tertip') ? `<div class="tick">${tickSVG()}</div>` : ''}
-      ${tag ? `<div class="tagp t-${tag}">${ico(tag === 'sus' ? 'traitor' : 'loyalist')}</div>` : ''}
+      ${s ? `<div class="vkb" title="${s === 1 ? T.min1 : T.min2}">${ico('min' + s, 'ico vti')}</div>` : dr ? `<div class="vkb ghost" title="${dr === 1 ? T.min1 : T.min2}">${ico('min' + dr, 'ico vti')}</div>` : ''}
+      ${G.ready[id] && (G.step === 'tertip') ? `<div class="tick">${disc('ready')}</div>` : ''}
+      ${tag ? `<div class="tagp t-${tag}">${ico(tag === 'sus' ? 'suspect' : 'trusted')}</div>` : ''}
       ${G.objTurn === id ? `<div class="objtok">${ico('objection')}</div>` : ''}
       <i class="hit"></i></div>`;
   }).join('');
@@ -527,14 +528,14 @@ function renderTray() {
     return `<div class="vk${id ? '' : ' empty'}${pick ? ' pick' : ''}${U.vk === n ? ' picked' : ''}" data-vk="${n}" style="${ghost ? 'opacity:.6' : ''}">${vkSVG()}
       <div class="vm">${id ? medal(id) : `<div class="med">${bezel()}</div>`}</div>
       <div class="vt"><i>${ico(n === 1 ? 'min1' : 'min2')}${n === 1 ? 'Birinci' : 'İkinci'}</i><b>${id ? esc(P(id).name) : '—'}</b></div>
-      ${G.protect[G.min[n]] ? `<div class="sealed">${tickSVG()}</div>` : ''}</div>`;
+      ${G.protect[G.min[n]] ? `<div class="sealed" title="Mühür">${disc('seal')}</div>` : ''}</div>`;
   };
   t.innerHTML = `${traySVG(438, 150)}
     <div class="slot-crisis" data-insp="crisis">${crisis}</div><div class="tag-crisis">${G.step === 'k0' ? 'Kriz ' + G.crisisNo : esc(G.crisisName)}</div>
     <div class="tracks">
-      <div class="trow h"><span class="rl" title="Sadakat yolu">${ico('hizmet')}</span>${[0, 1, 2, 3].map(i => niche('h', i)).join('')}
+      <div class="trow h"><span class="rl" title="Sadakat yolu">${ico('loyalty')}</span>${[0, 1, 2, 3].map(i => niche('h', i)).join('')}
         <div class="deck" style="position:relative;margin-left:9px" title="Kader destesi">${card('back.kader', 28)}<b>${G.kDeck.length}</b></div></div>
-      <div class="trow x"><span class="rl" title="İhanet yolu">${ico('hiyanet')}</span>${[0, 1, 2, 3, 4].map(i => niche('x', i)).join('')}</div>
+      <div class="trow x"><span class="rl" title="İhanet yolu">${ico('treason')}</span>${[0, 1, 2, 3, 4].map(i => niche('x', i)).join('')}</div>
     </div>
     <div class="vekils">${vk(1)}${vk(2)}</div>`;
 }
@@ -560,7 +561,7 @@ function renderPlaced() {
     el.className = 'pc' + (c.down ? '' : ' up') + (c.owner === G.me ? ' mine' : '') + (c.state === 'done' ? ' done' : '') + (c.state === 'void' ? ' void' : '') + (c.focus ? ' focus' : '');
     el.style.left = xy.x + 'px'; el.style.top = xy.y + 'px'; el.style.rotate = c.focus ? '0deg' : (xy.r || 0) + 'deg';
     const badge = (cls, on, html) => { const b = el.querySelector('.' + cls); if (on && !b) el.insertAdjacentHTML('beforeend', `<span class="${cls}">${html}</span>`); if (!on && b) b.parentNode.removeChild(b); };
-    badge('rc', !c.down && !!c.as, 'Kul'); badge('eye', !!c.eye, ico('secret'));
+    badge('rc', !c.down && !!c.as, ico('companion')); badge('eye', !!c.eye, ico('secret'));
   });
   Array.from(box.children).forEach(el => { if (!seen.has(el.dataset.pc)) box.removeChild(el); });
 }
@@ -571,15 +572,15 @@ function renderMe() {
   const ch = CH[p.ch]; let pips = '';
   if (p.sul) {
     const fa = myAsk('ferman');
-    pips = pip(`base ${p.pw.base === 'used' ? 'used' : ''} ${fa ? 'live' : ''}`, 'decree', 'base', `${ch.base[0]} · Oyunda bir · ${p.pw.base === 'used' ? 'kullanıldı' : 'hazır'}`);
+    pips = pip(`base ${p.pw.base === 'used' ? 'used' : ''} ${fa ? 'live' : ''}`, 'ferman', 'base', `${ch.base[0]} · Oyunda bir · ${p.pw.base === 'used' ? 'kullanıldı' : 'hazır'}`);
   } else {
     const live = myAsk('object') && p.ch === 'mahidevran' && p.pw.base === 'ready';
     pips = pip(`base ${p.pw.base === 'used' ? 'used' : ''} ${live ? 'live' : ''} ${U.free ? 'on' : ''}`, ch.base[1], 'base', `${ch.base[0]} · Oyunda bir · ${p.pw.base === 'used' ? 'kullanıldı' : 'hazır'}`)
       + pip(`favor ${p.pw.favor === 'locked' ? 'locked' : p.pw.favor === 'used' ? 'used' : ''}`, p.pw.favor === 'locked' ? 'ambition' : ch.favor[1], 'favor', `${ch.favor[0]} · ${p.pw.favor === 'locked' ? 'Hırs ile açılır' : p.pw.favor === 'used' ? 'kullanıldı' : 'hazır'}`);
-    if (p.kul && KUL[p.kul].as) pips += pip(`kulp ${p.kulUsed ? 'used' : ''} ${p.inf ? '' : 'locked'}`, 'percrisis', 'kul', `${KUL[p.kul].n} · Krizde bir · ${p.inf ? (p.kulUsed ? 'bu kriz kullanıldı' : 'hazır') : 'Nüfuz 0: kapalı'}`);
+    if (p.kul && KUL[p.kul].as) pips += pip(`kulp ${p.kulUsed ? 'used' : ''} ${p.inf ? '' : 'locked'}`, 'companion', 'kul', `${KUL[p.kul].n} · Krizde bir · ${p.inf ? (p.kulUsed ? 'bu kriz kullanıldı' : 'hazır') : 'Nüfuz 0: kapalı'}`);
   }
   me.innerHTML = `<div class="me-med${legal ? ' legal' : ''}" data-me="1"><i class="ring"></i>${medal(G.me, p.sul)}${p.sul ? '' : `<div class="coin${p.inf ? '' : ' zero'}">${p.inf}</div>`}
-    <span class="hold">${ico('secret')}${T.hold}</span>${G.ready[G.me] && G.step === 'tertip' ? `<div class="tick" style="position:absolute;right:-6px;top:-4px;width:26px;height:26px">${tickSVG()}</div>` : ''}</div>
+    <span class="hold">${ico('allegiance')}${T.hold}</span>${G.ready[G.me] && G.step === 'tertip' ? `<div class="tick" style="position:absolute;right:-6px;top:-4px">${disc('ready')}</div>` : ''}</div>
     <div class="pips">${pips}</div>
     ${p.kul ? `<div class="mekul${p.inf ? '' : ' down'}" data-insp="kul">${card('kul.' + p.kul, 34)}</div>` : ''}`;
 }
@@ -653,7 +654,7 @@ function renderAct() {
   const place = myAsk('place'), obj = myAsk('object');
   if (place) {
     h = `<button class="seal ${U.draft ? 'ready' : 'off'}" data-act="seal"><span class="rib">${T.seal}</span><span class="wax">${waxSVG('seal')}</span></button>
-      <button class="slipb" data-act="pass">${T.pass}</button>`;
+      <button class="slipb" data-act="pass">${ico('pass')}${T.pass}</button>`;
   } else if (obj) {
     const free = U.free; const can = U.vk && (free || p.inf >= 1);
     h = `<button class="seal ${can ? 'ready' : 'off'}" data-act="object"><span class="rib">${T.object}</span><span class="wax">${waxSVG('objection')}${free ? '' : '<span class="cost coin">−1</span>'}</span></button>
@@ -665,8 +666,8 @@ function renderAct() {
     const sb = stepButton();
     if (sb && !G.busy) {
       const mine = p.sul; const [label, en, sub] = sb;
-      if (mine) h = `<button class="plaque ${en ? 'ready' : 'off'}" data-act="step">${plaqueSVG(196, 56)}<span>${esc(label)}</span>${sub ? `<small>${esc(sub)}</small>` : ''}</button>`;
-      else if (G.dev && en) h = `<button class="plaque ghost" data-act="step" title="Geliştirici: Süleyman adına bas">${plaqueSVG(196, 56)}<span class="devtag">DEV · SÜLEYMAN</span><span>${esc(label)}</span></button>`;
+      if (mine) h = `<button class="plaque ${en ? 'ready' : 'off'}" data-act="step">${plaqueSVG(196, 56)}<span>${esc(label)}${ico('next')}</span>${sub ? `<small>${esc(sub)}</small>` : ''}</button>`;
+      else if (G.dev && en) h = `<button class="plaque ghost" data-act="step" title="Geliştirici: Süleyman adına bas">${plaqueSVG(196, 56)}<span class="devtag">${ico('suleyman')}DEV · SÜLEYMAN</span><span>${esc(label)}${ico('next')}</span></button>`;
     }
   }
   box.innerHTML = h;
@@ -677,19 +678,27 @@ function renderHud() {
   let sub = '';
   const waitingOn = actingIds().filter(id => id !== G.me);
   const wv = ['tertip', 'acilis'].includes(G.step) && G.wave ? T.wave(G.wave) + ' · ' : '';
-  if (myAsk()) sub = `<span class="sub mine">${ico('seal')}${wv}${T.yourTurn}</span>`;
-  else if (G.step === 'tertip') sub = `<span class="sub">${ico('intrigue')}${wv}${waitingOn.length ? T.waiting(waitingOn.length) : T.ready('hepsi')}</span>`;
-  else if (G.step === 'kader') sub = `<span class="sub">${ico('kader')}${T.silent}</span>`;
-  else if (G.step === 'acilis') { const f = G.placed.find(c => c.focus); sub = `<span class="sub">${ico('intrigue')}${wv}${f ? esc(INTR[f.as || f.k].n) : T.reveal}</span>`; }
+  const si_ = stepIco();
+  if (myAsk()) sub = `<span class="sub mine">${ico(si_)}${wv}${T.yourTurn}</span>`;
+  else if (G.step === 'tertip') sub = `<span class="sub">${ico(si_)}${wv}${waitingOn.length ? T.waiting(waitingOn.length) : T.ready('hepsi')}</span>`;
+  else if (G.step === 'kader') sub = `<span class="sub">${ico(si_)}${T.silent}</span>`;
+  else if (G.step === 'acilis') { const f = G.placed.find(c => c.focus); sub = `<span class="sub">${ico(si_)}${wv}${f ? esc(INTR[f.as || f.k].n) : T.reveal}</span>`; }
   else if (G.step === 'sonuc-done') sub = `<span class="sub">${ico('minister')}${T.defend}</span>`;
-  else if (waitingOn.length === 1) sub = `<span class="sub">${ico('public')}${esc(P(waitingOn[0]).name)}</span>`;
-  else sub = `<span class="sub">Kriz ${G.crisisNo}${G.step === 'k0' ? '' : ' · ' + esc(G.crisisName)}</span>`;
+  else if (waitingOn.length === 1) sub = `<span class="sub">${ico(P(waitingOn[0]).sul ? 'suleyman' : si_)}${esc(P(waitingOn[0]).name)}</span>`;
+  else sub = `<span class="sub">${ico(si_)}Kriz ${G.crisisNo}${G.step === 'k0' ? '' : ' · ' + esc(G.crisisName)}</span>`;
   const hadDot = hud.querySelector('.boss.log .dot');
   hud.innerHTML = `<div class="stepc${myAsk() ? ' mine' : ''}" data-act="stephelp"><div class="cbody">${cartSVG(196, 38)}
       <span class="beads">${T.step.map((s, i) => `<i class="bead ${i < si ? 'done' : i === si ? 'now' : ''}" title="${s}"></i>`).join('')}</span>
       <span class="sn">${esc(T.step[si] || '')}</span></div>${sub}</div>
-    <button class="boss log" data-act="log" aria-label="${T.log}"><span>${ico('decree')}</span>${hadDot ? '<i class="dot"></i>' : ''}</button>
-    <button class="boss set" data-act="settings" aria-label="${T.settings}"><span>${ico('menu')}</span></button>`;
+    <button class="boss log" data-act="log" aria-label="${T.log}"><span>${ico('log')}</span>${hadDot ? '<i class="dot"></i>' : ''}</button>
+    <button class="boss set" data-act="settings" aria-label="${T.settings}"><span>${ico('settings')}</span></button>`;
+}
+function stepIco() {
+  // the status line wears the icon of what the table is doing now
+  if (G.asks.some(a => a.kind === 'ferman' || (a.kind === 'pick' && /ferman/i.test(a.data.why || '')))) return 'ferman';
+  if (G.objTurn || G.step === 'itiraz') return 'objection';
+  return { k0: 'crisis', k0b: 'crisis', atama: 'minister', 'itiraz-done': 'objection', tertip: 'court', acilis: 'court', 'acilis-done': 'court',
+    kader: 'kader', sonuc: G.played === 'h' ? 'loyalty' : 'treason', 'sonuc-done': G.played === 'h' ? 'loyalty' : 'treason', hukum: 'decree', son: 'decree' }[G.step] || 'crisis';
 }
 function targetMode() {
   // which seats glow right now (null when nothing is being targeted)
@@ -711,7 +720,7 @@ function renderPrompt() {
     h = `<h5><img src="img/roster-char.${p.ch}.jpg" alt="">${names[a.data.p]}</h5><p>${txt[a.data.p]}</p>
       <div class="row"><button class="yes" data-pr="yes">${T.use}</button><button class="no" data-pr="no">${T.skip}</button></div>`;
   } else if (a.kind === 'ferman') {
-    h = `<h5><img src="img/roster-char.suleyman.jpg" alt="">Ferman</h5><p>${T.fermanQ}</p>
+    h = `<h5>${ico('ferman', 'ico ph')}Ferman</h5><p>${T.fermanQ}</p>
       <div class="row"><button class="yes" data-pr="yes">${T.use}</button><button class="no" data-pr="no">${T.skip}</button></div>`;
   } else if (a.kind === 'pick') {
     const title = { replace: T.who, objector: T.whoObj, valide: T.who, ferman: T.whoFerman, investigator: T.investigator, investigate: T.investigate, fermanSeat: 'Hangi Vekil?' }[a.data.why] || T.who;
@@ -723,6 +732,7 @@ function renderPrompt() {
 /* ---------------- lobby, end ---------------- */
 let lobbyTimer = null;
 function renderLobby() {
+  if ($('#jp')) { clearTimeout(lobbyTimer); lobbyTimer = setTimeout(() => { lobbyTimer = null; if (G.step === 'lobi') renderLobby(); }, 650); return; } // keypad open: don't redraw under it
   const joined = G.lobbyN ?? 1;
   const ids = G.order;
   moment(`<div class="lobby"><div class="bgart" style="background-image:url(img/ui.title-1.jpg)"></div>
@@ -742,7 +752,7 @@ function joinPad() {
   const draw = () => { $('#jp .digits').innerHTML = [0, 1, 2, 3].map(i => `<span class="digit" style="${code[i] ? '' : 'opacity:.35'}">${code[i] || '·'}</span>`).join(''); };
   m.insertAdjacentHTML('beforeend', `<div id="jp" style="position:absolute;inset:0;background:rgba(10,7,5,.92);display:flex;align-items:center;justify-content:center;gap:40px">
     <div style="display:grid;gap:10px;justify-items:center"><span style="font:700 11px/1 var(--f-label);letter-spacing:.12em;color:var(--gold)">${T.roomCode.toLocaleUpperCase('tr')}</span><div class="digits"></div></div>
-    <div class="keypad">${[1, 2, 3, 4, 5, 6, 7, 8, 9, '←', 0, '✓'].map(k => `<button class="key" data-k="${k}">${k}</button>`).join('')}</div></div>`);
+    <div class="keypad">${[1, 2, 3, 4, 5, 6, 7, 8, 9, '←', 0, '✓'].map(k => `<button class="key" data-k="${k}" aria-label="${k === '←' ? 'Sil' : k === '✓' ? 'Katıl' : k}">${k === '←' ? ico('back') : k === '✓' ? ico('ready') : k}</button>`).join('')}</div></div>`);
   draw();
   $('#jp').addEventListener('click', e => {
     const k = e.target.closest('[data-k]')?.dataset.k; if (!k) { if (e.target.id === 'jp') $('#jp').remove(); return; }
@@ -934,21 +944,21 @@ async function flowWake() {
   wave.forEach(c => { c.down = false; }); render(); sfx('flip'); buzz(25);
   await wait(1000);
   await resolveWave(wave);
-  log('intrigue', `${T.wave(G.wave)}: ` + wave.map(c => `${INTR[c.as || c.k].n}${c.as ? ' (Kul)' : ''} → ${P(c.target).name}${c.state === 'void' ? ' ✗' : ''}`).join(', ') + '.');
+  log('court', `${T.wave(G.wave)}: ` + wave.map(c => `${INTR[c.as || c.k].n}${c.as ? ' (Kul)' : ''} → ${P(c.target).name}${c.state === 'void' ? ' ✗' : ''}`).join(', ') + '.');
   await collectWave(wave);
   await openWave();
 }
 async function endTertip() {
   // the empty wave: a short beat, then Süleyman's Ferman (once, only here), its draw, then Kader
-  log('intrigue', `${T.wave(G.wave)}: ${T.nobody.toLocaleLowerCase('tr')}.`);
+  log('court', `${T.wave(G.wave)}: ${T.nobody.toLocaleLowerCase('tr')}.`);
   await banner(T.nobody, T.tertipEnd, { hold: 700 });
   if (P(sul()).pw.base === 'ready') {
     const use = await ask(sul(), 'ferman', {});
     if (use) {
-      const seat = await ask(sul(), 'pick', { why: 'fermanSeat', options: [G.min[1], G.min[2]], icon: 'decree' });
-      const n = seatOf(seat); const repl = await ask(sul(), 'pick', { why: 'ferman', options: eligible(), icon: 'decree' });
+      const seat = await ask(sul(), 'pick', { why: 'fermanSeat', options: [G.min[1], G.min[2]], icon: 'ferman' });
+      const n = seatOf(seat); const repl = await ask(sul(), 'pick', { why: 'ferman', options: eligible(), icon: 'ferman' });
       P(sul()).pw.base = 'used'; G.min[n] = repl; G.wasMin[repl] = true; render(); await drawFx(seat, 'seat');
-      log('decree', `Ferman: ${P(seat).name} yerine <b>${P(repl).name}</b>.`);
+      log('ferman', `Ferman: ${P(seat).name} yerine <b>${P(repl).name}</b>.`);
     }
   }
   G.step = 'acilis-done'; render();
@@ -992,7 +1002,7 @@ async function resolveWave(wave) {
     const k = id_(c), t = c.target; let ok = true;
     c.focus = true; render(); await wait(480);
     if (k.startsWith('akil')) sfx('seal');
-    else if (k === 'muhur') { const v = $(`#tray .vk[data-vk="${seatOf(t)}"]`); if (v && !G.fast) { const r = boardXY(v); await stampAt(r.x + 40, r.y - 18, tickSVG(), 30); } }
+    else if (k === 'muhur') { const v = $(`#tray .vk[data-vk="${seatOf(t)}"]`); if (v && !G.fast) { const r = boardXY(v); await stampAt(r.x + 40, r.y - 18, ico('seal', 'ico stampi'), 34); } }
     else if (k === 'valide') {
       // owners choose in seat order; a second replacement of the same Vekil does nothing
       if (G.protect[t] || replaced[t] || !isMin(t)) ok = false;
@@ -1133,7 +1143,7 @@ async function hirsReveal(ids) {
   ids.forEach(id => { P(id).hirs.shown = true; if (P(id).pw.favor === 'locked') P(id).pw.favor = 'ready'; log('ambition', `<b>${P(id).name}</b> Hırsını açtı: ${HIRS[P(id).hirs.id].n}. Lütuf gücü açıldı.`); });
   if (G.fast) return;
   scrim(true);
-  moment(`<div class="mtitle"><span class="cart">Hırs</span><p>${ico('favor')}Lütuf gücü açıldı</p></div>
+  moment(`<div class="mtitle"><span class="cart">${ico('ambition')}Hırs</span><p>${ico('favor')}Lütuf gücü açıldı</p></div>
     <div style="position:absolute;left:0;right:0;top:66px;display:flex;justify-content:center;gap:34px">${ids.map(id => `<div style="display:grid;justify-items:center;gap:8px">
       <div class="bigcard" style="position:relative;width:150px"><div class="flip"><div>${card('back.hirs', 150)}</div><div class="fr">${card('hirs.' + P(id).hirs.id, 150)}</div></div></div>
       <span class="cart" style="height:22px;font-size:14px">${esc(P(id).name)} · ${esc(CH[P(id).ch].favor[0])}</span></div>`).join('')}</div>`);
@@ -1419,10 +1429,10 @@ function inspectSeat(id) {
   const pw = (nm, st, icon, cls) => `<div class="pwline"><span class="pip ${cls} ${st}"><i>${ico(icon)}</i></span>${esc(nm)} · <i>${st === 'used' ? 'kullanıldı' : st === 'locked' ? 'Hırs ile açılır' : 'hazır'}</i></div>`;
   moment(`<div class="insp"><div style="width:200px">${card('char.' + p.ch, 200)}</div>
     <div class="side"><h3>${esc(p.name)}</h3><span class="ch">${esc(ch.n).toLocaleUpperCase('tr')}${p.sul ? ' · HER ZAMAN SADIK' : ''}</span>
-      ${p.sul ? '' : `<div class="stats"><span class="coin${p.inf ? '' : ' zero'}" style="position:static">${p.inf}</span> Nüfuz${p.kul ? ` · <span style="width:46px;display:inline-block">${card('kul.' + p.kul, 46)}</span>` : ''}</div>`}
+      ${p.sul ? '' : `<div class="stats"><span class="coin${p.inf ? '' : ' zero'}">${p.inf}</span> Nüfuz${p.kul ? ` · <span style="width:46px;display:inline-block">${card('kul.' + p.kul, 46)}</span>` : ''}</div>`}
       ${pw(ch.base[0], p.pw.base, ch.base[1], 'base')}${ch.favor ? pw(ch.favor[0], p.pw.favor, p.pw.favor === 'locked' ? 'ambition' : ch.favor[1], 'favor') : ''}
-      ${id === G.me || p.sul ? '' : `<div class="tagrow"><button class="tagbtn${tag === 'sus' ? ' on' : ''}" data-tag="sus"><span class="tagp t-sus">${ico('traitor')}</span>${T.suspect}</button>
-        <button class="tagbtn${tag === 'ok' ? ' on' : ''}" data-tag="ok"><span class="tagp t-ok">${ico('loyalist')}</span>${T.trusted}</button></div>
+      ${id === G.me || p.sul ? '' : `<div class="tagrow"><button class="tagbtn${tag === 'sus' ? ' on' : ''}" data-tag="sus"><span class="tagp t-sus">${ico('suspect')}</span>${T.suspect}</button>
+        <button class="tagbtn${tag === 'ok' ? ' on' : ''}" data-tag="ok"><span class="tagp t-ok">${ico('trusted')}</span>${T.trusted}</button></div>
         <p class="cue" style="margin:0">Etiketleri yalnız sen görürsün.</p>`}
     </div><button class="close" data-close="1" aria-label="Kapat">${ico('close')}</button></div>`);
   $('#moment .insp').addEventListener('click', e => {
@@ -1475,14 +1485,14 @@ function openLog() {
   let h = '';
   const groups = []; G.log.forEach(l => { if (l.c) groups.push({ head: l, items: [] }); else if (groups.length) groups[groups.length - 1].items.push(l); });
   groups.reverse().forEach(g => {
-    h += `<div class="lg-h"><i class="fgem ${g.head.f}"></i>Kriz ${g.head.c} · ${esc(g.head.h)}</div>` + g.items.map(l => `<div class="lg ${l.cls || ''}">${ico(l.i)}<span>${l.t}</span></div>`).join('');
+    h += `<div class="lg-h">${ico({ D: 'divan', H: 'harem', S: 'saray' }[g.head.f] || 'crisis')}Kriz ${g.head.c} · ${esc(g.head.h)}</div>` + g.items.map(l => `<div class="lg ${l.cls || ''}">${ico(l.i)}<span>${l.t}</span></div>`).join('');
   });
-  openDrawer(`<div class="scroll"><header><h4>${T.log}</h4><button class="x" data-shut="1" aria-label="Kapat">${ico('close')}</button></header><div class="body">${h}</div></div>`);
+  openDrawer(`<div class="scroll"><header>${ico('log', 'ico hd')}<h4>${T.log}</h4><button class="x" data-shut="1" aria-label="Kapat">${ico('close')}</button></header><div class="body">${h}</div></div>`);
 }
 function openSettings() {
   const s = G.set; const ids = G.order;
   const steps = [['lobi', 'Lobi'], ['k0', 'Kriz'], ['atama', 'Atama'], ['tertip', 'Tertip'], ['acilis', 'Açılış'], ['kader', 'Kader'], ['sonuc', 'Sonuç'], ['hukum', 'Hüküm'], ['bitti', 'Oyun sonu']];
-  openDrawer(`<div class="tray2"><header><h4>${T.settings}</h4><button class="x" data-shut="1" aria-label="Kapat">${ico('close')}</button></header><div class="body">
+  openDrawer(`<div class="tray2"><header>${ico('settings', 'ico hd')}<h4>${T.settings}</h4><button class="x" data-shut="1" aria-label="Kapat">${ico('close')}</button></header><div class="body">
     <div class="toggles">
       <button class="tg${s.sound ? ' on' : ''}" data-set="sound"><i>${ico('sound')}</i><span>${T.sound}</span></button>
       <button class="tg${s.music ? ' on' : ''}" data-set="music"><i>${ico('music')}</i><span>${T.music}</span></button>
