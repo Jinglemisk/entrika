@@ -96,14 +96,16 @@
     {
       "id": "term.min1",
       "stems": [
-        "Birinci Vekil"
+        "Birinci Vekil",
+        "birinci Vekil"
       ],
       "icon": "min1"
     },
     {
       "id": "term.min2",
       "stems": [
-        "İkinci Vekil"
+        "İkinci Vekil",
+        "ikinci Vekil"
       ],
       "icon": "min2"
     },

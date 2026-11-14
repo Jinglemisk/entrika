@@ -2,6 +2,15 @@
 
 The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Round 3 redrew every card after looking at published card games. Round 4 applied the designer's decisions on art placement, Kul cards, the tuğra and text size (see Decisions). The base is still direction B, the Ottoman miniature: paper, gold leaf, lapis and vermilion, and backs taken from Ottoman bookbinding. Each card type now has its own enamel or material, and the photos carry only a faint warm grade. All ornament is drawn in SVG and CSS; the show stills are the only photos.
 
+## Decisions (round 8)
+
+- **No resolve order.** Intrigue cards no longer carry a 1–10 number. Their corner gem shows the Entrika icon (the keyhole arch), the same way every other type shows its own type icon.
+- **Akıl Hocası** now lasts the whole crisis: «Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.» It is shown on the page as a Divan card. The deck has Harem and Divan copies, which differ only in the field gem.
+- **İkinci Vekil has its own mark.** `min2` is now two stacked pointed arches, the front one with "II". It reads apart from `min1` (one arch with "I") and from the plain Vekil seat (`minister`) at 16 px.
+  - `terms.json` also gained lowercase stems (`birinci Vekil`, `ikinci Vekil`). Mid-sentence "ikinci Vekil" used to fall through to the plain Vekil icon.
+- **Hırs card text is one block.** The goal and "Tamamlayınca kartı aç: Lütuf gücün açılır." sit in the same paragraph, separated by a line break, so a UI build that keeps one text block keeps both.
+- **Icon style chosen: A, «Varak ve mine» (relief-gilded enamel)**, from the Codex icon proposals. It is the target style for the full icon set. The card page keeps the current stroke icons until that set is generated; no icons have been swapped yet.
+
 ## Decisions (round 5)
 
 - **One name line.** The name cartouche sits at the same height on every card type: centre at y = 380 of 700, which is 181 px from the top at 258 px wide. Windows end there and text plates start below it.
@@ -58,7 +67,7 @@ These are the points taken from the reference games (Hearthstone, Runeterra, Gwe
   - A leather grain sits over the enamels, and paper fibre over the paper.
 - **Name cartouche.** An Ottoman cartouche with scrolled ends sits on the seam between the art and the text, as Hearthstone's name banner does. It casts a shadow on both, which gives the card depth.
 - **Gems that break the frame.**
-  - The corner medallion is a cabochon in a scalloped gold bezel, overlapping the frame corner like Hearthstone's mana gem.
+  - The corner medallion is a cabochon in a scalloped gold bezel, overlapping the frame corner like Hearthstone's mana gem. It carries the card type's icon.
   - The field marker is a second gem: coral for Harem, cobalt for Divan.
   - Both stay readable at 64 px.
 - **Text plate.** Inset paper with an inner shadow, a gold-and-ink double edge and gold corner triangles. Text is centred and terms carry their icons.
@@ -174,7 +183,7 @@ Below 150 px every card uses a separate compact frame. Scaling the full frame do
 ## Card anatomy
 
 There are seven slots:
-1. corner gem (resolve order or type icon);
+1. corner gem (the card type's icon: Karakter, Kul, Entrika, Kriz, Kader, Hırs or Taraf);
 2. field gem (icon only, with a tooltip);
 3. art window (arch per type, embossed molding);
 4. name cartouche;
