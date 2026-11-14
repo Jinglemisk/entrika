@@ -7,4 +7,4 @@ A Muhteşem Yüzyıl social-deduction card game for friends, played in the brows
 - `docs/direction.md` is the standing brief for the game: what we're building, the data-driven philosophy, and how we work.
 - `plan.md` lists the next steps.
 
-Status: rules at v0.6. The game itself is not started yet.
+Status: rules at v0.7. The game itself is not started yet.
