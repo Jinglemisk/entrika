@@ -15,7 +15,13 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
    - confirm the grade strength (15%);
    - AI-generated textures (deferred).
-2. UI: the landscape-phone prototype plays one crisis with Tertip in waves, at https://claude.ai/artifact/LRHXJ79aqaRtv5r4t5wipw (source in `ui/v2/src/`). Waiting on Jingle's feedback.
+2. UI: v2 (the playable prototype at https://claude.ai/artifact/LRHXJ79aqaRtv5r4t5wipw, source in `ui/v2/src/`) was rejected on looks: gold bevels on every control read as a cheap mobile game. It stays as the interaction reference. v3 is a static design system at https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH (source in `ui/v3/src/`, notes in `ui/v3/notes.md`): paper for public, lacquer for private, the cast in a row, one prompt block. Waiting on Jingle's six decisions at the end of that page:
+   - surface (paper and lacquer, all paper, all dark);
+   - court order (fixed row with Süleyman centred, or the 13 November arc);
+   - icons (emblems for game terms only, line glyphs for chrome);
+   - interface type (Alegreya Sans plus Alegreya italic);
+   - Kader deck count off the resting screen;
+   - Sicil as the log's first tab.
 3. First playable, built overnight end to end from the manual's current rules, reusing `art/terms.json`, the graded stills, the icon set and the UI prototype.
 
 ## Sources
