@@ -40,18 +40,18 @@ def pick(cls, label):
     sys.exit('missing card %s %s' % (cls, label))
 
 WANT = {
-    'char.suleyman': ('c3 t-char v-break', 'Süleyman'),
+    'char.suleyman': ('c3 t-char sultan v-break', 'Süleyman'),
     'char.hurrem': ('c3 t-char v-break', 'Hürrem'),
     'char.ibrahim': ('c3 t-char v-break', 'Pargalı'),
     'char.mahidevran': ('c3 t-char v-break', 'Mahidevran'),
-    'char.bali': ('c3 t-char v-break', 'Malkoçoğlu'),
     'char.hatice': ('c3 t-char v-break', 'Hatice'),
     'char.mihrimah': ('c3 t-char v-break', 'Mihrimah'),
     'char.rustem': ('c3 t-char v-break', 'Rüstem'),
     'kul.sumbul': ('c3 t-kul', 'Sümbül Ağa'),
-    'kul.piri': ('c3 t-kul', 'Piri Mehmet Paşa'),
+    'kul.bali': ('c3 t-kul', 'Malkoçoğlu'),
     'kul.afife': ('c3 t-kul', 'Afife Hatun'),
     'intr.iftira': ('c3 t-intr', 'İftira'),
+    'intr.akil': ('c3 t-intr', 'Akıl Hocası'),
     'intr.valide': ('c3 t-intr', "Valide'nin Buyruğu"),
     'intr.muhur': ('c3 t-intr', 'Mühür'),
     'intr.saray-tabibi': ('c3 t-intr', 'Saray Tabibi'),

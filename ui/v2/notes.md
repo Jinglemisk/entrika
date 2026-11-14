@@ -10,7 +10,7 @@ The spec for the first playable's table, published as a clickable prototype (lin
 ## Board geometry
 
 - Everything tappable sits on a 734×372 board: the safe area of an 852×393 iPhone Pro in landscape (59 px each side, 21 px home indicator). The board is scaled uniformly into whatever safe area the phone reports (`env(safe-area-inset-*)`) and centred. At 932×430 it scales to 1.07.
-- Floor, carpet glow, night wash and scrims are outside the board and bleed to the screen edges.
+- Floor, carpet glow, the Tertip dimming and scrims are outside the board and bleed to the screen edges.
 - The hand bleeds 21 px into the home-indicator zone, as in Hearthstone. Touches that start in that strip can trigger the iOS home gesture, so a card's drag handle is its upper part.
 - Seats: ellipse centre (367, 212), radii 330×178, opponents spread over 146° (24.3° apart at 7 opponents, closer to the top with fewer). The arc starts at the viewer's left, so it rotates per phone.
 - No scrolling in any game screen. Only the log scrolls, inside its own scroll.
@@ -26,6 +26,20 @@ The spec for the first playable's table, published as a clickable prototype (lin
 - **Pacing.** Süleyman's plaque is the only way a step closes; it stays dim with a reason (“5/7 hazır”) until the step can close. No timers.
 - **Attention.** “Sıra sende” in coral under the step cartouche, gold glow on whatever you can touch, one sound and one buzz when your move begins. Visual cues are always on.
 
+## Tertip in waves
+
+- Each wave, every player except Süleyman plays one Intrigue card or passes (`place` ask). The wave closes like any step: all ready ticks, then Süleyman's plaque (“Kartları aç”), then the synced reveal.
+- A reveal that had cards opens the next wave by itself; Süleyman doesn't tap. Passing doesn't lock anyone out of later waves. Cards drawn at the end of a wave can be played in the next.
+- A wave where nobody plays ends Tertip: a “Kimse kart oynamadı” beat, then the Ferman offer (once, only after this last empty wave); the player it removes draws before Kader begins.
+- Limit: 2 Intrigue cards per player per crisis, one per wave, recasts included (`TERTIP_LIMIT`). Çifte Oyun lets Hürrem play both in one wave. Using a power never counts as playing a card. After the second card, the hand greys out with “Bu krizde 2 kart oynadın”. Recasts, Kul powers and Objections stay once per crisis.
+- Everyone still answers every wave, even with nothing playable; an automatic pass would tell the table who has no cards.
+- The wave number shows in the step line and the log through the string table (“Tertip · 2. tur”).
+- The reveal: a recast is chosen when the card is played and shows at the flip; Akıl Hocası (this wave's or an earlier wave's) cancels the other cards of its field on its player; cards that need a Vekil check it at the flip and still work if another card in the wave moves their player; owners' choices go in seat order from Süleyman's left; Influence changes are summed per player and applied once (Saray Tabibi turns a negative total into 0); draws come last, 1 per point lost and 1 per lost seat. Nothing depends on card order.
+- Akıl Hocası, Mühür, Saray Tabibi and Teftiş stay face up in front of their player for the rest of the crisis; the other cards of a wave are collected after it.
+- The scripted round: wave 1 has four cards (Mühür guards the Birinci Vekil, so Can's Valide on him fails; Mert's Kul turns İftira into Valide and takes the İkinci seat; Teftiş). Wave 2 has two (Can's Divan Sırası on Mert, cancelled by Selin's Akıl Hocası, which stays). Wave 3 is empty.
+
+- There are no claims: nobody learns who played a card, and owners choose or look on their own phone. The UI has no claim cue and no “sahiplen” copy; card text comes from the art page.
+
 ## Synced moments
 
 Each runs the same script on every phone from a start time the relay sends. Durations as built:
@@ -35,7 +49,8 @@ Each runs the same script on every phone from a start time the relay sends. Dura
 | Crisis flip | card lifts from tray to 236 px (520 ms), turns (760 ms), holds ~1.7 s, returns (480 ms); then draw cards fly |
 | Banner | unrolls from the centre (420 ms), holds ~0.9 s, folds into the step cartouche (420 ms) |
 | Ceremony | tuğra, both Character cards rise (560 ms, 160 ms apart), hold 1.5 s, fly into the Vekil plates (520 ms) |
-| Reveal | placed cards slide from the centre to their seats face down (480 ms, 90 ms apart), pause 650 ms, all turn together (700 ms); resolve one by one, each card grows 2.5× in front of its seat |
+| Reveal (each wave) | the wave's cards slide from the centre to their seats face down (480 ms, 90 ms apart), pause 650 ms, all turn together (700 ms); Akıl cancellations stamp together, then a walk in seat order shows each card acting (it grows 2.5× in front of its seat), then net coins, then draws; non-lasting cards are swept to the centre (420 ms) |
+| Empty wave | “Kimse kart oynamadı” banner, then Ferman, then Kader |
 | Kader landing | played card to centre (560 ms), turn (700 ms), hold 1.2 s, arc into its niche (700 ms), tray jolts |
 | Decree | sealed ferman drops, wax breaks, scroll unrolls (640 ms), holds 1.5 s; coin flies |
 | Hırs reveal | completed Hırs cards turn face up for everyone; Favor pips unlock |
@@ -45,9 +60,16 @@ Each runs the same script on every phone from a start time the relay sends. Dura
 - An Objection's replacement must be a different player from the one removed (ruled 2026-11-13).
 - Fısıltı applies to both the +1 and the −1 Hüküm (ruled 2026-11-13).
 - Saray Dedikodusu, Mühürlü Evrak, Teftiş and Soruşturma open a private peek on the owner's phone; others see an eye mark on the card while it is open.
-- Valide'nin Buyruğu asks its owner to pick the new Vekil when it resolves, not at placement.
-- Two replacements on one Vekil resolve in seat order from Süleyman's left, as the manual says; the second is crossed out.
+- Valide'nin Buyruğu asks its owner to pick the new Vekil at the reveal, not at placement. Owners choose in seat order from Süleyman's left; if two cards would replace the same Vekil, the first wins and the second does nothing.
+- Protections work from the flip of their own wave (manual v11): a Mühür and a Valide'nin Buyruğu on the same Vekil in one wave means the Vekil stays, and Saray Tabibi covers the losses of its own wave.
+- Two Divan Sırası on the Vekils in one wave swap twice, so the seats end where they started.
+- İftira and Gözde'nin Hediyesi on Süleyman do nothing (he has no Nüfuz).
 
 ## Not in the scripted round
 
-These need the same patterns and aren't shown: Çifte Oyun (the seal reads “1/2” until both cards are placed), Yön Değiştir (a use/skip slip at the reveal, then drag one card on you to another seat), Muhafız (use/skip after a Hıyanet is played), Sürgün, Haber and Hediye (tap the pip any time outside Kader, then pick a seat), Hazine Defteri, Kara Ahmed Paşa's four-card draw, and the Learning game mode.
+These need the same patterns and aren't shown:
+- Çifte Oyun: in one wave the seal reads “1/2” until both cards are placed; both count toward the 2.
+- Yön Değiştir: a power used when a wave flips (manual v11: the v0.7 “no powers during Court” rule covers only powers with no stated timing). A use/skip slip at the flip, before the cards take effect, then drag one card played on you to another seat.
+- Powers with no stated timing (Sürgün, Haber, Hediye, Ganimet…): tap the pip any time outside Tertip and Kader, then pick a seat.
+- Hazine Defteri, Kara Ahmed Paşa's four-card draw, the Learning game mode.
+- The v0.7 court: Mustafa, Barbaros and the three Wildcards have no art yet. The demo table therefore seats seven (Süleyman and six), using the six Characters the art page draws; the arc was checked with seven opponents in earlier builds and the layout code is the same.
