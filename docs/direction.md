@@ -38,6 +38,7 @@ The standing brief for the browser game. Read it before starting any work on the
 - **Chosen direction:** B, Ottoman miniature (cream paper, gold leaf, lapis and vermilion, manuscript-style names), with stills graded in direction A's red-to-gold hue at reduced strength. Details live in `art/directions/notes.md`. Art direction and UI are separate tracks: the art page covers cards, icons and stills; UI is built on top of it.
 - Real stills from the show only, never AI-generated or regenerated. Any card showing a person uses a standard posed hero shot, like a cast promo or a roster image: same framing, same eye line, facing the viewer. Event cards use scenes, e.g. a janissary riot for Yeniçeri İsyanı. Online sources are fine.
 - Card layouts are consistent. Characters' two powers sit in clearly separate panels. Card titles and body text are centred. Harem and Divan show as icons only; tooltips carry the words.
+- **Icon style: A, Varak ve mine** (picked 2026-11-14 from the two Codex proposals). Raised gold-leaf emblems with flat enamel inlays and a dark brown outline, readable at 16 px. Every game icon is made from its prompt template in `art/icons/proposals/prompts.md`.
 - **Terms carry their icons.** Wherever card or UI text names a game term, its icon is drawn in front of it ("play any [icon] Entrika card"). One renderer does this from a data table of terms, Turkish stems and icons, so it also catches suffixed forms.
 - Clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
 - Mobile-first and light. No heavy engines.
@@ -47,7 +48,7 @@ The standing brief for the browser game. Read it before starting any work on the
 Decided with the designer on 2026-11-13. A UI agent proposes the layout once the art is final.
 
 - **Table.** The other players sit in seat order along an arc at the top, with Süleyman's seat marked; up to 7 must fit. The Crisis, the Hizmet and Hıyanet tracks and the two Vekils sit in the centre. Your Character, Influence, hand and Kul run along the bottom. Seat order matters because Objections go clockwise and some Crises draw for the players beside Süleyman.
-- **Pace.** Süleyman's phone taps "next" to close a step, for example after the Objections or after the reveal. No timers.
+- **Pace.** Süleyman's phone taps "next" to close a step, for example after the Objections or a Tertip wave. After a reveal that had cards in it, the next Tertip wave opens by itself; a wave where nobody plays ends Tertip. No timers.
 - **Secret info.** Your hand is always visible. Allegiance and Hırs show only while you press and hold.
 - **Reveals play in sync** on every phone, so the table reacts together.
 - **Game log.** A drawer holds the full history, round by round: appointments, which cards resolved on whom, Kader results, Decrees.
