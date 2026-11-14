@@ -45,13 +45,19 @@ The standing brief for the browser game. Read it before starting any work on the
 
 ## UI
 
-Decided with the designer on 2026-11-13. A UI agent proposes the layout once the art is final.
+Decided with the designer on 2026-11-13. On 2026-11-15 the look and layout moved to the v3 design system (`ui/v3/`, https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH), with all six of its recommendations taken. The game screen is built from `ui/v3/src/ui.css`. The v2 prototype is retired: its gold-on-every-control look read as a cheap mobile game.
 
-- **Table.** The other players sit in seat order along an arc at the top, with Süleyman's seat marked; up to 7 must fit. The Crisis, the Hizmet and Hıyanet tracks and the two Vekils sit in the centre. Your Character, Influence, hand and Kul run along the bottom. Seat order matters because Objections go clockwise and some Crises draw for the players beside Süleyman.
+- **Surfaces.** Public is paper, private is lacquer (kâğıt ve lake). The court, the tracks, reveals and the Decree are drawn on paper. Your hand, Taraf, Kader cards and peeks are drawn on lacquer.
+- **Only cards are ornate.** Card frames keep their gold, enamel and gems. Controls have no bevels, glows or gold gradients, and hierarchy comes from type and spacing.
+- **Table.** The cast stands in one fixed row, in seat order, the same on every phone. Süleyman is in the middle and your own seat is in the row. The tracks and the Crisis run along the top line. Your Taraf, powers, hand and the prompt sit on the lacquer shelf below. Seat order matters because Objections go clockwise and some Crises draw for the players beside Süleyman.
+- **One prompt block,** bottom right: the step, one sentence, at most two buttons. To play a card, tap it and then tap a seat; dragging is optional.
+- **Icons.** Varak ve mine emblems for game terms and cards only. Interface chrome uses line glyphs.
+- **Type.** Alegreya Sans for the interface, Alegreya italic for the game's voice, small caps only on card objects.
+- **Kader deck count** is off the resting screen and shown in Sonuç and Sicil.
 - **Pace.** Süleyman's phone taps "next" to close a step, for example after the Objections or a Tertip wave. After a reveal that had cards in it, the next Tertip wave opens by itself; a wave where nobody plays ends Tertip. No timers.
 - **Secret info.** Your hand is always visible. Allegiance and Hırs show only while you press and hold.
 - **Reveals play in sync** on every phone, so the table reacts together.
-- **Game log.** A drawer holds the full history, round by round: appointments, which cards resolved on whom, Kader results, Decrees.
+- **Game log.** Its first tab is Sicil, one row per crisis: Vekils, Kader result, Decree, events. The full event list sits behind it: appointments, which cards resolved on whom, Kader results, Decrees.
 - **Private marks.** You can tag other players (şüpheli, güvenilir). Only you see your tags.
 - **Attention.** Visual cues always, plus sound effects, a quiet music loop and a buzz when you must act, each switchable. iPhone Safari has no web vibration, so the buzz may work on Android only.
 
