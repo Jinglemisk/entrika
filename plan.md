@@ -3,9 +3,8 @@
 The living rules are the player manual (`manual.html`, published as an artifact). Its Notes section holds open decisions, tuning dials and parked ideas.
 
 ## Next
-1. Review the v0.6 manual; confirm the "Proposed" items and settle the open questions in Notes.
-   - Roster v0.7 proposal (the 1534 court: Mustafa, Barbaros and three Wildcards in; Malkoçoğlu becomes a Companion; Sadık/Hain motive lines): https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH. Once approved, merge it into the manual and add the new art to the art list.
-2. Paper prototype (index cards are fine) and 3–5 learning games in Basic mode.
+1. Review the v0.7 manual; confirm the "Proposed" items and settle the open questions in Notes. v0.7 is the 1534 court; the reasoning behind it is at https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH.
+2. 3–5 learning games in Basic mode, in the browser build. Paper is out since v0.7: Court is played in waves, and a physical table can't hide who played what across waves.
 3. Log every game: player count, winner, final track state, minutes, what the losing side called unfair.
 4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
 5. Then Full mode (Companions, Ambitions, Favor powers).
@@ -15,7 +14,9 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - settle the grade strength with the slider;
    - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
    - AI-generated textures (deferred);
-   - find art for Ayas Paşa and Kara Ahmed Paşa.
+   - find art for Ayas Paşa;
+   - v0.7 roster art: hero shots for Mustafa, Barbaros, Gritti, Şarlken and Şah Tahmasp; Kul window art for Malkoçoğlu (his roster still is ready), İskender Çelebi and Firuze Hatun; full-art stills for Irakeyn Seferi and Isabella Fortuna;
+   - `art/terms.json`: add the five new Characters, and move Malkoçoğlu from Character to Kul.
 2. Final art in the chosen direction: card templates, icon set, portraits, popups.
 3. UI layout proposal (subagent), once the art is final, from the decisions in the UI section of `docs/direction.md`.
 4. First playable, built overnight end to end from the manual's current rules.
