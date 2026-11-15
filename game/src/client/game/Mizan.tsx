@@ -25,7 +25,7 @@ export function Mizan() {
       <div className="trk h" title={t('loyaltyTrack')}><Em k="hizmet" s={20} /><span>{t('hizmet')}</span><Slots n={RULES.tracks.loyalty} on={g.tracks.loyalty} /></div>
       <button type="button" className="kz" onClick={() => c && setSheet({ t: 'card', ref: { t: 'crisis', id: c.id } })}>
         <small>{t('crisisN', { n: g.crisisNo || 1 })}</small>
-        <b>{c ? c.name : t('setupTitle')}</b>
+        <b>{c ? c.name : g.crisisNo ? t('crisisComing') : t('setupTitle')}</b>
         {c && <span className="chipf"><Em k={FIELD_ICON[c.field]} s={16} />{t(c.field)}</span>}
       </button>
       <div className="r">

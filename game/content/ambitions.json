@@ -16,7 +16,7 @@
   { "id": "hedef", "name": "Hedef Tahtası", "goal": { "type": "targetedInCrisis", "n": 2 },
     "text": "Aynı krizde sana 2 ya da daha fazla Entrika kartı konsun.", "flavor": "Ağaç ne kadar yüksekse rüzgârı o kadar çok alır." },
   { "id": "ortak", "name": "Ortak Kader", "goal": { "type": "samePartner", "n": 2 },
-    "text": "Aynı oyuncuyla iki krizde birlikte Vekil ol.", "flavor": "Aynı gemide olanlar birlikte batar." },
+    "text": "Aynı oyuncuyla birlikte iki krizde Vekil ol.", "flavor": "Aynı gemide olanlar birlikte batar." },
   { "id": "hazine", "name": "Saray Hazinesi", "goal": { "type": "endWithHand", "n": 3 },
     "text": "Bir krizi elinde 3 Entrika kartıyla bitir.", "flavor": "Biriktiren, ihtiyaç günü güler." },
   { "id": "koltuk", "name": "Koltuk Kapmak", "goal": { "type": "seatByIntrigue" },

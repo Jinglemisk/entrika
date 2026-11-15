@@ -192,3 +192,4 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .lobby .frieze { transform: scale(.7); transform-origin: left bottom; }
 .lobby .side { z-index: 1; }
 .peek.role { grid-template-columns: auto 1fr; gap: 22px; align-items: start; }
+.sheet .h-step, .peekpop .h-step { display: flex; gap: 6px; align-items: center; }

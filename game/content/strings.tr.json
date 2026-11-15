@@ -328,5 +328,7 @@
   "log.surgun": "{who} bu kriz sürgünde: Vekil olamaz.",
   "log.venedik": "{who} Kader destesinden bir kartı alta koydu.",
   "log.intrigueReshuffle": "Entrika destesi karıştırıldı.",
-  "log.kaderReshuffle": "Kader destesi karıştırıldı."
+  "log.kaderReshuffle": "Kader destesi karıştırıldı.",
+  "crisisComing": "Kriz açılıyor",
+  "movedFrom": "Yön Değiştir: {name:abl} geldi"
 }

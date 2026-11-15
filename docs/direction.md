@@ -30,7 +30,7 @@ The standing brief for the browser game. Read it before starting any work on the
 
 1. **Art first.** A subagent sets the art direction. It produces two directions side by side for the designer to pick from: (A) dark palace drama — deep red, black, gold, candlelight; (B) Ottoman miniature — cream paper, gold leaf, tile patterns.
 2. **Then the first playable, in one overnight pass.** It's built end to end without stopping until the designer can play a full game.
-3. **Testing aid.** Clicking a player's icon switches to that player's screen, so one person can play every seat. It's removed later.
+3. **Testing aid.** A test room puts every seat on one browser. A strip of seat buttons switches between their screens, and a bot switch hands the other seats to random legal play. Both exist only in test rooms and are removed later.
 4. **No automated tests during the build.** Tests come much later.
 
 ## Art
@@ -67,6 +67,10 @@ Decided so far (the full list is in `art/directions/notes.md`): Birinci Vekil / 
 
 ## Tech
 
-- TypeScript, React, Vite, and Motion for card animations.
-- One player creates a room and shares a short code; others join with it, the same way at a table or remotely.
-- A tiny relay passes messages and keeps the latest game state, so a phone that locks can rejoin. In development it runs on the Mac with phones on the same Wi-Fi; later it can move to the Hetzner box. Production hosting isn't a concern yet.
+- TypeScript, React, Vite, and Motion for card animations. The game lives in `game/`; its README says how to run it.
+- One player creates a room and shares a four-letter code; others join with it, the same way at a table or remotely.
+- **The relay runs the rules.** The server applies every action with the same engine the phones carry and keeps the latest state, saved to disk. A locked phone rejoins, and two phones can't disagree about the state. It still sends the whole state to every phone, which shows only its owner's secrets (no anti-cheat, as above). In development it runs on the Mac with phones on the same Wi-Fi; later it can move to the Hetzner box. Production hosting isn't a concern yet.
+- **Content is data.** Card names, texts and art paths are in `game/content/*.json`, the dials in `game/content/rules.json`, and interface strings in `game/content/strings.tr.json`. Behaviour is code in `game/src/engine/`. The manual doesn't read these files yet; until it does, a text change goes in both places.
+- **Cards are drawn, not baked.** The art page's card generator is ported to the game, so every face is built from content data at run time.
+- **Sound is synthesised** with Web Audio: the effects and a quiet loop in makam Hicaz. There are no audio files to source.
+- **Rulings.** Cases the manual leaves open are decided in the engine and listed in `docs/rulings.md`.

@@ -25,7 +25,7 @@ function calm(g: Game, a: Ask, appoint?: { first: PID; second: PID }): unknown {
     case 'window': case 'object': case 'next': case 'ferman': case 'redirect': case 'venedik': case 'kulis': return null;
     case 'companion': return a.offer[0];
     case 'discard': return g.players[a.to].hand.slice(0, a.n).map(c => c.uid);
-    default: return botAnswer(g, a, () => 0).value;
+    default: return (botAnswer(g, a, () => 0) as { value?: unknown }).value;
   }
 }
 

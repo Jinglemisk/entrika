@@ -4,7 +4,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 
 ## Next
 1. Review the v0.7 manual; confirm the "Proposed" items and settle the open questions in Notes. v0.7 is the 1534 court; the reasoning behind it is at https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH.
-2. 3–5 learning games in Basic mode, in the browser build. Paper is out since v0.7: Court is played in waves, and a physical table can't hide who played what across waves.
+2. 3–5 learning games in Basic mode, in the browser build (lobby: "Öğrenme oyunu"). Paper is out since v0.7: Court is played in waves, and a physical table can't hide who played what across waves.
 3. Log every game: player count, winner, final track state, minutes, what the losing side called unfair.
 4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
 5. Then Full mode (Companions, Ambitions, Favor powers).
@@ -16,7 +16,11 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - confirm the grade strength (15%);
    - AI-generated textures (deferred).
 2. UI: the v3 design system is the way forward (decided 2026-11-15, all six recommendations taken): https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH, source in `ui/v3/src/`, notes in `ui/v3/notes.md`, decisions in the UI section of `docs/direction.md`. The v2 prototype is retired.
-3. First playable, built overnight end to end from the manual's current rules, reusing `art/terms.json`, the graded stills, the icon set and the v3 system (`ui/v3/src/ui.css`).
+3. First playable: done (branch `feat/playable-game`, folder `game/`). Every rule in manual v0.7 is in it: setup with Kul choice, Atama with Objections and every timed power, Tertip in waves, Ferman, Kader with the Loyalist duties, the Treason powers, the Decree, Hırs cards and the overall winner. There are rooms with a share code, rejoin after a locked phone, test rooms with bots, sound, and critical rules tests. How to run it: `game/README.md`.
+4. Next:
+   - Play a real game on phones over Wi-Fi.
+   - Review the engine's rulings in `docs/rulings.md` and fold them into the manual.
+   - Decide whether the manual should read `game/content/` so card text lives in one place.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.

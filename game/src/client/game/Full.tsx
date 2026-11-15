@@ -271,6 +271,7 @@ function WaveReveal({ reveal, wave, onClose }: { reveal: RevealedPlay[]; wave: n
               initial={{ rotateY: 180, y: 30, opacity: 0 }} animate={{ rotateY: 0, y: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.18, duration: 0.5 }}>
               <Card spec={spec({ t: 'intr', kind: r.as, field: r.field })} width={w} />
               <span className="tg">{t('onPlayer', { name: name(g, r.target) })}</span>
+              {r.movedFrom !== undefined && <span className="tg">{t('movedFrom', { name: name(g, r.movedFrom) })}</span>}
               <span className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{outcomeText(r)}</span>
             </motion.div>
           ))}
