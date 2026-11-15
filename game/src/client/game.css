@@ -356,3 +356,21 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .pop-who .tags .b.on3 { background: var(--mal); color: #f6ecd6; box-shadow: none; }
 .secret .pop-who span, .pop-who span:only-of-type { font: italic 400 15px/1.2 var(--f-voice); }
 .st .pl b.long { font-size: 12px; letter-spacing: -.01em; }
+
+/* ---------- niches: a gilt lattice behind the Vekils, gilding round Süleyman, the Kul at the foot */
+.st .nbg { position: absolute; inset: 0; display: none; pointer-events: none;
+  -webkit-mask: var(--arch) center/100% 100% no-repeat; mask: var(--arch) center/100% 100% no-repeat; }
+.st.vk .nbg { display: block;
+  background:
+    radial-gradient(circle, rgba(236,211,138,.75) 0 1.1px, transparent 1.6px) 4.5px 0/9px 9px,
+    repeating-linear-gradient(45deg, transparent 0 5.7px, rgba(236,211,138,.26) 5.7px 6.36px),
+    repeating-linear-gradient(-45deg, transparent 0 5.7px, rgba(236,211,138,.26) 5.7px 6.36px); }
+.st .nc > svg.gild { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.st .nc > svg.gild path { stroke: none; vector-effect: non-scaling-stroke; }
+.st .nc > svg.gild .sp { fill: url(#g-gold); opacity: .85; }
+.st .nc > svg.gild .ln { fill: none; stroke: #fff0b4; stroke-width: 1.4; opacity: .9; }
+.st .nc > svg.gild .pl { fill: url(#g-gold); }
+.st.sul .nc > svg:first-child path { stroke: #7a5a14; stroke-width: 2.4; }
+.st .kl { left: 50%; right: auto; margin-left: -10.5px; bottom: 3px; }
+.st.vk .kl { bottom: 19px; z-index: 2; }
+.st.vk .of { z-index: 3; }

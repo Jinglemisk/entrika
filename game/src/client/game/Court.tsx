@@ -57,7 +57,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   return (
     <button type="button" className={cls} style={{ ['--nw' as string]: `${sw}px`, ['--nh' as string]: `${sh}px` }} onClick={onTap}>
       <div className="nc">
-        <Figure character={p.character} nw={sw} brk={p.sultan ? 12 : 9} />
+        <Figure character={p.character} nw={sw} brk={p.sultan ? 12 : 9} gilded={p.sultan} />
         {vk ? <span className="of">{t(vk === 1 ? 'min1' : 'min2')}</span> : null}
         {!p.sultan && comp && (
           <span className={`kl ${p.influence < 1 ? 'down' : ''}`} title={comp.name}>

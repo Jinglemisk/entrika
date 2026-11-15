@@ -28,7 +28,6 @@ export interface CardSpec {
   variant?: string;
 }
 
-const BEZEL = 'M0 -30A8.5 8.5 0 0 1 15 -26A8.5 8.5 0 0 1 26 -15A8.5 8.5 0 0 1 30 0A8.5 8.5 0 0 1 26 15A8.5 8.5 0 0 1 15 26A8.5 8.5 0 0 1 0 30A8.5 8.5 0 0 1 -15 26A8.5 8.5 0 0 1 -26 15A8.5 8.5 0 0 1 -30 0A8.5 8.5 0 0 1 -26 -15A8.5 8.5 0 0 1 -15 -26A8.5 8.5 0 0 1 0 -30Z';
 const BEZEL_L = 'M0 -52A14 14 0 0 1 26 -45A14 14 0 0 1 45 -26A14 14 0 0 1 52 0A14 14 0 0 1 45 26A14 14 0 0 1 26 45A14 14 0 0 1 0 52A14 14 0 0 1 -26 45A14 14 0 0 1 -45 26A14 14 0 0 1 -52 0A14 14 0 0 1 -45 -26A14 14 0 0 1 -26 -45A14 14 0 0 1 0 -52Z';
 const SEAL = 'M0 -44A12 12 0 0 1 22 -38.1A12 12 0 0 1 38.1 -22A12 12 0 0 1 44 0A12 12 0 0 1 38.1 22A12 12 0 0 1 22 38.1A12 12 0 0 1 0 44A12 12 0 0 1 -22 38.1A12 12 0 0 1 -38.1 22A12 12 0 0 1 -44 0A12 12 0 0 1 -38.1 -22A12 12 0 0 1 -22 -38.1A12 12 0 0 1 0 -44Z';
 
@@ -223,12 +222,7 @@ export function freqHtml(freq: Freq): string {
   return `<span class="fq" title="${label}" aria-label="${label}" role="img" data-noterms>${I(ic)}</span>`;
 }
 
-/** The heading row of a power: frequency icon and a name (a Character power), or the frequency in words (a Kul). */
-export function freqRow(freq: Freq | null, name?: string): string {
-  if (!freq && !name) return '';
-  const label = name ? `<b class="pn">${name}</b>` : freq ? `<span class="fl-w">${FQ[freq][1]}</span>` : '';
-  return `<p class="pwh" data-noterms>${freq ? freqHtml(freq) : ''}${label}</p>`;
-}
+
 
 /** A body paragraph with term icons (T() in the original). */
 export function para(textHtml: string): string {
@@ -240,11 +234,13 @@ const LOCK = '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4.5" y="9" wi
 /** The state of a power in play: used powers are faded and labelled, a locked Lütuf power carries a lock. */
 export interface PowerMark { state: 'ready' | 'used' | 'locked'; label: string }
 
-/** A Character power. Base and Lütuf look alike (the Lütuf power is the lower one); a mark shows its state in play. */
+/** A Character power: frequency icon, name, text, in one run. Base and Lütuf look alike (the Lütuf power is the lower
+ *  one); a mark shows its state in play. */
 export function powerHtml(kind: 'base' | 'favor', name: string, freq: Freq | null, textHtml: string, mark?: PowerMark): string {
   const st = mark && mark.state !== 'ready'
     ? `<span class="pw-st ${mark.state}" title="${esc(mark.label)}">${mark.state === 'locked' ? LOCK : esc(mark.label)}</span>` : '';
-  return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}${freqRow(freq, name)}<p data-terms>${termsInHtml(textHtml)}</p></div>`;
+  const inner = `${freq ? freqHtml(freq) + ' ' : ''}<b class="pn">${name}:</b> ${textHtml}`;
+  return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}<p data-terms>${termsInHtml(inner)}</p></div>`;
 }
 
 /** The ornament between the two powers: a line, a diamond, a line. */
@@ -256,7 +252,7 @@ export function cardHtml(s: CardSpec): string {
   const t = T[pal ?? kind];
   // one name line on every card type; windows and plates adapt. Character cards sit it higher: two powers and a flavor
   // line need the taller plate.
-  const cy = kind === 'char' ? NAME_Y - 56 : NAME_Y;
+  const cy = kind === 'char' ? NAME_Y - 30 : NAME_Y;
   const wx0 = 50, wx1 = 450, wyt = 72;
   const wys = wyt + (t.win !== rectTop ? 80 : 0);
   const winpath = t.win(wx0, wx1, wyt, wys, cy);
@@ -314,8 +310,9 @@ export function cardHtml(s: CardSpec): string {
   const cfill = CART_FILL[t.cart];
   const cpath = cartouche(cy);
   const sealSvg = seal ? `<g filter="url(#f-shadow)">${IMG(seal === 'ok' ? 'hizmet' : 'hiyanet', 196, cy - 106, 108)}</g>` : '';
-  const jewel = (x: number) => `<g transform="translate(${x} 60)" filter="url(#f-shadow)"><path d="${BEZEL}" transform="scale(1.1)" fill="url(#g-gold)" filter="url(#f-bevel)"/>`
-    + '<circle r="23" fill="url(#j-ivory)"/><circle r="23" fill="none" stroke="#3a2208" stroke-width="1.4"/></g>';
+  // corner medallions: a thin gold rim round a wide ivory disc, so the icon gets the room
+  const jewel = (x: number) => `<g transform="translate(${x} 60)" filter="url(#f-shadow)"><circle r="34" fill="url(#g-gold)" filter="url(#f-bevel)"/>`
+    + '<circle r="30.5" fill="url(#j-ivory)"/><circle r="30.5" fill="none" stroke="#3a2208" stroke-width="1"/></g>';
   const jewels = jewel(60) + (field ? jewel(440) : '');
   const pt = cy + 40;
   const plateOrn = `<g class="fine" fill="url(#g-gold)" filter="url(#f-bevel)"><path d="M44 ${pt}h22l-22 22z"/><path d="M456 ${pt}h-22l22 22z"/>`

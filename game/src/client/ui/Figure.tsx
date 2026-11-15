@@ -12,12 +12,30 @@ export const hasCut = (character: string) => !!PLACE[`char.${character}`]?.niche
 export const cardPlacement = (character: string) => PLACE[`char.${character}`]?.card;
 export const nichePlacement = (character: string) => PLACE[`char.${character}`]?.niche;
 
-export function Figure({ character, nw, brk = 9 }: { character: string; nw: number; brk?: number }) {
+// Süleyman's niche: gilt spandrels in the corners above the arch, an inner gold line, and plinths at its foot.
+const GILD = (
+  <svg viewBox="0 0 100 120" preserveAspectRatio="none" className="gild" aria-hidden="true">
+    <path className="sp" d="M0 0H46C30 9 2 18 1 44Z M100 0H54C70 9 98 18 99 44Z" />
+    <path className="ln" d="M7 120V48C7 28 33 17 50 7C67 17 93 28 93 48V120" />
+    <path className="pl" d="M0 111H11V120H0Z M89 111H100V120H89Z" />
+  </svg>
+);
+
+/** The niche behind a seat. Behind the figure sit the arch, a lattice for a Vekil (shown by CSS on .vk) and, for
+ *  Süleyman, the gilding. */
+export function Figure({ character, nw, brk = 9, gilded }: { character: string; nw: number; brk?: number; gilded?: boolean }) {
   const k = nichePlacement(character);
+  const ground = (
+    <>
+      <svg viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><path d={ARCH} /></svg>
+      <i className="nbg" />
+      {gilded && GILD}
+    </>
+  );
   if (!k) {
     return (
       <>
-        <svg viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><path d={ARCH} /></svg>
+        {ground}
         <svg viewBox="0 0 100 120" className="sil" aria-hidden="true"><circle cx="50" cy="46" r="17" /><path d="M14 120c2-30 16-44 36-44s34 14 36 44z" /></svg>
       </>
     );
@@ -26,7 +44,7 @@ export function Figure({ character, nw, brk = 9 }: { character: string; nw: numb
   const img = <img src={cutSrc(character)} alt="" draggable={false} style={{ left, top, width: iw, height: ih }} />;
   return (
     <>
-      <svg viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true"><path d={ARCH} /></svg>
+      {ground}
       <div className="fg in">{img}</div>
       <div className="fg out">{img}</div>
     </>

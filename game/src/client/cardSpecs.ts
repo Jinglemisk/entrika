@@ -3,7 +3,7 @@
 import {
   ambitionById, characterById, companionById, crisisById, intrigueById, MISC, soleField, type Field, type Kader, type Side,
 } from '../engine/index.ts';
-import { POWER_SEP, freqRow, para, powerHtml, type CardSpec } from './cards/render.ts';
+import { POWER_SEP, freqHtml, para, powerHtml, type CardSpec } from './cards/render.ts';
 import { cardPlacement, cutSrc } from './ui/Figure.tsx';
 import { t } from './strings.ts';
 
@@ -53,7 +53,7 @@ function build(ref: CardRef): CardSpec {
       return {
         kind: 'kul', name: d.name, med: 'companion', field,
         ...(d.art ? { art: d.art } : { artSvg: { emblem: 'companion' } }),
-        bodyHtml: freqRow(d.freq) + para(d.text), flavor: d.flavor,
+        bodyHtml: para((d.freq ? freqHtml(d.freq) + ' ' : '') + d.text), flavor: d.flavor,
         ...(ref.st ? { stamp: { text: t(`stamp.${ref.st}`), tone: 'used' as const } } : {}),
       };
     }
