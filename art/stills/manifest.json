@@ -226,6 +226,20 @@
         {
           "file": "comp.bali-1.jpg",
           "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=ZQhf7X9bUuo&t=25s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Malkoçoğlu, Rüstem Paşa'ya El Kaldırdı! | Muhteşem Yüzyıl\", at 25.5 s; crop x 220-1140. Burak Özçivit as Malkoçoğlu Bali Bey all in black (black turban, black velvet kaftan over maroon), head fully in frame, eyes lowered.",
+          "focus": [
+            0.565,
+            0.342
+          ]
+        },
+        {
+          "file": "comp.bali-3.jpg",
+          "size": [
             300,
             380
           ],
@@ -256,8 +270,8 @@
       "roster": {
         "file": "roster/comp.bali.jpg",
         "from": "comp.bali-1.jpg",
-        "posed": true,
-        "face_share": 0.36
+        "posed": false,
+        "face_share": 0.31
       },
       "cutout": {
         "file": "cutout/comp.bali.png",
@@ -279,6 +293,21 @@
       "candidates": [
         {
           "file": "char.hatice-1.jpg",
+          "size": [
+            800,
+            1067
+          ],
+          "source_url": "https://framerusercontent.com/images/uirXxuAck0dtL58GCWMHTZ7kQMY.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Selma Ergeç as Hatice Sultan, studio cast portrait (producer site). The site does not caption its portraits; identified by the same jewelled headpiece as the TVMaze promo (now candidate 3) and against the IMDb screencap (candidate 2). Three-quarter, eyes on the viewer.",
+          "focus": [
+            0.591,
+            0.388
+          ],
+          "posed": true
+        },
+        {
+          "file": "char.hatice-3.jpg",
           "size": [
             300,
             380
@@ -318,11 +347,11 @@
         "from": "char.hatice-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -14.41,
-          "width_pct_of_window": 103.0,
-          "left_pct_of_window": 0.0
+          "top_cqw_from_window": -22.77,
+          "width_pct_of_window": 110.0,
+          "left_pct_of_window": -10.0
         },
-        "soft_at_258": true,
+        "soft_at_258": false,
         "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
       }
     },
@@ -438,6 +467,20 @@
         {
           "file": "comp.daye-1.jpg",
           "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=8DQ_eHWUWek&t=221s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hürrem ve Daye Hatun İttifakı | Muhteşem Yüzyıl 42. Bölüm\", at 221.0 s; crop x 420-1340. Sema Keçik as Daye Hatun in her gold-embroidered cap and coral veil, facing the viewer, mouth closed. Season 2 footage, upscaled to 1080p by the channel, so slightly soft. Same woman as candidate 2; candidate 3 (the old pick) is probably someone else.",
+          "focus": [
+            0.511,
+            0.407
+          ]
+        },
+        {
+          "file": "comp.daye-3.jpg",
+          "size": [
             704,
             396
           ],
@@ -468,7 +511,7 @@
         "file": "roster/comp.daye.jpg",
         "from": "comp.daye-1.jpg",
         "posed": false,
-        "face_share": 0.36
+        "face_share": 0.42
       }
     },
     "comp.lokman": {
@@ -498,15 +541,47 @@
       "note": "Not in the game since manual v0.7. Files kept in case the Companion returns."
     },
     "comp.ayas": {
-      "status": "missing",
-      "note": "Searched three times. Third search (2026-11-15): IMDb lists no photo tagged Fehmi Karaarslan for this title, TheTVDB has no role image, and in the official channel's clip \"İbrahim Paşa, Ayaz Paşa'yı Yerin Dibine Soktu!\" (X4pza04bzXc) neither vizier facing İbrahim could be matched with confidence to his IMDb headshot or to a fan-site still. Nothing used; the slot stays empty. Options as before: a Divan crop captioned \"Divan'dan bir vezir\", or a drawn silhouette.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.ayas-1.jpg",
+          "size": [
+            480,
+            640
+          ],
+          "note": "Supplied by the designer on 2026-11-15 (images.jpeg on the Desktop; the ~/Downloads/images.jpeg named in the brief is an unrelated photo). A vizier in the white kallavi turban with a gold band, ginger beard, eyes to the left. Source page unknown; small, so the roster crop is close to the whole image.",
+          "focus": [
+            0.553,
+            0.468
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/comp.ayas.jpg",
+        "from": "comp.ayas-1.jpg",
+        "posed": false,
+        "face_share": 0.46
+      }
     },
     "comp.matrakci": {
       "status": "found",
       "candidates": [
         {
           "file": "comp.matrakci-1.jpg",
+          "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=aE9soc_of7c&t=164s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"İbrahim İle İskender Çelebi Birbirine Girdi| Muhteşem Yüzyıl\", at 164.5 s; crop x 440-1360. Fatih Al as Matrakçı Nasuh in his grey wrapped turban, looking straight at the viewer, mouth closed. The tall turban puts the eyes low in the crop (eye line 52 %), so the card uses object-position 50% 58%.",
+          "focus": [
+            0.649,
+            0.653
+          ]
+        },
+        {
+          "file": "comp.matrakci-3.jpg",
           "size": [
             720,
             400
@@ -538,7 +613,7 @@
         "file": "roster/comp.matrakci.jpg",
         "from": "comp.matrakci-1.jpg",
         "posed": false,
-        "face_share": 0.36
+        "face_share": 0.5
       }
     },
     "comp.sumbul": {
@@ -669,6 +744,20 @@
         {
           "file": "comp.gulsah-1.jpg",
           "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=ftS6stnY7wE&t=113s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hürrem Sultan, Gülşah Hatun'u Haremde Rezil Etti! | Muhteşem Yüzyıl\", at 113.0 s; crop x 600-1520. Nihan Büyükağaç as Gülşah Hatun in her red cap and green-and-gold vest, facing the viewer, mouth closed. Season 1 footage upscaled to 1080p; clean but not crisp.",
+          "focus": [
+            0.518,
+            0.436
+          ]
+        },
+        {
+          "file": "comp.gulsah-3.jpg",
+          "size": [
             704,
             396
           ],
@@ -699,7 +788,7 @@
         "file": "roster/comp.gulsah.jpg",
         "from": "comp.gulsah-1.jpg",
         "posed": false,
-        "face_share": 0.36
+        "face_share": 0.37
       }
     },
     "comp.seker": {
@@ -923,6 +1012,20 @@
         {
           "file": "crisis.hazine-1.jpg",
           "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=KkUEI8ZTQrs&t=4117s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 2160p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Muhteşem Yüzyıl 47. Bölüm (4K)\", at 4117.5 s; full frame, scaled to 1600x900. Celalzade Mustafa Çelebi, the chancery secretary, at his writing desk in Süleyman's campaign tent before the dictated letter to Charles V (same scene as the official clip \"Sultan Süleyman'dan Şarlken'e Tarihi Mektup\", Ca5_DdpBYs0, 134 s). Identified from Google image results for \"celalzade muhteşem yüzyıl\" (same actor, captioned Celalzade); IMDb Pro credits Levent Taşcı as Celalzade (not cross-checked). The 4K stream is an upscale of the 2012 SD master: clean at card size, soft at full size.",
+          "focus": [
+            0.47,
+            0.3
+          ]
+        },
+        {
+          "file": "crisis.hazine-2.jpg",
+          "size": [
             720,
             400
           ],
@@ -938,13 +1041,12 @@
       "full_art": {
         "candidate": 1,
         "source_px": [
-          720,
-          400
+          1600,
+          900
         ],
-        "device_px_per_css_px_at_258": 1.06,
-        "quality": "low"
-      },
-      "note": "Searched again 2026-11-15 (IMDb, official YouTube channel): no treasury scene or higher-resolution still of Afife with her ledger found; candidate 1 stays, 720x400, low for full art."
+        "device_px_per_css_px_at_258": 2.38,
+        "quality": "ok"
+      }
     },
     "crisis.venedik": {
       "status": "found",
@@ -1134,6 +1236,20 @@
         {
           "file": "crisis.divan-1.jpg",
           "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=9xbYQWsELbQ&t=201s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"İbrahim Paşa, Ahmed Paşa'yı Mısır'a Sürdü! | Muhteşem Yüzyıl\", at 201.0 s; full frame, scaled to 1600x900. Three viziers in kallavi turbans sit in session in the Divan chamber before the gilt lattice; sharp.",
+          "focus": [
+            0.56,
+            0.35
+          ]
+        },
+        {
+          "file": "crisis.divan-3.jpg",
+          "size": [
             800,
             598
           ],
@@ -1163,11 +1279,11 @@
       "full_art": {
         "candidate": 1,
         "source_px": [
-          800,
-          598
+          1600,
+          900
         ],
-        "device_px_per_css_px_at_258": 1.58,
-        "quality": "soft on retina"
+        "device_px_per_css_px_at_258": 2.38,
+        "quality": "ok"
       }
     },
     "crisis.sehzade": {
@@ -1218,6 +1334,20 @@
         {
           "file": "crisis.istanbul-1.jpg",
           "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Ye_5S_VV6-w&t=158s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Sultan Süleyman Halkın İçine Karıştı | Muhteşem Yüzyıl\", at 158.0 s; full frame, scaled to 1600x900. Coffeehouse talk among the people: a bearded man in a white turban holds forth with a raised hand while an old man listens behind him.",
+          "focus": [
+            0.34,
+            0.35
+          ]
+        },
+        {
+          "file": "crisis.istanbul-3.jpg",
+          "size": [
             931,
             607
           ],
@@ -1247,11 +1377,11 @@
       "full_art": {
         "candidate": 1,
         "source_px": [
-          931,
-          607
+          1600,
+          900
         ],
-        "device_px_per_css_px_at_258": 1.61,
-        "quality": "soft on retina"
+        "device_px_per_css_px_at_258": 2.38,
+        "quality": "ok"
       }
     },
     "crisis.irakeyn": {
@@ -1335,6 +1465,20 @@
       "candidates": [
         {
           "file": "card.muhur-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Bro_AHWDbI4&t=1136s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 2160p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Muhteşem Yüzyıl 13. Bölüm (4K)\", at 1136.5 s; crop x 760-3640, y 240-2160 of the 3840x2160 frame (3:2), scaled to 1600x1067. Close-up: Süleyman's hand, thumb ring on, holds a rolled letter tied with cord and closed with a red wax seal over a mother-of-pearl box.",
+          "focus": [
+            0.55,
+            0.45
+          ]
+        },
+        {
+          "file": "card.muhur-3.jpg",
           "size": [
             800,
             533
@@ -1575,6 +1719,20 @@
         {
           "file": "card.gozde-1.jpg",
           "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Z0O3pQcVRW8&t=142s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Süleyman'ın Daye Hatun'a Hediyesi | Muhteşem Yüzyıl 62. Bölüm\", at 142.8 s; crop x 300-1920 (3:2), scaled to 1600x1067. Close-up: a ruby-and-diamond pendant, a gift from Süleyman, held in an open palm against a dark ground.",
+          "focus": [
+            0.45,
+            0.45
+          ]
+        },
+        {
+          "file": "card.gozde-3.jpg",
+          "size": [
             960,
             640
           ],
@@ -1640,6 +1798,20 @@
       "candidates": [
         {
           "file": "term.hizmet-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=fx2wNlHg5Dw&t=113s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hızır Reis Payitahtta! | Muhteşem Yüzyıl\", at 113.8 s; crop x 300-1920 (3:2), scaled to 1600x1067. Barbaros Hayreddin bows to kiss Süleyman's hand on his arrival at the palace.",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "file": "term.hizmet-3.jpg",
           "size": [
             800,
             533
@@ -1778,6 +1950,20 @@
         {
           "file": "char.barbaros-1.jpg",
           "size": [
+            1240,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=fZ0ZyYl5ICU&t=43s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Kapudan Paşa ile Rüstem Paşa Karşı Karşıya! | Muhteşem Yüzyıl\", at 43.0 s; crop x 320-1560 of the 1920x1080 frame, wider than 3:4 so the face stays near its siblings' size on the card. Tolga Tekin as Barbaros Hayreddin in a black turban, palace interior, sharp; eyes just right of camera, mouth closed. The turban touches the frame top (about 100 px of flat edge at row 0).",
+          "focus": [
+            0.509,
+            0.415
+          ]
+        },
+        {
+          "file": "char.barbaros-2.jpg",
+          "size": [
             810,
             1080
           ],
@@ -1794,19 +1980,20 @@
         "file": "roster/char.barbaros.jpg",
         "from": "char.barbaros-1.jpg",
         "posed": false,
-        "face_share": 0.36
+        "face_share": 0.44
       },
       "cutout": {
         "file": "cutout/char.barbaros.png",
         "from": "char.barbaros-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -22.21,
+          "top_cqw_from_window": -7.75,
           "width_pct_of_window": 100.0,
           "left_pct_of_window": 0.0
         },
         "soft_at_258": false,
-        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette",
+        "note": "Served at 600x523 (the still is wider than 3:4); placement.json niche ar 0.871."
       }
     },
     "char.gritti": {
@@ -1926,6 +2113,20 @@
         {
           "file": "comp.iskender-1.jpg",
           "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=aE9soc_of7c&t=171s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"İbrahim İle İskender Çelebi Birbirine Girdi| Muhteşem Yüzyıl\", at 171.0 s; crop x 700-1620. Hasan Küçükçetin as Defterdar İskender Çelebi (tr.wikipedia cast list) in a white turban and fur, glaring at İbrahim; matched to his TheTVDB photos and to the bareheaded İskender in \"Sultan Süleyman, İskender'in Yargılanmasını İstedi!\" (eAJxxv1uNqk). The old pick (candidate 2) is the helmeted İbrahim Paşa from the execution clip, not İskender. Lips slightly parted; the roster crop sits low in the frame (eye line 42 %), so the card uses object-position 50% 30%.",
+          "focus": [
+            0.526,
+            0.515
+          ]
+        },
+        {
+          "file": "comp.iskender-2.jpg",
+          "size": [
             1280,
             720
           ],
@@ -1942,7 +2143,7 @@
         "file": "roster/comp.iskender.jpg",
         "from": "comp.iskender-1.jpg",
         "posed": false,
-        "face_share": 0.72
+        "face_share": 0.43
       }
     },
     "comp.firuze": {

@@ -13,7 +13,7 @@
     "field": "saray",
     "draw": "none",
     "text": "Bu krizde kimse Entrika kartı çekemez.",
-    "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "48% 29%" }
+    "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "47% 30%" }
   },
   {
     "id": "venedik",
@@ -29,7 +29,7 @@
     "field": "harem",
     "draw": "leastInfluence",
     "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer.",
-    "art": { "src": "/art/directions/img/full-crisis.harem.jpg", "pos": "35% 47%" }
+    "art": { "src": "/art/directions/img/full-crisis.harem.jpg", "pos": "85% 47%" }
   },
   {
     "id": "macar",
@@ -53,7 +53,7 @@
     "field": "divan",
     "draw": "lastMinisters",
     "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
-    "art": { "src": "/art/directions/img/full-crisis.divan.jpg", "pos": "62% 35%" }
+    "art": { "src": "/art/directions/img/full-crisis.divan.jpg", "pos": "56% 35%" }
   },
   {
     "id": "sehzade",
@@ -69,7 +69,7 @@
     "field": "harem",
     "draw": "everyone",
     "text": "Süleyman dışında herkes birer Entrika kartı çeker.",
-    "art": { "src": "/art/directions/img/full-crisis.istanbul.jpg", "pos": "59% 35%" }
+    "art": { "src": "/art/directions/img/full-crisis.istanbul.jpg", "pos": "34% 35%" }
   },
   {
     "id": "irakeyn",

@@ -15,7 +15,7 @@
     "target": "minister",
     "text": "Bir Vekile koy. Bu kriz Entrika kartlarıyla değiştirilemez; Ferman yine değiştirir, Divan Sırası yine yer değiştirir.",
     "flavor": "Mühür kimdeyse söz ondadır.",
-    "art": { "src": "/art/directions/img/card.muhur-1.jpg", "pos": "50% 40%" }
+    "art": { "src": "/art/directions/img/card.muhur-1.jpg", "pos": "55% 45%" }
   },
   {
     "id": "valide",
@@ -78,7 +78,7 @@
     "target": "other",
     "text": "Bu oyuncu (sen değil) 1 Nüfuz kazanır.",
     "flavor": "Gözdeden gelen hediye geri çevrilmez.",
-    "art": { "src": "/art/directions/img/card.gozde-1.jpg", "pos": "50% 35%" }
+    "art": { "src": "/art/directions/img/card.gozde-1.jpg", "pos": "45% 45%" }
   },
   {
     "id": "teftis",

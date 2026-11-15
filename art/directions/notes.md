@@ -6,6 +6,10 @@ The chosen direction, as shown on the comparison page (`index.html`, published a
 
 Mustafa, Barbaros, Gritti, Şarlken, Şah Tahmasp, İskender Çelebi, Firuze Hatun and Isabella Fortuna now have stills, and Venedik Elçiliği has a better one. Most are 1080p frames from the show's official YouTube channel; sources and concerns are in `stills/manifest.json`. Ayas Paşa still has none (no identifiable still exists); his card shows the Kul emblem. Hazine Açığı keeps its low-resolution still. `stills/placement.json` holds every Character's cut-out placement for cards and court niches. This page hasn't been rebuilt with them; the game draws them.
 
+## Round 13: the designer's review of the stills
+
+Barbaros, Hatice, Malkoçoğlu (all in black), Daye, İskender Çelebi (the old still was İbrahim in a helmet), Gülşah, Matrakçı, Ayas Paşa (the designer's image), Divan Kavgası, İstanbul'da Dedikodu, Hazine Açığı (now Celalzade at his desk), Mühür, Gözde'nin Hediyesi and Hizmet have new stills; the old picks stay as higher-numbered candidates. yt-dlp got HTTP 403 from YouTube this round, so frames came from the official channel's player in the browser (its 1080p or 2160p stream drawn to a canvas). The channel's full episodes are now up in "4K"; for seasons 1-2 that is an upscale, cleaner than the clips but not sharper than 1080p. Matrakçı and İskender sit low in their roster crops (tall turbans in tight frames), so their cards use object-position 50% 58% and 50% 30% instead of 50% 18%. Barbaros's cut-out is wider than 3:4 (600×523) so his face stays near the other Characters' size.
+
 ## Decisions (round 11): the Varak ve mine icon set
 
 The page now uses the style-A icon set from `art/icons/set/` (49 icons; a 512 px master plus -144, -72 and -48 copies). Only the -48, -72 and -144 files it needs are copied to `art/directions/img/icons/` (98 files, about 1.3 MB), and the hand-drawn SVG sprite is gone.
@@ -216,10 +220,9 @@ A full-art card shows a 5:7 slice of a landscape still. At 258 px on a retina ph
 | Macar Seferi | 1600×1067 | 2.8 | sharp |
 | Şehzade Meselesi | 1550×1024 (candidate 2, promo) | 2.7 | sharp |
 | Yeniçeri İsyanı | 931×607 (candidate 2) | 1.6 | soft on retina |
-| Kaybolan Mühür, İstanbul'da Dedikodu, Irakeyn Seferi | 931×607 | 1.6 | soft on retina |
-| Divan Kavgası | 800×598 | 1.6 | soft on retina |
+| Kaybolan Mühür, Irakeyn Seferi | 931×607 | 1.6 | soft on retina |
+| Divan Kavgası, İstanbul'da Dedikodu, Hazine Açığı | 1600×900 (round 13) | 2.4 | sharp (Hazine is an upscaled 2012 master) |
 | Haremde Skandal | 800×533 | 1.4 | soft on retina |
-| Hazine Açığı, Venedik Elçiliği | 720×400, 641×400 | 1.1 | low: needs a better still |
 
 Yeniçeri and Şehzade switched to their sharper second candidates for full art.
 

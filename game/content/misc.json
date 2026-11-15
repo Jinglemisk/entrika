@@ -4,7 +4,7 @@
       "name": "Hizmet",
       "text": ["Sadakat yoluna konur.", "Hüküm: Süleyman bir Vekile 1 Nüfuz verir."],
       "flavor": "Devlete hizmet, Padişaha sadakat.",
-      "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "42% 40%" }
+      "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "50% 50%" }
     },
     "x": {
       "name": "Hıyanet",

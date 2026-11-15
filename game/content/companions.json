@@ -24,7 +24,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Divan Sırası olarak oyna.",
     "flavor": "Divanda her vezirin bir sırası var.",
-    "art": null
+    "art": { "src": "/art/directions/img/roster-comp.ayas.jpg", "pos": "50% 18%" }
   },
   {
     "id": "matrakci",
@@ -33,7 +33,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Akıl Hocası olarak oyna; alanını sen seç.",
     "flavor": "Kalemi de kılıcı kadar keskin.",
-    "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 58%" }
   },
   {
     "id": "sumbul",
@@ -96,7 +96,7 @@
     "freq": "once",
     "text": "Birinci Vekilken Kader'den 3 yerine 4 kart çek, 2'sini at.",
     "flavor": "Hazinenin hesabı onun defterinde.",
-    "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 30%" }
   },
   {
     "id": "firuze",
