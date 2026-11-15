@@ -1,0 +1,62 @@
+[
+  {
+    "id": "akil-hocasi", "name": "Akıl Hocası", "copies": { "divan": 2, "harem": 2 }, "target": "player",
+    "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.",
+    "flavor": "Doğru söz, doğru kulağa.",
+    "art": { "src": "/art/directions/img/card.akil-hocasi-1.jpg", "pos": "62% 35%" }
+  },
+  {
+    "id": "muhur", "name": "Mühür", "copies": { "divan": 3 }, "target": "minister",
+    "text": "Bir Vekile koy. Bu kriz Entrika kartlarıyla değiştirilemez; Ferman yine değiştirir, Divan Sırası yine yer değiştirir.",
+    "flavor": "Mühür kimdeyse söz ondadır.",
+    "art": { "src": "/art/directions/img/card.muhur-1.jpg", "pos": "50% 40%" }
+  },
+  {
+    "id": "valide", "name": "Valide'nin Buyruğu", "copies": { "divan": 4 }, "target": "minister",
+    "text": "Bir Vekile koy. Onu uygun bir oyuncuyla değiştir, kendini de seçebilirsin. Yeni oyuncu aynı koltuğa oturur.",
+    "flavor": "Sarayda son sözü Valide söyler.",
+    "art": { "src": "/art/directions/img/roster-card.valide.jpg", "pos": "50% 16%" }
+  },
+  {
+    "id": "divan-sirasi", "name": "Divan Sırası", "copies": { "divan": 3 }, "target": "minister",
+    "text": "Bir Vekile koy. Birinci Vekil ile İkinci Vekil yer değiştirir.",
+    "flavor": "Divanda yerin, Padişaha yakınlığındır.",
+    "art": { "src": "/art/directions/img/card.divan-sirasi-1.jpg", "pos": "50% 35%" }
+  },
+  {
+    "id": "saray-dedikodusu", "name": "Saray Dedikodusu", "copies": { "harem": 3 }, "target": "other",
+    "text": "Bu oyuncunun eline ve Hırs kartına gizlice bak.",
+    "flavor": "Kafes arkasında her söz duyulur.",
+    "art": { "src": "/art/directions/img/card.saray-dedikodusu-1.jpg", "pos": "60% 35%" }
+  },
+  {
+    "id": "muhurlu-evrak", "name": "Mühürlü Evrak", "copies": { "harem": 3 }, "target": "self",
+    "text": "Kendi önüne koy. Kader destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
+    "flavor": "Mührü kırılmadan okunan mektup.",
+    "art": { "src": "/art/directions/img/card.muhurlu-evrak-1.jpg", "pos": "50% 35%" }
+  },
+  {
+    "id": "saray-tabibi", "name": "Saray Tabibi", "copies": { "harem": 2 }, "target": "player",
+    "text": "Bu oyuncu bu kriz, Hüküm dahil, Nüfuz kaybetmez.",
+    "flavor": "Zehrin ilacı da sarayda.",
+    "art": { "src": "/art/directions/img/card.saray-tabibi-1.jpg", "pos": "45% 40%" }
+  },
+  {
+    "id": "iftira", "name": "İftira", "copies": { "harem": 3 }, "target": "player",
+    "text": "Bu oyuncu 1 Nüfuz kaybeder.",
+    "flavor": "Bir isim, bir fısıltı, bir düşüş.",
+    "art": { "src": "/art/directions/img/card.iftira-1.jpg", "pos": "76% 35%" }
+  },
+  {
+    "id": "gozde", "name": "Gözde'nin Hediyesi", "copies": { "harem": 2 }, "target": "other",
+    "text": "Bu oyuncu (sen değil) 1 Nüfuz kazanır.",
+    "flavor": "Gözdeden gelen hediye geri çevrilmez.",
+    "art": { "src": "/art/directions/img/card.gozde-1.jpg", "pos": "50% 35%" }
+  },
+  {
+    "id": "teftis", "name": "Teftiş", "copies": { "divan": 3 }, "target": "minister",
+    "text": "Bir Vekile koy. Kader adımından sonra o Vekilin attığı kart ya da kartlara gizlice bak.",
+    "flavor": "Defterler yalan söylemez.",
+    "art": { "src": "/art/directions/img/card.teftis-1.jpg", "pos": "50% 35%" }
+  }
+]

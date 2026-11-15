@@ -1,0 +1,20 @@
+{
+  "about": "Tuning dials. Every number the engine plays by lives here; change a value and restart the server.",
+  "players": { "min": 5, "max": 8 },
+  "allegiance": {
+    "5": { "loyalist": 3, "traitor": 2 },
+    "6": { "loyalist": 3, "traitor": 2 },
+    "7": { "loyalist": 4, "traitor": 3 },
+    "8": { "loyalist": 4, "traitor": 3 }
+  },
+  "startInfluence": 1,
+  "startIntrigue": 2,
+  "companionChoices": 2,
+  "handLimit": 3,
+  "cardsPerCrisis": 2,
+  "objectionCost": 1,
+  "kader": { "hizmet": 8, "hiyanet": 9, "draw": 3 },
+  "tracks": { "loyalty": 4, "treason": 5 },
+  "treasonPowers": { "2": "sorusturma", "3": "hazineDefteri", "4": "fermanRefresh" },
+  "kulisSeconds": 60
+}
