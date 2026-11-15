@@ -7,7 +7,7 @@
     "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "48% 29%" } },
   { "id": "venedik", "name": "Venedik Elçiliği", "field": "saray", "draw": "besideSultan",
     "text": "Süleyman'ın iki yanındaki oyuncular birer Entrika kartı çeker.",
-    "art": { "src": "/art/directions/img/full-crisis.venedik.jpg", "pos": "94% 66%" } },
+    "art": { "src": "/art/directions/img/full-crisis.venedik.jpg", "pos": "60% 30%" } },
   { "id": "harem", "name": "Haremde Skandal", "field": "harem", "draw": "leastInfluence",
     "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer.",
     "art": { "src": "/art/directions/img/full-crisis.harem.jpg", "pos": "35% 47%" } },
@@ -32,5 +32,5 @@
   { "id": "isabella", "name": "Isabella Fortuna", "field": "saray", "draw": "lastMinisters",
     "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
     "flavor": "Korsanların kaçırıp Sultan'a sattığı Kastilyalı prenses. Kaçmaktan vazgeçmez.",
-    "art": null }
+    "art": { "src": "/art/directions/img/full-crisis.isabella.jpg", "pos": "52% 50%" } }
 ]

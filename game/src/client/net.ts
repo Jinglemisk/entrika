@@ -43,6 +43,7 @@ function connect() {
     const m = JSON.parse(e.data);
     if (m.token) store.set(TOKEN, m.token);
     if (m.t === 'room') {
+      if (import.meta.env.DEV) (window as unknown as { __room: RoomView }).__room = m.room;   // for debugging in the console
       store.set(ROOM, m.room.code);
       set({ room: m.room, home: false });
     } else if (m.t === 'home') {

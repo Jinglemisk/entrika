@@ -2,6 +2,10 @@
 
 The chosen direction, as shown on the comparison page (`index.html`, published as an artifact). Round 3 redrew every card after looking at published card games. Round 4 applied the designer's decisions on art placement, Kul cards, the tuğra and text size (see Decisions). The base is still direction B, the Ottoman miniature: paper, gold leaf, lapis and vermilion, and backs taken from Ottoman bookbinding. Each card type now has its own enamel or material, and the photos carry only a faint warm grade. All ornament is drawn in SVG and CSS; the show stills are the only photos.
 
+## Round 12: stills for the v0.7 newcomers (for the browser game)
+
+Mustafa, Barbaros, Gritti, Şarlken, Şah Tahmasp, İskender Çelebi, Firuze Hatun and Isabella Fortuna now have stills, and Venedik Elçiliği has a better one. Most are 1080p frames from the show's official YouTube channel; sources and concerns are in `stills/manifest.json`. Ayas Paşa still has none (no identifiable still exists); his card shows the Kul emblem. Hazine Açığı keeps its low-resolution still. `stills/placement.json` holds every Character's cut-out placement for cards and court niches. This page hasn't been rebuilt with them; the game draws them.
+
 ## Decisions (round 11): the Varak ve mine icon set
 
 The page now uses the style-A icon set from `art/icons/set/` (49 icons; a 512 px master plus -144, -72 and -48 copies). Only the -48, -72 and -144 files it needs are copied to `art/directions/img/icons/` (98 files, about 1.3 MB), and the hand-drawn SVG sprite is gone.

@@ -193,3 +193,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .lobby .side { z-index: 1; }
 .peek.role { grid-template-columns: auto 1fr; gap: 22px; align-items: start; }
 .sheet .h-step, .peekpop .h-step { display: flex; gap: 6px; align-items: center; }
+
+/* ---------- card gallery (/?kartlar) */
+body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: text; }
+.gallery { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px; background: #e5d9bb; min-height: 100%; }

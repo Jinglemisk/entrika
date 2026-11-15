@@ -166,6 +166,7 @@ export function play(room: Room, token: string, seat: number, action: Action) {
 // ---------- bots (test rooms): seats marked bot answer their asks after a short pause
 
 const botTimers = new Map<string, NodeJS.Timeout>();
+const BOT_DELAY = Number(process.env.BOT_DELAY ?? 700);
 function scheduleBots(room: Room) {
   if (!room.dev || !room.game || room.game.step === 'over' || botTimers.has(room.code)) return;
   const due = room.game.asks.filter(a => room.seats[a.to]?.bot);
@@ -189,5 +190,5 @@ function scheduleBots(room: Room) {
       room.seats[a.to].bot = false;
     }
     changed(room);
-  }, 700));
+  }, BOT_DELAY));
 }

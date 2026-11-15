@@ -25,8 +25,8 @@
   },
   {
     "id": "mustafa", "name": "Mustafa",
-    "base": { "id": "veliaht", "name": "Veliaht", "freq": "once", "text": "Süleyman Soruşturma ya da Hazine Defteri alınca sen de bakarsın: aynı Taraf kartına ya da aynı 3 Kader kartına." },
-    "favor": { "id": "ocakSevgisi", "name": "Ocak Sevgisi", "freq": "always", "text": "Bundan sonra sana yapılan İtiraz 2 Nüfuz tutar." },
+    "base": { "id": "veliaht", "name": "Veliaht", "freq": "once", "text": "Süleyman Soruşturma ya da Hazine Defteri alınca aynı kartlara sen de bakarsın." },
+    "favor": { "id": "ocakSevgisi", "name": "Ocak Sevgisi", "freq": "always", "text": "Sana yapılan İtiraz 2 Nüfuz tutar." },
     "loyal": "Ben babamın kılıcıyım.", "traitor": "Ocak beni tahtta istiyor."
   },
   {
@@ -55,8 +55,8 @@
   },
   {
     "id": "gritti", "name": "Gritti", "wildcard": true,
-    "base": { "id": "faiz", "name": "Faiz", "freq": "once", "text": "Başka bir oyuncu seç. O bir dahaki Nüfuz kazanışında sen de 1 Nüfuz kazanırsın." },
-    "favor": { "id": "venedikPostasi", "name": "Venedik Postası", "freq": "once", "text": "Kader destesinin üstteki 3 kartına gizlice bak. Birini destenin altına koyabilirsin; kalanlar aynı sırayla kalır." },
+    "base": { "id": "faiz", "name": "Faiz", "freq": "once", "text": "Bir oyuncu seç. O bir dahaki Nüfuz kazanışında sen de 1 kazanırsın." },
+    "favor": { "id": "venedikPostasi", "name": "Venedik Postası", "freq": "once", "text": "Kader destesinin üstteki 3 kartına gizlice bak; birini alta koyabilirsin." },
     "loyal": "Sultan'ın kuyumcusu, İbrahim'in dostu.", "traitor": "Doç'un oğluyum; önce Venedik."
   },
   {
@@ -67,8 +67,8 @@
   },
   {
     "id": "tahmasp", "name": "Şah Tahmasp", "wildcard": true,
-    "base": { "id": "cephe", "name": "Cephe", "freq": "once", "text": "Kriz kartı açılmadan önce Kriz destesinin üstteki 2 kartına gizlice bak. Birini oynat, diğerini destenin altına koy." },
-    "favor": { "id": "yakipYikma", "name": "Yakıp Yıkma", "freq": "once", "text": "Sen dahil herkes seçtiği 1 Entrika kartını tutar, gerisini atar." },
+    "base": { "id": "cephe", "name": "Cephe", "freq": "once", "text": "Kriz açılmadan destenin üstteki 2 Kriz kartına bak; birini oynat, diğerini alta koy." },
+    "favor": { "id": "yakipYikma", "name": "Yakıp Yıkma", "freq": "once", "text": "Herkes, sen de, seçtiği 1 Entrika kartını tutar; gerisini atar." },
     "loyal": "Sınırda barış, tahtta huzur.", "traitor": "Bağdat'ı geri alacağım."
   }
 ]

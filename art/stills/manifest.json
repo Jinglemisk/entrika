@@ -499,7 +499,7 @@
     },
     "comp.ayas": {
       "status": "missing",
-      "note": "Searched twice. No still of Fehmi Karaarslan as Ayas Paşa is tagged on IMDb (title and person galleries), and none is on Beyazperde, TVMaze, TheTVDB or the producer site. The only crops available were unidentified viziers in Divan line-ups, too small and possibly the wrong man, so the slot is empty. Options: a crop from a Divan scene with a caption saying \"Divan'dan bir vezir\", or a drawn silhouette.",
+      "note": "Searched three times. Third search (2026-11-15): IMDb lists no photo tagged Fehmi Karaarslan for this title, TheTVDB has no role image, and in the official channel's clip \"İbrahim Paşa, Ayaz Paşa'yı Yerin Dibine Soktu!\" (X4pza04bzXc) neither vizier facing İbrahim could be matched with confidence to his IMDb headshot or to a fan-site still. Nothing used; the slot stays empty. Options as before: a Divan crop captioned \"Divan'dan bir vezir\", or a drawn silhouette.",
       "candidates": []
     },
     "comp.matrakci": {
@@ -943,23 +943,24 @@
         ],
         "device_px_per_css_px_at_258": 1.06,
         "quality": "low"
-      }
+      },
+      "note": "Searched again 2026-11-15 (IMDb, official YouTube channel): no treasury scene or higher-resolution still of Afife with her ledger found; candidate 1 stays, 720x400, low for full art."
     },
     "crisis.venedik": {
-      "status": "stand-in",
+      "status": "found",
       "candidates": [
         {
           "file": "crisis.venedik-1.jpg",
           "size": [
-            641,
-            400
+            1600,
+            900
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BYjc5NGY3MTgtNjVlYy00MmUxLWFjMTctMGRhNmVlMzU5YTVhXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "STAND-IN: an audience hall, viziers bowing toward the throne. No confirmed Venetian-envoy still found. Cropped to remove a channel logo.",
+          "source_url": "https://www.youtube.com/watch?v=5DU3xrWtBuc&t=79s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Avrupa Siyasetinde Taşlar Yerinden Oynuyor! | Muhteşem Yüzyıl 22. Bölüm\", at 79.0 s; the Venetian envoy (Naci Adigüzel, credited 'Venedik Elçisi') and Gritti led by kapıcı guards into Süleyman's audience chamber. IMDb's still tagged \"Tansel Öngel and Naci Adigüzel\" is from the same scene.",
           "focus": [
-            0.943,
-            0.661
+            0.6,
+            0.3
           ]
         },
         {
@@ -975,16 +976,30 @@
             0.5,
             0.45
           ]
+        },
+        {
+          "file": "crisis.venedik-3.jpg",
+          "size": [
+            641,
+            400
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BYjc5NGY3MTgtNjVlYy00MmUxLWFjMTctMGRhNmVlMzU5YTVhXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
+          "note": "STAND-IN: an audience hall, viziers bowing toward the throne. No confirmed Venetian-envoy still found. Cropped to remove a channel logo.",
+          "focus": [
+            0.943,
+            0.661
+          ]
         }
       ],
       "full_art": {
         "candidate": 1,
         "source_px": [
-          641,
-          400
+          1600,
+          900
         ],
-        "device_px_per_css_px_at_258": 1.06,
-        "quality": "low"
+        "device_px_per_css_px_at_258": 2.38,
+        "quality": "ok"
       }
     },
     "crisis.harem": {
@@ -1720,44 +1735,269 @@
       ]
     },
     "char.mustafa": {
-      "status": "missing",
-      "note": "Mustafa joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.mustafa-1.jpg",
+          "size": [
+            800,
+            1067
+          ],
+          "source_url": "https://framerusercontent.com/images/wyF44GN12lwX40VODyB2VJK6KKc.jpg",
+          "source_page": "https://tims.tv/diziler/muhtesem-yuzyil",
+          "note": "POSED: Mehmet Günsür as the grown Şehzade Mustafa (seasons 3-4), studio cast portrait (producer site). Head three-quarter, eyes on the viewer. The site does not caption its portraits; identified against IMDb stills tagged Mehmet Günsür and his TVMaze character image.",
+          "focus": [
+            0.315,
+            0.359
+          ],
+          "posed": true
+        }
+      ],
+      "roster": {
+        "file": "roster/char.mustafa.jpg",
+        "from": "char.mustafa-1.jpg",
+        "posed": true,
+        "face_share": 0.41
+      },
+      "cutout": {
+        "file": "cutout/char.mustafa.png",
+        "from": "char.mustafa-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -18.28,
+          "width_pct_of_window": 101.3,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+      }
     },
     "char.barbaros": {
-      "status": "missing",
-      "note": "Barbaros joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.barbaros-1.jpg",
+          "size": [
+            810,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=RF7UJaOTyUQ&t=120s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Hızır Hayrettin'in Preveze Deniz Zaferi - Muhteşem Yüzyıl 94.Bölüm\", at 120.0 s; cropped 3:4. Tolga Tekin as Barbaros Hayreddin Paşa on deck before Preveze, masts behind. No posed photo exists (IMDb has only one group still of him, which matches). Mid-speech: mouth slightly open, eyes just off camera.",
+          "focus": [
+            0.5,
+            0.411
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/char.barbaros.jpg",
+        "from": "char.barbaros-1.jpg",
+        "posed": false,
+        "face_share": 0.36
+      },
+      "cutout": {
+        "file": "cutout/char.barbaros.png",
+        "from": "char.barbaros-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -22.21,
+          "width_pct_of_window": 100.0,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+      }
     },
     "char.gritti": {
-      "status": "missing",
-      "note": "Gritti joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.gritti-1.jpg",
+          "size": [
+            810,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=ApMlcvrVj8Y&t=503s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Ev Dediğin Saray Çıktı Gritti | Muhteşem Yüzyıl 23. Bölüm\", at 503.3 s; cropped 3:4. Tansel Öngel as Alvise Gritti (season 1; Erman Saban took the part in 2012), facing the viewer in ruff and doublet. Matches the two IMDb stills tagged Tansel Öngel.",
+          "focus": [
+            0.502,
+            0.329
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/char.gritti.jpg",
+        "from": "char.gritti-1.jpg",
+        "posed": false,
+        "face_share": 0.42
+      },
+      "cutout": {
+        "file": "cutout/char.gritti.png",
+        "from": "char.gritti-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -14.44,
+          "width_pct_of_window": 101.9,
+          "left_pct_of_window": -1.2
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+      }
     },
     "char.sarlken": {
-      "status": "missing",
-      "note": "Şarlken joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.sarlken-1.jpg",
+          "size": [
+            810,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Dcv0fLm8kNE&t=251s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Sultan Süleyman'dan Şarlken'e Tarihi Mektup | Muhteşem Yüzyıl 47. Bölüm\", at 251.0 s; cropped 3:4. Ünal Silver as Charles V (Şarlken; IMDb credits him in 22 episodes) on his throne wearing the Golden Fleece collar, as Süleyman's letter is read. Face matches his TMDB portrait. Eyes lowered in every shot of this scene; this is the most frontal one. Not to be confused with the crowned man on the golden throne in the same clip, who is Süleyman.",
+          "focus": [
+            0.499,
+            0.381
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/char.sarlken.jpg",
+        "from": "char.sarlken-1.jpg",
+        "posed": false,
+        "face_share": 0.4
+      },
+      "cutout": {
+        "file": "cutout/char.sarlken.png",
+        "from": "char.sarlken-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -18.95,
+          "width_pct_of_window": 100.0,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+      }
     },
     "char.tahmasp": {
-      "status": "missing",
-      "note": "Şah Tahmasp joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.tahmasp-1.jpg",
+          "size": [
+            810,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Vpjk6cvRc-w&t=237s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Bayezid, Tahmasb'ın Yanında! | Muhteşem Yüzyıl\", at 237.0 s; cropped 3:4. Sermet Yeşil as Şah Tahmasp (season 4; Gökhan Alkan played him for 4 episodes in 2012), jewelled turban, facing the viewer. CONCERN: the turban and feathers run off the top of the frame, so the cut-out has a flat top; niche y0 is set to 0.1 so the face sits like Süleyman's, and on the card the cut lies above the card edge. The 720p clip RDfAGLWHfRI has the full turban but he looks down.",
+          "focus": [
+            0.499,
+            0.573
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/char.tahmasp.jpg",
+        "from": "char.tahmasp-1.jpg",
+        "posed": false,
+        "face_share": 0.5
+      },
+      "cutout": {
+        "file": "cutout/char.tahmasp.png",
+        "from": "char.tahmasp-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -40.49,
+          "width_pct_of_window": 102.7,
+          "left_pct_of_window": -1.2
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
+      }
     },
     "comp.iskender": {
-      "status": "missing",
-      "note": "İskender Çelebi joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.iskender-1.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "source_url": "https://i.ytimg.com/vi/SLEQTwlKCw8/maxres3.jpg",
+          "source_page": "https://www.youtube.com/watch?v=SLEQTwlKCw8",
+          "note": "Hasan Küçükçetin as İskender Çelebi in campaign helmet and mail, facing the viewer. YouTube's auto-captured frame (no overlay) of the official clip \"İskender Çelebi'nin İdamı - Muhteşem Yüzyıl 68.Bölüm\". The two IMDb stills tagged Hasan Küçükçetin show the same helmeted man. Close-up, so the roster crop zooms in (face share 0.72). No posed photo found.",
+          "focus": [
+            0.473,
+            0.417
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/comp.iskender.jpg",
+        "from": "comp.iskender-1.jpg",
+        "posed": false,
+        "face_share": 0.72
+      }
     },
     "comp.firuze": {
-      "status": "missing",
-      "note": "Firuze Hatun joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.firuze-1.jpg",
+          "size": [
+            1148,
+            1600
+          ],
+          "source_url": "https://m.media-amazon.com/images/M/MV5BMWQ5ZmZhMjctOGI4Mi00YTM4LThlZWMtZGJjY2MzMTAzMGIzXkEyXkFqcGc@._V1_.jpg",
+          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/?relatedNames=nm1754048",
+          "note": "POSED: Cansu Dere as Firuze Hatun, promo photo (IMDb, \"Cansu Dere in The Magnificent Century\", 1469x2047), seated in a red harem costume, facing the viewer. The roster crop is chest-up and shows the costume's low neckline.",
+          "focus": [
+            0.53,
+            0.226
+          ],
+          "posed": true
+        }
+      ],
+      "roster": {
+        "file": "roster/comp.firuze.jpg",
+        "from": "comp.firuze-1.jpg",
+        "posed": true,
+        "face_share": 0.36
+      }
     },
     "crisis.isabella": {
-      "status": "missing",
-      "note": "Isabella Fortuna joined in manual v0.7; no still sourced yet.",
-      "candidates": []
+      "status": "found",
+      "candidates": [
+        {
+          "file": "crisis.isabella-1.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=jhTsYcKgFCI&t=65s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Süleyman, Isabella'yı Görmeye Geliyor! | Muhteşem Yüzyıl 27. Bölüm\", at 65.0 s; Melike İpek Yalova as Princess Isabella Fortuna, the captive, in her crown. Checked against an IMDb photo of the actress; the veiled woman in lace who appears in several Isabella clips is a different actress and was not used.",
+          "focus": [
+            0.517,
+            0.501
+          ]
+        }
+      ],
+      "full_art": {
+        "candidate": 1,
+        "source_px": [
+          1600,
+          900
+        ],
+        "device_px_per_css_px_at_258": 2.38,
+        "quality": "ok"
+      }
     }
   },
   "tugra": {
