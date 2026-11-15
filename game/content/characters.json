@@ -1,7 +1,7 @@
 [
   {
     "id": "suleyman",
-    "name": "Süleyman",
+    "name": "Süleyman Han",
     "sultan": true,
     "base": {
       "id": "ferman",
@@ -13,7 +13,7 @@
   },
   {
     "id": "hurrem",
-    "name": "Hürrem",
+    "name": "Hürrem Sultan",
     "base": {
       "id": "fisilti",
       "name": "Fısıltı",
@@ -30,7 +30,7 @@
   },
   {
     "id": "ibrahim",
-    "name": "Pargalı",
+    "name": "Pargalı İbrahim",
     "base": {
       "id": "sadrazam",
       "name": "Sadrazam",
@@ -47,7 +47,7 @@
   },
   {
     "id": "mahidevran",
-    "name": "Mahidevran",
+    "name": "Mahidevran Sultan",
     "base": {
       "id": "itiraz",
       "name": "İtiraz",
@@ -64,7 +64,7 @@
   },
   {
     "id": "mustafa",
-    "name": "Mustafa",
+    "name": "Şehzade Mustafa",
     "base": {
       "id": "veliaht",
       "name": "Veliaht",
@@ -81,7 +81,7 @@
   },
   {
     "id": "hatice",
-    "name": "Hatice",
+    "name": "Hatice Sultan",
     "base": {
       "id": "himaye",
       "name": "Himaye",
@@ -98,7 +98,7 @@
   },
   {
     "id": "mihrimah",
-    "name": "Mihrimah",
+    "name": "Mihrimah ",
     "base": {
       "id": "gozBebegi",
       "name": "Göz Bebeği",
@@ -115,7 +115,7 @@
   },
   {
     "id": "rustem",
-    "name": "Rüstem",
+    "name": "Rüstem Paşa",
     "base": {
       "id": "kulis",
       "name": "Kulis",
@@ -132,7 +132,7 @@
   },
   {
     "id": "barbaros",
-    "name": "Barbaros",
+    "name": "Barbaros Hayrettin",
     "base": {
       "id": "ganimet",
       "name": "Ganimet",
@@ -149,7 +149,7 @@
   },
   {
     "id": "gritti",
-    "name": "Gritti",
+    "name": "Sinyor Gritti",
     "wildcard": true,
     "base": {
       "id": "faiz",
@@ -185,7 +185,7 @@
   },
   {
     "id": "tahmasp",
-    "name": "Şah Tahmasp",
+    "name": "Tahmasp",
     "wildcard": true,
     "base": {
       "id": "cephe",
