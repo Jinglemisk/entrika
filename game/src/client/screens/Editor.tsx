@@ -16,12 +16,12 @@ interface Item { key: string; group: string; file: string; id: string; entry: En
 const NAME: TextField = { path: 'name', label: 'Ad' };
 const TEXT: TextField = { path: 'text', label: 'Metin', long: true };
 const FLAVOR: TextField = { path: 'flavor', label: 'Alt yazı', long: true };
-// Süleyman has no Lütuf power and no secret side, so his card shows only the fields he has
-const character = (c: { favor?: unknown; sultan?: boolean }): TextField[] => [
+// Süleyman has no Lütuf power, so his card shows only the fields he has
+const character = (c: { favor?: unknown }): TextField[] => [
   NAME,
   { path: 'base.name', label: 'Temel güç: adı' }, { path: 'base.text', label: 'Temel güç: metni', long: true },
   ...(c.favor ? [{ path: 'favor.name', label: 'Lütuf gücü: adı' }, { path: 'favor.text', label: 'Lütuf gücü: metni', long: true }] : []),
-  ...(c.sultan ? [FLAVOR] : [{ path: 'loyal', label: 'Sadık sözü', long: true }, { path: 'traitor', label: 'Hain sözü', long: true }]),
+  FLAVOR,
 ];
 const lines = (e: { text: string[] }): TextField[] =>
   [NAME, ...e.text.map((_, i) => ({ path: `text.${i}`, label: `Metin, satır ${i + 1}`, long: true })), FLAVOR];

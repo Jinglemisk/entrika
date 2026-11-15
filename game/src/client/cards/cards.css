@@ -53,7 +53,11 @@
 /* the approved art page had no bold italic face, so the favor power's name and terms read as regular italic; keep that look */
 .c3 .pw.favor .pn,.c3 .pw.favor .tm{font-weight:400}
 .c3 .pw b.pn{font-weight:700}
-.c3.t-char .pin{gap:2.2cqw;padding:2.2cqw 2.2cqw 2cqw}
+.c3.t-char .pin{gap:1.5cqw;padding:1.6cqw 2cqw 1.4cqw}
+/* two powers and a flavor line share the plate */
+.c3.t-char .pw{padding:1.2cqw 2cqw 1.3cqw;gap:.6cqw}
+.c3.t-char .pw p{font-size:4.2cqw;line-height:1.15}
+.c3.t-char .fl{font-size:3.5cqw}
 
 /* frequency icon on its bronze disc */
 .c3 .fq{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;vertical-align:-.32em;margin-right:.18em;cursor:help;color:#ffe6a0;

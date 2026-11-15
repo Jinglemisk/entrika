@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
-  RULES, ambitionById, characterById, crisisById, intrigueById, MISC, type Peek, type PID,
+  RULES, ambitionById, crisisById, intrigueById, MISC, type Peek, type PID,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
@@ -183,13 +183,11 @@ export function PeekBody({ p }: { p: Peek }) {
   const words = (text: string) => <p className="pop-text"><Refs text={text} /></p>;
   switch (p.kind) {
     case 'role': {
-      const me = g.players[p.to];
       return (
         <div className="peek">
           <div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={130} whole /></div>
           <p className="pop-name">{t(p.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
           {p.side === 'traitor' && words(p.traitors.length ? t('peek.traitors', { names: p.traitors.map(n).join(', ') }) : t('peek.alone'))}
-          <p className="pop-text dim">«{me.side === 'traitor' ? characterById[me.character].traitor : characterById[me.character].loyal}»</p>
         </div>
       );
     }
@@ -250,7 +248,6 @@ function SecretSheet({ close }: { close: () => void }) {
       </PopShell>
     );
   }
-  const ch = characterById[me.character];
   const role = g.peeks.find(p => p.to === me.id && p.kind === 'role');
   const w = me.ambition ? POP_PAIR : POP_CARD;
   return (
@@ -261,7 +258,6 @@ function SecretSheet({ close }: { close: () => void }) {
       <p className="pop-who"><b>{t(me.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</b>
         {role && role.kind === 'role' && me.side === 'traitor' && <span>{role.traitors.length ? t('peek.traitors', { names: role.traitors.map(i => g.players[i].name).join(', ') }) : t('peek.alone')}</span>}
       </p>
-      <p className="pop-text dim">«{me.side === 'traitor' ? ch.traitor : ch.loyal}»</p>
       {!g.learning && <AmbitionState />}
     </PopShell>
   );

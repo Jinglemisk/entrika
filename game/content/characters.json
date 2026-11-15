@@ -26,8 +26,7 @@
       "freq": "once",
       "text": "Bir dalgada bir yerine iki kart oyna."
     },
-    "loyal": "Ben onun Hürrem'iyim, başkasının değil.",
-    "traitor": "Sultanlar gelir geçer, Valide kalır."
+    "flavor": "Esir geldi, Haseki oldu."
   },
   {
     "id": "ibrahim",
@@ -44,8 +43,7 @@
       "freq": "always",
       "text": "Bundan sonra Vekil olarak atandığın her krizde 1 Nüfuz kazan."
     },
-    "loyal": "Onun kardeşi, dostu, kuluyum.",
-    "traitor": "Serasker Sultan: mühürde benim de adım var."
+    "flavor": "Parga'dan bir balıkçı oğlu, Sultan'ın sağ eli."
   },
   {
     "id": "mahidevran",
@@ -62,8 +60,7 @@
       "freq": "once",
       "text": "Bir oyuncu seç: gelecek kriz hiçbir yolla Vekil olamaz."
     },
-    "loyal": "Mustafa'yı ancak Sultan'ın sevgisi korur.",
-    "traitor": "Oğlumun tahtı beklemez."
+    "flavor": "İlk gözde, büyük şehzadenin annesi."
   },
   {
     "id": "mustafa",
@@ -80,8 +77,7 @@
       "freq": "always",
       "text": "Sana yapılan İtiraz 2 Nüfuz tutar."
     },
-    "loyal": "Ben babamın kılıcıyım.",
-    "traitor": "Ocak beni tahtta istiyor."
+    "flavor": "Ordunun sevgilisi, tahtın varisi."
   },
   {
     "id": "hatice",
@@ -98,8 +94,7 @@
       "freq": "once",
       "text": "Bir oyuncunun Hırs kartına gizlice bak."
     },
-    "loyal": "Ağabeyimden önce kimse gelmez.",
-    "traitor": "Kocamı ondan kim koruyacak?"
+    "flavor": "Sultan'ın kız kardeşi, sadrazamın eşi."
   },
   {
     "id": "mihrimah",
@@ -116,8 +111,7 @@
       "freq": "once",
       "text": "Başka bir oyuncuya kasadan 1 Nüfuz ver."
     },
-    "loyal": "Babamın göz bebeğiyim.",
-    "traitor": "Annemin davası benim davam."
+    "flavor": "Güneşle ayın sultanı."
   },
   {
     "id": "rustem",
@@ -134,8 +128,7 @@
       "freq": "once",
       "text": "Bir dalga açılınca sana oynanan bir Entrika kartını başka bir oyuncuya kaydır."
     },
-    "loyal": "Ekmeğim bu sofrada.",
-    "traitor": "Bir mektup, bir mühür; Şah'a giden yol kısa."
+    "flavor": "Sabırlı bir hesap adamı; her kapıyı bilir."
   },
   {
     "id": "barbaros",
@@ -152,8 +145,7 @@
       "freq": "once",
       "text": "Kader adımından sonra Birinci Vekilin attığı kart ya da kartlara gizlice bak."
     },
-    "loyal": "Cezayir'i Sultan'a ben bağladım.",
-    "traitor": "Şarlken bana Afrika'yı teklif ediyor."
+    "flavor": "Akdeniz'in kaptan-ı deryası."
   },
   {
     "id": "gritti",
@@ -171,8 +163,7 @@
       "freq": "once",
       "text": "Kader destesinin üstteki 3 kartına gizlice bak; birini alta koyabilirsin."
     },
-    "loyal": "Sultan'ın kuyumcusu, İbrahim'in dostu.",
-    "traitor": "Doç'un oğluyum; önce Venedik."
+    "flavor": "Doç'un oğlu, Galata'nın tüccarı."
   },
   {
     "id": "sarlken",
@@ -190,8 +181,7 @@
       "freq": "always",
       "text": "Entrika kartların açık bir alanın kartı sayılır."
     },
-    "loyal": "Türk'le barış, Luther'le savaş demek.",
-    "traitor": "Plus Ultra: daha öteye, İstanbul'a."
+    "flavor": "Batının imparatoru, Sultan'ın rakibi."
   },
   {
     "id": "tahmasp",
@@ -209,7 +199,6 @@
       "freq": "once",
       "text": "Herkes, sen de, seçtiği 1 Entrika kartını tutar; gerisini atar."
     },
-    "loyal": "Sınırda barış, tahtta huzur.",
-    "traitor": "Bağdat'ı geri alacağım."
+    "flavor": "Doğu sınırının öte yanındaki şah."
   }
 ]
