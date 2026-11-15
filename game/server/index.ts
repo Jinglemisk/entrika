@@ -9,6 +9,7 @@ import { RuleError } from '../src/engine/index.ts';
 import {
   backToLobby, createRoom, join, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
 } from './rooms.ts';
+import { contentEdit } from './content.ts';
 
 const PORT = Number(process.env.PORT ?? 4700);
 const PROD = process.env.NODE_ENV === 'production';
@@ -46,6 +47,7 @@ if (!PROD) {
 server.on('request', (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
   if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), res, 'public, max-age=86400');
+  if (!PROD && url.pathname === '/dev/content') return contentEdit(req, res);   // the card text editor, /?duzenle
   if (vite) return vite.middlewares(req, res);
   const asset = url.pathname !== '/' && fs.existsSync(path.join(DIST, url.pathname));
   if (asset) return serveFrom(DIST, url.pathname.slice(1), res, 'public, max-age=31536000, immutable');
