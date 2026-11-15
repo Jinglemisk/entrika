@@ -2079,12 +2079,12 @@
             810,
             1080
           ],
-          "source_url": "https://www.youtube.com/watch?v=Vpjk6cvRc-w&t=237s",
+          "source_url": "https://www.youtube.com/watch?v=VCmuepvLR_Y&t=131s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
-          "note": "Frame grabbed from the 1080p stream of the official Muhteşem Yüzyıl YouTube channel (linked from tims.tv), clip \"Bayezid, Tahmasb'ın Yanında! | Muhteşem Yüzyıl\", at 237.0 s; cropped 3:4. Sermet Yeşil as Şah Tahmasp (season 4; Gökhan Alkan played him for 4 episodes in 2012), jewelled turban, facing the viewer. CONCERN: the turban and feathers run off the top of the frame, so the cut-out has a flat top; niche y0 is set to 0.1 so the face sits like Süleyman's, and on the card the cut lies above the card edge. The 720p clip RDfAGLWHfRI has the full turban but he looks down.",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Tebriz Fethedildi! | Muhteşem Yüzyıl\" (from episode 67, 2012), at 131.2 s; crop x 595-1405 of the 1920x1080 frame (3:4). Gökhan Alkan as the young Şah Tahmasp, enthroned in his tent as Tabriz falls (1534): gold domed crown over a rust-and-tan turban, mail aventail, facing the viewer, eyes on camera, mouth closed, sharp. Identified by IMDb (Gökhan Alkan, \"Sah Tahmasb\", 4 episodes, 2012) and fan posts captioned Şah Tahmasb showing this costume. The crown's finial tip touches the frame top (about 25 px of flat edge at row 0). CONCERN: the face is large on the card (about 41 cqw, siblings 22-37), so the gold crown lies above the card edge and is clipped there; a wider crop like Barbaros's would fit it.",
           "focus": [
-            0.499,
-            0.573
+            0.516,
+            0.503
           ]
         }
       ],
@@ -2092,16 +2092,16 @@
         "file": "roster/char.tahmasp.jpg",
         "from": "char.tahmasp-1.jpg",
         "posed": false,
-        "face_share": 0.5
+        "face_share": 0.41
       },
       "cutout": {
         "file": "cutout/char.tahmasp.png",
         "from": "char.tahmasp-1.jpg",
         "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
         "placement_on_card": {
-          "top_cqw_from_window": -40.49,
-          "width_pct_of_window": 102.7,
-          "left_pct_of_window": -1.2
+          "top_cqw_from_window": -29.89,
+          "width_pct_of_window": 100.0,
+          "left_pct_of_window": 0.0
         },
         "soft_at_258": false,
         "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette"
