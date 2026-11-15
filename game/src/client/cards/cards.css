@@ -105,6 +105,13 @@
   :not(.whole) > .c3 .nm.long{font-size:7.2cqw}
   :not(.whole) > .c3.back .bw,:not(.whole) > .c3.back .bplate{display:none}
 }
+/* a small whole card (shelf, hand): the flavor line waits for the big card in the pop-up, and the rules text takes its room */
+@container (max-width:149px){
+  .whole > .c3 .fl{display:none}
+  .whole > .c3 .pin{font-size:6.2cqw;line-height:1.18}
+  .whole > .c3.v-full .pin{font-size:6.6cqw}
+  .whole > .c3 .pw p{font-size:5.4cqw;line-height:1.15}
+}
 @container (max-width:89px){
   :not(.whole) > .c3 .nm,:not(.whole) > .c3 .sname{display:none}
   :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{width:20cqw;height:20cqw;top:7.4cqw;font-size:14cqw}
