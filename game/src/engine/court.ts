@@ -3,7 +3,7 @@
 // clockwise from Süleyman's left, swaps, summed Influence, then draws.
 import { intrigueById, soleField, type Field } from './content.ts';
 import {
-  P, ackAll, ask, checkHand, clockwise, companionDef, companionUp, discardCard, drawIntrigue, eligibleList, ensureKader,
+  P, ackAll, ask, checkHand, clockwise, companionDef, companionIs, companionUp, discardCard, drawIntrigue, eligibleList, ensureKader,
   favorOn, fieldsOpen, gain, isMinister, log, lose, must, readyPower, seatOf, top,
 } from './core.ts';
 import { checkAmbitions } from './ambitions.ts';
@@ -83,6 +83,7 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
   must(plays.length <= waveAllowance(g, id), 'Bu dalgada bir kart oynayabilirsin.');
   must(new Set(plays.map(x => x.uid)).size === plays.length, 'Aynı kart iki kez oynanamaz.');
   must(plays.filter(x => x.recastAs).length <= 1, 'Kul bu krizde bir kez çevirir.');
+  must(plays.filter(x => x.returns).length <= 1, 'Lokman Ağa bir kez kullanılır.');
   return plays.map(wp => {
     const card = p.hand.find(c => c.uid === wp.uid);
     must(card, 'Bu kart elinde değil.');
@@ -95,7 +96,8 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
     const field = effectiveField(g, id, card.field, as, wp.recastAs ? wp.field : undefined);
     must(field, 'Bu kart açık alanın kartı değil.');
     must(legalTargets(g, id, as).includes(wp.target), 'Bu kart o oyuncuya oynanamaz.');
-    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs };
+    if (wp.returns) must(companionIs(g, id, 'lokman') && !p.companionUsed, 'Lokman Ağa şu an kullanılamaz.');
+    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs, returns: !!wp.returns };
   });
 }
 
@@ -255,7 +257,16 @@ function finishWave(g: Game) {
     if (d < 0) c.drawsOwed[id] = (c.drawsOwed[id] ?? 0) + lose(g, id, -d, 'intrigue');
     if (d > 0) gain(g, id, d, 'intrigue');
   }
-  c.plays.forEach(pl => discardCard(g, pl.card));
+  // Lokman Ağa returns a card that took effect; everything else goes to the discard pile
+  c.plays.forEach((pl, i) => {
+    const owner = P(g, pl.owner);
+    if (pl.returns && okAt(i) && companionIs(g, pl.owner, 'lokman') && !owner.companionUsed) {
+      owner.companionUsed = true;
+      owner.hand.push(pl.card);
+      log(g, 'returned', { who: pl.owner, card: pl.card.kind });
+      checkHand(g, pl.owner);
+    } else discardCard(g, pl.card);
+  });
   for (const [id, n] of Object.entries(c.drawsOwed)) {
     if (n > 0) {
       drawIntrigue(g, Number(id), n);

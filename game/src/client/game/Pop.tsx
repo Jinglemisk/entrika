@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import {
   FREE_POWERS, characterById, companionById, freePowerTargets, intrigueById, playableForms, waveAllowance,
-  type Game, type PID, type Player,
+  type Game, type Player,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec, type CardRef } from '../cardSpecs.ts';
@@ -104,16 +104,18 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
   const recastUsed = hand.staged.some(s => s.recast);
   const forms = playableForms(g, seat, uid).filter(f => !(f.recast && recastUsed));
   if (!forms.length) return <p className="pop-note bad">{t('pop.cantPlay')}</p>;
-  const aim = (f: Form) => done(() => hand.setAim({ ...f, uid }));
+  const lokman = me.companion === 'lokman' && me.influence > 0 && !me.companionUsed && !hand.staged.some(s => s.returns);
+  const aim = (f: Form, returns: boolean) => done(() => hand.setAim({ ...f, uid, returns }));
   const kul = me.companion;
   return (
     <div className="pop-acts">
       {forms.map(f => (
         <div key={f.as + f.field} className="pop-row">
-          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
+          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f, false)}>
             {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
             {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
           </Btn>
+          {lokman && <Btn via={{ icon: <KulHead id="lokman" />, label: companionById.lokman.name }} onClick={aim(f, true)}>{t('pop.withLokman')}</Btn>}
         </div>
       ))}
     </div>
@@ -122,14 +124,14 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
 
 // ---------- your Character: a button for each power you can use right now
 
-function powerButtons({ g, seat, act, setPicker }: GameCtx, character: string, close: () => void): ReactNode {
+function powerButtons({ g, seat, act, setFreePick }: GameCtx, character: string, close: () => void): ReactNode {
   const ch = characterById[character];
   const usable = [ch.base, ch.favor].filter(d => d && FREE_POWERS[d.id] && freePowerTargets(g, seat, d.id));
   if (!usable.length) return null;
   const use = (power: string) => () => {
     close();
     const targets = freePowerTargets(g, seat, power)!;
-    if (FREE_POWERS[power].target) setPicker({ legal: targets, onPick: (target: PID) => { setPicker(null); act({ t: 'power', power, target }); } });
+    if (FREE_POWERS[power].target) setFreePick({ power, legal: targets });
     else act({ t: 'power', power });
   };
   return (

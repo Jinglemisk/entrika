@@ -53,7 +53,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         for (const p of g.players) {
           p.objected = false;
           p.targetedThisCrisis = 0;
-          if (p.companion && !['iskender', 'firuze'].includes(p.companion)) p.companionUsed = false;
+          if (p.companion && !['iskender', 'firuze', 'lokman'].includes(p.companion)) p.companionUsed = false;   // once-per-game Kuls stay spent
         }
         g.sicil.push({ c: g.crisisNo, crisis: '', first: null, second: null, result: null, decree: null, events: [] });
         if (g.surgun.now !== null) log(g, 'surgunActive', { who: g.surgun.now });
@@ -85,11 +85,16 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
     if (waiting(g)) return;
     switch (g.sub) {
       case 'begin': {
+        g.sub = 'sadrazam';
+        const i = readyPower(g, 'ibrahim', 'base');
+        if (i) ask(g, { to: i.id, type: 'window', power: 'sadrazam' });
+        return;
+      }
+      case 'sadrazam': {
+        // Kulis is a word with the appointer, so it is offered only when that is still Süleyman
         g.sub = 'pre';
         const r = readyPower(g, 'rustem', 'base');
-        const i = readyPower(g, 'ibrahim', 'base');
-        if (r) ask(g, { to: r.id, type: 'window', power: 'kulis' });
-        if (i) ask(g, { to: i.id, type: 'window', power: 'sadrazam' });
+        if (r && g.appointer === g.sultan) ask(g, { to: r.id, type: 'window', power: 'kulis' });
         return;
       }
       case 'pre':
@@ -347,15 +352,21 @@ export function loseAndDraw(g: Game, id: PID, n: number, why: string) {
   return lost;
 }
 
-function endCrisis(g: Game) {
+/** Saray Hazinesi: hands are counted at the end of every crisis, the last one included. */
+function countHands(g: Game) {
   for (const p of others(g)) if (p.hand.length >= 3) p.stats.endWithHand = true;
   checkAmbitions(g);
+}
+
+function endCrisis(g: Game) {
+  countHands(g);
   revealAmbitions(g);
   log(g, 'crisisEnd');
   go(g, 'crisis');
 }
 
 function finish(g: Game, side: 'loyalist' | 'traitor', reason: 'loyalty' | 'treason') {
+  countHands(g);   // a met Hırs breaks a tie for the overall win
   const winners = g.players.filter(p => !p.sultan && p.side === side);
   const best = Math.max(...winners.map(p => p.influence));
   let top = winners.filter(p => p.influence === best);

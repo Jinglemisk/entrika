@@ -44,7 +44,7 @@ function value(g: Game, a: Ask, r: R): unknown {
       const seat = pick(r, seats);
       const target = g.ministers[seat]!;
       if (!eligibleList(g, seat).some(id => id !== target)) return null;
-      if (readyPower(g, 'mahidevran', 'base')?.id === a.to && chance(r, 0.5)) return { seat, free: true };
+      if (readyPower(g, 'sahsultan', 'base')?.id === a.to && chance(r, 0.5)) return { seat, free: true };
       const cost = favorOn(g, target, 'mustafa') ? 2 : RULES.objectionCost;
       return me.influence >= cost ? { seat } : null;
     }

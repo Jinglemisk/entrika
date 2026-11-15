@@ -154,7 +154,7 @@ const ANSWERS: Handlers = {
     must(target !== a.to, 'Kendi koltuğuna itiraz edemezsin.');
     must(!p.objected, 'Bu kriz zaten itiraz ettin.');
     if (free) {
-      must(readyPower(g, 'mahidevran', 'base')?.id === a.to, 'İtiraz gücün yok.');
+      must(readyPower(g, 'sahsultan', 'base')?.id === a.to, 'İtiraz gücün yok.');
       p.base = 'used';
     } else {
       const cost = favorOn(g, target, 'mustafa') ? 2 : RULES.objectionCost;
@@ -287,7 +287,7 @@ function retract(g: Game, who: PID) {
 // ---------- powers with no stated timing: any time except during Tertip and Kader
 
 export const FREE_POWERS: Record<string, { character: string; which: 'base' | 'favor'; target: 'other' | 'otherWithHand' | null }> = {
-  surgun: { character: 'mahidevran', which: 'favor', target: 'other' },
+  surgun: { character: 'sahsultan', which: 'favor', target: 'other' },
   haber: { character: 'hatice', which: 'favor', target: 'other' },
   ganimet: { character: 'barbaros', which: 'base', target: 'otherWithHand' },
   faiz: { character: 'gritti', which: 'base', target: 'other' },

@@ -320,5 +320,13 @@
   "stamp.done": "tamamlandı",
   "fieldOpen.harem": "Yalnız Harem kartları oynanır.",
   "fieldOpen.divan": "Yalnız Divan kartları oynanır.",
-  "fieldOpen.saray": "Harem de Divan da açık."
+  "fieldOpen.saray": "Harem de Divan da açık.",
+  "log.returned": "{who}: Lokman Ağa {card} kartını ele geri getirdi.",
+  "pop.withLokman": "Oyna, elime dönsün",
+  "zone.mine": "Taraf · Karakter · Kul",
+  "zone.sultan": "Süleyman",
+  "zone.hand": "Entrika eli · {n}/{limit}",
+  "sultanNoHand": "Süleyman Entrika kartı tutmaz.",
+  "free.pick": "Kimin üzerinde kullanacaksın?",
+  "btn.cancel": "Vazgeç"
 }

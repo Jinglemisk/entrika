@@ -3,7 +3,7 @@
 // act on it. Every card shares one top line. The prompt block sits on the right.
 import { useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FREE_POWERS, characterById, freePowerTargets } from '../../engine/index.ts';
+import { FREE_POWERS, characterById, freePowerTargets, handLimit } from '../../engine/index.ts';
 import { Card, CardBack } from '../cards/Card.tsx';
 import { intrRef, spec, type CardRef } from '../cardSpecs.ts';
 import { Head } from '../ui/Figure.tsx';
@@ -14,7 +14,28 @@ import { charRef, kulRef } from './Pop.tsx';
 
 export const SHELF_CARD = 80;   // Character, Kul and hand cards (game.css lays the shelf out around this)
 const BACK = 52;               // the Taraf back
-const HAND_W = 252;            // px between your Kul and the prompt (game.css: .hand left, .pr left)
+const HAND_W = 248;            // the hand panel's inner width (game.css: .zone.mid, .hand)
+
+/** The shelf's three framed panels (yours, your hand, the prompt), drawn behind the cards with a label set into
+ *  each top border. */
+export function ShelfZones() {
+  const { g, me, seat } = useGame();
+  return (
+    <div className="zones" aria-hidden="true">
+      <Zone k="mine" label={t(me.sultan ? 'zone.sultan' : 'zone.mine')} />
+      <Zone k="mid" label={me.sultan ? '' : t('zone.hand', { n: me.hand.length, limit: handLimit(g, seat) })} />
+      <Zone k="side" label="" />
+    </div>
+  );
+}
+function Zone({ k, label }: { k: string; label: string }) {
+  return (
+    <div className={`zone ${k}`}>
+      <i className="cn tl" /><i className="cn tr" /><i className="cn bl" /><i className="cn br" />
+      {label && <span className="zlabel">{label}</span>}
+    </div>
+  );
+}
 
 export function Mine() {
   const { g, me, seat, setSheet } = useGame();
@@ -44,7 +65,8 @@ export function Mine() {
 
 export function Hand() {
   const { g, me, hand, setSheet, asks } = useGame();
-  if (me.sultan || ['appoint', 'replace', 'ferman'].includes(asks[0]?.type ?? '')) return null;   // seat slots show here instead
+  if (me.sultan) return <div className="hand"><p className="empty-hand">{t('sultanNoHand')}</p></div>;
+  if (['appoint', 'replace', 'ferman'].includes(asks[0]?.type ?? '')) return null;   // seat slots show here instead
   const open = (uid: number) => {
     sfx('tap');
     const c = me.hand.find(x => x.uid === uid)!;

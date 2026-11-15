@@ -46,8 +46,8 @@
     "flavor": "Parga'dan bir balıkçı oğlu, Sultan'ın sağ eli."
   },
   {
-    "id": "mahidevran",
-    "name": "Mahidevran Sultan",
+    "id": "sahsultan",
+    "name": "Şah Sultan",
     "base": {
       "id": "itiraz",
       "name": "İtiraz",
@@ -60,7 +60,7 @@
       "freq": "once",
       "text": "Bir oyuncu seç: gelecek kriz hiçbir yolla Vekil olamaz."
     },
-    "flavor": "İlk gözde, büyük şehzadenin annesi."
+    "flavor": "Yavuz'un kızı; sözü sarayda dinlenir."
   },
   {
     "id": "mustafa",

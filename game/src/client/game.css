@@ -331,15 +331,15 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .st.you .pl i { background: var(--fg); color: var(--bg); padding: 1px 6px 2px; border-radius: 2px; }
 
 /* ---------- shelf: whole cards on one top line (Shelf.tsx: SHELF_CARD 80, back 52) */
-.mine { position: absolute; left: 0; top: 10px; display: flex; gap: 6px; align-items: flex-start; width: auto; grid-template-columns: none; }
+.mine { position: absolute; left: 0; top: 16px; display: flex; gap: 6px; align-items: flex-start; width: auto; grid-template-columns: none; }
 .mine .mc { position: relative; display: grid; justify-items: center; gap: 4px; }
 .mine .mc > .c3-slot { border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.45); }
 .mine .mc small { font: 500 9.5px/1.1 var(--f-ui); color: var(--fg2); text-align: center; white-space: pre-line; }
 .mine .mc.live > .c3-slot { outline: 2px solid var(--gold-hi); outline-offset: 2px; animation: legal 1.6s ease-in-out infinite; }
-.hand { left: 234px; top: 10px; right: auto; overflow: visible; }
-.empty-hand { position: absolute; left: 0; top: 40px; width: 230px; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
-.pr { left: 494px; }
-.pr .slots { left: -260px; top: 1px; width: 252px; }
+.hand { left: 240px; top: 16px; right: auto; overflow: visible; }
+.empty-hand { position: absolute; left: 0; top: 40px; width: 240px; text-align: center; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
+.pr { left: 520px; right: 14px; top: 17px !important; bottom: 15px !important; }
+.pr .slots { left: -280px; top: -1px; width: 248px; }
 .pop > .x-close { right: -13px; top: -13px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: var(--fg); box-shadow: 0 0 0 1px rgba(236,211,138,.45), 0 4px 10px rgba(0,0,0,.4); }
 .pop > .x-close .gl { width: 16px; height: 16px; }
 
@@ -367,10 +367,38 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
     repeating-linear-gradient(-45deg, transparent 0 5.7px, rgba(236,211,138,.26) 5.7px 6.36px); }
 .st .nc > svg.gild { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .st .nc > svg.gild path { stroke: none; vector-effect: non-scaling-stroke; }
-.st .nc > svg.gild .sp { fill: url(#g-gold); opacity: .85; }
 .st .nc > svg.gild .ln { fill: none; stroke: #fff0b4; stroke-width: 1.4; opacity: .9; }
+.st .nc > svg.gild .rim { fill: none; stroke: url(#g-gold); stroke-width: 3; }
+.st .nc .ros { position: absolute; top: 36%; width: 9px; height: 9px; border-radius: 50%; z-index: 1;
+  background: radial-gradient(circle at 35% 30%, #fff0b4, #c6963a 55%, #6e4b12); box-shadow: 0 0 0 1.5px #7a5a14, 0 1px 2px rgba(0,0,0,.4); }
+.st .nc .ros.l { left: -8px; } .st .nc .ros.r { right: -8px; }
 .st .nc > svg.gild .pl { fill: url(#g-gold); }
 .st.sul .nc > svg:first-child path { stroke: #7a5a14; stroke-width: 2.4; }
 .st .kl { left: 50%; right: auto; margin-left: -10.5px; bottom: 3px; }
 .st.vk .kl { bottom: 19px; z-index: 2; }
 .st.vk .of { z-index: 3; }
+
+/* ---------- heads break the arch: the full width above the spring line, and a photo's hard top edge fades out */
+.st .fg.out { clip-path: inset(-40px 2% 62% 2%); }
+.st .fg img { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%); mask-image: linear-gradient(to bottom, transparent, #000 6%); }
+
+/* ---------- the shelf: a faint lattice in the lacquer, three framed panels in relief (Shelf.tsx ShelfZones) */
+.ph > .shelf.zl { background:
+  repeating-linear-gradient(45deg, rgba(201,162,74,.05) 0 1px, transparent 1px 13px),
+  repeating-linear-gradient(-45deg, rgba(201,162,74,.05) 0 1px, transparent 1px 13px),
+  radial-gradient(120% 140% at 50% 0%, var(--lake-2), var(--lake) 70%); }
+.zones { position: absolute; inset: 0; pointer-events: none; }
+.zone { position: absolute; top: 7px; height: 134px; border-radius: 7px;
+  background: linear-gradient(180deg, rgba(255,240,200,.045), rgba(0,0,0,.2));
+  box-shadow: inset 0 0 0 1px rgba(201,162,74,.34), inset 0 1px 0 rgba(255,240,180,.14), inset 0 12px 26px rgba(0,0,0,.3), 0 1px 0 rgba(255,240,180,.05); }
+.zone.mine { left: -10px; width: 242px; }
+.zone.mid { left: 236px; width: 260px; }
+.zone.side { left: 500px; right: -6px; }
+.zone .cn { position: absolute; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none' stroke='%23c9a24a' stroke-linecap='round'%3E%3Cpath d='M1.5 21V9.5C1.5 5 5 1.5 9.5 1.5H21' stroke-width='1.6'/%3E%3Cpath d='M5 15c0-5 3-9.5 9.5-10' stroke-width='1' opacity='.8'/%3E%3Cpath d='M7.5 7.5c1.6-.2 2.6.6 2.4 2.2-1.6.2-2.6-.6-2.4-2.2z' fill='%23c9a24a' stroke='none'/%3E%3Ccircle cx='15.5' cy='4.5' r='1' fill='%23ecd38a' stroke='none'/%3E%3Ccircle cx='4.5' cy='15.5' r='1' fill='%23ecd38a' stroke='none'/%3E%3C/svg%3E") center/contain no-repeat; }
+.zone .cn.tl { left: 3px; top: 3px; }
+.zone .cn.tr { right: 3px; top: 3px; transform: scaleX(-1); }
+.zone .cn.bl { left: 3px; bottom: 3px; transform: scaleY(-1); }
+.zone .cn.br { right: 3px; bottom: 3px; transform: scale(-1); }
+.zone .zlabel { position: absolute; left: 50%; top: -7px; transform: translateX(-50%); padding: 1px 9px; white-space: nowrap;
+  font: 700 10px/12px var(--f-card); letter-spacing: .1em; color: var(--gold-hi); background: var(--lake);
+  border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); }

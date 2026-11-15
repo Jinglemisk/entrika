@@ -106,5 +106,23 @@
     "text": "Nüfuz kazandığında 1 fazla kazan.",
     "flavor": "Padişahın gönlüne giden yolu bilir.",
     "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 18%" }
+  },
+  {
+    "id": "gulaga",
+    "name": "Gül Ağa",
+    "special": "gulaga",
+    "freq": "always",
+    "text": "Entrika elinin sınırı 3 değil 4 olur.",
+    "flavor": "Haremin kapısında her fısıltı ondan geçer.",
+    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 18%" }
+  },
+  {
+    "id": "lokman",
+    "name": "Lokman Ağa",
+    "special": "lokman",
+    "freq": "once",
+    "text": "Oynadığın bir Entrika kartı etkisini gösterince eline geri döner.",
+    "flavor": "Verdiğini geri almayı bilir.",
+    "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 18%" }
   }
 ]

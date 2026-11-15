@@ -61,4 +61,5 @@ These differ from manual v0.7 on Jingle's call; the manual still says the old th
 ## Setup
 
 - **Opening reveal.** Every hidden player sees their Taraf at the start. Traitors also see each other, replacing the eyes-closed step. Everyone gets the same pop-up, so no phone looks different.
-- **Roster cut (2026-11-15).** Mihrimah, Afife Hatun and Esma Hatun are out of the game. That leaves 12 Kul, too few to offer every player two at 8 players, so at 8 everyone is offered one (no choice).
+- **Roster changes (2026-11-15).** Mihrimah, Afife Hatun and Esma Hatun are out. Gül Ağa takes Afife's power (hand limit 4 while face up) and Lokman Ağa takes Esma's (a played card that takes effect returns to hand, once per game), so there are 14 Kul again and every player picks one of two at 8 players.
+- **Mahidevran is replaced by Şah Sultan** (Süleyman's other sister), with the same İtiraz and Sürgün powers. Allegiance is dealt independently of Character, and a mother on the other side from her son Mustafa read as absurd.

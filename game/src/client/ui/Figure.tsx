@@ -12,13 +12,17 @@ export const hasCut = (character: string) => !!PLACE[`char.${character}`]?.niche
 export const cardPlacement = (character: string) => PLACE[`char.${character}`]?.card;
 export const nichePlacement = (character: string) => PLACE[`char.${character}`]?.niche;
 
-// Süleyman's niche: gilt spandrels in the corners above the arch, an inner gold line, and plinths at its foot.
+// Süleyman's niche keeps the arch's shape and adds gilding round it: an outer gold rim, an inner gold line, rosettes
+// where the arch springs, and plinths at its foot.
 const GILD = (
-  <svg viewBox="0 0 100 120" preserveAspectRatio="none" className="gild" aria-hidden="true">
-    <path className="sp" d="M0 0H46C30 9 2 18 1 44Z M100 0H54C70 9 98 18 99 44Z" />
-    <path className="ln" d="M7 120V48C7 28 33 17 50 7C67 17 93 28 93 48V120" />
-    <path className="pl" d="M0 111H11V120H0Z M89 111H100V120H89Z" />
-  </svg>
+  <>
+    <svg viewBox="0 0 100 120" preserveAspectRatio="none" className="gild" aria-hidden="true">
+      <path className="rim" d="M-3.5 120V46C-3.5 19 27 8 50 -4C73 8 103.5 19 103.5 46V120" />
+      <path className="ln" d="M7 120V48C7 28 33 17 50 7C67 17 93 28 93 48V120" />
+      <path className="pl" d="M-5 110H12V120H-5Z M88 110H105V120H88Z" />
+    </svg>
+    <i className="ros l" /><i className="ros r" />
+  </>
 );
 
 /** The niche behind a seat. Behind the figure sit the arch, a lattice for a Vekil (shown by CSS on .vk) and, for

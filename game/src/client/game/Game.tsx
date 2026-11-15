@@ -7,10 +7,10 @@ import type { Action, PID } from '../../engine/index.ts';
 import { actAs, type RoomView } from '../net.ts';
 import { CardDefs } from '../cards/Card.tsx';
 import { buzz, sfx } from '../sound.ts';
-import { Ctx, myAsks, pendingMoment, type Aim, type GameCtx, type HandState, type Picker, type Sheet, type Staged } from './ctx.ts';
+import { Ctx, myAsks, pendingMoment, type Aim, type FreePick, type GameCtx, type HandState, type Picker, type Sheet, type Staged } from './ctx.ts';
 import { Court } from './Court.tsx';
 import { Mizan } from './Mizan.tsx';
-import { Hand, Mine } from './Shelf.tsx';
+import { Hand, Mine, ShelfZones } from './Shelf.tsx';
 import { Prompt } from './Prompt.tsx';
 import { FULL_ASKS, FullAsk, GameOver } from './Full.tsx';
 import { MomentView } from './Moments.tsx';
@@ -30,6 +30,7 @@ export function Game({ room }: { room: RoomView }) {
     sessionStorage.setItem(SEAT_KEY + room.code, String(id));
   };
   const [picker, setPicker] = useState<Picker | null>(null);
+  const [freePick, setFreePick] = useState<FreePick | null>(null);
   const [sheet, setSheet] = useState<Sheet>(null);
   const [sel, setSel] = useState<number[]>([]);
   const [aim, setAim] = useState<Aim | null>(null);
@@ -41,6 +42,7 @@ export function Game({ room }: { room: RoomView }) {
 
   // a fresh hand whenever the question or the viewer changes (prompts set and clear the seat picker themselves)
   useEffect(() => { setSel([]); setAim(null); setStaged([]); setSheet(null); }, [top?.id, seat]);
+  useEffect(() => { setFreePick(null); }, [seat, g.step]);
   // a buzz and a chime when the game turns to you
   const lastAsk = useRef<number | null>(null);
   useEffect(() => {
@@ -60,10 +62,13 @@ export function Game({ room }: { room: RoomView }) {
   }, [g.tracks.loyalty, g.tracks.treason, !!g.winner]);
 
   const act = (a: Action) => actAs(seat, a);
-  const moment = picker ? null : pendingMoment(g);   // picking a seat needs the court
+  const active: Picker | null = freePick
+    ? { legal: freePick.legal, onPick: target => { setFreePick(null); act({ t: 'power', power: freePick.power, target }); } }
+    : picker;
+  const moment = active ? null : pendingMoment(g);   // picking a seat needs the court
   const fullAsk = asks.some(a => FULL_ASKS.includes(a.type));
   const ctx: GameCtx = {
-    room, g, seat, me, asks, act, picker, setPicker, sheet, setSheet, setSeat, moment,
+    room, g, seat, me, asks, act, picker: active, setPicker, freePick, setFreePick, sheet, setSheet, setSeat, moment,
     hand: { mode, sel, setSel, aim, setAim, staged, setStaged },
   };
 
@@ -78,6 +83,7 @@ export function Game({ room }: { room: RoomView }) {
       </div>
       <div className="shelf zl">
         <div className="bd">
+          <ShelfZones />
           <Mine />
           <Hand key={seat} />
           <Prompt />

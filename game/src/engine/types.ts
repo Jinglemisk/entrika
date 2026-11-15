@@ -52,17 +52,18 @@ export interface Play {
   field: Field;                           // the field it counts as
   target: PID;
   recast: boolean;
+  returns: boolean;                       // Lokman Ağa: back to its owner's hand if it takes effect
   movedFrom?: PID;                        // Yön Değiştir moved it here
 }
 
 export type Outcome = 'ok' | 'cancelled' | 'void';
-export interface RevealedPlay extends Omit<Play, 'owner'> {
+export interface RevealedPlay extends Omit<Play, 'owner' | 'returns'> {
   outcome: Outcome;
   note?: string;
 }
 
-/** One card as submitted in a wave: which card, on whom, and optionally the Kul recast. */
-export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field }
+/** One card as submitted in a wave: which card, on whom, optionally the Kul recast, and whether Lokman Ağa sends it back. */
+export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field; returns?: boolean }
 
 export interface Court {
   wave: number;

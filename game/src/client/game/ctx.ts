@@ -21,7 +21,7 @@ export type Sheet =
 
 /** One way to put a hand card down: as printed, or recast by your Kul. */
 export interface Form { as: string; field: Field; recast: boolean }
-export interface Aim extends Form { uid: number }
+export interface Aim extends Form { uid: number; returns: boolean }   // returns: Lokman Ağa sends it back
 export interface Staged extends Aim { target: PID }
 
 /** The hand, shared by the hand, the card pop-up and the prompt: cards picked to discard or keep, and in Tertip the
@@ -36,6 +36,9 @@ export interface HandState {
   setStaged: (s: Staged[]) => void;
 }
 
+/** A free power waiting for its target seat. Kept apart from the ask's picker so calling it off restores that. */
+export interface FreePick { power: string; legal: PID[] }
+
 export interface GameCtx {
   room: RoomView;
   g: Game;
@@ -43,8 +46,10 @@ export interface GameCtx {
   me: Player;
   asks: Ask[];               // what the game waits for from me, most urgent first
   act: (a: Action) => void;
-  picker: Picker | null;
+  picker: Picker | null;                   // what a tap on the court does now: the free power's pick wins over the ask's
   setPicker: (p: Picker | null) => void;
+  freePick: FreePick | null;
+  setFreePick: (f: FreePick | null) => void;
   sheet: Sheet;
   setSheet: (s: Sheet) => void;
   setSeat: (id: PID) => void;

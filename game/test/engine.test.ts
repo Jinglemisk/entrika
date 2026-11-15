@@ -62,7 +62,7 @@ function hands(g: Game, h: Record<number, ReturnType<typeof card>[]>): Game {
   return g;
 }
 /** Everyone with an open wave ask plays what `plays` says for them, or passes. */
-function wave(g: Game, plays: Record<number, { uid: number; target: PID; recastAs?: string; field?: Field }[]>): Game {
+function wave(g: Game, plays: Record<number, { uid: number; target: PID; recastAs?: string; field?: Field; returns?: boolean }[]>): Game {
   for (const a of g.asks.filter(x => x.type === 'wave')) g = act(g, a.to, { t: 'answer', ask: a.id, value: plays[a.to] ?? [] });
   return g;
 }
@@ -316,4 +316,52 @@ test('Matrakçı Nasuh can recast a printed Akıl Hocası into the other field',
   assert.deepEqual(playableForms(g, 3, ak.uid).map(f => [f.field, f.recast]), [['harem', false], ['divan', true]]);
   g = wave(g, { 3: [{ uid: ak.uid, target: 1, recastAs: 'akil-hocasi', field: 'divan' }], 4: [{ uid: m.uid, target: 1 }] });
   assert.deepEqual(lastReveal(g).map(r => [r.as, r.field, r.outcome]), [['akil-hocasi', 'divan', 'ok'], ['muhur', 'divan', 'cancelled']]);
+});
+
+test('Gül Ağa raises the hand limit to 4 while face up; Lokman Ağa returns a card that took effect, once', () => {
+  let g = court({ first: 1, second: 2 });
+  const i = card('iftira', 'harem'), a = card('gozde', 'harem'), b = card('gozde', 'harem');
+  g = hands(g, { 4: [i], 3: [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')], 5: [a, b] });
+  g.players[3].companion = 'gulaga';
+  g.players[3].influence = 2;
+  g.players[5].companion = 'lokman';
+  g = wave(g, { 4: [{ uid: i.uid, target: 3 }], 5: [{ uid: a.uid, target: 1, returns: true }] });
+  assert.equal(g.players[3].hand.length, 4, 'lost 1 Influence, drew to 4, still face up: no discard');
+  assert.ok(!g.asks.some(x => x.type === 'discard'));
+  assert.ok(g.players[5].hand.some(c => c.uid === a.uid), 'the returned card is back in hand');
+  assert.equal(g.players[5].companionUsed, true);
+  g = seen(g);
+  const w = ask(g, 'wave', 5);
+  assert.throws(() => act(g, 5, { t: 'answer', ask: w.id, value: [{ uid: b.uid, target: 1, returns: true }] }), RuleError, 'only once per game');
+});
+
+test('Kulis is offered only when Süleyman still appoints: Sadrazam is asked first', () => {
+  let g = createGame(['S', 'A', 'B', 'C', 'D', 'E'], { seed: 7, sultan: 0, learning: true });
+  for (const p of g.players) if (!p.sultan) p.base = 'used';
+  g.players[1].character = 'ibrahim'; g.players[1].base = 'ready';
+  g.players[2].character = 'rustem'; g.players[2].base = 'ready';
+  g.asks = g.asks.filter(a => a.type !== 'window');
+  advance(g);
+  while (!g.asks.some(a => a.type === 'window' && a.power === 'sadrazam')) g = act(g, g.asks[0].to, { t: 'answer', ask: g.asks[0].id, value: calm(g, g.asks[0]) } as Action);
+  assert.ok(!g.asks.some(a => a.type === 'window' && a.power === 'kulis'), 'Kulis waits for the Sadrazam answer');
+  g = act(g, 1, { t: 'answer', ask: ask(g, 'window', 1).id, value: true });
+  assert.ok(!g.asks.some(a => a.type === 'window' && a.power === 'kulis'), 'Pargalı appoints, so no Kulis');
+  assert.equal(ask(g, 'appoint').to, 1);
+});
+
+test('Saray Hazinesi counts on the crisis that ends the game and breaks the overall tie', () => {
+  let g = court({ first: 1, second: 2 });
+  g.tracks.loyalty = 3;
+  for (const p of g.players) if (!p.sultan) p.side = 'loyalist';
+  g.players[4].influence = 4;
+  g.players[5].influence = 4;
+  g = hands(g, { 4: [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')] });
+  g.players[4].ambition = 'hazine';
+  g.decks.kader = ['h', 'h', 'h', ...g.decks.kader];
+  g = wave(g, {});
+  g = answer(g, 'ferman', null, 0);
+  g = answer(g, 'kaderFirst', [0], 1);
+  g = answer(g, 'kaderSecond', 0, 2);
+  assert.equal(g.step, 'over');
+  assert.deepEqual(g.winner!.overall, [4]);
 });

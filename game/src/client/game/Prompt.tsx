@@ -46,9 +46,21 @@ export const viaKul = (id: string) => ({ icon: <KulHead id={id} />, label: compa
 const name = (g: { players: { name: string }[] }, id: PID | null | undefined) => (id === null || id === undefined ? '' : g.players[id].name);
 
 export function Prompt() {
-  const { asks } = useGame();
+  const { asks, freePick } = useGame();
   const a = asks[0];
-  return <div className="pr">{a ? <AskView key={a.id} a={a} /> : <Waiting />}</div>;
+  return <div className="pr">{freePick ? <FreePickView /> : a ? <AskView key={a.id} a={a} /> : <Waiting />}</div>;
+}
+
+/** A free power (Sürgün, Haber, Faiz, Ganimet) waiting for its target: tap a seat, or call it off. */
+function FreePickView() {
+  const { freePick, setFreePick } = useGame();
+  return (
+    <>
+      <Stp />
+      <p className="vo"><b className="ref">{powerName(freePick!.power)}</b>. {t('free.pick')}<small>{t('tapSeat')}</small></p>
+      <div className="bt"><Btn onClick={() => setFreePick(null)}>{t('btn.cancel')}</Btn></div>
+    </>
+  );
 }
 
 function AskView({ a }: { a: Ask }) {
@@ -333,7 +345,7 @@ function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
   const other: Seat = a.seat === 'first' ? 'second' : 'first';
   const open: SlotState = { id: pick, gone: a.removed };
   const kept: SlotState = { id: g.ministers[other], lock: true };
-  const via = a.reason === 'itiraz' ? viaChar('mahidevran', characterById.mahidevran.base.name) : undefined;
+  const via = a.reason === 'itiraz' ? viaChar('sahsultan', characterById.sahsultan.base.name) : undefined;
   return (
     <>
       <Stp />
@@ -395,7 +407,7 @@ function Kulis({ a }: { a: Ask }) {
 function Objection({ a }: { a: Ask }) {
   const { g, me, act, setPicker } = useGame();
   const [mode, setMode] = useState<null | 'paid' | 'free'>(null);
-  const canFree = readyPowerOf(g, a.to, 'mahidevran', 'base');
+  const canFree = readyPowerOf(g, a.to, 'sahsultan', 'base');
   const cost = (id: PID) => (g.players[id].character === 'mustafa' && !g.learning && g.players[id].favor !== 'locked' ? 2 : RULES.objectionCost);
   const seats = (['first', 'second'] as Seat[]).filter(s => g.ministers[s] !== a.to);   // never your own seat
   const affordable = (free: boolean) => seats.filter(s => free || me.influence >= cost(g.ministers[s]!)).map(s => g.ministers[s]!);
@@ -420,7 +432,7 @@ function Objection({ a }: { a: Ask }) {
       <div className="bt">
         {mode ? <Btn onClick={() => setMode(null)}>{t('btn.back')}</Btn> : <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.pass')}</Btn>}
         {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{minCost}<Em k="influence" s={14} /></small></Btn>}
-        {!mode && canFree && <Btn via={viaChar('mahidevran', characterById.mahidevran.base.name)} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
+        {!mode && canFree && <Btn via={viaChar('sahsultan', characterById.sahsultan.base.name)} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
       </div>
     </>
   );
@@ -457,7 +469,7 @@ function Wave({ a }: { a: Ask }) {
 
   const submit = (plays: typeof staged) => {
     setPicker(null);
-    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}) })) });
+    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}), ...(p.returns ? { returns: true } : {}) })) });
   };
   const cifte = readyPowerOf(g, seat, 'hurrem', 'favor');
   const kul = canRecast(g, seat) && me.companion;

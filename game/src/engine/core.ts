@@ -120,9 +120,12 @@ export function drawIntrigue(g: Game, id: PID, n = 1): number {
 export function discardCard(g: Game, c: CardInst) {
   g.decks.intrigueDiscard.push(c);
 }
+/** The Intrigue hand limit: one more while Gül Ağa is face up. */
+export const handLimit = (g: Game, id: PID) => RULES.handLimit + (companionIs(g, id, 'gulaga') ? 1 : 0);
+
 /** After anything adds cards to a hand: ask for discards down to the hand limit. */
 export function checkHand(g: Game, id: PID) {
-  const over = P(g, id).hand.length - RULES.handLimit;
+  const over = P(g, id).hand.length - handLimit(g, id);
   const existing = g.asks.find(a => a.type === 'discard' && a.to === id);
   if (existing) dropAsk(g, existing.id);
   if (over > 0) ask(g, { to: id, type: 'discard', n: over });
