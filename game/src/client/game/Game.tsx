@@ -84,7 +84,7 @@ export function Game({ room }: { room: RoomView }) {
         </div>
       </div>
       <AnimatePresence><FullAsk key="ask" /></AnimatePresence>
-      <AnimatePresence><PeekPopup key="peek" /></AnimatePresence>
+      <AnimatePresence>{!g.winner && <PeekPopup key="peek" />}</AnimatePresence>
       <AnimatePresence>{sheet && <SheetView key="sheet" />}</AnimatePresence>
       <AnimatePresence>{g.winner && <GameOver key="end" />}</AnimatePresence>
       {room.dev && (fullAsk || g.winner) && <DevSeats />}
