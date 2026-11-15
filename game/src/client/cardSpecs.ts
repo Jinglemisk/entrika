@@ -38,7 +38,8 @@ function build(ref: CardRef): CardSpec {
         kind: 'char', name: d.name, med: 'character', variant: 'v-break', backdrop: 'studio',
         ...(d.sultan ? { pal: 'sultan' as const } : {}),
         ...(place ? { cut: { src: cutSrc(ref.id), ...place } } : { artSvg: { emblem: d.sultan ? 'suleyman' : 'character' } }),
-        bodyHtml: powerHtml('base', d.base.name, d.base.freq, d.base.text) + powerHtml('favor', d.favor.name, d.favor.freq, d.favor.text),
+        bodyHtml: powerHtml('base', d.base.name, d.base.freq, d.base.text) + (d.favor ? powerHtml('favor', d.favor.name, d.favor.freq, d.favor.text) : ''),
+        flavor: d.flavor,
       };
     }
     case 'kul': {

@@ -73,7 +73,7 @@ function Extra({ cardRef, uid, own, close }: { cardRef: CardRef; uid?: number; o
 /** Your Hırs: done, met (opens at the end of the crisis), or what it would unlock. */
 export function AmbitionState() {
   const { me } = useGame();
-  const favor = characterById[me.character].favor.name;
+  const favor = characterById[me.character].favor?.name ?? '';
   if (!me.ambition) return null;
   return <p className="pop-note"><Em k="ambition" s={15} /><span><Refs text={me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor })} /></span></p>;
 }
@@ -152,7 +152,7 @@ export function PowerChips({ id, own, close }: { id: string; own: boolean; close
     <>
       <div className="chips">
         <PowerChip def={ch.base} which="base" state={holder?.base ?? 'ready'} own={own} close={close} />
-        {!g.learning && <PowerChip def={ch.favor} which="favor" state={holder?.favor ?? 'locked'} own={own} close={close} />}
+        {!g.learning && ch.favor && <PowerChip def={ch.favor} which="favor" state={holder?.favor ?? 'locked'} own={own} close={close} />}
       </div>
       {own && !g.learning && <AmbitionState />}
     </>

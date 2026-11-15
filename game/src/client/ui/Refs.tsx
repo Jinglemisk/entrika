@@ -9,7 +9,7 @@ const termWords = new Set((terms.terms as { id: string; stems: string[] }[]).fil
 const names = [
   ...INTRIGUE.map(c => c.name),
   ...COMPANIONS.map(c => c.name),
-  ...CHARACTERS.flatMap(c => (c.sultan ? [c.base.name] : [c.base.name, c.favor.name])),   // Süleyman's "favor" is a rule, not a card
+  ...CHARACTERS.flatMap(c => [c.base.name, ...(c.favor ? [c.favor.name] : [])]),
   ...Object.entries(MISC.treason).filter(([k]) => k !== '1').map(([, v]) => v.name),
 ].filter(n => !termWords.has(n));
 const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');

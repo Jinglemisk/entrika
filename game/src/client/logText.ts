@@ -7,7 +7,7 @@ export function powerLabel(power: string): string {
   if (power === 'cifteOyun' || power === 'yonDegistir' || power) {
     for (const c of Object.values(characterById)) {
       if (c.base.id === power) return c.base.name;
-      if (c.favor.id === power) return c.favor.name;
+      if (c.favor?.id === power) return c.favor.name;
     }
   }
   return power;
@@ -50,7 +50,7 @@ export function logText(g: Game, e: LogEntry): string | null {
       if (p.delta > 0) return t('log.decreeGive', { to: n(p.to), by: n(p.by) });
       if (p.cancelled) return t(`log.decreeCancelled.${p.cancelled}`, { to: n(p.to), by: n(p.by) });
       return t('log.decreeTake', { to: n(p.to), by: n(p.by), lost: p.lost });
-    case 'ambition': return t('log.ambition', { who: n(p.who), name: ambitionById[p.id].name, favor: characterById[g.players[p.who].character].favor.name });
+    case 'ambition': return t('log.ambition', { who: n(p.who), name: ambitionById[p.id].name, favor: characterById[g.players[p.who].character].favor?.name });
     case 'gameOver': return t(p.side === 'traitor' ? 'traitorsWin' : 'loyalistsWin');
     case 'surgunActive': return t('log.surgun', { who: n(p.who) });
     case 'venedikBottom': return t('log.venedik', { who: n(p.who) });

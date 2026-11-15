@@ -9,7 +9,7 @@ const DIR = path.join(import.meta.dirname, '..', 'content');
 const CARD = ['name', 'text', 'flavor'];
 // Files that hold a list of entries with an id, and the text fields of each entry.
 const LISTS: Record<string, string[]> = {
-  characters: ['name', 'base.name', 'base.text', 'favor.name', 'favor.text', 'loyal', 'traitor'],
+  characters: ['name', 'base.name', 'base.text', 'favor.name', 'favor.text', 'loyal', 'traitor', 'flavor'],
   companions: CARD, intrigue: CARD, crises: CARD, ambitions: CARD,
 };
 

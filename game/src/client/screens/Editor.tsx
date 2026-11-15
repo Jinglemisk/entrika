@@ -16,11 +16,12 @@ interface Item { key: string; group: string; file: string; id: string; entry: En
 const NAME: TextField = { path: 'name', label: 'Ad' };
 const TEXT: TextField = { path: 'text', label: 'Metin', long: true };
 const FLAVOR: TextField = { path: 'flavor', label: 'Alt yazı', long: true };
-const CHARACTER: TextField[] = [
+// Süleyman has no Lütuf power and no secret side, so his card shows only the fields he has
+const character = (c: { favor?: unknown; sultan?: boolean }): TextField[] => [
   NAME,
   { path: 'base.name', label: 'Temel güç: adı' }, { path: 'base.text', label: 'Temel güç: metni', long: true },
-  { path: 'favor.name', label: 'Lütuf gücü: adı' }, { path: 'favor.text', label: 'Lütuf gücü: metni', long: true },
-  { path: 'loyal', label: 'Sadık sözü', long: true }, { path: 'traitor', label: 'Hain sözü', long: true },
+  ...(c.favor ? [{ path: 'favor.name', label: 'Lütuf gücü: adı' }, { path: 'favor.text', label: 'Lütuf gücü: metni', long: true }] : []),
+  ...(c.sultan ? [FLAVOR] : [{ path: 'loyal', label: 'Sadık sözü', long: true }, { path: 'traitor', label: 'Hain sözü', long: true }]),
 ];
 const lines = (e: { text: string[] }): TextField[] =>
   [NAME, ...e.text.map((_, i) => ({ path: `text.${i}`, label: `Metin, satır ${i + 1}`, long: true })), FLAVOR];
@@ -29,7 +30,7 @@ const item = (group: string, file: string, id: string, entry: object, fields: Te
   ({ key: `${file}:${id}`, group, file, id, entry: entry as Entry, fields, ref });
 
 const ITEMS: Item[] = [
-  ...CHARACTERS.map(c => item('Karakterler', 'characters', c.id, c, CHARACTER, { t: 'char', id: c.id })),
+  ...CHARACTERS.map(c => item('Karakterler', 'characters', c.id, c, character(c), { t: 'char', id: c.id })),
   ...COMPANIONS.map(c => item('Kullar', 'companions', c.id, c, [NAME, TEXT, FLAVOR], { t: 'kul', id: c.id })),
   ...INTRIGUE.map(c => item('Entrika', 'intrigue', c.id, c, [NAME, TEXT, FLAVOR],
     { t: 'intr', kind: c.id, field: Object.keys(c.copies)[0] as Field })),

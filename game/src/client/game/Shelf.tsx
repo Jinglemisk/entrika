@@ -21,7 +21,7 @@ export function Mine() {
   const start = () => { hold.current = window.setTimeout(() => setSheet({ t: 'secret' }), 160); };
   const stop = () => { if (hold.current) clearTimeout(hold.current); hold.current = null; };
   const ch = characterById[me.character];
-  const live = [ch.base.id, ch.favor.id].some(p => FREE_POWERS[p] && freePowerTargets(g, seat, p));
+  const live = [ch.base.id, ch.favor?.id ?? ''].some(p => FREE_POWERS[p] && freePowerTargets(g, seat, p));
   const pips: PowerState[] = me.sultan
     ? [g.ferman ? 'ready' : 'used', g.tracks.treason >= 2 ? 'used' : 'locked', g.hazineDefteri ? 'ready' : g.tracks.treason >= 3 ? 'used' : 'locked']
     : g.learning ? [me.base] : [me.base, me.favor];

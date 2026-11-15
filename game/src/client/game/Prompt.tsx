@@ -233,7 +233,7 @@ function powerName(power: string) {
   if (power === 'iskender') return companionById.iskender.name;
   for (const c of Object.values(characterById)) {
     if (c.base.id === power) return c.base.name;
-    if (c.favor.id === power) return c.favor.name;
+    if (c.favor?.id === power) return c.favor.name;
   }
   return power;
 }

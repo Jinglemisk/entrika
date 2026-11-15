@@ -13,9 +13,10 @@ export type Freq = 'once' | 'crisis' | 'always' | null;
 export type Art = { src: string; pos?: string } | null;
 
 export interface PowerDef { id: string; name: string; freq: Freq; text: string }
+/** Süleyman has no Lütuf power and no secret side: his card carries a public flavor line instead of the two quotes. */
 export interface CharacterDef {
   id: string; name: string; sultan?: boolean; wildcard?: boolean;
-  base: PowerDef; favor: PowerDef; loyal: string; traitor: string;
+  base: PowerDef; favor?: PowerDef; loyal?: string; traitor?: string; flavor?: string;
 }
 /** Who a card may be played on: any player but Süleyman, only the two Vekils, anyone but yourself, or always yourself. */
 export type TargetRule = 'player' | 'minister' | 'other' | 'self';
