@@ -63,6 +63,7 @@ const ANSWERS: Handlers = {
     must(keep, 'Tutacağın kartı seç.');
     for (const c of p.hand) if (c !== keep) discardCard(g, c);
     p.hand = [keep];
+    checkHand(g, a.to);   // a hand-limit discard owed from before is void now
   },
 
   window(g, a, v) {
@@ -300,7 +301,8 @@ export function freePowerTargets(g: Game, who: PID, power: string): PID[] | null
   if (!def || !FREE_STEPS.includes(g.step)) return null;
   if (readyPower(g, def.character, def.which)?.id !== who) return null;
   if (!def.target) return [];
-  return g.players.filter(p => !p.sultan && p.id !== who && (def.target !== 'otherWithHand' || p.hand.length > 0)).map(p => p.id);
+  const targets = g.players.filter(p => !p.sultan && p.id !== who && (def.target !== 'otherWithHand' || p.hand.length > 0)).map(p => p.id);
+  return targets.length ? targets : null;   // Ganimet with every other hand empty: no button, no picker with nothing to tap
 }
 
 function usePower(g: Game, who: PID, power: string, target?: PID) {
@@ -323,6 +325,7 @@ function usePower(g: Game, who: PID, power: string, target?: PID) {
       p.hand.push(card);
       g.peeks.push({ to: who, c: g.crisisNo, kind: 'stolen', from: target!, card: card.kind });
       checkHand(g, who);
+      checkHand(g, target!);   // the victim may have owed a hand-limit discard counted on the bigger hand
       return;
     }
     case 'faiz': g.faiz = { by: who, on: target! }; return;

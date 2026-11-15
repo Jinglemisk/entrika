@@ -196,7 +196,6 @@ export function PeekBody({ p }: { p: Peek }) {
       return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={110} whole /></div>{words(t('peek.allegiance', { name: n(p.of), side: t(p.side) }))}</div>;
     case 'ambition':
       return <div className="peek"><div className="peek-cards">{p.ambition && <Card spec={spec({ t: 'hirs', id: p.ambition })} width={110} whole />}</div>{words(t('peek.ambition', { name: n(p.of) }))}</div>;
-    case 'kaderDraw': return <div className="peek">{kader(p.cards)}{words(t('peek.kaderDraw'))}</div>;
     case 'discards': return <div className="peek">{p.cards.length ? kader(p.cards) : null}{words(t(`peek.discards.${p.source}`, { name: n(p.of) }) + (p.cards.length ? '' : ' ' + t('peek.noDiscards')))}</div>;
     case 'crisisTop': return <div className="peek"><div className="peek-cards">{p.cards.map(c => <Card key={c} spec={spec({ t: 'crisis', id: c })} width={110} whole />)}</div>{words(t('peek.crisisTop'))}</div>;
     case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: intrigueById[p.card].copies.harem ? 'harem' : 'divan' })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name }))}</div>;

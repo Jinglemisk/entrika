@@ -93,7 +93,6 @@ export type Peek =
   | { to: PID; c: number; kind: 'kaderTop'; cards: Kader[]; source: string }
   | { to: PID; c: number; kind: 'allegiance'; of: PID; side: Side }
   | { to: PID; c: number; kind: 'ambition'; of: PID; ambition: string | null }
-  | { to: PID; c: number; kind: 'kaderDraw'; cards: Kader[] }
   | { to: PID; c: number; kind: 'discards'; of: PID; cards: Kader[]; source: string }
   | { to: PID; c: number; kind: 'crisisTop'; cards: string[] }
   | { to: PID; c: number; kind: 'stolen'; from: PID; card: string }

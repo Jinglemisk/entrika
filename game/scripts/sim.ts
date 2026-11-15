@@ -1,6 +1,6 @@
 // Plays many random games through the engine and checks that each one ends and keeps every card accounted for.
 // Run: node scripts/sim.ts [games]
-import { act, createGame, RuleError, type Game } from '../src/engine/index.ts';
+import { act, createGame, RULES, RuleError, type Game } from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 
 const games = Number(process.argv[2] ?? 500);
@@ -48,8 +48,7 @@ for (let i = 0; i < games; i++) {
     if (g.step !== 'court' && ic !== 30) throw new Error(`game ${i}: intrigue cards ${ic} at ${g.step}/${g.sub}`);
     for (const p of g.players) {
       if (p.influence < 0) throw new Error(`game ${i}: negative influence`);
-      const limit = p.companion === "afife" ? 4 : 3;   // a face-down Afife counts at the next check, not at once
-      if (p.hand.length > limit && !g.asks.some(x => x.type === 'discard' && x.to === p.id)) throw new Error(`game ${i}: hand over limit without a discard ask`);
+      if (p.hand.length > RULES.handLimit && !g.asks.some(x => x.type === 'discard' && x.to === p.id)) throw new Error(`game ${i}: hand over limit without a discard ask`);
     }
     const { first, second } = g.ministers;
     if (first !== null && (first === second || g.players[first].sultan)) throw new Error(`game ${i}: bad ministers`);

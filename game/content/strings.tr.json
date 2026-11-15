@@ -209,7 +209,6 @@
   "peek.kaderTop.venedikPostasi": "Venedik Postası: Kader destesinin üstündeki 3 kart.",
   "peek.allegiance": "{name}: {side}.",
   "peek.ambition": "Haber: {name:gen} Hırsı.",
-  "peek.kaderDraw": "Göz Bebeği: Birinci Vekilin çektiği kartlar.",
   "peek.discards.teftis": "Teftiş: {name:gen} attığı kart.",
   "peek.discards.gozcu": "Gözcü: Birinci Vekil {name:gen} attığı kart.",
   "peek.noDiscards": "Kart atmadı.",

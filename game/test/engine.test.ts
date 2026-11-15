@@ -2,7 +2,9 @@
 // from the manual that would silently break a game if it regressed.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { act, createGame, RuleError, type Action, type Ask, type Field, type Game, type PID } from '../src/engine/index.ts';
+import {
+  act, createGame, freePowerTargets, playableForms, RuleError, type Action, type Ask, type Field, type Game, type PID,
+} from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 import { advance } from '../src/engine/flow.ts';
 
@@ -276,4 +278,42 @@ test('hand limit: drawing over 3 asks for a discard before anything else moves',
   const d = ask(g, 'discard', 3);
   assert.equal(d.type === 'discard' && d.n, 1);
   assert.ok(g.asks.every(a => a.type !== 'ferman'), 'the game waits for the discard');
+});
+
+/** A full game (Kuls, Hırs, Favor) at the first Crisis, with these Characters on seats 1.., hands empty. */
+function fullGame(chars: string[]): Game {
+  let g = createGame(['S', 'A', 'B', 'C', 'D', 'E'], { seed: 7, sultan: 0 });
+  chars.forEach((c, i) => { g.players[i + 1].character = c; });
+  while (g.step === 'setup') g = act(g, g.asks[0].to, { t: 'answer', ask: g.asks[0].id, value: calm(g, g.asks[0]) } as Action);
+  for (const p of g.players) p.hand = [];
+  return g;
+}
+
+test('a hand that shrinks while a hand-limit discard is owed re-counts it (Ganimet, Yakıp Yıkma)', () => {
+  let g = fullGame(['barbaros', 'tahmasp']);
+  g.players[2].favor = 'ready';
+  g.players[1].hand = [card('iftira', 'harem'), card('iftira', 'harem'), card('iftira', 'harem')];
+  g.players[3].hand = [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan'), card('valide', 'divan')];
+  g.asks.push({ id: g.nextAsk++, to: 3, type: 'discard', n: 1 });
+  g = act(g, 2, { t: 'power', power: 'yakipYikma' });
+  g = act(g, 1, { t: 'power', power: 'ganimet', target: 3 });   // the victim drops to 3: owes nothing
+  assert.ok(!g.asks.some(a => a.type === 'discard' && a.to === 3));
+  g = answer(g, 'keepOne', g.players[1].hand[0].uid, 1);          // Barbaros was at 4, keeps 1: owes nothing
+  assert.ok(!g.asks.some(a => a.type === 'discard'));
+});
+
+test('Ganimet can\'t be used while every other hand is empty', () => {
+  const g = fullGame(['barbaros']);
+  assert.equal(freePowerTargets(g, 1, 'ganimet'), null);
+  assert.throws(() => act(g, 1, { t: 'power', power: 'ganimet', target: 2 }), RuleError);
+});
+
+test('Matrakçı Nasuh can recast a printed Akıl Hocası into the other field', () => {
+  let g = court({ first: 1, second: 2 });   // Hazine Açığı opens both fields
+  const ak = card('akil-hocasi', 'harem'), m = card('muhur', 'divan');
+  g = hands(g, { 3: [ak], 4: [m] });
+  g.players[3].companion = 'matrakci';
+  assert.deepEqual(playableForms(g, 3, ak.uid).map(f => [f.field, f.recast]), [['harem', false], ['divan', true]]);
+  g = wave(g, { 3: [{ uid: ak.uid, target: 1, recastAs: 'akil-hocasi', field: 'divan' }], 4: [{ uid: m.uid, target: 1 }] });
+  assert.deepEqual(lastReveal(g).map(r => [r.as, r.field, r.outcome]), [['akil-hocasi', 'divan', 'ok'], ['muhur', 'divan', 'cancelled']]);
 });

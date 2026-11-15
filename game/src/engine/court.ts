@@ -50,10 +50,11 @@ export function playableForms(g: Game, id: PID, uid: number): { as: string; fiel
   const f = effectiveField(g, id, card.field, card.kind);
   if (f && legalTargets(g, id, card.kind).length) out.push({ as: card.kind, field: f, recast: false });
   const r = canRecast(g, id);
-  if (r && (r !== card.kind || !f)) {
+  if (r) {
     for (const named of r === 'akil-hocasi' ? fieldsOpen(g) : [undefined]) {
       const rf = effectiveField(g, id, card.field, r, named);
-      if (rf && legalTargets(g, id, r).length) out.push({ as: r, field: rf, recast: true });
+      // skip a recast that plays exactly like the printed card; Matrakçı may still turn an Akıl Hocası to the other field
+      if (rf && !(r === card.kind && rf === f) && legalTargets(g, id, r).length) out.push({ as: r, field: rf, recast: true });
     }
   }
   return out;
