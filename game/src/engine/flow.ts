@@ -50,7 +50,6 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         g.court = null;
         g.kader = null;
         g.decree = null;
-        g.sorusturma = null;
         for (const p of g.players) {
           p.objected = false;
           p.played = 0;
@@ -221,7 +220,6 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         if (card === 'x') {
           const power = RULES.treasonPowers[String(g.tracks.treason)];
           if (power === 'sorusturma') {
-            g.sorusturma = { investigator: null };
             log(g, 'sorusturma');
             ask(g, { to: g.sultan, type: 'investigator' });
           } else if (power === 'hazineDefteri') {

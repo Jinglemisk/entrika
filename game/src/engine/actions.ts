@@ -36,6 +36,7 @@ const asPid = (g: Game, v: unknown): PID => {
 };
 const notSultan = (g: Game, id: PID) => must(!P(g, id).sultan, 'Süleyman seçilemez.');
 
+// v comes off the network: every handler checks it before use
 type Handlers = { [K in Ask['type']]: (g: Game, a: Extract<Ask, { type: K }>, v: any) => void };
 
 const ANSWERS: Handlers = {
@@ -230,13 +231,11 @@ const ANSWERS: Handlers = {
     g.decks.kaderDiscard.push(a.cards[1 - v]);
   },
 
-  investigator(g, a, v) {
+  investigator(g, _a, v) {
     const id = asPid(g, v);
     notSultan(g, id);
-    g.sorusturma = { investigator: id };
     log(g, 'investigator', { who: id });
     ask(g, { to: id, type: 'investigate' });
-    void a;
   },
 
   investigate(g, a, v) {
@@ -249,7 +248,7 @@ const ANSWERS: Handlers = {
     if (m && m.id !== a.to && m.id !== of) ask(g, { to: m.id, type: 'window', power: 'veliaht', ctx: { of } });
   },
 
-  hazineName(g, a, v) {
+  hazineName(g, _a, v) {
     const id = asPid(g, v);
     notSultan(g, id);
     ensureKader(g, 3);
@@ -258,16 +257,14 @@ const ANSWERS: Handlers = {
     log(g, 'hazineNamed', { who: id });
     const m = readyPower(g, 'mustafa', 'base');
     if (m && m.id !== id) ask(g, { to: m.id, type: 'window', power: 'veliaht', ctx: { cards } });
-    void a;
   },
 
   next() {},
 
-  decree(g, a, v) {
+  decree(g, _a, v) {
     const id = asPid(g, v);
     must(id === g.ministers.first || id === g.ministers.second, 'Vekillerden birini seç.');
     g.decree!.target = id;
-    void a;
   },
 
   venedik(g, a, v) {

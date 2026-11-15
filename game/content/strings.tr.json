@@ -98,7 +98,6 @@
   "wait.for": "Bekleniyor: {names}.",
   "wait.ready": "{n}/{total} hazır.",
   "wait.sealed": "Kartın mühürlendi. Açılışa kadar kimse göremez.",
-  "wait.cantPlay": "Bu dalgada oynayabileceğin kart yok; pas sayıldın.",
   "wait.sultanCourt": "Tertip sürüyor. Dalgada kimse oynamayınca Ferman sırası sende.",
   "wait.kader": "Kader adımı: kimse konuşmaz, kimse kart göstermez.",
   "wait.kulis": "Kulis: {a} ile {b} baş başa konuşuyor.",
@@ -330,5 +329,6 @@
   "log.intrigueReshuffle": "Entrika destesi karıştırıldı.",
   "log.kaderReshuffle": "Kader destesi karıştırıldı.",
   "crisisComing": "Kriz açılıyor",
-  "movedFrom": "Yön Değiştir: {name:abl} geldi"
+  "movedFrom": "Yön Değiştir: {name:abl} geldi",
+  "wait.passed": "Bu dalgada pas. Dalga açılınca yenisi başlar."
 }

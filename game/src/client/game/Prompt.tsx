@@ -71,16 +71,17 @@ function Waiting() {
   if (g.step === 'court' && g.sub === 'wave' && g.court) {
     const total = g.players.length - 1;
     const ready = total - g.asks.filter(a => a.type === 'wave').length;
-    const sealed = g.court.submitted[seat] !== undefined && !g.players[seat].sultan;
+    const mine = g.court.submitted[seat];
+    const sealed = Array.isArray(mine) && mine.length > 0;
     return (
       <>
         <Stp label={t('waveN', { n: g.court.wave })} />
-        <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : sealed ? t('wait.sealed') : t('wait.cantPlay')}</p>
+        <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : sealed ? t('wait.sealed') : t('wait.passed')}</p>
         <div className="wait">
           <span className="dots">{Array.from({ length: total }, (_, i) => <i key={i} className={i < ready ? 'on' : ''} />)}</span>
           {t('wait.ready', { n: ready, total })}{waitingFor.length ? ' ' + t('wait.for', { names: waitingFor.map(id => name(g, id)).join(', ') }) : ''}
         </div>
-        {sealed && !g.players[seat].sultan && g.court.submitted[seat] !== null && <Retract />}
+        {sealed && <Retract />}
       </>
     );
   }

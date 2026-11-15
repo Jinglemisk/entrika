@@ -24,7 +24,7 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
     decks: { intrigue: [], intrigueDiscard: [], kader: [], kaderDiscard: [], crisis: [], crisisUsed: [] },
     tracks: { loyalty: 0, treason: 0 }, ferman: true, crisisNo: 0, crisis: null, step: 'setup', sub: 'companions',
     ministers: { first: null, second: null }, lastMinisters: [], appointer: null, kulis: false, objectionTurn: 0,
-    surgun: { next: null, now: null }, hazineDefteri: false, sorusturma: null, faiz: null,
+    surgun: { next: null, now: null }, hazineDefteri: false, faiz: null,
     court: null, kader: null, decree: null, asks: [], peeks: [], log: [], sicil: [], winner: null,
   };
   g.sultan = opts.sultan ?? Math.floor(shuffleIndex(g, n));

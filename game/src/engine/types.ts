@@ -157,7 +157,6 @@ export interface Game {
   objectionTurn: number;                  // index into the objection order
   surgun: { next: PID | null; now: PID | null };
   hazineDefteri: boolean;                 // owed before the next crisis
-  sorusturma: { investigator: PID | null } | null;
   faiz: { by: PID; on: PID } | null;
   court: Court | null;
   kader: KaderStep | null;
