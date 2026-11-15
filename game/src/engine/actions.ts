@@ -99,7 +99,6 @@ const ANSWERS: Handlers = {
         g.kader!.iskender = true;
         log(g, 'power', { who: a.to, power: 'iskender' });
         return;
-      case 'gozBebegi': spend('base'); g.kader!.watcher = a.to; return;
       case 'gozcu':
         spend('favor');
         g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'discards', of: g.kader!.first, cards: g.kader!.discards.first.slice(), source: 'gozcu' });
@@ -289,7 +288,6 @@ function retract(g: Game, who: PID) {
 export const FREE_POWERS: Record<string, { character: string; which: 'base' | 'favor'; target: 'other' | 'otherWithHand' | null }> = {
   surgun: { character: 'mahidevran', which: 'favor', target: 'other' },
   haber: { character: 'hatice', which: 'favor', target: 'other' },
-  hediye: { character: 'mihrimah', which: 'favor', target: 'other' },
   ganimet: { character: 'barbaros', which: 'base', target: 'otherWithHand' },
   faiz: { character: 'gritti', which: 'base', target: 'other' },
   venedikPostasi: { character: 'gritti', which: 'favor', target: null },
@@ -318,7 +316,6 @@ function usePower(g: Game, who: PID, power: string, target?: PID) {
     case 'haber':
       g.peeks.push({ to: who, c: g.crisisNo, kind: 'ambition', of: target!, ambition: P(g, target!).ambition });
       return;
-    case 'hediye': gain(g, target!, 1, 'hediye'); return;
     case 'ganimet': {
       const from = P(g, target!);
       const i = Math.floor(rand(g) * from.hand.length);

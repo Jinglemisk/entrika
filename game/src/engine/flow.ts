@@ -53,7 +53,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         for (const p of g.players) {
           p.objected = false;
           p.targetedThisCrisis = 0;
-          if (p.companion && !['iskender', 'firuze', 'esma'].includes(p.companion)) p.companionUsed = false;
+          if (p.companion && !['iskender', 'firuze'].includes(p.companion)) p.companionUsed = false;
         }
         g.sicil.push({ c: g.crisisNo, crisis: '', first: null, second: null, result: null, decree: null, events: [] });
         if (g.surgun.now !== null) log(g, 'surgunActive', { who: g.surgun.now });
@@ -176,19 +176,16 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
           const pargali = P(g, a);
           if (pargali.character === 'ibrahim' && !g.learning && pargali.favor !== 'locked') gain(g, a, 1, 'divanNufuzu');
         }
-        g.kader = { iskender: false, watcher: null, drawn: [], passed: [], played: null, discards: { first: [], second: [] }, first, second };
+        g.kader = { iskender: false, drawn: [], passed: [], played: null, discards: { first: [], second: [] }, first, second };
         log(g, 'kaderStart', { first, second });
         g.sub = 'windows';
         if (companionIs(g, first, 'iskender') && !P(g, first).companionUsed) ask(g, { to: first, type: 'window', power: 'iskender' });
-        const m = readyPower(g, 'mihrimah', 'base');
-        if (m && m.id !== first) ask(g, { to: m.id, type: 'window', power: 'gozBebegi' });
         return;
       }
       case 'windows': {
         const n = RULES.kader.draw + (k!.iskender ? 1 : 0);
         ensureKader(g, n);
         k!.drawn = g.decks.kader.splice(0, n);
-        if (k!.watcher !== null) g.peeks.push({ to: k!.watcher, c: g.crisisNo, kind: 'kaderDraw', cards: k!.drawn.slice() });
         g.sub = 'first';
         ask(g, { to: k!.first, type: 'kaderFirst', cards: k!.drawn.slice(), discard: n - 2 });
         return;

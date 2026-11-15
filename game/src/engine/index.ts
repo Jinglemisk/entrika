@@ -2,6 +2,6 @@
 export { createGame, type SetupOptions } from './setup.ts';
 export { act, FREE_POWERS, freePowerTargets } from './actions.ts';
 export { legalTargets, playableForms, waveAllowance, canRecast } from './court.ts';
-export { eligibleList, handLimit, companionUp, clockwise, seatOf, fieldsOpen, readyPowerOf } from './core.ts';
+export { eligibleList, companionUp, clockwise, seatOf, fieldsOpen, readyPowerOf } from './core.ts';
 export * from './types.ts';
 export * from './content.ts';

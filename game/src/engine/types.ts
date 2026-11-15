@@ -52,18 +52,17 @@ export interface Play {
   field: Field;                           // the field it counts as
   target: PID;
   recast: boolean;
-  esma: boolean;
   movedFrom?: PID;                        // Yön Değiştir moved it here
 }
 
 export type Outcome = 'ok' | 'cancelled' | 'void';
-export interface RevealedPlay extends Omit<Play, 'owner' | 'esma'> {
+export interface RevealedPlay extends Omit<Play, 'owner'> {
   outcome: Outcome;
   note?: string;
 }
 
-/** One card as submitted in a wave: which card, on whom, and optionally the Kul recast and Esma Hatun. */
-export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field; esma?: boolean }
+/** One card as submitted in a wave: which card, on whom, and optionally the Kul recast. */
+export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field }
 
 export interface Court {
   wave: number;
@@ -81,7 +80,6 @@ export interface Court {
 
 export interface KaderStep {
   iskender: boolean;
-  watcher: PID | null;                    // Mihrimah with Göz Bebeği
   drawn: Kader[];
   passed: Kader[];
   played: Kader | null;

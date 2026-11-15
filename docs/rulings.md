@@ -6,7 +6,7 @@ The manual (v0.7) leaves some cases open. On a phone each one needs an answer, s
 
 These differ from manual v0.7 on Jingle's call; the manual still says the old thing.
 
-- **No per-crisis Intrigue limit.** Still one card per wave (two with Çifte Oyun), but as many waves as you like. Çifte Oyun and Esma Hatun no longer mention the 2-card limit.
+- **No per-crisis Intrigue limit.** Still one card per wave (two with Çifte Oyun), but as many waves as you like. Çifte Oyun no longer mentions the 2-card limit.
 - **No Loyalist duty in Kader.** Either Vekil may discard or play any card, whatever their side. İskender Çelebi is now just "draw 4, discard 2".
 - **Devam.** A flipped Crisis, each flipped wave and the Kader result stay on every phone until every player, Süleyman too, presses Devam. This replaces Süleyman's "go to the Decree" button.
 
@@ -23,7 +23,6 @@ These differ from manual v0.7 on Jingle's call; the manual still says the old th
 
 - **Two Divan Sırası in one wave** swap twice, which leaves the seats as they were.
 - **Valide'nin Buyruğu before Divan Sırası.** Replacements apply first and follow the player the card was placed on; swaps apply after. This reproduces the manual's Pargalı/Hatice/Rüstem example.
-- **Esma Hatun** is chosen when the card is played. She is spent only if the card took effect; a cancelled or wasted card goes to the discard pile and Esma stays ready.
 - **Yön Değiştir** may move any card played on Rüstem, including his own.
 
 ## Appointment
@@ -40,7 +39,7 @@ These differ from manual v0.7 on Jingle's call; the manual still says the old th
   - Cephe, before the Crisis flips;
   - Kulis and Sadrazam, before the appointment;
   - Feragat, before Objections;
-  - İskender Çelebi and Göz Bebeği, at the start of Kader;
+  - İskender Çelebi, at the start of Kader;
   - Gözcü, after Kader;
   - Veliaht, when Süleyman gets a power;
   - Fısıltı and Himaye, in the Decree.
@@ -55,10 +54,11 @@ These differ from manual v0.7 on Jingle's call; the manual still says the old th
 
 - **Kulisçi** counts other players only.
 - **Hedef Tahtası** counts every card placed on you, whether or not it took effect, including your own Mühürlü Evrak.
-- **Saray Hazinesi** means 3 or more cards at the end of the crisis. With Afife Hatun the limit is 4.
+- **Saray Hazinesi** means 3 or more cards at the end of the crisis.
 - **Kulak Misafiri** counts only if the information card took effect.
 - **Gözden Düşmek** counts only if you actually lost Influence (not at 0, not saved by Himaye or Saray Tabibi).
 
 ## Setup
 
 - **Opening reveal.** Every hidden player sees their Taraf at the start. Traitors also see each other, replacing the eyes-closed step. Everyone gets the same pop-up, so no phone looks different.
+- **Roster cut (2026-11-15).** Mihrimah, Afife Hatun and Esma Hatun are out of the game. That leaves 12 Kul, too few to offer every player two at 8 players, so at 8 everyone is offered one (no choice).

@@ -1,5 +1,5 @@
 // Log entries are stored as keys with arguments; this turns them into Turkish sentences through the string table.
-import { ambitionById, characterById, crisisById, intrigueById, MISC, type Game, type LogEntry } from '../engine/index.ts';
+import { ambitionById, characterById, crisisById, MISC, type Game, type LogEntry } from '../engine/index.ts';
 import { t } from './strings.ts';
 
 export function powerLabel(power: string): string {
@@ -36,7 +36,6 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'waveFlip': return t('log.waveFlip', { wave: p.wave, n: p.n });
     case 'courtEnd': return t('log.courtEnd', { n: p.waves - 1 });
     case 'swapped': return t('log.swapped', { first: n(p.first), second: n(p.second) });
-    case 'esma': return t('log.esma', { who: n(p.who), card: intrigueById[p.card].name });
     case 'playDropped': return t('log.playDropped', { who: n(p.who) });
     case 'kaderStart': return t('log.kaderStart', { first: n(p.first), second: n(p.second) });
     case 'result': return t('log.result', { card: MISC.kader[p.card as 'h'].name, loyalty: p.loyalty, treason: p.treason });

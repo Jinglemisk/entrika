@@ -82,7 +82,6 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
   must(plays.length <= waveAllowance(g, id), 'Bu dalgada bir kart oynayabilirsin.');
   must(new Set(plays.map(x => x.uid)).size === plays.length, 'Aynı kart iki kez oynanamaz.');
   must(plays.filter(x => x.recastAs).length <= 1, 'Kul bu krizde bir kez çevirir.');
-  must(plays.filter(x => x.esma).length <= 1, 'Esma Hatun bir kez kullanılır.');
   return plays.map(wp => {
     const card = p.hand.find(c => c.uid === wp.uid);
     must(card, 'Bu kart elinde değil.');
@@ -95,8 +94,7 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
     const field = effectiveField(g, id, card.field, as, wp.recastAs ? wp.field : undefined);
     must(field, 'Bu kart açık alanın kartı değil.');
     must(legalTargets(g, id, as).includes(wp.target), 'Bu kart o oyuncuya oynanamaz.');
-    if (wp.esma) must(p.companion === 'esma' && companionUp(g, id) && !p.companionUsed, 'Esma Hatun şu an kullanılamaz.');
-    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs, esma: !!wp.esma };
+    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs };
   });
 }
 
@@ -256,16 +254,7 @@ function finishWave(g: Game) {
     if (d < 0) c.drawsOwed[id] = (c.drawsOwed[id] ?? 0) + lose(g, id, -d, 'intrigue');
     if (d > 0) gain(g, id, d, 'intrigue');
   }
-  // Esma Hatun returns a card that took effect; everything else goes to the discard pile
-  c.plays.forEach((pl, i) => {
-    const owner = P(g, pl.owner);
-    if (pl.esma && okAt(i) && owner.companion === 'esma' && !owner.companionUsed) {
-      owner.companionUsed = true;
-      owner.hand.push(pl.card);
-      log(g, 'esma', { who: pl.owner, card: pl.card.kind });
-      checkHand(g, pl.owner);
-    } else discardCard(g, pl.card);
-  });
+  c.plays.forEach(pl => discardCard(g, pl.card));
   for (const [id, n] of Object.entries(c.drawsOwed)) {
     if (n > 0) {
       drawIntrigue(g, Number(id), n);

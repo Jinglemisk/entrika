@@ -2,7 +2,7 @@
 import { cutSrc, nichePlacement } from '../ui/Figure.tsx';
 
 const ROW: [string, number, number][] = [
-  ['hatice', 84, 0], ['mihrimah', 88, 66], ['rustem', 98, 132], ['suleyman', 116, 206], ['hurrem', 94, 306], ['ibrahim', 88, 378], ['mahidevran', 90, 444],
+  ['hatice', 84, 0], ['rustem', 98, 132], ['suleyman', 116, 206], ['hurrem', 94, 306], ['ibrahim', 88, 378], ['mahidevran', 90, 444],
 ];
 
 export function Frieze() {

@@ -60,10 +60,12 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
   g.decks.kader = shuffle(g, [...Array(RULES.kader.hizmet).fill('h'), ...Array(RULES.kader.hiyanet).fill('x')] as Kader[]);
   g.decks.crisis = shuffle(g, CRISES.map(c => c.id));
 
+  // too few Kul for everyone to get the full choice (8 players): everyone gets the same smaller offer
+  const offer = Math.min(RULES.companionChoices, Math.floor(comps.length / (n - 1)));
   for (const p of g.players) {
     if (p.sultan) continue;
     p.hand = g.decks.intrigue.splice(0, RULES.startIntrigue);
-    if (!learning) ask(g, { to: p.id, type: 'companion', offer: comps.splice(0, RULES.companionChoices) });
+    if (!learning) ask(g, { to: p.id, type: 'companion', offer: comps.splice(0, offer) });
   }
   const traitors = g.players.filter(p => p.side === 'traitor').map(p => p.id);
   for (const p of g.players) {

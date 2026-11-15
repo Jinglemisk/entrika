@@ -457,7 +457,7 @@ function Wave({ a }: { a: Ask }) {
 
   const submit = (plays: typeof staged) => {
     setPicker(null);
-    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}), ...(p.esma ? { esma: true } : {}) })) });
+    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}) })) });
   };
   const cifte = readyPowerOf(g, seat, 'hurrem', 'favor');
   const kul = canRecast(g, seat) && me.companion;

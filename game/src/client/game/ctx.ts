@@ -19,9 +19,9 @@ export type Sheet =
   | { t: 'track'; which: 'h' | 'x' }
   | null;
 
-/** One way to put a hand card down: as printed, or recast by your Kul, with Esma Hatun or not. */
+/** One way to put a hand card down: as printed, or or recast by your Kul. */
 export interface Form { as: string; field: Field; recast: boolean }
-export interface Aim extends Form { uid: number; esma: boolean }
+export interface Aim extends Form { uid: number }
 export interface Staged extends Aim { target: PID }
 
 /** The hand, shared by the hand, the card pop-up and the prompt: cards picked to discard or keep, and in Tertip the

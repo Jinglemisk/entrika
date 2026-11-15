@@ -1,6 +1,6 @@
 // The card pop-up: the card itself, as big as the screen allows. The card carries its own state (spent powers, a Kul
 // used or face down, a Hırs done), so beneath it there is only what you can do with it now: discard, keep, play as
-// printed or through your Kul or Esma Hatun, use a power. Seat, secret and private-info sheets share the frame.
+// printed or through your Kul, use a power. Seat, secret and private-info sheets share the frame.
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import {
@@ -104,20 +104,16 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
   const recastUsed = hand.staged.some(s => s.recast);
   const forms = playableForms(g, seat, uid).filter(f => !(f.recast && recastUsed));
   if (!forms.length) return <p className="pop-note bad">{t('pop.cantPlay')}</p>;
-  const esmaReady = me.companion === 'esma' && me.influence > 0 && !me.companionUsed && !hand.staged.some(s => s.esma);
-  const aim = (f: Form, esma: boolean) => done(() => hand.setAim({ ...f, uid, esma }));
+  const aim = (f: Form) => done(() => hand.setAim({ ...f, uid }));
   const kul = me.companion;
   return (
     <div className="pop-acts">
       {forms.map(f => (
         <div key={f.as + f.field} className="pop-row">
-          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f, false)}>
+          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
             {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
             {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
           </Btn>
-          {esmaReady && (
-            <Btn via={{ icon: <KulHead id="esma" />, label: companionById.esma.name }} onClick={aim(f, true)}>{t('pop.withEsma')}</Btn>
-          )}
         </div>
       ))}
     </div>

@@ -97,23 +97,6 @@
     "flavor": "Sultan'ın kız kardeşi, sadrazamın eşi."
   },
   {
-    "id": "mihrimah",
-    "name": "Mihrimah ",
-    "base": {
-      "id": "gozBebegi",
-      "name": "Göz Bebeği",
-      "freq": "once",
-      "text": "Kader'de Birinci Vekilin çektiği kartlara, atmadan önce gizlice bak."
-    },
-    "favor": {
-      "id": "hediye",
-      "name": "Hediye",
-      "freq": "once",
-      "text": "Başka bir oyuncuya kasadan 1 Nüfuz ver."
-    },
-    "flavor": "Güneşle ayın sultanı."
-  },
-  {
     "id": "rustem",
     "name": "Rüstem Paşa",
     "base": {

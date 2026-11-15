@@ -71,7 +71,6 @@ export const favorOn = (g: Game, id: PID, character: string) => {
 /** A Companion works only while its player has at least 1 Influence. */
 export const companionUp = (g: Game, id: PID) => !!P(g, id).companion && P(g, id).influence >= 1;
 export const companionIs = (g: Game, id: PID, comp: string) => P(g, id).companion === comp && companionUp(g, id);
-export const handLimit = (g: Game, id: PID) => (companionIs(g, id, 'afife') ? 4 : RULES.handLimit);
 export const companionDef = (id: string | null) => (id ? companionById[id] : null);
 export const cardName = (kind: string) => intrigueById[kind].name;
 
@@ -123,7 +122,7 @@ export function discardCard(g: Game, c: CardInst) {
 }
 /** After anything adds cards to a hand: ask for discards down to the hand limit. */
 export function checkHand(g: Game, id: PID) {
-  const over = P(g, id).hand.length - handLimit(g, id);
+  const over = P(g, id).hand.length - RULES.handLimit;
   const existing = g.asks.find(a => a.type === 'discard' && a.to === id);
   if (existing) dropAsk(g, existing.id);
   if (over > 0) ask(g, { to: id, type: 'discard', n: over });
