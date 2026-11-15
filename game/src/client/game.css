@@ -62,10 +62,8 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .chip.on { background: var(--s-gold); color: var(--gold-ink); box-shadow: none; }
 .zp .chip.on { background: var(--ink); color: var(--paper-hi); }
 .opts .hint { font: 500 11.5px/1.2 var(--f-ui); color: var(--fg2); }
-.slots-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.slots-mini .slot { height: 40px; grid-template-columns: 26px 1fr; gap: 6px; padding: 0 8px 0 6px; }
-.slots-mini .slot .rn { width: 26px; height: 30px; font-size: 13px; }
-.slots-mini .slot span { font: 800 13px/1.1 var(--f-ui); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pr .slots { left: -316px; top: 1px; width: 300px; }
+.pr .slot { text-align: left; }
 
 /* ---------- full screens */
 .full { z-index: 20; }

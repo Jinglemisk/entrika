@@ -210,9 +210,13 @@ function Appoint({ a }: { a: Ask }) {
     <>
       <Stp />
       <p className="vo">{t(self ? 'ask.appointSadrazam' : 'ask.appoint')}<small>{t('ask.appointHow')}</small></p>
-      <div className="slots-mini">
-        <button type="button" className={`slot ${first !== null ? 'on' : ''}`} onClick={() => setFirst(null)}><i className="rn">I</i><span>{first !== null ? name(g, first) : t('min1')}</span></button>
-        <button type="button" className={`slot ${second !== null ? 'on' : ''}`} onClick={() => setSecond(null)}><i className="rn">II</i><span>{second !== null ? name(g, second) : t('min2')}</span></button>
+      <div className="slots">
+        <button type="button" className={`slot ${first !== null ? 'on' : ''}`} onClick={() => setFirst(null)}>
+          <i className="rn">I</i><div><small>{t('min1')}</small><b>{first !== null ? name(g, first) : t('tapSeatShort')}</b><span>{t('min1Does')}</span></div>
+        </button>
+        <button type="button" className={`slot ${second !== null ? 'on' : ''}`} onClick={() => setSecond(null)}>
+          <i className="rn">II</i><div><small>{t('min2')}</small><b>{second !== null ? name(g, second) : t('tapSeatShort')}</b><span>{t('min2Does')}</span></div>
+        </button>
       </div>
       <div className="bt">
         <Btn pri off={first === null || second === null} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { first, second } }); }}>

@@ -78,7 +78,8 @@ function KulRow() {
 const recastName = (id: string) => intrigueById[id].name;
 
 export function Hand() {
-  const { me, hand, setSheet } = useGame();
+  const { me, hand, setSheet, asks } = useGame();
+  if (me.sultan || asks[0]?.type === 'appoint') return null;   // Süleyman holds no cards; appointing shows the seats here
   const tap = (uid: number) => {
     sfx('tap');
     if (hand.mode === 'view') {

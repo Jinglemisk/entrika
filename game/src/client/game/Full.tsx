@@ -26,7 +26,7 @@ export function FullAsk() {
   const a = asks.find(x => ['companion', 'cephe', 'kaderFirst', 'kaderSecond', 'decree', 'venedik'].includes(x.type));
   if (!a) return null;
   return (
-    <motion.div className="full zl" key={a.id} {...fade}>
+    <motion.div className={`full ${a.type === 'decree' ? 'zp' : 'zl'}`} key={a.id} {...fade}>
       <div className="bd">
         {a.type === 'companion' && <Companion a={a} />}
         {a.type === 'cephe' && <Cephe a={a} />}
@@ -169,7 +169,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
           return (
             <button type="button" key={id} className={`st vk big ${pick === id ? 'pick' : ''}`} style={{ ['--nw' as string]: '150px', ['--nh' as string]: '182px' }} onClick={() => { sfx('tap'); setPick(id); }}>
               <div className="nc"><Figure character={p.character} nw={150} brk={12} /><span className="of">{t(i === 0 ? 'min1' : 'min2')}</span>
-                {pick === id && <span className="delta"><Star n={0} size={40} label={a.delta > 0 ? '+1' : '−1'} /></span>}</div>
+                {pick === id && <span className="delta"><Star n={1} size={40} label={a.delta > 0 ? '+1' : '−1'} /></span>}</div>
               <div className="pl"><b>{p.name}</b><i>{t('nameInfluence', { char: charName(p.character), n: p.influence })}</i></div>
             </button>
           );
