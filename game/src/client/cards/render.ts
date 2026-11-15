@@ -223,6 +223,13 @@ export function freqHtml(freq: Freq): string {
   return `<span class="fq" title="${label}" aria-label="${label}" role="img" data-noterms>${I(ic)}</span>`;
 }
 
+/** The heading row of a power: frequency icon and a name (a Character power), or the frequency in words (a Kul). */
+export function freqRow(freq: Freq | null, name?: string): string {
+  if (!freq && !name) return '';
+  const label = name ? `<b class="pn">${name}</b>` : freq ? `<span class="fl-w">${FQ[freq][1]}</span>` : '';
+  return `<p class="pwh" data-noterms>${freq ? freqHtml(freq) : ''}${label}</p>`;
+}
+
 /** A body paragraph with term icons (T() in the original). */
 export function para(textHtml: string): string {
   return `<p data-terms>${termsInHtml(textHtml)}</p>`;
@@ -235,11 +242,9 @@ export interface PowerMark { state: 'ready' | 'used' | 'locked'; label: string }
 
 /** A Character power. Base and Lütuf look alike (the Lütuf power is the lower one); a mark shows its state in play. */
 export function powerHtml(kind: 'base' | 'favor', name: string, freq: Freq | null, textHtml: string, mark?: PowerMark): string {
-  const lead = freq ? freqHtml(freq) + ' ' : '';
-  const inner = `${lead}<b class="pn">${name}:</b> ${textHtml}`;
   const st = mark && mark.state !== 'ready'
     ? `<span class="pw-st ${mark.state}" title="${esc(mark.label)}">${mark.state === 'locked' ? LOCK : esc(mark.label)}</span>` : '';
-  return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}<p data-terms>${termsInHtml(inner)}</p></div>`;
+  return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}${freqRow(freq, name)}<p data-terms>${termsInHtml(textHtml)}</p></div>`;
 }
 
 /** The ornament between the two powers: a line, a diamond, a line. */
@@ -249,7 +254,9 @@ export const POWER_SEP = '<div class="pw-sep" aria-hidden="true"><i></i></div>';
 export function cardHtml(s: CardSpec): string {
   const { kind, name, med, field, cut, pal, seal } = s;
   const t = T[pal ?? kind];
-  const cy = NAME_Y; // one name line on every card type; windows and plates adapt
+  // one name line on every card type; windows and plates adapt. Character cards sit it higher: two powers and a flavor
+  // line need the taller plate.
+  const cy = kind === 'char' ? NAME_Y - 56 : NAME_Y;
   const wx0 = 50, wx1 = 450, wyt = 72;
   const wys = wyt + (t.win !== rectTop ? 80 : 0);
   const winpath = t.win(wx0, wx1, wyt, wys, cy);

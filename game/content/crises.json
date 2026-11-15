@@ -12,7 +12,7 @@
     "name": "Hazine Açığı",
     "field": "saray",
     "draw": "none",
-    "text": "Bu krizde kimse Entrika kartı çekmez.",
+    "text": "Bu krizde kimse Entrika kartı çekemez.",
     "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "48% 29%" }
   },
   {
@@ -65,7 +65,7 @@
   },
   {
     "id": "istanbul",
-    "name": "İstanbul'da Dedikodu",
+    "name": "Huzursuz Ahali",
     "field": "harem",
     "draw": "everyone",
     "text": "Süleyman dışında herkes birer Entrika kartı çeker.",
