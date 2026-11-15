@@ -16,8 +16,15 @@
 .c3,.c3 *,.c3 *::before,.c3 *::after{box-sizing:border-box}
 .c3 h4{margin:0;text-wrap:balance}
 .c3 p{margin:0}
-.c3 .ico{width:1em;height:1em;flex:none;vertical-align:-.14em}
-.c3 img.ico{display:inline-block;object-fit:contain;vertical-align:-.2em}
+.c3 .ico{width:1em;height:1em;vertical-align:-.2em}
+
+/* Kat'ı icons (iconHtml, Em): the file is tinted for light grounds. On dark grounds (lacquer, the frequency discs,
+   black gem discs) the same silhouette is masked with its light colour --l; on a filled button it takes the label colour. */
+.ico{display:inline-block;flex:none;background:var(--i) center/contain no-repeat}
+.zl .ico{background:var(--l);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.zl .zp .ico,.zl .c3 .ico{background:var(--i) center/contain no-repeat;-webkit-mask:none;mask:none}
+.c3 .fq .ico,.c3.gem-dk :is(.mj,.fj) .ico{background:var(--l);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
+.b.pri .ico{background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 
 .c3 > .base{position:absolute;inset:0;background:var(--leather),radial-gradient(120% 90% at 50% 30%,var(--e1),var(--e2))}
 .c3 .L{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
@@ -28,7 +35,7 @@
 .c3 .mj,.c3 .fj{position:absolute;top:calc(12cqw - 6.1cqw);width:12.2cqw;height:12.2cqw;display:grid;place-items:center;color:#fff6d8;z-index:3;
   font:700 6cqw/1 var(--f-display);text-shadow:0 .3cqw .4cqw rgba(0,0,0,.6)}
 .c3 .mj{left:calc(12cqw - 6.1cqw)}.c3 .fj{right:calc(12cqw - 6.1cqw)}
-.c3 .mj img.ico,.c3 .fj img.ico{width:10.2cqw;height:10.2cqw}
+.c3 .mj .ico,.c3 .fj .ico{width:10.2cqw;height:10.2cqw}
 .c3.t-intr .mj{color:#2a1c12;text-shadow:0 .3cqw 0 rgba(255,255,255,.7)}
 .c3 .nm{position:absolute;left:14cqw;right:14cqw;top:calc(var(--cy) - 6cqw);height:12cqw;display:grid;place-items:center;text-align:center;z-index:3;
   font:700 6.4cqw/1.05 var(--f-display);letter-spacing:.03em;color:#6a1610;text-shadow:0 .25cqw 0 rgba(255,255,255,.65)}
@@ -76,14 +83,12 @@
 /* frequency icon on its bronze disc */
 .c3 .fq{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;vertical-align:-.32em;margin-right:.18em;cursor:help;color:#ffe6a0;
   background:radial-gradient(circle at 38% 32%,#6b5236,#2a1c10);box-shadow:0 0 0 .12em #c99a3a,0 0 0 .2em #3a2208,0 .1em .2em rgba(0,0,0,.4)}
-.c3 .fq .ico{width:1em;height:1em;margin:0;vertical-align:0}
-.c3 .fq img.ico{width:1.12em;height:1.12em;vertical-align:0}
+.c3 .fq .ico{width:1.12em;height:1.12em;margin:0;vertical-align:0}
 
 /* inline terms */
 .c3 .tm{white-space:nowrap;font-weight:700}
 .c3 .tm.ref{text-decoration:underline dashed;text-decoration-thickness:.3cqw;text-underline-offset:.8cqw}
-.c3 .tm .ico{width:1.05em;height:1.05em;margin-right:.14em;vertical-align:-.16em}
-.c3 .tm img.ico{width:1.2em;height:1.2em;margin-right:.12em;vertical-align:-.26em}
+.c3 .tm .ico{width:1.2em;height:1.2em;margin-right:.12em;vertical-align:-.26em}
 
 /* art placement: v-full (Crisis, full art), v-break (Character, cut-out breaking the arch) */
 .c3.v-full .art{left:7cqw;top:7cqw;width:86cqw;height:69cqw;-webkit-mask:none;mask:none;border-radius:1.4cqw 1.4cqw 0 0}
@@ -118,7 +123,7 @@
   :not(.whole) > .c3.sultan .art{left:7.6cqw;top:7.6cqw;width:84.8cqw;height:124.8cqw}
   :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{top:8.8cqw;width:16cqw;height:16cqw;font-size:11cqw}
   :not(.whole) > .c3 .mj{left:8.8cqw}:not(.whole) > .c3 .fj{right:8.8cqw}
-  :not(.whole) > .c3 .mj img.ico,:not(.whole) > .c3 .fj img.ico{width:13cqw;height:13cqw}
+  :not(.whole) > .c3 .mj .ico,:not(.whole) > .c3 .fj .ico{width:13cqw;height:13cqw}
   :not(.whole) > .c3 .nm,:not(.whole) > .c3 .nm.long{top:auto;bottom:9.6cqw;height:14cqw;left:9cqw;right:9cqw;font-size:8.6cqw;line-height:1}
   :not(.whole) > .c3 .nm.long{font-size:7.2cqw}
   :not(.whole) > .c3.back .bw,:not(.whole) > .c3.back .bplate{display:none}
@@ -134,5 +139,5 @@
   :not(.whole) > .c3 .nm,:not(.whole) > .c3 .sname{display:none}
   :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{width:20cqw;height:20cqw;top:7.4cqw;font-size:14cqw}
   :not(.whole) > .c3 .mj{left:7.4cqw}:not(.whole) > .c3 .fj{right:7.4cqw}
-  :not(.whole) > .c3 .mj img.ico,:not(.whole) > .c3 .fj img.ico{width:16cqw;height:16cqw}
+  :not(.whole) > .c3 .mj .ico,:not(.whole) > .c3 .fj .ico{width:16cqw;height:16cqw}
 }

@@ -1,8 +1,17 @@
 // Inline term icons: every game term in card text gets its icon in front of it, driven by art/terms.json.
 // Port of the art page's DOM renderer, working on strings instead of nodes.
 import terms from '../../../../art/terms.json' with { type: 'json' };
+import meaning from '../../../../art/icons/meaning.json' with { type: 'json' };
 
 export const ICON_BASE = '/art/icons/set/';
+
+// Kat'ı icons: each file is the silhouette tinted with its paper colour. On dark grounds the CSS masks the same file
+// with the icon's lacquer colour (--l), from art/icons/meaning.json.
+const LIGHT: Record<string, string> = {};
+for (const c of Object.values(meaning.colours)) for (const t of c.terms) LIGHT[t] = c.lacquer;
+export const iconLight = (name: string) => LIGHT[name] ?? '#efe6cf';
+export const iconHtml = (name: string, size: 48 | 72 | 144 = 48) =>
+  `<i class="ico" style="--i:url(${ICON_BASE}${name}-${size}.png);--l:${iconLight(name)}" aria-hidden="true"></i>`;
 
 interface Term { id: string; stems: string[]; icon: string }
 
@@ -17,7 +26,7 @@ function renderText(text: string): string {
   return text.replace(TERM_RE, (m, stem: string) => {
     const t = byStem.get(stem)!;
     const ref = /^(card|comp|char)\./.test(t.id) ? ' ref' : '';   // another card named in the text: dashed underline
-    return `<span class="tm t-${t.icon}${ref}" data-term="${t.id}"><img class="ico" src="${ICON_BASE}${t.icon}-48.png" alt="" aria-hidden="true">${m}</span>`;
+    return `<span class="tm t-${t.icon}${ref}" data-term="${t.id}">${iconHtml(t.icon)}${m}</span>`;
   });
 }
 

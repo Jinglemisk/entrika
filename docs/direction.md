@@ -38,7 +38,8 @@ The standing brief for the browser game. Read it before starting any work on the
 - **Chosen direction:** B, Ottoman miniature (cream paper, gold leaf, lapis and vermilion, manuscript-style names), with stills graded in direction A's red-to-gold hue at reduced strength. Details live in `art/directions/notes.md`. Art direction and UI are separate tracks: the art page covers cards, icons and stills; UI is built on top of it.
 - Real stills from the show only, never AI-generated or regenerated. Any card showing a person uses a standard posed hero shot, like a cast promo or a roster image: same framing, same eye line, facing the viewer. Event cards use scenes, e.g. a janissary riot for Yeniçeri İsyanı. Online sources are fine.
 - Card layouts are consistent. Characters' two powers sit in clearly separate panels. Card titles and body text are centred. Harem and Divan show as icons only; tooltips carry the words.
-- **Icon style: A, Varak ve mine** (picked 2026-11-14 from the two Codex proposals). Raised gold-leaf emblems with flat enamel inlays and a dark brown outline, readable at 16 px. Every game icon is made from its prompt template in `art/icons/proposals/prompts.md`.
+- **Icon style: Kat'ı** (picked 2026-11-15, replacing Varak ve mine, which read as generic gold specks at text size). Ottoman paper-cut silhouettes, one shape and one colour per term, the colour taken from its meaning (lapis office, vermilion treason, malachite loyalty, gold the Sultan, rose Harem, plum Kader and Hırs). Motifs are court objects, not stock symbols. Each icon is made from the template in `art/icons/proposals/r2/kati/`; `art/icons/README.md` says how the set is built.
+- **Corner gems** carry a contrast disc: black on light frames (Entrika, Kriz, Süleyman's gold), white on dark frames, so the icon stands out.
 - **Terms carry their icons.** Wherever card or UI text names a game term, its icon is drawn in front of it ("play any [icon] Entrika card"). One renderer does this from a data table of terms, Turkish stems and icons, so it also catches suffixed forms.
 - Clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
 - Mobile-first and light. No heavy engines.
@@ -51,7 +52,7 @@ Decided with the designer on 2026-11-13. On 2026-11-15 the look and layout moved
 - **Only cards are ornate.** Card frames keep their gold, enamel and gems. Controls have no bevels, glows or gold gradients, and hierarchy comes from type and spacing.
 - **Table.** The cast stands in one fixed row, in seat order, the same on every phone. Süleyman is in the middle and your own seat is in the row. The tracks and the Crisis run along the top line. Your Taraf, powers, hand and the prompt sit on the lacquer shelf below. Seat order matters because Objections go clockwise and some Crises draw for the players beside Süleyman.
 - **One prompt block,** bottom right: the step, one sentence, at most two buttons. To play a card, tap it and then tap a seat; dragging is optional.
-- **Icons.** Varak ve mine emblems for game terms and cards only. Interface chrome uses line glyphs.
+- **Icons.** Kat'ı emblems for game terms and cards only, dark on paper and light on lacquer. Interface chrome uses line glyphs.
 - **Type.** Alegreya Sans for the interface, Alegreya italic for the game's voice, small caps only on card objects.
 - **Kader deck count** is off the resting screen and shown in Sonuç and Sicil.
 - **Pace.** Süleyman's phone taps "next" to close a step, for example after the Objections or a Tertip wave. After a reveal that had cards in it, the next Tertip wave opens by itself; a wave where nobody plays ends Tertip. No timers.

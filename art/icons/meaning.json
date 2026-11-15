@@ -1,0 +1,82 @@
+{
+  "about": "Kat'ı icon colours by meaning. Each icon is one silhouette; set/ holds it tinted with its paper colour, and the game masks the same file with the lacquer colour on dark grounds (lacquer zones, black gem discs, frequency discs). lapis, vermilion (al), malachite and gold are the UI v3 signal tokens; rose and plum cover the Harem and Kader/Hırs.",
+  "colours": {
+    "lapis": {
+      "paper": "#21408c",
+      "lacquer": "#93abea",
+      "terms": [
+        "divan",
+        "minister",
+        "min1",
+        "min2",
+        "court",
+        "companion",
+        "seal",
+        "once",
+        "percrisis",
+        "always"
+      ]
+    },
+    "vermilion": {
+      "paper": "#a82e1c",
+      "lacquer": "#e88a72",
+      "terms": [
+        "hiyanet",
+        "traitor",
+        "treason",
+        "crisis",
+        "objection",
+        "character",
+        "suspect"
+      ]
+    },
+    "malachite": {
+      "paper": "#2c6a4d",
+      "lacquer": "#7cc39e",
+      "terms": [
+        "hizmet",
+        "loyalist",
+        "loyalty",
+        "trusted"
+      ]
+    },
+    "rose": {
+      "paper": "#9c3d63",
+      "lacquer": "#f0a0c0",
+      "terms": [
+        "harem"
+      ]
+    },
+    "gold": {
+      "paper": "#8a6410",
+      "lacquer": "#ecd38a",
+      "terms": [
+        "suleyman",
+        "influence",
+        "decree",
+        "ferman",
+        "saray"
+      ]
+    },
+    "plum": {
+      "paper": "#5a2a55",
+      "lacquer": "#d0a0d8",
+      "terms": [
+        "kader",
+        "ambition",
+        "favor",
+        "allegiance",
+        "secret"
+      ]
+    },
+    "ink": {
+      "paper": "#241a12",
+      "lacquer": "#efe6cf",
+      "terms": [
+        "intrigue",
+        "base",
+        "death"
+      ]
+    }
+  }
+}

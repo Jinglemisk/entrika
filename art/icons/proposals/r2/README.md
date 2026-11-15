@@ -12,8 +12,8 @@ Motif changes from the current set: Nüfuz star → sorguç plume, Hüküm scale
 
 ## Making an icon
 
-`./gen.sh <style> <name> [<style>/raw/divan.png]` runs one `codex exec` with `<style>/template.txt` and the row for `<name>` in `subjects.tsv` (subject, Çini colours, Mine enamel). Divan is the key, made without a reference; every other icon attaches it. Then `python3 -I post.py <style> <names…>` writes `set/` (512 master and -144/-72/-48), and `python3 -I tint.py` writes the Kat'ı tints. `raw/` is not committed.
+`./gen.sh <style> <name> [<style>/raw/divan.png]` runs one `codex exec` with `<style>/template.txt` and the row for `<name>` in `subjects.tsv` (subject, Çini colours, Mine enamel). Divan is the key, made without a reference; every other icon attaches it. Then `python3 -I post.py <style> <names…>` writes `set/` (512 master and -144/-72/-48), and `python3 -I tint.py` writes the Kat'ı tints. `raw/` is gitignored.
 
-## Open
+## Outcome
 
-Waiting on Jingle's pick. For Kat'ı, redo Kader (reads as a map pin), Hain (blade too thin at 16 px) and Ferman (looks like a lantern), then generate the other 29 terms. The game's chrome already uses line glyphs; the gold chrome icons in `art/icons/set/` should be dropped.
+Jingle picked Kat'ı on 2026-11-15. Kader, Hain and Ferman were redone and the other 15 terms the game uses were added (`kati/subjects2.tsv`, `kati/gen2.sh`; earlier attempts are `raw/*.v1.png`). The masters went to `art/icons/masks/`; see `art/icons/README.md`.

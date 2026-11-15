@@ -3,7 +3,7 @@
 //         -> optional cut-out figure -> over-SVG 2 (cartouche, jewels, plate ornaments) -> HTML text.
 // Under 150 px wide the card switches to a compact frame (.small); under 90 px the name banner goes too (cards.css).
 // Numbers are printed the way the Python original printed them, so the markup matches the art page byte for byte.
-import { ICON_BASE, termsInHtml } from './terms.ts';
+import { ICON_BASE, iconHtml, termsInHtml } from './terms.ts';
 
 export { ICON_BASE };
 
@@ -141,8 +141,8 @@ function cartouche(cy: number, x0 = 26, x1 = 474, h = 64): string {
     + `C${x0 + 22} ${pf(b)} ${x0 + 18} ${pf(b - 12)} ${x0 + 12} ${pf(b - 18)}Q${x0 + 4} ${m + 8} ${x0} ${m}Q${x0 + 4} ${m - 8} ${x0 + 12} ${pf(t + 18)}C${x0 + 18} ${pf(t + 12)} ${x0 + 22} ${pf(t)} ${x0 + 36} ${pf(t)}Z`;
 }
 
-// Varak ve mine icon set: -48 for inline 16 px at 3x, -72 for gems, -144 for medallions
-const I = (name: string, size = 48) => `<img class="ico" src="${ICON_BASE}${name}-${size}.png" alt="" aria-hidden="true" decoding="sync">`;
+// Kat'ı icon set: -48 for inline 16 px at 3x, -72 for gems, -144 for medallions
+const I = (name: string, size: 48 | 72 | 144 = 48) => iconHtml(name, size);
 // the same icon placed inside an SVG drawing (card backs, seals)
 const IMG = (name: string, x: number | string, y: number | string, w: number) =>
   `<image href="${ICON_BASE}${name}-144.png" x="${x}" y="${y}" width="${w}" height="${w}"/>`;
@@ -250,6 +250,10 @@ export const POWER_SEP = '<div class="pw-sep" aria-hidden="true"><i></i></div>';
 export function cardHtml(s: CardSpec): string {
   const { kind, name, med, field, cut, pal, seal } = s;
   const t = T[pal ?? kind];
+  // corner gems: a black disc on light frames (Entrika, Kriz, Süleyman's gold), a white one on dark frames, so the icon
+  // stands out; .gem-dk switches their icons to the light tint
+  const gemDark = t.light === true || pal === 'sultan';
+  const disc = gemDark ? '#17110d' : '#fffdf6';
   // one name line on every card type; windows and plates adapt. Character cards sit it higher: two powers and a flavor
   // line need the taller plate.
   const cy = kind === 'char' ? NAME_Y - 30 : NAME_Y;
@@ -310,9 +314,9 @@ export function cardHtml(s: CardSpec): string {
   const cfill = CART_FILL[t.cart];
   const cpath = cartouche(cy);
   const sealSvg = seal ? `<g filter="url(#f-shadow)">${IMG(seal === 'ok' ? 'hizmet' : 'hiyanet', 196, cy - 106, 108)}</g>` : '';
-  // corner medallions: a thin gold rim round a wide ivory disc, so the icon gets the room
+  // corner medallions: a thin gold rim round a wide contrast disc, so the icon gets the room
   const jewel = (x: number) => `<g transform="translate(${x} 60)" filter="url(#f-shadow)"><circle r="34" fill="url(#g-gold)" filter="url(#f-bevel)"/>`
-    + '<circle r="30.5" fill="url(#j-ivory)"/><circle r="30.5" fill="none" stroke="#3a2208" stroke-width="1"/></g>';
+    + `<circle r="30.5" fill="${disc}"/><circle r="30.5" fill="none" stroke="#3a2208" stroke-width="1"/></g>`;
   const jewels = jewel(60) + (field ? jewel(440) : '');
   const pt = cy + 40;
   const plateOrn = `<g class="fine" fill="url(#g-gold)" filter="url(#f-bevel)"><path d="M44 ${pt}h22l-22 22z"/><path d="M456 ${pt}h-22l22 22z"/>`
@@ -338,8 +342,8 @@ export function cardHtml(s: CardSpec): string {
     + '<g filter="url(#f-bevel)"><rect x="9" y="9" width="482" height="682" rx="20" fill="none" stroke="url(#g-gold)" stroke-width="16"/>'
     + '<rect x="28" y="28" width="444" height="644" rx="12" fill="none" stroke="url(#g-gold)" stroke-width="5"/></g>'
     + `<g class="sname"><path d="${sc}" fill="${cfill}" filter="url(#f-shadow)"/><path d="${sc}" fill="none" stroke="url(#g-gold)" stroke-width="7" filter="url(#f-bevel)"/></g>`
-    + `<g transform="translate(84 84)" filter="url(#f-shadow)"><path d="${BEZEL_L}" fill="url(#g-gold)" filter="url(#f-bevel)"/><circle r="40" fill="url(#j-ivory)"/></g>`
-    + (field ? `<g transform="translate(416 84)" filter="url(#f-shadow)"><path d="${BEZEL_L}" fill="url(#g-gold)" filter="url(#f-bevel)"/><circle r="40" fill="url(#j-ivory)"/></g>` : '')
+    + `<g transform="translate(84 84)" filter="url(#f-shadow)"><path d="${BEZEL_L}" fill="url(#g-gold)" filter="url(#f-bevel)"/><circle r="40" fill="${disc}"/></g>`
+    + (field ? `<g transform="translate(416 84)" filter="url(#f-shadow)"><path d="${BEZEL_L}" fill="url(#g-gold)" filter="url(#f-bevel)"/><circle r="40" fill="${disc}"/></g>` : '')
     + '</svg>';
 
   // ---- HTML text
@@ -352,7 +356,7 @@ export function cardHtml(s: CardSpec): string {
   const py = cy + 42, ph = 650 - cy - 42; // every type: the plate starts right under the name and runs to the bottom margin
   const plate = `<div class="plate big" style="--py:${q(py)};--ph:${q(ph)}"><div class="pin">${s.bodyHtml}`
     + (s.flavor ? `<p class="fl">${s.flavor}</p>` : '') + '</div></div>';
-  const cls = `c3 t-${kind} ${pal ?? ''} ${s.variant ?? ''}`.replaceAll('  ', ' ').trim();
+  const cls = ['c3', `t-${kind}`, pal, gemDark && 'gem-dk', s.variant].filter(Boolean).join(' ');
   return `<article class="${cls}" style="--e1:${t.e1};--e2:${t.e2};--cy:${q(cy)}" aria-label="${esc(name)}">`
     + `<div class="base"></div>${under}${artHtml}${over1}${cutHtml}${over2}${small}`
     + `<span class="mj">${I(med, 72)}</span>${fld}<h4 class="${nmCls}">${name}</h4>${plate}`

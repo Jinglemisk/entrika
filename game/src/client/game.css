@@ -28,7 +28,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 @keyframes legal { 50% { filter: brightness(1.12); } }
 .st .ld { gap: 3px; flex-wrap: nowrap; overflow: hidden; }
 .st .exile { position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-12deg); padding: 2px 6px; background: var(--al); color: #f6ecd6; font: 800 10px/1 var(--f-ui); border-radius: 2px; }
-.st .kl .kl-em { display: block; width: 100%; height: 100%; background: var(--lapis) url(/art/icons/set/companion-48.png) center/80% no-repeat; }
+.st .kl .kl-em { display: block; width: 100%; height: 100%; background: var(--lapis); --m: 80%; }
 .st .sil { position: absolute; }
 
 .mz button.kz { position: absolute; }
@@ -206,7 +206,10 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .b .via-tx { display: grid; gap: 2px; text-align: left; }
 .b .via-tx > span { display: inline-flex; align-items: center; gap: 4px; }
 .b .via-tx small { font: 600 10.5px/1 var(--f-ui); opacity: .75; margin: 0; }
-.head.kul-em { display: block; width: 100%; height: 100%; background: var(--lapis) url(/art/icons/set/companion-48.png) center/70% no-repeat; }
+.head.kul-em { display: block; width: 100%; height: 100%; background: var(--lapis); --m: 70%; }
+.st .kl .kl-em, .head.kul-em { position: relative; }
+.st .kl .kl-em::after, .head.kul-em::after { content: ""; position: absolute; inset: 0; background: var(--ivory);
+  -webkit-mask: url(/art/icons/set/companion-72.png) center/var(--m) no-repeat; mask: url(/art/icons/set/companion-72.png) center/var(--m) no-repeat; }
 .vchip { display: inline-flex; align-items: center; gap: 5px; min-height: 24px; padding: 2px 9px 2px 2px; line-height: 1.2; border-radius: 12px; font: 600 11.5px/1 var(--f-ui); color: var(--fg); box-shadow: inset 0 0 0 1px var(--s-gold); }
 .vchip .head { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; background: var(--sink); }
 

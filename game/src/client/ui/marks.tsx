@@ -1,5 +1,6 @@
-// Small marks from the v3 system: line glyphs for interface chrome, Varak ve mine emblems for game terms, the Nüfuz star.
+// Small marks from the v3 system: line glyphs for interface chrome, Kat'ı emblems for game terms, the Nüfuz star.
 import type { CSSProperties } from 'react';
+import { iconLight } from '../cards/terms.ts';
 
 const G: Record<string, string> = {
   check: 'M4 10.5l4 4 8-9',
@@ -24,7 +25,8 @@ export function Gl({ k, className = '' }: { k: string; className?: string }) {
 
 export const ICON = (name: string, size: 48 | 72 | 144 = 48) => `/art/icons/set/${name}-${size}.png`;
 export function Em({ k, s = 18, style }: { k: string; s?: number; style?: CSSProperties }) {
-  return <img className="em" src={ICON(k, s > 30 ? 144 : s > 20 ? 72 : 48)} alt="" style={{ width: s, height: s, ...style }} />;
+  const v = { '--i': `url(${ICON(k, s > 30 ? 144 : s > 20 ? 72 : 48)})`, '--l': iconLight(k) } as CSSProperties;
+  return <i className="em ico" aria-hidden="true" style={{ width: s, height: s, ...v, ...style }} />;
 }
 
 const STAR = (() => {
