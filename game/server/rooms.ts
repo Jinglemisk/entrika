@@ -2,7 +2,9 @@
 import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { act, createGame, RuleError, RULES, type Action, type Game } from '../src/engine/index.ts';
+import {
+  act, ambitionById, characterById, companionById, createGame, crisisById, intrigueById, RuleError, RULES, type Action, type Game,
+} from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 
 export interface Seat { name: string; token: string; bot: boolean }
@@ -33,8 +35,24 @@ export const setListener = (fn: Listener) => { onChange = fn; };
 export function load() {
   try {
     const list = JSON.parse(fs.readFileSync(FILE, 'utf8')) as Room[];
-    for (const r of list) if (Date.now() - r.touched < MAX_AGE) rooms.set(r.code, r);
+    for (const r of list) {
+      if (Date.now() - r.touched >= MAX_AGE) continue;
+      // a game saved before a card was cut can't be played on: send the room back to its lobby
+      if (r.game && !fitsContent(r.game)) {
+        console.warn(`room ${r.code}: its game uses cards no longer in the content; back to the lobby`);
+        r.game = null;
+      }
+      rooms.set(r.code, r);
+    }
   } catch { /* first run */ }
+}
+
+/** Whether every Character, Kul, Hırs, Intrigue and Crisis card a saved game refers to still exists. */
+function fitsContent(g: Game): boolean {
+  const cards = [...g.decks.intrigue, ...g.decks.intrigueDiscard, ...g.players.flatMap(p => p.hand)];
+  return g.players.every(p => characterById[p.character] && (!p.companion || companionById[p.companion]) && (!p.ambition || ambitionById[p.ambition]))
+    && cards.every(c => intrigueById[c.kind])
+    && [...g.decks.crisis, ...g.decks.crisisUsed].every(id => crisisById[id]);
 }
 let saveTimer: NodeJS.Timeout | null = null;
 function save() {
