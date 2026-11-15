@@ -1,0 +1,67 @@
+{
+  "colours": {
+    "lapis": {
+      "paper": "#21408c",
+      "lacquer": "#93abea",
+      "terms": [
+        "divan",
+        "minister",
+        "court",
+        "companion",
+        "once"
+      ]
+    },
+    "vermilion": {
+      "paper": "#a82e1c",
+      "lacquer": "#e88a72",
+      "terms": [
+        "hiyanet",
+        "traitor",
+        "crisis",
+        "objection",
+        "character"
+      ]
+    },
+    "malachite": {
+      "paper": "#2c6a4d",
+      "lacquer": "#7cc39e",
+      "terms": [
+        "hizmet",
+        "loyalist"
+      ]
+    },
+    "rose": {
+      "paper": "#9c3d63",
+      "lacquer": "#f0a0c0",
+      "terms": [
+        "harem"
+      ]
+    },
+    "gold": {
+      "paper": "#8a6410",
+      "lacquer": "#ecd38a",
+      "terms": [
+        "suleyman",
+        "influence",
+        "decree",
+        "ferman"
+      ]
+    },
+    "plum": {
+      "paper": "#5a2a55",
+      "lacquer": "#d0a0d8",
+      "terms": [
+        "kader",
+        "ambition"
+      ]
+    },
+    "ink": {
+      "paper": "#241a12",
+      "lacquer": "#efe6cf",
+      "terms": [
+        "intrigue"
+      ]
+    }
+  },
+  "about": "Kat'ı tints by meaning. lapis, vermilion (al), malachite and gold are the UI v3 signal tokens (ui/v3/src/ui.css); rose and plum are new for Harem and Kader/Hırs. paper = on cream paper, lacquer = on the dark private shelf."
+}
