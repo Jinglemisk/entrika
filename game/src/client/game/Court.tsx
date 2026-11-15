@@ -71,7 +71,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
         <DevToggle id={id} />
       </div>
       <div className="pl">
-        <b>{characterShort(p.character)}</b>
+        <b className={characterShort(p.character).length > 14 ? 'long' : ''}>{characterShort(p.character)}</b>
         <i>{me ? t('youName', { name: p.name }) : p.name}{offline ? ' ·' : ''}</i>
       </div>
       {!compact && (

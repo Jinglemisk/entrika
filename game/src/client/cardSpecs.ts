@@ -3,14 +3,18 @@
 import {
   ambitionById, characterById, companionById, crisisById, intrigueById, MISC, soleField, type Field, type Kader, type Side,
 } from '../engine/index.ts';
-import { freqHtml, para, powerHtml, type CardSpec } from './cards/render.ts';
+import { POWER_SEP, freqHtml, para, powerHtml, type CardSpec } from './cards/render.ts';
 import { cardPlacement, cutSrc } from './ui/Figure.tsx';
+import { t } from './strings.ts';
 
+type PowerState = 'ready' | 'used' | 'locked';
+/** A card as drawn. In play, cards also carry their state: which powers are spent or locked, a Kul used or face
+ *  down, a Hırs completed. Without a state (gallery, editor) the card is drawn fresh. */
 export type CardRef =
   | { t: 'intr'; kind: string; field: Field }
-  | { t: 'char'; id: string }
-  | { t: 'kul'; id: string }
-  | { t: 'hirs'; id: string }
+  | { t: 'char'; id: string; st?: { base: PowerState; favor?: PowerState } }
+  | { t: 'kul'; id: string; st?: 'used' | 'down' }
+  | { t: 'hirs'; id: string; done?: boolean }
   | { t: 'crisis'; id: string }
   | { t: 'kader'; k: Kader }
   | { t: 'taraf'; side: Side };
@@ -38,7 +42,8 @@ function build(ref: CardRef): CardSpec {
         kind: 'char', name: d.name, med: 'character', variant: 'v-break', backdrop: 'studio',
         ...(d.sultan ? { pal: 'sultan' as const } : {}),
         ...(place ? { cut: { src: cutSrc(ref.id), ...place } } : { artSvg: { emblem: d.sultan ? 'suleyman' : 'character' } }),
-        bodyHtml: powerHtml('base', d.base.name, d.base.freq, d.base.text) + (d.favor ? powerHtml('favor', d.favor.name, d.favor.freq, d.favor.text) : ''),
+        bodyHtml: powerHtml('base', d.base.name, d.base.freq, d.base.text, mark(ref.st?.base))
+          + (d.favor ? POWER_SEP + powerHtml('favor', d.favor.name, d.favor.freq, d.favor.text, mark(ref.st?.favor)) : ''),
         flavor: d.flavor,
       };
     }
@@ -49,11 +54,15 @@ function build(ref: CardRef): CardSpec {
         kind: 'kul', name: d.name, med: 'companion', field,
         ...(d.art ? { art: d.art } : { artSvg: { emblem: 'companion' } }),
         bodyHtml: para((d.freq ? freqHtml(d.freq) + ' ' : '') + d.text), flavor: d.flavor,
+        ...(ref.st ? { stamp: { text: t(`stamp.${ref.st}`), tone: 'used' as const } } : {}),
       };
     }
     case 'hirs': {
       const d = ambitionById[ref.id];
-      return { kind: 'hirs', name: d.name, med: 'ambition', artSvg: 'hirs', bodyHtml: para(d.text + '<br>Tamamlayınca kartı aç: Lütuf gücün açılır.'), flavor: d.flavor };
+      return {
+        kind: 'hirs', name: d.name, med: 'ambition', artSvg: 'hirs', bodyHtml: para(d.text + '<br>Tamamlayınca kartı aç: Lütuf gücün açılır.'), flavor: d.flavor,
+        ...(ref.done ? { stamp: { text: t('stamp.done'), tone: 'ok' as const } } : {}),
+      };
     }
     case 'crisis': {
       const d = crisisById[ref.id];
@@ -78,5 +87,7 @@ function build(ref: CardRef): CardSpec {
     }
   }
 }
+
+const mark = (state?: PowerState) => (state ? { state, label: t(state === 'used' ? 'stamp.used' : 'favorLocked') } : undefined);
 
 export const intrRef = (c: { kind: string; field: Field }): CardRef => ({ t: 'intr', kind: c.kind, field: c.field });

@@ -3,13 +3,14 @@
 // act on it. Every card shares one top line. The prompt block sits on the right.
 import { useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FREE_POWERS, companionById, characterById, freePowerTargets, type PowerState } from '../../engine/index.ts';
+import { FREE_POWERS, characterById, freePowerTargets } from '../../engine/index.ts';
 import { Card, CardBack } from '../cards/Card.tsx';
-import { intrRef, spec } from '../cardSpecs.ts';
+import { intrRef, spec, type CardRef } from '../cardSpecs.ts';
 import { Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
+import { charRef, kulRef } from './Pop.tsx';
 
 export const SHELF_CARD = 80;   // Character, Kul and hand cards (game.css lays the shelf out around this)
 const BACK = 52;               // the Taraf back
@@ -22,38 +23,23 @@ export function Mine() {
   const stop = () => { if (hold.current) clearTimeout(hold.current); hold.current = null; };
   const ch = characterById[me.character];
   const live = [ch.base.id, ch.favor?.id ?? ''].some(p => FREE_POWERS[p] && freePowerTargets(g, seat, p));
-  const pips: PowerState[] = me.sultan
-    ? [g.ferman ? 'ready' : 'used', g.tracks.treason >= 2 ? 'used' : 'locked', g.hazineDefteri ? 'ready' : g.tracks.treason >= 3 ? 'used' : 'locked']
-    : g.learning ? [me.base] : [me.base, me.favor];
-  const kul = me.companion ? companionById[me.companion] : null;
+  const open = (ref: CardRef) => () => { sfx('tap'); setSheet({ t: 'card', ref, own: true }); };
   return (
     <div className="mine">
       <button type="button" className="mc tf" onPointerDown={start} onPointerUp={stop} onPointerLeave={stop} onClick={() => setSheet({ t: 'secret' })}>
         <CardBack kind="taraf" width={BACK} />
         <small>{t(me.sultan ? 'sultanCard' : 'holdSecret')}</small>
       </button>
-      <button type="button" className={`mc ${live ? 'live' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'char', id: me.character }, own: true }); }}>
-        <Card spec={spec({ t: 'char', id: me.character })} width={SHELF_CARD} whole />
-        <Pips states={pips} />
+      <button type="button" className={`mc ${live ? 'live' : ''}`} onClick={open(charRef(g, me.character))}>
+        <Card spec={spec(charRef(g, me.character))} width={SHELF_CARD} whole />
       </button>
-      {kul && (
-        <button type="button" className={`mc ${me.influence < 1 ? 'down' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'kul', id: kul.id }, own: true }); }}>
-          <Card spec={spec({ t: 'kul', id: kul.id })} width={SHELF_CARD} whole />
-          <Pips states={[kulState()]} />
+      {me.companion && (
+        <button type="button" className="mc" onClick={open(kulRef(me))}>
+          <Card spec={spec(kulRef(me))} width={SHELF_CARD} whole />
         </button>
       )}
     </div>
   );
-
-  function kulState(): PowerState {
-    if (!kul || me.influence < 1) return 'locked';
-    if (kul.freq !== 'always' && me.companionUsed) return 'used';
-    return 'ready';
-  }
-}
-
-function Pips({ states }: { states: PowerState[] }) {
-  return <span className="pips">{states.map((s, i) => <i key={i} className={s} />)}</span>;
 }
 
 export function Hand() {

@@ -23,6 +23,7 @@ export interface CardSpec {
   bodyHtml: string;
   flavor?: string;
   seal?: 'ok' | 'broken';
+  stamp?: { text: string; tone: 'used' | 'ok' };                 // a state stamped across the picture (Kul used, Hırs done)
   pal?: 'sultan';
   variant?: string;
 }
@@ -227,13 +228,22 @@ export function para(textHtml: string): string {
   return `<p data-terms>${termsInHtml(textHtml)}</p>`;
 }
 
-/** A Character power: plain for the base power, italic for the Hırs (favor) power. */
-export function powerHtml(kind: 'base' | 'favor', name: string, freq: Freq | null, textHtml: string): string {
+const LOCK = '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4.5" y="9" width="11" height="8" rx="1.5"/><path d="M7 9V6.5a3 3 0 016 0V9"/></svg>';
+
+/** The state of a power in play: used powers are faded and labelled, a locked Lütuf power carries a lock. */
+export interface PowerMark { state: 'ready' | 'used' | 'locked'; label: string }
+
+/** A Character power. Base and Lütuf look alike (the Lütuf power is the lower one); a mark shows its state in play. */
+export function powerHtml(kind: 'base' | 'favor', name: string, freq: Freq | null, textHtml: string, mark?: PowerMark): string {
   const lead = freq ? freqHtml(freq) + ' ' : '';
-  let inner = `${lead}<b class="pn">${name}:</b> ${textHtml}`;
-  if (kind === 'favor') inner = `<i>${inner}</i>`;
-  return `<div class="pw ${kind}"><p data-terms>${termsInHtml(inner)}</p></div>`;
+  const inner = `${lead}<b class="pn">${name}:</b> ${textHtml}`;
+  const st = mark && mark.state !== 'ready'
+    ? `<span class="pw-st ${mark.state}" title="${esc(mark.label)}">${mark.state === 'locked' ? LOCK : esc(mark.label)}</span>` : '';
+  return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}<p data-terms>${termsInHtml(inner)}</p></div>`;
 }
+
+/** The ornament between the two powers: a line, a diamond, a line. */
+export const POWER_SEP = '<div class="pw-sep" aria-hidden="true"><i></i></div>';
 
 // ------------------------------------------------------------------ the card
 export function cardHtml(s: CardSpec): string {
@@ -341,7 +351,8 @@ export function cardHtml(s: CardSpec): string {
   const cls = `c3 t-${kind} ${pal ?? ''} ${s.variant ?? ''}`.replaceAll('  ', ' ').trim();
   return `<article class="${cls}" style="--e1:${t.e1};--e2:${t.e2};--cy:${q(cy)}" aria-label="${esc(name)}">`
     + `<div class="base"></div>${under}${artHtml}${over1}${cutHtml}${over2}${small}`
-    + `<span class="mj">${I(med, 72)}</span>${fld}<h4 class="${nmCls}">${name}</h4>${plate}</article>`;
+    + `<span class="mj">${I(med, 72)}</span>${fld}<h4 class="${nmCls}">${name}</h4>${plate}`
+    + (s.stamp ? `<span class="stamp ${s.stamp.tone}">${esc(s.stamp.text)}</span>` : '') + '</article>';
 }
 
 // ------------------------------------------------------------------ card backs

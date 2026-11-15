@@ -1,27 +1,46 @@
-// The card pop-up: the card itself, centred and big enough to read, and beneath it only what the card can't say: who it
-// may target, the state of its powers, and the buttons for what you can do with it right now (discard, keep, play as
-// printed or through your Kul or Esma Hatun, use a power). Seat, secret and private-info sheets share the frame.
+// The card pop-up: the card itself, as big as the screen allows. The card carries its own state (spent powers, a Kul
+// used or face down, a Hırs done), so beneath it there is only what you can do with it now: discard, keep, play as
+// printed or through your Kul or Esma Hatun, use a power. Seat, secret and private-info sheets share the frame.
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import {
-  FREE_POWERS, MISC, characterById, companionById, crisisById, freePowerTargets, intrigueById,
-  playableForms, waveAllowance, type PowerDef, type PowerState,
+  FREE_POWERS, characterById, companionById, freePowerTargets, intrigueById, playableForms, waveAllowance,
+  type Game, type PID, type Player,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec, type CardRef } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { KulHead } from '../ui/Figure.tsx';
-import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
-import { useGame, type Form } from './ctx.ts';
+import { useGame, type Form, type GameCtx } from './ctx.ts';
 
-const TARGET_ICON = { player: 'court', minister: 'minister', other: 'court', self: 'character' } as const;
-export const POP_CARD = 178;   // one card; two side by side use POP_PAIR
-export const POP_PAIR = 162;
+/** Card widths in a pop-up: as big as the 393 px stage allows, a little smaller when a row sits beneath. */
+export const POP_BIG = 258;
+export const POP_CARD = 226;
 
-/** The pop-up frame: dimmed table behind, the card(s) centred, extra info beneath, tap outside to close. */
+// ---------- cards as they stand in play
+
+/** A Character card showing which of its powers are spent or still locked. */
+export function charRef(g: Game, character: string): CardRef {
+  const p = g.players.find(x => x.character === character);
+  if (!p) return { t: 'char', id: character };
+  if (p.sultan) return { t: 'char', id: character, st: { base: g.ferman ? 'ready' : 'used' } };
+  return { t: 'char', id: character, st: { base: p.base, favor: g.learning ? 'locked' : p.favor } };
+}
+/** A player's Kul card, stamped when it is face down (0 Influence) or spent. */
+export function kulRef(p: Player): CardRef {
+  const c = companionById[p.companion!];
+  const st = p.influence < 1 ? 'down' : c.freq !== 'always' && p.companionUsed ? 'used' : undefined;
+  return { t: 'kul', id: c.id, ...(st ? { st } : {}) };
+}
+/** Your Hırs card, stamped once completed. */
+export const hirsRef = (p: Player): CardRef => ({ t: 'hirs', id: p.ambition!, done: p.ambitionMet || p.ambitionShown });
+
+// ---------- the frame
+
+/** Dimmed table behind, the card(s) centred, anything else beneath, tap outside to close. */
 export function PopShell({ zone = 'zl', className = '', onClose, cards, children }: {
   zone?: 'zl' | 'zp'; className?: string; onClose?: () => void; cards?: ReactNode; children?: ReactNode;
 }) {
@@ -38,72 +57,39 @@ export function PopShell({ zone = 'zl', className = '', onClose, cards, children
 }
 
 export function CardPop({ cardRef, uid, own }: { cardRef: CardRef; uid?: number; own?: boolean }) {
-  const { setSheet } = useGame();
-  const close = () => setSheet(null);
+  const ctx = useGame();
+  const close = () => ctx.setSheet(null);
+  const below = cardRef.t === 'intr' && uid !== undefined ? handActions(ctx, uid, close)
+    : cardRef.t === 'char' && own ? powerButtons(ctx, cardRef.id, close)
+    : null;
   return (
-    <PopShell onClose={close} cards={<Card spec={spec(cardRef)} width={POP_CARD} />}>
-      <Extra cardRef={cardRef} uid={uid} own={own} close={close} />
+    <PopShell onClose={close} cards={<Card spec={spec(cardRef)} width={below ? POP_CARD : POP_BIG} />}>
+      {below}
     </PopShell>
   );
 }
 
-/** What the card face can't show. Kader and Taraf cards say everything themselves. */
-function Extra({ cardRef, uid, own, close }: { cardRef: CardRef; uid?: number; own?: boolean; close: () => void }) {
-  switch (cardRef.t) {
-    case 'intr': {
-      const def = intrigueById[cardRef.kind];
-      return (
-        <>
-          <p className="pop-meta"><Em k={TARGET_ICON[def.target]} s={15} />{t(`target.${def.target}`)}</p>
-          {uid !== undefined && <HandActions uid={uid} close={close} />}
-        </>
-      );
-    }
-    case 'char': return <PowerChips id={cardRef.id} own={!!own} close={close} />;
-    case 'kul': return <KulState id={cardRef.id} own={!!own} />;
-    case 'crisis': {
-      const c = crisisById[cardRef.id];
-      return <p className="pop-meta"><Em k={c.field} s={15} />{t(`fieldRule.${c.field}`)}</p>;
-    }
-    case 'hirs': return own ? <AmbitionState /> : null;
-    default: return null;
-  }
-}
+// ---------- a card in your hand: what you can do with it now
 
-/** Your Hırs: done, met (opens at the end of the crisis), or what it would unlock. */
-export function AmbitionState() {
-  const { me } = useGame();
-  const favor = characterById[me.character].favor?.name ?? '';
-  if (!me.ambition) return null;
-  return <p className="pop-note"><Em k="ambition" s={15} /><span><Refs text={me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor })} /></span></p>;
-}
-
-// ---------- a card in your hand
-
-function HandActions({ uid, close }: { uid: number; close: () => void }) {
-  const { g, seat, me, hand, asks } = useGame();
+function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: () => void): ReactNode {
   const done = (f: () => void) => () => { sfx('tap'); f(); close(); };
   if (hand.mode === 'discard') {
     const a = asks[0];
     const n = a?.type === 'discard' ? a.n : 0;
     const on = hand.sel.includes(uid);
-    const full = !on && hand.sel.length >= n;
     return (
       <div className="pop-acts">
-        <Btn pri={!on} off={full} onClick={done(() => hand.setSel(on ? hand.sel.filter(x => x !== uid) : [...hand.sel, uid]))}>
-          {t(on ? 'pop.undiscard' : 'pop.discard')}
+        <Btn pri={!on} off={!on && hand.sel.length >= n} onClick={done(() => hand.setSel(on ? hand.sel.filter(x => x !== uid) : [...hand.sel, uid]))}>
+          {t(on ? 'pop.undiscard' : 'pop.discard')} <small>{hand.sel.length}/{n}</small>
         </Btn>
-        <span className="pop-note">{t('pop.discardCount', { n: hand.sel.length, total: n })}</span>
       </div>
     );
   }
-  if (hand.mode === 'keep') {
-    return <div className="pop-acts"><Btn pri onClick={done(() => hand.setSel([uid]))}>{t('btn.keep')}</Btn></div>;
-  }
+  if (hand.mode === 'keep') return <div className="pop-acts"><Btn pri onClick={done(() => hand.setSel([uid]))}>{t('btn.keep')}</Btn></div>;
   const sealed = g.court?.submitted[seat];
   const mine = Array.isArray(sealed) ? sealed.find(x => x.uid === uid) : undefined;
   if (mine) return <p className="pop-note">{t('pop.sealedOn', { name: g.players[mine.target].name })}</p>;
-  if (hand.mode !== 'play') return <p className="pop-note">{t('pop.playsInCourt')}</p>;
+  if (hand.mode !== 'play') return null;
 
   const staged = hand.staged.find(s => s.uid === uid);
   if (staged) {
@@ -138,73 +124,23 @@ function HandActions({ uid, close }: { uid: number; close: () => void }) {
   );
 }
 
-// ---------- a Character's powers: one chip each, its state, and Kullan when it can be used now
+// ---------- your Character: a button for each power you can use right now
 
-const FREQ_ICON = { once: 'once', crisis: 'percrisis', always: 'always' } as const;
-const STATE_TEXT = (s: PowerState) => t(s === 'used' ? 'used' : s === 'locked' ? 'favorLocked' : 'ready');
-
-export function PowerChips({ id, own, close }: { id: string; own: boolean; close: () => void }) {
-  const { g } = useGame();
-  const ch = characterById[id];
-  if (ch.sultan) return <SultanChips />;
-  const holder = g.players.find(p => p.character === id);
+function powerButtons({ g, seat, act, setPicker }: GameCtx, character: string, close: () => void): ReactNode {
+  const ch = characterById[character];
+  const usable = [ch.base, ch.favor].filter(d => d && FREE_POWERS[d.id] && freePowerTargets(g, seat, d.id));
+  if (!usable.length) return null;
+  const use = (power: string) => () => {
+    close();
+    const targets = freePowerTargets(g, seat, power)!;
+    if (FREE_POWERS[power].target) setPicker({ legal: targets, onPick: (target: PID) => { setPicker(null); act({ t: 'power', power, target }); } });
+    else act({ t: 'power', power });
+  };
   return (
-    <>
-      <div className="chips">
-        <PowerChip def={ch.base} which="base" state={holder?.base ?? 'ready'} own={own} close={close} />
-        {!g.learning && ch.favor && <PowerChip def={ch.favor} which="favor" state={holder?.favor ?? 'locked'} own={own} close={close} />}
-      </div>
-      {own && !g.learning && <AmbitionState />}
-    </>
-  );
-}
-
-function PowerChip({ def, which, state, own, close }: { def: PowerDef; which: 'base' | 'favor'; state: PowerState; own: boolean; close: () => void }) {
-  const { g, seat, act, setPicker } = useGame();
-  const free = own && FREE_POWERS[def.id] ? freePowerTargets(g, seat, def.id) : null;
-  if (free) {
-    const use = () => {
-      close();
-      if (FREE_POWERS[def.id].target) setPicker({ legal: free, onPick: target => { setPicker(null); act({ t: 'power', power: def.id, target }); } });
-      else act({ t: 'power', power: def.id });
-    };
-    return <Btn pri onClick={use}>{t('btn.use')}: {def.name}{FREE_POWERS[def.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>;
-  }
-  return (
-    <span className={`pchip ${state}`}>
-      <Em k={which} s={15} /><b>{def.name}</b>{def.freq && <Em k={FREQ_ICON[def.freq]} s={13} />}<i>{STATE_TEXT(state)}</i>
-    </span>
-  );
-}
-
-function SultanChips() {
-  const { g } = useGame();
-  const tr = g.tracks.treason;
-  const chip = (icon: string, name: string, state: PowerState, sub: string) => (
-    <span key={name} className={`pchip ${state}`}><Em k={icon} s={15} /><b>{name}</b><i>{sub}</i></span>
-  );
-  return (
-    <div className="chips">
-      {chip('ferman', characterById.suleyman.base.name, g.ferman ? 'ready' : 'used', t(g.ferman ? 'fermanReady' : 'fermanUsed'))}
-      {chip('treason', MISC.treason.sorusturma.name, tr >= 2 ? 'used' : 'locked', t(tr >= 2 ? 'trackPowerTaken' : 'opensAt', { n: 2 }))}
-      {chip('treason', MISC.treason.hazineDefteri.name, g.hazineDefteri ? 'ready' : tr >= 3 ? 'used' : 'locked',
-        t(g.hazineDefteri ? 'hazinePending' : tr >= 3 ? 'trackPowerTaken' : 'opensAt', { n: 3 }))}
+    <div className="pop-acts">
+      {usable.map(d => (
+        <Btn key={d!.id} pri onClick={use(d!.id)}>{t('btn.use')}: {d!.name}{FREE_POWERS[d!.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>
+      ))}
     </div>
-  );
-}
-
-// ---------- a Kul
-
-export function KulState({ id, own }: { id: string; own: boolean }) {
-  const { g } = useGame();
-  const c = companionById[id];
-  const holder = g.players.find(p => p.companion === id);
-  const state = !holder ? null : holder.influence < 1 ? t('kulDown') : c.freq !== 'always' && holder.companionUsed ? t(c.recast ? 'kulUsedCrisis' : 'used') : t('ready');
-  return (
-    <>
-      <p className="pop-meta">{c.freq && <Em k={FREQ_ICON[c.freq]} s={15} />}{t(`freq.${c.freq}`)}{state ? ` · ${state}` : ''}</p>
-      {own && c.recast && <p className="pop-note"><span><Refs text={t('pop.kulHow', { card: intrigueById[c.recast].name })} /></span></p>}
-      {own && <p className="pop-note">{t('pop.kulUp')}</p>}
-    </>
   );
 }
