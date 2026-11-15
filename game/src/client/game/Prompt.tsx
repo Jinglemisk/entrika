@@ -9,6 +9,7 @@ import {
 import { actAs } from '../net.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head, KulHead } from '../ui/Figure.tsx';
+import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
@@ -254,7 +255,7 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   return (
     <>
       <Stp />
-      <p className="vo"><b>{powerName(a.power)}.</b> {t(`window.${a.power}`, ctxVars(g, a))}{picking && <small>{t('tapSeat')}</small>}</p>
+      <p className="vo"><b className="ref">{powerName(a.power)}</b>. <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />{picking && <small>{t('tapSeat')}</small>}</p>
       <div className="bt">
         <Btn onClick={() => { setPicker(null); answer(false); }}>{t('btn.skip')}</Btn>
         {!picking && <Btn pri via={powerVia(g, a)} onClick={useIt}>{t('btn.use')}</Btn>}
@@ -473,8 +474,8 @@ function Wave({ a }: { a: Ask }) {
       )}
       {!aim && !staged.length && (cifte || kul) && (
         <div className="opts">
-          {cifte && <span className="vchip"><Head character="hurrem" />{t('hint.cifte')}</span>}
-          {kul && <span className="vchip"><KulHead id={kul} />{t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast!].name })}</span>}
+          {cifte && <span className="vchip"><Head character="hurrem" /><span><Refs text={t('hint.cifte')} /></span></span>}
+          {kul && <span className="vchip"><KulHead id={kul} /><span><Refs text={t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast!].name })} /></span></span>}
         </div>
       )}
       <div className="bt">

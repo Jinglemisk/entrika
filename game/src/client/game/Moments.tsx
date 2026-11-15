@@ -7,6 +7,7 @@ import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
+import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { Slots } from './Mizan.tsx';
@@ -67,7 +68,7 @@ function WaveMoment() {
             <span className={`wv-out ${r.outcome}`} title={outcomeText(r)}><Gl k={OUTCOME_ICON[r.outcome]} /></span>
           </div>
           <span className="wv-to"><Gl k="next" /><Who id={r.target} /></span>
-          {outcomeText(r) !== t('outcome.ok') && <span className={`wv-why ${r.outcome !== 'ok' ? 'bad' : ''}`}>{outcomeText(r)}</span>}
+          {outcomeText(r) !== t('outcome.ok') && <span className={`wv-why ${r.outcome !== 'ok' ? 'bad' : ''}`}><Refs text={outcomeText(r)} /></span>}
         </motion.div>
       ))}
     </div>

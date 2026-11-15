@@ -215,7 +215,6 @@
   "youLoyalist": "Sadıksın.",
   "sultanSecret": "Sen Süleyman'sın.",
   "sultanSecretWhy": "Herkes senin sadık olduğunu bilir. Taraf ve Hırs kartın yok; İhanet yolunun güçleri senin.",
-  "releaseToClose": "Parmağını kaldırınca kapanır.",
   "noSecrets": "Henüz gizli bir şey görmedin.",
   "peek.traitors": "Öteki Hainler: {names}.",
   "peek.alone": "Tek Hain sensin.",
@@ -350,5 +349,6 @@
   "wait.toCourt": "İtirazlar bitti. Herkes konuşsun; {name} Tertip'i açacak.",
   "ack.waveN": "{n}. dalga açıldı: {k} kart.",
   "ask.objectCost": "Bir Vekili indirtmek {cost} Nüfuz.",
-  "pop.sealedOn": "Bu kartı {name:dat} mühürledin. Dalga açılana kadar Kartı geri al ile geri çekebilirsin."
+  "pop.sealedOn": "Bu kartı {name:dat} mühürledin. Dalga açılana kadar Kartı geri al ile geri çekebilirsin.",
+  "track.decreeGive": "+1 Nüfuz"
 }

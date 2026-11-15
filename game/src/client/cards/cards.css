@@ -63,6 +63,7 @@
 
 /* inline terms */
 .c3 .tm{white-space:nowrap;font-weight:700}
+.c3 .tm.ref{text-decoration:underline dashed;text-decoration-thickness:.3cqw;text-underline-offset:.8cqw}
 .c3 .tm .ico{width:1.05em;height:1.05em;margin-right:.14em;vertical-align:-.16em}
 .c3 .tm img.ico{width:1.2em;height:1.2em;margin-right:.12em;vertical-align:-.26em}
 
@@ -88,25 +89,25 @@
 .c3.b-crisis .bw,.c3.b-kader .bw,.c3.b-hirs .bw,.c3.b-char .bw,.c3.b-kul .bw{position:absolute;bottom:calc(140cqw - 117.6cqw - 2.2cqw);left:0;right:0;text-align:center;color:#6a1610;text-shadow:0 .25cqw 0 rgba(255,255,255,.6)}
 .c3.b-intr .bw{position:absolute;top:88cqw;left:0;right:0;text-align:center;color:#1f3c86;text-shadow:0 .25cqw 0 rgba(255,255,255,.7);font-size:4cqw}
 
-/* compact frame: table and hand */
+/* compact frame for small cards; a slot marked .whole keeps the full card, text and all, at any size */
 @container (max-width:149px){
-  .c3 .big,.c3 .plate,.c3 .cut{display:none}
-  .c3 .small{display:block}
-  .c3 .sname{display:inline}
-  .c3 .art{left:5.6cqw;top:5.6cqw;width:88.8cqw;height:128.8cqw;-webkit-mask:none;mask:none;border-radius:2.4cqw}
-  .c3 .art img.fig{inset:0;left:0!important;top:0!important;width:100%!important;height:100%;object-fit:cover}
-  .c3.v-full .art{height:126cqw;border-radius:1.4cqw}
-  .c3.sultan .art{left:7.6cqw;top:7.6cqw;width:84.8cqw;height:124.8cqw}
-  .c3 .mj,.c3 .fj{top:8.8cqw;width:16cqw;height:16cqw;font-size:11cqw}
-  .c3 .mj{left:8.8cqw}.c3 .fj{right:8.8cqw}
-  .c3 .mj img.ico,.c3 .fj img.ico{width:13cqw;height:13cqw}
-  .c3 .nm,.c3 .nm.long{top:auto;bottom:9.6cqw;height:14cqw;left:9cqw;right:9cqw;font-size:8.6cqw;line-height:1}
-  .c3 .nm.long{font-size:7.2cqw}
-  .c3.back .bw,.c3.back .bplate{display:none}
+  :not(.whole) > .c3 .big,:not(.whole) > .c3 .plate,:not(.whole) > .c3 .cut{display:none}
+  :not(.whole) > .c3 .small{display:block}
+  :not(.whole) > .c3 .sname{display:inline}
+  :not(.whole) > .c3 .art{left:5.6cqw;top:5.6cqw;width:88.8cqw;height:128.8cqw;-webkit-mask:none;mask:none;border-radius:2.4cqw}
+  :not(.whole) > .c3 .art img.fig{inset:0;left:0!important;top:0!important;width:100%!important;height:100%;object-fit:cover}
+  :not(.whole) > .c3.v-full .art{height:126cqw;border-radius:1.4cqw}
+  :not(.whole) > .c3.sultan .art{left:7.6cqw;top:7.6cqw;width:84.8cqw;height:124.8cqw}
+  :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{top:8.8cqw;width:16cqw;height:16cqw;font-size:11cqw}
+  :not(.whole) > .c3 .mj{left:8.8cqw}:not(.whole) > .c3 .fj{right:8.8cqw}
+  :not(.whole) > .c3 .mj img.ico,:not(.whole) > .c3 .fj img.ico{width:13cqw;height:13cqw}
+  :not(.whole) > .c3 .nm,:not(.whole) > .c3 .nm.long{top:auto;bottom:9.6cqw;height:14cqw;left:9cqw;right:9cqw;font-size:8.6cqw;line-height:1}
+  :not(.whole) > .c3 .nm.long{font-size:7.2cqw}
+  :not(.whole) > .c3.back .bw,:not(.whole) > .c3.back .bplate{display:none}
 }
 @container (max-width:89px){
-  .c3 .nm,.c3 .sname{display:none}
-  .c3 .mj,.c3 .fj{width:20cqw;height:20cqw;top:7.4cqw;font-size:14cqw}
-  .c3 .mj{left:7.4cqw}.c3 .fj{right:7.4cqw}
-  .c3 .mj img.ico,.c3 .fj img.ico{width:16cqw;height:16cqw}
+  :not(.whole) > .c3 .nm,:not(.whole) > .c3 .sname{display:none}
+  :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{width:20cqw;height:20cqw;top:7.4cqw;font-size:14cqw}
+  :not(.whole) > .c3 .mj{left:7.4cqw}:not(.whole) > .c3 .fj{right:7.4cqw}
+  :not(.whole) > .c3 .mj img.ico,:not(.whole) > .c3 .fj img.ico{width:16cqw;height:16cqw}
 }

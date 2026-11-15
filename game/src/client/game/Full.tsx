@@ -92,7 +92,7 @@ function KaderCards({ cards, marks, onTap }: { cards: Kader[]; marks: (i: number
         return (
           <motion.button type="button" key={i} className={`k ${m.cls}`} onClick={() => onTap(i)}
             initial={{ y: -40, opacity: 0, rotateY: 90 }} animate={{ y: m.cls === 'toss' ? 26 : 0, opacity: 1, rotateY: 0 }} transition={{ delay: i * 0.12 }}>
-            <Card spec={spec({ t: 'kader', k })} width={w} />
+            <Card spec={spec({ t: 'kader', k })} width={w} whole />
             {m.tag && <span className={`kt ${m.cls === 'toss' ? 'out' : m.cls === 'go' ? 'go' : ''}`}>{m.tag}</span>}
           </motion.button>
         );
@@ -159,7 +159,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
             <button type="button" key={id} className={`st vk big ${pick === id ? 'pick' : ''}`} style={{ ['--nw' as string]: '150px', ['--nh' as string]: '182px' }} onClick={() => { sfx('tap'); setPick(id); }}>
               <div className="nc"><Figure character={p.character} nw={150} brk={12} /><span className="of">{t(i === 0 ? 'min1' : 'min2')}</span>
                 {pick === id && <span className="delta"><Star n={1} size={40} label={a.delta > 0 ? '+1' : '−1'} /></span>}</div>
-              <div className="pl"><b>{p.name}</b><i>{t('nameInfluence', { char: charName(p.character), n: p.influence })}</i></div>
+              <div className="pl"><b>{charName(p.character)}</b><i>{t('nameInfluence', { char: p.name, n: p.influence })}</i></div>
             </button>
           );
         })}

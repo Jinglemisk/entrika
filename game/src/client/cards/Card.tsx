@@ -30,11 +30,12 @@ function Slot({ html, width, className }: { html: string; width: number; classNa
   );
 }
 
-/** A card face, `width` px wide (height = width x 1.4). Below 150 px it draws the compact frame, below 90 px without the name. */
-export const Card = memo(function Card({ spec, width, className }: { spec: CardSpec; width: number; className?: string }) {
+/** A card face, `width` px wide (height = width x 1.4). Below 150 px it draws the compact frame, below 90 px without the
+ *  name, unless `whole` keeps the full card with its text at any size. */
+export const Card = memo(function Card({ spec, width, className, whole }: { spec: CardSpec; width: number; className?: string; whole?: boolean }) {
   const key = JSON.stringify(spec); // specs written inline still hit the memo
   const html = useMemo(() => cardHtml(spec), [key]); // eslint-disable-line react-hooks/exhaustive-deps
-  return <Slot html={html} width={width} className={className} />;
+  return <Slot html={html} width={width} className={[className, whole && 'whole'].filter(Boolean).join(' ') || undefined} />;
 });
 
 export const CardBack = memo(function CardBack({ kind, width, className }: { kind: BackKind; width: number; className?: string }) {

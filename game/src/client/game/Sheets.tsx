@@ -1,21 +1,22 @@
-// Sheets over the table: a seat's details, a card at reading size, the Sicil and log, settings, your secrets
-// (press and hold your Taraf), and the pop-up for new private information.
+// Sheets over the table: a seat's details, a card at reading size, the two tracks, the Sicil and log, settings, your
+// secrets (press and hold your Taraf), and the pop-up for new private information.
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
-  ambitionById, characterById, companionById, crisisById, intrigueById, MISC, type Peek, type PID,
+  RULES, ambitionById, characterById, crisisById, intrigueById, MISC, type Peek, type PID,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
-import { Head, KulHead } from '../ui/Figure.tsx';
+import { Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { logText } from '../logText.ts';
 import { getTags, markPeeksSeen, peeksSeen, setTag, setPrefs, usePrefs } from '../prefs.ts';
 import { send } from '../net.ts';
 import { startMusic, stopMusic } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
-import { CardPop, CharPowers, PopClose, PopShell } from './Pop.tsx';
+import { AmbitionState, CardPop, KulState, POP_CARD, POP_PAIR, PopShell, PowerChips } from './Pop.tsx';
+import { Refs } from '../ui/Refs.tsx';
 import { useGame } from './ctx.ts';
 
 const fade = { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0 }, transition: { duration: 0.2 } };
@@ -34,15 +35,15 @@ export function SheetView() {
     case 'log': return <LogSheet close={close} />;
     case 'settings': return <SettingsSheet close={close} />;
     case 'secret': return <SecretSheet close={close} />;
+    case 'track': return <TrackSheet which={sheet.which} close={close} />;
   }
 }
 
-// ---------- a seat
+// ---------- a seat: their Character and Kul cards, and beneath them what the cards can't show
 
 function SeatSheet({ id, close }: { id: PID; close: () => void }) {
   const { g, seat, room } = useGame();
   const p = g.players[id];
-  const comp = p.companion ? companionById[p.companion] : null;
   const vk = g.ministers.first === id ? 'min1' : g.ministers.second === id ? 'min2' : null;
   const [tags, setTags] = useState(() => getTags(room.code, seat));
   const tag = (v: 'suspect' | 'trusted') => {
@@ -50,33 +51,69 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
     setTags(getTags(room.code, seat));
   };
   const onThem = (g.court?.reveals ?? []).flat().filter(r => r.target === id);
+  const w = p.companion ? POP_PAIR : POP_CARD;
   return (
-    <PopShell zone="zp" className="seatpop" onClose={close}>
-      <Card spec={spec({ t: 'char', id: p.character })} width={168} />
-      <div className="pop-body">
-        <PopClose onClick={close} />
-        <p className="pop-kind"><Em k="character" s={16} />{characterById[p.character].name}{vk && <><i className="sep" /><Em k="minister" s={16} />{t(vk)}</>}</p>
-        <p className="pop-name">{p.name}{id === seat ? ` ${t('you')}` : ''}</p>
-        {!p.sultan && (
-          <p className="pop-stats">
-            <span title={t('nInfluence', { n: p.influence })}><Em k="influence" s={18} /><b>{p.influence}</b></span>
-            <span title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={18} /><b>{p.hand.length}</b></span>
-            {comp && <span className={p.influence < 1 ? 'down' : ''} title={comp.name}><KulHead id={comp.id} />{comp.name}{p.influence < 1 ? ` (${t('faceDown')})` : ''}</span>}
-          </p>
-        )}
-        <CharPowers id={p.character} own={false} close={close} />
-        {p.ambitionShown && p.ambition && <p className="pop-note"><Em k="ambition" s={15} /><b>{ambitionById[p.ambition].name}</b>{t('ambitionDone')}</p>}
-        {onThem.length > 0 && (
-          <p className="pop-note">{t('onThemThisCrisis')} {onThem.map((r, i) => <span key={i} className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{intrigueById[r.as].name}</span>)}</p>
-        )}
-        {id !== seat && !p.sultan && (
-          <div className="priv zl">
-            <small><Gl k="eye" />{t('onlyYou')}</small>
-            <button type="button" className={`b ${tags[id] === 'suspect' ? 'on2' : ''}`} onClick={() => tag('suspect')}><Em k="suspect" s={16} />{t('tag.suspect')}</button>
-            <button type="button" className={`b ${tags[id] === 'trusted' ? 'on3' : ''}`} onClick={() => tag('trusted')}><Em k="trusted" s={16} />{t('tag.trusted')}</button>
-          </div>
-        )}
-      </div>
+    <PopShell zone="zp" className="seatpop" onClose={close} cards={<>
+      <Card spec={spec({ t: 'char', id: p.character })} width={w} />
+      {p.companion && <Card className={p.influence < 1 ? 'down' : ''} spec={spec({ t: 'kul', id: p.companion })} width={w} />}
+    </>}>
+      <p className="pop-who">
+        <b>{p.name}{id === seat ? ` ${t('you')}` : ''}</b>
+        {vk && <span><Em k="minister" s={15} />{t(vk)}</span>}
+        {!p.sultan && <span title={t('nInfluence', { n: p.influence })}><Em k="influence" s={16} />{p.influence}</span>}
+        {!p.sultan && <span title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={16} />{p.hand.length}</span>}
+      </p>
+      <PowerChips id={p.character} own={false} close={close} />
+      {p.companion && <KulState id={p.companion} own={false} />}
+      {p.ambitionShown && p.ambition && <p className="pop-note"><Em k="ambition" s={15} /><b>{ambitionById[p.ambition].name}</b>{t('ambitionDone')}</p>}
+      {onThem.length > 0 && (
+        <p className="pop-note">{t('onThemThisCrisis')} {onThem.map((r, i) => <span key={i} className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{intrigueById[r.as].name}</span>)}</p>
+      )}
+      {id !== seat && !p.sultan && (
+        <div className="priv zl">
+          <small><Gl k="eye" />{t('onlyYou')}</small>
+          <button type="button" className={`b ${tags[id] === 'suspect' ? 'on2' : ''}`} onClick={() => tag('suspect')}><Em k="suspect" s={16} />{t('tag.suspect')}</button>
+          <button type="button" className={`b ${tags[id] === 'trusted' ? 'on3' : ''}`} onClick={() => tag('trusted')}><Em k="trusted" s={16} />{t('tag.trusted')}</button>
+        </div>
+      )}
+    </PopShell>
+  );
+}
+
+// ---------- the two tracks: what each Hizmet and each Hıyanet brings
+
+function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
+  const { g } = useGame();
+  const loyal = Array.from({ length: RULES.tracks.loyalty }, (_, i) => i + 1 === RULES.tracks.loyalty
+    ? { icon: 'loyalist', name: t('loyalistsWin'), text: '' }
+    : { icon: 'influence', name: t('track.decreeGive'), text: '' });
+  const treason = Array.from({ length: RULES.tracks.treason }, (_, i) => {
+    const n = i + 1;
+    if (n === RULES.tracks.treason) return { icon: 'death', ...MISC.treason.death };
+    const key = RULES.treasonPowers[String(n)];
+    const def = key ? MISC.treason[key as 'sorusturma'] : MISC.treason['1'];
+    return { icon: key ? (key === 'fermanRefresh' ? 'ferman' : 'treason') : 'pass', ...def };
+  });
+  const row = (cls: 'h' | 'x', icon: string, name: string, on: number, steps: { icon: string; name: string; text: string }[], every: string) => (
+    <div className={`trow ${cls} ${which === cls ? 'focus' : ''}`}>
+      <p className="trow-head"><Em k={icon} s={20} /><b>{name}</b><span>{on}/{steps.length}</span><i><Refs text={every} /></i></p>
+      <ol className="tsteps">
+        {steps.map((st, i) => (
+          <li key={i} className={i < on ? 'on' : i === on ? 'next' : ''}>
+            <span className={`slot-ic ${cls === 'x' && i === steps.length - 1 ? 'end' : ''}`} />
+            <small>{i + 1}</small>
+            <Em k={st.icon} s={18} />
+            <b><Refs text={st.name} /></b>
+            {st.text && <span>{st.text}</span>}
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+  return (
+    <PopShell zone="zp" className="trackpop" onClose={close}>
+      {row('h', 'hizmet', t('hizmet'), g.tracks.loyalty, loyal, MISC.kader.h.text.join(' '))}
+      {row('x', 'hiyanet', t('hiyanet'), g.tracks.treason, treason, MISC.kader.x.text.join(' '))}
     </PopShell>
   );
 }
@@ -137,44 +174,44 @@ function Sicil() {
   );
 }
 
-// ---------- private information
+// ---------- private information: the cards first, the words beneath
 
 export function PeekBody({ p }: { p: Peek }) {
   const { g } = useGame();
   const n = (id: PID) => g.players[id].name;
-  const kader = (cards: string[]) => <div className="peek-cards">{cards.map((k, i) => <Card key={i} spec={spec({ t: 'kader', k: k as 'h' })} width={100} />)}</div>;
+  const kader = (cards: string[], w = 96) => <div className="peek-cards">{cards.map((k, i) => <Card key={i} spec={spec({ t: 'kader', k: k as 'h' })} width={w} whole />)}</div>;
+  const words = (text: string) => <p className="pop-text"><Refs text={text} /></p>;
   switch (p.kind) {
-    case 'role':
+    case 'role': {
+      const me = g.players[p.to];
       return (
-        <div className="peek role">
-          <div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={120} /></div>
-          <div>
-            <p className="h-mid">{t(p.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
-            <p className="vo">{p.side === 'traitor' ? (p.traitors.length ? t('peek.traitors', { names: p.traitors.map(n).join(', ') }) : t('peek.alone')) : t('peek.loyalist')}</p>
-            <p className="vo small">«{g.players[p.to].side === 'traitor' ? characterById[g.players[p.to].character].traitor : characterById[g.players[p.to].character].loyal}»</p>
-          </div>
+        <div className="peek">
+          <div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={130} whole /></div>
+          <p className="pop-name">{t(p.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
+          {p.side === 'traitor' && words(p.traitors.length ? t('peek.traitors', { names: p.traitors.map(n).join(', ') }) : t('peek.alone'))}
+          <p className="pop-text dim">«{me.side === 'traitor' ? characterById[me.character].traitor : characterById[me.character].loyal}»</p>
         </div>
       );
+    }
     case 'handAmbition':
       return (
         <div className="peek">
-          <p className="vo">{t('peek.handAmbition', { name: n(p.of) })}</p>
           <div className="peek-cards">
-            {p.hand.map((c, i) => <Card key={i} spec={spec({ t: 'intr', kind: c.kind, field: c.field })} width={80} />)}
-            {!p.hand.length && <span className="tg">{t('emptyHandOf')}</span>}
-            {p.ambition && <Card spec={spec({ t: 'hirs', id: p.ambition })} width={80} />}
+            {p.hand.map((c, i) => <Card key={i} spec={spec({ t: 'intr', kind: c.kind, field: c.field })} width={96} whole />)}
+            {p.ambition && <Card spec={spec({ t: 'hirs', id: p.ambition })} width={96} whole />}
           </div>
+          {words(t('peek.handAmbition', { name: n(p.of) }) + (p.hand.length ? '' : ' ' + t('emptyHandOf')))}
         </div>
       );
-    case 'kaderTop': return <div className="peek"><p className="vo">{t(`peek.kaderTop.${p.source}`)}</p>{kader(p.cards)}</div>;
+    case 'kaderTop': return <div className="peek">{kader(p.cards)}{words(t(`peek.kaderTop.${p.source}`))}</div>;
     case 'allegiance':
-      return <div className="peek"><p className="vo">{t('peek.allegiance', { name: n(p.of), side: t(p.side) })}</p><div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={100} /></div></div>;
+      return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={110} whole /></div>{words(t('peek.allegiance', { name: n(p.of), side: t(p.side) }))}</div>;
     case 'ambition':
-      return <div className="peek"><p className="vo">{t('peek.ambition', { name: n(p.of) })}</p><div className="peek-cards">{p.ambition && <Card spec={spec({ t: 'hirs', id: p.ambition })} width={100} />}</div></div>;
-    case 'kaderDraw': return <div className="peek"><p className="vo">{t('peek.kaderDraw')}</p>{kader(p.cards)}</div>;
-    case 'discards': return <div className="peek"><p className="vo">{t(`peek.discards.${p.source}`, { name: n(p.of) })}</p>{p.cards.length ? kader(p.cards) : <p className="vo small">{t('peek.noDiscards')}</p>}</div>;
-    case 'crisisTop': return <div className="peek"><p className="vo">{t('peek.crisisTop')}</p><div className="peek-cards">{p.cards.map(c => <Card key={c} spec={spec({ t: 'crisis', id: c })} width={90} />)}</div></div>;
-    case 'stolen': return <div className="peek"><p className="vo">{t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name })}</p></div>;
+      return <div className="peek"><div className="peek-cards">{p.ambition && <Card spec={spec({ t: 'hirs', id: p.ambition })} width={110} whole />}</div>{words(t('peek.ambition', { name: n(p.of) }))}</div>;
+    case 'kaderDraw': return <div className="peek">{kader(p.cards)}{words(t('peek.kaderDraw'))}</div>;
+    case 'discards': return <div className="peek">{p.cards.length ? kader(p.cards) : null}{words(t(`peek.discards.${p.source}`, { name: n(p.of) }) + (p.cards.length ? '' : ' ' + t('peek.noDiscards')))}</div>;
+    case 'crisisTop': return <div className="peek"><div className="peek-cards">{p.cards.map(c => <Card key={c} spec={spec({ t: 'crisis', id: c })} width={110} whole />)}</div>{words(t('peek.crisisTop'))}</div>;
+    case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: intrigueById[p.card].copies.harem ? 'harem' : 'divan' })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name }))}</div>;
   }
 }
 
@@ -189,16 +226,14 @@ export function PeekPopup() {
   const done = () => { markPeeksSeen(room.code, seat, seen + 1); setSeen(seen + 1); };
   return (
     <PopShell className="peekpop" key={seen}>
-      <div className="pop-body wide">
-        <p className="pop-kind"><Gl k="eye" />{t('onlyYou')}</p>
-        <PeekBody p={p} />
-        <div className="pop-acts"><Btn pri onClick={done}>{t('btn.gotIt')}</Btn></div>
-      </div>
+      <p className="pop-kind"><Gl k="eye" />{t('onlyYou')}</p>
+      <PeekBody p={p} />
+      <div className="pop-acts"><Btn pri onClick={done}>{t('btn.gotIt')}</Btn></div>
     </PopShell>
   );
 }
 
-// ---------- your secrets (press and hold the Taraf)
+// ---------- your secrets (press and hold the Taraf): Taraf and Hırs cards, and beneath them what they mean for you
 
 function SecretSheet({ close }: { close: () => void }) {
   const { g, me } = useGame();
@@ -209,26 +244,25 @@ function SecretSheet({ close }: { close: () => void }) {
   }, []);
   if (me.sultan) {
     return (
-      <PopShell onClose={close}>
-        <Card spec={spec({ t: 'char', id: 'suleyman' })} width={150} />
-        <div className="pop-body"><p className="pop-kind"><Em k="public" s={16} />{t('public')}</p><p className="pop-name">{t('sultanSecret')}</p><p className="pop-text">{t('sultanSecretWhy')}</p></div>
+      <PopShell onClose={close} cards={<Card spec={spec({ t: 'char', id: 'suleyman' })} width={POP_CARD} />}>
+        <p className="pop-name">{t('sultanSecret')}</p>
+        <p className="pop-text">{t('sultanSecretWhy')}</p>
       </PopShell>
     );
   }
   const ch = characterById[me.character];
   const role = g.peeks.find(p => p.to === me.id && p.kind === 'role');
+  const w = me.ambition ? POP_PAIR : POP_CARD;
   return (
-    <PopShell className="secret" onClose={close}>
-      <Card spec={spec({ t: 'taraf', side: me.side! })} width={150} />
-      {me.ambition && <Card spec={spec({ t: 'hirs', id: me.ambition })} width={150} />}
-      <div className="pop-body">
-        <p className="pop-kind"><Gl k="eye" />{t('onlyYou')}</p>
-        <p className="pop-name">{t(me.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
-        <p className="pop-text">«{me.side === 'traitor' ? ch.traitor : ch.loyal}»</p>
-        {role && role.kind === 'role' && me.side === 'traitor' && <p className="pop-note">{role.traitors.length ? t('peek.traitors', { names: role.traitors.map(i => g.players[i].name).join(', ') }) : t('peek.alone')}</p>}
-        {me.ambition && <p className="pop-note"><Em k="ambition" s={15} /><span><b>{ambitionById[me.ambition].name}.</b> {me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor: ch.favor.name })}</span></p>}
-        <p className="pop-note"><Gl k="hold" />{t('releaseToClose')}</p>
-      </div>
+    <PopShell className="secret" onClose={close} cards={<>
+      <Card spec={spec({ t: 'taraf', side: me.side! })} width={w} />
+      {me.ambition && <Card spec={spec({ t: 'hirs', id: me.ambition })} width={w} />}
+    </>}>
+      <p className="pop-who"><b>{t(me.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</b>
+        {role && role.kind === 'role' && me.side === 'traitor' && <span>{role.traitors.length ? t('peek.traitors', { names: role.traitors.map(i => g.players[i].name).join(', ') }) : t('peek.alone')}</span>}
+      </p>
+      <p className="pop-text dim">«{me.side === 'traitor' ? ch.traitor : ch.loyal}»</p>
+      {!g.learning && <AmbitionState />}
     </PopShell>
   );
 }

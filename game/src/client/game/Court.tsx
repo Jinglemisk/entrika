@@ -1,6 +1,6 @@
 // The court: every seat as a figure in a niche, one fixed row in seat order with Süleyman in the middle,
 // the same order on every phone. Taps pick a target when a picker is active, otherwise open the seat sheet.
-import { characterById, clockwise, companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
+import { characterById, companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Figure } from '../ui/Figure.tsx';
 import { getTags, usePrefs } from '../prefs.ts';
@@ -44,7 +44,6 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   const legal = picker?.legal.includes(id);
   const chosen = picker?.chosen?.includes(id);
   const dim = picker && !legal && !chosen;
-  const objTurn = g.step === 'objections' ? objectionMark(g, id) : null;
   const sw = p.sultan ? nw + 14 : nw;
   const sh = p.sultan ? 124 : 106;
   const cls = ['st', p.sultan && 'sul', vk && 'vk', me && 'you', dim && 'dim', legal && 'legal', chosen && 'pick', waiting && 'busy']
@@ -72,12 +71,11 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
         <DevToggle id={id} />
       </div>
       <div className="pl">
-        <b>{me ? t('youName', { name: p.name }) : p.name}{offline ? ' ·' : ''}</b>
-        <i>{characterShort(p.character)}</i>
+        <b>{characterShort(p.character)}</b>
+        <i>{me ? t('youName', { name: p.name }) : p.name}{offline ? ' ·' : ''}</i>
       </div>
       {!compact && (
         <div className="ld">
-          {objTurn && <span className={`ord ${objTurn.state}`}>{objTurn.n}</span>}
           {lasting.map(l => <span key={l.k} className={`pt ${l.k}`} title={l.title}>{l.icons.map(k => <Em key={k} k={k} s={13} />)}{l.k === 'tabib' && <Gl k="lock" />}</span>)}
           {!p.sultan && <span className="ic" title={t('nInfluence', { n: p.influence })}><Em k="influence" s={14} /><b>{p.influence}</b></span>}
           {!p.sultan && <span className="ic" title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={14} /><b>{p.hand.length}</b></span>}
@@ -88,15 +86,6 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
 }
 
 const characterShort = (id: string) => characterById[id].name;
-
-function objectionMark(g: Game, id: PID) {
-  const order = clockwise(g).map(p => p.id);
-  const i = order.indexOf(id);
-  if (i < 0) return null;
-  const turn = g.objectionTurn - 1;
-  const state = i < turn ? 'done' : i === turn && g.sub === 'turn' ? 'now' : '';
-  return { n: i + 1, state };
-}
 
 /** Protections that last the crisis are public: they show as icons under the player (the name on hover). */
 function lastingTags(g: Game, id: PID): { k: string; icons: string[]; title: string }[] {

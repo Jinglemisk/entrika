@@ -1,6 +1,6 @@
-// The lacquer shelf: what is yours. Your Taraf and Hırs (press and hold to read), your Character and Kul as small
-// cards (tap one to read it and use its powers), and your hand (tap a card to read it and act on it). The prompt
-// block sits on the right.
+// The lacquer shelf: what is yours. Your Taraf and Hırs (press and hold to read), your Character and Kul, and your
+// hand. They are whole cards, text and all, small but readable on a big screen; tap one to read it at full size and
+// act on it. Every card shares one top line. The prompt block sits on the right.
 import { useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FREE_POWERS, companionById, characterById, freePowerTargets, type PowerState } from '../../engine/index.ts';
@@ -11,8 +11,9 @@ import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
 
-const MINI = 50;
-const HAND_W = 290;   // px between your cards and the prompt (game.css: .pr left)
+export const SHELF_CARD = 80;   // Character, Kul and hand cards (game.css lays the shelf out around this)
+const BACK = 52;               // the Taraf back
+const HAND_W = 252;            // px between your Kul and the prompt (game.css: .hand left, .pr left)
 
 export function Mine() {
   const { g, me, seat, setSheet } = useGame();
@@ -28,16 +29,16 @@ export function Mine() {
   return (
     <div className="mine">
       <button type="button" className="mc tf" onPointerDown={start} onPointerUp={stop} onPointerLeave={stop} onClick={() => setSheet({ t: 'secret' })}>
-        <CardBack kind="taraf" width={MINI - 4} />
+        <CardBack kind="taraf" width={BACK} />
         <small>{t(me.sultan ? 'sultanCard' : 'holdSecret')}</small>
       </button>
       <button type="button" className={`mc ${live ? 'live' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'char', id: me.character }, own: true }); }}>
-        <Card spec={spec({ t: 'char', id: me.character })} width={MINI} />
+        <Card spec={spec({ t: 'char', id: me.character })} width={SHELF_CARD} whole />
         <Pips states={pips} />
       </button>
       {kul && (
         <button type="button" className={`mc ${me.influence < 1 ? 'down' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'kul', id: kul.id }, own: true }); }}>
-          <Card spec={spec({ t: 'kul', id: kul.id })} width={MINI} />
+          <Card spec={spec({ t: 'kul', id: kul.id })} width={SHELF_CARD} whole />
           <Pips states={[kulState()]} />
         </button>
       )}
@@ -63,10 +64,10 @@ export function Hand() {
     const c = me.hand.find(x => x.uid === uid)!;
     setSheet({ t: 'card', ref: intrRef(c), uid });
   };
-  // fit the space left of the prompt; below 90 px a card loses its name, so a big hand overlaps instead of shrinking
+  // a hand bigger than the space overlaps instead of shrinking
   const n = Math.max(1, me.hand.length);
-  const w = Math.max(90, Math.min(96, Math.floor((HAND_W - 9 * (n - 1)) / n)));
-  const gap = n > 1 ? Math.min(9, Math.floor((HAND_W - w * n) / (n - 1))) : 9;   // negative: the cards overlap
+  const w = SHELF_CARD;
+  const gap = n > 1 ? Math.min(6, Math.floor((HAND_W - w * n) / (n - 1))) : 6;   // negative: the cards overlap
   return (
     <div className="hand" style={{ gap: 0 }}>
       <AnimatePresence initial={false}>
@@ -80,7 +81,7 @@ export function Hand() {
             <motion.button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4, marginLeft: i ? gap : 0 }} onClick={() => open(c.uid)}
               layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: toss ? 14 : up || staged ? -14 : 0, opacity: 1, rotate: 0 }}
               exit={{ y: -90, opacity: 0, scale: 0.8 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }}>
-              <Card spec={spec(intrRef(c))} width={w} />
+              <Card spec={spec(intrRef(c))} width={w} whole />
               {staged && <span className="aimed"><Head character={g.players[staged.target].character} /></span>}
             </motion.button>
           );

@@ -1,88 +1,81 @@
-// The card pop-up: a card at reading size with what you can do with it right now. Tapping any card opens it: a hand
-// card offers discard, keep or the ways to play it (as printed, through your Kul, with Esma Hatun); your Character
-// and Kul show their powers, with Kullan when one can be used now. The pop-up only answers what the prompt asks.
+// The card pop-up: the card itself, centred and big enough to read, and beneath it only what the card can't say: who it
+// may target, the state of its powers, and the buttons for what you can do with it right now (discard, keep, play as
+// printed or through your Kul or Esma Hatun, use a power). Seat, secret and private-info sheets share the frame.
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import {
-  FREE_POWERS, MISC, ambitionById, characterById, companionById, crisisById, freePowerTargets, intrigueById,
+  FREE_POWERS, MISC, characterById, companionById, crisisById, freePowerTargets, intrigueById,
   playableForms, waveAllowance, type PowerDef, type PowerState,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec, type CardRef } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { KulHead } from '../ui/Figure.tsx';
+import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
 import { useGame, type Form } from './ctx.ts';
 
 const TARGET_ICON = { player: 'court', minister: 'minister', other: 'court', self: 'character' } as const;
+export const POP_CARD = 178;   // one card; two side by side use POP_PAIR
+export const POP_PAIR = 162;
 
-/** The pop-up frame every compact sheet shares: dimmed table behind, a box sized to its content, tap outside to close. */
-export function PopShell({ zone = 'zl', className = '', onClose, children }: { zone?: 'zl' | 'zp'; className?: string; onClose?: () => void; children: ReactNode }) {
+/** The pop-up frame: dimmed table behind, the card(s) centred, extra info beneath, tap outside to close. */
+export function PopShell({ zone = 'zl', className = '', onClose, cards, children }: {
+  zone?: 'zl' | 'zp'; className?: string; onClose?: () => void; cards?: ReactNode; children?: ReactNode;
+}) {
   return (
     <motion.div className="popbg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} onClick={onClose}>
       <motion.div className={`pop ${zone} ${className}`} initial={{ scale: 0.94, y: 10 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 32 }}
         onClick={e => e.stopPropagation()}>
-        {children}
+        {onClose && <button type="button" className="x-close" onClick={onClose} aria-label={t('close')}><Gl k="close" /></button>}
+        {cards && <div className="pop-cards">{cards}</div>}
+        {children && <div className="pop-info">{children}</div>}
       </motion.div>
     </motion.div>
   );
-}
-export function PopClose({ onClick }: { onClick: () => void }) {
-  return <button type="button" className="x-close" onClick={onClick} aria-label={t('close')}><Gl k="close" /></button>;
 }
 
 export function CardPop({ cardRef, uid, own }: { cardRef: CardRef; uid?: number; own?: boolean }) {
   const { setSheet } = useGame();
   const close = () => setSheet(null);
-  const s = spec(cardRef);
   return (
-    <PopShell onClose={close}>
-      <Card spec={s} width={168} />
-      <div className="pop-body">
-        <PopClose onClick={close} />
-        <Head1 cardRef={cardRef} />
-        <p className="pop-name">{s.name}</p>
-        <Body cardRef={cardRef} uid={uid} own={own} close={close} />
-      </div>
+    <PopShell onClose={close} cards={<Card spec={spec(cardRef)} width={POP_CARD} />}>
+      <Extra cardRef={cardRef} uid={uid} own={own} close={close} />
     </PopShell>
   );
 }
 
-function Head1({ cardRef }: { cardRef: CardRef }) {
-  const field = cardRef.t === 'intr' ? cardRef.field : cardRef.t === 'crisis' ? crisisById[cardRef.id].field : null;
-  const icon = { intr: 'intrigue', char: 'character', kul: 'companion', hirs: 'ambition', crisis: 'crisis', kader: 'kader', taraf: 'allegiance' }[cardRef.t];
-  return (
-    <p className="pop-kind">
-      <Em k={icon} s={16} />{t(`kind.${cardRef.t}`)}
-      {field && <><i className="sep" /><Em k={field} s={16} />{t(field)}</>}
-    </p>
-  );
-}
-
-function Body({ cardRef, uid, own, close }: { cardRef: CardRef; uid?: number; own?: boolean; close: () => void }) {
+/** What the card face can't show. Kader and Taraf cards say everything themselves. */
+function Extra({ cardRef, uid, own, close }: { cardRef: CardRef; uid?: number; own?: boolean; close: () => void }) {
   switch (cardRef.t) {
     case 'intr': {
       const def = intrigueById[cardRef.kind];
       return (
         <>
-          <p className="pop-text">{def.text}</p>
           <p className="pop-meta"><Em k={TARGET_ICON[def.target]} s={15} />{t(`target.${def.target}`)}</p>
           {uid !== undefined && <HandActions uid={uid} close={close} />}
         </>
       );
     }
-    case 'char': return <CharPowers id={cardRef.id} own={!!own} close={close} />;
-    case 'kul': return <KulBody id={cardRef.id} own={!!own} />;
+    case 'char': return <PowerChips id={cardRef.id} own={!!own} close={close} />;
+    case 'kul': return <KulState id={cardRef.id} own={!!own} />;
     case 'crisis': {
       const c = crisisById[cardRef.id];
-      return <><p className="pop-text">{c.text}</p><p className="pop-meta"><Em k={c.field} s={15} />{t(`fieldRule.${c.field}`)}</p></>;
+      return <p className="pop-meta"><Em k={c.field} s={15} />{t(`fieldRule.${c.field}`)}</p>;
     }
-    case 'hirs': return <p className="pop-text">{ambitionById[cardRef.id].text}</p>;
-    case 'kader': return <p className="pop-text">{MISC.kader[cardRef.k].text.join(' ')}</p>;
-    case 'taraf': return <p className="pop-text">{MISC.taraf[cardRef.side].text.join(' ')}</p>;
+    case 'hirs': return own ? <AmbitionState /> : null;
+    default: return null;
   }
+}
+
+/** Your Hırs: done, met (opens at the end of the crisis), or what it would unlock. */
+export function AmbitionState() {
+  const { me } = useGame();
+  const favor = characterById[me.character].favor.name;
+  if (!me.ambition) return null;
+  return <p className="pop-note"><Em k="ambition" s={15} /><span><Refs text={me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor })} /></span></p>;
 }
 
 // ---------- a card in your hand
@@ -129,7 +122,7 @@ function HandActions({ uid, close }: { uid: number; close: () => void }) {
   const aim = (f: Form, esma: boolean) => done(() => hand.setAim({ ...f, uid, esma }));
   const kul = me.companion;
   return (
-    <div className="pop-acts col">
+    <div className="pop-acts">
       {forms.map(f => (
         <div key={f.as + f.field} className="pop-row">
           <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f, false)}>
@@ -145,65 +138,56 @@ function HandActions({ uid, close }: { uid: number; close: () => void }) {
   );
 }
 
-// ---------- a Character's powers
-
-export function CharPowers({ id, own, close }: { id: string; own: boolean; close: () => void }) {
-  const { g, me } = useGame();
-  const ch = characterById[id];
-  if (ch.sultan) return <SultanPowers />;
-  const holder = g.players.find(p => p.character === id);
-  return (
-    <div className="pop-powers">
-      <PowerLine def={ch.base} which="base" state={holder?.base ?? 'ready'} own={own} close={close} />
-      {!g.learning && <PowerLine def={ch.favor} which="favor" state={holder?.favor ?? 'locked'} own={own} close={close} />}
-      {own && me.ambition && !g.learning && (
-        <p className="pop-note"><Em k="ambition" s={15} />{me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor: ch.favor.name })}</p>
-      )}
-    </div>
-  );
-}
+// ---------- a Character's powers: one chip each, its state, and Kullan when it can be used now
 
 const FREQ_ICON = { once: 'once', crisis: 'percrisis', always: 'always' } as const;
-function PowerLine({ def, which, state, own, close }: { def: PowerDef; which: 'base' | 'favor'; state: PowerState; own: boolean; close: () => void }) {
-  const { g, seat, act, setPicker } = useGame();
-  const free = own && FREE_POWERS[def.id] ? freePowerTargets(g, seat, def.id) : null;
-  const use = () => {
-    sfx('press');
-    close();
-    if (FREE_POWERS[def.id].target) setPicker({ legal: free!, onPick: target => { setPicker(null); act({ t: 'power', power: def.id, target }); } });
-    else act({ t: 'power', power: def.id });
-  };
+const STATE_TEXT = (s: PowerState) => t(s === 'used' ? 'used' : s === 'locked' ? 'favorLocked' : 'ready');
+
+export function PowerChips({ id, own, close }: { id: string; own: boolean; close: () => void }) {
+  const { g } = useGame();
+  const ch = characterById[id];
+  if (ch.sultan) return <SultanChips />;
+  const holder = g.players.find(p => p.character === id);
   return (
-    <div className={`pwl ${state}`}>
-      <p className="pwl-head">
-        <Em k={which} s={16} /><b>{def.name}</b>
-        {def.freq && <Em k={FREQ_ICON[def.freq]} s={14} />}
-        <span className="st8">{state === 'used' ? t('used') : state === 'locked' ? t('favorLocked') : t('ready')}</span>
-      </p>
-      <p className="pwl-text">{def.text}</p>
-      {free && <Btn pri onClick={use}>{t('btn.use')}{FREE_POWERS[def.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>}
-    </div>
+    <>
+      <div className="chips">
+        <PowerChip def={ch.base} which="base" state={holder?.base ?? 'ready'} own={own} close={close} />
+        {!g.learning && <PowerChip def={ch.favor} which="favor" state={holder?.favor ?? 'locked'} own={own} close={close} />}
+      </div>
+      {own && !g.learning && <AmbitionState />}
+    </>
   );
 }
 
-function SultanPowers() {
+function PowerChip({ def, which, state, own, close }: { def: PowerDef; which: 'base' | 'favor'; state: PowerState; own: boolean; close: () => void }) {
+  const { g, seat, act, setPicker } = useGame();
+  const free = own && FREE_POWERS[def.id] ? freePowerTargets(g, seat, def.id) : null;
+  if (free) {
+    const use = () => {
+      close();
+      if (FREE_POWERS[def.id].target) setPicker({ legal: free, onPick: target => { setPicker(null); act({ t: 'power', power: def.id, target }); } });
+      else act({ t: 'power', power: def.id });
+    };
+    return <Btn pri onClick={use}>{t('btn.use')}: {def.name}{FREE_POWERS[def.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>;
+  }
+  return (
+    <span className={`pchip ${state}`}>
+      <Em k={which} s={15} /><b>{def.name}</b>{def.freq && <Em k={FREQ_ICON[def.freq]} s={13} />}<i>{STATE_TEXT(state)}</i>
+    </span>
+  );
+}
+
+function SultanChips() {
   const { g } = useGame();
   const tr = g.tracks.treason;
-  const ferman = characterById.suleyman.base;
-  const row = (name: string, text: string, state: PowerState, sub: string) => (
-    <div className={`pwl ${state}`} key={name}>
-      <p className="pwl-head"><Em k="treason" s={16} /><b>{name}</b><span className="st8">{sub}</span></p>
-      <p className="pwl-text">{text}</p>
-    </div>
+  const chip = (icon: string, name: string, state: PowerState, sub: string) => (
+    <span key={name} className={`pchip ${state}`}><Em k={icon} s={15} /><b>{name}</b><i>{sub}</i></span>
   );
   return (
-    <div className="pop-powers">
-      <div className={`pwl ${g.ferman ? 'ready' : 'used'}`}>
-        <p className="pwl-head"><Em k="ferman" s={16} /><b>{ferman.name}</b><span className="st8">{t(g.ferman ? 'fermanReady' : 'fermanUsed')}</span></p>
-        <p className="pwl-text">{ferman.text}</p>
-      </div>
-      {row(MISC.treason.sorusturma.name, MISC.treason.sorusturma.text, tr >= 2 ? 'used' : 'locked', t(tr >= 2 ? 'trackPowerTaken' : 'opensAt', { n: 2 }))}
-      {row(MISC.treason.hazineDefteri.name, MISC.treason.hazineDefteri.text, g.hazineDefteri ? 'ready' : tr >= 3 ? 'used' : 'locked',
+    <div className="chips">
+      {chip('ferman', characterById.suleyman.base.name, g.ferman ? 'ready' : 'used', t(g.ferman ? 'fermanReady' : 'fermanUsed'))}
+      {chip('treason', MISC.treason.sorusturma.name, tr >= 2 ? 'used' : 'locked', t(tr >= 2 ? 'trackPowerTaken' : 'opensAt', { n: 2 }))}
+      {chip('treason', MISC.treason.hazineDefteri.name, g.hazineDefteri ? 'ready' : tr >= 3 ? 'used' : 'locked',
         t(g.hazineDefteri ? 'hazinePending' : tr >= 3 ? 'trackPowerTaken' : 'opensAt', { n: 3 }))}
     </div>
   );
@@ -211,16 +195,15 @@ function SultanPowers() {
 
 // ---------- a Kul
 
-function KulBody({ id, own }: { id: string; own: boolean }) {
+export function KulState({ id, own }: { id: string; own: boolean }) {
   const { g } = useGame();
   const c = companionById[id];
   const holder = g.players.find(p => p.companion === id);
   const state = !holder ? null : holder.influence < 1 ? t('kulDown') : c.freq !== 'always' && holder.companionUsed ? t(c.recast ? 'kulUsedCrisis' : 'used') : t('ready');
   return (
     <>
-      <p className="pop-text">{c.text}</p>
       <p className="pop-meta">{c.freq && <Em k={FREQ_ICON[c.freq]} s={15} />}{t(`freq.${c.freq}`)}{state ? ` · ${state}` : ''}</p>
-      {own && c.recast && <p className="pop-note">{t('pop.kulHow', { card: intrigueById[c.recast].name })}</p>}
+      {own && c.recast && <p className="pop-note"><span><Refs text={t('pop.kulHow', { card: intrigueById[c.recast].name })} /></span></p>}
       {own && <p className="pop-note">{t('pop.kulUp')}</p>}
     </>
   );

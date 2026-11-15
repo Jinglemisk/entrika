@@ -16,7 +16,8 @@ const TERM_RE = new RegExp(terms.match.regex.replace('STEMS', stems.map(reEsc).j
 function renderText(text: string): string {
   return text.replace(TERM_RE, (m, stem: string) => {
     const t = byStem.get(stem)!;
-    return `<span class="tm t-${t.icon}" data-term="${t.id}"><img class="ico" src="${ICON_BASE}${t.icon}-48.png" alt="" aria-hidden="true">${m}</span>`;
+    const ref = /^(card|comp|char)\./.test(t.id) ? ' ref' : '';   // another card named in the text: dashed underline
+    return `<span class="tm t-${t.icon}${ref}" data-term="${t.id}"><img class="ico" src="${ICON_BASE}${t.icon}-48.png" alt="" aria-hidden="true">${m}</span>`;
   });
 }
 

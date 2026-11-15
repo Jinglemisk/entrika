@@ -16,6 +16,7 @@ export type Sheet =
   | { t: 'log' }
   | { t: 'settings' }
   | { t: 'secret' }
+  | { t: 'track'; which: 'h' | 'x' }
   | null;
 
 /** One way to put a hand card down: as printed, or recast by your Kul, with Esma Hatun or not. */
