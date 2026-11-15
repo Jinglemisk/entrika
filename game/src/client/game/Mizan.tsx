@@ -3,6 +3,7 @@ import { crisisById, RULES } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { useGame } from './ctx.ts';
+import { BotToggle } from './DevBar.tsx';
 
 const FIELD_ICON = { harem: 'harem', divan: 'divan', saray: 'saray' } as const;
 
@@ -33,6 +34,7 @@ export function Mizan() {
         <div className="nav">
           <button type="button" className={unread ? 'dot' : ''} onClick={() => setSheet({ t: 'log' })} aria-label={t('sicil')}><Gl k="log" /></button>
           <button type="button" onClick={() => setSheet({ t: 'settings' })} aria-label={t('settings')}><Gl k="set" /></button>
+          <BotToggle />
         </div>
       </div>
     </div>

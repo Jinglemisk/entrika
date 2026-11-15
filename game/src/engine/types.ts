@@ -42,7 +42,6 @@ export interface Player {
   stats: Stats;
   // per crisis
   objected: boolean;
-  played: number;                         // Intrigue cards played this crisis
   targetedThisCrisis: number;
 }
 
@@ -109,6 +108,9 @@ export interface SicilRow {
   result: Kader | null; decree: { to: PID; delta: number } | null; events: LogEntry[];
 }
 
+/** Public moments every player confirms having seen: a Crisis flips, a wave flips, the Kader result. */
+export type Moment = 'crisis' | 'wave' | 'result';
+
 export type StepName = 'setup' | 'crisis' | 'appoint' | 'objections' | 'court' | 'kader' | 'result' | 'decree' | 'over';
 
 // What the game waits for. Every input a player owes is an Ask addressed to them.
@@ -132,6 +134,7 @@ export type Ask =
   | { id: number; to: PID; type: 'investigate' }
   | { id: number; to: PID; type: 'hazineName' }
   | { id: number; to: PID; type: 'next'; what: string }
+  | { id: number; to: PID; type: 'ack'; what: Moment }             // everyone presses Devam before the game moves on
   | { id: number; to: PID; type: 'decree'; delta: number }
   | { id: number; to: PID; type: 'venedik'; cards: Kader[] };
 

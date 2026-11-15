@@ -151,6 +151,7 @@ const ANSWERS: Handlers = {
     const p = P(g, a.to);
     must(seat === 'first' || seat === 'second', 'Bir Vekil seç.');
     const target = g.ministers[seat]!;
+    must(target !== a.to, 'Kendi koltuğuna itiraz edemezsin.');
     must(!p.objected, 'Bu kriz zaten itiraz ettin.');
     if (free) {
       must(readyPower(g, 'mahidevran', 'base')?.id === a.to, 'İtiraz gücün yok.');
@@ -211,10 +212,6 @@ const ANSWERS: Handlers = {
     const k = g.kader!;
     must(Array.isArray(v) && v.length === a.discard && new Set(v).size === v.length && v.every(i => a.cards[i]), `${a.discard} kart at.`);
     const tossed: Kader[] = v.map((i: number) => a.cards[i]);
-    if (P(g, a.to).side === 'loyalist') {
-      const need = Math.min(a.discard, a.cards.filter(c => c === 'x').length);
-      must(tossed.filter(c => c === 'x').length >= need, 'Sadıksın: Hıyanet varken onu atmalısın.');
-    }
     k.passed = a.cards.filter((_, i) => !v.includes(i));
     k.discards.first = tossed;
     g.decks.kaderDiscard.push(...tossed);
@@ -225,7 +222,6 @@ const ANSWERS: Handlers = {
     const k = g.kader!;
     must(v === 0 || v === 1, 'Oynayacağın kartı seç.');
     const play = a.cards[v];
-    if (P(g, a.to).side === 'loyalist' && a.cards.includes('h')) must(play === 'h', 'Sadıksın: Hizmet varken onu oynamalısın.');
     k.played = play;
     k.discards.second = [a.cards[1 - v]];
     g.decks.kaderDiscard.push(a.cards[1 - v]);
@@ -260,6 +256,7 @@ const ANSWERS: Handlers = {
   },
 
   next() {},
+  ack() {},
 
   decree(g, _a, v) {
     const id = asPid(g, v);

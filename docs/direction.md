@@ -30,7 +30,7 @@ The standing brief for the browser game. Read it before starting any work on the
 
 1. **Art first.** A subagent sets the art direction. It produces two directions side by side for the designer to pick from: (A) dark palace drama — deep red, black, gold, candlelight; (B) Ottoman miniature — cream paper, gold leaf, tile patterns.
 2. **Then the first playable, in one overnight pass.** It's built end to end without stopping until the designer can play a full game.
-3. **Testing aid.** A test room puts every seat on one browser. A strip of seat buttons switches between their screens, and a bot switch hands the other seats to random legal play. Both exist only in test rooms and are removed later.
+3. **Testing aid.** A test room puts every seat on one browser. A small eye on each seat switches between their screens, and a bot switch hands the other seats to random legal play. Both exist only in test rooms and are removed later.
 4. **No automated tests during the build.** Tests come much later.
 
 ## Art

@@ -179,6 +179,10 @@ function scheduleBots(room: Room) {
     const mine = urgent.length ? urgent : g.asks.filter(a => room.seats[a.to]?.bot);
     const a = mine[0];
     if (!a) return;
+    if (a.type === 'ack') {   // bots press Devam together
+      for (const x of g.asks.filter(x => x.type === 'ack' && room.seats[x.to]?.bot)) room.game = act(room.game!, x.to, { t: 'answer', ask: x.id });
+      return changed(room);
+    }
     try {
       if (Math.random() < 0.05) {
         const pw = botPower(g, a.to);

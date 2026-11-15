@@ -48,7 +48,7 @@ function court(opts: { first: PID; second: PID; crisis?: string }): Game {
 /** Deal these hands (everyone else empty) and reopen the current wave so its asks match. */
 function hands(g: Game, h: Record<number, ReturnType<typeof card>[]>): Game {
   for (const p of g.players) if (!p.sultan) p.hand = h[p.id] ?? [];
-  g.asks = g.asks.filter(a => a.type !== 'wave' && a.type !== 'ferman');
+  g.asks = g.asks.filter(a => a.type !== 'wave' && a.type !== 'ferman' && a.type !== 'ack');
   g.step = 'court';
   g.sub = 'wave';
   g.court!.done = false;
@@ -62,6 +62,11 @@ function hands(g: Game, h: Record<number, ReturnType<typeof card>[]>): Game {
 /** Everyone with an open wave ask plays what `plays` says for them, or passes. */
 function wave(g: Game, plays: Record<number, { uid: number; target: PID; recastAs?: string; field?: Field }[]>): Game {
   for (const a of g.asks.filter(x => x.type === 'wave')) g = act(g, a.to, { t: 'answer', ask: a.id, value: plays[a.to] ?? [] });
+  return g;
+}
+/** Everyone presses Devam on the public moment that is up. */
+function seen(g: Game): Game {
+  for (const a of g.asks.filter(x => x.type === 'ack')) g = act(g, a.to, { t: 'answer', ask: a.id });
   return g;
 }
 const lastReveal = (g: Game) => g.court!.reveals[g.court!.reveals.length - 1];
@@ -173,16 +178,30 @@ test('a card outside the open field cannot be placed, unless a Kul recasts it in
   assert.deepEqual(lastReveal(g).map(r => [r.as, r.field, r.recast, r.outcome]), [['muhur', 'divan', true, 'ok']]);
 });
 
-test('at most two Intrigue cards per crisis, one per wave', () => {
+test('one Intrigue card per wave, but no limit per crisis', () => {
   let g = court({ first: 1, second: 2 });
   const c = [card('iftira', 'harem'), card('iftira', 'harem'), card('iftira', 'harem')];
   g = hands(g, { 3: c });
   const a = ask(g, 'wave', 3);
   assert.throws(() => act(g, 3, { t: 'answer', ask: a.id, value: [{ uid: c[0].uid, target: 4 }, { uid: c[1].uid, target: 4 }] }), RuleError);
-  g = wave(g, { 3: [{ uid: c[0].uid, target: 4 }] });
-  g = wave(g, { 3: [{ uid: c[1].uid, target: 4 }] });
-  assert.equal(g.players[3].played, 2);
-  assert.ok(!g.asks.some(x => x.type === 'wave' && x.to === 3), 'no third card this crisis');
+  for (const x of c) {
+    g = wave(g, { 3: [{ uid: x.uid, target: 4 }] });
+    g = seen(g);
+  }
+  assert.equal(g.players[3].hand.length, 0, 'all three played, one wave each');
+  assert.equal(g.court!.reveals.length, 3);
+});
+
+test('a flipped wave waits for every player, Süleyman too, to press Devam', () => {
+  let g = court({ first: 1, second: 2 });
+  const i = card('iftira', 'harem');
+  g = hands(g, { 3: [i, card('iftira', 'harem')] });
+  g = wave(g, { 3: [{ uid: i.uid, target: 4 }] });
+  assert.deepEqual(g.asks.filter(a => a.type === 'ack').map(a => a.to).sort(), [0, 1, 2, 3, 4, 5]);
+  for (const a of g.asks.filter(x => x.type === 'ack' && x.to !== 0)) g = act(g, a.to, { t: 'answer', ask: a.id });
+  assert.ok(!g.asks.some(a => a.type === 'wave'), 'the next wave waits for the last Devam');
+  g = seen(g);
+  assert.ok(g.asks.some(a => a.type === 'wave' && a.to === 3), 'then the next wave opens');
 });
 
 test('a wave where nobody plays ends Tertip and offers Süleyman the Ferman', () => {
@@ -196,20 +215,21 @@ test('a wave where nobody plays ends Tertip and offers Süleyman the Ferman', ()
   assert.equal(g.step, 'kader');
 });
 
-test('Kader: a Loyalist First Vekil must discard a Hıyanet; a Loyalist Second Vekil must play a Hizmet', () => {
+test('Kader: any Vekil may discard or play any card, Loyalist or not; the result waits for Devam', () => {
   let g = court({ first: 1, second: 2 });
   g.players[1].side = 'loyalist';
   g.players[2].side = 'loyalist';
   g.decks.kader = ['h', 'x', 'h', ...g.decks.kader];
   g = wave(g, {});
   g = answer(g, 'ferman', null, 0);
-  const first = ask(g, 'kaderFirst', 1);
-  assert.throws(() => act(g, 1, { t: 'answer', ask: first.id, value: [0] }), RuleError);
-  g = act(g, 1, { t: 'answer', ask: first.id, value: [1] });
+  g = answer(g, 'kaderFirst', [0], 1);        // a Loyalist tosses a Hizmet
   const second = ask(g, 'kaderSecond', 2);
-  assert.deepEqual(second.type === 'kaderSecond' && second.cards, ['h', 'h']);
-  g = act(g, 2, { t: 'answer', ask: second.id, value: 0 });
-  assert.equal(g.tracks.loyalty, 1);
+  assert.deepEqual(second.type === 'kaderSecond' && second.cards, ['x', 'h']);
+  g = act(g, 2, { t: 'answer', ask: second.id, value: 0 });   // and plays the Hıyanet
+  assert.equal(g.tracks.treason, 1);
+  assert.equal(g.step, 'result');
+  g = seen(g);
+  assert.equal(g.step, 'decree');
 });
 
 test('the Decree: Hizmet gives +1 to a Vekil; the 4th Hizmet ends the game and the most Influence wins overall', () => {
@@ -236,11 +256,14 @@ test('an Objection costs Influence (not a loss, so no draw) and Süleyman picks 
   while (!g.asks.some(a => a.type === 'appoint')) g = act(g, g.asks[0].to, { t: 'answer', ask: g.asks[0].id, value: calm(g, g.asks[0]) });
   g = answer(g, 'appoint', { first: 1, second: 2 });
   for (const p of g.players) p.hand = [];
-  g = answer(g, 'object', { seat: 'first' }, 1);   // seat 1 objects to themself: legal, and shows the cost clearly
+  const o = ask(g, 'object', 1);
+  assert.throws(() => act(g, 1, { t: 'answer', ask: o.id, value: { seat: 'first' } }), RuleError, 'not your own seat');
+  g = act(g, 1, { t: 'answer', ask: o.id, value: { seat: 'second' } });
   assert.equal(g.players[1].influence, 0);
   g = answer(g, 'replace', 3, 0);
-  assert.equal(g.ministers.first, 3);
-  assert.equal(g.players[1].hand.length, 1, 'the removed Vekil draws one card for the lost seat, none for the spent Influence');
+  assert.equal(g.ministers.second, 3);
+  assert.equal(g.players[2].hand.length, 1, 'the removed Vekil draws one card for the lost seat');
+  assert.equal(g.players[1].hand.length, 0, 'spending Influence is not losing it: no draw');
 });
 
 test('hand limit: drawing over 3 asks for a discard before anything else moves', () => {

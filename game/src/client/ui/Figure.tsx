@@ -1,6 +1,7 @@
 // A Character standing in an arched niche: the cut-out is drawn twice, masked to the arch and clipped to a band so the
 // head breaks the frame (v3 design). Characters without a cut-out show a plain silhouette.
 import placement from '../../../../art/stills/placement.json' with { type: 'json' };
+import { companionById } from '../../engine/index.ts';
 
 export interface Niche { hx: number; y0: number; ar: number; w: number }
 const PLACE = placement as Record<string, { niche?: Niche; card?: { cl: number; cw: number; ct: number; op: string } }>;
@@ -37,4 +38,11 @@ export function Head({ character }: { character: string }) {
   const k = nichePlacement(character);
   if (!k) return <i className="head none" />;
   return <img className="head" src={cutSrc(character)} alt="" style={{ objectPosition: `${k.hx * 100}% ${Math.max(0, k.y0 * 100 - 2)}%` }} />;
+}
+
+/** A Kul's round head, from its card art; the Kul emblem when it has none. */
+export function KulHead({ id }: { id: string }) {
+  const art = companionById[id]?.art;
+  if (!art) return <i className="head kul-em" />;
+  return <img className="head" src={art.src} alt="" style={{ objectPosition: art.pos }} />;
 }

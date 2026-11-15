@@ -16,11 +16,13 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - confirm the grade strength (15%);
    - AI-generated textures (deferred).
 2. UI: the v3 design system is the way forward (decided 2026-11-15, all six recommendations taken): https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH, source in `ui/v3/src/`, notes in `ui/v3/notes.md`, decisions in the UI section of `docs/direction.md`. The v2 prototype is retired.
-3. First playable: done (branch `feat/playable-game`, folder `game/`). Every rule in manual v0.7 is in it: setup with Kul choice, Atama with Objections and every timed power, Tertip in waves, Ferman, Kader with the Loyalist duties, the Treason powers, the Decree, Hırs cards and the overall winner. There are rooms with a share code, rejoin after a locked phone, test rooms with bots, sound, and critical rules tests. How to run it: `game/README.md`.
+3. First playable: done (branch `feat/playable-game`, folder `game/`). Every rule in manual v0.7 is in it: setup with Kul choice, Atama with Objections and every timed power, Tertip in waves, Ferman, Kader, the Treason powers, the Decree, Hırs cards and the overall winner. There are rooms with a share code, rejoin after a locked phone, test rooms with bots, sound, and critical rules tests. How to run it: `game/README.md`.
 4. Next:
    - Play a real game on phones over Wi-Fi.
    - Review the engine's rulings in `docs/rulings.md` and fold them into the manual.
    - Decide whether the manual should read `game/content/` so card text lives in one place.
+   - Fold the first playtest's rule changes into the manual (listed at the top of `docs/rulings.md`): no per-crisis Intrigue limit, no Loyalist duty in Kader, Devam after each public moment, no Objection to your own seat.
+   - Before release: remove the test-room aids marked `DEV` in `game/src/client/` (seat eyes, corner heads, Devam heads that switch seats, the robot button) along with test rooms.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.

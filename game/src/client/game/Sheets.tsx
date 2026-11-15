@@ -6,15 +6,16 @@ import {
   ambitionById, characterById, companionById, crisisById, intrigueById, MISC, type Peek, type PID,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
-import { spec, type CardRef } from '../cardSpecs.ts';
-import { Em, Gl, Star } from '../ui/marks.tsx';
-import { Head } from '../ui/Figure.tsx';
+import { spec } from '../cardSpecs.ts';
+import { Em, Gl } from '../ui/marks.tsx';
+import { Head, KulHead } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { logText } from '../logText.ts';
 import { getTags, markPeeksSeen, peeksSeen, setTag, setPrefs, usePrefs } from '../prefs.ts';
 import { send } from '../net.ts';
 import { startMusic, stopMusic } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
+import { CardPop, CharPowers, PopClose, PopShell } from './Pop.tsx';
 import { useGame } from './ctx.ts';
 
 const fade = { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0 }, transition: { duration: 0.2 } };
@@ -29,7 +30,7 @@ export function SheetView() {
   const close = () => setSheet(null);
   switch (sheet.t) {
     case 'seat': return <SeatSheet id={sheet.id} close={close} />;
-    case 'card': return <CardSheet cardRef={sheet.ref} close={close} />;
+    case 'card': return <CardPop cardRef={sheet.ref} uid={sheet.uid} own={sheet.own} />;
     case 'log': return <LogSheet close={close} />;
     case 'settings': return <SettingsSheet close={close} />;
     case 'secret': return <SecretSheet close={close} />;
@@ -41,69 +42,42 @@ export function SheetView() {
 function SeatSheet({ id, close }: { id: PID; close: () => void }) {
   const { g, seat, room } = useGame();
   const p = g.players[id];
-  const ch = characterById[p.character];
   const comp = p.companion ? companionById[p.companion] : null;
+  const vk = g.ministers.first === id ? 'min1' : g.ministers.second === id ? 'min2' : null;
   const [tags, setTags] = useState(() => getTags(room.code, seat));
   const tag = (v: 'suspect' | 'trusted') => {
     setTag(room.code, seat, id, tags[id] === v ? null : v);
     setTags(getTags(room.code, seat));
   };
   const onThem = (g.court?.reveals ?? []).flat().filter(r => r.target === id);
-  const powerSub = (state: string, which: 'base' | 'favor') =>
-    state === 'used' ? t('used') : state === 'locked' ? t('favorLocked') : t(which === 'base' ? 'baseReady' : 'favorReady');
   return (
-    <motion.div className="full zp sheet" {...fade}>
-      <div className="bd split">
-        <Card spec={spec({ t: 'char', id: p.character })} width={200} />
-        <div className="col">
-          <Close onClick={close} />
-          <p className="h-mid">{p.name}{id === seat ? ` ${t('you')}` : ''}</p>
-          <div className="nm-row">
-            <span className="pill plain">{ch.name}</span>
-            {!p.sultan && <span className="pill"><Star n={p.influence} size={20} />{t('nInfluence', { n: p.influence })}</span>}
-            {comp && <span className="pill">{comp.art && <img src={comp.art.src} alt="" />}{comp.name}{p.influence < 1 ? ` (${t('faceDown')})` : ''}</span>}
-            {!p.sultan && <span className="pill plain">{t('handCount', { n: p.hand.length })}</span>}
+    <PopShell zone="zp" className="seatpop" onClose={close}>
+      <Card spec={spec({ t: 'char', id: p.character })} width={168} />
+      <div className="pop-body">
+        <PopClose onClick={close} />
+        <p className="pop-kind"><Em k="character" s={16} />{characterById[p.character].name}{vk && <><i className="sep" /><Em k="minister" s={16} />{t(vk)}</>}</p>
+        <p className="pop-name">{p.name}{id === seat ? ` ${t('you')}` : ''}</p>
+        {!p.sultan && (
+          <p className="pop-stats">
+            <span title={t('nInfluence', { n: p.influence })}><Em k="influence" s={18} /><b>{p.influence}</b></span>
+            <span title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={18} /><b>{p.hand.length}</b></span>
+            {comp && <span className={p.influence < 1 ? 'down' : ''} title={comp.name}><KulHead id={comp.id} />{comp.name}{p.influence < 1 ? ` (${t('faceDown')})` : ''}</span>}
+          </p>
+        )}
+        <CharPowers id={p.character} own={false} close={close} />
+        {p.ambitionShown && p.ambition && <p className="pop-note"><Em k="ambition" s={15} /><b>{ambitionById[p.ambition].name}</b>{t('ambitionDone')}</p>}
+        {onThem.length > 0 && (
+          <p className="pop-note">{t('onThemThisCrisis')} {onThem.map((r, i) => <span key={i} className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{intrigueById[r.as].name}</span>)}</p>
+        )}
+        {id !== seat && !p.sultan && (
+          <div className="priv zl">
+            <small><Gl k="eye" />{t('onlyYou')}</small>
+            <button type="button" className={`b ${tags[id] === 'suspect' ? 'on2' : ''}`} onClick={() => tag('suspect')}><Em k="suspect" s={16} />{t('tag.suspect')}</button>
+            <button type="button" className={`b ${tags[id] === 'trusted' ? 'on3' : ''}`} onClick={() => tag('trusted')}><Em k="trusted" s={16} />{t('tag.trusted')}</button>
           </div>
-          <ul className="pw">
-            <li className={p.sultan ? (g.ferman ? '' : 'used') : p.base === 'used' ? 'used' : ''}><i className="d" /><b>{ch.base.name}</b><small>{p.sultan ? t(g.ferman ? 'fermanReady' : 'fermanUsed') : powerSub(p.base, 'base')}</small></li>
-            {!p.sultan && !g.learning && <li className={p.favor === 'used' ? 'used' : p.favor === 'locked' ? 'lock' : ''}><i className="d" /><b>{ch.favor.name}</b><small>{powerSub(p.favor, 'favor')}</small></li>}
-            {p.ambitionShown && p.ambition && <li><i className="d" /><b>{ambitionById[p.ambition].name}</b><small>{t('ambitionDone')}</small></li>}
-          </ul>
-          {onThem.length > 0 && <p className="wait fg">{t('onThemThisCrisis')} {onThem.map((r, i) => <span key={i} className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{intrigueById[r.as].name}</span>)}</p>}
-          {id !== seat && !p.sultan && (
-            <div className="priv zl">
-              <small><Gl k="eye" />{t('onlyYou')}</small>
-              <button type="button" className={`b ${tags[id] === 'suspect' ? 'on2' : ''}`} onClick={() => tag('suspect')}>{t('tag.suspect')}</button>
-              <button type="button" className={`b ${tags[id] === 'trusted' ? 'on3' : ''}`} onClick={() => tag('trusted')}>{t('tag.trusted')}</button>
-            </div>
-          )}
-        </div>
+        )}
       </div>
-    </motion.div>
-  );
-}
-
-// ---------- a card at reading size
-
-function CardSheet({ cardRef, close }: { cardRef: CardRef; close: () => void }) {
-  const s = spec(cardRef);
-  const kindLabel = t(`kind.${cardRef.t}`);
-  const field = 'field' in cardRef ? cardRef.field : cardRef.t === 'crisis' ? crisisById[cardRef.id].field : null;
-  const text = cardRef.t === 'intr' ? intrigueById[cardRef.kind].text : cardRef.t === 'crisis' ? crisisById[cardRef.id].text : null;
-  return (
-    <motion.div className="full zl sheet" {...fade} onClick={close}>
-      <div className="bd split">
-        <Card spec={s} width={236} />
-        <div className="col">
-          <Close onClick={close} />
-          <p className="h-step">{field && <Em k={field} s={18} />}{kindLabel}{field ? `, ${t(field)}` : ''}</p>
-          <p className="h-mid">{s.name}</p>
-          {text && <p className="vo big plain">{text}</p>}
-          <div className="rule" />
-          <p className="vo small">{t('cardTapClose')}</p>
-        </div>
-      </div>
-    </motion.div>
+    </PopShell>
   );
 }
 
@@ -214,13 +188,13 @@ export function PeekPopup() {
   const p = mine[seen];
   const done = () => { markPeeksSeen(room.code, seat, seen + 1); setSeen(seen + 1); };
   return (
-    <motion.div className="full zl sheet peekpop" {...fade} key={seen}>
-      <div className="bd block">
-        <p className="h-step"><Gl k="eye" />{t('onlyYou')}</p>
+    <PopShell className="peekpop" key={seen}>
+      <div className="pop-body wide">
+        <p className="pop-kind"><Gl k="eye" />{t('onlyYou')}</p>
         <PeekBody p={p} />
-        <div className="bt left"><Btn pri onClick={done}>{t('btn.gotIt')}</Btn></div>
+        <div className="pop-acts"><Btn pri onClick={done}>{t('btn.gotIt')}</Btn></div>
       </div>
-    </motion.div>
+    </PopShell>
   );
 }
 
@@ -235,31 +209,27 @@ function SecretSheet({ close }: { close: () => void }) {
   }, []);
   if (me.sultan) {
     return (
-      <motion.div className="full zl sheet" {...fade} onClick={close}>
-        <div className="bd split">
-          <div className="col"><p className="h-step"><Gl k="eye" />{t('public')}</p><p className="h-mid">{t('sultanSecret')}</p><p className="vo">{t('sultanSecretWhy')}</p></div>
-          <Card spec={spec({ t: 'char', id: 'suleyman' })} width={196} />
-        </div>
-      </motion.div>
+      <PopShell onClose={close}>
+        <Card spec={spec({ t: 'char', id: 'suleyman' })} width={150} />
+        <div className="pop-body"><p className="pop-kind"><Em k="public" s={16} />{t('public')}</p><p className="pop-name">{t('sultanSecret')}</p><p className="pop-text">{t('sultanSecretWhy')}</p></div>
+      </PopShell>
     );
   }
   const ch = characterById[me.character];
   const role = g.peeks.find(p => p.to === me.id && p.kind === 'role');
   return (
-    <motion.div className="full zl sheet secret" {...fade} onClick={close}>
-      <div className="bd split">
-        <div className="col">
-          <p className="h-step"><Gl k="eye" />{t('onlyYou')}</p>
-          <p className="h-mid">{t(me.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
-          <p className="vo big">«{me.side === 'traitor' ? ch.traitor : ch.loyal}»</p>
-          {role && role.kind === 'role' && me.side === 'traitor' && <p className="vo small plain">{role.traitors.length ? t('peek.traitors', { names: role.traitors.map(i => g.players[i].name).join(', ') }) : t('peek.alone')}</p>}
-          {me.ambition && <p className="vo small plain"><b>{t('yourAmbition', { name: ambitionById[me.ambition].name })}</b> {ambitionById[me.ambition].text} {me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor: ch.favor.name })}</p>}
-          <p className="wait"><Gl k="hold" />{t('releaseToClose')}</p>
-        </div>
-        <Card spec={spec({ t: 'taraf', side: me.side! })} width={176} />
-        {me.ambition && <Card spec={spec({ t: 'hirs', id: me.ambition })} width={176} />}
+    <PopShell className="secret" onClose={close}>
+      <Card spec={spec({ t: 'taraf', side: me.side! })} width={150} />
+      {me.ambition && <Card spec={spec({ t: 'hirs', id: me.ambition })} width={150} />}
+      <div className="pop-body">
+        <p className="pop-kind"><Gl k="eye" />{t('onlyYou')}</p>
+        <p className="pop-name">{t(me.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
+        <p className="pop-text">«{me.side === 'traitor' ? ch.traitor : ch.loyal}»</p>
+        {role && role.kind === 'role' && me.side === 'traitor' && <p className="pop-note">{role.traitors.length ? t('peek.traitors', { names: role.traitors.map(i => g.players[i].name).join(', ') }) : t('peek.alone')}</p>}
+        {me.ambition && <p className="pop-note"><Em k="ambition" s={15} /><span><b>{ambitionById[me.ambition].name}.</b> {me.ambitionShown ? t('ambitionDone') : me.ambitionMet ? t('ambitionMet') : t('ambitionUnlocks', { favor: ch.favor.name })}</span></p>}
+        <p className="pop-note"><Gl k="hold" />{t('releaseToClose')}</p>
       </div>
-    </motion.div>
+    </PopShell>
   );
 }
 

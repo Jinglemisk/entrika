@@ -30,7 +30,7 @@
     "text": "Bir Entrika kartını Saray Tabibi olarak oyna.", "flavor": "Sultan'ın en eski dostu, en sessiz tanığı.",
     "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 18%" } },
   { "id": "iskender", "name": "İskender Çelebi", "special": "iskender", "freq": "once",
-    "text": "Birinci Vekilken Kader'den 3 yerine 4 kart çek, 2'sini at. Sadıksan atabildiğin her Hıyanet'i atarsın.", "flavor": "Hazinenin hesabı onun defterinde.",
+    "text": "Birinci Vekilken Kader'den 3 yerine 4 kart çek, 2'sini at.", "flavor": "Hazinenin hesabı onun defterinde.",
     "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 18%" } },
   { "id": "firuze", "name": "Firuze Hatun", "special": "firuze", "freq": "once",
     "text": "Nüfuz kazandığında 1 fazla kazan.", "flavor": "Padişahın gönlüne giden yolu bilir.",
@@ -39,6 +39,6 @@
     "text": "Entrika elinin sınırı 3 değil 4 olur.", "flavor": "Hazinenin anahtarı onun kuşağında.",
     "art": { "src": "/art/directions/img/roster-comp.afife.jpg", "pos": "50% 18%" } },
   { "id": "esma", "name": "Esma Hatun", "special": "esma", "freq": "once",
-    "text": "Oynadığın bir Entrika kartı etkisini gösterince eline geri döner; yine 2 kartlık sınırına sayılır.", "flavor": "Verdiğini geri almayı bilir.",
+    "text": "Oynadığın bir Entrika kartı etkisini gösterince eline geri döner.", "flavor": "Verdiğini geri almayı bilir.",
     "art": { "src": "/art/directions/img/roster-comp.esma.jpg", "pos": "50% 18%" } }
 ]

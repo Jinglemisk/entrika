@@ -1,108 +1,87 @@
-// The lacquer shelf: what is yours. Your Taraf (press and hold to read it), your powers as a named list with state,
-// and your hand. The prompt block sits on its right.
-import { useRef, useState } from 'react';
+// The lacquer shelf: what is yours. Your Taraf and Hırs (press and hold to read), your Character and Kul as small
+// cards (tap one to read it and use its powers), and your hand (tap a card to read it and act on it). The prompt
+// block sits on the right.
+import { useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { characterById, companionById, FREE_POWERS, freePowerTargets, intrigueById, type PowerState } from '../../engine/index.ts';
+import { FREE_POWERS, companionById, characterById, freePowerTargets, type PowerState } from '../../engine/index.ts';
 import { Card, CardBack } from '../cards/Card.tsx';
 import { intrRef, spec } from '../cardSpecs.ts';
+import { Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
 
+const MINI = 50;
+const HAND_W = 290;   // px between your cards and the prompt (game.css: .pr left)
+
 export function Mine() {
-  const { g, me, setSheet } = useGame();
+  const { g, me, seat, setSheet } = useGame();
   const hold = useRef<number | null>(null);
-  const ch = characterById[me.character];
   const start = () => { hold.current = window.setTimeout(() => setSheet({ t: 'secret' }), 160); };
   const stop = () => { if (hold.current) clearTimeout(hold.current); hold.current = null; };
+  const ch = characterById[me.character];
+  const live = [ch.base.id, ch.favor.id].some(p => FREE_POWERS[p] && freePowerTargets(g, seat, p));
+  const pips: PowerState[] = me.sultan
+    ? [g.ferman ? 'ready' : 'used', g.tracks.treason >= 2 ? 'used' : 'locked', g.hazineDefteri ? 'ready' : g.tracks.treason >= 3 ? 'used' : 'locked']
+    : g.learning ? [me.base] : [me.base, me.favor];
+  const kul = me.companion ? companionById[me.companion] : null;
   return (
     <div className="mine">
-      <button type="button" className="tf" onPointerDown={start} onPointerUp={stop} onPointerLeave={stop} onClick={() => setSheet({ t: 'secret' })}>
-        <CardBack kind="taraf" width={46} />
+      <button type="button" className="mc tf" onPointerDown={start} onPointerUp={stop} onPointerLeave={stop} onClick={() => setSheet({ t: 'secret' })}>
+        <CardBack kind="taraf" width={MINI - 4} />
         <small>{t(me.sultan ? 'sultanCard' : 'holdSecret')}</small>
       </button>
-      <ul className="pw">
-        {me.sultan ? <SultanPowers /> : (
-          <>
-            <PowerRow which="base" name={ch.base.name} state={me.base} power={ch.base.id} />
-            {!g.learning && <PowerRow which="favor" name={ch.favor.name} state={me.favor} power={ch.favor.id} />}
-            {me.companion && <KulRow />}
-          </>
-        )}
-      </ul>
+      <button type="button" className={`mc ${live ? 'live' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'char', id: me.character }, own: true }); }}>
+        <Card spec={spec({ t: 'char', id: me.character })} width={MINI} />
+        <Pips states={pips} />
+      </button>
+      {kul && (
+        <button type="button" className={`mc ${me.influence < 1 ? 'down' : ''}`} onClick={() => { sfx('tap'); setSheet({ t: 'card', ref: { t: 'kul', id: kul.id }, own: true }); }}>
+          <Card spec={spec({ t: 'kul', id: kul.id })} width={MINI} />
+          <Pips states={[kulState()]} />
+        </button>
+      )}
     </div>
   );
+
+  function kulState(): PowerState {
+    if (!kul || me.influence < 1) return 'locked';
+    if (kul.freq !== 'always' && me.companionUsed) return 'used';
+    return 'ready';
+  }
 }
 
-function SultanPowers() {
-  const { g } = useGame();
-  const tr = g.tracks.treason;
-  return (
-    <>
-      <li className={g.ferman ? '' : 'used'}><i className="d" /><b>{t('ferman')}</b><small>{t(g.ferman ? 'fermanReady' : 'fermanUsed')}</small></li>
-      <li className={tr >= 2 ? 'used' : 'lock'}><i className="d" /><b>{t('sorusturma')}</b><small>{t(tr >= 2 ? 'trackPowerTaken' : 'opensAt', { n: 2 })}</small></li>
-      <li className={g.hazineDefteri ? '' : tr >= 3 ? 'used' : 'lock'}><i className="d" /><b>{t('hazineDefteri')}</b><small>{t(g.hazineDefteri ? 'hazinePending' : tr >= 3 ? 'trackPowerTaken' : 'opensAt', { n: 3 })}</small></li>
-    </>
-  );
+function Pips({ states }: { states: PowerState[] }) {
+  return <span className="pips">{states.map((s, i) => <i key={i} className={s} />)}</span>;
 }
-
-function PowerRow({ which, name, state, power }: { which: 'base' | 'favor'; name: string; state: PowerState; power: string }) {
-  const { g, seat, act, setPicker } = useGame();
-  const [armed, setArmed] = useState(false);
-  const free = FREE_POWERS[power] ? freePowerTargets(g, seat, power) : null;
-  const usable = !!free;
-  const sub = state === 'used' ? t('used') : state === 'locked' ? t('favorLocked') : armed ? t('tapAgain') : usable ? t('tapToUse') : t(which === 'base' ? 'baseReady' : 'favorReady');
-  const use = () => {
-    if (!free) return;
-    sfx('tap');
-    if (FREE_POWERS[power].target) {
-      setPicker({ legal: free, onPick: id => { act({ t: 'power', power, target: id }); setPicker(null); } });
-    } else if (armed) { act({ t: 'power', power }); setArmed(false); }
-    else { setArmed(true); setTimeout(() => setArmed(false), 3000); }
-  };
-  return (
-    <li className={[state === 'used' && 'used', state === 'locked' && 'lock', usable && 'live'].filter(Boolean).join(' ')} onClick={use}>
-      <i className="d" /><b>{name}</b><small>{sub}</small>
-    </li>
-  );
-}
-
-function KulRow() {
-  const { me } = useGame();
-  const c = companionById[me.companion!];
-  const down = me.influence < 1;
-  const spentGame = !!c.special && c.freq === 'once' && me.companionUsed;
-  const spentCrisis = !!c.recast && me.companionUsed;
-  const sub = down ? t('kulDown') : spentGame ? t('used') : spentCrisis ? t('kulUsedCrisis') : c.recast ? t('kulRecast', { card: recastName(c.recast) }) : t('kulSpecial');
-  return <li className={down || spentGame || spentCrisis ? 'used' : ''}><i className="d" /><b>{c.name}</b><small>{sub}</small></li>;
-}
-const recastName = (id: string) => intrigueById[id].name;
 
 export function Hand() {
-  const { me, hand, setSheet, asks } = useGame();
-  if (me.sultan || asks[0]?.type === 'appoint') return null;   // Süleyman holds no cards; appointing shows the seats here
-  const tap = (uid: number) => {
+  const { g, me, hand, setSheet, asks } = useGame();
+  if (me.sultan || ['appoint', 'replace', 'ferman'].includes(asks[0]?.type ?? '')) return null;   // seat slots show here instead
+  const open = (uid: number) => {
     sfx('tap');
-    if (hand.mode === 'view') {
-      const c = me.hand.find(x => x.uid === uid)!;
-      return setSheet({ t: 'card', ref: intrRef(c) });
-    }
-    if (hand.mode === 'play' || hand.mode === 'keep') return hand.setSel(hand.sel[0] === uid ? [] : [uid]);
-    hand.setSel(hand.sel.includes(uid) ? hand.sel.filter(x => x !== uid) : [...hand.sel, uid]);
+    const c = me.hand.find(x => x.uid === uid)!;
+    setSheet({ t: 'card', ref: intrRef(c), uid });
   };
-  const w = Math.min(96, Math.floor((316 - 9 * (me.hand.length - 1)) / Math.max(1, me.hand.length)));   // fit the space left of the prompt
+  // fit the space left of the prompt; below 90 px a card loses its name, so a big hand overlaps instead of shrinking
+  const n = Math.max(1, me.hand.length);
+  const w = Math.max(90, Math.min(96, Math.floor((HAND_W - 9 * (n - 1)) / n)));
+  const gap = n > 1 ? Math.min(9, Math.floor((HAND_W - w * n) / (n - 1))) : 9;   // negative: the cards overlap
   return (
-    <div className="hand">
+    <div className="hand" style={{ gap: 0 }}>
       <AnimatePresence initial={false}>
-        {me.hand.map(c => {
-          const sel = hand.sel.includes(c.uid);
-          const cls = ['hc', sel && 'sel', sel && hand.mode === 'discard' && 'toss'].filter(Boolean).join(' ');
+        {me.hand.map((c, i) => {
+          const sealed = g.court?.submitted[me.id];
+          const staged = hand.staged.find(s => s.uid === c.uid) ?? (Array.isArray(sealed) ? sealed.find(s => s.uid === c.uid) : undefined);
+          const up = hand.sel.includes(c.uid) || hand.aim?.uid === c.uid;
+          const toss = up && hand.mode === 'discard';
+          const cls = ['hc', up && 'sel', toss && 'toss', staged && 'staged'].filter(Boolean).join(' ');
           return (
-            <motion.button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4 }} onClick={() => tap(c.uid)}
-              layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: sel ? (hand.mode === 'discard' ? 14 : -18) : 0, opacity: 1, rotate: 0 }}
-              exit={{ y: -90, opacity: 0, scale: 0.8 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-              onContextMenu={e => { e.preventDefault(); setSheet({ t: 'card', ref: intrRef(c) }); }}>
-              <Card spec={specOf(c)} width={w} />
+            <motion.button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4, marginLeft: i ? gap : 0 }} onClick={() => open(c.uid)}
+              layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: toss ? 14 : up || staged ? -14 : 0, opacity: 1, rotate: 0 }}
+              exit={{ y: -90, opacity: 0, scale: 0.8 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }}>
+              <Card spec={spec(intrRef(c))} width={w} />
+              {staged && <span className="aimed"><Head character={g.players[staged.target].character} /></span>}
             </motion.button>
           );
         })}
@@ -111,4 +90,3 @@ export function Hand() {
     </div>
   );
 }
-const specOf = (c: { kind: string; field: 'harem' | 'divan' }) => spec(intrRef(c));

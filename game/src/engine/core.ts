@@ -1,6 +1,6 @@
 // Small state helpers shared by every step: randomness, asks, the log, drawing, Influence, the hand limit, eligibility.
 import { RULES, characterById, companionById, crisisById, intrigueById, type Field } from './content.ts';
-import type { Ask, CardInst, Game, Kader, PID, Player, Seat } from './types.ts';
+import type { Ask, CardInst, Game, Kader, Moment, PID, Player, Seat } from './types.ts';
 import { RuleError } from './types.ts';
 
 // ---------- randomness (mulberry32, the seed lives in the state so a game replays exactly)
@@ -80,6 +80,13 @@ export function ask(g: Game, a: Omit<Ask, 'id'> & Record<string, unknown>): Ask 
   const full = { ...a, id: g.nextAsk++ } as Ask;
   g.asks.push(full);
   return full;
+}
+/** Whether this player holds this Character's power and it is ready now. */
+export const readyPowerOf = (g: Game, id: PID, character: string, which: 'base' | 'favor') => readyPower(g, character, which)?.id === id;
+
+/** Every player, Süleyman too, confirms a public moment before the game moves on. */
+export function ackAll(g: Game, what: Moment) {
+  for (const p of g.players) ask(g, { to: p.id, type: 'ack', what });
 }
 export const asksOf = (g: Game, type: Ask['type']) => g.asks.filter(a => a.type === type);
 export const hasAsk = (g: Game, ...types: Ask['type'][]) => g.asks.some(a => types.includes(a.type));

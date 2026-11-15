@@ -18,10 +18,11 @@ For production, run `npm run build`, then `npm start`. The `PORT` variable chang
 
 On the home screen, "Test oyunu" opens a room where this browser plays every seat:
 
-- The strip on the left switches between seats.
-- The robot button hands every other seat to a bot, which plays random legal moves.
+- The small eye on each seat switches to that seat's phone. While the court is covered, the row of heads in the corner (or the Devam heads) does the same.
+- The robot button in the top bar hands every other seat to a bot, which plays random legal moves.
+- One Devam press answers for every seat this browser holds.
 
-Bots and the seat strip exist only in test rooms; normal rooms bind each phone to its own seat.
+These aids exist only in test rooms and are marked `DEV` in the code; normal rooms bind each phone to its own seat.
 
 ## Change the game
 
@@ -29,7 +30,7 @@ Bots and the seat strip exist only in test rooms; normal rooms bind each phone t
 - **Interface wording:** `content/strings.tr.json`.
   - `{name}` inserts a value.
   - `{name:dat}` adds a Turkish case suffix (dat, acc, gen, loc, abl), so a sentence reads "Mert'e itiraz etti".
-- **Numbers:** `content/rules.json` holds deck sizes, track lengths, the Allegiance table, the hand limit, cards per crisis, the Objection cost and the Treason powers. Restart the server after editing it.
+- **Numbers:** `content/rules.json` holds deck sizes, track lengths, the Allegiance table, the hand limit, the Objection cost and the Treason powers. Restart the server after editing it.
 - **New behaviour** (a new effect or power) is code: `src/engine/`.
 
 ## How it fits together

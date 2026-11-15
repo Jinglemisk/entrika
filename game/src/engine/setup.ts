@@ -48,7 +48,7 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
       hand: [],
       base: 'ready',
       favor: isSultan ? 'used' : 'locked',
-      companionUsed: false, stats: blankStats(), objected: false, played: 0, targetedThisCrisis: 0,
+      companionUsed: false, stats: blankStats(), objected: false, targetedThisCrisis: 0,
     };
   });
 

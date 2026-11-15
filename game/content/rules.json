@@ -11,7 +11,6 @@
   "startIntrigue": 2,
   "companionChoices": 2,
   "handLimit": 3,
-  "cardsPerCrisis": 2,
   "objectionCost": 1,
   "kader": { "hizmet": 8, "hiyanet": 9, "draw": 3 },
   "tracks": { "loyalty": 4, "treason": 5 },

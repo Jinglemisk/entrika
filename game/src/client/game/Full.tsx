@@ -1,18 +1,16 @@
-// Full-screen views. Private asks on lacquer (choose a Kul, the Kader cards, Cephe, Venedik Postası, the Decree)
-// and public moments on paper (a Crisis flips, a wave flips, the Kader result, the end of the game).
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import {
-  MISC, RULES, characterById, companionById, crisisById, intrigueById, type Ask, type Kader, type PID, type RevealedPlay,
-} from '../../engine/index.ts';
+// Full-screen views: private asks on lacquer (choose a Kul, the Kader cards, Cephe, Venedik Postası, the Decree) and
+// the end of the game on paper. Public moments (Crisis, wave, result) live in the court area: see Moments.
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { RULES, characterById, companionById, crisisById, type Ask, type Kader, type PID } from '../../engine/index.ts';
 import { send } from '../net.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
-import { Em, Gl, Star } from '../ui/marks.tsx';
-import { Figure, Head } from '../ui/Figure.tsx';
+import { Em, Star } from '../ui/marks.tsx';
+import { Figure } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
-import { Btn, Prompt, Stp, playerName as name } from './Prompt.tsx';
+import { Btn, Stp, playerName as name } from './Prompt.tsx';
 import { Court } from './Court.tsx';
 import { Slots } from './Mizan.tsx';
 import { useGame } from './ctx.ts';
@@ -21,9 +19,11 @@ const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity
 
 // ---------- private asks
 
+export const FULL_ASKS: Ask['type'][] = ['companion', 'cephe', 'kaderFirst', 'kaderSecond', 'decree', 'venedik'];
+
 export function FullAsk() {
   const { asks } = useGame();
-  const a = asks.find(x => ['companion', 'cephe', 'kaderFirst', 'kaderSecond', 'decree', 'venedik'].includes(x.type));
+  const a = asks.find(x => FULL_ASKS.includes(x.type));
   if (!a) return null;
   return (
     <motion.div className={`full ${a.type === 'decree' ? 'zp' : 'zl'}`} key={a.id} {...fade}>
@@ -83,7 +83,7 @@ function Cephe({ a }: { a: Extract<Ask, { type: 'cephe' }> }) {
   );
 }
 
-function KaderCards({ cards, marks, onTap }: { cards: Kader[]; marks: (i: number) => { cls: string; tag?: string; lock?: boolean }; onTap: (i: number) => void }) {
+function KaderCards({ cards, marks, onTap }: { cards: Kader[]; marks: (i: number) => { cls: string; tag?: string }; onTap: (i: number) => void }) {
   const w = cards.length > 3 ? 112 : 140;
   return (
     <div className="kd">
@@ -93,7 +93,7 @@ function KaderCards({ cards, marks, onTap }: { cards: Kader[]; marks: (i: number
           <motion.button type="button" key={i} className={`k ${m.cls}`} onClick={() => onTap(i)}
             initial={{ y: -40, opacity: 0, rotateY: 90 }} animate={{ y: m.cls === 'toss' ? 26 : 0, opacity: 1, rotateY: 0 }} transition={{ delay: i * 0.12 }}>
             <Card spec={spec({ t: 'kader', k })} width={w} />
-            {m.tag && <span className={`kt ${m.cls === 'toss' ? 'out' : m.cls === 'go' ? 'go' : ''}`}>{m.lock && <Gl k="lock" />}{m.tag}</span>}
+            {m.tag && <span className={`kt ${m.cls === 'toss' ? 'out' : m.cls === 'go' ? 'go' : ''}`}>{m.tag}</span>}
           </motion.button>
         );
       })}
@@ -102,49 +102,38 @@ function KaderCards({ cards, marks, onTap }: { cards: Kader[]; marks: (i: number
 }
 
 function KaderFirst({ a }: { a: Extract<Ask, { type: 'kaderFirst' }> }) {
-  const { g, act, me } = useGame();
+  const { g, act } = useGame();
   const [toss, setToss] = useState<number[]>([]);
-  const loyal = me.side === 'loyalist';
-  const xs = a.cards.filter(c => c === 'x').length;
-  const needX = loyal ? Math.min(a.discard, xs) : 0;
-  const locked = (i: number) => loyal && a.cards[i] === 'h' && needX > 0 && toss.filter(j => a.cards[j] === 'x').length < needX && !toss.includes(i)
-    && toss.length >= a.discard - (needX - toss.filter(j => a.cards[j] === 'x').length);
   const tap = (i: number) => {
     sfx('tap');
     if (toss.includes(i)) return setToss(toss.filter(j => j !== i));
-    if (loyal && a.cards[i] === 'h' && needX > 0 && a.discard - toss.length <= needX - toss.filter(j => a.cards[j] === 'x').length) return;
     setToss(toss.length >= a.discard ? [...toss.slice(1), i] : [...toss, i]);
   };
-  const legal = toss.length === a.discard && toss.filter(j => a.cards[j] === 'x').length >= needX;
   return (
     <div className="split kader">
       <div className="col">
         <Stp label={t('step.kader')} />
         <p className="h-mid">{t('ask.kaderFirst', { n: a.discard, second: name(g, g.kader!.second) })}</p>
-        {loyal && <p className="vo small">{t('ask.kaderLoyalFirst')}</p>}
         <p className="vo small dim">{t('ask.kaderSilence')}</p>
-        <div className="bt left"><Btn pri off={!legal} onClick={() => act({ t: 'answer', ask: a.id, value: toss })}>{t('btn.passKader', { name: name(g, g.kader!.second) })}</Btn></div>
+        <div className="bt left"><Btn pri off={toss.length !== a.discard} onClick={() => act({ t: 'answer', ask: a.id, value: toss })}>{t('btn.passKader', { name: name(g, g.kader!.second) })}</Btn></div>
       </div>
-      <KaderCards cards={a.cards} onTap={tap} marks={i => toss.includes(i) ? { cls: 'toss', tag: t('kader.toss') } : locked(i) ? { cls: 'lockd', tag: t('kader.locked'), lock: true } : { cls: 'go', tag: t('kader.go') }} />
+      <KaderCards cards={a.cards} onTap={tap} marks={i => toss.includes(i) ? { cls: 'toss', tag: t('kader.toss') } : { cls: 'go', tag: t('kader.go') }} />
     </div>
   );
 }
 
 function KaderSecond({ a }: { a: Extract<Ask, { type: 'kaderSecond' }> }) {
-  const { g, act, me } = useGame();
-  const loyal = me.side === 'loyalist';
-  const forced = loyal && a.cards.includes('h') ? a.cards.indexOf('h') : null;
-  const [play, setPlay] = useState<number | null>(forced);
+  const { g, act } = useGame();
+  const [play, setPlay] = useState<number | null>(null);
   return (
     <div className="split kader">
       <div className="col">
         <Stp label={t('step.kader')} />
         <p className="h-mid">{t('ask.kaderSecond', { first: name(g, g.kader!.first) })}</p>
-        {loyal && <p className="vo small">{t('ask.kaderLoyalSecond')}</p>}
         <p className="vo small dim">{t('ask.kaderSilence')}</p>
         <div className="bt left"><Btn pri off={play === null} onClick={() => act({ t: 'answer', ask: a.id, value: play })}>{t('btn.playKader')}</Btn></div>
       </div>
-      <KaderCards cards={a.cards} onTap={i => { if (forced === null) { sfx('tap'); setPlay(i); } }}
+      <KaderCards cards={a.cards} onTap={i => { sfx('tap'); setPlay(i); }}
         marks={i => play === i ? { cls: 'go', tag: t('kader.play') } : play !== null ? { cls: 'toss', tag: t('kader.toss') } : { cls: '' }} />
     </div>
   );
@@ -196,136 +185,6 @@ function Venedik({ a }: { a: Extract<Ask, { type: 'venedik' }> }) {
       </div>
       <KaderCards cards={a.cards} onTap={i => setPick(pick === i ? null : i)} marks={i => pick === i ? { cls: 'toss', tag: t('kader.bottom') } : { cls: '', tag: t('kader.nth', { n: i + 1 }) }} />
     </div>
-  );
-}
-
-// ---------- public moments
-
-/** Shows each new Crisis and each flipped wave once, then gets out of the way. */
-export function Moments() {
-  const { g } = useGame();
-  const [seen, setSeen] = useState<{ crisis: number; wave: number }>(() => ({ crisis: g.crisisNo, wave: g.court?.reveals.length ?? 0 }));
-  const [show, setShow] = useState<null | { t: 'crisis' } | { t: 'wave'; i: number }>(null);
-  useEffect(() => {
-    if (g.crisis && g.crisisNo !== seen.crisis) {
-      setSeen(s => ({ ...s, crisis: g.crisisNo, wave: 0 }));
-      setShow({ t: 'crisis' });
-      sfx('flip');
-      return;
-    }
-    const n = g.court?.reveals.length ?? 0;
-    if (n > seen.wave && g.court) {
-      setSeen(s => ({ ...s, wave: n }));
-      setShow({ t: 'wave', i: n - 1 });
-      sfx('reveal');
-    }
-  }, [g.crisisNo, g.crisis, g.court?.reveals.length]);
-  useEffect(() => {
-    if (!show) return;
-    const ms = show.t === 'crisis' ? 4500 : 7000;
-    const id = setTimeout(() => setShow(null), ms);
-    return () => clearTimeout(id);
-  }, [show]);
-  return (
-    <AnimatePresence>
-      {show?.t === 'crisis' && g.crisis && <CrisisFlip key="c" onClose={() => setShow(null)} />}
-      {show?.t === 'wave' && g.court?.reveals[show.i] && <WaveReveal key={'w' + show.i} reveal={g.court.reveals[show.i]} wave={show.i + 1} onClose={() => setShow(null)} />}
-    </AnimatePresence>
-  );
-}
-
-function CrisisFlip({ onClose }: { onClose: () => void }) {
-  const { g } = useGame();
-  const c = crisisById[g.crisis!];
-  const drew = g.log.filter(e => e.c === g.crisisNo && e.k === 'draw').map(e => e.p!.who as PID);
-  return (
-    <motion.div className="full zp moment" {...fade} onClick={onClose}>
-      <div className="bd split">
-        <motion.div initial={{ rotateY: 180, scale: 0.8 }} animate={{ rotateY: 0, scale: 1 }} transition={{ duration: 0.7 }}>
-          <Card spec={spec({ t: 'crisis', id: c.id })} width={222} />
-        </motion.div>
-        <div className="col">
-          <p className="h-step">{t('crisisN', { n: g.crisisNo })}</p>
-          <p className="h-big">{c.name}</p>
-          <div className="rule" />
-          <p className="vo big"><Em k={c.field} s={26} /><span>{t(`fieldRule.${c.field}`)}</span></p>
-          <p className="vo big">{c.text}</p>
-          {drew.length > 0 && <div className="nm-row">{drew.map((id, i) => <span key={i} className="pill"><Head character={g.players[id].character} />{t('plusCard', { name: name(g, id) })}</span>)}</div>}
-          <p className="wait">{t('tapToClose')}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function WaveReveal({ reveal, wave, onClose }: { reveal: RevealedPlay[]; wave: number; onClose: () => void }) {
-  const { g } = useGame();
-  const w = reveal.length > 5 ? 92 : 104;
-  return (
-    <motion.div className="full zp moment" {...fade} onClick={onClose}>
-      <div className="bd">
-        <Stp label={t('waveFlipped', { n: wave })} />
-        <div className="reveal-row">
-          {reveal.map((r, i) => (
-            <motion.div key={i} className={`rv ${r.outcome !== 'ok' ? 'void' : ''}`} style={{ width: w + 20 }}
-              initial={{ rotateY: 180, y: 30, opacity: 0 }} animate={{ rotateY: 0, y: 0, opacity: 1 }} transition={{ delay: 0.15 + i * 0.18, duration: 0.5 }}>
-              <Card spec={spec({ t: 'intr', kind: r.as, field: r.field })} width={w} />
-              <span className="tg">{t('onPlayer', { name: name(g, r.target) })}</span>
-              {r.movedFrom !== undefined && <span className="tg">{t('movedFrom', { name: name(g, r.movedFrom) })}</span>}
-              <span className={`tg ${r.outcome !== 'ok' ? 'void' : ''}`}>{outcomeText(r)}</span>
-            </motion.div>
-          ))}
-        </div>
-        <p className="vo">{t('revealNote', { n: reveal.length })}</p>
-        <p className="wait">{t('tapToClose')}</p>
-      </div>
-    </motion.div>
-  );
-}
-function outcomeText(r: RevealedPlay): string {
-  if (r.outcome === 'ok') {
-    if (r.note === 'tabib') return t('outcome.tabib');
-    if (r.recast) return t('outcome.recast', { card: intrigueById[r.card.kind].name });
-    return ['muhur', 'akil-hocasi', 'saray-tabibi'].includes(r.as) ? t('outcome.lasting') : t('outcome.ok');
-  }
-  return t(`outcome.${r.note ?? r.outcome}`);
-}
-
-export function ResultScreen() {
-  const { g, seat } = useGame();
-  // the result stays up a few seconds after Süleyman moves on, so nobody misses it
-  const [linger, setLinger] = useState<number | null>(null);
-  const [closed, setClosed] = useState<number | null>(null);
-  useEffect(() => {
-    if (g.step === 'result') { setLinger(g.crisisNo); return; }
-    if (linger === null) return;
-    const id = setTimeout(() => setLinger(null), 5000);
-    return () => clearTimeout(id);
-  }, [g.step, g.crisisNo]);
-  const live = g.step === 'result' || (linger === g.crisisNo && closed !== g.crisisNo);
-  if (!live || !g.kader?.played) return null;
-  const card = g.kader.played;
-  const power = card === 'x' ? RULES.treasonPowers[String(g.tracks.treason)] : null;
-  const myAsk = g.asks.find(a => a.to === seat);
-  return (
-    <motion.div className="full zp moment result" {...fade} onClick={() => g.step !== 'result' && setClosed(g.crisisNo)}>
-      <div className="bd split">
-        <motion.div initial={{ rotateY: 180, y: -30 }} animate={{ rotateY: 0, y: 0 }} transition={{ duration: 0.7 }}>
-          <Card spec={spec({ t: 'kader', k: card })} width={200} />
-        </motion.div>
-        <div className="col">
-          <p className="h-step">{t('resultN', { n: g.crisisNo })}</p>
-          <p className={`h-big ${card === 'x' ? 'al' : 'mal'}`}>{MISC.kader[card].name}</p>
-          <p className="vo small">{t('resultWho', { first: name(g, g.kader.first), second: name(g, g.kader.second) })}</p>
-          <div className="bigtrk">
-            <div className="row h"><span>{t('hizmet')}</span><Slots big n={RULES.tracks.loyalty} on={g.tracks.loyalty} fresh={card === 'h' ? g.tracks.loyalty - 1 : undefined} /><small>{g.tracks.loyalty}/{RULES.tracks.loyalty}</small></div>
-            <div className="row x"><span>{t('hiyanet')}</span><Slots big n={RULES.tracks.treason} on={g.tracks.treason} fresh={card === 'x' ? g.tracks.treason - 1 : undefined} end /><small>{g.tracks.treason}/{RULES.tracks.treason}</small></div>
-          </div>
-          {power && <><div className="rule" /><p className="vo small plain"><b>{MISC.treason[power as 'sorusturma'].name}.</b> {MISC.treason[power as 'sorusturma'].text}</p></>}
-          {myAsk ? <div className="inline-prompt"><Prompt /></div> : <p className="wait">{t('wait.for', { names: [...new Set(g.asks.map(a => name(g, a.to)))].join(', ') })}</p>}
-        </div>
-      </div>
-    </motion.div>
   );
 }
 

@@ -37,7 +37,7 @@ export interface Rules {
   players: { min: number; max: number };
   allegiance: Record<string, { loyalist: number; traitor: number }>;
   startInfluence: number; startIntrigue: number; companionChoices: number;
-  handLimit: number; cardsPerCrisis: number; objectionCost: number;
+  handLimit: number; objectionCost: number;
   kader: { hizmet: number; hiyanet: number; draw: number };
   tracks: { loyalty: number; treason: number };
   treasonPowers: Record<string, string>;

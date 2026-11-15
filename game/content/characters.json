@@ -8,7 +8,7 @@
   {
     "id": "hurrem", "name": "Hürrem",
     "base": { "id": "fisilti", "name": "Fısıltı", "freq": "once", "text": "Hüküm'de Nüfuzu hangi Vekilin alacağını Süleyman yerine sen seçersin." },
-    "favor": { "id": "cifteOyun", "name": "Çifte Oyun", "freq": "once", "text": "Bir dalgada bir yerine iki kart oyna; ikisi de 2 kartlık sınırına sayılır." },
+    "favor": { "id": "cifteOyun", "name": "Çifte Oyun", "freq": "once", "text": "Bir dalgada bir yerine iki kart oyna." },
     "loyal": "Ben onun Hürrem'iyim, başkasının değil.", "traitor": "Sultanlar gelir geçer, Valide kalır."
   },
   {

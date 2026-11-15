@@ -2,6 +2,14 @@
 
 The manual (v0.7) leaves some cases open. On a phone each one needs an answer, so the engine picks one. Each ruling below is what the game does now; fold it into the manual's Notes or overrule it.
 
+## Changed after the first playtest (2026-11-15)
+
+These differ from manual v0.7 on Jingle's call; the manual still says the old thing.
+
+- **No per-crisis Intrigue limit.** Still one card per wave (two with Çifte Oyun), but as many waves as you like. Çifte Oyun and Esma Hatun no longer mention the 2-card limit.
+- **No Loyalist duty in Kader.** Either Vekil may discard or play any card, whatever their side. İskender Çelebi is now just "draw 4, discard 2".
+- **Devam.** A flipped Crisis, each flipped wave and the Kader result stay on every phone until every player, Süleyman too, presses Devam. This replaces Süleyman's "go to the Decree" button.
+
 ## Targets and placement
 
 - **Süleyman** can't be the target of an Intrigue card. None of them would do anything to him.
@@ -22,6 +30,7 @@ The manual (v0.7) leaves some cases open. On a phone each one needs an answer, s
 
 - **Sadrazam:** Pargalı also picks the replacement after an Objection that crisis, because Sadrazam means he appoints instead of Süleyman.
 - A Minister removed by an Objection may be appointed again in the same crisis. The eligibility rule doesn't forbid it.
+- **No Objection to your own seat.** A Vekil may object to the other Vekil. Objecting to yourself would only buy a card for 1 Influence.
 - **Divan Nüfuzu** pays at the Kader step, when "appointed" is fixed, once per crisis.
 
 ## Powers

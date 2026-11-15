@@ -40,7 +40,8 @@ function value(g: Game, a: Ask, r: R): unknown {
     case 'kulis': return null;
     case 'object': {
       if (!chance(r, 0.25)) return null;
-      const seat: Seat = chance(r, 0.5) ? 'first' : 'second';
+      const seats = (['first', 'second'] as Seat[]).filter(s => g.ministers[s] !== a.to);
+      const seat = pick(r, seats);
       const target = g.ministers[seat]!;
       if (!eligibleList(g, seat).some(id => id !== target)) return null;
       if (readyPower(g, 'mahidevran', 'base')?.id === a.to && chance(r, 0.5)) return { seat, free: true };
@@ -66,14 +67,14 @@ function value(g: Game, a: Ask, r: R): unknown {
     case 'investigator': return pick(r, hidden);
     case 'investigate': return pick(r, hidden.filter(id => id !== a.to));
     case 'hazineName': return pick(r, hidden);
-    case 'next': return null;
+    case 'next': case 'ack': return null;
     case 'decree': return pick(r, [g.ministers.first!, g.ministers.second!]);
     case 'venedik': return chance(r, 0.5) ? null : pick(r, [0, 1, 2].filter(i => a.cards[i] !== undefined));
   }
 }
 
 function wave(g: Game, id: PID, r: R): WavePlay[] {
-  if (chance(r, 0.35)) return [];
+  if (chance(r, Math.min(0.9, 0.25 + 0.15 * (g.court?.wave ?? 1)))) return [];   // bots tire of plotting as waves go on
   const me = g.players[id];
   const n = Math.min(waveAllowance(g, id), chance(r, 0.3) ? 2 : 1);
   const out: WavePlay[] = [];

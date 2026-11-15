@@ -1,10 +1,14 @@
-// The one prompt block, bottom right: the step, one sentence, at most two buttons. It renders whatever the game is
-// waiting for from you, and when nothing is, who it is waiting for.
-import { useEffect, useMemo, useState } from 'react';
+// The one prompt block, bottom right: the step, one sentence, at most a few buttons. It renders whatever the game is
+// waiting for from you, and when nothing is, who it is waiting for. Cards are read and acted on in the card pop-up;
+// the prompt confirms.
+import { useEffect, useState, type ReactNode } from 'react';
 import {
-  RULES, characterById, eligibleList, intrigueById, legalTargets, playableForms, waveAllowance, canRecast,
-  type Ask, type Field, type PID, type Seat, type WavePlay,
+  RULES, characterById, clockwise, companionById, eligibleList, intrigueById, legalTargets, canRecast, readyPowerOf,
+  type Ask, type Game, type PID, type Seat,
 } from '../../engine/index.ts';
+import { actAs } from '../net.ts';
+import { Em, Gl } from '../ui/marks.tsx';
+import { Head, KulHead } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
@@ -23,13 +27,20 @@ export function Stp({ label }: { label?: string }) {
   );
 }
 
-export function Btn({ children, pri, off, onClick }: { children: React.ReactNode; pri?: boolean; off?: boolean; onClick?: () => void }) {
+/** A button. `via` marks an option you have only through a power: the power's face and name ride on the button. */
+export function Btn({ children, pri, off, via, onClick }: {
+  children: ReactNode; pri?: boolean; off?: boolean; via?: { icon: ReactNode; label: string }; onClick?: () => void;
+}) {
   return (
-    <button type="button" className={`b ${pri ? 'pri' : ''} ${off ? 'off' : ''}`} disabled={off} onClick={() => { if (!off) { sfx(pri ? 'press' : 'tap'); onClick?.(); } }}>
-      {children}
+    <button type="button" className={`b ${pri ? 'pri' : ''} ${off ? 'off' : ''} ${via ? 'via' : ''}`} disabled={off}
+      onClick={() => { if (!off) { sfx(pri ? 'press' : 'tap'); onClick?.(); } }}>
+      {via && <span className="via-ic">{via.icon}</span>}
+      {via ? <span className="via-tx"><span>{children}</span><small>{via.label}</small></span> : children}
     </button>
   );
 }
+export const viaChar = (character: string, power: string) => ({ icon: <Head character={character} />, label: power });
+export const viaKul = (id: string) => ({ icon: <KulHead id={id} />, label: companionById[id].name });
 
 const name = (g: { players: { name: string }[] }, id: PID | null | undefined) => (id === null || id === undefined ? '' : g.players[id].name);
 
@@ -58,6 +69,7 @@ function AskView({ a }: { a: Ask }) {
     case 'investigate': return <PickSeat a={a} legal={hidden.filter(id => id !== a.to)} text={t('ask.investigate')} />;
     case 'hazineName': return <PickSeat a={a} legal={hidden} text={t('ask.hazineName')} />;
     case 'next': return <Next a={a} />;
+    case 'ack': return <Ack a={a} />;
     default: return <FullScreenHint />;  // companion, cephe, kader, decree, venedik have their own full-screen views
   }
 }
@@ -67,16 +79,18 @@ function AskView({ a }: { a: Ask }) {
 function Waiting() {
   const { g, seat } = useGame();
   const waitingFor = [...new Set(g.asks.map(a => a.to))].filter(id => id !== seat);
-  let text = t('wait.generic');
+  if (g.asks.some(a => a.type === 'ack')) return <AckWait />;
   if (g.step === 'court' && g.sub === 'wave' && g.court) {
     const total = g.players.length - 1;
     const ready = total - g.asks.filter(a => a.type === 'wave').length;
     const mine = g.court.submitted[seat];
-    const sealed = Array.isArray(mine) && mine.length > 0;
+    const sealed = Array.isArray(mine) && mine.length > 0 ? mine : null;
     return (
       <>
         <Stp label={t('waveN', { n: g.court.wave })} />
-        <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : sealed ? t('wait.sealed') : t('wait.passed')}</p>
+        {sealed ? (
+          <div className="vo">{t('wait.sealedOn')}<PlayList plays={sealed.map(p => ({ as: p.recastAs ?? kindOf(g, seat, p.uid), target: p.target }))} /></div>
+        ) : <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : t('wait.passed')}</p>}
         <div className="wait">
           <span className="dots">{Array.from({ length: total }, (_, i) => <i key={i} className={i < ready ? 'on' : ''} />)}</span>
           {t('wait.ready', { n: ready, total })}{waitingFor.length ? ' ' + t('wait.for', { names: waitingFor.map(id => name(g, id)).join(', ') }) : ''}
@@ -85,16 +99,39 @@ function Waiting() {
       </>
     );
   }
+  let text = t('wait.generic');
   if (g.step === 'kader') text = t('wait.kader');
   else if (g.kulis && g.step === 'appoint') text = t('wait.kulis', { a: name(g, g.players.find(p => p.character === 'rustem')?.id), b: name(g, g.sultan) });
   else if (g.step === 'decree') text = t('wait.decree', { name: name(g, g.decree?.chooser) });
-  else if (g.step === 'objections' && g.sub === 'turn') text = t('wait.objection');
+  else if (g.step === 'objections' && g.sub === 'done') text = t('wait.toCourt', { name: name(g, g.sultan) });
+  else if (g.step === 'objections' && g.sub === 'turn') {
+    const now = g.asks.find(a => a.type === 'object')?.to;
+    const order = clockwise(g).map(p => p.id);
+    const next = now !== undefined ? order[order.indexOf(now) + 1] : undefined;
+    text = t(next !== undefined ? 'wait.objectionNext' : 'wait.objectionLast', { now: name(g, now), next: name(g, next) });
+  }
   return (
     <>
       <Stp />
       <p className="vo">{text}</p>
       {waitingFor.length > 0 && <div className="wait">{t('wait.for', { names: waitingFor.map(id => name(g, id)).join(', ') })}</div>}
     </>
+  );
+}
+const kindOf = (g: Game, seat: PID, uid: number) => g.players[seat].hand.find(c => c.uid === uid)?.kind ?? '';
+
+/** Cards and who they go to: a card icon, the card's name, an arrow, the target's head and name. */
+function PlayList({ plays }: { plays: { as: string; target: PID }[] }) {
+  const { g } = useGame();
+  return (
+    <span className="plays">
+      {plays.map((p, i) => (
+        <span key={i} className="pl-row">
+          <Em k="intrigue" s={15} /><b>{intrigueById[p.as]?.name}</b><Gl k="next" />
+          <Head character={g.players[p.target].character} />{g.players[p.target].name}
+        </span>
+      ))}
+    </span>
   );
 }
 
@@ -105,6 +142,45 @@ function Retract() {
 
 function FullScreenHint() {
   return <><Stp /><p className="vo">{t('wait.yourScreen')}</p></>;
+}
+
+// ---------- Devam: everyone confirms a public moment
+
+/** Heads of everyone, ticked once they pressed Devam. */
+function AckHeads() {
+  const { g, room, seat, setSeat } = useGame();
+  const pending = new Set(g.asks.filter(a => a.type === 'ack').map(a => a.to));
+  return (
+    <span className="ackheads">
+      {g.players.map(p => (
+        // DEV: in test rooms the heads switch seats, as the seat toggles do while the court is covered
+        <span key={p.id} className={[pending.has(p.id) ? '' : 'done', room.dev && p.id === seat && 'me'].filter(Boolean).join(' ')} title={p.name}
+          onClick={room.dev ? () => setSeat(p.id) : undefined}>
+          <Head character={p.character} />{!pending.has(p.id) && <Gl k="check" />}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function Ack({ a }: { a: Extract<Ask, { type: 'ack' }> }) {
+  const { g, room } = useGame();
+  // one press answers for every seat on this device (test rooms hold them all)
+  const press = () => {
+    for (const x of g.asks) if (x.type === 'ack' && room.mine.includes(x.to)) actAs(x.to, { t: 'answer', ask: x.id });
+  };
+  return (
+    <>
+      <Stp />
+      <p className="vo">{a.what === 'wave' && g.court ? t('ack.waveN', { n: g.court.wave, k: g.court.reveals[g.court.reveals.length - 1]?.length ?? 0 }) : t(`ack.${a.what}`)}</p>
+      <AckHeads />
+      <div className="bt"><Btn pri onClick={press}>{t('btn.continue')}<Gl k="next" /></Btn></div>
+    </>
+  );
+}
+
+function AckWait() {
+  return <><Stp /><p className="vo">{t('ack.waiting')}</p><AckHeads /></>;
 }
 
 // ---------- shared: pick one seat on the court
@@ -118,7 +194,7 @@ function PickSeat({ a, legal, text }: { a: Ask; legal: PID[]; text: string }) {
   return <><Stp /><p className="vo">{text}<small>{t('tapSeat')}</small></p></>;
 }
 
-// ---------- hand-limit discards and Yakıp Yıkma
+// ---------- hand-limit discards and Yakıp Yıkma: pick in the card pop-up, confirm here
 
 function Discard({ a }: { a: Extract<Ask, { type: 'discard' }> }) {
   const { hand, act, me } = useGame();
@@ -133,23 +209,27 @@ function Discard({ a }: { a: Extract<Ask, { type: 'discard' }> }) {
 }
 
 function KeepOne({ a }: { a: Ask }) {
-  const { hand, act } = useGame();
+  const { hand, act, me } = useGame();
+  const kept = me.hand.find(c => c.uid === hand.sel[0]);
   return (
     <>
       <Stp />
-      <p className="vo">{t('ask.keepOne')}</p>
-      <div className="bt"><Btn pri off={hand.sel.length !== 1} onClick={() => { act({ t: 'answer', ask: a.id, value: hand.sel[0] }); hand.setSel([]); }}>{t('btn.keep')}</Btn></div>
+      <p className="vo">{t('ask.keepOne')}<small>{kept ? t('ask.keeping', { card: intrigueById[kept.kind].name }) : t('ask.keepHow')}</small></p>
+      <div className="bt"><Btn pri off={!kept} onClick={() => { act({ t: 'answer', ask: a.id, value: hand.sel[0] }); hand.setSel([]); }}>{t('btn.keep')}</Btn></div>
     </>
   );
 }
 
 // ---------- optional timed powers: use or skip
 
-const POWER_NAMES: Record<string, () => string> = {
-  iskender: () => t('power.iskender'),
-};
+/** The face and name a timed power rides under: its Character, or İskender Çelebi for his Kader draw. */
+function powerVia(g: Game, a: Extract<Ask, { type: 'window' }>) {
+  if (a.power === 'iskender') return viaKul('iskender');
+  const p = g.players[a.to];
+  return viaChar(p.character, powerName(a.power));
+}
 function powerName(power: string) {
-  if (POWER_NAMES[power]) return POWER_NAMES[power]();
+  if (power === 'iskender') return companionById.iskender.name;
   for (const c of Object.values(characterById)) {
     if (c.base.id === power) return c.base.name;
     if (c.favor.id === power) return c.favor.name;
@@ -177,17 +257,35 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
       <p className="vo"><b>{powerName(a.power)}.</b> {t(`window.${a.power}`, ctxVars(g, a))}{picking && <small>{t('tapSeat')}</small>}</p>
       <div className="bt">
         <Btn onClick={() => { setPicker(null); answer(false); }}>{t('btn.skip')}</Btn>
-        {!picking && <Btn pri onClick={useIt}>{t('btn.use')}</Btn>}
+        {!picking && <Btn pri via={powerVia(g, a)} onClick={useIt}>{t('btn.use')}</Btn>}
       </div>
     </>
   );
 }
-function ctxVars(g: import('../../engine/index.ts').Game, a: Extract<Ask, { type: 'window' }>) {
+function ctxVars(g: Game, a: Extract<Ask, { type: 'window' }>) {
   const c = (a.ctx ?? {}) as { target?: PID; of?: PID; delta?: number };
   return { target: name(g, c.target), of: name(g, c.of), dir: c.delta && c.delta > 0 ? t('gives') : t('takes') };
 }
 
-// ---------- Atama
+// ---------- the two Vekil seats: Atama, a replacement, the Ferman
+
+type SlotState = { id: PID | null; lock?: boolean; gone?: PID | null };
+/** The two Minister seats as slots. A locked slot stays as it is; an empty one waits for a tap on the court. */
+function SeatSlots({ first, second, onTap }: { first: SlotState; second: SlotState; onTap?: (s: Seat) => void }) {
+  const { g } = useGame();
+  const slot = (s: Seat, v: SlotState) => (
+    <button type="button" key={s} className={`slot ${v.id !== null ? 'on' : 'empty'} ${v.lock ? 'lock' : ''}`} disabled={v.lock || !onTap} onClick={() => onTap?.(s)}>
+      <i className="rn">{s === 'first' ? 'I' : 'II'}</i>
+      <div>
+        <small>{t(s === 'first' ? 'min1' : 'min2')}</small>
+        <b>{v.id !== null ? <><Head character={g.players[v.id].character} />{name(g, v.id)}</> : t('tapSeatShort')}</b>
+        <span>{v.lock ? t('slot.stays') : v.gone != null ? t('slot.gone', { name: name(g, v.gone) }) : t(s === 'first' ? 'min1Does' : 'min2Does')}</span>
+      </div>
+      {v.lock && <Gl k="lock" />}
+    </button>
+  );
+  return <div className="slots">{slot('first', first)}{slot('second', second)}</div>;
+}
 
 function Appoint({ a }: { a: Ask }) {
   const { g, act, setPicker } = useGame();
@@ -206,23 +304,69 @@ function Appoint({ a }: { a: Ask }) {
     });
   }, [first, second]);
   useEffect(() => () => setPicker(null), []);
-  const self = a.to !== g.sultan;
+  const sadrazam = a.to !== g.sultan;
   return (
     <>
       <Stp />
-      <p className="vo">{t(self ? 'ask.appointSadrazam' : 'ask.appoint')}<small>{t('ask.appointHow')}</small></p>
-      <div className="slots">
-        <button type="button" className={`slot ${first !== null ? 'on' : ''}`} onClick={() => setFirst(null)}>
-          <i className="rn">I</i><div><small>{t('min1')}</small><b>{first !== null ? name(g, first) : t('tapSeatShort')}</b><span>{t('min1Does')}</span></div>
-        </button>
-        <button type="button" className={`slot ${second !== null ? 'on' : ''}`} onClick={() => setSecond(null)}>
-          <i className="rn">II</i><div><small>{t('min2')}</small><b>{second !== null ? name(g, second) : t('tapSeatShort')}</b><span>{t('min2Does')}</span></div>
-        </button>
-      </div>
+      <p className="vo">{t(sadrazam ? 'ask.appointSadrazam' : 'ask.appoint')}<small>{t('ask.appointHow')}</small></p>
+      <SeatSlots first={{ id: first }} second={{ id: second }} onTap={s => (s === 'first' ? setFirst(null) : setSecond(null))} />
       <div className="bt">
-        <Btn pri off={first === null || second === null} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { first, second } }); }}>
+        <Btn pri off={first === null || second === null} via={sadrazam ? viaChar('ibrahim', characterById.ibrahim.base.name) : undefined}
+          onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { first, second } }); }}>
           {t('btn.appoint')} <small>{[first, second].filter(x => x !== null).length}/2</small>
         </Btn>
+      </div>
+    </>
+  );
+}
+
+/** A Vekil lost the seat: the same two slots, the other Vekil locked, the empty seat filled by a tap. */
+function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
+  const { g, act, setPicker } = useGame();
+  const [pick, setPick] = useState<PID | null>(null);
+  const legal = eligibleList(g, a.seat).filter(id => id !== a.removed);
+  useEffect(() => {
+    setPicker({ legal: legal.filter(id => id !== pick), chosen: pick !== null ? [pick] : [], onPick: id => { sfx('place'); setPick(id); } });
+  }, [pick]);
+  useEffect(() => () => setPicker(null), []);
+  const other: Seat = a.seat === 'first' ? 'second' : 'first';
+  const open: SlotState = { id: pick, gone: a.removed };
+  const kept: SlotState = { id: g.ministers[other], lock: true };
+  const via = a.reason === 'itiraz' ? viaChar('mahidevran', characterById.mahidevran.base.name) : undefined;
+  return (
+    <>
+      <Stp />
+      <p className="vo">{t(`ask.replace.${a.reason}`, { removed: name(g, a.removed), seat: t(a.seat === 'first' ? 'min1' : 'min2') })}<small>{t('tapSeat')}</small></p>
+      <SeatSlots first={a.seat === 'first' ? open : kept} second={a.seat === 'second' ? open : kept} onTap={() => setPick(null)} />
+      <div className="bt"><Btn pri off={pick === null} via={via} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: pick }); }}>{t('btn.seat')}</Btn></div>
+    </>
+  );
+}
+
+function Ferman({ a }: { a: Ask }) {
+  const { g, act, setPicker } = useGame();
+  const [on, setOn] = useState(false);
+  const [seat, setSeat] = useState<Seat | null>(null);
+  const [pick, setPick] = useState<PID | null>(null);
+  const mins = [g.ministers.first!, g.ministers.second!];
+  useEffect(() => {
+    if (!on) return setPicker(null);
+    if (!seat) return setPicker({ legal: mins, onPick: id => setSeat(g.ministers.first === id ? 'first' : 'second') });
+    const legal = eligibleList(g, seat).filter(id => id !== g.ministers[seat] && id !== pick);
+    setPicker({ legal, chosen: pick !== null ? [pick] : [], onPick: id => { sfx('place'); setPick(id); } });
+  }, [on, seat, pick]);
+  useEffect(() => () => setPicker(null), []);
+  const slotOf = (s: Seat): SlotState => (seat === s ? { id: pick, gone: g.ministers[s] } : { id: g.ministers[s], lock: !!seat });
+  const back = () => { setOn(false); setSeat(null); setPick(null); };
+  return (
+    <>
+      <Stp />
+      <p className="vo">{t(!on ? 'ask.ferman' : !seat ? 'ask.fermanWho' : 'ask.fermanNew')}{on && <small>{t('tapSeat')}</small>}</p>
+      {on && <SeatSlots first={slotOf('first')} second={slotOf('second')} onTap={s => { if (!seat) setSeat(s); else setPick(null); }} />}
+      <div className="bt">
+        {!on ? <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.noFerman')}</Btn> : <Btn onClick={back}>{t('btn.back')}</Btn>}
+        {!on && <Btn pri onClick={() => setOn(true)}>{t('btn.ferman')}</Btn>}
+        {on && <Btn pri off={pick === null} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { seat, target: pick } }); }}>{t('btn.seat')}</Btn>}
       </div>
     </>
   );
@@ -250,9 +394,9 @@ function Kulis({ a }: { a: Ask }) {
 function Objection({ a }: { a: Ask }) {
   const { g, me, act, setPicker } = useGame();
   const [mode, setMode] = useState<null | 'paid' | 'free'>(null);
-  const canFree = me.character === 'mahidevran' && me.base === 'ready';
+  const canFree = readyPowerOf(g, a.to, 'mahidevran', 'base');
   const cost = (id: PID) => (g.players[id].character === 'mustafa' && !g.learning && g.players[id].favor !== 'locked' ? 2 : RULES.objectionCost);
-  const seats: Seat[] = ['first', 'second'];
+  const seats = (['first', 'second'] as Seat[]).filter(s => g.ministers[s] !== a.to);   // never your own seat
   const affordable = (free: boolean) => seats.filter(s => free || me.influence >= cost(g.ministers[s]!)).map(s => g.ministers[s]!);
   useEffect(() => {
     if (!mode) return setPicker(null);
@@ -265,25 +409,20 @@ function Objection({ a }: { a: Ask }) {
     });
   }, [mode]);
   useEffect(() => () => setPicker(null), []);
-  const minCost = Math.min(cost(g.ministers.first!), cost(g.ministers.second!));
+  const minCost = Math.min(...seats.map(s => cost(g.ministers[s]!)));
+  const mine = g.ministers.first === a.to || g.ministers.second === a.to;
   return (
     <>
       <Stp label={t('step.objections')} />
-      <p className="vo">{mode ? t('ask.objectPick') : t('ask.object', { cost: minCost })}
-        {canFree && !mode && <small>{t('ask.objectFree')}</small>}</p>
+      <p className="vo">{mode ? t('ask.objectPick') : t('ask.object')}
+        {!mode && !canFree && <small>{t(mine ? 'ask.objectNotSelf' : 'ask.objectCost', { cost: minCost })}</small>}{mode && <small>{t('tapSeat')}</small>}</p>
       <div className="bt">
         {mode ? <Btn onClick={() => setMode(null)}>{t('btn.back')}</Btn> : <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.pass')}</Btn>}
-        {!mode && canFree && <Btn onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
-        {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{minCost}</small></Btn>}
+        {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{minCost}<Em k="influence" s={14} /></small></Btn>}
+        {!mode && canFree && <Btn via={viaChar('mahidevran', characterById.mahidevran.base.name)} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
       </div>
     </>
   );
-}
-
-function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
-  const { g } = useGame();
-  const legal = eligibleList(g, a.seat).filter(id => id !== a.removed);
-  return <PickSeat a={a} legal={legal} text={t(`ask.replace.${a.reason}`, { removed: name(g, a.removed), seat: t(a.seat === 'first' ? 'min1' : 'min2') })} />;
 }
 
 function Next({ a }: { a: Extract<Ask, { type: 'next' }> }) {
@@ -297,71 +436,52 @@ function Next({ a }: { a: Extract<Ask, { type: 'next' }> }) {
   );
 }
 
-// ---------- Tertip: tap a card, then a seat
-
-interface Staged extends WavePlay { as: string }
+// ---------- Tertip: tap a card, choose how to play it in the pop-up, then tap a seat; stage, then seal
 
 function Wave({ a }: { a: Ask }) {
   const { g, seat, me, act, hand, setPicker } = useGame();
-  const [staged, setStaged] = useState<Staged[]>([]);
-  const [form, setForm] = useState(0);
-  const [esma, setEsma] = useState(false);
-  const allowance = waveAllowance(g, seat);
-  const sel = hand.sel[0] ?? null;
-  const forms = useMemo(() => (sel !== null ? playableForms(g, seat, sel) : []), [sel, g]);
-  const usedRecast = staged.some(s => s.recastAs);
-  const options = forms.filter(f => !(f.recast && usedRecast));
-  const cur = options[Math.min(form, options.length - 1)];
-  const card = me.hand.find(c => c.uid === sel);
-  const canEsma = me.companion === 'esma' && me.influence > 0 && !me.companionUsed && !staged.some(s => s.esma);
-
-  useEffect(() => setForm(0), [sel]);
+  const { aim, staged } = hand;
   useEffect(() => {
-    if (!cur || sel === null || staged.length >= allowance) return setPicker(null);
+    if (!aim) return setPicker(null);
     setPicker({
-      legal: legalTargets(g, seat, cur.as),
+      legal: legalTargets(g, seat, aim.as),
       onPick: id => {
         sfx('place');
-        setStaged(s => [...s, { uid: sel, target: id, as: cur.as, ...(cur.recast ? { recastAs: cur.as, field: cur.field } : {}), ...(esma ? { esma: true } : {}) }]);
-        hand.setSel([]);
-        setEsma(false);
+        hand.setStaged([...staged, { ...aim, target: id }]);
+        hand.setAim(null);
       },
     });
-  }, [cur?.as, cur?.field, cur?.recast, sel, staged.length, esma]);
+  }, [aim, staged.length]);
   useEffect(() => () => setPicker(null), []);
 
-  const submit = (plays: Staged[]) => {
+  const submit = (plays: typeof staged) => {
     setPicker(null);
-    hand.setSel([]);
-    act({ t: 'answer', ask: a.id, value: plays.map(({ as: _as, ...p }) => p) });
+    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}), ...(p.esma ? { esma: true } : {}) })) });
   };
-  const left = RULES.cardsPerCrisis - me.played;
+  const cifte = readyPowerOf(g, seat, 'hurrem', 'favor');
+  const kul = canRecast(g, seat) && me.companion;
   return (
     <>
       <Stp label={t('waveN', { n: g.court?.wave ?? 1 })} />
-      {card && cur ? (
-        <p className="vo">
-          <span className="clamp"><b>{intrigueById[cur.as].name}{cur.recast ? ` (${t('recastFrom', { card: intrigueById[card.kind].name })})` : ''}.</b> {intrigueById[cur.as].text}</span>
-          <small>{t('ask.waveTarget')}</small>
-        </p>
-      ) : card ? (
-        <p className="vo">{t('ask.waveCantPlay', { card: intrigueById[card.kind].name })}</p>
+      {aim ? (
+        <p className="vo"><span className="clamp"><b>{intrigueById[aim.as].name}</b>{aim.recast ? ` (${t('recastFrom', { card: intrigueById[kindOf(g, seat, aim.uid)].name })})` : ''}</span>
+          <small>{t('ask.waveTarget')}</small></p>
+      ) : staged.length ? (
+        <div className="vo">{t('ask.waveStaged')}<PlayList plays={staged} /></div>
       ) : (
-        <p className="vo">{staged.length ? t('ask.waveStaged', { list: staged.map(s => `${intrigueById[s.as].name} → ${name(g, s.target)}`).join(', ') }) : t('ask.wave', { left })}
-          <small>{t('ask.waveHow', { n: allowance })}</small></p>
+        <p className="vo">{t('ask.wave')}<small>{t('ask.waveHow')}</small></p>
       )}
-      <div className="opts">
-        {options.length > 1 && options.map((f, i) => (
-          <button type="button" key={f.as + f.field} className={`chip ${i === form ? 'on' : ''}`} onClick={() => setForm(i)}>
-            {f.recast ? t('recastAs', { card: intrigueById[f.as].name, field: f.as === 'akil-hocasi' ? t(f.field as Field) : '' }) : t('asPrinted')}
-          </button>
-        ))}
-        {card && canEsma && <button type="button" className={`chip ${esma ? 'on' : ''}`} onClick={() => setEsma(e => !e)}>{t('withEsma')}</button>}
-        {canRecast(g, seat) && !card && !staged.length && <span className="hint">{t('recastHint')}</span>}
-      </div>
+      {!aim && !staged.length && (cifte || kul) && (
+        <div className="opts">
+          {cifte && <span className="vchip"><Head character="hurrem" />{t('hint.cifte')}</span>}
+          {kul && <span className="vchip"><KulHead id={kul} />{t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast!].name })}</span>}
+        </div>
+      )}
       <div className="bt">
-        {staged.length ? <Btn onClick={() => setStaged([])}>{t('btn.undo')}</Btn> : <Btn onClick={() => submit([])}>{t('btn.pass')}</Btn>}
-        <Btn pri off={!staged.length} onClick={() => submit(staged)}>{t('btn.seal')}{staged.length > 1 ? ` (${staged.length})` : ''}</Btn>
+        {aim ? <Btn onClick={() => hand.setAim(null)}>{t('btn.back')}</Btn>
+          : staged.length ? <Btn onClick={() => hand.setStaged([])}>{t('btn.undo')}</Btn>
+          : <Btn onClick={() => submit([])}>{t('btn.pass')}</Btn>}
+        <Btn pri off={!staged.length || !!aim} onClick={() => submit(staged)}>{t('btn.seal')}{staged.length > 1 ? ` (${staged.length})` : ''}</Btn>
       </div>
     </>
   );
@@ -386,36 +506,9 @@ function Redirect({ a }: { a: Extract<Ask, { type: 'redirect' }> }) {
       <Stp />
       <p className="vo"><b>{powerName('yonDegistir')}.</b> {t('ask.redirect')}{pick !== null && <small>{t('tapSeat')}</small>}</p>
       <div className="opts">{a.plays.map(i => (
-        <button type="button" key={i} className={`chip ${pick === i ? 'on' : ''}`} onClick={() => setPick(i)}>{intrigueById[plays[i].as].name}</button>
+        <button type="button" key={i} className={`chip ${pick === i ? 'on' : ''}`} onClick={() => setPick(i)}><Em k="intrigue" s={14} />{intrigueById[plays[i].as].name}</button>
       ))}</div>
       <div className="bt"><Btn onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: null }); }}>{t('btn.skip')}</Btn></div>
-    </>
-  );
-}
-
-// ---------- Ferman
-
-function Ferman({ a }: { a: Ask }) {
-  const { g, act, setPicker } = useGame();
-  const [stage, setStage] = useState<'ask' | 'minister' | 'newcomer'>('ask');
-  const [seat, setSeat] = useState<Seat | null>(null);
-  useEffect(() => {
-    if (stage === 'minister') setPicker({ legal: [g.ministers.first!, g.ministers.second!], onPick: id => { setSeat(g.ministers.first === id ? 'first' : 'second'); setStage('newcomer'); } });
-    else if (stage === 'newcomer' && seat) setPicker({
-      legal: eligibleList(g, seat).filter(id => id !== g.ministers[seat]),
-      onPick: id => { setPicker(null); act({ t: 'answer', ask: a.id, value: { seat, target: id } }); },
-    });
-    else setPicker(null);
-  }, [stage, seat]);
-  useEffect(() => () => setPicker(null), []);
-  return (
-    <>
-      <Stp />
-      <p className="vo">{t(stage === 'ask' ? 'ask.ferman' : stage === 'minister' ? 'ask.fermanWho' : 'ask.fermanNew')}</p>
-      <div className="bt">
-        {stage === 'ask' ? <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.noFerman')}</Btn> : <Btn onClick={() => { setStage('ask'); setSeat(null); }}>{t('btn.back')}</Btn>}
-        {stage === 'ask' && <Btn pri onClick={() => setStage('minister')}>{t('btn.ferman')}</Btn>}
-      </div>
     </>
   );
 }

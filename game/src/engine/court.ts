@@ -1,9 +1,9 @@
 // Tertip, played in waves. Everyone but Süleyman privately plays a card or passes; the wave flips and takes effect at once.
 // Order inside a flip (manual, "All at once"): reveal powers (Yön Değiştir), protections, Minister checks, owner choices
 // clockwise from Süleyman's left, swaps, summed Influence, then draws.
-import { RULES, intrigueById, soleField, type Field } from './content.ts';
+import { intrigueById, soleField, type Field } from './content.ts';
 import {
-  P, ask, checkHand, clockwise, companionDef, companionUp, discardCard, drawIntrigue, eligibleList, ensureKader,
+  P, ackAll, ask, checkHand, clockwise, companionDef, companionUp, discardCard, drawIntrigue, eligibleList, ensureKader,
   favorOn, fieldsOpen, gain, isMinister, log, lose, must, readyPower, seatOf, top,
 } from './core.ts';
 import { checkAmbitions } from './ambitions.ts';
@@ -13,10 +13,8 @@ const INFO_CARDS = ['saray-dedikodusu', 'muhurlu-evrak', 'teftis'];
 
 /** How many cards this player may still put down in the current wave. */
 export function waveAllowance(g: Game, id: PID): number {
-  const p = P(g, id);
-  const left = RULES.cardsPerCrisis - p.played;
   const perWave = readyPower(g, 'hurrem', 'favor')?.id === id ? 2 : 1;
-  return Math.max(0, Math.min(left, perWave, p.hand.length));
+  return Math.min(perWave, P(g, id).hand.length);
 }
 
 /** The field a card counts as, or null if it can't be placed in this crisis. */
@@ -81,7 +79,7 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
   const p = P(g, id);
   must(Array.isArray(plays), 'Geçersiz hamle.');
   if (!plays.length) return [];
-  must(plays.length <= waveAllowance(g, id), plays.length > 1 ? 'Bu dalgada bir kart oynayabilirsin.' : 'Bu krizde kart hakkın bitti.');
+  must(plays.length <= waveAllowance(g, id), 'Bu dalgada bir kart oynayabilirsin.');
   must(new Set(plays.map(x => x.uid)).size === plays.length, 'Aynı kart iki kez oynanamaz.');
   must(plays.filter(x => x.recastAs).length <= 1, 'Kul bu krizde bir kez çevirir.');
   must(plays.filter(x => x.esma).length <= 1, 'Esma Hatun bir kez kullanılır.');
@@ -123,7 +121,6 @@ export function flipWave(g: Game) {
     }
     for (const pl of checked) {
       p.hand = p.hand.filter(x => x.uid !== pl.card.uid);
-      p.played++;
       if (pl.recast) p.companionUsed = true;
       plays.push(pl);
     }
@@ -277,7 +274,8 @@ function finishWave(g: Game) {
   }
   checkAmbitions(g);
   log(g, 'waveResolved', { wave: c.wave });
-  openWave(g);
+  g.sub = 'seen';
+  ackAll(g, 'wave');
 }
 
 /** A Minister leaves the seat to a new player: Valide'nin Buyruğu, an Objection, Feragat or the Ferman. */

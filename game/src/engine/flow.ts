@@ -2,7 +2,7 @@
 // needs is still owed. Each step has small "subs" so a step can wait for one player, then another.
 import { RULES, crisisById } from './content.ts';
 import {
-  P, ask, beside, checkHand, clockwise, companionIs, drawIntrigue, ensureKader, gain, hasAsk, log, lose, others,
+  P, ackAll, ask, beside, checkHand, clockwise, companionIs, drawIntrigue, ensureKader, gain, hasAsk, log, lose, others,
   readyPower,
 } from './core.ts';
 import { checkAmbitions, revealAmbitions } from './ambitions.ts';
@@ -52,7 +52,6 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         g.decree = null;
         for (const p of g.players) {
           p.objected = false;
-          p.played = 0;
           p.targetedThisCrisis = 0;
           if (p.companion && !['iskender', 'firuze', 'esma'].includes(p.companion)) p.companionUsed = false;
         }
@@ -73,6 +72,10 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         flipCrisis(g, g.decks.crisis.shift());
         return;
       case 'draws':
+        g.sub = 'seen';
+        ackAll(g, 'crisis');
+        return;
+      case 'seen':
         go(g, 'appoint');
         return;
     }
@@ -145,6 +148,9 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         return;
       case 'valide':
         nextReplacement(g);
+        return;
+      case 'seen':
+        openWave(g);
         return;
       case 'ferman':
         go(g, 'kader');
@@ -232,13 +238,10 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         }
         const b = readyPower(g, 'barbaros', 'favor');
         if (b && b.id !== k.first) ask(g, { to: b.id, type: 'window', power: 'gozcu' });
+        ackAll(g, 'result');
         return;
       }
       case 'power':
-        g.sub = 'next';
-        ask(g, { to: g.sultan, type: 'next', what: 'decree' });
-        return;
-      case 'next':
         go(g, 'decree');
         return;
     }
