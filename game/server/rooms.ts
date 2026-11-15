@@ -19,7 +19,7 @@ export interface Room {
   version: number;
 }
 
-const DATA = path.join(import.meta.dirname, '..', 'data');
+const DATA = process.env.DATA_DIR ?? path.join(import.meta.dirname, '..', 'data');
 const FILE = path.join(DATA, 'rooms.json');
 const MAX_AGE = 3 * 24 * 3600 * 1000;
 const NAMES = ['Ayşe', 'Elif', 'Mert', 'Kerem', 'Defne', 'Can', 'Selin', 'Ozan'];

@@ -318,8 +318,8 @@ export function ResultScreen() {
           <p className={`h-big ${card === 'x' ? 'al' : 'mal'}`}>{MISC.kader[card].name}</p>
           <p className="vo small">{t('resultWho', { first: name(g, g.kader.first), second: name(g, g.kader.second) })}</p>
           <div className="bigtrk">
-            <div className="row h"><span>{t('hizmet')}</span><Slots n={RULES.tracks.loyalty} on={g.tracks.loyalty} fresh={card === 'h' ? g.tracks.loyalty - 1 : undefined} /><small>{g.tracks.loyalty}/{RULES.tracks.loyalty}</small></div>
-            <div className="row x"><span>{t('hiyanet')}</span><Slots n={RULES.tracks.treason} on={g.tracks.treason} fresh={card === 'x' ? g.tracks.treason - 1 : undefined} end /><small>{g.tracks.treason}/{RULES.tracks.treason}</small></div>
+            <div className="row h"><span>{t('hizmet')}</span><Slots big n={RULES.tracks.loyalty} on={g.tracks.loyalty} fresh={card === 'h' ? g.tracks.loyalty - 1 : undefined} /><small>{g.tracks.loyalty}/{RULES.tracks.loyalty}</small></div>
+            <div className="row x"><span>{t('hiyanet')}</span><Slots big n={RULES.tracks.treason} on={g.tracks.treason} fresh={card === 'x' ? g.tracks.treason - 1 : undefined} end /><small>{g.tracks.treason}/{RULES.tracks.treason}</small></div>
           </div>
           {power && <><div className="rule" /><p className="vo small plain"><b>{MISC.treason[power as 'sorusturma'].name}.</b> {MISC.treason[power as 'sorusturma'].text}</p></>}
           {myAsk ? <div className="inline-prompt"><Prompt /></div> : <p className="wait">{t('wait.for', { names: [...new Set(g.asks.map(a => name(g, a.to)))].join(', ') })}</p>}

@@ -1,6 +1,7 @@
 // The lacquer shelf: what is yours. Your Taraf (press and hold to read it), your powers as a named list with state,
 // and your hand. The prompt block sits on its right.
 import { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { characterById, companionById, FREE_POWERS, freePowerTargets, intrigueById, type PowerState } from '../../engine/index.ts';
 import { Card, CardBack } from '../cards/Card.tsx';
 import { intrRef, spec } from '../cardSpecs.ts';
@@ -89,19 +90,23 @@ export function Hand() {
     if (hand.mode === 'play' || hand.mode === 'keep') return hand.setSel(hand.sel[0] === uid ? [] : [uid]);
     hand.setSel(hand.sel.includes(uid) ? hand.sel.filter(x => x !== uid) : [...hand.sel, uid]);
   };
-  const w = me.hand.length > 3 ? 82 : 96;
+  const w = Math.min(96, Math.floor((316 - 9 * (me.hand.length - 1)) / Math.max(1, me.hand.length)));   // fit the space left of the prompt
   return (
     <div className="hand">
-      {me.hand.map(c => {
-        const sel = hand.sel.includes(c.uid);
-        const cls = ['hc', sel && 'sel', sel && hand.mode === 'discard' && 'toss'].filter(Boolean).join(' ');
-        return (
-          <button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4 }} onClick={() => tap(c.uid)}
-            onContextMenu={e => { e.preventDefault(); setSheet({ t: 'card', ref: intrRef(c) }); }}>
-            <Card spec={specOf(c)} width={w} />
-          </button>
-        );
-      })}
+      <AnimatePresence initial={false}>
+        {me.hand.map(c => {
+          const sel = hand.sel.includes(c.uid);
+          const cls = ['hc', sel && 'sel', sel && hand.mode === 'discard' && 'toss'].filter(Boolean).join(' ');
+          return (
+            <motion.button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4 }} onClick={() => tap(c.uid)}
+              layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: sel ? (hand.mode === 'discard' ? 14 : -18) : 0, opacity: 1, rotate: 0 }}
+              exit={{ y: -90, opacity: 0, scale: 0.8 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              onContextMenu={e => { e.preventDefault(); setSheet({ t: 'card', ref: intrRef(c) }); }}>
+              <Card spec={specOf(c)} width={w} />
+            </motion.button>
+          );
+        })}
+      </AnimatePresence>
       {!me.hand.length && <p className="empty-hand">{t('emptyHand')}</p>}
     </div>
   );

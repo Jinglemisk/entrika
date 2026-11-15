@@ -6,9 +6,9 @@ import { useGame } from './ctx.ts';
 
 const FIELD_ICON = { harem: 'harem', divan: 'divan', saray: 'saray' } as const;
 
-export function Slots({ n, on, fresh, end }: { n: number; on: number; fresh?: number; end?: boolean }) {
+export function Slots({ n, on, fresh, end, big }: { n: number; on: number; fresh?: number; end?: boolean; big?: boolean }) {
   return (
-    <span className="sl">
+    <span className={big ? 'bs' : 'sl'}>
       {Array.from({ length: n }, (_, i) => (
         <i key={i} className={[i < on ? (i === fresh ? 'new' : 'on') : '', end && i === n - 1 ? 'end' : ''].join(' ')} />
       ))}

@@ -44,10 +44,9 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .pw li.live b { color: var(--s-gold); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .mine .pw li { min-height: 31px; }
 .hand { right: 236px; overflow: visible; }
-.hc { transition: transform .18s ease; }
+.hc { transform-origin: 50% 100%; }
 .hc .c3-slot, .hc > div { border-radius: 5px; box-shadow: 0 2px 3px rgba(0,0,0,.5), 0 8px 16px rgba(0,0,0,.35); }
 .hc.sel > div { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
-.hc.toss { transform: translateY(14px); }
 .hc.toss > div { outline-color: var(--al-hi); filter: saturate(.3) brightness(.7); }
 .empty-hand { position: absolute; left: 0; top: 50px; width: 250px; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
 .pr { left: 512px; }
@@ -197,3 +196,11 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 /* ---------- card gallery (/?kartlar) */
 body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: text; }
 .gallery { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px; background: #e5d9bb; min-height: 100%; }
+.st .mytag { position: absolute; left: -3px; top: 20px; width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center; font: 800 11px/1 var(--f-ui); color: #f6ecd6; box-shadow: 0 0 0 2px var(--bg); }
+.st .mytag.suspect { background: var(--al); }
+.st .mytag.trusted { background: var(--mal); }
+.hand .hc.sel { transform: none; }
+.trk .sl i.on { animation: land .5s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes land { from { transform: translateY(-14px) scale(1.5); opacity: 0; } }
+.trk .sl i.end.on { animation: none; }
+.bigtrk .bs i.new { background: currentColor; opacity: 1; animation: land .6s .4s cubic-bezier(.2,1.6,.4,1) both; }

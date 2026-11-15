@@ -3,6 +3,7 @@
 import { characterById, clockwise, companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
 import { Gl, Star } from '../ui/marks.tsx';
 import { Figure } from '../ui/Figure.tsx';
+import { getTags, usePrefs } from '../prefs.ts';
 import { t } from '../strings.ts';
 import { useGame } from './ctx.ts';
 
@@ -17,20 +18,22 @@ export function displayOrder(n: number, sultan: PID): PID[] {
 }
 
 export function Court({ top, compact }: { top?: number; compact?: boolean }) {
-  const { g, seat, picker, setSheet } = useGame();
+  const { g, seat, picker, setSheet, room } = useGame();
+  usePrefs();   // re-render when a private tag changes
+  const tags = getTags(room.code, seat);
   const order = displayOrder(g.players.length, g.sultan);
   const n = g.players.length;
   const slot = n >= 8 ? 92 : n === 7 ? 104 : 112;
   const nw = n >= 8 ? 82 : 90;
   return (
     <div className="ct" style={{ ['--slot' as string]: `${slot}px`, ...(top != null ? { top } : {}) }}>
-      {order.map(id => <SeatView key={id} id={id} nw={nw} me={id === seat} compact={compact}
+      {order.map(id => <SeatView key={id} id={id} nw={nw} me={id === seat} compact={compact} tag={tags[id]}
         onTap={() => (picker && picker.legal.includes(id) ? picker.onPick(id) : setSheet({ t: 'seat', id }))} />)}
     </div>
   );
 }
 
-function SeatView({ id, nw, me, onTap, compact }: { id: PID; nw: number; me: boolean; onTap: () => void; compact?: boolean }) {
+function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me: boolean; onTap: () => void; compact?: boolean; tag?: string }) {
   const { g, picker, room } = useGame();
   const p = g.players[id];
   const vk = g.ministers.first === id ? 1 : g.ministers.second === id ? 2 : 0;
@@ -61,6 +64,7 @@ function SeatView({ id, nw, me, onTap, compact }: { id: PID; nw: number; me: boo
         )}
         {ready && <span className="rd"><Gl k="check" /></span>}
         {g.surgun.now === id && <span className="exile">{t('exiled')}</span>}
+        {tag && <span className={`mytag ${tag}`} title={t(`tag.${tag}`)}>{tag === 'suspect' ? '?' : '✓'}</span>}
       </div>
       <div className="pl">
         <b>{me ? t('youName', { name: p.name }) : p.name}{offline ? ' ·' : ''}</b>

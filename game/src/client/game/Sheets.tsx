@@ -168,7 +168,7 @@ function Sicil() {
 export function PeekBody({ p }: { p: Peek }) {
   const { g } = useGame();
   const n = (id: PID) => g.players[id].name;
-  const kader = (cards: string[]) => <div className="peek-cards">{cards.map((k, i) => <Card key={i} spec={spec({ t: 'kader', k: k as 'h' })} width={88} />)}</div>;
+  const kader = (cards: string[]) => <div className="peek-cards">{cards.map((k, i) => <Card key={i} spec={spec({ t: 'kader', k: k as 'h' })} width={100} />)}</div>;
   switch (p.kind) {
     case 'role':
       return (
