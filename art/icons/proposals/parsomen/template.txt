@@ -1,0 +1,12 @@
+Generate exactly one image with your image_gen tool, then stop. Do not run shell commands and do not write files.
+
+Use case: logo-brand
+Asset type: one game UI icon for "Entrika", an Ottoman court card game. The icon is placed on a small round cream-parchment token that sits on top of dark blue and jewel-toned card art, so it must read instantly. Used from 16 px to 48 px.
+__REF__Subject: __SUBJECT__
+Colours: __COLOURS__
+Style/medium: very clean flat ink emblem, like a crisp modern print of an Ottoman manuscript stamp. Bold near-black (#1b1412) outline of one even weight, about 4% of the canvas width, around every shape. Flat solid fills only. Simple geometric shapes with calligraphic, slightly tapered curves.
+Palette: only these four colours: near-black ink #1b1412, crimson #a3161f, jade #2e7d5b, parchment #f3e2b3. Crimson is the main colour; jade is a small accent only; parchment is used for light interior areas. No gold, no blue, no grey.
+Composition: one object only, centred, straight-on front view, symmetric where the subject allows, filling about 78% of a square canvas with even margins.
+Background: a perfectly flat, solid magenta #FF00FF filling the whole canvas edge to edge, no border, no vignette.
+Legibility: must still read at 16 px. Few large shapes, no detail thinner than 1/20 of the canvas.
+Avoid: gradients, shading, highlights, bevels, texture, paper grain, glow, drop shadow, 3D, perspective, text, letters, numerals, a frame, roundel, badge or plaque behind the object, people, faces, hands, animals, photorealism.
