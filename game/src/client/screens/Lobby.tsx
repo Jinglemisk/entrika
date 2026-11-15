@@ -2,7 +2,7 @@
 // around the real table (Objections go clockwise), so the host can move people to match where they sit.
 import { RULES } from '../../engine/index.ts';
 import { send, type RoomView } from '../net.ts';
-import { Gl } from '../ui/marks.tsx';
+import { Gl, ICON } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { Frieze } from './Frieze.tsx';
 
@@ -46,7 +46,7 @@ export function Lobby({ room }: { room: RoomView }) {
                 {room.host && (
                   <span className="ctl">
                     <button type="button" aria-label={t('lobby.makeSultan')} className={room.sultan === i ? 'on' : ''} onClick={() => op({ op: 'sultan', seat: room.sultan === i ? null : i })}>
-                      <img src="/art/icons/set/suleyman-48.png" alt="" />
+                      <img src={ICON('suleyman')} alt="" />
                     </button>
                     <button type="button" aria-label={t('lobby.up')} disabled={i === 0} onClick={() => op({ op: 'move', from: i, to: i - 1 })}><Gl k="up" /></button>
                     <button type="button" aria-label={t('lobby.down')} disabled={i === n - 1} onClick={() => op({ op: 'move', from: i, to: i + 1 })}><Gl k="down" /></button>

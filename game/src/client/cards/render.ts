@@ -3,7 +3,7 @@
 //         -> optional cut-out figure -> over-SVG 2 (cartouche, jewels, plate ornaments) -> HTML text.
 // Under 150 px wide the card switches to a compact frame (.small); under 90 px the name banner goes too (cards.css).
 // Numbers are printed the way the Python original printed them, so the markup matches the art page byte for byte.
-import { ICON_BASE, iconHtml, termsInHtml } from './terms.ts';
+import { ICON_BASE, iconHtml, iconUrl, termsInHtml } from './terms.ts';
 
 export { ICON_BASE };
 
@@ -145,7 +145,7 @@ function cartouche(cy: number, x0 = 26, x1 = 474, h = 64): string {
 const I = (name: string, size: 48 | 72 | 144 = 48) => iconHtml(name, size);
 // the same icon placed inside an SVG drawing (card backs, seals)
 const IMG = (name: string, x: number | string, y: number | string, w: number) =>
-  `<image href="${ICON_BASE}${name}-144.png" x="${x}" y="${y}" width="${w}" height="${w}"/>`;
+  `<image href="${iconUrl(name, 144)}" x="${x}" y="${y}" width="${w}" height="${w}"/>`;
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
 

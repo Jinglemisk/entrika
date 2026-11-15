@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import terms from '../../../../art/terms.json' with { type: 'json' };
 import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC, type Field } from '../../engine/index.ts';
 import { Card, CardDefs } from '../cards/Card.tsx';
-import { ICON_BASE } from '../cards/terms.ts';
+import { iconUrl } from '../cards/terms.ts';
 import { spec, type CardRef } from '../cardSpecs.ts';
 import './editor.css';
 
@@ -184,7 +184,7 @@ export function Editor() {
           <ul>
             {TERMS.map(t => (
               <li key={t.id}>
-                <img src={`${ICON_BASE}${t.icon}-48.png`} alt="" />
+                <img src={iconUrl(t.icon)} alt="" />
                 {t.stems.join(', ')}{t.display === 'icon' && <small> (yalnız simge)</small>}
               </li>
             ))}

@@ -4,6 +4,8 @@ import terms from '../../../../art/terms.json' with { type: 'json' };
 import meaning from '../../../../art/icons/meaning.json' with { type: 'json' };
 
 export const ICON_BASE = '/art/icons/set/';
+// ?v= changes whenever the set is redrawn under the same file names, so browsers drop cached icons.
+export const iconUrl = (name: string, size: 48 | 72 | 144 = 48) => `${ICON_BASE}${name}-${size}.png?v=kati`;
 
 // Kat'ı icons: each file is the silhouette tinted with its paper colour. On dark grounds the CSS masks the same file
 // with the icon's lacquer colour (--l), from art/icons/meaning.json.
@@ -11,7 +13,7 @@ const LIGHT: Record<string, string> = {};
 for (const c of Object.values(meaning.colours)) for (const t of c.terms) LIGHT[t] = c.lacquer;
 export const iconLight = (name: string) => LIGHT[name] ?? '#efe6cf';
 export const iconHtml = (name: string, size: 48 | 72 | 144 = 48) =>
-  `<i class="ico" style="--i:url(${ICON_BASE}${name}-${size}.png);--l:${iconLight(name)}" aria-hidden="true"></i>`;
+  `<i class="ico" style="--i:url(${iconUrl(name, size)});--l:${iconLight(name)}" aria-hidden="true"></i>`;
 
 interface Term { id: string; stems: string[]; icon: string }
 
