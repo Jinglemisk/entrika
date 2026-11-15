@@ -27,6 +27,7 @@ export function Lobby({ room }: { room: RoomView }) {
           {room.host && (
             <div className="opts host">
               <button type="button" className={`chip ${room.learning ? 'on' : ''}`} onClick={() => op({ op: 'learning', value: !room.learning })}>{t('lobby.learning')}</button>
+              {!room.learning && <button type="button" className={`chip ${room.timers ? 'on' : ''}`} onClick={() => op({ op: 'timers', value: !room.timers })}>{t('lobby.timers')}</button>}
               <button type="button" className="chip" onClick={() => op({ op: 'shuffle' })}>{t('lobby.shuffle')}</button>
             </div>
           )}

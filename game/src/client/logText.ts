@@ -25,7 +25,8 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'gain': return t('log.gain', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'lose': return t('log.lose', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'firuze': return t('log.firuze', { who: n(p.who) });
-    case 'returned': return t('log.returned', { who: n(p.who), card: intrigueById[p.card as string].name });
+    case 'returned': return t('log.returned', { who: n(p.who) });
+    case 'play': return t(p.outcome === 'ok' ? 'log.play' : 'log.playVoid', { card: intrigueById[p.as as string].name, target: n(p.target), why: t(`outcome.${p.note ?? p.outcome}`) });
     case 'faiz': return t('log.faiz', { who: n(p.who), on: n(p.on) });
     case 'appoint': return t('log.appoint', { first: n(p.first), second: n(p.second), by: n(p.by) });
     case 'power': return t(p.target !== undefined ? 'log.powerOn' : 'log.power', { who: n(p.who), power: powerLabel(p.power), target: n(p.target) });

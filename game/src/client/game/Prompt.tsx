@@ -12,18 +12,20 @@ import { Head, KulHead } from '../ui/Figure.tsx';
 import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
-import { useGame } from './ctx.ts';
+import { shownWait, shownWaiting, useGame, useSecondsLeft } from './ctx.ts';
 
 const STEPS = ['crisis', 'appoint', 'court', 'kader', 'result', 'decree'] as const;
 const stepIndex = (s: string) => (s === 'objections' ? 1 : s === 'setup' ? 0 : Math.max(0, STEPS.indexOf(s as never)));
 
-export function Stp({ label }: { label?: string }) {
-  const { g } = useGame();
+export function Stp({ label, ask }: { label?: string; ask?: number }) {
+  const { g, room, asks } = useGame();
   const i = stepIndex(g.step);
+  const left = useSecondsLeft(room, ask ?? asks[0]?.id);
   return (
     <div className="stp">
       <span className="tk">{STEPS.map((_, j) => <i key={j} className={j < i ? 'done' : j === i ? 'now' : ''} />)}</span>
       {label ?? t(`step.${STEPS[i]}`)}
+      {left !== null && <span className={`clock ${left <= 5 ? 'low' : ''}`}><Gl k="clock" />{left}</span>}
     </div>
   );
 }
@@ -91,27 +93,24 @@ function AskView({ a }: { a: Ask }) {
 
 function Waiting() {
   const { g, seat } = useGame();
-  const waitingFor = [...new Set(g.asks.map(a => a.to))].filter(id => id !== seat);
+  const waitingFor = shownWaiting(g).filter(id => id !== seat);
   if (g.asks.some(a => a.type === 'ack')) return <AckWait />;
   if (g.step === 'court' && g.sub === 'wave' && g.court) {
-    const total = g.players.length - 1;
-    const ready = total - g.asks.filter(a => a.type === 'wave').length;
+    // nothing per seat while a wave is open: who is done, or passed at once for want of a card, stays hidden
     const mine = g.court.submitted[seat];
     const sealed = Array.isArray(mine) && mine.length > 0 ? mine : null;
     return (
       <>
-        <Stp label={t('waveN', { n: g.court.wave })} />
+        <Stp label={t('waveN', { n: g.court.wave })} ask={g.asks.find(a => a.type === 'wave')?.id} />
         {sealed ? (
           <div className="vo">{t('wait.sealedOn')}<PlayList plays={sealed.map(p => ({ as: p.recastAs ?? kindOf(g, seat, p.uid), target: p.target }))} /></div>
         ) : <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : t('wait.passed')}</p>}
-        <div className="wait">
-          <span className="dots">{Array.from({ length: total }, (_, i) => <i key={i} className={i < ready ? 'on' : ''} />)}</span>
-          {t('wait.ready', { n: ready, total })}{waitingFor.length ? ' ' + t('wait.for', { names: waitingFor.map(id => name(g, id)).join(', ') }) : ''}
-        </div>
+        <div className="wait">{t('wait.wave')}</div>
         {sealed && <Retract />}
       </>
     );
   }
+  const open = g.asks.find(a => a.to !== seat && shownWait(a) && a.type !== 'ack');
   let text = t('wait.generic');
   if (g.step === 'kader') text = t('wait.kader');
   else if (g.kulis && g.step === 'appoint') text = t('wait.kulis', { a: name(g, g.players.find(p => p.character === 'rustem')?.id), b: name(g, g.sultan) });
@@ -123,9 +122,10 @@ function Waiting() {
     const next = now !== undefined ? order[order.indexOf(now) + 1] : undefined;
     text = t(next !== undefined ? 'wait.objectionNext' : 'wait.objectionLast', { now: name(g, now), next: name(g, next) });
   }
+  if (open?.type === 'window') text = t('wait.window', { name: name(g, open.to), power: powerName(open.power) });
   return (
     <>
-      <Stp />
+      <Stp ask={open?.id} />
       <p className="vo">{text}</p>
       {waitingFor.length > 0 && <div className="wait">{t('wait.for', { names: waitingFor.map(id => name(g, id)).join(', ') })}</div>}
     </>
@@ -162,7 +162,8 @@ function FullScreenHint() {
 /** Heads of everyone, ticked once they pressed Devam. */
 function AckHeads() {
   const { g, room, seat, setSeat } = useGame();
-  const pending = new Set(g.asks.filter(a => a.type === 'ack').map(a => a.to));
+  // a player deciding a hidden window looks exactly like one who hasn't pressed Devam yet
+  const pending = new Set(g.asks.filter(a => a.type === 'ack' || !shownWait(a)).map(a => a.to));
   return (
     <span className="ackheads">
       {g.players.map(p => (
@@ -387,16 +388,11 @@ function Ferman({ a }: { a: Ask }) {
 
 function Kulis({ a }: { a: Ask }) {
   const { g, act } = useGame();
-  const [left, setLeft] = useState(RULES.kulisSeconds);
-  useEffect(() => {
-    const id = setInterval(() => setLeft(s => Math.max(0, s - 1)), 1000);
-    return () => clearInterval(id);
-  }, []);
   const rustem = g.players.find(p => p.character === 'rustem');
   return (
     <>
       <Stp />
-      <p className="vo">{t('ask.kulis', { name: name(g, rustem?.id) })}<small>{t('secondsLeft', { n: left })}</small></p>
+      <p className="vo">{t('ask.kulis', { name: name(g, rustem?.id) })}<small>{t('ask.kulisHow', { n: RULES.kulisSeconds })}</small></p>
       <div className="bt"><Btn pri onClick={() => act({ t: 'answer', ask: a.id })}>{t('btn.endKulis')}</Btn></div>
     </>
   );

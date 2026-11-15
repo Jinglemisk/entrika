@@ -19,6 +19,7 @@ export function Gl({ k, className = '' }: { k: string; className?: string }) {
   if (k === 'set') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h7M15 6h2M3 14h2M10 14h7" /><circle cx="12.5" cy="6" r="2.2" /><circle cx="7.5" cy="14" r="2.2" /></svg>;
   if (k === 'eye') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" /><circle cx="10" cy="10" r="2.2" /></svg>;
   if (k === 'hold') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" /><circle cx="10" cy="10" r="7" strokeDasharray="2.5 3" /></svg>;
+  if (k === 'clock') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.6 1.8" /></svg>;
   if (k === 'bot') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="10" rx="2" /><path d="M10 3v3M7.5 11h.01M12.5 11h.01" /></svg>;
   return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><path d={G[k]} /></svg>;
 }

@@ -341,7 +341,7 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .mine .mc.live > .c3-slot { outline: 2px solid var(--gold-hi); outline-offset: 2px; animation: legal 1.6s ease-in-out infinite; }
 .hand { left: 240px; top: 16px; right: auto; overflow: visible; }
 .empty-hand { position: absolute; left: 0; top: 40px; width: 240px; text-align: center; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
-.pr { left: 520px; right: 14px; top: 17px !important; bottom: 15px !important; }
+.pr { left: 520px; right: 24px; top: 17px !important; bottom: 15px !important; }
 .pr .slots { left: -280px; top: -1px; width: 248px; }
 .pop > .x-close { right: -13px; top: -13px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: var(--fg); box-shadow: 0 0 0 1px rgba(236,211,138,.45), 0 4px 10px rgba(0,0,0,.4); }
 .pop > .x-close .gl { width: 16px; height: 16px; }
@@ -405,3 +405,28 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .zone .zlabel { position: absolute; left: 50%; top: -7px; transform: translateX(-50%); padding: 1px 9px; white-space: nowrap;
   font: 700 10px/12px var(--f-card); letter-spacing: .1em; color: var(--gold-hi); background: var(--lake);
   border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); }
+
+/* ---------- effects from the log (Fx.tsx): floats off a seat, a glow on a seat that changed hands, the power banner */
+.st .fx { position: absolute; left: 50%; top: 38%; z-index: 5; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 2px; padding: 2px 8px 2px 9px;
+  border-radius: 12px; font: 800 15px/1 var(--f-ui); white-space: nowrap; pointer-events: none; box-shadow: 0 3px 10px rgba(0,0,0,.35); }
+.st .fx.gain { background: var(--mal); color: #f6ecd6; }
+.st .fx.lose { background: var(--al); color: #f6ecd6; }
+.st .fx.draw, .st .fx.discard { background: var(--ink); color: var(--paper-hi); }
+.st .fx-seat { position: absolute; inset: -4px; z-index: 0; border-radius: 50px 50px 6px 6px; pointer-events: none; box-shadow: 0 0 0 3px var(--gold-hi), 0 0 18px 4px rgba(236,211,138,.8); }
+.banner { position: absolute; left: 50%; top: 40px; z-index: 30; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; max-width: 560px;
+  padding: 4px 14px 4px 4px; border-radius: 18px; background: var(--ink); color: var(--paper-hi); font: 700 13.5px/1.2 var(--f-ui);
+  box-shadow: 0 0 0 1.5px var(--gold), 0 8px 24px rgba(0,0,0,.35); pointer-events: none; }
+.banner .head { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; background: var(--sink); flex: none; }
+.stp .clock { display: inline-flex; align-items: center; gap: 3px; margin-left: 6px; padding: 1px 7px 1px 4px; border-radius: 9px; font: 800 12px/1.2 var(--f-ui);
+  color: var(--fg); box-shadow: inset 0 0 0 1px var(--line); }
+.stp .clock .gl { width: 13px; height: 13px; }
+.stp .clock.low { color: #f6ecd6; background: var(--al); box-shadow: none; }
+
+/* ---------- pop-ups float on a blacked-out table: no box, the card and its buttons stand on the dark */
+.popbg { background: rgba(4,6,12,.86); backdrop-filter: blur(1.5px); }
+.pop { background: none !important; box-shadow: none !important; }
+.pop .pop-who, .pop .pop-note, .pop .pop-meta, .pop .pop-text, .pop .pop-name, .pop .pop-kind { color: #efe6cf; }
+.pop .pop-who span, .pop .pop-note { color: rgba(239,230,207,.75); }
+.pr .stp .clock { position: absolute; right: 2px; top: -16px; margin: 0; background: var(--lake); box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); color: var(--gold-hi); }
+.pr .stp .clock.low { background: var(--al); color: #f6ecd6; }
+.pop > .x-close { right: -54px; top: 6px; }

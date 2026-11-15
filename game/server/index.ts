@@ -7,7 +7,7 @@ import os from 'node:os';
 import { WebSocketServer, type WebSocket } from 'ws';
 import { RuleError } from '../src/engine/index.ts';
 import {
-  backToLobby, createRoom, join, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
+  backToLobby, createRoom, timed, join, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
 } from './rooms.ts';
 import { contentEdit } from './content.ts';
 
@@ -78,6 +78,7 @@ server.on('upgrade', (req, socket, head) => {
 function view(room: Room, token: string) {
   return {
     code: room.code, dev: room.dev, learning: room.learning, sultan: room.sultan, version: room.version,
+    timers: timed(room) || (!room.game && !room.learning && (room.timers ?? !room.dev)), deadlines: room.deadlines ?? {}, now: Date.now(),
     host: token === room.host,
     seats: room.seats.map(s => ({ name: s.name, bot: s.bot, online: [...conns].some(c => c.code === room.code && c.token === s.token) })),
     mine: seatsOf(room, token),

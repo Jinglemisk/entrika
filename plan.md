@@ -24,6 +24,8 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - Decide whether the manual should read `game/content/` so card text lives in one place.
    - Fold the first playtest's rule changes into the manual (listed at the top of `docs/rulings.md`): no per-crisis Intrigue limit, no Loyalist duty in Kader, Devam after each public moment, no Objection to your own seat.
    - Before release: remove the test-room aids marked `DEV` in `game/src/client/` (seat eyes, corner heads, Devam heads that switch seats, the robot button) along with test rooms.
+   - Card balance: Jingle's Take/Skip on the 16 proposals in the balance review (https://claude.ai/artifact/4gwXX8AKQ2omRzGgA4Bcim), the Kader deck ratio, Hedef Tahtası counting only other players' cards, and a balance pass on the Hırs cards.
+   - Not built yet: chat or a private Kulis channel for remote play; hosting beyond this Mac; handing a seat to a bot or a new player when someone leaves; a record of every finished game for playtest logging; in-game rules help.
 
 ## Sources
 - `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.

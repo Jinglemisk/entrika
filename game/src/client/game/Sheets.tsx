@@ -50,7 +50,7 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
     setTags(getTags(room.code, seat));
   };
   return (
-    <PopShell zone="zp" className="seatpop" onClose={close} cards={<>
+    <PopShell className="seatpop" onClose={close} cards={<>
       <Card spec={spec(charRef(g, p.character))} width={POP_CARD} />
       {p.companion && <Card spec={spec(kulRef(p))} width={POP_CARD} />}
     </>}>
@@ -101,7 +101,7 @@ function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
     </div>
   );
   return (
-    <PopShell zone="zp" className="trackpop" onClose={close}>
+    <PopShell className="trackpop" onClose={close}>
       {row('h', 'hizmet', t('hizmet'), g.tracks.loyalty, loyal, MISC.kader.h.text.join(' '))}
       {row('x', 'hiyanet', t('hiyanet'), g.tracks.treason, treason, MISC.kader.x.text.join(' '))}
     </PopShell>

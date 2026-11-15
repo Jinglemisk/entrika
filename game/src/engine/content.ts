@@ -43,6 +43,8 @@ export interface Rules {
   tracks: { loyalty: number; treason: number };
   treasonPowers: Record<string, string>;
   kulisSeconds: number;
+  powerWindows: Record<string, { show: 'public' | 'hidden'; secs: number }>;
+  timers: { wave: number; object: number; redirect: number; ferman: number };
 }
 
 export const RULES = rulesJson as Rules;

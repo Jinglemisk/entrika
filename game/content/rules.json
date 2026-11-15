@@ -1,5 +1,5 @@
 {
-  "about": "Tuning dials. Every number the engine plays by lives here; change a value and restart the server.",
+  "about": "Tuning dials. Every number the engine plays by lives here; change a value and restart the server. powerWindows: each timed power window is public (the table sees whose window is open) or hidden (decided inside a pause everyone sits through), with the seconds to decide before it counts as not used. timers: seconds before a Tertip wave passes, an Objection turn passes, Yön Değiştir and the Ferman are skipped; appointments, replacements, the Decree, Kader and Devam are never timed. Timers are off in learning games and the host can switch them off.",
   "players": { "min": 5, "max": 8 },
   "allegiance": {
     "5": { "loyalist": 3, "traitor": 2 },
@@ -15,5 +15,22 @@
   "kader": { "hizmet": 8, "hiyanet": 9, "draw": 3 },
   "tracks": { "loyalty": 4, "treason": 5 },
   "treasonPowers": { "2": "sorusturma", "3": "hazineDefteri", "4": "fermanRefresh" },
-  "kulisSeconds": 60
+  "kulisSeconds": 60,
+  "powerWindows": {
+    "cephe": { "show": "public", "secs": 25 },
+    "sadrazam": { "show": "public", "secs": 15 },
+    "kulis": { "show": "public", "secs": 15 },
+    "feragat": { "show": "public", "secs": 25 },
+    "fisilti": { "show": "public", "secs": 15 },
+    "himaye": { "show": "public", "secs": 15 },
+    "iskender": { "show": "hidden", "secs": 15 },
+    "gozcu": { "show": "hidden", "secs": 15 },
+    "veliaht": { "show": "hidden", "secs": 15 }
+  },
+  "timers": {
+    "wave": 45,
+    "object": 25,
+    "redirect": 25,
+    "ferman": 25
+  }
 }

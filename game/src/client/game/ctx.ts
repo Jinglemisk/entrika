@@ -1,7 +1,7 @@
 // What every game component needs: the state, who is looking, and how to act. Plus the one "seat picker" that turns
 // taps on the court into answers (targets, appointments, replacements).
-import { createContext, useContext } from 'react';
-import type { Action, Ask, Field, Game, Moment, PID, Player } from '../../engine/index.ts';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { RULES, type Action, type Ask, type Field, type Game, type Moment, type PID, type Player } from '../../engine/index.ts';
 import type { CardRef } from '../cardSpecs.ts';
 import type { RoomView } from '../net.ts';
 
@@ -55,6 +55,7 @@ export interface GameCtx {
   setSeat: (id: PID) => void;
   hand: HandState;
   moment: Moment | null;     // a public moment is up in the court area until everyone presses Devam
+  fx: { seat: Record<PID, import('./Fx.tsx').SeatFx[]>; banner: import('./Fx.tsx').Banner | null };   // effects read from the log
 }
 
 export const Ctx = createContext<GameCtx | null>(null);
@@ -66,6 +67,24 @@ export function myAsks(g: Game, seat: PID): Ask[] {
   const rank = (a: Ask) => (URGENT.includes(a.type) ? 0 : a.type === 'ack' ? 2 : 1);
   return mine.slice().sort((a, b) => rank(a) - rank(b));
 }
+
+/** Whether the table may see the game waiting on this ask. A Tertip wave never shows (an instant pass would tell
+ *  everyone who has no playable card), and neither does a hidden power window (rules.json powerWindows). */
+export const shownWait = (a: Ask) => a.type !== 'wave' && !(a.type === 'window' && RULES.powerWindows[a.power]?.show === 'hidden');
+/** Seconds left on a timed ask, or null if it isn't timed. Re-renders the caller every second while it runs. */
+export function useSecondsLeft(room: RoomView, askId: number | undefined): number | null {
+  const due = askId === undefined ? undefined : room.deadlines?.[askId];
+  const [, tick] = useState(0);
+  useEffect(() => {
+    if (due === undefined) return;
+    const id = setInterval(() => tick(n => n + 1), 1000);
+    return () => clearInterval(id);
+  }, [due]);
+  return due === undefined ? null : Math.max(0, Math.ceil((due - (Date.now() + room.skew)) / 1000));
+}
+
+/** The seats the table can see the game waiting on. */
+export const shownWaiting = (g: Game): PID[] => [...new Set(g.asks.filter(shownWait).map(a => a.to))];
 
 /** The public moment waiting for Devam presses, if any. */
 export const pendingMoment = (g: Game): Moment | null => {

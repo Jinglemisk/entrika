@@ -40,13 +40,13 @@ export const hirsRef = (p: Player): CardRef => ({ t: 'hirs', id: p.ambition!, do
 
 // ---------- the frame
 
-/** Dimmed table behind, the card(s) centred, anything else beneath, tap outside to close. */
-export function PopShell({ zone = 'zl', className = '', onClose, cards, children }: {
-  zone?: 'zl' | 'zp'; className?: string; onClose?: () => void; cards?: ReactNode; children?: ReactNode;
+/** The table blacked out behind, the card(s) floating in the middle, anything else beneath, tap outside to close. */
+export function PopShell({ className = '', onClose, cards, children }: {
+  className?: string; onClose?: () => void; cards?: ReactNode; children?: ReactNode;
 }) {
   return (
     <motion.div className="popbg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }} onClick={onClose}>
-      <motion.div className={`pop ${zone} ${className}`} initial={{ scale: 0.94, y: 10 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+      <motion.div className={`pop zl ${className}`} initial={{ scale: 0.94, y: 10 }} animate={{ scale: 1, y: 0 }} transition={{ type: 'spring', stiffness: 420, damping: 32 }}
         onClick={e => e.stopPropagation()}>
         {onClose && <button type="button" className="x-close" onClick={onClose} aria-label={t('close')}><Gl k="close" /></button>}
         {cards && <div className="pop-cards">{cards}</div>}

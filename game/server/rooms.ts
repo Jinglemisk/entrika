@@ -3,7 +3,8 @@ import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  act, ambitionById, characterById, companionById, createGame, crisisById, intrigueById, RuleError, RULES, type Action, type Game,
+  act, ambitionById, askSeconds, characterById, companionById, createGame, crisisById, intrigueById, RuleError, RULES,
+  timeoutAnswer, type Action, type Game,
 } from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 
@@ -15,6 +16,8 @@ export interface Room {
   host: string;                 // token of the creator
   dev: boolean;                 // test room: one phone may act for every seat
   learning: boolean;
+  timers?: boolean;             // timed power windows and waves (off in learning games); missing = on, except test rooms
+  deadlines?: Record<number, number>;   // ask id -> epoch ms when it times out
   sultan: number | null;        // seat that plays Süleyman, null = random
   seats: Seat[];
   game: Game | null;
@@ -43,6 +46,7 @@ export function load() {
         r.game = null;
       }
       rooms.set(r.code, r);
+      syncDeadlines(r);   // deadlines survive a restart; an overdue one fires at once
     }
   } catch { /* first run */ }
 }
@@ -66,9 +70,45 @@ function save() {
 function changed(room: Room) {
   room.version++;
   room.touched = Date.now();
+  syncDeadlines(room);
   save();
   onChange(room);
   scheduleBots(room);
+}
+
+// ---------- timers: each timed ask gets a deadline when it appears; when it passes, the ask is answered for the player
+export const timed = (room: Room) => !!room.game && !room.learning && (room.timers ?? !room.dev);
+const timerHandles = new Map<string, NodeJS.Timeout>();
+function syncDeadlines(room: Room) {
+  const g = room.game;
+  const now = Date.now();
+  const next: Record<number, number> = {};
+  if (g && timed(room)) {
+    for (const a of g.asks) {
+      const secs = askSeconds(a);
+      if (secs !== null) next[a.id] = room.deadlines?.[a.id] ?? now + secs * 1000;
+    }
+  }
+  room.deadlines = next;
+  clearTimeout(timerHandles.get(room.code));
+  timerHandles.delete(room.code);
+  const first = Math.min(...Object.values(next));
+  if (Number.isFinite(first)) timerHandles.set(room.code, setTimeout(() => expire(room), Math.max(0, first - now) + 50));
+}
+function expire(room: Room) {
+  timerHandles.delete(room.code);
+  const g = room.game;
+  if (!g) return;
+  const now = Date.now();
+  let game = g;
+  for (const a of g.asks) {
+    const due = room.deadlines?.[a.id];
+    if (due === undefined || due > now || !game.asks.some(x => x.id === a.id)) continue;
+    try { game = act(game, a.to, { t: 'answer', ask: a.id, value: timeoutAnswer(a) }); }
+    catch (e) { console.warn('timeout answer failed', (e as Error).message); }
+  }
+  room.game = game;
+  changed(room);
 }
 
 export const newToken = () => randomBytes(12).toString('base64url');
@@ -111,6 +151,7 @@ export function seatsOf(room: Room, token: string): number[] {
 
 export type LobbyOp =
   | { op: 'learning'; value: boolean }
+  | { op: 'timers'; value: boolean }
   | { op: 'sultan'; seat: number | null }
   | { op: 'move'; from: number; to: number }
   | { op: 'shuffle' }
@@ -134,6 +175,7 @@ export function lobby(room: Room, token: string, o: LobbyOp) {
   if (room.game) throw new RuleError('Oyun sürüyor.');
   switch (o.op) {
     case 'learning': room.learning = !!o.value; break;
+    case 'timers': room.timers = !!o.value; break;
     case 'sultan': room.sultan = o.seat === null || room.seats[o.seat] ? o.seat : null; break;
     case 'move': {
       const [s] = room.seats.splice(o.from, 1);

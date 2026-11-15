@@ -249,6 +249,11 @@ function finishWave(g: Game) {
     if (pl.as === 'iftira') net.set(pl.target, (net.get(pl.target) ?? 0) - 1);
     if (pl.as === 'gozde') net.set(pl.target, (net.get(pl.target) ?? 0) + 1);
   });
+  // Saray Tabibi's saves are known now, so every outcome is final: one public line per card, never who played it
+  for (const [id, d] of net) if (d < 0 && c.tabib.includes(id)) c.plays.forEach((pl, i) => { if (okAt(i) && pl.as === 'iftira' && pl.target === id) reveal[i].note = 'tabib'; });
+  reveal.forEach(r => log(g, 'play', {
+    as: r.as, target: r.target, outcome: r.outcome, ...(r.note ? { note: r.note } : {}), ...(r.movedFrom !== undefined ? { movedFrom: r.movedFrom } : {}),
+  }));
   for (const [id, d] of net) {
     if (d < 0 && c.tabib.includes(id)) {
       c.plays.forEach((pl, i) => { if (okAt(i) && pl.as === 'iftira' && pl.target === id) reveal[i].note = 'tabib'; });
@@ -263,7 +268,7 @@ function finishWave(g: Game) {
     if (pl.returns && okAt(i) && companionIs(g, pl.owner, 'lokman') && !owner.companionUsed) {
       owner.companionUsed = true;
       owner.hand.push(pl.card);
-      log(g, 'returned', { who: pl.owner, card: pl.card.kind });
+      log(g, 'returned', { who: pl.owner });   // public: Lokman was used; which card came back is the owner's to know
       checkHand(g, pl.owner);
     } else discardCard(g, pl.card);
   });

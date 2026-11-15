@@ -5,8 +5,9 @@ import { Em, Gl } from '../ui/marks.tsx';
 import { Figure } from '../ui/Figure.tsx';
 import { getTags, usePrefs } from '../prefs.ts';
 import { t } from '../strings.ts';
-import { useGame } from './ctx.ts';
+import { shownWaiting, useGame } from './ctx.ts';
 import { DevToggle } from './DevBar.tsx';
+import { SeatEffects } from './Fx.tsx';
 
 /** Seat order for display (v3): Süleyman in the middle; the table runs clockwise from his left (our right) and wraps
  *  round to the far left, so neighbours on screen are neighbours at the table. */
@@ -38,9 +39,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   const { g, picker, room, seat, hand } = useGame();
   const p = g.players[id];
   const vk = g.ministers.first === id ? 1 : g.ministers.second === id ? 2 : 0;
-  const court = g.court;
-  const ready = g.step === 'court' && g.sub === 'wave' && court && id in court.submitted && !p.sultan && !g.asks.some(a => a.type === 'wave' && a.to === id);
-  const waiting = g.asks.some(a => a.to === id);
+  const waiting = shownWaiting(g).includes(id);
   const legal = picker?.legal.includes(id);
   const chosen = picker?.chosen?.includes(id);
   const dim = picker && !legal && !chosen;
@@ -64,11 +63,11 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
             {comp.art ? <img src={comp.art.src} alt="" style={{ objectPosition: comp.art.pos }} /> : <i className="kl-em" />}
           </span>
         )}
-        {ready && <span className="rd"><Gl k="check" /></span>}
         {g.surgun.now === id && <span className="exile">{t('exiled')}</span>}
         {tag && <span className={`mytag ${tag}`} title={t(`tag.${tag}`)}>{tag === 'suspect' ? '?' : '✓'}</span>}
         {mine > 0 && <span className="myplay" title={t('myPlayHere')}><Em k="intrigue" s={14} />{mine > 1 ? mine : ''}</span>}
         <DevToggle id={id} />
+        <SeatEffects id={id} />
       </div>
       <div className="pl">
         <b className={characterShort(p.character).length > 14 ? 'long' : ''}>{characterShort(p.character)}</b>

@@ -16,6 +16,7 @@ import { FULL_ASKS, FullAsk, GameOver } from './Full.tsx';
 import { MomentView } from './Moments.tsx';
 import { PeekPopup, SheetView } from './Sheets.tsx';
 import { DevSeats } from './DevBar.tsx';
+import { PowerBanner, useLogFx } from './Fx.tsx';
 
 const SEAT_KEY = 'entrika:view';
 
@@ -67,8 +68,9 @@ export function Game({ room }: { room: RoomView }) {
     : picker;
   const moment = active ? null : pendingMoment(g);   // picking a seat needs the court
   const fullAsk = asks.some(a => FULL_ASKS.includes(a.type));
+  const fx = useLogFx(g, !moment);
   const ctx: GameCtx = {
-    room, g, seat, me, asks, act, picker: active, setPicker, freePick, setFreePick, sheet, setSheet, setSeat, moment,
+    room, g, seat, me, asks, act, picker: active, setPicker, freePick, setFreePick, sheet, setSheet, setSeat, moment, fx,
     hand: { mode, sel, setSel, aim, setAim, staged, setStaged },
   };
 
@@ -79,6 +81,7 @@ export function Game({ room }: { room: RoomView }) {
         <div className="bd">
           <Mizan />
           {moment ? <MomentView key={`${moment}${g.crisisNo}.${g.court?.reveals.length ?? 0}`} what={moment} /> : <Court />}
+          <PowerBanner />
         </div>
       </div>
       <div className="shelf zl">

@@ -7,6 +7,10 @@ export interface RoomView {
   seats: { name: string; bot: boolean; online: boolean }[];
   mine: number[];
   game: Game | null;
+  timers: boolean;                       // the room plays with timers
+  deadlines: Record<number, number>;     // ask id -> server epoch ms when it times out
+  now: number;                           // server clock when this view was sent
+  skew: number;                          // added here: server clock minus this phone's, so countdowns agree
 }
 export interface NetState { status: 'connecting' | 'open' | 'closed'; room: RoomView | null; home: boolean; error: string | null; errorAt: number }
 
@@ -45,7 +49,7 @@ function connect() {
     if (m.t === 'room') {
       if (import.meta.env.DEV) (window as unknown as { __room: RoomView }).__room = m.room;   // for debugging in the console
       store.set(ROOM, m.room.code);
-      set({ room: m.room, home: false });
+      set({ room: { ...m.room, skew: m.room.now - Date.now() }, home: false });
     } else if (m.t === 'home') {
       store.set(ROOM, null);
       set({ room: null, home: true });

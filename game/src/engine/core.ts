@@ -83,6 +83,24 @@ export function ask(g: Game, a: Omit<Ask, 'id'> & Record<string, unknown>): Ask 
 /** Whether this player holds this Character's power and it is ready now. */
 export const readyPowerOf = (g: Game, id: PID, character: string, which: 'base' | 'favor') => readyPower(g, character, which)?.id === id;
 
+/** Seconds a player has to answer this ask when the room plays with timers, or null if it is never timed:
+ *  appointments, replacements, the Decree, Kader, discards and Devam wait as long as the table talks. */
+export function askSeconds(a: Ask): number | null {
+  switch (a.type) {
+    case 'window': return RULES.powerWindows[a.power]?.secs ?? null;
+    case 'wave': return RULES.timers.wave;
+    case 'object': return RULES.timers.object;
+    case 'redirect': return RULES.timers.redirect;
+    case 'ferman': return RULES.timers.ferman;
+    case 'kulis': return RULES.kulisSeconds;
+    default: return null;
+  }
+}
+/** What a timed-out ask counts as: the power isn't used, the player passes. */
+export function timeoutAnswer(a: Ask): unknown {
+  return a.type === 'wave' ? [] : a.type === 'window' ? false : null;
+}
+
 /** Every player, Süleyman too, confirms a public moment before the game moves on. */
 export function ackAll(g: Game, what: Moment) {
   for (const p of g.players) ask(g, { to: p.id, type: 'ack', what });
