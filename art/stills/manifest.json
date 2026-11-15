@@ -515,10 +515,24 @@
       }
     },
     "comp.lokman": {
-      "status": "retired",
+      "status": "found",
       "candidates": [
         {
           "file": "comp.lokman-1.jpg",
+          "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=NtGi7Os4nrg&t=4008s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Muhteşem Yüzyıl 117. Bölüm (4K)\", at 4008.3 s; crop x 443-1363. Kaya Akkaya as Lokman Ağa, Süleyman's door ağa who secretly serves Hürrem (tr.wikipedia character list, episodes 109-139), in a black turban and black kaftan over a brown brocade shirt, before a stone wall, facing the viewer, lips just parted. Identified from the Sultan Süleyman channel's clip \"MUSTAFA'M HAKKINDA LOKMAN AĞA'YA VAZİFE VERDİM\" (c6oc-enqvTo; the man Süleyman gives the order to, a scene from episode 123 at about 2985 s) and his IMDb headshot. Native HD, but he is moving, so slightly soft. Roster eye line 40 %, so the card uses object-position 50% 26%. The old pick (candidate 2) is probably not Lokman: its IMDb caption names Kaya Akkaya and Selim Bayraktar, and the man on the left (teal turban, earring) matches Selim Bayraktar's Sümbül Ağa; Kaya Akkaya is more likely the man cut off on the right.",
+          "focus": [
+            0.502,
+            0.464
+          ]
+        },
+        {
+          "file": "comp.lokman-2.jpg",
           "size": [
             446,
             400
@@ -536,9 +550,8 @@
         "file": "roster/comp.lokman.jpg",
         "from": "comp.lokman-1.jpg",
         "posed": false,
-        "face_share": 0.54
-      },
-      "note": "Not in the game since manual v0.7. Files kept in case the Companion returns."
+        "face_share": 0.34
+      }
     },
     "comp.ayas": {
       "status": "found",
@@ -2198,6 +2211,69 @@
         ],
         "device_px_per_css_px_at_258": 2.38,
         "quality": "ok"
+      }
+    },
+    "char.sahsultan": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "char.sahsultan-1.jpg",
+          "size": [
+            1120,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=gO0OG29Xi4w&t=280s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hürrem Sultan, Şah Sultan'ı Ezdi Geçti! | Muhteşem Yüzyıl\", at 280.1 s; crop x 420-1540 of the 1920x1080 frame, wider than 3:4 so the face stays near its siblings' size on the card (as Barbaros). Deniz Çakır as Şah Sultan (tr.wikipedia character list: Süleyman's sister, Lütfi Paşa's wife, episodes 78-103) in a teal satin gown and gold tiara, seated before the teal-and-gold tiled wall while she talks to Hürrem; matched to her TVMaze and IMDb headshots and to the official clip \"Şah Sultan Saraya Geldi!\" (Sj7cI5gsrqw). Season 3 footage, native HD, sharp. Eyes left of camera, mouth closed; the tiara stops just under the frame top.",
+          "focus": [
+            0.499,
+            0.397
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/char.sahsultan.jpg",
+        "from": "char.sahsultan-1.jpg",
+        "posed": false,
+        "face_share": 0.38
+      },
+      "cutout": {
+        "file": "cutout/char.sahsultan.png",
+        "from": "char.sahsultan-1.jpg",
+        "tool": "macOS Vision VNGenerateForegroundInstanceMaskRequest (local)",
+        "placement_on_card": {
+          "top_cqw_from_window": -10.08,
+          "width_pct_of_window": 100.0,
+          "left_pct_of_window": 0.0
+        },
+        "soft_at_258": false,
+        "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette",
+        "note": "Served at 600x579 (the still is wider than 3:4); placement.json niche ar 0.9643."
+      }
+    },
+    "comp.gulaga": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "comp.gulaga-1.jpg",
+          "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=Eh0CnNMKu0o&t=66s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Gül Ağa, Sümbül'e Tuzak Kurdu | Muhteşem Yüzyıl 38. Bölüm\", at 66.0 s; crop x 619-1539. Engin Günaydın as Gül Ağa, the harem eunuch who teaches the concubines palace manners (tr.wikipedia character list, episodes 25-60), in his green brocade turban and kaftan, facing the viewer, mouth closed; matched to his IMDb headshot and to the white-turbaned Gül Ağa inspecting the new concubines in \"Gül Ağa Saraya Gelince Sümbül Ağa Sinirlendi\" (lx5pmQIUfqk). Season 2 footage upscaled to 1080p by the channel, so slightly soft. The turban touches the frame top, so the roster crop is the full frame height (eye line 41 %) and the card uses object-position 50% 27%.",
+          "focus": [
+            0.497,
+            0.51
+          ]
+        }
+      ],
+      "roster": {
+        "file": "roster/comp.gulaga.jpg",
+        "from": "comp.gulaga-1.jpg",
+        "posed": false,
+        "face_share": 0.48
       }
     }
   },

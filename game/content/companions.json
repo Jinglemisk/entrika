@@ -113,8 +113,8 @@
     "special": "gulaga",
     "freq": "always",
     "text": "Entrika elinin sınırı 3 değil 4 olur.",
-    "flavor": "Haremin kapısında her fısıltı ondan geçer.",
-    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 18%" }
+    "flavor": "Cariyelere saray adabını o öğretir.",
+    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 27%" }
   },
   {
     "id": "lokman",
@@ -122,7 +122,7 @@
     "special": "lokman",
     "freq": "once",
     "text": "Oynadığın bir Entrika kartı etkisini gösterince eline geri döner.",
-    "flavor": "Verdiğini geri almayı bilir.",
-    "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 18%" }
+    "flavor": "Padişahın kapı ağası; kapının ardını o bilir.",
+    "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 26%" }
   }
 ]
