@@ -1,19 +1,44 @@
 {
   "kader": {
-    "h": { "name": "Hizmet", "text": ["Sadakat yoluna konur.", "Hüküm: Süleyman bir Vekile 1 Nüfuz verir."], "flavor": "Devlete hizmet, Padişaha sadakat.",
-           "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "42% 40%" } },
-    "x": { "name": "Hıyanet", "text": ["İhanet yoluna konur.", "Hüküm: Süleyman bir Vekilden 1 Nüfuz alır."], "flavor": "«Sultanım, yemin ederim size yardım etmek istedim, fakat yapamadım!»",
-           "art": { "src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%" } }
+    "h": {
+      "name": "Hizmet",
+      "text": ["Sadakat yoluna konur.", "Hüküm: Süleyman bir Vekile 1 Nüfuz verir."],
+      "flavor": "Devlete hizmet, Padişaha sadakat.",
+      "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "42% 40%" }
+    },
+    "x": {
+      "name": "Hıyanet",
+      "text": ["İhanet yoluna konur.", "Hüküm: Süleyman bir Vekilden 1 Nüfuz alır."],
+      "flavor": "«Sultanım, yemin ederim size yardım etmek istedim, fakat yapamadım!»",
+      "art": { "src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%" }
+    }
   },
   "taraf": {
-    "loyalist": { "name": "Sadık", "text": ["Sadakat yolunda 4 Hizmet olunca kazanırsın.", "Bu kart gizlidir."], "flavor": "Padişahım çok yaşa." },
-    "traitor": { "name": "Hain", "text": ["İhanet yolunda 5 Hıyanet olunca kazanırsın.", "Hainler birbirini tanır."], "flavor": "Gölgede bekleyen sabırlıdır." }
+    "loyalist": {
+      "name": "Sadık",
+      "text": ["Sadakat yolunda 4 Hizmet olunca kazanırsın.", "Bu kart gizlidir."],
+      "flavor": "Padişahım çok yaşa."
+    },
+    "traitor": {
+      "name": "Hain",
+      "text": ["İhanet yolunda 5 Hıyanet olunca kazanırsın.", "Hainler birbirini tanır."],
+      "flavor": "Gölgede bekleyen sabırlıdır."
+    }
   },
   "treason": {
     "1": { "name": "Güç yok", "text": "Hiçbir şey olmaz." },
-    "sorusturma": { "name": "Soruşturma", "text": "Süleyman bir müfettiş seçer. Müfettiş bir oyuncunun Taraf kartına gizlice bakar, sonra istediğini söyler." },
-    "hazineDefteri": { "name": "Hazine Defteri", "text": "Gelecek krizden önce Süleyman bir oyuncu seçer. O oyuncu Kader destesinin üstteki 3 kartına gizlice bakar." },
-    "fermanRefresh": { "name": "Ferman yenilenir", "text": "Süleyman Ferman'ı yeniden kullanabilir. Elinde birden fazla Ferman olmaz." },
+    "sorusturma": {
+      "name": "Soruşturma",
+      "text": "Süleyman bir müfettiş seçer. Müfettiş bir oyuncunun Taraf kartına gizlice bakar, sonra istediğini söyler."
+    },
+    "hazineDefteri": {
+      "name": "Hazine Defteri",
+      "text": "Gelecek krizden önce Süleyman bir oyuncu seçer. O oyuncu Kader destesinin üstteki 3 kartına gizlice bakar."
+    },
+    "fermanRefresh": {
+      "name": "Ferman yenilenir",
+      "text": "Süleyman Ferman'ı yeniden kullanabilir. Elinde birden fazla Ferman olmaz."
+    },
     "death": { "name": "Süleyman'ın ölümü", "text": "Hainler kazanır." }
   }
 }
