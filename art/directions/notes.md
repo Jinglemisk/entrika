@@ -20,6 +20,12 @@ Four reworked Entrika cards have new stills, taken from the official channel's 1
 
 Under 150 px the art window is a portrait slice (88.8 × 128.8 cqw) that shows less than half the width of a 3:2 still, so `pos` x is set for that slice: Kefalet 30% keeps both figures, Casus 35% keeps Hürrem's face, Çeşnigir 65% keeps the taster. `index.html` here still links the old `card.divan-sirasi`, `card.gozde` and `card.saray-dedikodusu` copies in `img/`, and the UI proposal (`ui/index.html`) reads their `-1` copies from `graded/`, so those copies stay until both pages are rebuilt; the originals and the unlinked copies are gone. The comparison page's Saray Tabibi slot now shows the Çeşnigir stills. Concerns: Kefalet's two figures are full-length in a wide room, so they are small on the card; Casus is a dark frame; the Casus and Çeşnigir clips are compilations that don't name their episodes.
 
+## Round 16: wider Kul crops
+
+The roster standard (face box 36 % of the 4:5 crop, eye line at 49 % of the card window) makes Kul faces about 36 cqw tall on the card; Character faces are about 29 cqw. Sümbül, Nigar, Firuze, Ebussuud, Gülfem and Şeker were re-cut from their `-1` stills with the face box near 28 % of the crop and `pos` set so the eye line sits about 40 % down the window: y = (eye line − 0.246) / 0.384. Exceptions: Ebussuud is at 25 % with the eye line at 46 %, so his turban fits; Nigar (29 %), Gülfem (32 %) and Şeker (34 %) are limited by their small sources, and Şeker keeps the eye line at 52 % so his cap stays whole. Face boxes are from macOS Vision; the roster, `graded/roster` (bake.py at 0.15) and 480×600 `img/` copies were all regenerated. The manifest's `face_share` for these six still describes the old crops.
+
+İskender, Matrakçı, Gül Ağa, Daye, Gülşah, Lokman and Ayas can't be widened: their crops already use the full height of the still (close-up show frames, stored as 920 px wide cuts of the 1920 frame; Ayas is the designer's 480×640 image). Their alternates are tighter, show someone else, or are the picks the round 13 review replaced (Matrakçı and Gülşah `-3` would frame head-and-shoulders).
+
 ## Decisions (round 11): the Varak ve mine icon set
 
 The page now uses the style-A icon set from `art/icons/set/` (49 icons; a 512 px master plus -144, -72 and -48 copies). Only the -48, -72 and -144 files it needs are copied to `art/directions/img/icons/` (98 files, about 1.3 MB), and the hand-drawn SVG sprite is gone.

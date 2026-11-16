@@ -42,7 +42,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Casus olarak oyna.",
     "flavor": "Haremde ne olursa önce onun kulağına gelir.",
-    "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 33%" }
   },
   {
     "id": "nigar",
@@ -51,7 +51,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Mühürlü Evrak olarak oyna.",
     "flavor": "Mektupları önce o taşır, sonra okur.",
-    "art": { "src": "/art/directions/img/roster-comp.nigar.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.nigar.jpg", "pos": "50% 20%" }
   },
   {
     "id": "ebussuud",
@@ -60,7 +60,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Teftiş olarak oyna.",
     "flavor": "Fetva da defter de onun elinden geçer.",
-    "art": { "src": "/art/directions/img/roster-comp.ebussuud.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.ebussuud.jpg", "pos": "50% 40%" }
   },
   {
     "id": "gulsah",
@@ -78,7 +78,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Çeşnigir olarak oyna.",
     "flavor": "Padişahın sofrasına giden her lokma önce ondan geçer.",
-    "art": { "src": "/art/directions/img/roster-comp.seker.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.seker.jpg", "pos": "50% 12%" }
   },
   {
     "id": "gulfem",
@@ -87,7 +87,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Kefalet olarak oyna.",
     "flavor": "Sultan'ın en eski dostu, en sessiz tanığı.",
-    "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 12%" }
   },
   {
     "id": "iskender",
@@ -105,7 +105,7 @@
     "freq": "always",
     "text": "Süleyman'ın Hüküm'üyle Nüfuz kazandığında 1 fazla kazan.",
     "flavor": "Padişahın gönlüne giden yolu bilir.",
-    "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 38%" }
   },
   {
     "id": "gulaga",
