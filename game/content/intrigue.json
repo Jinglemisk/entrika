@@ -33,7 +33,7 @@
     "target": "minister",
     "text": "Bir Vekile koy. Süleyman onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
     "flavor": "Padişahın bir sözü, bir vezirin sonu.",
-    "art": { "src": "/art/directions/img/card.divan-sirasi-1.jpg", "pos": "50% 35%" }
+    "art": { "src": "/art/directions/img/card.azil-1.jpg", "pos": "54% 48%" }
   },
   {
     "id": "casus",
@@ -42,7 +42,7 @@
     "target": "other",
     "text": "Tertip bitince, bu oyuncunun bu kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.",
     "flavor": "Gölgen bile ona rapor verir.",
-    "art": { "src": "/art/directions/img/card.saray-dedikodusu-1.jpg", "pos": "60% 35%" }
+    "art": { "src": "/art/directions/img/card.casus-1.jpg", "pos": "35% 45%" }
   },
   {
     "id": "muhurlu-evrak",
@@ -60,7 +60,7 @@
     "target": "player",
     "text": "Bu oyuncu bu kriz, Hüküm dahil, Nüfuz kaybetmez.",
     "flavor": "Zehir önce onun diline değer.",
-    "art": { "src": "/art/directions/img/card.saray-tabibi-1.jpg", "pos": "45% 40%" }
+    "art": { "src": "/art/directions/img/card.saray-tabibi-1.jpg", "pos": "65% 40%" }
   },
   {
     "id": "iftira",
@@ -78,7 +78,7 @@
     "target": "minister",
     "text": "Bir Vekile koy. Kader'de hâlâ Vekilse: Hizmet oynanırsa 1 Nüfuz kazanırsın, Hıyanet oynanırsa 1 Nüfuz kaybedersin.",
     "flavor": "Kefil olan, borcu da üstlenir.",
-    "art": { "src": "/art/directions/img/card.gozde-1.jpg", "pos": "45% 45%" }
+    "art": { "src": "/art/directions/img/card.kefalet-1.jpg", "pos": "30% 50%" }
   },
   {
     "id": "teftis",

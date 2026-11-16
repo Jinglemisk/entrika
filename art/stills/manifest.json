@@ -1561,68 +1561,82 @@
         "face_share": 0.36
       }
     },
-    "card.divan-sirasi": {
+    "card.azil": {
       "status": "found",
       "candidates": [
         {
-          "file": "card.divan-sirasi-1.jpg",
+          "file": "card.azil-1.jpg",
           "size": [
-            641,
-            400
+            1200,
+            800
           ],
-          "source_url": "https://m.media-amazon.com/images/M/MV5BZmFlYmY2OGItOWM3ZS00ZWYxLWI4YzEtZTgwYjc2YTRhNmFjXkEyXkFqcGc@._V1_.jpg",
-          "source_page": "https://www.imdb.com/title/tt1848220/mediaindex/",
-          "note": "Viziers in white turbans standing in a row. Cropped to remove a channel logo.",
+          "source_url": "https://www.youtube.com/watch?v=uVzcyM_Uux8&t=319s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Devlet-i Aliyye'nin Yüce Mührü Artık Pargalı'da! | Muhteşem Yüzyıl 12. Bölüm\", at 319.1 s; crop x 300-1500, y 100-900 of the 1920x1080 frame (3:2), kept at 1200x800. Close-up: Piri Mehmed Paşa's old, ringed hand holds up the grand vizier's seal by candlelight as he hands it back to Süleyman, who has removed him from office (his white vizier's turban, bowed, fills the right edge). The seal goes to İbrahim later in the clip. Focus is the seal; the compact card frame shows only a narrow portrait slice of the still.",
           "focus": [
-            0.186,
-            0.561
+            0.54,
+            0.48
           ]
         },
         {
-          "file": "card.divan-sirasi-2.jpg",
+          "file": "card.azil-2.jpg",
           "size": [
-            931,
-            608
+            1600,
+            1067
           ],
-          "source_url": "https://tr.web.img4.acsta.net/pictures/16/05/18/21/09/460743.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Pashas in a line before a seated woman in blue.",
+          "source_url": "https://www.youtube.com/watch?v=uVzcyM_Uux8&t=289s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Devlet-i Aliyye'nin Yüce Mührü Artık Pargalı'da! | Muhteşem Yüzyıl 12. Bölüm\", at 288.8 s; crop x 0-1620 (3:2), scaled to 1600x1067. Piri Mehmed Paşa in his white vizier's turban, eyes lowered, across the desk from Süleyman in the same scene, just before he gives up the seal.",
           "focus": [
-            0.175,
-            0.28
+            0.5,
+            0.35
+          ]
+        },
+        {
+          "file": "card.azil-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=kGQrZC0XXI0&t=431s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Sultan Süleyman, Lütfi Paşa'yı Saraydan Sürüyor! | Muhteşem Yüzyıl\" (episode 100, per the clip's description), at 431.3 s; crop x 100-1720 (3:2), scaled to 1600x1067. Süleyman glares down at Lütfi Paşa as he dismisses and banishes him; Lütfi is only the back of a head and an ear at the right edge.",
+          "focus": [
+            0.5,
+            0.35
           ]
         }
       ]
     },
-    "card.saray-dedikodusu": {
+    "card.casus": {
       "status": "found",
       "candidates": [
         {
-          "file": "card.saray-dedikodusu-1.jpg",
+          "file": "card.casus-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=jsipjDOjsmc&t=1711s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Süleyman, Hürrem'i Gizlice Divanı Dinlerken Yakaladı | Muhteşem Yüzyıl\" (a season 4 compilation; it does not name the episode), at 1711.0 s; crop x 200-1820 (3:2), scaled to 1600x1067. Hürrem (Vahide Perçin, season 4), crowned, leans to a hidden opening in a stone wall with her palm flat on the stone, listening in on the Divan; a crescent of light shows in the hole. Süleyman catches her there later in the clip. Low-key and dark; focus x 0.35 keeps her face in the compact frame.",
+          "focus": [
+            0.35,
+            0.45
+          ]
+        },
+        {
+          "file": "card.casus-2.jpg",
           "size": [
             800,
             534
           ],
           "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20298639.jpg",
           "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Hürrem and another woman watching from behind a lattice balcony.",
+          "note": "Hürrem and another woman watching from behind a lattice balcony. Was card.saray-dedikodusu-1 (the old Saray Dedikodusu pick).",
           "focus": [
             0.676,
             0.317
-          ]
-        },
-        {
-          "file": "card.saray-dedikodusu-2.jpg",
-          "size": [
-            800,
-            533
-          ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20041460.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Two women conferring in a harem doorway.",
-          "focus": [
-            0.613,
-            0.322
           ]
         }
       ]
@@ -1666,29 +1680,43 @@
         {
           "file": "card.saray-tabibi-1.jpg",
           "size": [
-            931,
-            607
+            1600,
+            1067
           ],
-          "source_url": "https://tr.web.img4.acsta.net/pictures/16/04/13/21/10/120597.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "A physician in a red cap takes a young woman's pulse.",
+          "source_url": "https://www.youtube.com/watch?v=GTo8P_b7ZtE&t=1389s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Mahidevran, Süleyman'ın Sofrasına Zehir Soktu! | Muhteşem Yüzyıl\" (a season 1 compilation; it does not name the episode), at 1389.0 s; crop x 300-1920 (3:2), scaled to 1600x1067. In the palace kitchen a cook in a tall white turban tastes a spoonful of the stuffed-pomegranate dessert bound for Süleyman's table, plate in his other hand; Şeker Ağa (Yüksel Ünal) watches in the next shots. The taster is not a named character. Slight motion blur on the spoon hand. The card is Çeşnigir (the sultan's food taster); its id stays saray-tabibi.",
           "focus": [
-            0.5,
-            0.45
+            0.65,
+            0.4
           ]
         },
         {
           "file": "card.saray-tabibi-2.jpg",
           "size": [
-            1024,
-            683
+            1600,
+            1067
           ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20012028.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Women tend to a fainting woman at night.",
+          "source_url": "https://www.youtube.com/watch?v=GTo8P_b7ZtE&t=1500s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Mahidevran, Süleyman'ın Sofrasına Zehir Soktu! | Muhteşem Yüzyıl\", at 1500.0 s; crop x 100-1720 (3:2), scaled to 1600x1067. Close-up: the same stuffed pomegranates with cream on a gold-rimmed tray, carried to Süleyman's rooms. No person in frame.",
           "focus": [
-            0.5,
-            0.45
+            0.52,
+            0.55
+          ]
+        },
+        {
+          "file": "card.saray-tabibi-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=x__Hq31Sqyc&t=233s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Süleyman'dan Zehir Testi | Muhteşem Yüzyıl\" (episode 57, per the clip's description), at 233.3 s; crop x 200-1820 (3:2), scaled to 1600x1067. Hürrem drinks from a small glass vial that Süleyman has told her is poison, to prove her loyalty. A poisoned cup rather than a taster.",
+          "focus": [
+            0.42,
+            0.4
           ]
         }
       ]
@@ -1726,49 +1754,35 @@
         }
       ]
     },
-    "card.gozde": {
+    "card.kefalet": {
       "status": "found",
       "candidates": [
         {
-          "file": "card.gozde-1.jpg",
+          "file": "card.kefalet-1.jpg",
+          "size": [
+            1200,
+            800
+          ],
+          "source_url": "https://www.youtube.com/watch?v=c65-NDejqbE&t=329s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hatice'nin Tek Dileği İbrahim'in Yaşaması | Muhteşem Yüzyıl 13. Bölüm\", at 329.3 s; crop x 180-1380, y 40-840 of the 1920x1080 frame (3:2), kept at 1200x800. Hatice kneels at Süleyman's feet and clings to his kaftan, pleading for İbrahim's life (the clip's description: \"Hatice, Süleyman'ın ayaklarına kapandı\"). Two full-length figures in a wide room, so they are small; focus x 0.30 keeps both in the compact frame's portrait slice.",
+          "focus": [
+            0.3,
+            0.5
+          ]
+        },
+        {
+          "file": "card.kefalet-2.jpg",
           "size": [
             1600,
             1067
           ],
-          "source_url": "https://www.youtube.com/watch?v=Z0O3pQcVRW8&t=142s",
+          "source_url": "https://www.youtube.com/watch?v=c65-NDejqbE&t=322s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
-          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Süleyman'ın Daye Hatun'a Hediyesi | Muhteşem Yüzyıl 62. Bölüm\", at 142.8 s; crop x 300-1920 (3:2), scaled to 1600x1067. Close-up: a ruby-and-diamond pendant, a gift from Süleyman, held in an open palm against a dark ground.",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hatice'nin Tek Dileği İbrahim'in Yaşaması | Muhteşem Yüzyıl 13. Bölüm\", at 321.7 s; crop x 250-1870 (3:2), scaled to 1600x1067. Close-up of Hatice in tears, looking up at Süleyman as she pleads for İbrahim, same scene. One clear face, but Süleyman is out of frame.",
           "focus": [
-            0.45,
-            0.45
-          ]
-        },
-        {
-          "file": "card.gozde-3.jpg",
-          "size": [
-            960,
-            640
-          ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20263848.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "A concubine in plum holds a purple handkerchief to her face.",
-          "focus": [
-            0.5,
-            0.45
-          ]
-        },
-        {
-          "file": "card.gozde-2.jpg",
-          "size": [
-            800,
-            534
-          ],
-          "source_url": "https://tr.web.img4.acsta.net/medias/nmedia/18/82/77/68/20298648.jpg",
-          "source_page": "https://www.beyazperde.com/diziler/dizi-9820/fotolar/",
-          "note": "Hürrem in a red veil and gold diadem, close to Süleyman.",
-          "focus": [
-            0.5,
-            0.45
+            0.47,
+            0.3
           ]
         }
       ]
