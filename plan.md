@@ -3,7 +3,7 @@
 The living rules are the player manual (`manual.html`, published as an artifact). Its Notes section holds open decisions, tuning dials and parked ideas.
 
 ## Next
-1. Review the v0.7 manual; confirm the "Proposed" items and settle the open questions in Notes. v0.7 is the 1534 court; the reasoning behind it is at https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH.
+1. Review the v0.8 manual; confirm the "Proposed" items and settle the open questions in Notes. v0.7 is the 1534 court; the reasoning behind it is at https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH.
 2. 3–5 learning games in Basic mode, in the browser build (lobby: "Öğrenme oyunu"). Paper is out since v0.7: Court is played in waves, and a physical table can't hide who played what across waves.
 3. Log every game: player count, winner, final track state, minutes, what the losing side called unfair.
 4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
@@ -20,9 +20,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 3. First playable: done (branch `feat/playable-game`, folder `game/`). Every rule in manual v0.7 is in it: setup with Kul choice, Atama with Objections and every timed power, Tertip in waves, Ferman, Kader, the Treason powers, the Decree, Hırs cards and the overall winner. There are rooms with a share code, rejoin after a locked phone, test rooms with bots, sound, and critical rules tests. How to run it: `game/README.md`.
 4. Next:
    - Play a real game on phones over Wi-Fi.
-   - Review the engine's rulings in `docs/rulings.md` and fold them into the manual.
    - Decide whether the manual should read `game/content/` so card text lives in one place.
-   - Fold the first playtest's rule changes into the manual (listed at the top of `docs/rulings.md`): no per-crisis Intrigue limit, no Loyalist duty in Kader, Devam after each public moment, no Objection to your own seat.
    - Before release: remove the test-room aids marked `DEV` in `game/src/client/` (seat eyes, corner heads, Devam heads that switch seats, the robot button) along with test rooms.
    - Card balance: the balance pass is in the game (listed in `docs/rulings.md`). Still open: Hedef Tahtası counting only other players' cards, and a balance pass on the Hırs cards.
    - Art for Azil, Kefalet, Casus and Çeşnigir. They still use the art of the cards they replaced, and `art/stills/manifest.json` still names the old cards.

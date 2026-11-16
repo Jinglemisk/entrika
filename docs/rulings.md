@@ -1,10 +1,10 @@
 # Rulings the browser game makes
 
-The manual (v0.7) leaves some cases open. On a phone each one needs an answer, so the engine picks one. Each ruling below is what the game does now; fold it into the manual's Notes or overrule it.
+The manual leaves some cases open. On a phone each one needs an answer, so the engine picks one. Each ruling below is what the game does now. Manual v0.8 carries the ones players need; overrule any of them there.
 
 ## Changed after the first playtest (2026-11-15)
 
-These differ from manual v0.7 on Jingle's call; the manual still says the old thing.
+These differ from manual v0.7 on Jingle's call; manual v0.8 has them.
 
 - **No per-crisis Intrigue limit.** Still one card per wave (two with Çifte Oyun), but as many waves as you like. Çifte Oyun no longer mentions the 2-card limit.
 - **No Loyalist duty in Kader.** Either Vekil may discard or play any card, whatever their side. İskender Çelebi is now just "draw 4, discard 2".
@@ -12,7 +12,7 @@ These differ from manual v0.7 on Jingle's call; the manual still says the old th
 
 ## Balance pass (2026-11-16)
 
-Jingle took every proposal in the balance review (https://claude.ai/artifact/4gwXX8AKQ2omRzGgA4Bcim). The manual still has the old cards.
+Jingle took every proposal in the balance review (https://claude.ai/artifact/4gwXX8AKQ2omRzGgA4Bcim). Manual v0.8 has the new cards.
 
 - **Kader deck:** 7 Hizmet, 11 Hıyanet.
 - **Intrigue cards:**
@@ -94,7 +94,7 @@ Jingle took every proposal in the balance review (https://claude.ai/artifact/4gw
 - **Saray Hazinesi** means 3 or more cards at the end of the crisis.
 - **Kulak Misafiri** counts only if the information card (Casus, Mühürlü Evrak, Teftiş) took effect.
 - **Koltuk Kapmak** counts a seat won by Valide'nin Buyruğu or Azil.
-- **Gözden Düşmek** counts only if you actually lost Influence (not at 0, not saved by Himaye or Saray Tabibi).
+- **Gözden Düşmek** counts only if you actually lost Influence (not at 0, not saved by Himaye or Çeşnigir).
 
 ## Setup
 
