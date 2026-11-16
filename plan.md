@@ -20,7 +20,7 @@ The living rules are the player manual (`manual.html`, published as an artifact)
    - Play a real game on phones over Wi-Fi.
    - Decide whether the manual should read `game/content/` so card text lives in one place.
    - Before release: remove the test-room aids marked `DEV` in `game/src/client/` (seat eyes, corner heads, Devam heads that switch seats, the robot button) along with test rooms.
-   - Card balance: the balance pass is in the game (listed in `docs/rulings.md`). Still open: a balance pass on the Hırs cards and a rethink of the Kul powers (review in progress).
+   - Card balance: the balance pass is in the game (listed in `docs/rulings.md`). Still open: the Hırs balance pass and turning the four special Kul into Intrigue cards, proposed at https://claude.ai/artifact/UN4Bfz4nMi8i1hyLckntu2 (Take/Skip verdicts in its `verdicts` collection).
    - Art round 15 gave Azil, Kefalet, Casus and Çeşnigir their own stills (notes in `art/directions/notes.md`). Kefalet is the weakest pick (two small full-length figures); its alternate 2 is a close-up. The art comparison page and the UI proposal still link the old cards' stills.
    - Watch in playtests: does Tertip stay anonymous with Casus, Sümbül Ağa, Lokman Ağa and Sezgi? Do players stop objecting once they hold Azil? Tally the Kader 7/11 deck: after about 10 games, 7 or more Loyalist wins → 6/12; 7 or more Traitor wins → 7/10.
    - Not built yet: chat or a private Kulis channel for remote play; hosting beyond this Mac; handing a seat to a bot or a new player when someone leaves; a record of every finished game for playtest logging; in-game rules help.
