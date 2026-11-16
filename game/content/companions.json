@@ -6,7 +6,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Valide'nin Buyruğu olarak oyna; yerine kendini seçemezsin.",
     "flavor": "Valide'nin sırrı, Daye'nin dilinde.",
-    "art": { "src": "/art/directions/img/roster-comp.daye.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.daye.jpg", "pos": "50% 0%" }
   },
   {
     "id": "bali",
@@ -33,7 +33,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını Akıl Hocası olarak oyna; alanını sen seç.",
     "flavor": "Kalemi de kılıcı kadar keskin.",
-    "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 58%" }
+    "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 0%" }
   },
   {
     "id": "sumbul",
@@ -69,7 +69,7 @@
     "freq": "crisis",
     "text": "Bir Entrika kartını İftira olarak oyna.",
     "flavor": "Efendisi için her yalanı söyler.",
-    "art": { "src": "/art/directions/img/roster-comp.gulsah.jpg", "pos": "50% 18%" }
+    "art": { "src": "/art/directions/img/roster-comp.gulsah.jpg", "pos": "50% 0%" }
   },
   {
     "id": "seker",
@@ -96,7 +96,7 @@
     "freq": "once",
     "text": "Birinci Vekilken Kader'den 3 yerine 4 kart çek, 2'sini at.",
     "flavor": "Hazinenin hesabı onun defterinde.",
-    "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 30%" }
+    "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 20%" }
   },
   {
     "id": "firuze",
@@ -114,7 +114,7 @@
     "freq": "always",
     "text": "Entrika elinin sınırı 3 değil 4 olur.",
     "flavor": "Cariyelere saray adabını o öğretir.",
-    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 27%" }
+    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 0%" }
   },
   {
     "id": "lokman",

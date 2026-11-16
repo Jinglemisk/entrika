@@ -6,7 +6,7 @@
     "ui.title": "Not a manual entity: title-screen key art."
   },
   "graded": "graded/ holds every file (and graded/roster/) with the colour grade baked in at s = 0.15: a warm umber-to-gold tritone mixed at 0.8*s = 12 %. Use these in the game; the originals stay ungraded.",
-  "roster": "roster/<id>.jpg holds the standard portrait for every person card: 4:5, centred on the face, eye line at 37% from the top, face box 36% of the height (face_share). Where the source is too tight the crop zooms in and face_share is higher. posed = an official promo or cast photo; otherwise a screencap, because no posed photo was found.",
+  "roster": "roster/<id>.jpg holds the standard portrait for every person card: 4:5, centred on the face, eye line at 37% from the top, face box 36% of the height (face_share). Where the source is too tight the crop zooms in and face_share is higher. posed = an official promo or cast photo; otherwise a screencap, because no posed photo was found. Kul crops use a face share near 0.28 instead (round 16), so their cards frame head and shoulders like the Character cut-outs.",
   "rights": "All stills belong to the producer and broadcasters. Private, non-commercial use among friends only; do not publish the game or these files.",
   "entities": {
     "char.suleyman": {
@@ -470,6 +470,20 @@
             920,
             1080
           ],
+          "source_url": "https://www.youtube.com/watch?v=8DQ_eHWUWek&t=180s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads return HTTP 403), clip \"Hürrem ve Daye Hatun İttifakı | Muhteşem Yüzyıl 42. Bölüm\", at 180.4 s; crop x 390-1310. Sema Keçik as Daye Hatun standing in Hürrem's room in the same scene and costume as the old pick (now candidate 4): gold-embroidered cap, coral veil, eyes lowered to the right. A medium shot, so the card frames head and shoulders; dimmer and softer than the old close-up.",
+          "focus": [
+            0.501,
+            0.232
+          ]
+        },
+        {
+          "file": "comp.daye-4.jpg",
+          "size": [
+            920,
+            1080
+          ],
           "source_url": "https://www.youtube.com/watch?v=8DQ_eHWUWek&t=221s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
           "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Hürrem ve Daye Hatun İttifakı | Muhteşem Yüzyıl 42. Bölüm\", at 221.0 s; crop x 420-1340. Sema Keçik as Daye Hatun in her gold-embroidered cap and coral veil, facing the viewer, mouth closed. Season 2 footage, upscaled to 1080p by the channel, so slightly soft. Same woman as candidate 2; candidate 3 (the old pick) is probably someone else.",
@@ -511,7 +525,7 @@
         "file": "roster/comp.daye.jpg",
         "from": "comp.daye-1.jpg",
         "posed": false,
-        "face_share": 0.42
+        "face_share": 0.28
       }
     },
     "comp.lokman": {
@@ -585,6 +599,20 @@
             920,
             1080
           ],
+          "source_url": "https://www.youtube.com/watch?v=OtWEXLPdSHE&t=365s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads return HTTP 403), clip \"Matrakçı, Tekke İle Karşı Karşıya! | Muhteşem Yüzyıl\" (424WtMOh9co is the same upload), at 365.4 s; crop x 800-1720. Fatih Al as Matrakçı Nasuh in the same grey wrapped turban with its hanging tail as the old pick (now candidate 4), in a mauve kaftan in a courtyard, three-quarter view looking right, faint smile. A medium shot, so the card frames head and shoulders. The clip does not name its episode.",
+          "focus": [
+            0.503,
+            0.312
+          ]
+        },
+        {
+          "file": "comp.matrakci-4.jpg",
+          "size": [
+            920,
+            1080
+          ],
           "source_url": "https://www.youtube.com/watch?v=aE9soc_of7c&t=164s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
           "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"İbrahim İle İskender Çelebi Birbirine Girdi| Muhteşem Yüzyıl\", at 164.5 s; crop x 440-1360. Fatih Al as Matrakçı Nasuh in his grey wrapped turban, looking straight at the viewer, mouth closed. The tall turban puts the eyes low in the crop (eye line 52 %), so the card uses object-position 50% 58%.",
@@ -626,7 +654,7 @@
         "file": "roster/comp.matrakci.jpg",
         "from": "comp.matrakci-1.jpg",
         "posed": false,
-        "face_share": 0.5
+        "face_share": 0.27
       }
     },
     "comp.sumbul": {
@@ -667,7 +695,7 @@
         "file": "roster/comp.sumbul.jpg",
         "from": "comp.sumbul-1.jpg",
         "posed": true,
-        "face_share": 0.36
+        "face_share": 0.27
       }
     },
     "comp.nigar": {
@@ -707,7 +735,7 @@
         "file": "roster/comp.nigar.jpg",
         "from": "comp.nigar-1.jpg",
         "posed": true,
-        "face_share": 0.36
+        "face_share": 0.3
       }
     },
     "comp.ebussuud": {
@@ -748,7 +776,7 @@
         "file": "roster/comp.ebussuud.jpg",
         "from": "comp.ebussuud-1.jpg",
         "posed": true,
-        "face_share": 0.36
+        "face_share": 0.24
       }
     },
     "comp.gulsah": {
@@ -756,6 +784,20 @@
       "candidates": [
         {
           "file": "comp.gulsah-1.jpg",
+          "size": [
+            920,
+            1080
+          ],
+          "source_url": "https://www.youtube.com/watch?v=FVnOH4ghds8&t=25s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads return HTTP 403), clip \"Senin Fare Sıfatını Görmek İstemiyorum Gülşah! | Muhteşem Yüzyıl 22. Bölüm\", at 25.1 s; crop x 327-1247. Nihan Büyükağaç as Gülşah Hatun in the same green-and-gold vest and small red cap as the old pick (now candidate 4), standing by a carved door, looking right. A medium shot, so the card frames head and shoulders. Season 1 footage upscaled to 1080p; dim.",
+          "focus": [
+            0.5,
+            0.275
+          ]
+        },
+        {
+          "file": "comp.gulsah-4.jpg",
           "size": [
             920,
             1080
@@ -801,7 +843,7 @@
         "file": "roster/comp.gulsah.jpg",
         "from": "comp.gulsah-1.jpg",
         "posed": false,
-        "face_share": 0.37
+        "face_share": 0.28
       }
     },
     "comp.seker": {
@@ -826,7 +868,7 @@
         "file": "roster/comp.seker.jpg",
         "from": "comp.seker-1.jpg",
         "posed": false,
-        "face_share": 0.37
+        "face_share": 0.35
       }
     },
     "comp.gulfem": {
@@ -865,7 +907,7 @@
         "file": "roster/comp.gulfem.jpg",
         "from": "comp.gulfem-1.jpg",
         "posed": false,
-        "face_share": 0.4
+        "face_share": 0.32
       }
     },
     "comp.kara-ahmed": {
@@ -2143,6 +2185,20 @@
             920,
             1080
           ],
+          "source_url": "https://www.youtube.com/watch?v=aE9soc_of7c&t=105s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads return HTTP 403), clip \"İbrahim İle İskender Çelebi Birbirine Girdi| Muhteşem Yüzyıl\", at 105.4 s; crop x 558-1478. Hasan Küçükçetin as İskender Çelebi walking into İbrahim's room in the same scene as the old pick (now candidate 3): white turban, fur-collared black coat over a blue kaftan, eyes down to the right. A medium shot, so the card frames head and shoulders; he is moving, so slightly soft.",
+          "focus": [
+            0.502,
+            0.387
+          ]
+        },
+        {
+          "file": "comp.iskender-3.jpg",
+          "size": [
+            920,
+            1080
+          ],
           "source_url": "https://www.youtube.com/watch?v=aE9soc_of7c&t=171s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
           "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"İbrahim İle İskender Çelebi Birbirine Girdi| Muhteşem Yüzyıl\", at 171.0 s; crop x 700-1620. Hasan Küçükçetin as Defterdar İskender Çelebi (tr.wikipedia cast list) in a white turban and fur, glaring at İbrahim; matched to his TheTVDB photos and to the bareheaded İskender in \"Sultan Süleyman, İskender'in Yargılanmasını İstedi!\" (eAJxxv1uNqk). The old pick (candidate 2) is the helmeted İbrahim Paşa from the execution clip, not İskender. Lips slightly parted; the roster crop sits low in the frame (eye line 42 %), so the card uses object-position 50% 30%.",
@@ -2170,7 +2226,7 @@
         "file": "roster/comp.iskender.jpg",
         "from": "comp.iskender-1.jpg",
         "posed": false,
-        "face_share": 0.43
+        "face_share": 0.28
       }
     },
     "comp.firuze": {
@@ -2196,7 +2252,7 @@
         "file": "roster/comp.firuze.jpg",
         "from": "comp.firuze-1.jpg",
         "posed": true,
-        "face_share": 0.36
+        "face_share": 0.28
       }
     },
     "crisis.isabella": {
@@ -2274,6 +2330,20 @@
             920,
             1080
           ],
+          "source_url": "https://www.youtube.com/watch?v=Eh0CnNMKu0o&t=338s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads return HTTP 403), clip \"Gül Ağa, Sümbül'e Tuzak Kurdu | Muhteşem Yüzyıl 38. Bölüm\", at 338.5 s; crop x 643-1563. Engin Günaydın as Gül Ağa in the same green brocade turban and kaftan as the old pick (now candidate 2), seated on a sofa, facing the viewer, mouth closed. A medium shot, so the card frames head and shoulders. Season 2 footage upscaled to 1080p by the channel, so soft.",
+          "focus": [
+            0.501,
+            0.291
+          ]
+        },
+        {
+          "file": "comp.gulaga-2.jpg",
+          "size": [
+            920,
+            1080
+          ],
           "source_url": "https://www.youtube.com/watch?v=Eh0CnNMKu0o&t=66s",
           "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
           "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (yt-dlp downloads returned HTTP 403 on 2026-11-15), clip \"Gül Ağa, Sümbül'e Tuzak Kurdu | Muhteşem Yüzyıl 38. Bölüm\", at 66.0 s; crop x 619-1539. Engin Günaydın as Gül Ağa, the harem eunuch who teaches the concubines palace manners (tr.wikipedia character list, episodes 25-60), in his green brocade turban and kaftan, facing the viewer, mouth closed; matched to his IMDb headshot and to the white-turbaned Gül Ağa inspecting the new concubines in \"Gül Ağa Saraya Gelince Sümbül Ağa Sinirlendi\" (lx5pmQIUfqk). Season 2 footage upscaled to 1080p by the channel, so slightly soft. The turban touches the frame top, so the roster crop is the full frame height (eye line 41 %) and the card uses object-position 50% 27%.",
@@ -2287,7 +2357,7 @@
         "file": "roster/comp.gulaga.jpg",
         "from": "comp.gulaga-1.jpg",
         "posed": false,
-        "face_share": 0.48
+        "face_share": 0.28
       }
     }
   },
