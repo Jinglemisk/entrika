@@ -12,8 +12,6 @@ The living rules are the player manual (`manual.html`, published as an artifact)
 ## Browser game (see `docs/direction.md`)
 1. Art: direction B, at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. It covers v0.7 card texts, Süleyman's gold-leaf frame, backs for all seven decks and the Varak ve mine icons (set in `art/icons/set/`, sheet at https://claude.ai/artifact/9xBpkHTszW3Fca2HkSsnC1). Tokens are in `art/directions/notes.md`, the term-icon table in `art/terms.json`. Still open:
    - the art page and the art review still show the old Varak ve mine icons; the game uses Kat'ı (picked 2026-11-15 from https://claude.ai/artifact/413jtyCL6ffgKCK6g74R9G).
-   - stills for the v0.7 newcomers: Mustafa, Barbaros, Gritti, Şarlken, Şah Tahmasp, İskender Çelebi, Firuze Hatun, Isabella Fortuna;
-   - replace the low-res Hazine Açığı and Venedik Elçiliği stills;
    - confirm the grade strength (15%);
    - AI-generated textures (deferred).
 2. UI: the v3 design system is the way forward (decided 2026-11-15, all six recommendations taken): https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH, source in `ui/v3/src/`, notes in `ui/v3/notes.md`, decisions in the UI section of `docs/direction.md`. The v2 prototype is retired.
