@@ -189,13 +189,14 @@ export function resolveWave(g: Game) {
     }
     if (INFO_CARDS.includes(pl.as)) P(g, pl.owner).stats.usedInfoCard = true;
   });
-  // who got targeted, for Hırs cards
+  // who got targeted, for Hırs cards: only other players' cards count
   for (const pl of plays) {
+    if (pl.target === pl.owner) continue;
     const t = P(g, pl.target);
     t.targetedThisCrisis++;
     t.stats.targetedMax = Math.max(t.stats.targetedMax, t.targetedThisCrisis);
     const st = P(g, pl.owner).stats;
-    if (pl.target !== pl.owner && !st.targets.includes(pl.target)) st.targets.push(pl.target);
+    if (!st.targets.includes(pl.target)) st.targets.push(pl.target);
   }
   c.reveals.push(reveal);
   g.sub = 'valide';

@@ -52,7 +52,7 @@
     "id": "hedef",
     "name": "Hedef Tahtası",
     "goal": { "type": "targetedInCrisis", "n": 2 },
-    "text": "Aynı krizde sana 2 ya da daha fazla Entrika kartı konsun.",
+    "text": "Aynı krizde başka oyuncular sana 2 ya da daha fazla Entrika kartı koysun.",
     "flavor": "Ağaç ne kadar yüksekse rüzgârı o kadar çok alır."
   },
   {

@@ -90,7 +90,7 @@ Jingle took every proposal in the balance review (https://claude.ai/artifact/4gw
 ## Hırs cards
 
 - **Kulisçi** counts other players only.
-- **Hedef Tahtası** counts every card placed on you, whether or not it took effect, including your own Mühürlü Evrak.
+- **Hedef Tahtası** counts every card other players placed on you, whether or not it took effect. Your own cards don't count; otherwise Mühürlü Evrak plus one more card on yourself completes it alone.
 - **Saray Hazinesi** means 3 or more cards at the end of the crisis.
 - **Kulak Misafiri** counts only if the information card (Casus, Mühürlü Evrak, Teftiş) took effect.
 - **Koltuk Kapmak** counts a seat won by Valide'nin Buyruğu or Azil.
