@@ -57,7 +57,7 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
       <div className="pop-who">
         <b>{p.name}{id === seat ? ` ${t('you')}` : ''}</b>
         {!p.sultan && <span title={t('nInfluence', { n: p.influence })}><Em k="influence" s={17} />{p.influence}</span>}
-        {!p.sultan && <span title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={17} />{p.hand.length}</span>}
+        {!p.sultan && id === seat && <span title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={17} />{p.hand.length}</span>}
         {id !== seat && !p.sultan && (
           <span className="tags" title={t('onlyYou')}>
             <Gl k="eye" />

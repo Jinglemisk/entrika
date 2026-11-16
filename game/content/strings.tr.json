@@ -229,7 +229,6 @@
   "why.faiz": "Faiz",
   "log.crisis": "Kriz açıldı: {name} ({field}).",
   "log.draw": "{who} {n} Entrika kartı çekti.",
-  "log.discard": "{who} {n} kart attı.",
   "log.gain": "{who} {n} Nüfuz kazandı ({why}).",
   "log.lose": "{who} {n} Nüfuz kaybetti ({why}).",
   "log.firuze": "{who}: Firuze Hatun 1 Nüfuz daha kazandırdı.",

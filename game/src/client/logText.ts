@@ -21,7 +21,6 @@ export function logText(g: Game, e: LogEntry): string | null {
   switch (e.k) {
     case 'crisis': return t('log.crisis', { name: crisisById[p.id].name, field: t(crisisById[p.id].field) });
     case 'draw': return t('log.draw', { who: n(p.who), n: p.n });
-    case 'discard': return t('log.discard', { who: n(p.who), n: p.n });
     case 'gain': return t('log.gain', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'lose': return t('log.lose', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'firuze': return t('log.firuze', { who: n(p.who) });

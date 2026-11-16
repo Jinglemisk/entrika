@@ -69,8 +69,10 @@ export function myAsks(g: Game, seat: PID): Ask[] {
 }
 
 /** Whether the table may see the game waiting on this ask. A Tertip wave never shows (an instant pass would tell
- *  everyone who has no playable card), and neither does a hidden power window (rules.json powerWindows). */
-export const shownWait = (a: Ask) => a.type !== 'wave' && !(a.type === 'window' && RULES.powerWindows[a.power]?.show === 'hidden');
+ *  everyone who has no playable card), nor does a hand-limit discard or Yakıp Yıkma's keep-one (hand sizes are
+ *  secret), nor a hidden power window (rules.json powerWindows). */
+const SECRET_ASKS: Ask['type'][] = ['wave', 'discard', 'keepOne'];
+export const shownWait = (a: Ask) => !SECRET_ASKS.includes(a.type) && !(a.type === 'window' && RULES.powerWindows[a.power]?.show === 'hidden');
 /** Seconds left on a timed ask, or null if it isn't timed. Re-renders the caller every second while it runs. */
 export function useSecondsLeft(room: RoomView, askId: number | undefined): number | null {
   const due = askId === undefined ? undefined : room.deadlines?.[askId];

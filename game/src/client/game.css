@@ -413,7 +413,7 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
   border-radius: 12px; font: 800 15px/1 var(--f-ui); white-space: nowrap; pointer-events: none; box-shadow: 0 3px 10px rgba(0,0,0,.35); }
 .st .fx.gain { background: var(--mal); color: #f6ecd6; }
 .st .fx.lose { background: var(--al); color: #f6ecd6; }
-.st .fx.draw, .st .fx.discard { background: var(--ink); color: var(--paper-hi); }
+.st .fx.draw { background: var(--ink); color: var(--paper-hi); }
 .st .fx-seat { position: absolute; inset: -4px; z-index: 0; border-radius: 50px 50px 6px 6px; pointer-events: none; box-shadow: 0 0 0 3px var(--gold-hi), 0 0 18px 4px rgba(236,211,138,.8); }
 .banner { position: absolute; left: 50%; top: 40px; z-index: 30; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; max-width: 560px;
   padding: 4px 14px 4px 4px; border-radius: 18px; background: var(--ink); color: var(--paper-hi); font: 700 13.5px/1.2 var(--f-ui);

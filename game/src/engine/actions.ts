@@ -54,7 +54,6 @@ const ANSWERS: Handlers = {
       p.hand = p.hand.filter(x => x.uid !== uid);
       discardCard(g, c);
     }
-    log(g, 'discard', { who: a.to, n: a.n });
   },
 
   keepOne(g, a, v) {

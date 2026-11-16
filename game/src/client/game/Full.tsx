@@ -134,7 +134,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
           const p = g.players[id];
           return (
             <button type="button" key={id} className={`st vk big ${pick === id ? 'pick' : ''}`} style={{ ['--nw' as string]: '150px', ['--nh' as string]: '182px' }} onClick={() => { sfx('tap'); setPick(id); }}>
-              <div className="nc"><Figure character={p.character} nw={150} brk={12} /><span className="of">{t(i === 0 ? 'min1' : 'min2')}</span>
+              <div className="nc"><Figure character={p.character} nw={150} nh={182} brk={12} /><span className="of">{t(i === 0 ? 'min1' : 'min2')}</span>
                 {pick === id && <span className="delta"><Star n={1} size={40} label={a.delta > 0 ? '+1' : '−1'} /></span>}</div>
               <div className="pl"><b>{charName(p.character)}</b><i>{t('nameInfluence', { char: p.name, n: p.influence })}</i></div>
             </button>

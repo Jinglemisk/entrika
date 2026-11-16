@@ -26,8 +26,9 @@ const GILD = (
 );
 
 /** The niche behind a seat. Behind the figure sit the arch, a lattice for a Vekil (shown by CSS on .vk) and, for
- *  Süleyman, the gilding. */
-export function Figure({ character, nw, brk = 9, gilded }: { character: string; nw: number; brk?: number; gilded?: boolean }) {
+ *  Süleyman, the gilding. A cut-out too short for the niche (a wide source frame, or a narrow niche) is scaled up
+ *  until it reaches the niche's foot. */
+export function Figure({ character, nw, nh, brk = 9, gilded }: { character: string; nw: number; nh: number; brk?: number; gilded?: boolean }) {
   const k = nichePlacement(character);
   const ground = (
     <>
@@ -44,7 +45,8 @@ export function Figure({ character, nw, brk = 9, gilded }: { character: string; 
       </>
     );
   }
-  const iw = k.w * nw, ih = iw * k.ar, left = nw / 2 - k.hx * iw, top = -brk - k.y0 * ih;
+  const w = Math.max(k.w, (nh + brk) / (nw * k.ar * (1 - k.y0)));
+  const iw = w * nw, ih = iw * k.ar, left = nw / 2 - k.hx * iw, top = -brk - k.y0 * ih;
   const img = <img src={cutSrc(character)} alt="" draggable={false} style={{ left, top, width: iw, height: ih }} />;
   return (
     <>

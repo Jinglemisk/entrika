@@ -9,10 +9,10 @@ import { Head } from '../ui/Figure.tsx';
 import { logText } from '../logText.ts';
 import { useGame } from './ctx.ts';
 
-export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'discard' | 'seat'; n: number }
+export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'seat'; n: number }
 export interface Banner { key: number; who: PID | null; text: string }
 
-const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', draw: 'draw', discard: 'discard' };
+const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', draw: 'draw' };
 const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'firuze', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
 const SEAT_MS = 2200;
 const BANNER_MS = 3200;
