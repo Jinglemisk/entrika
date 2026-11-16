@@ -104,18 +104,16 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
   const recastUsed = hand.staged.some(s => s.recast);
   const forms = playableForms(g, seat, uid).filter(f => !(f.recast && recastUsed));
   if (!forms.length) return <p className="pop-note bad">{t('pop.cantPlay')}</p>;
-  const lokman = me.companion === 'lokman' && me.influence > 0 && !me.companionUsed && !hand.staged.some(s => s.returns);
-  const aim = (f: Form, returns: boolean) => done(() => hand.setAim({ ...f, uid, returns }));
+  const aim = (f: Form) => done(() => hand.setAim({ ...f, uid }));
   const kul = me.companion;
   return (
     <div className="pop-acts">
       {forms.map(f => (
         <div key={f.as + f.field} className="pop-row">
-          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f, false)}>
+          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
             {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
             {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
           </Btn>
-          {lokman && <Btn via={{ icon: <KulHead id="lokman" />, label: companionById.lokman.name }} onClick={aim(f, true)}>{t('pop.withLokman')}</Btn>}
         </div>
       ))}
     </div>
@@ -131,7 +129,7 @@ function powerButtons({ g, seat, act, setFreePick }: GameCtx, character: string,
   const use = (power: string) => () => {
     close();
     const targets = freePowerTargets(g, seat, power)!;
-    if (FREE_POWERS[power].target) setFreePick({ power, legal: targets });
+    if (FREE_POWERS[power].target) setFreePick({ power, legal: targets, n: FREE_POWERS[power].target === 'two' ? 2 : 1, chosen: [] });
     else act({ t: 'power', power });
   };
   return (

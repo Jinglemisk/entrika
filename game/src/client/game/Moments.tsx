@@ -2,7 +2,7 @@
 // player has pressed Devam (the engine waits on an "ack" from everyone); the prompt below holds the button.
 import { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { MISC, RULES, crisisById, intrigueById, type Moment, type PID, type RevealedPlay } from '../../engine/index.ts';
+import { MISC, RULES, crisisById, crisisField, intrigueById, type Moment, type PID, type RevealedPlay } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
@@ -34,6 +34,7 @@ function Who({ id }: { id: PID }) {
 function CrisisMoment() {
   const { g } = useGame();
   const c = crisisById[g.crisis!];
+  const f = crisisField(g);
   const drew = g.log.filter(e => e.c === g.crisisNo && e.k === 'draw').map(e => e.p!.who as PID);
   return (
     <div className="mo-split">
@@ -41,7 +42,7 @@ function CrisisMoment() {
       <div className="mo-col">
         <p className="h-step">{t('crisisN', { n: g.crisisNo })}</p>
         <p className="mo-title">{c.name}</p>
-        <p className="mo-line"><Em k={c.field} s={22} /><b>{t(c.field)}</b><span>{t(`fieldOpen.${c.field}`)}</span></p>
+        <p className="mo-line"><Em k={f} s={22} /><b>{t(f)}</b><span>{t(`fieldOpen.${f}`)}{g.field && ` ${t('moment.cephe')}`}</span></p>
         <p className="mo-line"><Em k="intrigue" s={22} />
           {drew.length ? <>{drew.map((id, i) => <span key={i} className="who plus"><Head character={g.players[id].character} />{g.players[id].name}<b>+1</b></span>)}</>
             : <span>{t('moment.nobodyDraws')}</span>}
@@ -74,12 +75,17 @@ function WaveMoment() {
     </div>
   );
 }
+/** Cards whose effect lasts the crisis or comes later say so under the card. */
+const LATER: Record<string, string> = {
+  muhur: 'outcome.lasting', 'akil-hocasi': 'outcome.lasting', 'saray-tabibi': 'outcome.lasting',
+  kefalet: 'outcome.atKader', teftis: 'outcome.atKader', casus: 'outcome.atEnd',
+};
 function outcomeText(r: RevealedPlay): string {
   if (r.movedFrom !== undefined && r.outcome === 'ok') return t('outcome.moved');
   if (r.outcome === 'ok') {
-    if (r.note === 'tabib') return t('outcome.tabib');
+    if (r.note) return t(`outcome.${r.note}`);
     if (r.recast) return t('outcome.recast', { card: intrigueById[r.card.kind].name });
-    return ['muhur', 'akil-hocasi', 'saray-tabibi'].includes(r.as) ? t('outcome.lasting') : t('outcome.ok');
+    return t(LATER[r.as] ?? 'outcome.ok');
   }
   return t(`outcome.${r.note ?? r.outcome}`);
 }

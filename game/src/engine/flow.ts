@@ -2,7 +2,7 @@
 // needs is still owed. Each step has small "subs" so a step can wait for one player, then another.
 import { RULES, crisisById } from './content.ts';
 import {
-  P, ackAll, ask, beside, checkHand, clockwise, companionIs, drawIntrigue, ensureKader, gain, hasAsk, log, lose, others,
+  P, ackAll, ask, beside, checkHand, clockwise, companionIs, drawIntrigue, ensureKader, favorOn, gain, hasAsk, log, lose, others,
   readyPower,
 } from './core.ts';
 import { checkAmbitions, revealAmbitions } from './ambitions.ts';
@@ -42,6 +42,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
       case 'begin': {
         g.crisisNo++;
         g.crisis = null;
+        g.field = null;
         g.surgun.now = g.surgun.next;
         g.surgun.next = null;
         g.ministers = { first: null, second: null };
@@ -53,7 +54,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         for (const p of g.players) {
           p.objected = false;
           p.targetedThisCrisis = 0;
-          if (p.companion && !['iskender', 'firuze', 'lokman'].includes(p.companion)) p.companionUsed = false;   // once-per-game Kuls stay spent
+          if (p.companion && p.companion !== 'iskender') p.companionUsed = false;   // İskender Çelebi is once per game
         }
         g.sicil.push({ c: g.crisisNo, crisis: '', first: null, second: null, result: null, decree: null, events: [] });
         if (g.surgun.now !== null) log(g, 'surgunActive', { who: g.surgun.now });
@@ -61,17 +62,21 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         if (g.hazineDefteri) ask(g, { to: g.sultan, type: 'hazineName' });
         return;
       }
-      case 'hazine': {
+      case 'hazine':
         g.hazineDefteri = false;
+        g.sub = 'flip';
+        return;
+      case 'flip':
+        flipCrisis(g, g.decks.crisis.shift());
+        return;
+      case 'draws': {
+        // Cephe: Tahmasp picks the field before the table sees the crisis
         g.sub = 'cephe';
         const t = readyPower(g, 'tahmasp', 'base');
         if (t) ask(g, { to: t.id, type: 'window', power: 'cephe' });
         return;
       }
       case 'cephe':
-        flipCrisis(g, g.decks.crisis.shift());
-        return;
-      case 'draws':
         g.sub = 'seen';
         ackAll(g, 'crisis');
         return;
@@ -138,11 +143,17 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
   court(g) {
     if (waiting(g)) return;
     switch (g.sub) {
-      case 'begin':
+      case 'begin': {
         g.court = {
-          wave: 0, submitted: {}, plays: [], akil: {}, sealed: [], tabib: [], teftis: [], reveals: [], replaceQueue: [],
-          drawsOwed: {}, done: false,
+          wave: 0, submitted: {}, plays: [], akil: {}, sealed: [], tabib: [], himaye: null, teftis: [], kefalet: [], casus: [],
+          history: [], reveals: [], replaceQueue: [], drawsOwed: {}, done: false,
         };
+        g.sub = 'himaye';
+        const h = readyPower(g, 'hatice', 'base');
+        if (h) ask(g, { to: h.id, type: 'window', power: 'himaye' });
+        return;
+      }
+      case 'himaye':
         openWave(g);
         return;
       case 'wave':
@@ -156,6 +167,10 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         return;
       case 'seen':
         openWave(g);
+        return;
+      case 'veliaht':
+        g.sub = 'ferman';
+        if (g.ferman) ask(g, { to: g.sultan, type: 'ferman' });
         return;
       case 'ferman':
         go(g, 'kader');
@@ -178,8 +193,6 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
           const st = P(g, a).stats;
           st.appointedCrises++;
           st.partners[b] = (st.partners[b] ?? 0) + 1;
-          const pargali = P(g, a);
-          if (pargali.character === 'ibrahim' && !g.learning && pargali.favor !== 'locked') gain(g, a, 1, 'divanNufuzu');
         }
         g.kader = { iskender: false, drawn: [], passed: [], played: null, discards: { first: [], second: [] }, first, second };
         log(g, 'kaderStart', { first, second });
@@ -217,6 +230,8 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         else g.tracks.treason++;
         log(g, 'result', { card, loyalty: g.tracks.loyalty, treason: g.tracks.treason });
         if (card === 'x') for (const id of [k.first, k.second]) P(g, id).stats.ministerOnHiyanet = true;
+        if (card === 'h') for (const id of [k.first, k.second]) if (favorOn(g, id, 'ibrahim')) gain(g, id, 1, 'divanNufuzu');
+        settleKefalet(g, card);
         for (const t of g.court?.teftis ?? []) {
           const cards = t.target === k.first ? k.discards.first : t.target === k.second ? k.discards.second : [];
           g.peeks.push({ to: t.owner, c: g.crisisNo, kind: 'discards', of: t.target, cards, source: 'teftis' });
@@ -254,7 +269,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
     switch (g.sub) {
       case 'begin': {
         const delta = g.kader!.played === 'h' ? 1 : -1;
-        g.decree = { delta, chooser: g.sultan, target: null, himaye: null };
+        g.decree = { delta, chooser: g.sultan, target: null };
         g.sub = 'fisilti';
         const h = readyPower(g, 'hurrem', 'base');
         if (h) ask(g, { to: h.id, type: 'window', power: 'fisilti', ctx: { delta } });
@@ -264,15 +279,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         g.sub = 'choose';
         ask(g, { to: g.decree!.chooser, type: 'decree', delta: g.decree!.delta });
         return;
-      case 'choose': {
-        const d = g.decree!;
-        g.sub = 'himaye';
-        const h = readyPower(g, 'hatice', 'base');
-        if (d.delta < 0 && h && P(g, d.target!).influence > 0 && !g.court?.tabib.includes(d.target!))
-          ask(g, { to: h.id, type: 'window', power: 'himaye', ctx: { target: d.target } });
-        return;
-      }
-      case 'himaye':
+      case 'choose':
         applyDecree(g);
         g.sub = 'end';
         return;
@@ -331,16 +338,28 @@ function applyDecree(g: Game) {
     P(g, target).stats.decreeGain = true;
     log(g, 'decree', { to: target, delta: 1, by: d.chooser });
     gain(g, target, 1, 'decree');
-  } else if (d.himaye) {
-    log(g, 'decree', { to: target, delta: -1, by: d.chooser, cancelled: 'himaye' });
-  } else if (g.court?.tabib.includes(target)) {
-    log(g, 'decree', { to: target, delta: -1, by: d.chooser, cancelled: 'tabib' });
+  } else if (savedBy(g, target)) {
+    log(g, 'decree', { to: target, delta: -1, by: d.chooser, cancelled: savedBy(g, target) });
   } else {
     const lost = loseAndDraw(g, target, 1, 'decree');
     if (lost) P(g, target).stats.decreeLoss = true;
     log(g, 'decree', { to: target, delta: -1, by: d.chooser, lost });
   }
   checkAmbitions(g);
+}
+
+/** What keeps a player from losing Influence this crisis: Himaye, or Çeşnigir on them. */
+const savedBy = (g: Game, id: PID) => (g.court?.himaye === id ? 'himaye' : g.court?.tabib.includes(id) ? 'tabib' : null);
+
+/** Kefalet pays its owner on Hizmet and costs them on Hıyanet, if the Vekil it was put on still sits at Kader. */
+function settleKefalet(g: Game, card: 'h' | 'x') {
+  const k = g.kader!;
+  for (const { owner, target } of g.court?.kefalet ?? []) {
+    if (target !== k.first && target !== k.second) continue;
+    if (card === 'h') gain(g, owner, 1, 'kefalet');
+    else if (savedBy(g, owner)) log(g, 'kefaletSaved', { who: owner, by: savedBy(g, owner) });
+    else loseAndDraw(g, owner, 1, 'kefalet');
+  }
 }
 
 export function loseAndDraw(g: Game, id: PID, n: number, why: string) {

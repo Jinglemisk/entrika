@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  act, createGame, freePowerTargets, playableForms, RuleError, type Action, type Ask, type Field, type Game, type PID,
+  INTRIGUE, act, createGame, freePowerTargets, playableForms, RuleError, type Action, type Ask, type Field, type Game, type PID,
 } from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 import { advance } from '../src/engine/flow.ts';
@@ -62,7 +62,7 @@ function hands(g: Game, h: Record<number, ReturnType<typeof card>[]>): Game {
   return g;
 }
 /** Everyone with an open wave ask plays what `plays` says for them, or passes. */
-function wave(g: Game, plays: Record<number, { uid: number; target: PID; recastAs?: string; field?: Field; returns?: boolean }[]>): Game {
+function wave(g: Game, plays: Record<number, { uid: number; target: PID; recastAs?: string; field?: Field }[]>): Game {
   for (const a of g.asks.filter(x => x.type === 'wave')) g = act(g, a.to, { t: 'answer', ask: a.id, value: plays[a.to] ?? [] });
   return g;
 }
@@ -72,6 +72,7 @@ function seen(g: Game): Game {
   return g;
 }
 const lastReveal = (g: Game) => g.court!.reveals[g.court!.reveals.length - 1];
+const DECK = INTRIGUE.reduce((s, c) => s + (c.copies.divan ?? 0) + (c.copies.harem ?? 0), 0);
 
 test('random games always end, and no card is ever lost', () => {
   let seed = 3;
@@ -88,7 +89,7 @@ test('random games always end, and no card is ever lost', () => {
       g = act(g, a.to, botAnswer(g, a, r));
       if (g.step !== 'court') {
         const cards = g.decks.intrigue.length + g.decks.intrigueDiscard.length + g.players.reduce((s, p) => s + p.hand.length, 0);
-        assert.equal(cards, 30, `intrigue cards at ${g.step}`);
+        assert.equal(cards, DECK, `intrigue cards at ${g.step}`);
       }
     }
     assert.ok(g.tracks.loyalty === 4 || g.tracks.treason === 5);
@@ -104,15 +105,29 @@ test('Mühür beats Valide\'nin Buyruğu on the same Vekil in the same wave', ()
   assert.deepEqual(lastReveal(g).map(r => [r.as, r.outcome, r.note]), [['muhur', 'ok', undefined], ['valide', 'void', 'sealed']]);
 });
 
-test('Valide\'nin Buyruğu and Divan Sırası on the First Vekil: the manual\'s example', () => {
-  // Pargalı (A) First, Hatice (B) Second; Valide brings in Rüstem (C) as First, then the seats swap
+test('Azil: Süleyman seats the new Vekil; Himaye keeps a Vekil in place', () => {
   let g = court({ first: 1, second: 2 });
-  const v = card('valide', 'divan'), d = card('divan-sirasi', 'divan');
-  g = hands(g, { 4: [v], 5: [d] });
-  g = wave(g, { 4: [{ uid: v.uid, target: 1 }], 5: [{ uid: d.uid, target: 1 }] });
-  g = answer(g, 'replace', 3, 4);
-  assert.deepEqual(g.ministers, { first: 2, second: 3 });
+  const a1 = card('azil', 'divan'), a2 = card('azil', 'divan');
+  g.court!.himaye = 2;
+  g = hands(g, { 4: [a1], 5: [a2] });
+  g = wave(g, { 4: [{ uid: a1.uid, target: 1 }], 5: [{ uid: a2.uid, target: 2 }] });
+  assert.equal(lastReveal(g)[1].note, 'himaye');
+  g = answer(g, 'replace', 3, 0);
+  assert.deepEqual(g.ministers, { first: 3, second: 2 });
   assert.equal(g.players[1].hand.length, 1, 'the removed Vekil draws at the end of the wave');
+  assert.ok(g.players[3].stats.seatByIntrigue, 'a seat won by an Intrigue card');
+});
+
+test('Daye Hatun\'s Valide\'nin Buyruğu can\'t seat its own player', () => {
+  let g = court({ first: 1, second: 2 });
+  const i = card('iftira', 'harem');
+  g = hands(g, { 3: [i] });
+  g.players[3].companion = 'daye';
+  g = wave(g, { 3: [{ uid: i.uid, target: 1, recastAs: 'valide' }] });
+  const r = ask(g, 'replace', 3);
+  assert.throws(() => act(g, 3, { t: 'answer', ask: r.id, value: 3 }), RuleError);
+  g = act(g, 3, { t: 'answer', ask: r.id, value: 4 });
+  assert.equal(g.ministers.first, 4);
 });
 
 test('two Valide\'nin Buyruğu on one Vekil: the first owner clockwise from Süleyman applies', () => {
@@ -139,14 +154,40 @@ test('Akıl Hocası cancels cards of its own field on its player for the whole c
   assert.equal(lastReveal(g)[0].outcome, 'cancelled', 'still protected in a later wave');
 });
 
-test('İftira and Gözde\'nin Hediyesi on one player cancel out, even at 0 Influence', () => {
+test('Kefalet pays its owner on Hizmet, costs them on Hıyanet, and needs its Vekil still seated at Kader', () => {
+  const play = (result: 'h' | 'x', ferman: boolean) => {
+    let g = court({ first: 1, second: 2 });
+    const k = card('kefalet', 'harem');
+    g = hands(g, { 3: [k] });
+    g = wave(g, { 3: [{ uid: k.uid, target: 1 }] });
+    g = seen(g);
+    g.decks.kader = [result, result, result, ...g.decks.kader];
+    g = wave(g, {});
+    g = answer(g, 'ferman', ferman ? { seat: 'first', target: 4 } : null, 0);
+    g = answer(g, 'kaderFirst', [0], g.ministers.first!);
+    g = answer(g, 'kaderSecond', 0, g.ministers.second!);
+    return g.players[3];
+  };
+  assert.equal(play('h', false).influence, 2);
+  const lost = play('x', false);
+  assert.equal(lost.influence, 0);
+  assert.equal(lost.hand.length, 1, 'a loss draws a card');
+  assert.equal(play('x', true).influence, 1, 'the Vekil left the seat: nothing happens');
+});
+
+test('Casus shows its owner every card the target played this crisis, when Tertip ends', () => {
   let g = court({ first: 1, second: 2 });
-  g.players[3].influence = 0;
-  const i = card('iftira', 'harem'), z = card('gozde', 'harem');
-  g = hands(g, { 4: [i], 5: [z] });
-  g = wave(g, { 4: [{ uid: i.uid, target: 3 }], 5: [{ uid: z.uid, target: 3 }] });
-  assert.equal(g.players[3].influence, 0);
-  assert.equal(g.players[3].hand.length, 0, 'no loss, so no draw');
+  const c = card('casus', 'harem'), i1 = card('iftira', 'harem'), m = card('muhur', 'divan');
+  g = hands(g, { 3: [c], 4: [i1, m] });
+  g = wave(g, { 3: [{ uid: c.uid, target: 4 }], 4: [{ uid: i1.uid, target: 5 }] });
+  assert.ok(!g.peeks.some(p => p.kind === 'casus'), 'nothing before Tertip ends');
+  g = seen(g);
+  g = wave(g, { 4: [{ uid: m.uid, target: 2 }] });
+  g = seen(g);
+  g = wave(g, {});
+  const peek = g.peeks.find(p => p.kind === 'casus');
+  assert.ok(peek && peek.kind === 'casus' && peek.to === 3 && peek.of === 4);
+  assert.deepEqual(peek.plays.map(p => [p.as, p.target]), [['iftira', 5], ['muhur', 2]]);
 });
 
 test('a loss of Influence draws one Intrigue card per point lost; at 0 there is nothing to lose', () => {
@@ -318,21 +359,41 @@ test('Matrakçı Nasuh can recast a printed Akıl Hocası into the other field',
   assert.deepEqual(lastReveal(g).map(r => [r.as, r.field, r.outcome]), [['akil-hocasi', 'divan', 'ok'], ['muhur', 'divan', 'cancelled']]);
 });
 
-test('Gül Ağa raises the hand limit to 4 while face up; Lokman Ağa returns a card that took effect, once', () => {
+test('Gül Ağa raises the hand limit to 4 while face up; Lokman Ağa learns who played a card on him, once a crisis', () => {
   let g = court({ first: 1, second: 2 });
-  const i = card('iftira', 'harem'), a = card('gozde', 'harem'), b = card('gozde', 'harem');
+  const i = card('iftira', 'harem'), a = card('teftis', 'divan'), b = card('teftis', 'divan');
   g = hands(g, { 4: [i], 3: [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')], 5: [a, b] });
   g.players[3].companion = 'gulaga';
   g.players[3].influence = 2;
-  g.players[5].companion = 'lokman';
-  g = wave(g, { 4: [{ uid: i.uid, target: 3 }], 5: [{ uid: a.uid, target: 1, returns: true }] });
+  g.players[1].companion = 'lokman';
+  g = wave(g, { 4: [{ uid: i.uid, target: 3 }], 5: [{ uid: a.uid, target: 1 }] });
   assert.equal(g.players[3].hand.length, 4, 'lost 1 Influence, drew to 4, still face up: no discard');
   assert.ok(!g.asks.some(x => x.type === 'discard'));
-  assert.ok(g.players[5].hand.some(c => c.uid === a.uid), 'the returned card is back in hand');
-  assert.equal(g.players[5].companionUsed, true);
+  const w = ask(g, 'window', 1);
+  assert.ok(w.type === 'window' && w.power === 'lokman');
+  g = act(g, 1, { t: 'answer', ask: w.id, value: (w.ctx as { plays: number[] }).plays[0] });
+  const peek = g.peeks.find(p => p.kind === 'playedBy');
+  assert.ok(peek && peek.kind === 'playedBy' && peek.to === 1 && peek.by === 5 && peek.card === 'teftis');
   g = seen(g);
-  const w = ask(g, 'wave', 5);
-  assert.throws(() => act(g, 5, { t: 'answer', ask: w.id, value: [{ uid: b.uid, target: 1, returns: true }] }), RuleError, 'only once per game');
+  g = wave(g, { 5: [{ uid: b.uid, target: 1 }] });
+  assert.ok(!g.asks.some(x => x.type === 'window'), 'once a crisis');
+});
+
+test('Veliaht takes a Vekil seat when Tertip ends, past Mühür; the Vekil who leaves draws', () => {
+  let g = court({ first: 1, second: 2 });
+  const holder = g.players.find(p => p.character === 'mustafa');
+  if (holder) holder.character = g.players[5].character;
+  g.players[5].character = 'mustafa';
+  g.players[5].base = 'ready';
+  const m = card('muhur', 'divan');
+  g = hands(g, { 3: [m] });
+  g = wave(g, { 3: [{ uid: m.uid, target: 1 }] });
+  g = seen(g);
+  g = wave(g, {});
+  g = answer(g, 'window', { seat: 'first' }, 5);
+  assert.equal(g.ministers.first, 5);
+  assert.equal(g.players[1].hand.length, 1);
+  assert.equal(ask(g, 'ferman').to, 0, 'the Ferman comes after');
 });
 
 test('Kulis is offered only when Süleyman still appoints: Sadrazam is asked first', () => {

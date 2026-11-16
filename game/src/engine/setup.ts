@@ -22,7 +22,7 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
   const g: Game = {
     v: 1, rng: (opts.seed ?? Date.now()) | 0, learning, players: [], sultan: 0, nextUid: 1, nextAsk: 1,
     decks: { intrigue: [], intrigueDiscard: [], kader: [], kaderDiscard: [], crisis: [], crisisUsed: [] },
-    tracks: { loyalty: 0, treason: 0 }, ferman: true, crisisNo: 0, crisis: null, step: 'setup', sub: 'companions',
+    tracks: { loyalty: 0, treason: 0 }, ferman: true, crisisNo: 0, crisis: null, field: null, step: 'setup', sub: 'companions',
     ministers: { first: null, second: null }, lastMinisters: [], appointer: null, kulis: false, objectionTurn: 0,
     surgun: { next: null, now: null }, hazineDefteri: false, faiz: null,
     court: null, kader: null, decree: null, asks: [], peeks: [], log: [], sicil: [], winner: null,

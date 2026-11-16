@@ -41,7 +41,7 @@
       "id": "divanNufuzu",
       "name": "Divan Nüfuzu",
       "freq": "always",
-      "text": "Bundan sonra Vekil olarak atandığın her krizde 1 Nüfuz kazan."
+      "text": "Bundan sonra Vekilken Hizmet oynanırsa 1 Nüfuz kazan."
     },
     "flavor": "Parga'dan bir balıkçı oğlu, Sultan'ın sağ eli."
   },
@@ -69,13 +69,13 @@
       "id": "veliaht",
       "name": "Veliaht",
       "freq": "once",
-      "text": "Süleyman Soruşturma ya da Hazine Defteri alınca aynı kartlara sen de bakarsın."
+      "text": "Tertip bitince, Ferman'dan önce, uygunsan bir Vekilin yerine geç, Mühür'e rağmen."
     },
     "favor": {
       "id": "ocakSevgisi",
       "name": "Ocak Sevgisi",
       "freq": "always",
-      "text": "Sana yapılan İtiraz 2 Nüfuz tutar."
+      "text": "Sana itiraz eden, ödediği Nüfuzu sana verir."
     },
     "flavor": "Ordunun sevgilisi, tahtın varisi."
   },
@@ -86,13 +86,13 @@
       "id": "himaye",
       "name": "Himaye",
       "freq": "once",
-      "text": "Hüküm bir oyuncudan Nüfuz alacaksa bunu iptal et."
+      "text": "Tertip'ten önce bir oyuncu seç: bu kriz Entrika kartlarıyla koltuğundan edilemez ve Hüküm dahil Nüfuz kaybetmez."
     },
     "favor": {
-      "id": "haber",
-      "name": "Haber",
+      "id": "sezgi",
+      "name": "Sezgi",
       "freq": "once",
-      "text": "Bir oyuncunun Hırs kartına gizlice bak."
+      "text": "Süleyman ve kendin dışında iki oyuncu seç: aynı tarafta olup olmadıklarını gizlice öğren."
     },
     "flavor": "Sultan'ın kız kardeşi, sadrazamın eşi."
   },
@@ -174,7 +174,7 @@
       "id": "cephe",
       "name": "Cephe",
       "freq": "once",
-      "text": "Kriz açılmadan destenin üstteki 2 Kriz kartına bak; birini oynat, diğerini alta koy."
+      "text": "Kriz kartı açılınca bu krizin alanını sen seç: Divan, Harem ya da Saray."
     },
     "favor": {
       "id": "yakipYikma",

@@ -1,8 +1,8 @@
-// Full-screen views: private asks on lacquer (choose a Kul, the Kader cards, Cephe, Venedik Postası, the Decree) and
+// Full-screen views: private asks on lacquer (choose a Kul, the Kader cards, Venedik Postası, the Decree) and
 // the end of the game on paper. Public moments (Crisis, wave, result) live in the court area: see Moments.
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { RULES, characterById, companionById, crisisById, type Ask, type Kader, type PID } from '../../engine/index.ts';
+import { RULES, characterById, companionById, type Ask, type Kader, type PID } from '../../engine/index.ts';
 import { send } from '../net.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
@@ -19,7 +19,7 @@ const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity
 
 // ---------- private asks
 
-export const FULL_ASKS: Ask['type'][] = ['companion', 'cephe', 'kaderFirst', 'kaderSecond', 'decree', 'venedik'];
+export const FULL_ASKS: Ask['type'][] = ['companion', 'kaderFirst', 'kaderSecond', 'decree', 'venedik'];
 
 export function FullAsk() {
   const { asks } = useGame();
@@ -29,7 +29,6 @@ export function FullAsk() {
     <motion.div className={`full ${a.type === 'decree' ? 'zp' : 'zl'}`} key={a.id} {...fade}>
       <div className="bd">
         {a.type === 'companion' && <Companion a={a} />}
-        {a.type === 'cephe' && <Cephe a={a} />}
         {a.type === 'kaderFirst' && <KaderFirst a={a} />}
         {a.type === 'kaderSecond' && <KaderSecond a={a} />}
         {a.type === 'decree' && <Decree a={a} />}
@@ -54,28 +53,6 @@ function Companion({ a }: { a: Extract<Ask, { type: 'companion' }> }) {
         {a.offer.map(id => (
           <button type="button" key={id} className={`pickcard ${pick === id ? 'on' : ''}`} onClick={() => { sfx('tap'); setPick(id); }}>
             <Card spec={spec({ t: 'kul', id })} width={170} />
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Cephe({ a }: { a: Extract<Ask, { type: 'cephe' }> }) {
-  const { act } = useGame();
-  const [pick, setPick] = useState<string | null>(null);
-  return (
-    <div className="split">
-      <div className="col">
-        <Stp />
-        <p className="h-mid">{t('ask.cephe')}</p>
-        <p className="vo">{t('ask.cepheHow')}</p>
-        <div className="bt left"><Btn pri off={!pick} onClick={() => act({ t: 'answer', ask: a.id, value: pick })}>{pick ? t('btn.playCrisis', { name: crisisById[pick].name }) : t('btn.pickOne')}</Btn></div>
-      </div>
-      <div className="cards">
-        {a.cards.map(id => (
-          <button type="button" key={id} className={`pickcard ${pick === id ? 'on' : ''}`} onClick={() => setPick(id)}>
-            <Card spec={spec({ t: 'crisis', id })} width={170} />
           </button>
         ))}
       </div>

@@ -1,6 +1,6 @@
 // A random but legal player. Used by the test-game "bots" switch and by the simulation script.
 import { RULES } from './content.ts';
-import { eligibleList, favorOn, readyPower } from './core.ts';
+import { eligible, eligibleList, readyPower } from './core.ts';
 import { legalTargets, playableForms, waveAllowance } from './court.ts';
 import { FREE_POWERS, freePowerTargets } from './actions.ts';
 import type { Action, Ask, Game, Kader, PID, Seat, WavePlay } from './types.ts';
@@ -23,14 +23,19 @@ function value(g: Game, a: Ask, r: R): unknown {
     case 'keepOne': return pick(r, me.hand).uid;
     case 'window': {
       if (!chance(r, 0.5)) return false;
-      if (a.power === 'feragat') {
-        const seat: Seat = g.ministers.first === a.to ? 'first' : 'second';
-        const list = eligibleList(g, seat).filter(id => id !== a.to);
-        return list.length ? { target: pick(r, list) } : false;
+      switch (a.power) {
+        case 'feragat': {
+          const seat: Seat = g.ministers.first === a.to ? 'first' : 'second';
+          const list = eligibleList(g, seat).filter(id => id !== a.to);
+          return list.length ? { target: pick(r, list) } : false;
+        }
+        case 'cephe': return pick(r, ['divan', 'harem', 'saray']);
+        case 'himaye': return { target: pick(r, hidden) };
+        case 'veliaht': return { seat: pick(r, (['first', 'second'] as Seat[]).filter(s => eligible(g, a.to, s))) };
+        case 'lokman': return pick(r, (a.ctx as { plays: number[] }).plays);
+        default: return true;
       }
-      return true;
     }
-    case 'cephe': return pick(r, a.cards);
     case 'tie': return pick(r, a.candidates);
     case 'appoint': {
       const ok = hidden.filter(id => g.surgun.now !== id);
@@ -45,10 +50,9 @@ function value(g: Game, a: Ask, r: R): unknown {
       const target = g.ministers[seat]!;
       if (!eligibleList(g, seat).some(id => id !== target)) return null;
       if (readyPower(g, 'sahsultan', 'base')?.id === a.to && chance(r, 0.5)) return { seat, free: true };
-      const cost = favorOn(g, target, 'mustafa') ? 2 : RULES.objectionCost;
-      return me.influence >= cost ? { seat } : null;
+      return me.influence >= RULES.objectionCost ? { seat } : null;
     }
-    case 'replace': return pick(r, eligibleList(g, a.seat).filter(id => id !== a.removed));
+    case 'replace': return pick(r, eligibleList(g, a.seat).filter(id => id !== a.removed && id !== a.not));
     case 'wave': return wave(g, a.to, r);
     case 'redirect':
       if (!chance(r, 0.5)) return null;
@@ -105,7 +109,8 @@ export function botPower(g: Game, id: PID, r: R = Math.random): Action | null {
     const t = freePowerTargets(g, id, power);
     if (!t) continue;
     if (FREE_POWERS[power].target && !t.length) continue;
-    return { t: 'power', power, ...(t.length ? { target: pick(r, t) } : {}) };
+    const [target, also] = shuffled(r, t);
+    return { t: 'power', power, ...(t.length ? { target } : {}), ...(FREE_POWERS[power].target === 'two' ? { also } : {}) };
   }
   return null;
 }

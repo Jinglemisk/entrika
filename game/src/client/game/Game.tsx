@@ -64,7 +64,15 @@ export function Game({ room }: { room: RoomView }) {
 
   const act = (a: Action) => actAs(seat, a);
   const active: Picker | null = freePick
-    ? { legal: freePick.legal, onPick: target => { setFreePick(null); act({ t: 'power', power: freePick.power, target }); } }
+    ? {
+      legal: freePick.legal.filter(id => !freePick.chosen.includes(id)), chosen: freePick.chosen,
+      onPick: id => {
+        const chosen = [...freePick.chosen, id];
+        if (chosen.length < freePick.n) return setFreePick({ ...freePick, chosen });
+        setFreePick(null);
+        act({ t: 'power', power: freePick.power, target: chosen[0], ...(chosen[1] !== undefined ? { also: chosen[1] } : {}) });
+      },
+    }
     : picker;
   const moment = active ? null : pendingMoment(g);   // picking a seat needs the court
   const fullAsk = asks.some(a => FULL_ASKS.includes(a.type));

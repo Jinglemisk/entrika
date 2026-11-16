@@ -1,9 +1,9 @@
 // Log entries are stored as keys with arguments; this turns them into Turkish sentences through the string table.
-import { ambitionById, characterById, crisisById, intrigueById, MISC, type Game, type LogEntry } from '../engine/index.ts';
+import { ambitionById, characterById, companionById, crisisById, intrigueById, MISC, type Game, type LogEntry } from '../engine/index.ts';
 import { t } from './strings.ts';
 
 export function powerLabel(power: string): string {
-  if (power === 'iskender') return t('power.iskender');
+  if (power === 'iskender' || power === 'lokman') return companionById[power].name;
   if (power === 'cifteOyun' || power === 'yonDegistir' || power) {
     for (const c of Object.values(characterById)) {
       if (c.base.id === power) return c.base.name;
@@ -25,11 +25,13 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'gain': return t('log.gain', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'lose': return t('log.lose', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'firuze': return t('log.firuze', { who: n(p.who) });
-    case 'returned': return t('log.returned', { who: n(p.who) });
     case 'play': return t(p.outcome === 'ok' ? 'log.play' : 'log.playVoid', { card: intrigueById[p.as as string].name, target: n(p.target), why: t(`outcome.${p.note ?? p.outcome}`) });
     case 'faiz': return t('log.faiz', { who: n(p.who), on: n(p.on) });
     case 'appoint': return t('log.appoint', { first: n(p.first), second: n(p.second), by: n(p.by) });
-    case 'power': return t(p.target !== undefined ? 'log.powerOn' : 'log.power', { who: n(p.who), power: powerLabel(p.power), target: n(p.target) });
+    case 'power':
+      if (p.field) return t('log.cephe', { who: n(p.who), field: t(p.field) });
+      return t(p.also !== undefined ? 'log.powerOnTwo' : p.target !== undefined ? 'log.powerOn' : 'log.power', { who: n(p.who), power: powerLabel(p.power), target: n(p.target), also: n(p.also) });
+    case 'kefaletSaved': return t(`log.kefaletSaved.${p.by}`, { who: n(p.who) });
     case 'noObjection': return null;
     case 'objection': return t('log.objection', { who: n(p.who), against: n(p.against) });
     case 'itiraz': return t('log.itiraz', { who: n(p.who), against: n(p.against) });
@@ -37,7 +39,6 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'ferman': return null;   // 'replaced' already says it
     case 'waveFlip': return t('log.waveFlip', { wave: p.wave, n: p.n });
     case 'courtEnd': return t('log.courtEnd', { n: p.waves - 1 });
-    case 'swapped': return t('log.swapped', { first: n(p.first), second: n(p.second) });
     case 'playDropped': return t('log.playDropped', { who: n(p.who) });
     case 'kaderStart': return t('log.kaderStart', { first: n(p.first), second: n(p.second) });
     case 'result': return t('log.result', { card: MISC.kader[p.card as 'h'].name, loyalty: p.loyalty, treason: p.treason });

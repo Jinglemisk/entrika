@@ -19,7 +19,7 @@ interface Term { id: string; stems: string[]; icon: string }
 
 const byStem = new Map<string, Term>();
 for (const t of terms.terms as Term[]) for (const s of t.stems) byStem.set(s, t);
-// longer stems first, so Saray Dedikodusu wins over Saray and Birinci Vekil over Vekil
+// longer stems first, so Mühürlü Evrak wins over Mühür and Birinci Vekil over Vekil
 const stems = [...byStem.keys()].sort((a, b) => b.length - a.length);
 const reEsc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const TERM_RE = new RegExp(terms.match.regex.replace('STEMS', stems.map(reEsc).join('|')), terms.match.flags);

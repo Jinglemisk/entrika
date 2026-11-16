@@ -356,7 +356,9 @@ export function cardHtml(s: CardSpec): string {
   const py = cy + 42, ph = 650 - cy - 42; // every type: the plate starts right under the name and runs to the bottom margin
   const plate = `<div class="plate big" style="--py:${q(py)};--ph:${q(ph)}"><div class="pin">${s.bodyHtml}`
     + (s.flavor ? `<p class="fl">${s.flavor}</p>` : '') + '</div></div>';
-  const cls = ['c3', `t-${kind}`, pal, gemDark && 'gem-dk', s.variant].filter(Boolean).join(' ');
+  // a lot of rules text (Hatice Sultan) can't take the bigger type small whole cards use
+  const dense = s.bodyHtml.replace(/<[^>]*>/g, '').length > 190 && 'dense';
+  const cls = ['c3', `t-${kind}`, pal, gemDark && 'gem-dk', s.variant, dense].filter(Boolean).join(' ');
   return `<article class="${cls}" style="--e1:${t.e1};--e2:${t.e2};--cy:${q(cy)}" aria-label="${esc(name)}">`
     + `<div class="base"></div>${under}${artHtml}${over1}${cutHtml}${over2}${small}`
     + `<span class="mj">${I(med, 72)}</span>${fld}<h4 class="${nmCls}">${name}</h4>${plate}`

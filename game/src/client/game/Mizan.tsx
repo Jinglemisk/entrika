@@ -1,5 +1,5 @@
 // The top line: Hizmet track, the Crisis and its field, Hıyanet track, and the log and settings buttons.
-import { crisisById, RULES } from '../../engine/index.ts';
+import { crisisById, crisisField, RULES } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { useGame } from './ctx.ts';
@@ -20,6 +20,7 @@ export function Slots({ n, on, fresh, end, big }: { n: number; on: number; fresh
 export function Mizan() {
   const { g, setSheet } = useGame();
   const c = g.crisis ? crisisById[g.crisis] : null;
+  const field = crisisField(g);
   const unread = g.log.length;
   return (
     <div className="mz">
@@ -27,7 +28,7 @@ export function Mizan() {
       <button type="button" className="kz" onClick={() => c && setSheet({ t: 'card', ref: { t: 'crisis', id: c.id } })}>
         <small>{t('crisisN', { n: g.crisisNo || 1 })}</small>
         <b>{c ? c.name : g.crisisNo ? t('crisisComing') : t('setupTitle')}</b>
-        {c && <span className="chipf"><Em k={FIELD_ICON[c.field]} s={16} />{t(c.field)}</span>}
+        {c && <span className="chipf"><Em k={FIELD_ICON[field]} s={16} />{t(field)}</span>}
       </button>
       <div className="r">
         <button type="button" className="trk x" title={t('treasonTrack')} onClick={() => setSheet({ t: 'track', which: 'x' })}><Slots n={RULES.tracks.treason} on={g.tracks.treason} end /><span>{t('hiyanet')}</span><Em k="hiyanet" s={20} /></button>

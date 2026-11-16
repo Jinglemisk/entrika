@@ -53,13 +53,15 @@ export function Prompt() {
   return <div className="pr">{freePick ? <FreePickView /> : a ? <AskView key={a.id} a={a} /> : <Waiting />}</div>;
 }
 
-/** A free power (Sürgün, Haber, Faiz, Ganimet) waiting for its target: tap a seat, or call it off. */
+/** A free power (Sürgün, Sezgi, Faiz, Ganimet) waiting for its target: tap a seat (Sezgi: two), or call it off. */
 function FreePickView() {
   const { freePick, setFreePick } = useGame();
+  const two = freePick!.n === 2;
   return (
     <>
       <Stp />
-      <p className="vo"><b className="ref">{powerName(freePick!.power)}</b>. {t('free.pick')}<small>{t('tapSeat')}</small></p>
+      <p className="vo"><b className="ref">{powerName(freePick!.power)}</b>. {t(two ? 'free.pickTwo' : 'free.pick')}
+        <small>{t('tapSeat')}{two ? ` ${freePick!.chosen.length}/2` : ''}</small></p>
       <div className="bt"><Btn onClick={() => setFreePick(null)}>{t('btn.cancel')}</Btn></div>
     </>
   );
@@ -238,12 +240,12 @@ function KeepOne({ a }: { a: Ask }) {
 
 /** The face and name a timed power rides under: its Character, or İskender Çelebi for his Kader draw. */
 function powerVia(g: Game, a: Extract<Ask, { type: 'window' }>) {
-  if (a.power === 'iskender') return viaKul('iskender');
+  if (a.power === 'iskender' || a.power === 'lokman') return viaKul(a.power);
   const p = g.players[a.to];
   return viaChar(p.character, powerName(a.power));
 }
 function powerName(power: string) {
-  if (power === 'iskender') return companionById.iskender.name;
+  if (power === 'iskender' || power === 'lokman') return companionById[power].name;
   for (const c of Object.values(characterById)) {
     if (c.base.id === power) return c.base.name;
     if (c.favor?.id === power) return c.favor.name;
@@ -251,24 +253,49 @@ function powerName(power: string) {
   return power;
 }
 
+/** Powers that pick a seat on the court once used, and what the pick answers. */
+function seatPick(g: Game, a: Extract<Ask, { type: 'window' }>): { legal: PID[]; value: (id: PID) => unknown } | null {
+  switch (a.power) {
+    case 'feragat': {
+      const seat: Seat = g.ministers.first === a.to ? 'first' : 'second';
+      return { legal: eligibleList(g, seat).filter(id => id !== a.to), value: id => ({ target: id }) };
+    }
+    case 'himaye': return { legal: g.players.filter(p => !p.sultan).map(p => p.id), value: id => ({ target: id }) };
+    case 'veliaht': {
+      const seats = (['first', 'second'] as Seat[]).filter(s => eligibleList(g, s).includes(a.to));
+      return { legal: seats.map(s => g.ministers[s]!), value: id => ({ seat: g.ministers.first === id ? 'first' : 'second' }) };
+    }
+    default: return null;
+  }
+}
+const FIELDS = ['divan', 'harem', 'saray'] as const;
+
 function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   const { g, act, setPicker } = useGame();
   const [picking, setPicking] = useState(false);
   const answer = (v: unknown) => act({ t: 'answer', ask: a.id, value: v });
   useEffect(() => () => setPicker(null), []);
+  const pick = seatPick(g, a);
+  const choices = a.power === 'cephe' || a.power === 'lokman';   // a field, or one of the cards played on you
   const useIt = () => {
-    if (a.power === 'feragat') {
-      const seat: Seat = g.ministers.first === a.to ? 'first' : 'second';
-      setPicking(true);
-      setPicker({ legal: eligibleList(g, seat).filter(id => id !== a.to), onPick: id => { setPicker(null); answer({ target: id }); } });
-      return;
-    }
+    if (pick) setPicker({ legal: pick.legal, onPick: id => { setPicker(null); answer(pick.value(id)); } });
+    if (pick || choices) return setPicking(true);
     answer(true);
   };
+  const lokman = a.power === 'lokman' ? (a.ctx as { plays: number[] }).plays : [];
   return (
     <>
       <Stp />
-      <p className="vo"><b className="ref">{powerName(a.power)}</b>. <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />{picking && <small>{t('tapSeat')}</small>}</p>
+      <p className="vo"><b className="ref">{powerName(a.power)}</b>. <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />
+        {picking && <small>{t(pick ? 'tapSeat' : a.power === 'cephe' ? 'pickField' : 'pickCard')}</small>}</p>
+      {picking && a.power === 'cephe' && (
+        <div className="opts">{FIELDS.map(f => <button type="button" key={f} className="chip" onClick={() => answer(f)}><Em k={f} s={14} />{t(f)}</button>)}</div>
+      )}
+      {picking && a.power === 'lokman' && (
+        <div className="opts">{lokman.map(i => (
+          <button type="button" key={i} className="chip" onClick={() => answer(i)}><Em k="intrigue" s={14} />{intrigueById[g.court!.plays[i].as].name}</button>
+        ))}</div>
+      )}
       <div className="bt">
         <Btn onClick={() => { setPicker(null); answer(false); }}>{t('btn.skip')}</Btn>
         {!picking && <Btn pri via={powerVia(g, a)} onClick={useIt}>{t('btn.use')}</Btn>}
@@ -338,7 +365,7 @@ function Appoint({ a }: { a: Ask }) {
 function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
   const { g, act, setPicker } = useGame();
   const [pick, setPick] = useState<PID | null>(null);
-  const legal = eligibleList(g, a.seat).filter(id => id !== a.removed);
+  const legal = eligibleList(g, a.seat).filter(id => id !== a.removed && id !== a.not);
   useEffect(() => {
     setPicker({ legal: legal.filter(id => id !== pick), chosen: pick !== null ? [pick] : [], onPick: id => { sfx('place'); setPick(id); } });
   }, [pick]);
@@ -346,11 +373,12 @@ function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
   const other: Seat = a.seat === 'first' ? 'second' : 'first';
   const open: SlotState = { id: pick, gone: a.removed };
   const kept: SlotState = { id: g.ministers[other], lock: true };
-  const via = a.reason === 'itiraz' ? viaChar('sahsultan', characterById.sahsultan.base.name) : undefined;
+  const daye = a.not !== undefined;
+  const via = a.reason === 'itiraz' ? viaChar('sahsultan', characterById.sahsultan.base.name) : daye ? viaKul('daye') : undefined;
   return (
     <>
       <Stp />
-      <p className="vo">{t(`ask.replace.${a.reason}`, { removed: name(g, a.removed), seat: t(a.seat === 'first' ? 'min1' : 'min2') })}<small>{t('tapSeat')}</small></p>
+      <p className="vo">{t(`ask.replace.${daye ? 'daye' : a.reason}`, { removed: name(g, a.removed), seat: t(a.seat === 'first' ? 'min1' : 'min2') })}<small>{t('tapSeat')}</small></p>
       <SeatSlots first={a.seat === 'first' ? open : kept} second={a.seat === 'second' ? open : kept} onTap={() => setPick(null)} />
       <div className="bt"><Btn pri off={pick === null} via={via} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: pick }); }}>{t('btn.seat')}</Btn></div>
     </>
@@ -404,9 +432,9 @@ function Objection({ a }: { a: Ask }) {
   const { g, me, act, setPicker } = useGame();
   const [mode, setMode] = useState<null | 'paid' | 'free'>(null);
   const canFree = readyPowerOf(g, a.to, 'sahsultan', 'base');
-  const cost = (id: PID) => (g.players[id].character === 'mustafa' && !g.learning && g.players[id].favor !== 'locked' ? 2 : RULES.objectionCost);
+  const cost = RULES.objectionCost;
   const seats = (['first', 'second'] as Seat[]).filter(s => g.ministers[s] !== a.to);   // never your own seat
-  const affordable = (free: boolean) => seats.filter(s => free || me.influence >= cost(g.ministers[s]!)).map(s => g.ministers[s]!);
+  const affordable = (free: boolean) => seats.filter(() => free || me.influence >= cost).map(s => g.ministers[s]!);
   useEffect(() => {
     if (!mode) return setPicker(null);
     setPicker({
@@ -418,16 +446,15 @@ function Objection({ a }: { a: Ask }) {
     });
   }, [mode]);
   useEffect(() => () => setPicker(null), []);
-  const minCost = Math.min(...seats.map(s => cost(g.ministers[s]!)));
   const mine = g.ministers.first === a.to || g.ministers.second === a.to;
   return (
     <>
       <Stp label={t('step.objections')} />
       <p className="vo">{mode ? t('ask.objectPick') : t('ask.object')}
-        {!mode && !canFree && <small>{t(mine ? 'ask.objectNotSelf' : 'ask.objectCost', { cost: minCost })}</small>}{mode && <small>{t('tapSeat')}</small>}</p>
+        {!mode && !canFree && <small>{t(mine ? 'ask.objectNotSelf' : 'ask.objectCost', { cost: cost })}</small>}{mode && <small>{t('tapSeat')}</small>}</p>
       <div className="bt">
         {mode ? <Btn onClick={() => setMode(null)}>{t('btn.back')}</Btn> : <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.pass')}</Btn>}
-        {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{minCost}<Em k="influence" s={14} /></small></Btn>}
+        {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{cost}<Em k="influence" s={14} /></small></Btn>}
         {!mode && canFree && <Btn via={viaChar('sahsultan', characterById.sahsultan.base.name)} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
       </div>
     </>
@@ -465,7 +492,7 @@ function Wave({ a }: { a: Ask }) {
 
   const submit = (plays: typeof staged) => {
     setPicker(null);
-    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}), ...(p.returns ? { returns: true } : {}) })) });
+    act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}) })) });
   };
   const cifte = readyPowerOf(g, seat, 'hurrem', 'favor');
   const kul = canRecast(g, seat) && me.companion;

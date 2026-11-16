@@ -346,16 +346,16 @@
       "icon": "intrigue"
     },
     {
-      "id": "card.divan-sirasi",
+      "id": "card.azil",
       "stems": [
-        "Divan Sırası"
+        "Azil"
       ],
       "icon": "intrigue"
     },
     {
-      "id": "card.saray-dedikodusu",
+      "id": "card.casus",
       "stems": [
-        "Saray Dedikodusu"
+        "Casus"
       ],
       "icon": "intrigue"
     },
@@ -369,7 +369,7 @@
     {
       "id": "card.saray-tabibi",
       "stems": [
-        "Saray Tabibi"
+        "Çeşnigir"
       ],
       "icon": "intrigue"
     },
@@ -381,9 +381,9 @@
       "icon": "intrigue"
     },
     {
-      "id": "card.gozde",
+      "id": "card.kefalet",
       "stems": [
-        "Gözde'nin Hediyesi"
+        "Kefalet"
       ],
       "icon": "intrigue"
     },

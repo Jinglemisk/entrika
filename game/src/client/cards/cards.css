@@ -134,6 +134,7 @@
   .whole > .c3 .pin{font-size:6.2cqw;line-height:1.18}
   .whole > .c3.v-full .pin{font-size:6.6cqw}
   .whole > .c3 .pw p{font-size:5.4cqw;line-height:1.15}
+  .whole > .c3.dense .pw p{font-size:4.4cqw}
 }
 @container (max-width:89px){
   :not(.whole) > .c3 .nm,:not(.whole) > .c3 .sname{display:none}

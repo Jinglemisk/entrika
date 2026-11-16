@@ -12,7 +12,7 @@
   "companionChoices": 2,
   "handLimit": 3,
   "objectionCost": 1,
-  "kader": { "hizmet": 8, "hiyanet": 9, "draw": 3 },
+  "kader": { "hizmet": 7, "hiyanet": 11, "draw": 3 },
   "tracks": { "loyalty": 4, "treason": 5 },
   "treasonPowers": { "2": "sorusturma", "3": "hazineDefteri", "4": "fermanRefresh" },
   "kulisSeconds": 60,
@@ -22,10 +22,11 @@
     "kulis": { "show": "public", "secs": 15 },
     "feragat": { "show": "public", "secs": 25 },
     "fisilti": { "show": "public", "secs": 15 },
-    "himaye": { "show": "public", "secs": 15 },
+    "himaye": { "show": "public", "secs": 25 },
     "iskender": { "show": "hidden", "secs": 15 },
     "gozcu": { "show": "hidden", "secs": 15 },
-    "veliaht": { "show": "hidden", "secs": 15 }
+    "veliaht": { "show": "public", "secs": 25 },
+    "lokman": { "show": "hidden", "secs": 15 }
   },
   "timers": {
     "wave": 45,

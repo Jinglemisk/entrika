@@ -1,15 +1,16 @@
 // Tertip, played in waves. Everyone but Süleyman privately plays a card or passes; the wave flips and takes effect at once.
-// Order inside a flip (manual, "All at once"): reveal powers (Yön Değiştir), protections, Minister checks, owner choices
-// clockwise from Süleyman's left, swaps, summed Influence, then draws.
+// Order inside a flip (manual, "All at once"): reveal powers (Yön Değiştir), protections, Minister checks, replacements
+// clockwise from Süleyman's left, summed Influence, then draws.
 import { intrigueById, soleField, type Field } from './content.ts';
 import {
-  P, ackAll, ask, checkHand, clockwise, companionDef, companionIs, companionUp, discardCard, drawIntrigue, eligibleList, ensureKader,
-  favorOn, fieldsOpen, gain, isMinister, log, lose, must, readyPower, seatOf, top,
+  P, ackAll, ask, checkHand, clockwise, companionDef, companionIs, companionUp, discardCard, drawIntrigue, eligible, eligibleList,
+  ensureKader, favorOn, fieldsOpen, isMinister, log, lose, must, readyPower, seatOf, top,
 } from './core.ts';
 import { checkAmbitions } from './ambitions.ts';
 import type { Game, PID, Play, RevealedPlay, WavePlay } from './types.ts';
 
-const INFO_CARDS = ['saray-dedikodusu', 'muhurlu-evrak', 'teftis'];
+const INFO_CARDS = ['casus', 'muhurlu-evrak', 'teftis'];
+const REPLACERS = ['valide', 'azil'];
 
 /** How many cards this player may still put down in the current wave. */
 export function waveAllowance(g: Game, id: PID): number {
@@ -83,7 +84,6 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
   must(plays.length <= waveAllowance(g, id), 'Bu dalgada bir kart oynayabilirsin.');
   must(new Set(plays.map(x => x.uid)).size === plays.length, 'Aynı kart iki kez oynanamaz.');
   must(plays.filter(x => x.recastAs).length <= 1, 'Kul bu krizde bir kez çevirir.');
-  must(plays.filter(x => x.returns).length <= 1, 'Lokman Ağa bir kez kullanılır.');
   return plays.map(wp => {
     const card = p.hand.find(c => c.uid === wp.uid);
     must(card, 'Bu kart elinde değil.');
@@ -96,8 +96,7 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
     const field = effectiveField(g, id, card.field, as, wp.recastAs ? wp.field : undefined);
     must(field, 'Bu kart açık alanın kartı değil.');
     must(legalTargets(g, id, as).includes(wp.target), 'Bu kart o oyuncuya oynanamaz.');
-    if (wp.returns) must(companionIs(g, id, 'lokman') && !p.companionUsed, 'Lokman Ağa şu an kullanılamaz.');
-    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs, returns: !!wp.returns };
+    return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs };
   });
 }
 
@@ -127,13 +126,7 @@ export function flipWave(g: Game) {
     }
   }
   c.plays = plays;
-  if (!plays.length) {
-    c.done = true;
-    log(g, 'courtEnd', { waves: c.wave });
-    g.sub = 'ferman';
-    if (g.ferman) ask(g, { to: g.sultan, type: 'ferman' });
-    return;
-  }
+  if (!plays.length) return endCourt(g);
   log(g, 'waveFlip', { wave: c.wave, n: plays.length });
   const r = readyPower(g, 'rustem', 'favor');
   const onHim = r ? plays.map((pl, i) => (pl.target === r.id ? i : -1)).filter(i => i >= 0) : [];
@@ -152,6 +145,7 @@ export function resolveWave(g: Game) {
     ...(pl.movedFrom !== undefined ? { movedFrom: pl.movedFrom } : {}),
   }));
   const plays = c.plays;
+  for (const pl of plays) c.history.push({ owner: pl.owner, as: pl.as, field: pl.field, target: pl.target });
   // protections first: Akıl Hocası guards its player from other cards of its field, from this flip on
   plays.forEach(pl => {
     if (pl.as !== 'akil-hocasi') return;
@@ -170,24 +164,25 @@ export function resolveWave(g: Game) {
     if (pl.as === 'muhur' && !c.sealed.includes(pl.target)) c.sealed.push(pl.target);
     if (pl.as === 'saray-tabibi' && !c.tabib.includes(pl.target)) c.tabib.push(pl.target);
   });
-  // replacements: Mühür wins in its own wave; the first owner clockwise wins a shared target
+  // replacements (Valide'nin Buyruğu, Azil): Mühür wins in its own wave, Himaye all crisis; the first owner clockwise
+  // wins a shared target
   const claimed = new Set<number>();
   c.replaceQueue = [];
   plays.forEach((pl, i) => {
-    if (!ok(i) || pl.as !== 'valide') return;
+    if (!ok(i) || !REPLACERS.includes(pl.as)) return;
     if (c.sealed.includes(pl.target)) return set(i, 'void', 'sealed');
+    if (c.himaye === pl.target) return set(i, 'void', 'himaye');
     if (claimed.has(pl.target)) return set(i, 'void', 'sameTarget');
     claimed.add(pl.target);
-    c.replaceQueue.push({ owner: pl.owner, target: pl.target, play: i });
+    const daye = pl.as === 'valide' && pl.recast;   // Daye Hatun's Valide can't seat its owner
+    c.replaceQueue.push({ owner: pl.owner, target: pl.target, play: i, reason: pl.as as 'valide' | 'azil', noSelf: daye });
   });
   // information
   plays.forEach((pl, i) => {
     if (!ok(i)) return;
     if (pl.as === 'teftis') c.teftis.push({ owner: pl.owner, target: pl.target });
-    if (pl.as === 'saray-dedikodusu') {
-      const t = P(g, pl.target);
-      g.peeks.push({ to: pl.owner, c: g.crisisNo, kind: 'handAmbition', of: pl.target, hand: t.hand.map(x => ({ kind: x.kind, field: x.field })), ambition: t.ambition });
-    }
+    if (pl.as === 'kefalet') c.kefalet.push({ owner: pl.owner, target: pl.target });
+    if (pl.as === 'casus') c.casus.push({ owner: pl.owner, target: pl.target });
     if (pl.as === 'muhurlu-evrak') {
       ensureKader(g, 3);
       g.peeks.push({ to: pl.owner, c: g.crisisNo, kind: 'kaderTop', cards: top(g, 3), source: 'muhurlu-evrak' });
@@ -214,14 +209,15 @@ export function resolveWave(g: Game) {
   }
 }
 
-/** Ask the next Valide'nin Buyruğu owner for the new Minister, or finish the wave. Called by advance(). */
+/** Ask for the next new Minister (Valide'nin Buyruğu: its owner; Azil: Süleyman), or finish the wave. Called by advance(). */
 export function nextReplacement(g: Game) {
   const c = g.court!;
   while (c.replaceQueue.length) {
     const q = c.replaceQueue[0];
     const seat = seatOf(g, q.target);
-    if (seat && eligibleList(g, seat).filter(id => id !== q.target).length) {
-      ask(g, { to: q.owner, type: 'replace', seat, removed: q.target, reason: 'valide' });
+    if (seat && eligibleList(g, seat).filter(id => id !== q.target && !(q.noSelf && id === q.owner)).length) {
+      const to = q.reason === 'azil' ? g.sultan : q.owner;
+      ask(g, { to, type: 'replace', seat, removed: q.target, reason: q.reason, ...(q.noSelf ? { not: q.owner } : {}) });
       return;
     }
     c.replaceQueue.shift();
@@ -236,42 +232,19 @@ function finishWave(g: Game) {
   const c = g.court!;
   const reveal = c.reveals[c.reveals.length - 1];
   const okAt = (i: number) => reveal[i].outcome === 'ok';
+  // Influence: İftira on one player adds up and applies once; Çeşnigir or Himaye saves it
+  const loss = new Map<PID, number>();
   c.plays.forEach((pl, i) => {
-    if (okAt(i) && pl.as === 'divan-sirasi') {
-      g.ministers = { first: g.ministers.second, second: g.ministers.first };
-      log(g, 'swapped', { first: g.ministers.first, second: g.ministers.second });
-    }
+    if (okAt(i) && pl.as === 'iftira') loss.set(pl.target, (loss.get(pl.target) ?? 0) + 1);
   });
-  // Influence: each player's gains and losses from the wave are summed and applied once
-  const net = new Map<PID, number>();
-  c.plays.forEach((pl, i) => {
-    if (!okAt(i)) return;
-    if (pl.as === 'iftira') net.set(pl.target, (net.get(pl.target) ?? 0) - 1);
-    if (pl.as === 'gozde') net.set(pl.target, (net.get(pl.target) ?? 0) + 1);
-  });
-  // Saray Tabibi's saves are known now, so every outcome is final: one public line per card, never who played it
-  for (const [id, d] of net) if (d < 0 && c.tabib.includes(id)) c.plays.forEach((pl, i) => { if (okAt(i) && pl.as === 'iftira' && pl.target === id) reveal[i].note = 'tabib'; });
+  const saver = (id: PID) => (c.himaye === id ? 'himaye' : c.tabib.includes(id) ? 'tabib' : null);
+  // the saves are known now, so every outcome is final: one public line per card, never who played it
+  c.plays.forEach((pl, i) => { if (okAt(i) && pl.as === 'iftira' && saver(pl.target)) reveal[i].note = saver(pl.target)!; });
   reveal.forEach(r => log(g, 'play', {
     as: r.as, target: r.target, outcome: r.outcome, ...(r.note ? { note: r.note } : {}), ...(r.movedFrom !== undefined ? { movedFrom: r.movedFrom } : {}),
   }));
-  for (const [id, d] of net) {
-    if (d < 0 && c.tabib.includes(id)) {
-      c.plays.forEach((pl, i) => { if (okAt(i) && pl.as === 'iftira' && pl.target === id) reveal[i].note = 'tabib'; });
-      continue;
-    }
-    if (d < 0) c.drawsOwed[id] = (c.drawsOwed[id] ?? 0) + lose(g, id, -d, 'intrigue');
-    if (d > 0) gain(g, id, d, 'intrigue');
-  }
-  // Lokman Ağa returns a card that took effect; everything else goes to the discard pile
-  c.plays.forEach((pl, i) => {
-    const owner = P(g, pl.owner);
-    if (pl.returns && okAt(i) && companionIs(g, pl.owner, 'lokman') && !owner.companionUsed) {
-      owner.companionUsed = true;
-      owner.hand.push(pl.card);
-      log(g, 'returned', { who: pl.owner });   // public: Lokman was used; which card came back is the owner's to know
-      checkHand(g, pl.owner);
-    } else discardCard(g, pl.card);
-  });
+  for (const [id, n] of loss) if (!saver(id)) c.drawsOwed[id] = (c.drawsOwed[id] ?? 0) + lose(g, id, n, 'intrigue');
+  for (const pl of c.plays) discardCard(g, pl.card);
   for (const [id, n] of Object.entries(c.drawsOwed)) {
     if (n > 0) {
       drawIntrigue(g, Number(id), n);
@@ -281,17 +254,37 @@ function finishWave(g: Game) {
   checkAmbitions(g);
   log(g, 'waveResolved', { wave: c.wave });
   g.sub = 'seen';
+  // Lokman Ağa: a secret look, decided inside the pause everyone sits through
+  for (const p of g.players) {
+    if (!companionIs(g, p.id, 'lokman') || p.companionUsed) continue;
+    const onMe = c.plays.map((pl, i) => (pl.target === p.id && pl.owner !== p.id ? i : -1)).filter(i => i >= 0);
+    if (onMe.length) ask(g, { to: p.id, type: 'window', power: 'lokman', ctx: { plays: onMe } });
+  }
   ackAll(g, 'wave');
 }
 
-/** A Minister leaves the seat to a new player: Valide'nin Buyruğu, an Objection, Feragat or the Ferman. */
+/** No one played in the last wave: Casus shows what it watched, then Veliaht and the Ferman may move a seat. */
+function endCourt(g: Game) {
+  const c = g.court!;
+  c.done = true;
+  log(g, 'courtEnd', { waves: c.wave });
+  for (const k of c.casus) {
+    const plays = c.history.filter(h => h.owner === k.target).map(h => ({ as: h.as, field: h.field, target: h.target }));
+    g.peeks.push({ to: k.owner, c: g.crisisNo, kind: 'casus', of: k.target, plays });
+  }
+  g.sub = 'veliaht';
+  const m = readyPower(g, 'mustafa', 'base');
+  if (m && (eligible(g, m.id, 'first') || eligible(g, m.id, 'second'))) ask(g, { to: m.id, type: 'window', power: 'veliaht' });
+}
+
+/** A Minister leaves the seat to a new player: Valide'nin Buyruğu, Azil, an Objection, Feragat, Veliaht or the Ferman. */
 export function replaceMinister(g: Game, removed: PID, by: PID, reason: string, newcomer: PID) {
   const seat = seatOf(g, removed);
   must(seat, 'O oyuncu artık Vekil değil.');
   must(newcomer !== removed && eligibleList(g, seat).includes(newcomer), 'Bu oyuncu o koltuğa uygun değil.');
   g.ministers[seat] = newcomer;
   log(g, 'replaced', { seat, removed, newcomer, reason, by });
-  if (reason === 'valide') P(g, newcomer).stats.seatByIntrigue = true;
+  if (REPLACERS.includes(reason)) P(g, newcomer).stats.seatByIntrigue = true;
 }
 
 export function drawForSeatLoss(g: Game, id: PID) {

@@ -4,7 +4,7 @@
     "name": "Daye Hatun",
     "recast": "valide",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Valide'nin Buyruğu olarak oyna.",
+    "text": "Bir Entrika kartını Valide'nin Buyruğu olarak oyna; yerine kendini seçemezsin.",
     "flavor": "Valide'nin sırrı, Daye'nin dilinde.",
     "art": { "src": "/art/directions/img/roster-comp.daye.jpg", "pos": "50% 18%" }
   },
@@ -20,10 +20,10 @@
   {
     "id": "ayas",
     "name": "Ayas Paşa",
-    "recast": "divan-sirasi",
+    "recast": "azil",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Divan Sırası olarak oyna.",
-    "flavor": "Divanda her vezirin bir sırası var.",
+    "text": "Bir Entrika kartını Azil olarak oyna.",
+    "flavor": "Hangi vezirin gideceğini önce o bilir.",
     "art": { "src": "/art/directions/img/roster-comp.ayas.jpg", "pos": "50% 18%" }
   },
   {
@@ -38,9 +38,9 @@
   {
     "id": "sumbul",
     "name": "Sümbül Ağa",
-    "recast": "saray-dedikodusu",
+    "recast": "casus",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Saray Dedikodusu olarak oyna.",
+    "text": "Bir Entrika kartını Casus olarak oyna.",
     "flavor": "Haremde ne olursa önce onun kulağına gelir.",
     "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 18%" }
   },
@@ -74,18 +74,18 @@
   {
     "id": "seker",
     "name": "Şeker Ağa",
-    "recast": "gozde",
+    "recast": "saray-tabibi",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Gözde'nin Hediyesi olarak oyna.",
-    "flavor": "Tatlı dil yılanı deliğinden çıkarır.",
+    "text": "Bir Entrika kartını Çeşnigir olarak oyna.",
+    "flavor": "Padişahın sofrasına giden her lokma önce ondan geçer.",
     "art": { "src": "/art/directions/img/roster-comp.seker.jpg", "pos": "50% 18%" }
   },
   {
     "id": "gulfem",
     "name": "Gülfem Hatun",
-    "recast": "saray-tabibi",
+    "recast": "kefalet",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Saray Tabibi olarak oyna.",
+    "text": "Bir Entrika kartını Kefalet olarak oyna.",
     "flavor": "Sultan'ın en eski dostu, en sessiz tanığı.",
     "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 18%" }
   },
@@ -102,8 +102,8 @@
     "id": "firuze",
     "name": "Firuze Hatun",
     "special": "firuze",
-    "freq": "once",
-    "text": "Nüfuz kazandığında 1 fazla kazan.",
+    "freq": "always",
+    "text": "Süleyman'ın Hüküm'üyle Nüfuz kazandığında 1 fazla kazan.",
     "flavor": "Padişahın gönlüne giden yolu bilir.",
     "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 18%" }
   },
@@ -120,8 +120,8 @@
     "id": "lokman",
     "name": "Lokman Ağa",
     "special": "lokman",
-    "freq": "once",
-    "text": "Oynadığın bir Entrika kartı etkisini gösterince eline geri döner.",
+    "freq": "crisis",
+    "text": "Bir dalga açılınca, sana oynanan bir Entrika kartını kimin oynadığını gizlice öğren.",
     "flavor": "Padişahın kapı ağası; kapının ardını o bilir.",
     "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 26%" }
   }

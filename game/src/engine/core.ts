@@ -1,5 +1,5 @@
 // Small state helpers shared by every step: randomness, asks, the log, drawing, Influence, the hand limit, eligibility.
-import { RULES, characterById, companionById, crisisById, intrigueById, type Field } from './content.ts';
+import { RULES, characterById, companionById, crisisById, intrigueById, type CrisisField, type Field } from './content.ts';
 import type { Ask, CardInst, Game, Kader, Moment, PID, Player, Seat } from './types.ts';
 import { RuleError } from './types.ts';
 
@@ -116,7 +116,7 @@ export function log(g: Game, k: string, p?: Record<string, unknown>) {
   const row = g.sicil[g.sicil.length - 1];
   if (row && row.c === g.crisisNo && SICIL_EVENTS.has(k)) row.events.push(e);
 }
-const SICIL_EVENTS = new Set(['objection', 'itiraz', 'ferman', 'feragat', 'sadrazam', 'kulis', 'power', 'replaced', 'swapped', 'ambition', 'sorusturma', 'hazineDefteri', 'yakipYikma']);
+const SICIL_EVENTS = new Set(['objection', 'itiraz', 'ferman', 'feragat', 'sadrazam', 'kulis', 'power', 'replaced', 'ambition', 'sorusturma', 'hazineDefteri', 'yakipYikma']);
 
 // ---------- Intrigue deck
 export function drawIntrigue(g: Game, id: PID, n = 1): number {
@@ -160,14 +160,13 @@ export function ensureKader(g: Game, n: number) {
 export const top = (g: Game, n: number): Kader[] => g.decks.kader.slice(0, n);
 
 // ---------- Influence
-/** A gain from one source. Firuze Hatun and Faiz react to it. */
+/** A gain from one source. Firuze Hatun (on the Decree's gain only) and Faiz react to it. */
 export function gain(g: Game, id: PID, n: number, why: string) {
   if (n <= 0) return;
   const p = P(g, id);
   let total = n;
-  if (p.companion === 'firuze' && !p.companionUsed && p.influence >= 1) {
+  if (why === 'decree' && companionIs(g, id, 'firuze')) {
     total += 1;
-    p.companionUsed = true;
     log(g, 'firuze', { who: id });
   }
   p.influence += total;
@@ -193,8 +192,10 @@ export function lose(g: Game, id: PID, n: number, why: string): number {
 export function sideOf(g: Game, id: PID) {
   return P(g, id).side;
 }
+/** The crisis's field: the card's, unless Tahmasp chose another with Cephe. */
+export const crisisField = (g: Game): CrisisField => g.field ?? (g.crisis ? crisisById[g.crisis].field : 'saray');
 export const fieldsOpen = (g: Game): Field[] => {
-  const f = g.crisis ? crisisById[g.crisis].field : 'saray';
+  const f = crisisField(g);
   return f === 'saray' ? ['harem', 'divan'] : [f];
 };
 

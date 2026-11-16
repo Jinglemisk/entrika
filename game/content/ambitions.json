@@ -80,7 +80,7 @@
     "id": "kulak",
     "name": "Kulak Misafiri",
     "goal": { "type": "usedInfoCard" },
-    "text": "Saray Dedikodusu, Mühürlü Evrak ya da Teftiş kullan.",
+    "text": "Casus, Mühürlü Evrak ya da Teftiş kullan.",
     "flavor": "Duvarların kulağı, kapıların dili var."
   }
 ]

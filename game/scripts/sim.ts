@@ -1,9 +1,11 @@
 // Plays many random games through the engine and checks that each one ends and keeps every card accounted for.
 // Run: node scripts/sim.ts [games]
-import { act, createGame, RULES, RuleError, type Game } from '../src/engine/index.ts';
+import { INTRIGUE, act, createGame, RULES, RuleError, type Game } from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
 
 const games = Number(process.argv[2] ?? 500);
+const INTRIGUE_CARDS = INTRIGUE.reduce((s, c) => s + Object.values(c.copies).reduce((a, b) => a + (b ?? 0), 0), 0);
+const KADER_CARDS = RULES.kader.hizmet + RULES.kader.hiyanet;
 let seed = 1;
 const r = () => {
   seed = (seed * 1103515245 + 12345) & 0x7fffffff;
@@ -45,7 +47,7 @@ for (let i = 0; i < games; i++) {
       if (stats.errors > 200) throw new Error('too many rule errors');
     }
     const ic = intrigueCount(g);
-    if (g.step !== 'court' && ic !== 30) throw new Error(`game ${i}: intrigue cards ${ic} at ${g.step}/${g.sub}`);
+    if (g.step !== 'court' && ic !== INTRIGUE_CARDS) throw new Error(`game ${i}: intrigue cards ${ic} at ${g.step}/${g.sub}`);
     for (const p of g.players) {
       if (p.influence < 0) throw new Error(`game ${i}: negative influence`);
       // Gül Ağa adds 1 while face up; a face-down Gül Ağa counts at the next check, not at once
@@ -55,7 +57,7 @@ for (let i = 0; i < games; i++) {
     const { first, second } = g.ministers;
     if (first !== null && (first === second || g.players[first].sultan)) throw new Error(`game ${i}: bad ministers`);
     const kc = kaderCount(g);
-    if (kc !== 17 && g.step !== 'kader') throw new Error(`game ${i}: kader cards ${kc} at ${g.step}/${g.sub}`);
+    if (kc !== KADER_CARDS && g.step !== 'kader') throw new Error(`game ${i}: kader cards ${kc} at ${g.step}/${g.sub}`);
   }
   stats[g.winner!.side]++;
   stats.crises += g.crisisNo;

@@ -1,5 +1,5 @@
 // The whole game state is one plain JSON object. The server keeps it; every phone gets it and shows only its owner's secrets.
-import type { Field } from './content.ts';
+import type { CrisisField, Field } from './content.ts';
 
 export type PID = number;                 // seat index, 0..n-1, clockwise around the table
 export type Kader = 'h' | 'x';            // Hizmet, Hıyanet
@@ -52,18 +52,17 @@ export interface Play {
   field: Field;                           // the field it counts as
   target: PID;
   recast: boolean;
-  returns: boolean;                       // Lokman Ağa: back to its owner's hand if it takes effect
   movedFrom?: PID;                        // Yön Değiştir moved it here
 }
 
 export type Outcome = 'ok' | 'cancelled' | 'void';
-export interface RevealedPlay extends Omit<Play, 'owner' | 'returns'> {
+export interface RevealedPlay extends Omit<Play, 'owner'> {
   outcome: Outcome;
   note?: string;
 }
 
-/** One card as submitted in a wave: which card, on whom, optionally the Kul recast, and whether Lokman Ağa sends it back. */
-export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field; returns?: boolean }
+/** One card as submitted in a wave: which card, on whom, and optionally the Kul recast. */
+export interface WavePlay { uid: number; target: PID; recastAs?: string; field?: Field }
 
 export interface Court {
   wave: number;
@@ -71,10 +70,14 @@ export interface Court {
   plays: Play[];                                  // the flipped wave, waiting to resolve
   akil: Record<number, Field[]>;                  // crisis-long Akıl Hocası protection per player
   sealed: number[];                               // Mühür: can't be replaced by Intrigue cards
-  tabib: number[];                                // Saray Tabibi: can't lose Influence this crisis
+  tabib: number[];                                // Çeşnigir: can't lose Influence this crisis
+  himaye: PID | null;                             // Himaye: neither unseated by Intrigue cards nor losing Influence
   teftis: { owner: PID; target: PID }[];
+  kefalet: { owner: PID; target: PID }[];         // pays or costs its owner at the Kader result
+  casus: { owner: PID; target: PID }[];           // shows its owner the target's plays when Tertip ends
+  history: { owner: PID; as: string; field: Field; target: PID }[];   // every card flipped this crisis, for Casus and Lokman Ağa
   reveals: RevealedPlay[][];                      // every flipped wave this crisis, public
-  replaceQueue: { owner: PID; target: PID; play: number }[];
+  replaceQueue: { owner: PID; target: PID; play: number; reason: 'valide' | 'azil'; noSelf: boolean }[];
   drawsOwed: Record<number, number>;              // seats and Influence lost this wave, drawn when it ends
   done: boolean;
 }
@@ -90,12 +93,12 @@ export interface KaderStep {
 }
 
 export type Peek =
-  | { to: PID; c: number; kind: 'handAmbition'; of: PID; hand: { kind: string; field: Field }[]; ambition: string | null }
   | { to: PID; c: number; kind: 'kaderTop'; cards: Kader[]; source: string }
   | { to: PID; c: number; kind: 'allegiance'; of: PID; side: Side }
-  | { to: PID; c: number; kind: 'ambition'; of: PID; ambition: string | null }
   | { to: PID; c: number; kind: 'discards'; of: PID; cards: Kader[]; source: string }
-  | { to: PID; c: number; kind: 'crisisTop'; cards: string[] }
+  | { to: PID; c: number; kind: 'casus'; of: PID; plays: { as: string; field: Field; target: PID }[] }
+  | { to: PID; c: number; kind: 'sameSide'; a: PID; b: PID; same: boolean }
+  | { to: PID; c: number; kind: 'playedBy'; by: PID; card: string }
   | { to: PID; c: number; kind: 'stolen'; from: PID; card: string }
   | { to: PID; c: number; kind: 'role'; side: Side; traitors: PID[] };   // dealt at setup; traitors see each other
 
@@ -117,12 +120,11 @@ export type Ask =
   | { id: number; to: PID; type: 'discard'; n: number }
   | { id: number; to: PID; type: 'keepOne' }
   | { id: number; to: PID; type: 'window'; power: string; ctx?: Record<string, unknown> }
-  | { id: number; to: PID; type: 'cephe'; cards: string[] }
   | { id: number; to: PID; type: 'tie'; candidates: PID[] }
   | { id: number; to: PID; type: 'appoint' }
   | { id: number; to: PID; type: 'kulis' }
   | { id: number; to: PID; type: 'object' }
-  | { id: number; to: PID; type: 'replace'; seat: Seat; removed: PID; reason: string }
+  | { id: number; to: PID; type: 'replace'; seat: Seat; removed: PID; reason: string; not?: PID }   // not: Daye Hatun's owner can't pick themselves
   | { id: number; to: PID; type: 'wave' }
   | { id: number; to: PID; type: 'redirect'; plays: number[] }
   | { id: number; to: PID; type: 'ferman' }
@@ -149,6 +151,7 @@ export interface Game {
   ferman: boolean;
   crisisNo: number;
   crisis: string | null;
+  field: CrisisField | null;              // Cephe: the field Tahmasp chose for this crisis
   step: StepName;
   sub: string;                            // where inside the step we are
   ministers: { first: PID | null; second: PID | null };
@@ -161,7 +164,7 @@ export interface Game {
   faiz: { by: PID; on: PID } | null;
   court: Court | null;
   kader: KaderStep | null;
-  decree: { delta: number; chooser: PID; target: PID | null; himaye: boolean | null } | null;
+  decree: { delta: number; chooser: PID; target: PID | null } | null;
   asks: Ask[];
   peeks: Peek[];
   log: LogEntry[];
@@ -171,7 +174,7 @@ export interface Game {
 
 export type Action =
   | { t: 'answer'; ask: number; value?: unknown }
-  | { t: 'power'; power: string; target?: PID }
+  | { t: 'power'; power: string; target?: PID; also?: PID }   // also: Sezgi's second player
   | { t: 'retract' };
 
 export class RuleError extends Error {}

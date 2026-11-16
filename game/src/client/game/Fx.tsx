@@ -13,7 +13,7 @@ export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'discard
 export interface Banner { key: number; who: PID | null; text: string }
 
 const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', draw: 'draw', discard: 'discard' };
-const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'returned', 'firuze', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
+const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'firuze', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
 const SEAT_MS = 2200;
 const BANNER_MS = 3200;
 
@@ -32,7 +32,7 @@ export function useLogFx(g: Game, courtVisible: boolean) {
     if (!fresh.length) return;
     const bs = fresh.filter(({ e }) => BANNER_KINDS.has(e.k)).map(({ i, e }) => ({ key: i, who: whoOf(e), text: logText(g, e) ?? '' })).filter(b => b.text);
     if (bs.length) setBanners(b => [...b, ...bs]);
-    setQueue(q => [...q, ...fresh.filter(({ e }) => SEAT_KINDS[e.k] || e.k === 'replaced' || e.k === 'swapped')]);
+    setQueue(q => [...q, ...fresh.filter(({ e }) => SEAT_KINDS[e.k] || e.k === 'replaced')]);
   }, [g.log.length]);
 
   // seat effects play only while the court is on screen
@@ -44,7 +44,6 @@ export function useLogFx(g: Game, courtVisible: boolean) {
       const push = (id: unknown, fx: SeatFx) => { if (typeof id === 'number') (add[id] ??= []).push(fx); };
       if (SEAT_KINDS[e.k]) push(p.who, { key: i, kind: SEAT_KINDS[e.k], n: Number(p.n ?? 1) });
       if (e.k === 'replaced') push(p.newcomer, { key: i, kind: 'seat', n: 0 });
-      if (e.k === 'swapped') { push(p.first, { key: i, kind: 'seat', n: 0 }); push(p.second, { key: i + 0.5, kind: 'seat', n: 0 }); }
     }
     setQueue([]);
     setSeat(s => {

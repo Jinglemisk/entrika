@@ -302,6 +302,8 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .peek { display: grid; justify-items: center; gap: 7px; text-align: center; }
 .peek-cards { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
 .peek-cards .c3-slot { flex: none; }
+.peek-play { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.peek-play small { display: inline-flex; align-items: center; gap: 3px; font-size: 13px; }
 .ref { text-decoration: underline dashed; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 /* ---------- the two tracks, step by step */
