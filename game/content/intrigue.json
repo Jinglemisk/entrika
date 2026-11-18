@@ -96,7 +96,7 @@
     "target": "first",
     "text": "Birinci Vekile koy. Kader'de hâlâ Birinci Vekilse 3 yerine 4 kart çeker, 2'sini atar.",
     "flavor": "Hesabı bilen, hangi kalemi sileceğini de bilir.",
-    "art": null
+    "art": { "src": "/art/directions/img/card.defterdar-1.jpg", "pos": "70% 40%" }
   },
   {
     "id": "nobet",
@@ -105,7 +105,7 @@
     "target": "player",
     "text": "Tertip bitince, bu kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.",
     "flavor": "Kapıyı kim çaldıysa, nöbetçi bilir.",
-    "art": null
+    "art": { "src": "/art/directions/img/card.nobet-1.jpg", "pos": "60% 40%" }
   },
   {
     "id": "nazar",
@@ -114,7 +114,7 @@
     "target": "minister",
     "text": "Bir Vekile koy. Bu kriz Hüküm bu Vekile düşerse 1 yerine 2 Nüfuz verir ya da alır.",
     "flavor": "Padişahın nazarı ya yüceltir ya yakar.",
-    "art": null
+    "art": { "src": "/art/directions/img/card.nazar-1.jpg", "pos": "55% 30%" }
   },
   {
     "id": "sukut",
@@ -123,6 +123,6 @@
     "target": "other",
     "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.",
     "flavor": "Sarayda susmayı bilen uzun yaşar.",
-    "art": null
+    "art": { "src": "/art/directions/img/card.sukut-1.jpg", "pos": "68% 40%" }
   }
 ]

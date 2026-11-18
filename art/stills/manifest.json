@@ -1862,6 +1862,166 @@
         }
       ]
     },
+    "card.defterdar": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.defterdar-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=RuBzSi04HlI&t=112s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"İbrahim Paşa İftar Yemeği Verdi! | Muhteşem Yüzyıl\" (episode 81, per the clip's description), at 112.2 s; crop x 300-1920 of the 1920x1080 frame (3:2), scaled to 1600x1067. İbrahim Paşa, the grand vizier, at his iftar table reads a heavy leather-bound book with a tooled cover, rings on both hands. The clip does not say what the book is; it stands in for the treasury ledger. No frame of İskender Çelebi with ledgers turned up in the channel's clips (his clips are arguments with İbrahim, his arrest and his execution), and his face is already on comp.iskender.",
+          "focus": [
+            0.6,
+            0.4
+          ]
+        },
+        {
+          "file": "card.defterdar-2.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=RuBzSi04HlI&t=143s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"İbrahim Paşa İftar Yemeği Verdi! | Muhteşem Yüzyıl\" (episode 81, per the clip's description), at 143.6 s; crop x 150-1770 of the 1920x1080 frame (3:2), scaled to 1600x1067. Close-up of İbrahim looking down into the same book, its open pages soft across the bottom left. Same caveat as candidate 1.",
+          "focus": [
+            0.55,
+            0.4
+          ]
+        }
+      ]
+    },
+    "card.nazar": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.nazar-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=xfNZVSPDl4M&t=594s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Sultan Süleyman'dan Firuze'ye Mor Mendil | Muhteşem Yüzyıl\" (episode 66, per the clip's description), at 594.5 s; crop x 100-1720 of the 1920x1080 frame (3:2), scaled to 1600x1067. Süleyman (season 3), seated, looks almost straight into the lens as Firuze dances for him; her dark red costume blurs past the left edge. Seconds later the purple handkerchief, his sign of choice, lands on the carpet.",
+          "focus": [
+            0.55,
+            0.35
+          ]
+        },
+        {
+          "file": "card.nazar-2.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=xfNZVSPDl4M&t=561s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Sultan Süleyman'dan Firuze'ye Mor Mendil | Muhteşem Yüzyıl\" (episode 66, per the clip's description), at 561.0 s; crop x 150-1770 of the 1920x1080 frame (3:2), scaled to 1600x1067. Over Firuze's shoulder as she dances (her back and hair motion-blurred): Süleyman sits on the sofa watching her, an ağa standing at either side. Shows both, but he is small and the frame is soft.",
+          "focus": [
+            0.45,
+            0.4
+          ]
+        },
+        {
+          "file": "card.nazar-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=xfNZVSPDl4M&t=573s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Sultan Süleyman'dan Firuze'ye Mor Mendil | Muhteşem Yüzyıl\" (episode 66, per the clip's description), at 573.5 s; crop x 150-1770 of the 1920x1080 frame (3:2), scaled to 1600x1067. Firuze (Cansu Dere) in close-up during the same dance: only her eyes show above a red brocade veil with a gold forehead chain. Reads as the evil-eye half of nazar; Süleyman is not in frame.",
+          "focus": [
+            0.5,
+            0.3
+          ]
+        }
+      ]
+    },
+    "card.nobet": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.nobet-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=NtGi7Os4nrg&t=3992s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 2160p stream in the browser player (muted), clip \"Muhteşem Yüzyıl 117. Bölüm (4K)\", at 3992.3 s; crop x 300-3540 of the 3840x2160 frame (3:2), scaled to 1600x1067. Lokman Ağa (Kaya Akkaya; black turban and kaftan, the same man as comp.lokman-1 at 4008.3 s) stands watch in profile in the stone corridor outside Süleyman's chamber, beside two has oda ağas in tall blue caps who bow with their backs to the wall, as a concubine in green and a kalfa walk up the corridor; they enter the chamber at about 4016 s.",
+          "focus": [
+            0.55,
+            0.45
+          ]
+        },
+        {
+          "file": "card.nobet-2.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=NtGi7Os4nrg&t=4009s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 2160p stream in the browser player (muted), clip \"Muhteşem Yüzyıl 117. Bölüm (4K)\", at 4009.4 s; crop x 300-3540 of the 3840x2160 frame (3:2), scaled to 1600x1067. Lokman Ağa in close-up at the same post, eyes lowered, a has oda ağa's blue cap beside him. Clear face, but it is one second from the comp.lokman-1 still, so the Kul card and this card would share a face.",
+          "focus": [
+            0.6,
+            0.35
+          ]
+        }
+      ]
+    },
+    "card.sukut": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "card.sukut-1.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=GfU6ozn4RK8&t=53s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Güzellikleriyle Dikkat Çeken Rus Cariyeler | Muhteşem Yüzyıl 21. Bölüm\", at 53.6 s; crop x 300-1920 of the 1920x1080 frame (3:2), scaled to 1600x1067. Sümbül Ağa (grey turban, earring) stands in the harem hall between two lines of concubines, heads bowed, and holds up his open palm to hush or halt them. Season 1 footage: soft, with slight motion blur on his face and hand.",
+          "focus": [
+            0.6,
+            0.4
+          ]
+        },
+        {
+          "file": "card.sukut-2.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=lx5pmQIUfqk&t=391s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Gül Ağa Saraya Gelince Sümbül Ağa Sinirlendi | Muhteşem Yüzyıl\" (the clip does not name its episode), at 391.7 s; crop x 300-1920 of the 1920x1080 frame (3:2), scaled to 1600x1067. The new concubines stand in a line across the harem courtyard with heads bowed while Gül Ağa (white turban, brocade kaftan) walks down it; servants carry chests of gifts at the left. Full-length figures, so they are small on the card.",
+          "focus": [
+            0.42,
+            0.5
+          ]
+        },
+        {
+          "file": "card.sukut-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=TtiDRrotq7c&t=121s",
+          "source_page": "https://www.youtube.com/user/muhtesemyuzyil",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), clip \"Sümbül Bahane, Kızlarla Uyumak Şahane | Muhteşem Yüzyıl 31. Bölüm\", at 121.6 s; crop x 0-1620 of the 1920x1080 frame (3:2), scaled to 1600x1067. Night in the concubines' dormitory: Gül Ağa, in nightcap and robe, holds a candle over the sleeping girls. A comic scene (he lies down among them next), but the frame reads as a hush.",
+          "focus": [
+            0.2,
+            0.4
+          ]
+        }
+      ]
+    },
     "term.hizmet": {
       "status": "found",
       "candidates": [
