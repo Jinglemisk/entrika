@@ -3,7 +3,7 @@
 // act on it. Every card shares one top line. The prompt block sits on the right.
 import { useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { FREE_POWERS, characterById, freePowerTargets, handLimit } from '../../engine/index.ts';
+import { FREE_POWERS, RULES, characterById, freePowerTargets } from '../../engine/index.ts';
 import { Card, CardBack } from '../cards/Card.tsx';
 import { intrRef, spec, type CardRef } from '../cardSpecs.ts';
 import { Head } from '../ui/Figure.tsx';
@@ -19,11 +19,11 @@ const HAND_W = 248;            // the hand panel's inner width (game.css: .zone.
 /** The shelf's three framed panels (yours, your hand, the prompt), drawn behind the cards with a label set into
  *  each top border. */
 export function ShelfZones() {
-  const { g, me, seat } = useGame();
+  const { me } = useGame();
   return (
     <div className="zones" aria-hidden="true">
       <Zone k="mine" label={t(me.sultan ? 'zone.sultan' : 'zone.mine')} />
-      <Zone k="mid" label={me.sultan ? '' : t('zone.hand', { n: me.hand.length, limit: handLimit(g, seat) })} />
+      <Zone k="mid" label={me.sultan ? '' : t('zone.hand', { n: me.hand.length, limit: RULES.handLimit })} />
       <Zone k="side" label="" />
     </div>
   );

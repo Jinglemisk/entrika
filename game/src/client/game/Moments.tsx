@@ -78,7 +78,8 @@ function WaveMoment() {
 /** Cards whose effect lasts the crisis or comes later say so under the card. */
 const LATER: Record<string, string> = {
   muhur: 'outcome.lasting', 'akil-hocasi': 'outcome.lasting', 'saray-tabibi': 'outcome.lasting',
-  kefalet: 'outcome.atKader', teftis: 'outcome.atKader', casus: 'outcome.atEnd',
+  kefalet: 'outcome.atKader', teftis: 'outcome.atKader', defterdar: 'outcome.atKader', casus: 'outcome.atEnd', nobet: 'outcome.atEnd',
+  nazar: 'outcome.atDecree', sukut: 'outcome.nextWave',
 };
 function outcomeText(r: RevealedPlay): string {
   if (r.movedFrom !== undefined && r.outcome === 'ok') return t('outcome.moved');

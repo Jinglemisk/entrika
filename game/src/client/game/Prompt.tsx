@@ -106,7 +106,7 @@ function Waiting() {
         <Stp label={t('waveN', { n: g.court.wave })} ask={g.asks.find(a => a.type === 'wave')?.id} />
         {sealed ? (
           <div className="vo">{t('wait.sealedOn')}<PlayList plays={sealed.map(p => ({ as: p.recastAs ?? kindOf(g, seat, p.uid), target: p.target }))} /></div>
-        ) : <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : t('wait.passed')}</p>}
+        ) : <p className="vo">{g.players[seat].sultan ? t('wait.sultanCourt') : t(g.court.silenced.includes(seat) ? 'wait.silenced' : 'wait.passed')}</p>}
         <div className="wait">{t('wait.wave')}</div>
         {sealed && <Retract />}
       </>
@@ -238,14 +238,14 @@ function KeepOne({ a }: { a: Ask }) {
 
 // ---------- optional timed powers: use or skip
 
-/** The face and name a timed power rides under: its Character, or İskender Çelebi for his Kader draw. */
+/** The face and name a timed power rides under: its Character. Nöbet is a card's look, so it rides under nothing. */
 function powerVia(g: Game, a: Extract<Ask, { type: 'window' }>) {
-  if (a.power === 'iskender' || a.power === 'lokman') return viaKul(a.power);
+  if (a.power === 'nobet') return undefined;
   const p = g.players[a.to];
   return viaChar(p.character, powerName(a.power));
 }
 function powerName(power: string) {
-  if (power === 'iskender' || power === 'lokman') return companionById[power].name;
+  if (power === 'nobet') return intrigueById.nobet.name;
   for (const c of Object.values(characterById)) {
     if (c.base.id === power) return c.base.name;
     if (c.favor?.id === power) return c.favor.name;
@@ -276,13 +276,13 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   const answer = (v: unknown) => act({ t: 'answer', ask: a.id, value: v });
   useEffect(() => () => setPicker(null), []);
   const pick = seatPick(g, a);
-  const choices = a.power === 'cephe' || a.power === 'lokman';   // a field, or one of the cards played on you
+  const choices = a.power === 'cephe' || a.power === 'nobet';   // a field, or one of the cards played on the watched player
   const useIt = () => {
     if (pick) setPicker({ legal: pick.legal, onPick: id => { setPicker(null); answer(pick.value(id)); } });
     if (pick || choices) return setPicking(true);
     answer(true);
   };
-  const lokman = a.power === 'lokman' ? (a.ctx as { plays: number[] }).plays : [];
+  const nobet = a.power === 'nobet' ? (a.ctx as { plays: number[] }).plays : [];
   return (
     <>
       <Stp />
@@ -291,10 +291,11 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
       {picking && a.power === 'cephe' && (
         <div className="opts">{FIELDS.map(f => <button type="button" key={f} className="chip" onClick={() => answer(f)}><Em k={f} s={14} />{t(f)}</button>)}</div>
       )}
-      {picking && a.power === 'lokman' && (
-        <div className="opts">{lokman.map(i => (
-          <button type="button" key={i} className="chip" onClick={() => answer(i)}><Em k="intrigue" s={14} />{intrigueById[g.court!.plays[i].as].name}</button>
-        ))}</div>
+      {picking && a.power === 'nobet' && (
+        <div className="opts">{nobet.map(i => {
+          const h = g.court!.history[i];
+          return <button type="button" key={i} className="chip" onClick={() => answer(i)}><Em k={h.field} s={14} />{intrigueById[h.as].name}<small>&nbsp;· {t('waveShort', { n: h.wave })}</small></button>;
+        })}</div>
       )}
       <div className="bt">
         <Btn onClick={() => { setPicker(null); answer(false); }}>{t('btn.skip')}</Btn>
@@ -304,8 +305,8 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   );
 }
 function ctxVars(g: Game, a: Extract<Ask, { type: 'window' }>) {
-  const c = (a.ctx ?? {}) as { target?: PID; of?: PID; delta?: number };
-  return { target: name(g, c.target), of: name(g, c.of), dir: c.delta && c.delta > 0 ? t('gives') : t('takes') };
+  const c = (a.ctx ?? {}) as { target?: PID; of?: PID; on?: PID; delta?: number };
+  return { target: name(g, c.target), of: name(g, c.of), on: name(g, c.on), dir: c.delta && c.delta > 0 ? t('gives') : t('takes') };
 }
 
 // ---------- the two Vekil seats: Atama, a replacement, the Ferman
@@ -510,7 +511,7 @@ function Wave({ a }: { a: Ask }) {
       {!aim && !staged.length && (cifte || kul) && (
         <div className="opts">
           {cifte && <span className="vchip"><Head character="hurrem" /><span><Refs text={t('hint.cifte')} /></span></span>}
-          {kul && <span className="vchip"><KulHead id={kul} /><span><Refs text={t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast!].name })} /></span></span>}
+          {kul && <span className="vchip"><KulHead id={kul} /><span><Refs text={t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast].name })} /></span></span>}
         </div>
       )}
       <div className="bt">

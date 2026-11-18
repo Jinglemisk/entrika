@@ -1,11 +1,11 @@
 [
   {
     "id": "akil-hocasi",
-    "name": "Akıl Hocası",
+    "name": "Oyunbozan",
     "copies": { "divan": 2, "harem": 2 },
     "target": "player",
     "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.",
-    "flavor": "Doğru söz, doğru kulağa.",
+    "flavor": "Oyunu gören, oyuna gelmez.",
     "art": { "src": "/art/directions/img/card.akil-hocasi-1.jpg", "pos": "62% 35%" }
   },
   {
@@ -37,11 +37,11 @@
   },
   {
     "id": "casus",
-    "name": "Casus",
+    "name": "Mantık",
     "copies": { "harem": 2 },
     "target": "other",
     "text": "Tertip bitince, bu oyuncunun bu kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.",
-    "flavor": "Gölgen bile ona rapor verir.",
+    "flavor": "Hesap tutarsa, fail ortaya çıkar.",
     "art": { "src": "/art/directions/img/card.casus-1.jpg", "pos": "35% 45%" }
   },
   {
@@ -88,5 +88,41 @@
     "text": "Bir Vekile koy. Kader adımından sonra o Vekilin attığı kart ya da kartlara gizlice bak.",
     "flavor": "Defterler yalan söylemez.",
     "art": { "src": "/art/directions/img/card.teftis-1.jpg", "pos": "50% 35%" }
+  },
+  {
+    "id": "defterdar",
+    "name": "Defterdar",
+    "copies": { "divan": 2 },
+    "target": "first",
+    "text": "Birinci Vekile koy. Kader'de hâlâ Birinci Vekilse 3 yerine 4 kart çeker, 2'sini atar.",
+    "flavor": "Hesabı bilen, hangi kalemi sileceğini de bilir.",
+    "art": null
+  },
+  {
+    "id": "nobet",
+    "name": "Nöbet",
+    "copies": { "divan": 2 },
+    "target": "player",
+    "text": "Tertip bitince, bu kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.",
+    "flavor": "Kapıyı kim çaldıysa, nöbetçi bilir.",
+    "art": null
+  },
+  {
+    "id": "nazar",
+    "name": "Nazar",
+    "copies": { "harem": 2 },
+    "target": "minister",
+    "text": "Bir Vekile koy. Bu kriz Hüküm bu Vekile düşerse 1 yerine 2 Nüfuz verir ya da alır.",
+    "flavor": "Padişahın nazarı ya yüceltir ya yakar.",
+    "art": null
+  },
+  {
+    "id": "sukut",
+    "name": "Sükût",
+    "copies": { "harem": 2 },
+    "target": "other",
+    "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.",
+    "flavor": "Sarayda susmayı bilen uzun yaşar.",
+    "art": null
   }
 ]

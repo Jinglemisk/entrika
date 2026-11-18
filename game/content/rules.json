@@ -23,10 +23,9 @@
     "feragat": { "show": "public", "secs": 25 },
     "fisilti": { "show": "public", "secs": 15 },
     "himaye": { "show": "public", "secs": 25 },
-    "iskender": { "show": "hidden", "secs": 15 },
     "gozcu": { "show": "hidden", "secs": 15 },
     "veliaht": { "show": "public", "secs": 25 },
-    "lokman": { "show": "hidden", "secs": 15 }
+    "nobet": { "show": "hidden", "secs": 20 }
   },
   "timers": {
     "wave": 45,

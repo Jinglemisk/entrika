@@ -50,9 +50,7 @@ for (let i = 0; i < games; i++) {
     if (g.step !== 'court' && ic !== INTRIGUE_CARDS) throw new Error(`game ${i}: intrigue cards ${ic} at ${g.step}/${g.sub}`);
     for (const p of g.players) {
       if (p.influence < 0) throw new Error(`game ${i}: negative influence`);
-      // Gül Ağa adds 1 while face up; a face-down Gül Ağa counts at the next check, not at once
-      const limit = RULES.handLimit + (p.companion === 'gulaga' ? 1 : 0);
-      if (p.hand.length > limit && !g.asks.some(x => x.type === 'discard' && x.to === p.id)) throw new Error(`game ${i}: hand over limit without a discard ask`);
+      if (p.hand.length > RULES.handLimit && !g.asks.some(x => x.type === 'discard' && x.to === p.id)) throw new Error(`game ${i}: hand over limit without a discard ask`);
     }
     const { first, second } = g.ministers;
     if (first !== null && (first === second || g.players[first].sultan)) throw new Error(`game ${i}: bad ministers`);

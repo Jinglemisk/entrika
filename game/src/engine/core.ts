@@ -138,12 +138,10 @@ export function drawIntrigue(g: Game, id: PID, n = 1): number {
 export function discardCard(g: Game, c: CardInst) {
   g.decks.intrigueDiscard.push(c);
 }
-/** The Intrigue hand limit: one more while Gül Ağa is face up. */
-export const handLimit = (g: Game, id: PID) => RULES.handLimit + (companionIs(g, id, 'gulaga') ? 1 : 0);
 
 /** After anything adds cards to a hand: ask for discards down to the hand limit. */
 export function checkHand(g: Game, id: PID) {
-  const over = P(g, id).hand.length - handLimit(g, id);
+  const over = P(g, id).hand.length - RULES.handLimit;
   const existing = g.asks.find(a => a.type === 'discard' && a.to === id);
   if (existing) dropAsk(g, existing.id);
   if (over > 0) ask(g, { to: id, type: 'discard', n: over });
@@ -160,18 +158,12 @@ export function ensureKader(g: Game, n: number) {
 export const top = (g: Game, n: number): Kader[] => g.decks.kader.slice(0, n);
 
 // ---------- Influence
-/** A gain from one source. Firuze Hatun (on the Decree's gain only) and Faiz react to it. */
+/** A gain from one source. Faiz reacts to it. */
 export function gain(g: Game, id: PID, n: number, why: string) {
   if (n <= 0) return;
   const p = P(g, id);
-  let total = n;
-  if (why === 'decree' && companionIs(g, id, 'firuze')) {
-    total += 1;
-    log(g, 'firuze', { who: id });
-  }
-  p.influence += total;
-  log(g, 'gain', { who: id, n: total, why });
-  if (!p.stats.gainCrises.includes(g.crisisNo)) p.stats.gainCrises.push(g.crisisNo);
+  p.influence += n;
+  log(g, 'gain', { who: id, n, why });
   if (g.faiz && g.faiz.on === id) {
     const by = g.faiz.by;
     g.faiz = null;
@@ -185,6 +177,7 @@ export function lose(g: Game, id: PID, n: number, why: string): number {
   const lost = Math.min(n, p.influence);
   if (lost <= 0) return 0;
   p.influence -= lost;
+  p.stats.lostInfluence = true;
   log(g, 'lose', { who: id, n: lost, why });
   return lost;
 }

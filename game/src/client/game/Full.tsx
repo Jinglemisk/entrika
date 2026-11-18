@@ -120,13 +120,16 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
   const { g, act } = useGame();
   const [pick, setPick] = useState<PID | null>(null);
   const ids = [g.ministers.first!, g.ministers.second!];
+  const size = (id: PID) => (g.court?.nazar.includes(id) ? 2 : 1);
+  const nazar = ids.filter(id => size(id) > 1);
   return (
     <div className="split decree">
       <div className="col">
         <img src="/art/stills/tugra-suleyman.svg" alt="" className="tugra" />
         <p className="h-step">{t('step.decree')}</p>
         <p className="h-mid">{t(a.delta > 0 ? 'ask.decreeGive' : 'ask.decreeTake')}</p>
-        <p className="vo small">{t(a.delta > 0 ? 'ask.decreeGiveWhy' : 'ask.decreeTakeWhy')}</p>
+        <p className="vo small">{t(a.delta > 0 ? 'ask.decreeGiveWhy' : 'ask.decreeTakeWhy')}
+          {nazar.map(id => <span key={id}> {t('ask.decreeNazar', { name: g.players[id].name })}</span>)}</p>
         <div className="bt left"><Btn pri off={pick === null} onClick={() => act({ t: 'answer', ask: a.id, value: pick })}>{t('btn.decree')}</Btn></div>
       </div>
       <div className="pair">
@@ -135,7 +138,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
           return (
             <button type="button" key={id} className={`st vk big ${pick === id ? 'pick' : ''}`} style={{ ['--nw' as string]: '150px', ['--nh' as string]: '182px' }} onClick={() => { sfx('tap'); setPick(id); }}>
               <div className="nc"><Figure character={p.character} nw={150} nh={182} brk={12} /><span className="of">{t(i === 0 ? 'min1' : 'min2')}</span>
-                {pick === id && <span className="delta"><Star n={1} size={40} label={a.delta > 0 ? '+1' : '−1'} /></span>}</div>
+                {pick === id && <span className="delta"><Star n={1} size={40} label={`${a.delta > 0 ? '+' : '−'}${size(id)}`} /></span>}</div>
               <div className="pl"><b>{charName(p.character)}</b><i>{t('nameInfluence', { char: p.name, n: p.influence })}</i></div>
             </button>
           );

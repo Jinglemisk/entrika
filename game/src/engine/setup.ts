@@ -11,8 +11,8 @@ export interface SetupOptions {
 }
 
 const blankStats = () => ({
-  appointedCrises: 0, partners: {}, ministerOnHiyanet: false, decreeGain: false, decreeLoss: false, targets: [],
-  gainCrises: [], objected: false, targetedMax: 0, endWithHand: false, seatByIntrigue: false, usedInfoCard: false,
+  appointedCrises: 0, ministerOnHiyanet: false, ministerOnHizmet: false, lostInfluence: false, targets: [], objected: false,
+  targetedMax: 0, playedMax: 0, backedMinister: false, unseatedByIntrigue: false, seatByIntrigue: false, usedInfoCard: false,
 });
 
 export function createGame(names: string[], opts: SetupOptions = {}): Game {
@@ -20,7 +20,7 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
   must(n >= RULES.players.min && n <= RULES.players.max, `Oyuncu sayısı ${RULES.players.min}–${RULES.players.max} olmalı.`);
   const learning = !!opts.learning;
   const g: Game = {
-    v: 1, rng: (opts.seed ?? Date.now()) | 0, learning, players: [], sultan: 0, nextUid: 1, nextAsk: 1,
+    v: 2, rng: (opts.seed ?? Date.now()) | 0, learning, players: [], sultan: 0, nextUid: 1, nextAsk: 1,
     decks: { intrigue: [], intrigueDiscard: [], kader: [], kaderDiscard: [], crisis: [], crisisUsed: [] },
     tracks: { loyalty: 0, treason: 0 }, ferman: true, crisisNo: 0, crisis: null, field: null, step: 'setup', sub: 'companions',
     ministers: { first: null, second: null }, lastMinisters: [], appointer: null, kulis: false, objectionTurn: 0,
@@ -48,7 +48,7 @@ export function createGame(names: string[], opts: SetupOptions = {}): Game {
       hand: [],
       base: 'ready',
       favor: isSultan ? 'used' : 'locked',
-      companionUsed: false, stats: blankStats(), objected: false, targetedThisCrisis: 0,
+      companionUsed: false, stats: blankStats(), objected: false, targetedThisCrisis: 0, playedThisCrisis: 0,
     };
   });
 

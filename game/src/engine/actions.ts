@@ -88,11 +88,6 @@ const ANSWERS: Handlers = {
         gain(g, a.to, 1, 'feragat');
         return;
       }
-      case 'iskender':
-        p.companionUsed = true;
-        g.kader!.iskender = true;
-        log(g, 'power', { who: a.to, power: 'iskender' });
-        return;
       case 'gozcu':
         spend('favor');
         g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'discards', of: g.kader!.first, cards: g.kader!.discards.first.slice(), source: 'gozcu' });
@@ -114,13 +109,12 @@ const ANSWERS: Handlers = {
         spend('base', { target });
         return;
       }
-      case 'lokman': {
-        const plays = (a.ctx as { plays: number[] }).plays;
-        must(typeof v === 'number' && plays.includes(v), 'Sana oynanan bir kart seç.');
-        const pl = g.court!.plays[v];
-        p.companionUsed = true;
-        g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'playedBy', by: pl.owner, card: pl.as });
-        log(g, 'power', { who: a.to, power: 'lokman' });
+      case 'nobet': {
+        // a card's secret look, not a power: nothing goes in the public log
+        const { on, plays } = a.ctx as { on: PID; plays: number[] };
+        must(typeof v === 'number' && plays.includes(v), 'Bir kart seç.');
+        const h = g.court!.history[v];
+        g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'playedBy', on, by: h.owner, card: h.as });
         return;
       }
     }
@@ -176,7 +170,7 @@ const ANSWERS: Handlers = {
     must(newcomer !== a.not, 'Daye Hatun ile kendini seçemezsin.');
     replaceMinister(g, a.removed, a.to, a.reason, newcomer);
     drawForSeatLoss(g, a.removed);
-    if (a.reason === 'valide' || a.reason === 'azil') g.court!.replaceQueue.shift();
+    if (a.reason === 'valide' || a.reason === 'azil') P(g, g.court!.replaceQueue.shift()!.owner).stats.unseatedByIntrigue = true;
   },
 
   wave(g, a, v) {

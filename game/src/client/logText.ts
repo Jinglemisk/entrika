@@ -1,9 +1,8 @@
 // Log entries are stored as keys with arguments; this turns them into Turkish sentences through the string table.
-import { ambitionById, characterById, companionById, crisisById, intrigueById, MISC, type Game, type LogEntry } from '../engine/index.ts';
+import { ambitionById, characterById, crisisById, intrigueById, MISC, type Game, type LogEntry } from '../engine/index.ts';
 import { t } from './strings.ts';
 
 export function powerLabel(power: string): string {
-  if (power === 'iskender' || power === 'lokman') return companionById[power].name;
   if (power === 'cifteOyun' || power === 'yonDegistir' || power) {
     for (const c of Object.values(characterById)) {
       if (c.base.id === power) return c.base.name;
@@ -23,7 +22,6 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'draw': return t('log.draw', { who: n(p.who), n: p.n });
     case 'gain': return t('log.gain', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
     case 'lose': return t('log.lose', { who: n(p.who), n: p.n, why: t(`why.${p.why}`) });
-    case 'firuze': return t('log.firuze', { who: n(p.who) });
     case 'play': return t(p.outcome === 'ok' ? 'log.play' : 'log.playVoid', { card: intrigueById[p.as as string].name, target: n(p.target), why: t(`outcome.${p.note ?? p.outcome}`) });
     case 'faiz': return t('log.faiz', { who: n(p.who), on: n(p.on) });
     case 'appoint': return t('log.appoint', { first: n(p.first), second: n(p.second), by: n(p.by) });
@@ -48,7 +46,7 @@ export function logText(g: Game, e: LogEntry): string | null {
     case 'investigated': return t('log.investigated', { by: n(p.by), of: n(p.of) });
     case 'hazineNamed': return t('log.hazineNamed', { who: n(p.who) });
     case 'decree':
-      if (p.delta > 0) return t('log.decreeGive', { to: n(p.to), by: n(p.by) });
+      if (p.delta > 0) return t('log.decreeGive', { to: n(p.to), by: n(p.by), n: p.delta });
       if (p.cancelled) return t(`log.decreeCancelled.${p.cancelled}`, { to: n(p.to), by: n(p.by) });
       return t('log.decreeTake', { to: n(p.to), by: n(p.by), lost: p.lost });
     case 'ambition': return t('log.ambition', { who: n(p.who), name: ambitionById[p.id].name, favor: characterById[g.players[p.who].character].favor?.name });

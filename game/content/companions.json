@@ -29,18 +29,18 @@
   {
     "id": "matrakci",
     "name": "Matrakçı Nasuh",
-    "recast": "akil-hocasi",
+    "recast": "casus",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Akıl Hocası olarak oyna; alanını sen seç.",
+    "text": "Bir Entrika kartını Mantık olarak oyna.",
     "flavor": "Kalemi de kılıcı kadar keskin.",
     "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 0%" }
   },
   {
     "id": "sumbul",
     "name": "Sümbül Ağa",
-    "recast": "casus",
+    "recast": "akil-hocasi",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Casus olarak oyna.",
+    "text": "Bir Entrika kartını Oyunbozan olarak oyna; alanını sen seç.",
     "flavor": "Haremde ne olursa önce onun kulağına gelir.",
     "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 33%" }
   },
@@ -92,36 +92,36 @@
   {
     "id": "iskender",
     "name": "İskender Çelebi",
-    "special": "iskender",
-    "freq": "once",
-    "text": "Birinci Vekilken Kader'den 3 yerine 4 kart çek, 2'sini at.",
+    "recast": "defterdar",
+    "freq": "crisis",
+    "text": "Bir Entrika kartını Defterdar olarak oyna.",
     "flavor": "Hazinenin hesabı onun defterinde.",
     "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 20%" }
   },
   {
     "id": "firuze",
     "name": "Firuze Hatun",
-    "special": "firuze",
-    "freq": "always",
-    "text": "Süleyman'ın Hüküm'üyle Nüfuz kazandığında 1 fazla kazan.",
+    "recast": "nazar",
+    "freq": "crisis",
+    "text": "Bir Entrika kartını Nazar olarak oyna.",
     "flavor": "Padişahın gönlüne giden yolu bilir.",
     "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 38%" }
   },
   {
     "id": "gulaga",
     "name": "Gül Ağa",
-    "special": "gulaga",
-    "freq": "always",
-    "text": "Entrika elinin sınırı 3 değil 4 olur.",
+    "recast": "sukut",
+    "freq": "crisis",
+    "text": "Bir Entrika kartını Sükût olarak oyna.",
     "flavor": "Cariyelere saray adabını o öğretir.",
     "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 0%" }
   },
   {
     "id": "lokman",
     "name": "Lokman Ağa",
-    "special": "lokman",
+    "recast": "nobet",
     "freq": "crisis",
-    "text": "Bir dalga açılınca, sana oynanan bir Entrika kartını kimin oynadığını gizlice öğren.",
+    "text": "Bir Entrika kartını Nöbet olarak oyna.",
     "flavor": "Padişahın kapı ağası; kapının ardını o bilir.",
     "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 26%" }
   }

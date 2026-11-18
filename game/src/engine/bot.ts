@@ -32,7 +32,7 @@ function value(g: Game, a: Ask, r: R): unknown {
         case 'cephe': return pick(r, ['divan', 'harem', 'saray']);
         case 'himaye': return { target: pick(r, hidden) };
         case 'veliaht': return { seat: pick(r, (['first', 'second'] as Seat[]).filter(s => eligible(g, a.to, s))) };
-        case 'lokman': return pick(r, (a.ctx as { plays: number[] }).plays);
+        case 'nobet': return pick(r, (a.ctx as { plays: number[] }).plays);
         default: return true;
       }
     }

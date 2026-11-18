@@ -2,9 +2,9 @@
   {
     "id": "divanda-nufuz",
     "name": "Divanda Nüfuz",
-    "goal": { "type": "appointedCrises", "n": 2 },
-    "text": "İki krizde Vekil ol.",
-    "flavor": "Divanda iki kez oturan, üçüncüyü bekler."
+    "goal": { "type": "unseatedByIntrigue" },
+    "text": "Bir Entrika kartıyla bir Vekili koltuğundan et.",
+    "flavor": "Vezir bir sözle oturur, bir sözle kalkar."
   },
   {
     "id": "suphe",
@@ -16,29 +16,29 @@
   {
     "id": "takdir",
     "name": "Padişahın Takdiri",
-    "goal": { "type": "decreeGain" },
-    "text": "Süleyman'ın Hüküm'üyle 1 Nüfuz kazan.",
+    "goal": { "type": "ministerOnHizmet" },
+    "text": "Hizmet oynandığında Vekil ol.",
     "flavor": "Bir bakışı bin altına bedel."
   },
   {
     "id": "gozden",
     "name": "Gözden Düşmek",
-    "goal": { "type": "decreeLoss" },
-    "text": "Süleyman'ın Hüküm'üyle Nüfuz kaybet.",
+    "goal": { "type": "lostInfluence" },
+    "text": "Nüfuz kaybet.",
     "flavor": "Düşenin dostu olmaz; olsa da gizlidir."
   },
   {
     "id": "kulisci",
     "name": "Kulisçi",
-    "goal": { "type": "distinctTargets", "n": 2 },
-    "text": "İki farklı oyuncuya Entrika kartı koy.",
+    "goal": { "type": "distinctTargets", "n": 3 },
+    "text": "Üç farklı oyuncuya Entrika kartı koy.",
     "flavor": "Her kapıya bir anahtar."
   },
   {
     "id": "yukselen",
     "name": "Yükselen Yıldız",
-    "goal": { "type": "gainCrises", "n": 2 },
-    "text": "İki ayrı krizde Nüfuz kazan.",
+    "goal": { "type": "appointedCrises", "n": 2 },
+    "text": "İki krizde Vekil ol.",
     "flavor": "Sarayda yükselmek, düşmemekten zordur."
   },
   {
@@ -58,15 +58,15 @@
   {
     "id": "ortak",
     "name": "Ortak Kader",
-    "goal": { "type": "samePartner", "n": 2 },
-    "text": "Aynı oyuncuyla birlikte iki krizde Vekil ol.",
+    "goal": { "type": "backedMinister" },
+    "text": "Bir Vekile Mühür ya da Kefalet koy.",
     "flavor": "Aynı gemide olanlar birlikte batar."
   },
   {
     "id": "hazine",
     "name": "Saray Hazinesi",
-    "goal": { "type": "endWithHand", "n": 3 },
-    "text": "Bir krizi elinde 3 Entrika kartıyla bitir.",
+    "goal": { "type": "playedInCrisis", "n": 3 },
+    "text": "Bir krizde 3 Entrika kartı oyna.",
     "flavor": "Biriktiren, ihtiyaç günü güler."
   },
   {
@@ -80,7 +80,7 @@
     "id": "kulak",
     "name": "Kulak Misafiri",
     "goal": { "type": "usedInfoCard" },
-    "text": "Casus, Mühürlü Evrak ya da Teftiş kullan.",
+    "text": "Mantık, Mühürlü Evrak, Teftiş ya da Nöbet kullan.",
     "flavor": "Duvarların kulağı, kapıların dili var."
   }
 ]

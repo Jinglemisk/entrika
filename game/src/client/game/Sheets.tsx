@@ -155,7 +155,7 @@ function Sicil() {
             <td>{r.crisis && <><b>{crisisById[r.crisis].name}</b><span className="f"><Em k={crisisById[r.crisis].field} s={15} /></span></>}</td>
             <td>{hd(r.first)}{r.first !== null && <Gl k="arrow" className="ar" />}{hd(r.second)}</td>
             <td>{r.result ? <span className={`res ${r.result}`}>{MISC.kader[r.result].name}</span> : <span className="res">{t('ongoing')}</span>}</td>
-            <td>{r.decree ? `${g.players[r.decree.to].name} ${r.decree.delta > 0 ? '+1' : '−1'}` : ''}</td>
+            <td>{r.decree ? `${g.players[r.decree.to].name} ${r.decree.delta > 0 ? '+' : '−'}${Math.abs(r.decree.delta)}` : ''}</td>
             <td className="nt">{r.events.map(e => logText(g, e)).filter(Boolean).join(' ')}</td>
           </tr>
         ))}
@@ -196,10 +196,11 @@ export function PeekBody({ p }: { p: Peek }) {
       );
     case 'sameSide': return <div className="peek">{words(t(p.same ? 'peek.sameSide' : 'peek.otherSide', { a: n(p.a), b: n(p.b) }))}</div>;
     case 'playedBy':
+      if (p.by === null || p.card === null) return <div className="peek">{words(t('peek.playedByNone', { on: n(p.on) }))}</div>;
       return (
         <div className="peek">
           <div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: intrigueById[p.card].copies.harem ? 'harem' : 'divan' })} width={110} whole /></div>
-          {words(t('peek.playedBy', { name: n(p.by), card: intrigueById[p.card].name }))}
+          {words(t('peek.playedBy', { on: n(p.on), name: n(p.by), card: intrigueById[p.card].name }))}
         </div>
       );
     case 'kaderTop': return <div className="peek">{kader(p.cards)}{words(t(`peek.kaderTop.${p.source}`))}</div>;

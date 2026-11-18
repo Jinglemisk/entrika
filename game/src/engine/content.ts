@@ -18,18 +18,19 @@ export interface CharacterDef {
   id: string; name: string; sultan?: boolean; wildcard?: boolean;
   base: PowerDef; favor?: PowerDef; flavor: string;
 }
-/** Who a card may be played on: any player but Süleyman, only the two Vekils, anyone but yourself, or always yourself. */
-export type TargetRule = 'player' | 'minister' | 'other' | 'self';
+/** Who a card may be played on: any player but Süleyman, only the two Vekils, only the Birinci Vekil, anyone but
+ *  yourself, or always yourself. */
+export type TargetRule = 'player' | 'minister' | 'first' | 'other' | 'self';
 export interface IntrigueDef {
   id: string; name: string; copies: Partial<Record<Field, number>>; target: TargetRule;
   text: string; flavor: string; art: Art;
 }
 export interface CompanionDef {
-  id: string; name: string; recast?: string; special?: string; freq: Freq; text: string; flavor: string; art: Art;
+  id: string; name: string; recast: string; freq: Freq; text: string; flavor: string; art: Art;
 }
 export type GoalType =
-  | 'appointedCrises' | 'ministerOnHiyanet' | 'decreeGain' | 'decreeLoss' | 'distinctTargets' | 'gainCrises'
-  | 'objected' | 'targetedInCrisis' | 'samePartner' | 'endWithHand' | 'seatByIntrigue' | 'usedInfoCard';
+  | 'appointedCrises' | 'ministerOnHiyanet' | 'ministerOnHizmet' | 'lostInfluence' | 'distinctTargets' | 'objected'
+  | 'targetedInCrisis' | 'playedInCrisis' | 'backedMinister' | 'unseatedByIntrigue' | 'seatByIntrigue' | 'usedInfoCard';
 export interface AmbitionDef { id: string; name: string; goal: { type: GoalType; n?: number }; text: string; flavor: string }
 export type DrawRule = 'none' | 'zeroInfluence' | 'leastInfluence' | 'besideSultan' | 'lastMinisters' | 'everyone';
 export interface CrisisDef { id: string; name: string; field: CrisisField; draw: DrawRule; text: string; flavor?: string; art: Art }

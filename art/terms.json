@@ -327,7 +327,7 @@
     {
       "id": "card.akil-hocasi",
       "stems": [
-        "Akıl Hocası"
+        "Oyunbozan"
       ],
       "icon": "intrigue"
     },
@@ -355,7 +355,7 @@
     {
       "id": "card.casus",
       "stems": [
-        "Casus"
+        "Mantık"
       ],
       "icon": "intrigue"
     },
@@ -391,6 +391,34 @@
       "id": "card.teftis",
       "stems": [
         "Teftiş"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.defterdar",
+      "stems": [
+        "Defterdar"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.nobet",
+      "stems": [
+        "Nöbet"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.nazar",
+      "stems": [
+        "Nazar"
+      ],
+      "icon": "intrigue"
+    },
+    {
+      "id": "card.sukut",
+      "stems": [
+        "Sükût"
       ],
       "icon": "intrigue"
     }

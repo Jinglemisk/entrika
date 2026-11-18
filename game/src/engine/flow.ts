@@ -2,8 +2,7 @@
 // needs is still owed. Each step has small "subs" so a step can wait for one player, then another.
 import { RULES, crisisById } from './content.ts';
 import {
-  P, ackAll, ask, beside, checkHand, clockwise, companionIs, drawIntrigue, ensureKader, favorOn, gain, hasAsk, log, lose, others,
-  readyPower,
+  P, ackAll, ask, beside, checkHand, clockwise, drawIntrigue, ensureKader, favorOn, gain, hasAsk, log, lose, others, readyPower,
 } from './core.ts';
 import { checkAmbitions, revealAmbitions } from './ambitions.ts';
 import { flipWave, nextReplacement, openWave, resolveWave } from './court.ts';
@@ -54,7 +53,8 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         for (const p of g.players) {
           p.objected = false;
           p.targetedThisCrisis = 0;
-          if (p.companion && p.companion !== 'iskender') p.companionUsed = false;   // İskender Çelebi is once per game
+          p.playedThisCrisis = 0;
+          p.companionUsed = false;
         }
         g.sicil.push({ c: g.crisisNo, crisis: '', first: null, second: null, result: null, decree: null, events: [] });
         if (g.surgun.now !== null) log(g, 'surgunActive', { who: g.surgun.now });
@@ -146,6 +146,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
       case 'begin': {
         g.court = {
           wave: 0, submitted: {}, plays: [], akil: {}, sealed: [], tabib: [], himaye: null, teftis: [], kefalet: [], casus: [],
+          nobet: [], defterdar: [], nazar: [], silenced: [], silenceNext: [],
           history: [], reveals: [], replaceQueue: [], drawsOwed: {}, done: false,
         };
         g.sub = 'himaye';
@@ -189,19 +190,15 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         const row = g.sicil[g.sicil.length - 1];
         row.first = first;
         row.second = second;
-        for (const [a, b] of [[first, second], [second, first]]) {
-          const st = P(g, a).stats;
-          st.appointedCrises++;
-          st.partners[b] = (st.partners[b] ?? 0) + 1;
-        }
-        g.kader = { iskender: false, drawn: [], passed: [], played: null, discards: { first: [], second: [] }, first, second };
+        for (const id of [first, second]) P(g, id).stats.appointedCrises++;
+        g.kader = { drawn: [], passed: [], played: null, discards: { first: [], second: [] }, first, second };
         log(g, 'kaderStart', { first, second });
-        g.sub = 'windows';
-        if (companionIs(g, first, 'iskender') && !P(g, first).companionUsed) ask(g, { to: first, type: 'window', power: 'iskender' });
+        g.sub = 'draw';
         return;
       }
-      case 'windows': {
-        const n = RULES.kader.draw + (k!.iskender ? 1 : 0);
+      case 'draw': {
+        // Defterdar: a Birinci Vekil it was put on, and who still sits there, draws one more
+        const n = RULES.kader.draw + (g.court?.defterdar.includes(k!.first) ? 1 : 0);
         ensureKader(g, n);
         k!.drawn = g.decks.kader.splice(0, n);
         g.sub = 'first';
@@ -229,7 +226,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
         if (card === 'h') g.tracks.loyalty++;
         else g.tracks.treason++;
         log(g, 'result', { card, loyalty: g.tracks.loyalty, treason: g.tracks.treason });
-        if (card === 'x') for (const id of [k.first, k.second]) P(g, id).stats.ministerOnHiyanet = true;
+        for (const id of [k.first, k.second]) P(g, id).stats[card === 'x' ? 'ministerOnHiyanet' : 'ministerOnHizmet'] = true;
         if (card === 'h') for (const id of [k.first, k.second]) if (favorOn(g, id, 'ibrahim')) gain(g, id, 1, 'divanNufuzu');
         settleKefalet(g, card);
         for (const t of g.court?.teftis ?? []) {
@@ -329,21 +326,23 @@ export function crisisDraw(g: Game, ids: PID[]) {
   }
 }
 
+/** How much the Hüküm moves on this Vekil: 2 under a Nazar, else 1. */
+export const decreeSize = (g: Game, id: PID) => (g.court?.nazar.includes(id) ? 2 : 1);
+
 function applyDecree(g: Game) {
   const d = g.decree!;
   const target = d.target!;
+  const delta = d.delta * decreeSize(g, target);
   const row = g.sicil[g.sicil.length - 1];
-  row.decree = { to: target, delta: d.delta };
-  if (d.delta > 0) {
-    P(g, target).stats.decreeGain = true;
-    log(g, 'decree', { to: target, delta: 1, by: d.chooser });
-    gain(g, target, 1, 'decree');
+  row.decree = { to: target, delta };
+  if (delta > 0) {
+    log(g, 'decree', { to: target, delta, by: d.chooser });
+    gain(g, target, delta, 'decree');
   } else if (savedBy(g, target)) {
-    log(g, 'decree', { to: target, delta: -1, by: d.chooser, cancelled: savedBy(g, target) });
+    log(g, 'decree', { to: target, delta, by: d.chooser, cancelled: savedBy(g, target) });
   } else {
-    const lost = loseAndDraw(g, target, 1, 'decree');
-    if (lost) P(g, target).stats.decreeLoss = true;
-    log(g, 'decree', { to: target, delta: -1, by: d.chooser, lost });
+    const lost = loseAndDraw(g, target, -delta, 'decree');
+    log(g, 'decree', { to: target, delta, by: d.chooser, lost });
   }
   checkAmbitions(g);
 }
@@ -371,21 +370,13 @@ export function loseAndDraw(g: Game, id: PID, n: number, why: string) {
   return lost;
 }
 
-/** Saray Hazinesi: hands are counted at the end of every crisis, the last one included. */
-function countHands(g: Game) {
-  for (const p of others(g)) if (p.hand.length >= 3) p.stats.endWithHand = true;
-  checkAmbitions(g);
-}
-
 function endCrisis(g: Game) {
-  countHands(g);
   revealAmbitions(g);
   log(g, 'crisisEnd');
   go(g, 'crisis');
 }
 
 function finish(g: Game, side: 'loyalist' | 'traitor', reason: 'loyalty' | 'treason') {
-  countHands(g);   // a met Hırs breaks a tie for the overall win
   const winners = g.players.filter(p => !p.sultan && p.side === side);
   const best = Math.max(...winners.map(p => p.influence));
   let top = winners.filter(p => p.influence === best);

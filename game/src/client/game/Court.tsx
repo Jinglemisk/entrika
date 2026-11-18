@@ -75,7 +75,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
       </div>
       {!compact && (
         <div className="ld">
-          {lasting.map(l => <span key={l.k} className={`pt ${l.k}`} title={l.title}>{l.icons.map(k => <Em key={k} k={k} s={13} />)}{(l.k === 'tabib' || l.k === 'himaye') && <Gl k="lock" />}</span>)}
+          {lasting.map(l => <span key={l.k} className={`pt ${l.k}`} title={l.title}>{l.icons.map(k => <Em key={k} k={k} s={13} />)}{(l.k === 'tabib' || l.k === 'himaye' || l.k === 'sukut') && <Gl k="lock" />}</span>)}
           {!p.sultan && <span className="ic" title={t('nInfluence', { n: p.influence })}><Em k="influence" s={14} /><b>{p.influence}</b></span>}
           {!p.sultan && me && <span className="ic" title={t('handCount', { n: p.hand.length })}><Em k="intrigue" s={14} /><b>{p.hand.length}</b></span>}
         </div>
@@ -94,6 +94,9 @@ function lastingTags(g: Game, id: PID): { k: string; icons: string[]; title: str
   if (c.sealed.includes(id)) tags.push({ k: 'muhur', icons: ['seal'], title: intrigueById.muhur.name });
   if (c.akil[id]?.length) tags.push({ k: 'akil', icons: c.akil[id], title: `${intrigueById['akil-hocasi'].name}: ${c.akil[id].map(f => t(f)).join(', ')}` });
   if (c.tabib.includes(id)) tags.push({ k: 'tabib', icons: ['influence'], title: intrigueById['saray-tabibi'].name });
+  if (c.defterdar.includes(id)) tags.push({ k: 'defterdar', icons: ['kader'], title: intrigueById.defterdar.name });
+  if (c.nazar.includes(id)) tags.push({ k: 'nazar', icons: ['decree'], title: intrigueById.nazar.name });
+  if (c.silenceNext.includes(id) || c.silenced.includes(id)) tags.push({ k: 'sukut', icons: ['intrigue'], title: intrigueById.sukut.name });
   if (c.himaye === id) tags.push({ k: 'himaye', icons: ['seal', 'influence'], title: characterById.hatice.base.name });
   return tags;
 }

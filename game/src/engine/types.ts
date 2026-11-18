@@ -11,15 +11,15 @@ export interface CardInst { uid: number; kind: string; field: Field }
 
 export interface Stats {
   appointedCrises: number;
-  partners: Record<number, number>;       // crises served beside each other player
   ministerOnHiyanet: boolean;
-  decreeGain: boolean;
-  decreeLoss: boolean;
+  ministerOnHizmet: boolean;
+  lostInfluence: boolean;                 // any loss; paying for an İtiraz is spending, not losing
   targets: number[];                      // other players you placed Intrigue cards on
-  gainCrises: number[];
   objected: boolean;
   targetedMax: number;
-  endWithHand: boolean;
+  playedMax: number;                      // most cards you put down in one crisis
+  backedMinister: boolean;                // a Mühür or Kefalet of yours took effect on a Vekil
+  unseatedByIntrigue: boolean;            // your Valide or Azil removed a Vekil
   seatByIntrigue: boolean;
   usedInfoCard: boolean;
 }
@@ -38,11 +38,12 @@ export interface Player {
   hand: CardInst[];
   base: PowerState;
   favor: PowerState;
-  companionUsed: boolean;                 // once-per-crisis recast, or a once-per-game special, is spent
+  companionUsed: boolean;                 // the once-per-crisis recast is spent
   stats: Stats;
   // per crisis
   objected: boolean;
   targetedThisCrisis: number;
+  playedThisCrisis: number;
 }
 
 export interface Play {
@@ -68,14 +69,19 @@ export interface Court {
   wave: number;
   submitted: Record<number, WavePlay[] | null>;   // null = passed; missing = not yet
   plays: Play[];                                  // the flipped wave, waiting to resolve
-  akil: Record<number, Field[]>;                  // crisis-long Akıl Hocası protection per player
+  akil: Record<number, Field[]>;                  // crisis-long Oyunbozan (akil-hocasi) protection per player
   sealed: number[];                               // Mühür: can't be replaced by Intrigue cards
   tabib: number[];                                // Çeşnigir: can't lose Influence this crisis
   himaye: PID | null;                             // Himaye: neither unseated by Intrigue cards nor losing Influence
   teftis: { owner: PID; target: PID }[];
   kefalet: { owner: PID; target: PID }[];         // pays or costs its owner at the Kader result
-  casus: { owner: PID; target: PID }[];           // shows its owner the target's plays when Tertip ends
-  history: { owner: PID; as: string; field: Field; target: PID }[];   // every card flipped this crisis, for Casus and Lokman Ağa
+  casus: { owner: PID; target: PID }[];           // Mantık: shows its owner the target's plays when Tertip ends
+  nobet: { owner: PID; target: PID }[];           // Nöbet: its owner learns who played one card on the target when Tertip ends
+  defterdar: PID[];                               // the Birinci Vekil draws 4 Kader cards if still seated
+  nazar: PID[];                                   // the Hüküm on this Vekil counts 2
+  silenced: PID[];                                // Sükût: can't play in this wave
+  silenceNext: PID[];                             // Sükût played this wave: can't play in the next
+  history: { owner: PID; as: string; field: Field; target: PID; wave: number }[];   // every card flipped this crisis, for Mantık and Nöbet
   reveals: RevealedPlay[][];                      // every flipped wave this crisis, public
   replaceQueue: { owner: PID; target: PID; play: number; reason: 'valide' | 'azil'; noSelf: boolean }[];
   drawsOwed: Record<number, number>;              // seats and Influence lost this wave, drawn when it ends
@@ -83,7 +89,6 @@ export interface Court {
 }
 
 export interface KaderStep {
-  iskender: boolean;
   drawn: Kader[];
   passed: Kader[];
   played: Kader | null;
@@ -98,7 +103,7 @@ export type Peek =
   | { to: PID; c: number; kind: 'discards'; of: PID; cards: Kader[]; source: string }
   | { to: PID; c: number; kind: 'casus'; of: PID; plays: { as: string; field: Field; target: PID }[] }
   | { to: PID; c: number; kind: 'sameSide'; a: PID; b: PID; same: boolean }
-  | { to: PID; c: number; kind: 'playedBy'; by: PID; card: string }
+  | { to: PID; c: number; kind: 'playedBy'; on: PID; by: PID | null; card: string | null }   // Nöbet; null: nobody else played on them
   | { to: PID; c: number; kind: 'stolen'; from: PID; card: string }
   | { to: PID; c: number; kind: 'role'; side: Side; traitors: PID[] };   // dealt at setup; traitors see each other
 
@@ -139,7 +144,7 @@ export type Ask =
   | { id: number; to: PID; type: 'venedik'; cards: Kader[] };
 
 export interface Game {
-  v: 1;
+  v: 2;                                   // bump when the state's shape changes: older saved games go back to the lobby
   rng: number;
   learning: boolean;
   players: Player[];

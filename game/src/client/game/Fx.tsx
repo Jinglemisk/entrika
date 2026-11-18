@@ -13,7 +13,7 @@ export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'seat'; 
 export interface Banner { key: number; who: PID | null; text: string }
 
 const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', draw: 'draw' };
-const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'firuze', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
+const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
 const SEAT_MS = 2200;
 const BANNER_MS = 3200;
 

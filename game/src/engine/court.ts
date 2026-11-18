@@ -3,17 +3,19 @@
 // clockwise from Süleyman's left, summed Influence, then draws.
 import { intrigueById, soleField, type Field } from './content.ts';
 import {
-  P, ackAll, ask, checkHand, clockwise, companionDef, companionIs, companionUp, discardCard, drawIntrigue, eligible, eligibleList,
+  P, ackAll, ask, checkHand, clockwise, companionDef, companionUp, discardCard, drawIntrigue, eligible, eligibleList,
   ensureKader, favorOn, fieldsOpen, isMinister, log, lose, must, readyPower, seatOf, top,
 } from './core.ts';
 import { checkAmbitions } from './ambitions.ts';
 import type { Game, PID, Play, RevealedPlay, WavePlay } from './types.ts';
 
-const INFO_CARDS = ['casus', 'muhurlu-evrak', 'teftis'];
+const INFO_CARDS = ['casus', 'muhurlu-evrak', 'teftis', 'nobet'];
+const BACKERS = ['muhur', 'kefalet'];
 const REPLACERS = ['valide', 'azil'];
 
 /** How many cards this player may still put down in the current wave. */
 export function waveAllowance(g: Game, id: PID): number {
+  if (g.court?.silenced.includes(id)) return 0;   // Sükût
   const perWave = readyPower(g, 'hurrem', 'favor')?.id === id ? 2 : 1;
   return Math.min(perWave, P(g, id).hand.length);
 }
@@ -39,7 +41,8 @@ export function legalTargets(g: Game, owner: PID, as: string): PID[] {
   const rule = intrigueById[as].target;
   return g.players
     .filter(p => !p.sultan)
-    .filter(p => rule === 'minister' ? isMinister(g, p.id) : rule === 'other' ? p.id !== owner : rule === 'self' ? p.id === owner : true)
+    .filter(p => rule === 'minister' ? isMinister(g, p.id) : rule === 'first' ? g.ministers.first === p.id
+      : rule === 'other' ? p.id !== owner : rule === 'self' ? p.id === owner : true)
     .map(p => p.id);
 }
 
@@ -54,7 +57,7 @@ export function playableForms(g: Game, id: PID, uid: number): { as: string; fiel
   if (r) {
     for (const named of r === 'akil-hocasi' ? fieldsOpen(g) : [undefined]) {
       const rf = effectiveField(g, id, card.field, r, named);
-      // skip a recast that plays exactly like the printed card; Matrakçı may still turn an Akıl Hocası to the other field
+      // skip a recast that plays exactly like the printed card; Sümbül Ağa may still turn an Oyunbozan to the other field
       if (rf && !(r === card.kind && rf === f) && legalTargets(g, id, r).length) out.push({ as: r, field: rf, recast: true });
     }
   }
@@ -67,6 +70,8 @@ export function openWave(g: Game) {
   c.submitted = {};
   c.plays = [];
   c.drawsOwed = {};
+  c.silenced = c.silenceNext;   // the silenced phone just passes, with no sign the table could read
+  c.silenceNext = [];
   g.sub = 'wave';
   for (const p of clockwise(g)) {
     const can = waveAllowance(g, p.id) > 0 && p.hand.some(card => playableForms(g, p.id, card.uid).length > 0);
@@ -91,7 +96,7 @@ export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
     if (wp.recastAs) {
       must(canRecast(g, id) === wp.recastAs, 'Kulun şu an bu kartı çeviremez.');
       as = wp.recastAs;
-      if (as === 'akil-hocasi') must(wp.field === 'harem' || wp.field === 'divan', 'Akıl Hocası için alan seç.');
+      if (as === 'akil-hocasi') must(wp.field === 'harem' || wp.field === 'divan', 'Oyunbozan için alan seç.');
     }
     const field = effectiveField(g, id, card.field, as, wp.recastAs ? wp.field : undefined);
     must(field, 'Bu kart açık alanın kartı değil.');
@@ -124,6 +129,8 @@ export function flipWave(g: Game) {
       if (pl.recast) p.companionUsed = true;
       plays.push(pl);
     }
+    p.playedThisCrisis += checked.length;
+    p.stats.playedMax = Math.max(p.stats.playedMax, p.playedThisCrisis);
   }
   c.plays = plays;
   if (!plays.length) return endCourt(g);
@@ -145,8 +152,8 @@ export function resolveWave(g: Game) {
     ...(pl.movedFrom !== undefined ? { movedFrom: pl.movedFrom } : {}),
   }));
   const plays = c.plays;
-  for (const pl of plays) c.history.push({ owner: pl.owner, as: pl.as, field: pl.field, target: pl.target });
-  // protections first: Akıl Hocası guards its player from other cards of its field, from this flip on
+  for (const pl of plays) c.history.push({ owner: pl.owner, as: pl.as, field: pl.field, target: pl.target, wave: c.wave });
+  // protections first: Oyunbozan (akil-hocasi) guards its player from other cards of its field, from this flip on
   plays.forEach(pl => {
     if (pl.as !== 'akil-hocasi') return;
     const list = (c.akil[pl.target] ??= []);
@@ -157,7 +164,9 @@ export function resolveWave(g: Game) {
   });
   // a card that needs a Minister checks for one at the flip
   plays.forEach((pl, i) => {
-    if (ok(i) && intrigueById[pl.as].target === 'minister' && !isMinister(g, pl.target)) set(i, 'void', 'notMinister');
+    const rule = intrigueById[pl.as].target;
+    if (ok(i) && rule === 'minister' && !isMinister(g, pl.target)) set(i, 'void', 'notMinister');
+    if (ok(i) && rule === 'first' && g.ministers.first !== pl.target) set(i, 'void', 'notFirst');
   });
   plays.forEach((pl, i) => {
     if (!ok(i)) return;
@@ -177,12 +186,17 @@ export function resolveWave(g: Game) {
     const daye = pl.as === 'valide' && pl.recast;   // Daye Hatun's Valide can't seat its owner
     c.replaceQueue.push({ owner: pl.owner, target: pl.target, play: i, reason: pl.as as 'valide' | 'azil', noSelf: daye });
   });
-  // information
+  // information, and cards that act later
   plays.forEach((pl, i) => {
     if (!ok(i)) return;
     if (pl.as === 'teftis') c.teftis.push({ owner: pl.owner, target: pl.target });
     if (pl.as === 'kefalet') c.kefalet.push({ owner: pl.owner, target: pl.target });
     if (pl.as === 'casus') c.casus.push({ owner: pl.owner, target: pl.target });
+    if (pl.as === 'nobet') c.nobet.push({ owner: pl.owner, target: pl.target });
+    if (pl.as === 'defterdar' && !c.defterdar.includes(pl.target)) c.defterdar.push(pl.target);
+    if (pl.as === 'nazar' && !c.nazar.includes(pl.target)) c.nazar.push(pl.target);
+    if (pl.as === 'sukut' && !c.silenceNext.includes(pl.target)) c.silenceNext.push(pl.target);
+    if (BACKERS.includes(pl.as)) P(g, pl.owner).stats.backedMinister = true;
     if (pl.as === 'muhurlu-evrak') {
       ensureKader(g, 3);
       g.peeks.push({ to: pl.owner, c: g.crisisNo, kind: 'kaderTop', cards: top(g, 3), source: 'muhurlu-evrak' });
@@ -255,16 +269,11 @@ function finishWave(g: Game) {
   checkAmbitions(g);
   log(g, 'waveResolved', { wave: c.wave });
   g.sub = 'seen';
-  // Lokman Ağa: a secret look, decided inside the pause everyone sits through
-  for (const p of g.players) {
-    if (!companionIs(g, p.id, 'lokman') || p.companionUsed) continue;
-    const onMe = c.plays.map((pl, i) => (pl.target === p.id && pl.owner !== p.id ? i : -1)).filter(i => i >= 0);
-    if (onMe.length) ask(g, { to: p.id, type: 'window', power: 'lokman', ctx: { plays: onMe } });
-  }
   ackAll(g, 'wave');
 }
 
-/** No one played in the last wave: Casus shows what it watched, then Veliaht and the Ferman may move a seat. */
+/** No one played in the last wave: Mantık shows what it watched, Nöbet asks which card to trace, then Veliaht and the
+ *  Ferman may move a seat. */
 function endCourt(g: Game) {
   const c = g.court!;
   c.done = true;
@@ -272,6 +281,12 @@ function endCourt(g: Game) {
   for (const k of c.casus) {
     const plays = c.history.filter(h => h.owner === k.target).map(h => ({ as: h.as, field: h.field, target: h.target }));
     g.peeks.push({ to: k.owner, c: g.crisisNo, kind: 'casus', of: k.target, plays });
+  }
+  for (const k of c.nobet) {
+    // cards other players put on the watched player; the watcher's own cards would teach them nothing
+    const plays = c.history.map((h, i) => (h.target === k.target && h.owner !== k.target && h.owner !== k.owner ? i : -1)).filter(i => i >= 0);
+    if (plays.length) ask(g, { to: k.owner, type: 'window', power: 'nobet', ctx: { on: k.target, plays } });
+    else g.peeks.push({ to: k.owner, c: g.crisisNo, kind: 'playedBy', on: k.target, by: null, card: null });
   }
   g.sub = 'veliaht';
   const m = readyPower(g, 'mustafa', 'base');
