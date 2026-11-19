@@ -327,28 +327,27 @@ All four list Latin Extended. Step 3 checks İ ı ş ğ in each.
 | Mood | Dignified and tense, not martial. No march, and no quotation of the İstiklal Marşı or any anthem |
 | Effects (if the skin carries them) | Telegraph key click to play a card; rubber-stamp thud and a typewriter bell for the Takdir; a short rising fourth for Zafer; a muted low cluster for Hezimet |
 
-## 4. Images (sourced 2026-11-20)
+## 4. Images and skin (2026-11-20)
 
-Every Character, Yaver, Entrika, Buhran and Telgraf card has a real period photograph in `art/`, listed in `art/manifest.json` with its Commons file page, licence, author and date where given, a note and a focus point. The first candidate per id is the pick.
+Every Character, Yaver, Entrika, Buhran and Telgraf card has a real period photograph in `art/`, listed in `art/manifest.json` with its Commons file page, licence, author and date, a note and a focus point; the first candidate is the pick. No portrait is under 400 px wide. The skin is built: `cards/make.py` draws the frames, backs, drawn art, the seal and the Gazi's seat; `cards/skin_json.py` writes `skin.json` from the manifest; `skin.css` holds the tokens, fonts and card look; the icons build from `icons/masks/`.
 
-- **Sources:** all from Wikimedia Commons. The richest set is the Albert Kahn mission's autochromes of Ankara, December 1922 (Frédéric Gadmer; CC BY-SA 4.0): the Assembly hall, the council room, the post office, the committee building, Hacı Bayram, the Soviet embassy, Çankaya. The rest are public domain: Gallica (Agence Rol and Meurisse press photos), the Library of Congress, the Nationaal Archief, the TBMM album.
-- **Gazi:** a frontal 1922 kalpak portrait (Agence Meurisse via Gallica), with a second from the Nationaal Archief. No other still shows him; a Hâkimiyet-i Milliye front page and an İzmir painting that did were dropped.
-- **Icons:** the Damga masks are in `icons/masks/`, made with `icons/gen.sh` from `icons/template.txt` and `icons/subjects.tsv`, colours in `icons/meaning.json`.
+- **Sources:** Wikimedia Commons. The Albert Kahn autochromes of Ankara, December 1922 (Frédéric Gadmer; CC BY-SA 4.0) give the Assembly, the council room, the post office, the committee building, the ministries, Çankaya, the citadel walls and Hacı Bayram. The rest are public domain: Gallica (Agence Rol and Meurisse), the Library of Congress, the Nationaal Archief.
+- **Gazi:** a frontal 1922 kalpak portrait (Gallica). No other card or still shows him; his seat is a stepped brass portal with brass rays, and the seal is the Assembly's rubber stamp round a rostrum. No flag or crescent and star anywhere in the skin.
 
-Weak or missing (status in the manifest):
+People replaced because no portrait above 400 px exists (same fit, same card):
 
-| Id | Problem |
-|---|---|
-| `char.hurrem` (Halide Edib) | No frontal 1920s portrait found; the pick is a seated studio photo with a small head, the alternative is veiled (1917) |
-| `char.ibrahim` (Fevzi), `char.hatice` (Adnan) | Frontal but small (under 300 px wide) |
-| `char.rustem` (Celal Bayar) | Dated 1940; no 1920s portrait found |
-| `comp.ebussuud`, `comp.iskender`, `comp.firuze`, `comp.lokman` | TBMM album thumbnails at 120 px; the 180 px originals were rate-limited |
-| `comp.bali`, `comp.gulfem` | Small (about 250 px) |
-| `card.nobet` (Santral) | A Seattle switchboard, 1921: no Turkish one found |
-| `card.sukut` (Sansür) | Placeholder (a masthead): no photo of censored blank columns found |
-| `crisis.macar` (Sakarya) | An army exercise of April 1922, not the battle: the Sakarya photos show Mustafa Kemal |
+| Slot | Was | Now | Why they fit |
+|---|---|---|---|
+| `hatice` (Karantina, Teşhis) | Dr. Adnan Bey | **Dr. Refik Bey** (Saydam) | A doctor, Sıhhiye Vekili from 1921 |
+| `bali` (İtimat Oyu) | Kılıç Ali | **Refet Paşa** (Bele) | Ankara's man in Istanbul in 1922; whoever he backs stays put |
+| `ebussuud` (Tahkikat) | Falih Rıfkı | **Tevfik Rüştü Bey** (Aras) | Doctor and deputy; he reads the discarded papers too |
+| `gulsah` (Karalama) | Aka Gündüz | **Sedat Simavi** | Cartoonist, founder of the satirical Diken |
+| `gulfem` (Teminat) | Rifat Efendi | **Mehmet Akif** | Put his word beside Ankara's (the İstiklal Marşı, the 1920 sermons) |
+| `iskender` (Bütçe) | Hasan Saka | **Ferid Bey** (Tek) | The first Maliye Vekili, 1920 |
+| `firuze` (Manşet) | Yunus Nadi | **Celal Nuri** | Journalist and First Assembly deputy |
+| `lokman` (Santral) | Cevat Abbas | **Fethi Bey** (Okyar) | Dahiliye Vekili: who called whom |
 
-`Cemal Nadir` had no real portrait, so the Karalama Yaver is now Aka Gündüz.
+Still weak (status in the manifest): `char.hurrem` (no frontal 1920s Halide portrait), `char.rustem` (Celal Bayar dated 1940), `card.nobet` (a Seattle switchboard: no Turkish one on Commons), `card.sukut` (Allied troops in Galata: no scan of a page with censored blank columns on Commons), `crisis.macar` (an April 1922 exercise: every Sakarya photo shows Mustafa Kemal).
 
 ## 5. Decisions (review, 2026-11-20)
 

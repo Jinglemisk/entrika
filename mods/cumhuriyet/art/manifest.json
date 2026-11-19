@@ -47,6 +47,21 @@
    "status": "found",
    "candidates": [
     {
+     "file": "char.ibrahim-3.jpg",
+     "size": [
+      436,
+      549
+     ],
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Fevzi_cakmak.png",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Fevzi_cakmak.png",
+     "licence": "Public domain (Wikimedia Commons); author: user:Monox",
+     "note": "Fevzi Paşa (Çakmak) as Mareşal; date not given on Commons. In kalpak and uniform, frontal; date not given on Commons (the kalpak and the Mareşal star place it in the 1920s).",
+     "focus": [
+      0.5,
+      0.3
+     ]
+    },
+    {
      "file": "char.ibrahim-1.jpg",
      "size": [
       1129,
@@ -55,7 +70,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Fevzi_%C3%87akmak.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Fevzi_%C3%87akmak.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Archives of Turkish Armed Forces; date: 1936-01-01",
-     "note": "Fevzi Paşa (Çakmak) in uniform; dated 1936 on Commons. Profile, dated 1936: the only portrait above 300 px wide.",
+     "note": "Fevzi Paşa (Çakmak) in uniform; dated 1936 on Commons. Profile, 1936.",
      "focus": [
       0.45,
       0.3
@@ -430,7 +445,7 @@
      "file": "comp.ebussuud-3.jpg",
      "size": [
       614,
-      1141
+      955
      ],
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/De_gauche_%C3%A0_droite%2C_Fethy_Bey%2C_Ambassadeur_%C3%A0_Paris%2C_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey%2C_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:De_gauche_%C3%A0_droite,_Fethy_Bey,_Ambassadeur_%C3%A0_Paris,_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey,_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
@@ -587,18 +602,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "card.akil-hocasi-2.jpg",
+     "file": "card.akil-hocasi-3.jpg",
      "size": [
-      1187,
-      1600
+      1280,
+      949
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37125.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37125.jpg",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Turquie%2C_Angora%2C_Les_murailles_N._E._et_le_ravin_-_A37116.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Les_murailles_N._E._et_le_ravin_-_A37116.jpg",
      "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 30 December 1922",
-     "note": "The guarded entrance of the Assembly, Ankara, 30 Dec 1922; autochrome by Frédéric Gadmer. Levels lifted.",
+     "note": "The north-east walls of the Ankara citadel, 30 Dec 1922; autochrome by Frédéric Gadmer. The citadel walls: a different subject from the Assembly façade used for İtimat Oyu.",
      "focus": [
       0.5,
-      0.45
+      0.5
      ]
     }
    ]
@@ -729,16 +744,16 @@
     {
      "file": "card.iftira-2.jpg",
      "size": [
-      1213,
-      1600
+      793,
+      642
      ],
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Aydede_Jahrgang_1922_Titelblatt_Ausgabe_Nummer_2.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Aydede_Jahrgang_1922_Titelblatt_Ausgabe_Nummer_2.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Refik Halid Karay; date: 1922",
-     "note": "Cover of the satirical weekly Aydede, issue 2, 1922. The cartoon is at the foot of the cover; frame the lower third.",
+     "note": "Cover of the satirical weekly Aydede, issue 2, 1922. Cropped from the source. Cropped to the cartoon at the foot of the cover.",
      "focus": [
       0.5,
-      0.8
+      0.5
      ]
     }
    ]

@@ -195,7 +195,7 @@
   },
   "characters": {
     "suleyman": {
-      "name": "Gazi Mustafa Kemal Pasha",
+      "name": "Gazi Mustafa Kemal",
       "short": "Mustafa Kemal",
       "base": {
         "name": "Commander-in-Chief",
@@ -240,7 +240,7 @@
         "name": "Fortress of Kars",
         "text": "Name a player: next crisis they can't become a Minister by any route."
       },
-      "flavor": "He took Kars, and told Ankara what he thought."
+      "flavor": "He took Kars, and told Ankara his mind."
     },
     "mustafa": {
       "name": "İsmet Pasha",
@@ -260,11 +260,11 @@
       "short": "Refik",
       "base": {
         "name": "Quarantine",
-        "text": "Before the Session, choose a player. This crisis, Intrigue can't unseat them and they lose no Standing, Verdict included."
+        "text": "Before the Session, pick a player: this crisis Intrigue can't unseat them, and they lose no Standing."
       },
       "favor": {
         "name": "Diagnosis",
-        "text": "Choose two players other than the Gazi and yourself. Secretly learn whether they are on the same side."
+        "text": "Pick two players other than the Gazi and you. Secretly learn if they share a side."
       },
       "flavor": "Doctor; Minister of Health from 1921."
     },
@@ -286,13 +286,13 @@
       "short": "Rauf",
       "base": {
         "name": "Hamidiye",
-        "text": "Take 1 random Intrigue card from another player's hand, then discard down to your hand limit."
+        "text": "Take 1 random Intrigue card from another player's hand, then discard to your limit."
       },
       "favor": {
         "name": "Ship's Log",
-        "text": "After the Telegram step, secretly look at the card or cards the First Minister discarded."
+        "text": "After the Telegram step, secretly see what the First Minister discarded."
       },
-      "flavor": "Captain of the Hamidiye; Malta, then Ankara."
+      "flavor": "Hamidiye's captain; Malta, then Ankara."
     },
     "gritti": {
       "name": "Franklin-Bouillon",
@@ -539,7 +539,7 @@
   },
   "crises": {
     "yeniceri": {
-      "name": "Mutiny of the Mobile Forces",
+      "name": "The Irregulars' Mutiny",
       "text": "Players with 0 Standing draw 1 Intrigue card each."
     },
     "hazine": {
