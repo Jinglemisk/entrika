@@ -103,40 +103,40 @@
  },
  "tints": {
   "char.hurrem": [
-   "#8e1b1b",
-   "#2e0808"
-  ],
-  "char.gritti": [
-   "#8e1b1b",
-   "#2e0808"
+   "#3e6a32",
+   "#11200d"
   ],
   "char.ibrahim": [
-   "#5d6870",
-   "#1b2125"
-  ],
-  "char.barbaros": [
-   "#5d6870",
-   "#1b2125"
-  ],
-  "char.sarlken": [
-   "#3a3b40",
-   "#0b0b0d"
+   "#8e1b1b",
+   "#2e0808"
   ],
   "char.sahsultan": [
-   "#6e5414",
-   "#1a1305"
+   "#8e1b1b",
+   "#2e0808"
   ],
   "char.mustafa": [
-   "#6e5414",
-   "#1a1305"
+   "#a03a2a",
+   "#2e0c08"
   ],
   "char.hatice": [
-   "#4a3e4e",
-   "#151017"
+   "#8e1b1b",
+   "#2e0808"
   ],
   "char.rustem": [
    "#3e4a3c",
    "#11160f"
+  ],
+  "char.barbaros": [
+   "#4a3e4e",
+   "#151017"
+  ],
+  "char.gritti": [
+   "#2f4a52",
+   "#0c1518"
+  ],
+  "char.sarlken": [
+   "#a8541c",
+   "#2e1406"
   ],
   "char.tahmasp": [
    "#5a1414",
@@ -146,7 +146,7 @@
  "art": {
   "intrigue.akil-hocasi": {
    "src": "art/card.akil-hocasi-1.jpg",
-   "pos": "50% 50%"
+   "pos": "50% 40%"
   },
   "intrigue.azil": {
    "src": "art/card.azil-1.jpg",
@@ -158,10 +158,10 @@
   },
   "intrigue.defterdar": {
    "src": "art/card.defterdar-1.jpg",
-   "pos": "60% 50%"
+   "pos": "30% 40%"
   },
   "intrigue.iftira": {
-   "src": "art/card.iftira-2.jpg",
+   "src": "art/card.iftira-1.jpg",
    "pos": "62% 40%"
   },
   "intrigue.kefalet": {
@@ -178,7 +178,7 @@
   },
   "intrigue.nazar": {
    "src": "art/card.nazar-1.jpg",
-   "pos": "45% 40%"
+   "pos": "42% 35%"
   },
   "intrigue.nobet": {
    "src": "art/card.nobet-1.jpg",
@@ -186,7 +186,7 @@
   },
   "intrigue.saray-tabibi": {
    "src": "art/card.saray-tabibi-1.jpg",
-   "pos": "50% 45%"
+   "pos": "60% 45%"
   },
   "intrigue.sukut": {
    "src": "art/card.sukut-1.jpg",
@@ -194,7 +194,7 @@
   },
   "intrigue.teftis": {
    "src": "art/card.teftis-1.jpg",
-   "pos": "25% 40%"
+   "pos": "50% 40%"
   },
   "intrigue.valide": {
    "src": "art/card.valide-1.jpg",
@@ -202,47 +202,47 @@
   },
   "companions.ayas": {
    "src": "art/comp.ayas-1.jpg",
-   "pos": "37% 25%"
+   "pos": "57% 22%"
   },
   "companions.bali": {
    "src": "art/comp.bali-1.jpg",
-   "pos": "55% 19%"
+   "pos": "53% 27%"
   },
   "companions.daye": {
    "src": "art/comp.daye-1.jpg",
-   "pos": "58% 36%"
+   "pos": "37% 25%"
   },
   "companions.ebussuud": {
    "src": "art/comp.ebussuud-1.jpg",
-   "pos": "48% 41%"
+   "pos": "56% 51%"
   },
   "companions.firuze": {
    "src": "art/comp.firuze-1.jpg",
-   "pos": "55% 36%"
+   "pos": "66% 25%"
   },
   "companions.gulaga": {
    "src": "art/comp.gulaga-1.jpg",
-   "pos": "54% 38%"
+   "pos": "55% 44%"
   },
   "companions.gulfem": {
    "src": "art/comp.gulfem-1.jpg",
-   "pos": "59% 28%"
+   "pos": "58% 7%"
   },
   "companions.gulsah": {
    "src": "art/comp.gulsah-1.jpg",
-   "pos": "54% 30%"
+   "pos": "51% 47%"
   },
   "companions.iskender": {
    "src": "art/comp.iskender-1.jpg",
-   "pos": "57% 22%"
+   "pos": "44% 40%"
   },
   "companions.lokman": {
    "src": "art/comp.lokman-1.jpg",
-   "pos": "49% 37%"
+   "pos": "59% 41%"
   },
   "companions.matrakci": {
    "src": "art/comp.matrakci-1.jpg",
-   "pos": "62% 6%"
+   "pos": "45% 43%"
   },
   "companions.nigar": {
    "src": "art/comp.nigar-1.jpg",
@@ -250,19 +250,19 @@
   },
   "companions.seker": {
    "src": "art/comp.seker-1.jpg",
-   "pos": "51% 47%"
+   "pos": "52% 32%"
   },
   "companions.sumbul": {
    "src": "art/comp.sumbul-1.jpg",
-   "pos": "55% 38%"
+   "pos": "54% 35%"
   },
   "crises.divan": {
    "src": "art/crisis.divan-1.jpg",
-   "pos": "50% 40%"
+   "pos": "50% 50%"
   },
   "crises.harem": {
    "src": "art/crisis.harem-1.jpg",
-   "pos": "40% 40%"
+   "pos": "50% 50%"
   },
   "crises.hazine": {
    "src": "art/crisis.hazine-1.jpg",
@@ -274,7 +274,7 @@
   },
   "crises.isabella": {
    "src": "art/crisis.isabella-1.jpg",
-   "pos": "60% 45%"
+   "pos": "50% 40%"
   },
   "crises.istanbul": {
    "src": "art/crisis.istanbul-1.jpg",
@@ -282,36 +282,36 @@
   },
   "crises.macar": {
    "src": "art/crisis.macar-1.jpg",
-   "pos": "50% 55%"
+   "pos": "50% 50%"
   },
   "crises.muhur": {
    "src": "art/crisis.muhur-1.jpg",
-   "pos": "50% 50%"
+   "pos": "50% 45%"
   },
   "crises.sehzade": {
    "src": "art/crisis.sehzade-1.jpg",
-   "pos": "50% 50%"
+   "pos": "50% 45%"
   },
   "crises.venedik": {
    "src": "art/crisis.venedik-1.jpg",
-   "pos": "50% 50%"
+   "pos": "50% 45%"
   },
   "crises.yeniceri": {
    "src": "art/crisis.yeniceri-1.jpg",
-   "pos": "50% 50%"
+   "pos": "50% 45%"
   },
   "kader.x": {
    "src": "art/term.hiyanet-1.jpg",
-   "pos": "74% 41%"
+   "pos": "40% 40%"
   },
   "kader.h": {
    "src": "art/term.hizmet-1.jpg",
-   "pos": "40% 45%"
+   "pos": "35% 40%"
   }
  },
  "icons": {
   "dir": "icons/",
-  "version": "1"
+  "version": "2"
  },
  "niche": {
   "path": "M.5 119.5V50A49.5 49.5 0 0 1 99.5 50v69.5z",
@@ -322,28 +322,33 @@
  "frieze": [
   {
    "char": "rustem",
-   "size": 114,
+   "size": 117,
    "x": -37
   },
   {
-   "char": "hurrem",
-   "size": 173,
-   "x": 27
+   "char": "sahsultan",
+   "size": 127,
+   "x": 84
   },
   {
    "char": "suleyman",
-   "size": 229,
-   "x": 74
+   "size": 176,
+   "x": 164
+  },
+  {
+   "char": "hurrem",
+   "size": 142,
+   "x": 297
   },
   {
    "char": "ibrahim",
-   "size": 122,
-   "x": 306
+   "size": 158,
+   "x": 396
   },
   {
    "char": "hatice",
-   "size": 163,
-   "x": 366
+   "size": 167,
+   "x": 442
   }
  ],
  "music": {

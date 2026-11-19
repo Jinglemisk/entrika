@@ -83,7 +83,6 @@ LIGHT, DARK = '#f3ead3', '#1c1d20'
 def arch(yb): return f'M50 {yb}V172A200 100 0 0 1 450 172V{yb}Z'
 def lintel(yb): return f'M50 {yb}V96L74 72H426L450 96V{yb}Z'
 def octagon(yb): return f'M50 {yb}V118L96 72H404L450 118V{yb}Z'
-def letter(yb): return f'M50 {yb}V100H450V{yb}Z'
 
 # ------------------------------------------------------------------ defs
 def defs():
@@ -108,7 +107,6 @@ def defs():
  <stop offset="0" stop-color="#5e430e"/><stop offset=".16" stop-color="#c9a23a"/><stop offset=".3" stop-color="#f3dc92"/><stop offset=".46" stop-color="#a8822a"/>
  <stop offset=".64" stop-color="#6e5212"/><stop offset=".8" stop-color="#e2c56a"/><stop offset="1" stop-color="#6a4c10"/></linearGradient>
 <linearGradient id="g-vellum" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7efdc"/><stop offset=".55" stop-color="#e9dcbd"/><stop offset="1" stop-color="#d3c29c"/></linearGradient>
-<linearGradient id="g-roll" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9a578"/><stop offset=".3" stop-color="#f6eedb"/><stop offset=".62" stop-color="#d9c79f"/><stop offset="1" stop-color="#7e6b48"/></linearGradient>
 <linearGradient id="g-sand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4e2416"/><stop offset=".25" stop-color="#a65a3c"/><stop offset=".45" stop-color="#d08a64"/><stop offset=".7" stop-color="#8a4630"/><stop offset="1" stop-color="#3a1a10"/></linearGradient>
 <linearGradient id="g-oak" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a1c12"/><stop offset=".5" stop-color="#4a3322"/><stop offset="1" stop-color="#22160d"/></linearGradient>
 <linearGradient id="g-wax" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c2382c"/><stop offset=".5" stop-color="#8a1c14"/><stop offset="1" stop-color="#4a0b08"/></linearGradient>
@@ -136,6 +134,7 @@ def defs():
 <pattern id="p-ashlar-faint" width="60" height="30" patternUnits="userSpaceOnUse"><path d="M0 .5H60M0 15.5H60M.5 0V15M30.5 15V30" stroke="#000" stroke-width="1" opacity=".16"/></pattern>
 <pattern id="p-feather" width="30" height="40" patternUnits="userSpaceOnUse"><rect width="30" height="40" fill="#121318"/><path d="M15 2C25 12 25 26 15 38C5 26 5 12 15 2Z" fill="#20232c"/><path d="M15 4V38" stroke="#3a3f4d" stroke-width="1.2"/><path d="M15 12L9 8M15 18L8 13M15 24L8 19M15 12L21 8M15 18L22 13M15 24L22 19" stroke="#2e323d" stroke-width="1"/></pattern>
 <pattern id="p-mail" width="12" height="10" patternUnits="userSpaceOnUse"><circle cx="6" cy="5" r="4" fill="none" stroke="#000" stroke-width="1" opacity=".22"/><circle cx="0" cy="0" r="4" fill="none" stroke="#000" stroke-width="1" opacity=".22"/><circle cx="12" cy="0" r="4" fill="none" stroke="#000" stroke-width="1" opacity=".22"/><circle cx="0" cy="10" r="4" fill="none" stroke="#000" stroke-width="1" opacity=".22"/><circle cx="12" cy="10" r="4" fill="none" stroke="#000" stroke-width="1" opacity=".22"/></pattern>
+<pattern id="p-vine" width="36" height="44" patternUnits="userSpaceOnUse"><rect width="36" height="44" fill="#2a0c16"/><path d="M0 22C9 12 27 32 36 22" fill="none" stroke="#3e5a2a" stroke-width="2"/><g fill="#5a1a3a"><circle cx="12" cy="28" r="3.2"/><circle cx="18" cy="28" r="3.2"/><circle cx="15" cy="33" r="3.2"/><circle cx="21" cy="33" r="3.2"/><circle cx="18" cy="38" r="3.2"/></g><path d="M26 14c4-4 8-2 8 2-4 0-6 2-8-2z" fill="#3e5a2a"/></pattern>
 <pattern id="p-rungs" width="20" height="44" patternUnits="userSpaceOnUse"><rect width="20" height="44" fill="#1e2036"/><rect y="18" width="20" height="8" fill="#5c5f7c"/><rect y="18" width="20" height="2" fill="#9aa0c8" opacity=".6"/></pattern>
 <!-- small parts -->
 <symbol id="s-rivet" viewBox="-6 -6 12 12" x="-6" y="-6" width="12" height="12" overflow="visible"><circle r="5" fill="url(#g-rivet)"/><circle r="5" fill="none" stroke="#08090a" stroke-width=".8"/></symbol>
@@ -176,14 +175,11 @@ def crisis_face():
     return face(None, under, frame, nameband(yb, 'url(#g-sand)'), DARK, '#8a4630', 'url(#g-sand)')
 
 def kader_face(broken):
+    # a cup card: a goblet-shaped window (a round bowl on a stem) on a band of vines
     yb = 380
-    win = letter(yb)
-    roll = ('<g filter="url(#f-shadow)"><rect x="40" y="70" width="420" height="36" rx="18" fill="url(#g-roll)"/></g>'
-            '<rect x="40" y="70" width="420" height="36" rx="18" fill="none" stroke="#5a4a30" stroke-width="2"/>'
-            '<ellipse cx="44" cy="88" rx="10" ry="18" fill="#cdb98c" stroke="#5a4a30" stroke-width="2"/><ellipse cx="44" cy="88" rx="4" ry="8" fill="#7e6b48"/>'
-            '<ellipse cx="456" cy="88" rx="10" ry="18" fill="#cdb98c" stroke="#5a4a30" stroke-width="2"/><ellipse cx="456" cy="88" rx="4" ry="8" fill="#7e6b48"/>')
-    edge = '#5a1410' if broken else '#2e5b3e'
-    return plain_face(win, yb, 'p-feather', edge, DARK, extra_frame=roll)
+    win = f'M50 {yb}V200C50 120 120 72 250 72C380 72 450 120 450 200V{yb}Z'
+    edge = '#4a0f2a' if broken else '#6a1a22'
+    return plain_face(win, yb, 'p-vine', edge, DARK)
 
 def hirs_face():
     yb = 380
@@ -234,8 +230,7 @@ def backs():
           + medallion('intrigue', 92, cy=300) + back_frame())
     write('cards/back-crisis.svg', '<rect width="500" height="700" fill="url(#p-ashlar)"/><rect width="500" height="700" fill="#2a0e08" opacity=".35"/>'
           + stag_seal(250, 190, 84) + medallion('crisis', 70, cy=400) + plate() + back_frame('url(#g-sand)'))
-    write('cards/back-kader.svg', '<rect width="500" height="700" fill="url(#p-feather)"/><rect width="500" height="700" fill="url(#g-night)" opacity=".45"/>'
-          + medallion('kader', 92) + plate() + back_frame())
+    write('cards/back-kader.svg', '<rect width="500" height="700" fill="url(#p-vine)"/><rect width="500" height="700" fill="url(#g-velvet)" opacity=".35"/>' + medallion('kader', 92) + plate() + back_frame())
     rungs = ''.join(f'<rect x="170" y="{y}" width="160" height="12" rx="2"/>' for y in range(70, 660, 52))
     write('cards/back-hirs.svg', '<rect width="500" height="700" fill="url(#g-night)"/><rect width="500" height="700" fill="url(#p-feather)" opacity=".25"/>'
           f'<g fill="url(#g-iron)" filter="url(#f-bevel)"><rect x="160" y="40" width="16" height="620"/><rect x="324" y="40" width="16" height="620"/>{rungs}</g>'
