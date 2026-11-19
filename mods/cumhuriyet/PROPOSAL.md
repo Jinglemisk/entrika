@@ -45,7 +45,7 @@ Respect rules if A is chosen (they apply in steps 2 and 3):
 | Loyalists / Traitors | **Vatansever** / **Hain**. Hain are agents of the occupation and the Istanbul government inside Ankara. Taraf is dealt at random, so no real person is ever labelled one |
 | The two Minister seats | **Birinci Vekil** / **İkinci Vekil**, the members of the İcra Vekilleri Heyeti handling this buhran |
 | Crisis | **Buhran**: a real event of 1920 to 1923 |
-| Court | **Gizli Celse**: the Assembly's closed sessions, where the real fights happened. Waves are **tur** (rounds of a vote) |
+| Court | **Gizli Celse**: the Assembly's closed sessions, where the real fights happened. Waves stay **dalga**: the word lives in the shared interface sentences |
 | Objection | **İtiraz**: an objection to a Vekil from the floor, paid with İtibar |
 | Decree | **Takdir**: Gazi's verdict on a Vekil after the result. The word means both praise and discretion |
 | Kader deck | **Telgraf**: the war was run by telegraph. The Birinci Vekil reads three telegrams, holds one back and passes two. Nobody else sees what was held back |
@@ -78,7 +78,7 @@ Every glossary term in the manual, with the muhtesem name for reference.
 | Companion | Kul | **Yaver** | See above |
 | Crisis | Kriz | **Buhran** | The word of the 1920s and 30s ("1929 buhranı") |
 | Court | Tertip | **Gizli Celse** | The closed sessions of the First Assembly |
-| Wave | dalga | **tur** | A round of voting |
+| Wave | dalga | **dalga** | Kept: a shared interface word, not a mod term |
 | Objection | İtiraz | **İtiraz** | Kept: plain and clear at the table (*Takrir* was the period word, but few know it today) |
 | Decree | Hüküm | **Takdir** | Praise and discretion in one word |
 | Sultan's base power | Ferman | **Başkumandanlık** | The 1921 law that gave him the Assembly's powers over the army |
@@ -156,7 +156,7 @@ Meclis cards act on the seats; Kulis cards act on İtibar and secrets.
 | `defterdar` | Meclis 2 | **Bütçe** | More on the table: the Birinci Vekil draws 4 Telgraf and discards 2 |
 | `nobet` | Meclis 2 | **Santral** | The switchboard knows who called: learn who played one card on this player |
 | `nazar` | Kulis 2 | **Manşet** | Front page: the Takdir on this Vekil counts double, praise or blame |
-| `sukut` | Kulis 2 | **Sansür** | Censored: this player can't play in the next tur |
+| `sukut` | Kulis 2 | **Sansür** | Censored: this player can't play in the next wave |
 
 ### Emel (12)
 

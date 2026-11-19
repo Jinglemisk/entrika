@@ -696,6 +696,9 @@
     "pref.music.why": "Dor dizisinde, aksak ritimde sessiz bir döngü.",
     "sicil": "Zabıt",
     "lobby.makeSultan": "{term.suleyman} olarak seç",
-    "lobby.shareText": "Entrika masasına gel, Meclis toplanıyor. Oda kodu: {code}"
+    "lobby.shareText": "Entrika masasına gel, Meclis toplanıyor. Oda kodu: {code}",
+    "err.exiled": "Bu oyuncu bu {term.crisis} {power.surgun} yüzünden {term.minister} olamaz.",
+    "log.surgun": "{who} bu {term.crisis} {power.surgun} yüzünden {term.minister} olamaz.",
+    "lobby.learningWhy": "Öğrenme oyunu: {term.companion}, {term.ambition} ve {term.favor} güçleri yok, Ecnebiler dağıtılmaz."
   }
 }

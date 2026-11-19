@@ -649,6 +649,9 @@
     "endLoyalty": "The fourth {term.hizmet} is played. The Republic is proclaimed.",
     "pref.music.why": "A quiet loop in the Dorian mode, in an uneven seven.",
     "sicil": "Minutes",
-    "lobby.shareText": "Join my Entrika table; the Assembly is sitting. Room code: {code}"
+    "lobby.shareText": "Join my Entrika table; the Assembly is sitting. Room code: {code}",
+    "err.exiled": "Under {power.surgun}, this player can't be {term.minister:a} this {term.crisis}.",
+    "log.surgun": "{who} is held out by {power.surgun} this {term.crisis}: they can't be {term.minister:a}.",
+    "lobby.learningWhy": "Learning game: no {term.companion:pl}, {term.ambition:pl} or {term.favor} powers, and no foreign Figures dealt."
   }
 }
