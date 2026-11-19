@@ -1,0 +1,40 @@
+{
+  "about": "Blazon icon colours by meaning for the got mod (PROPOSAL.md section 3). Each icon is one heraldic silhouette in masks/; it is tinted with its paper colour on vellum and masked with its lacquer colour on iron. Steel, blood, Kingswood and gold take the places of lapis, vermilion, malachite and gold in the UI tokens; wine is Whispers; raven covers Ravens, Ambition, Boon, Oath and secrets.",
+  "colours": {
+    "steel": {
+      "paper": "#3d5468",
+      "lacquer": "#9fb4c6",
+      "terms": ["divan", "minister", "min1", "min2", "court", "companion", "seal", "once", "percrisis", "always"]
+    },
+    "blood": {
+      "paper": "#9a2318",
+      "lacquer": "#e58b78",
+      "terms": ["hiyanet", "traitor", "treason", "crisis", "objection", "character", "suspect"]
+    },
+    "kingswood": {
+      "paper": "#2e5b3e",
+      "lacquer": "#86c29a",
+      "terms": ["hizmet", "loyalist", "loyalty", "trusted"]
+    },
+    "wine": {
+      "paper": "#8c3a55",
+      "lacquer": "#eba3bc",
+      "terms": ["harem"]
+    },
+    "gold": {
+      "paper": "#8a6410",
+      "lacquer": "#ecd38a",
+      "terms": ["suleyman", "influence", "decree", "ferman", "saray"]
+    },
+    "raven": {
+      "paper": "#2f3352",
+      "lacquer": "#b3bae0",
+      "terms": ["kader", "ambition", "favor", "allegiance", "secret"]
+    },
+    "ink": {
+      "paper": "#231c17",
+      "lacquer": "#efe6cf",
+      "terms": ["intrigue", "base", "death"]
+    }
+  }
+}
