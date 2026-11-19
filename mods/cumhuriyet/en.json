@@ -256,8 +256,8 @@
       "flavor": "He held İnönü, then the table at Lausanne."
     },
     "hatice": {
-      "name": "Dr. Adnan Bey",
-      "short": "Adnan",
+      "name": "Dr. Refik Bey",
+      "short": "Refik",
       "base": {
         "name": "Quarantine",
         "text": "Before the Session, choose a player. This crisis, Intrigue can't unseat them and they lose no Standing, Verdict included."
@@ -266,7 +266,7 @@
         "name": "Diagnosis",
         "text": "Choose two players other than the Gazi and yourself. Secretly learn whether they are on the same side."
       },
-      "flavor": "Doctor, Minister of Health, Deputy Speaker."
+      "flavor": "Doctor; Minister of Health from 1921."
     },
     "rustem": {
       "name": "Celal Bey",
@@ -338,9 +338,9 @@
       "flavor": "She founded a party before women could vote."
     },
     "bali": {
-      "name": "Kılıç Ali",
+      "name": "Refet Pasha",
       "text": "Play an Intrigue card as Vote of Confidence.",
-      "flavor": "He earned his name, \"Sword\", defending Antep."
+      "flavor": "Ankara's man in Istanbul; whoever he backs stays put."
     },
     "ayas": {
       "name": "Salih Bey",
@@ -363,14 +363,14 @@
       "flavor": "Ran Ankara's secret network in occupied Istanbul."
     },
     "ebussuud": {
-      "name": "Falih Rıfkı",
+      "name": "Tevfik Rüştü Bey",
       "text": "Play an Intrigue card as Inquiry.",
-      "flavor": "A journalist; he reads the paper others threw away."
+      "flavor": "Doctor and deputy; he reads the discarded papers too."
     },
     "gulsah": {
-      "name": "Aka Gündüz",
+      "name": "Sedat Simavi",
       "text": "Play an Intrigue card as Smear.",
-      "flavor": "A writer with a sharp satirical pen."
+      "flavor": "Founder of the satirical Diken; one line cuts anyone down."
     },
     "seker": {
       "name": "Safiye Ali",
@@ -378,19 +378,19 @@
       "flavor": "Turkey's first woman doctor; she treats anyone hurt."
     },
     "gulfem": {
-      "name": "Rifat Efendi",
+      "name": "Mehmet Akif",
       "text": "Play an Intrigue card as Surety.",
-      "flavor": "Mufti of Ankara; he put his name beside Ankara's."
+      "flavor": "Poet of the anthem; he put his word beside Ankara's."
     },
     "iskender": {
-      "name": "Hasan Bey",
+      "name": "Ferid Bey",
       "text": "Play an Intrigue card as Budget.",
-      "flavor": "The state's accounts are in his ledger."
+      "flavor": "The first Minister of Finance, with an empty treasury."
     },
     "firuze": {
-      "name": "Yunus Nadi",
+      "name": "Celal Nuri",
       "text": "Play an Intrigue card as Headline.",
-      "flavor": "He knows whose name makes the front page."
+      "flavor": "Journalist and deputy; he knows who makes the front page."
     },
     "gulaga": {
       "name": "Ahmet Ağaoğlu",
@@ -398,9 +398,9 @@
       "flavor": "Director of the Press; every line passes his desk."
     },
     "lokman": {
-      "name": "Cevat Abbas",
+      "name": "Fethi Bey",
       "text": "Play an Intrigue card as Switchboard.",
-      "flavor": "He knows who called Çankaya."
+      "flavor": "Minister of the Interior; ask him who called whom."
     }
   },
   "intrigue": {

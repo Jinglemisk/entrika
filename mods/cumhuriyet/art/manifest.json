@@ -44,23 +44,8 @@
    ]
   },
   "char.ibrahim": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
-    {
-     "file": "char.ibrahim-2.jpg",
-     "size": [
-      294,
-      389
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Mare%C5%9Fal_Fevzi_%C3%87akmak.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Mare%C5%9Fal_Fevzi_%C3%87akmak.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 2017-10-31 13:19:02",
-     "note": "Fevzi Paşa (Çakmak), late 1920s or early 1930s. Small (294 px wide) and from the late 1920s; no larger 1920-23 portrait found.",
-     "focus": [
-      0.5,
-      0.35
-     ]
-    },
     {
      "file": "char.ibrahim-1.jpg",
      "size": [
@@ -70,7 +55,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Fevzi_%C3%87akmak.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Fevzi_%C3%87akmak.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Archives of Turkish Armed Forces; date: 1936-01-01",
-     "note": "Fevzi Paşa (Çakmak) in uniform; dated 1936 on Commons. Profile, 1936: not facing the viewer.",
+     "note": "Fevzi Paşa (Çakmak) in uniform; dated 1936 on Commons. Profile, dated 1936: the only portrait above 300 px wide.",
      "focus": [
       0.45,
       0.3
@@ -160,7 +145,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Halide_Edib_Ad%C4%B1var.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Halide_Edib_Ad%C4%B1var.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1930s date QS:P,+1930-00-00T00:00:00Z/8",
-     "note": "Halide Edib; dated 1930s on Commons. Seated studio portrait, face turned slightly; head is small in frame. A frontal 1920s portrait is still wanted.",
+     "note": "Halide Edib; dated 1930s on Commons. Seated studio portrait, face turned slightly; head small in frame. A frontal 1920s portrait is still wanted.",
      "focus": [
       0.38,
       0.2
@@ -184,18 +169,18 @@
    ]
   },
   "char.hatice": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "char.hatice-2.jpg",
+     "file": "char.hatice-4.jpg",
      "size": [
-      213,
-      339
+      548,
+      730
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Adivar-abdulhak-adnan-1.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Adivar-abdulhak-adnan-1.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: before 1923 date QS:P,+1923-00-00T00:00:00Z/7,P1326,+1923-00-00T00:00:00Z/9",
-     "note": "Dr. Adnan Bey (Adıvar), before 1923; small. Frontal but small (213 px wide).",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Refik_Saydam.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Refik_Saydam.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Unknown. Original photographer may not be listed.; date: 1939",
+     "note": "Dr. Refik Bey (Saydam), Minister of Health from 1921; this photo 1939. Replaces Dr. Adnan Bey, whose only portraits are under 220 px wide.",
      "focus": [
       0.5,
       0.33
@@ -255,7 +240,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Henry_Franklin-Bouillon-1917.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Henry_Franklin-Bouillon-1917.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Agence Meurisse (domaine public, voir fiche détaillée Gallica); date: 1917",
-     "note": "Henry Franklin-Bouillon, 1917; small. 1917, small (480 px wide) but frontal.",
+     "note": "Henry Franklin-Bouillon, 1917; small. 1917, frontal.",
      "focus": [
       0.5,
       0.35
@@ -339,36 +324,21 @@
    ]
   },
   "comp.bali": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.bali-1.jpg",
+     "file": "comp.bali-3.jpg",
      "size": [
-      257,
-      437
+      1153,
+      1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Suleyman_Asaf.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Suleyman_Asaf.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: NA; date: 2011-10-09",
-     "note": "Kılıç Ali (Süleyman Asaf); small. Small (257 px wide).",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Rafet_Pacha%2C_homme_politique_turc_-_btv1b9053999v.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Rafet_Pacha,_homme_politique_turc_-_btv1b9053999v.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Agence de presse Meurisse. Agence photographique (commanditaire); date: 1922 date QS:P571,+1922-00-00T00:00:00Z/9",
+     "note": "Refet Paşa (Bele), 1922; Agence Meurisse via Gallica (BnF). Replaces Kılıç Ali (no portrait above 260 px). Other officers at the frame's edges.",
      "focus": [
-      0.5,
-      0.3
-     ]
-    },
-    {
-     "file": "comp.bali-2.jpg",
-     "size": [
-      180,
-      237
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Kilic_Ali_Bey.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Kilic_Ali_Bey.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1920s date QS:P,+1920-00-00T00:00:00Z/8",
-     "note": "Kılıç Ali Bey, 1920s; TBMM album thumbnail, small. TBMM album thumbnail, 120 px.",
-     "focus": [
-      0.5,
-      0.35
+      0.45,
+      0.42
      ]
     }
    ]
@@ -417,33 +387,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "comp.sumbul-1.jpg",
+     "file": "comp.sumbul-3.jpg",
      "size": [
-      348,
-      474
+      440,
+      694
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Ali_Fuat_Pasha.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Ali_Fuat_Pasha.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: NA; date: 2011-10-11",
-     "note": "Ali Fuat Paşa (Cebesoy), First World War years.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ali_Fuat_Cebesoy_1.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ali_Fuat_Cebesoy_1.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 2017-02-06 01:10:26",
+     "note": "Ali Fuat Paşa (Cebesoy), 1940s. 1940s; the 1920s portraits are under 350 px.",
      "focus": [
       0.5,
-      0.28
-     ]
-    },
-    {
-     "file": "comp.sumbul-2.jpg",
-     "size": [
-      179,
-      238
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Ali_Fuad_Pasha.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Ali_Fuad_Pasha.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1920s date QS:P,+1920-00-00T00:00:00Z/8",
-     "note": "Ali Fuat Paşa (Cebesoy), 1920s; TBMM album thumbnail, small.",
-     "focus": [
-      0.5,
-      0.35
+      0.3
      ]
     }
    ]
@@ -469,21 +424,21 @@
    ]
   },
   "comp.ebussuud": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.ebussuud-1.jpg",
+     "file": "comp.ebussuud-3.jpg",
      "size": [
-      120,
-      160
+      614,
+      1141
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Falih_R%C4%B1fk%C4%B1_Bey.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Falih_R%C4%B1fk%C4%B1_Bey.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1920s date QS:P,+1920-00-00T00:00:00Z/8",
-     "note": "Falih Rıfkı Bey (Atay), 1920s; TBMM album thumbnail, small. TBMM album thumbnail, 120 px: the original (180 px) was rate-limited.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/De_gauche_%C3%A0_droite%2C_Fethy_Bey%2C_Ambassadeur_%C3%A0_Paris%2C_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey%2C_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:De_gauche_%C3%A0_droite,_Fethy_Bey,_Ambassadeur_%C3%A0_Paris,_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey,_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Agence de presse Meurisse. Agence photographique (commanditaire); date: 1925 date QS:P571,+1925-00-00T00:00:00Z/9",
+     "note": "Tevfik Rüştü Bey (Aras), centre, cropped from a group photo with Fethi Bey and Tevfik Rüştü Bey; Gallica (BnF). Cropped from the source. Replaces Falih Rıfkı (only a 180 px album photo). Tevfik Rüştü is the middle sitter in the caption's order.",
      "focus": [
       0.5,
-      0.35
+      0.38
      ]
     }
    ]
@@ -492,33 +447,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "comp.gulsah-1.jpg",
+     "file": "comp.gulsah-3.jpg",
      "size": [
-      250,
-      444
+      441,
+      528
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/1914_03_06_Idman_Aka_Gunduz.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:1914_03_06_Idman_Aka_Gunduz.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: İdman Dergisi; date: 1914-03-06",
-     "note": "Aka Gündüz (Enis Avni) in İdman, 6 Mar 1914. Profile, 1914.",
-     "focus": [
-      0.55,
-      0.35
-     ]
-    },
-    {
-     "file": "comp.gulsah-2.jpg",
-     "size": [
-      120,
-      157
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Aka_G%C3%BCnd%C3%BCz.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Aka_G%C3%BCnd%C3%BCz.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1930s date QS:P,+1930-00-00T00:00:00Z/8",
-     "note": "Aka Gündüz, 1930s; TBMM album thumbnail, small. Frontal, 1930s, 120 px.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/1330_05_10_Idman_Sedat_Simavi.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:1330_05_10_Idman_Sedat_Simavi.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: İdman Dergisi; date: 1914-05-23",
+     "note": "Sedat Simavi in İdman, 23 May 1914. Replaces Aka Gündüz (no portrait above 300 px).",
      "focus": [
       0.5,
-      0.35
+      0.4
      ]
     }
    ]
@@ -526,21 +466,6 @@
   "comp.seker": {
    "status": "found",
    "candidates": [
-    {
-     "file": "comp.seker-1.jpg",
-     "size": [
-      330,
-      400
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Dra._Safiye_Ali.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Dra._Safiye_Ali.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: before 1923 date QS:P,+1923-00-00T00:00:00Z/7,P1326,+1923-00-00T00:00:00Z/9 (due to Ottoman medal)",
-     "note": "Dr. Safiye Ali with her Mecidiye medal, before 1923. In uniform with her medals; face in profile.",
-     "focus": [
-      0.5,
-      0.35
-     ]
-    },
     {
      "file": "comp.seker-2.jpg",
      "size": [
@@ -559,18 +484,18 @@
    ]
   },
   "comp.gulfem": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.gulfem-1.jpg",
+     "file": "comp.gulfem-3.jpg",
      "size": [
-      250,
-      314
+      420,
+      550
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Mehmet_r%C4%B1fat_b%C3%B6rek%C3%A7i.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Mehmet_r%C4%B1fat_b%C3%B6rek%C3%A7i.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: Unknown date",
-     "note": "Rifat Efendi (Börekçi), Müftü of Ankara; small. Small (250 px wide).",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Mehmet_Akif.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Mehmet_Akif.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: before 1923 date QS:P,+1923-00-00T00:00:00Z/7,P1326,+1923-00-00T00:00:00Z/9",
+     "note": "Mehmet Akif (Ersoy), before 1923. Replaces Rifat Efendi (Börekçi), whose portraits are under 310 px.",
      "focus": [
       0.5,
       0.35
@@ -579,18 +504,18 @@
    ]
   },
   "comp.iskender": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.iskender-1.jpg",
+     "file": "comp.iskender-2.jpg",
      "size": [
-      120,
-      162
+      940,
+      1220
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Hasan_H%C3%BCsn%C3%BC_Bey.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Hasan_H%C3%BCsn%C3%BC_Bey.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1923",
-     "note": "Hasan Hüsnü Bey (Saka), 1923; TBMM album thumbnail, small. TBMM album thumbnail, 120 px.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/De_gauche_%C3%A0_droite%2C_Fethy_Bey%2C_Ambassadeur_%C3%A0_Paris%2C_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey%2C_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:De_gauche_%C3%A0_droite,_Fethy_Bey,_Ambassadeur_%C3%A0_Paris,_Tefwik_Rouchid_Bey_Ministre_des_Affaires_%C3%A9trang%C3%A8res_de_Turquie_et_Ferid_Bey,_Ambassadeur_%C3%A0_Londres_-_btv1b90250131.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Agence de presse Meurisse. Agence photographique (commanditaire); date: 1925 date QS:P571,+1925-00-00T00:00:00Z/9",
+     "note": "Ferid Bey (Tek), right, cropped from a group photo with Fethi Bey and Tevfik Rüştü Bey; Gallica (BnF). Cropped from the source. Replaces Hasan Saka (only a 180 px album photo). Ferid Bey is the right-hand sitter in the caption's order.",
      "focus": [
       0.5,
       0.35
@@ -599,21 +524,21 @@
    ]
   },
   "comp.firuze": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.firuze-1.jpg",
+     "file": "comp.firuze-3.jpg",
      "size": [
-      120,
-      159
+      635,
+      752
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Yunus_Nadi_Bey.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Yunus_Nadi_Bey.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1923",
-     "note": "Yunus Nadi Bey, 1923; TBMM album thumbnail, small. TBMM album thumbnail, 120 px.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/CelalNuri.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:CelalNuri.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: before 1923 date QS:P,+1923-00-00T00:00:00Z/7,P1326,+1923-00-00T00:00:00Z/9",
+     "note": "Celal Nuri Bey (İleri), before 1923. Replaces Yunus Nadi (only a 180 px album photo).",
      "focus": [
       0.5,
-      0.35
+      0.4
      ]
     }
    ]
@@ -639,36 +564,21 @@
    ]
   },
   "comp.lokman": {
-   "status": "weak",
+   "status": "found",
    "candidates": [
     {
-     "file": "comp.lokman-2.jpg",
+     "file": "comp.lokman-3.jpg",
      "size": [
-      120,
-      159
+      1187,
+      1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Mehmet_Cevat_Abbas_G%C3%BCrer.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Mehmet_Cevat_Abbas_G%C3%BCrer.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1923",
-     "note": "Cevat Abbas Bey, 1923; TBMM album thumbnail, small. TBMM album thumbnail, 1923, 120 px.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Ali_Fethy_Bey.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ali_Fethy_Bey.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Georges Chevalier; date: 1927-01-27",
+     "note": "Ali Fethi Bey (Okyar), Paris, 27 Jan 1927; autochrome (Albert Kahn collection). Replaces Cevat Abbas (only a 180 px album photo). Seated, full length; crop to head and shoulders.",
      "focus": [
       0.5,
-      0.35
-     ]
-    },
-    {
-     "file": "comp.lokman-1.jpg",
-     "size": [
-      250,
-      269
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Cevat_Abbas_G%C3%BCrer.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Cevat_Abbas_G%C3%BCrer.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Atilla ORAL at Turkish Wikipedia; date: Unknown date",
-     "note": "Cevat Abbas Bey (Gürer), aide-de-camp. Identity to confirm against the 1923 album photo.",
-     "focus": [
-      0.5,
-      0.35
+      0.3
      ]
     }
    ]
@@ -677,18 +587,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "card.akil-hocasi-1.jpg",
+     "file": "card.akil-hocasi-2.jpg",
      "size": [
-      1280,
-      949
+      1187,
+      1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Turquie%2C_Angora%2C_Salle_des_S%C3%A9ances_de_la_Grande_Assembl%C3%A9e_-_A37025.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Salle_des_S%C3%A9ances_de_la_Grande_Assembl%C3%A9e_-_A37025.jpg",
-     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 27 December 1922",
-     "note": "The Assembly's session hall, Ankara, 27 Dec 1922; autochrome by Frédéric Gadmer.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37125.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37125.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 30 December 1922",
+     "note": "The guarded entrance of the Assembly, Ankara, 30 Dec 1922; autochrome by Frédéric Gadmer. Levels lifted.",
      "focus": [
       0.5,
-      0.5
+      0.45
      ]
     }
    ]
@@ -725,10 +635,10 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Turquie%2C_Angora%2C_Ministres_en_Conseil_-_A37013.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Ministres_en_Conseil_-_A37013.jpg",
      "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 26 December 1922",
-     "note": "Ministers in council, Assembly building, 26 Dec 1922; autochrome by Frédéric Gadmer. Dark autochrome interior; needs a levels lift in the grade.",
+     "note": "Ministers in council, Assembly building, 26 Dec 1922; autochrome by Frédéric Gadmer. Levels lifted.",
      "focus": [
       0.5,
-      0.5
+      0.45
      ]
     }
    ]
@@ -737,18 +647,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "card.azil-1.jpg",
+     "file": "card.azil-2.jpg",
      "size": [
       1280,
-      949
+      950
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Turquie%2C_Angora%2C_Salle_du_Conseil_des_Ministres_-_A37010.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Salle_du_Conseil_des_Ministres_-_A37010.jpg",
-     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 26 December 1922",
-     "note": "The council room of the Vekils, 26 Dec 1922; autochrome by Frédéric Gadmer.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Turquie%2C_Angora%2C_R%C3%A9sidence_du_Mar%C3%A9chal_%C3%A0_Tchankaia_-_A37101.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_R%C3%A9sidence_du_Mar%C3%A9chal_%C3%A0_Tchankaia_-_A37101.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 29 December 1922",
+     "note": "Mustafa Kemal's residence at Çankaya, 29 Dec 1922 (the house, no people); autochrome by Frédéric Gadmer. Levels lifted.",
      "focus": [
       0.5,
-      0.55
+      0.5
      ]
     }
    ]
@@ -810,21 +720,6 @@
       0.5,
       0.4
      ]
-    },
-    {
-     "file": "card.saray-tabibi-1.jpg",
-     "size": [
-      960,
-      642
-     ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Turkish_Red_crescent_WW1.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Turkish_Red_crescent_WW1.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: circa 1916 date QS:P,+1916-00-00T00:00:00Z/9,P1480,Q5727902",
-     "note": "Hilal-i Ahmer (Red Crescent) staff, circa 1916. Magazine page of portraits; weak.",
-     "focus": [
-      0.5,
-      0.4
-     ]
     }
    ]
   },
@@ -832,18 +727,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "card.iftira-1.jpg",
+     "file": "card.iftira-2.jpg",
      "size": [
-      500,
-      345
+      1213,
+      1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Dil_Devrimi_karikat%C3%BCr%C3%BC%2C_Ramiz_G%C3%B6k%C3%A7e.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Dil_Devrimi_karikat%C3%BCr%C3%BC,_Ramiz_G%C3%B6k%C3%A7e.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Ramiz Gökçe; date: 1928-08-13",
-     "note": "Ramiz Gökçe cartoon, Akbaba, 13 Aug 1928.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Aydede_Jahrgang_1922_Titelblatt_Ausgabe_Nummer_2.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Aydede_Jahrgang_1922_Titelblatt_Ausgabe_Nummer_2.jpg",
+     "licence": "Public domain (Wikimedia Commons); author: Refik Halid Karay; date: 1922",
+     "note": "Cover of the satirical weekly Aydede, issue 2, 1922. The cartoon is at the foot of the cover; frame the lower third.",
      "focus": [
       0.5,
-      0.5
+      0.8
      ]
     }
    ]
@@ -892,15 +787,15 @@
    "status": "found",
    "candidates": [
     {
-     "file": "card.defterdar-1.jpg",
+     "file": "card.defterdar-2.jpg",
      "size": [
       1280,
       949
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Turquie%2C_Angora%2C_Hayati-Bey%2C_Chjef_de_Cabinet_priv%C3%A9_de_Mustapha_Kemal_-_A37017.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Hayati-Bey,_Chjef_de_Cabinet_priv%C3%A9_de_Mustapha_Kemal_-_A37017.jpg",
-     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 26 December 1922",
-     "note": "Hayati Bey, head of Mustafa Kemal's private office, at his desk, 26 Dec 1922; autochrome by Frédéric Gadmer. Dark autochrome interior; needs a levels lift in the grade.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Turquie%2C_Angora%2C_B%C3%A2timent_des_minist%C3%A8res_-_A36962.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_B%C3%A2timent_des_minist%C3%A8res_-_A36962.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 24 December 1922",
+     "note": "The ministries building, Ankara, 24 Dec 1922; autochrome by Frédéric Gadmer. Levels lifted.",
      "focus": [
       0.5,
       0.5
@@ -920,7 +815,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/PT%26T_operators_working_at_Garfield_Exchange%2C_Seattle%2C_circa_1921_%28MOHAI_9464%29.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:PT%26T_operators_working_at_Garfield_Exchange,_Seattle,_circa_1921_(MOHAI_9464).jpg",
      "licence": "Public domain (Wikimedia Commons); author: Frank H. Nowell; date: circa 1921 date QS:P571,+1921-00-00T00:00:00Z/9,P1480,Q5727902",
-     "note": "Telephone switchboard operators, Seattle, circa 1921. Not Turkish: no Turkish switchboard photo found yet.",
+     "note": "Telephone switchboard operators, Seattle, circa 1921. Not Turkish: no Turkish switchboard photo found yet. Not Turkish: no Turkish or Ottoman switchboard photo found on Commons.",
      "focus": [
       0.5,
       0.5
@@ -949,18 +844,18 @@
    ]
   },
   "card.sukut": {
-   "status": "placeholder",
+   "status": "weak",
    "candidates": [
     {
-     "file": "card.sukut-1.jpg",
+     "file": "card.sukut-3.jpg",
      "size": [
-      960,
-      480
+      700,
+      444
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/H%C3%A2kimiyet-i_Milliye.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:H%C3%A2kimiyet-i_Milliye.jpg",
-     "licence": "Public domain (Wikimedia Commons); author: Hâkimiyet-i Milliye; date: 1920-01-10",
-     "note": "The first masthead of Hâkimiyet-i Milliye, 1920. Placeholder: no censored-column photo found yet.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Occupation_of_Istanbul_-_British_troops_in_Galata.png",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Occupation_of_Istanbul_-_British_troops_in_Galata.png",
+     "licence": "Public domain (Wikimedia Commons); date: between 1919 and 1920 date QS:P,+1950-00-00T00:00:00Z/7,P1319,+1919-00-00T00:00:00Z/9,P1326,+1920-00-00T00:00:00Z/9",
+     "note": "British occupation troops in Galata, 1919-20: the Allied authority that censored the Istanbul press. No scan of a page with blanked columns was found on Commons.",
      "focus": [
       0.5,
       0.5
@@ -980,7 +875,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Kuvva-i_Milliye_millitias%2C_1919.png",
      "source_page": "https://commons.wikimedia.org/wiki/File:Kuvva-i_Milliye_millitias,_1919.png",
      "licence": "Public domain (Wikimedia Commons); author: Unknown author Unknown author; date: 1919",
-     "note": "Kuva-yi Milliye irregulars, 1919. Small (500 px wide).",
+     "note": "Kuva-yi Milliye irregulars, 1919. Small (611 px wide).",
      "focus": [
       0.5,
       0.5
@@ -1040,7 +935,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Ankara_Ulus_Id_al-Adha_4_August_1922.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Ankara_Ulus_Id_al-Adha_4_August_1922.jpg",
      "licence": "Public domain (Wikimedia Commons); author: NA; date: 1922-08-04",
-     "note": "Ulus square, Ankara, Kurban Bayramı, 4 Aug 1922. Small (500 px wide); Taşhan itself not identified in frame.",
+     "note": "Ulus square, Ankara, Kurban Bayramı, 4 Aug 1922. Taşhan itself not identified in frame.",
      "focus": [
       0.5,
       0.5
@@ -1060,7 +955,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Military_exercise_at_Ilg%C4%B1n_1_April_1922.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Military_exercise_at_Ilg%C4%B1n_1_April_1922.jpg",
      "licence": "Public domain (Wikimedia Commons); author: NA; date: 1922-04-01",
-     "note": "Turkish First Army exercise at Ilgın, 1 Apr 1922. Not Sakarya itself: no battle photo without Mustafa Kemal found.",
+     "note": "Turkish First Army exercise at Ilgın, 1 Apr 1922. Not Sakarya itself: no battle photo without Mustafa Kemal found. Every Sakarya photo found shows Mustafa Kemal, so this is an army exercise of April 1922.",
      "focus": [
       0.5,
       0.5
@@ -1112,18 +1007,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "crisis.sehzade-1.jpg",
+     "file": "crisis.sehzade-3.jpg",
      "size": [
       1187,
       1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37124.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:Entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_-_A37124.jpg",
-     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 30 December 1922",
-     "note": "The Assembly entrance, 30 Dec 1922; autochrome by Frédéric Gadmer.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Turquie%2C_Angora%2C_L%27Hotel_de_Ville_-_A36966.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_L%27Hotel_de_Ville_-_A36966.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 24 December 1922",
+     "note": "The town hall, Ankara, 24 Dec 1922; autochrome by Frédéric Gadmer.",
      "focus": [
       0.5,
-      0.45
+      0.5
      ]
     }
    ]
@@ -1132,18 +1027,18 @@
    "status": "found",
    "candidates": [
     {
-     "file": "crisis.istanbul-1.jpg",
+     "file": "crisis.istanbul-2.jpg",
      "size": [
-      1280,
-      949
+      1187,
+      1600
      ],
-     "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/L%27entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_encadr%C3%A9e_de_gu%C3%A9rites_%28une_du_b%C3%A2timent_lui-m%C3%AAme%29._A_l%27arri%C3%A8re_plan%2C_ville_basse_et_au_fond%2C_la_citadelle_-_A37027S.jpg",
-     "source_page": "https://commons.wikimedia.org/wiki/File:L%27entr%C3%A9e_de_la_Grande_Assembl%C3%A9e_Nationale_encadr%C3%A9e_de_gu%C3%A9rites_(une_du_b%C3%A2timent_lui-m%C3%AAme)._A_l%27arri%C3%A8re_plan,_ville_basse_et_au_fond,_la_citadelle_-_A37027S.jpg",
-     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 27 December 1922",
-     "note": "Sentry boxes at the Assembly entrance, Ankara, Dec 1922; autochrome by Frédéric Gadmer.",
+     "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Un_garde_de_l%27Ambassade_de_la_R%C3%A9publique_des_soviets%2C_jour_de_la_cr%C3%A9ation_de_l%27URSS_-_A37108S.jpg",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Un_garde_de_l%27Ambassade_de_la_R%C3%A9publique_des_soviets,_jour_de_la_cr%C3%A9ation_de_l%27URSS_-_A37108S.jpg",
+     "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 30 December 1922 date QS:P571,+1922-12-30T00:00:00Z/11",
+     "note": "A guard at the Soviet embassy, Ankara, 30 Dec 1922; autochrome by Frédéric Gadmer.",
      "focus": [
       0.5,
-      0.55
+      0.45
      ]
     }
    ]
@@ -1160,7 +1055,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Turkish_artillerymen_before_the_Great_Offensive.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:Turkish_artillerymen_before_the_Great_Offensive.jpg",
      "licence": "Public domain (Wikimedia Commons); author: NA; date: 1922-08",
-     "note": "Turkish artillerymen before the Büyük Taarruz, Aug 1922. Small (500 px wide).",
+     "note": "Turkish artillerymen before the Büyük Taarruz, Aug 1922.",
      "focus": [
       0.5,
       0.45
@@ -1200,7 +1095,7 @@
      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/T%C3%BCrk_s%C3%BCvari_birliklerinin_%C4%B0zmire_giri%C5%9Fi.jpg",
      "source_page": "https://commons.wikimedia.org/wiki/File:T%C3%BCrk_s%C3%BCvari_birliklerinin_%C4%B0zmire_giri%C5%9Fi.jpg",
      "licence": "Public domain (Wikimedia Commons); author: Umberto gs; date: 2008-08-23",
-     "note": "Turkish cavalry enters İzmir, 9 Sept 1922. Small (500 px wide).",
+     "note": "Turkish cavalry enters İzmir, 9 Sept 1922.",
      "focus": [
       0.35,
       0.6

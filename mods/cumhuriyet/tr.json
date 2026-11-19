@@ -302,8 +302,8 @@
       "flavor": "İnönü'de hattı tuttu, Lozan'da masayı."
     },
     "hatice": {
-      "name": "Dr. Adnan Bey",
-      "short": "Adnan",
+      "name": "Dr. Refik Bey",
+      "short": "Refik",
       "base": {
         "name": "Karantina",
         "text": "Gizli Celseden önce bir oyuncu seç: bu buhranda Entrikayla koltuğundan edilemez, Takdir dahil İtibar kaybetmez."
@@ -312,7 +312,7 @@
         "name": "Teşhis",
         "text": "Gazi ve kendin dışında iki oyuncu seç: aynı tarafta olup olmadıklarını gizlice öğren."
       },
-      "flavor": "Hekim, Sıhhiye Vekili, Meclis'in ikinci reisi."
+      "flavor": "Hekim; 1921'den beri Sıhhiye Vekili."
     },
     "rustem": {
       "name": "Celal Bey",
@@ -384,9 +384,9 @@
       "flavor": "Kadınlar oy veremezken o fırka kurdu."
     },
     "bali": {
-      "name": "Kılıç Ali",
+      "name": "Refet Paşa",
       "text": "Bir Entrika kartını İtimat Oyu olarak oyna.",
-      "flavor": "Lakabını Antep müdafaasında kazandı."
+      "flavor": "Ankara'nın İstanbul'daki sözü; arkasında durduğunu yerinde tutar."
     },
     "ayas": {
       "name": "Salih Bey",
@@ -409,14 +409,14 @@
       "flavor": "İşgal İstanbul'unda gizli teşkilatın başı."
     },
     "ebussuud": {
-      "name": "Falih Rıfkı",
+      "name": "Tevfik Rüştü Bey",
       "text": "Bir Entrika kartını Tahkikat olarak oyna.",
-      "flavor": "Gazeteci; atılan kâğıdı da okur."
+      "flavor": "Hekim ve mebus; atılan kâğıdı da okur."
     },
     "gulsah": {
-      "name": "Aka Gündüz",
+      "name": "Sedat Simavi",
       "text": "Bir Entrika kartını Karalama olarak oyna.",
-      "flavor": "Hicvi keskin bir muharrir."
+      "flavor": "Diken'in kurucusu; tek çizgiyle küçültür."
     },
     "seker": {
       "name": "Safiye Ali",
@@ -424,19 +424,19 @@
       "flavor": "İlk Türk kadın hekim; yaralı kimse sarar."
     },
     "gulfem": {
-      "name": "Rifat Efendi",
+      "name": "Mehmet Akif",
       "text": "Bir Entrika kartını Teminat olarak oyna.",
-      "flavor": "Ankara müftüsü; adını Ankara'nın yanına yazdı."
+      "flavor": "İstiklal Marşı'nın şairi; sözünü Ankara'nın yanına koydu."
     },
     "iskender": {
-      "name": "Hasan Bey",
+      "name": "Ferid Bey",
       "text": "Bir Entrika kartını Bütçe olarak oyna.",
-      "flavor": "Maliyenin hesabı onun defterinde."
+      "flavor": "İlk Maliye Vekili; hazine boşken hesabı o tuttu."
     },
     "firuze": {
-      "name": "Yunus Nadi",
+      "name": "Celal Nuri",
       "text": "Bir Entrika kartını Manşet olarak oyna.",
-      "flavor": "Kimin manşete çıkacağını o bilir."
+      "flavor": "Gazeteci mebus; kimin manşete çıkacağını o bilir."
     },
     "gulaga": {
       "name": "Ahmet Ağaoğlu",
@@ -444,9 +444,9 @@
       "flavor": "Matbuat Müdürü; basılacak her satır önce ondan geçer."
     },
     "lokman": {
-      "name": "Cevat Abbas",
+      "name": "Fethi Bey",
       "text": "Bir Entrika kartını Santral olarak oyna.",
-      "flavor": "Çankaya'yı kim aradıysa o bilir."
+      "flavor": "Dahiliye Vekili; Ankara'da kim kimi aradı, ona sorulur."
     }
   },
   "intrigue": {
