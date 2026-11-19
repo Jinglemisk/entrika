@@ -3,98 +3,84 @@
     "id": "daye",
     "recast": "valide",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as valide. You can't choose yourself as the new Minister.",
-    "art": { "src": "/art/directions/img/roster-comp.daye.jpg", "pos": "50% 0%" }
+    "about": "Recast: once per crisis, play any Intrigue card as valide. You can't choose yourself as the new Minister."
   },
   {
     "id": "bali",
     "recast": "muhur",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as muhur.",
-    "art": { "src": "/art/directions/img/roster-comp.bali.jpg", "pos": "50% 18%" }
+    "about": "Recast: once per crisis, play any Intrigue card as muhur."
   },
   {
     "id": "ayas",
     "recast": "azil",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as azil.",
-    "art": { "src": "/art/directions/img/roster-comp.ayas.jpg", "pos": "50% 18%" }
+    "about": "Recast: once per crisis, play any Intrigue card as azil."
   },
   {
     "id": "matrakci",
     "recast": "casus",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as casus.",
-    "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 0%" }
+    "about": "Recast: once per crisis, play any Intrigue card as casus."
   },
   {
     "id": "sumbul",
     "recast": "akil-hocasi",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as akil-hocasi. You choose its field.",
-    "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 33%" }
+    "about": "Recast: once per crisis, play any Intrigue card as akil-hocasi. You choose its field."
   },
   {
     "id": "nigar",
     "recast": "muhurlu-evrak",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as muhurlu-evrak.",
-    "art": { "src": "/art/directions/img/roster-comp.nigar.jpg", "pos": "50% 20%" }
+    "about": "Recast: once per crisis, play any Intrigue card as muhurlu-evrak."
   },
   {
     "id": "ebussuud",
     "recast": "teftis",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as teftis.",
-    "art": { "src": "/art/directions/img/roster-comp.ebussuud.jpg", "pos": "50% 40%" }
+    "about": "Recast: once per crisis, play any Intrigue card as teftis."
   },
   {
     "id": "gulsah",
     "recast": "iftira",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as iftira.",
-    "art": { "src": "/art/directions/img/roster-comp.gulsah.jpg", "pos": "50% 0%" }
+    "about": "Recast: once per crisis, play any Intrigue card as iftira."
   },
   {
     "id": "seker",
     "recast": "saray-tabibi",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as saray-tabibi.",
-    "art": { "src": "/art/directions/img/roster-comp.seker.jpg", "pos": "50% 12%" }
+    "about": "Recast: once per crisis, play any Intrigue card as saray-tabibi."
   },
   {
     "id": "gulfem",
     "recast": "kefalet",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as kefalet.",
-    "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 12%" }
+    "about": "Recast: once per crisis, play any Intrigue card as kefalet."
   },
   {
     "id": "iskender",
     "recast": "defterdar",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as defterdar.",
-    "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 20%" }
+    "about": "Recast: once per crisis, play any Intrigue card as defterdar."
   },
   {
     "id": "firuze",
     "recast": "nazar",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as nazar.",
-    "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 38%" }
+    "about": "Recast: once per crisis, play any Intrigue card as nazar."
   },
   {
     "id": "gulaga",
     "recast": "sukut",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as sukut.",
-    "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 0%" }
+    "about": "Recast: once per crisis, play any Intrigue card as sukut."
   },
   {
     "id": "lokman",
     "recast": "nobet",
     "freq": "crisis",
-    "about": "Recast: once per crisis, play any Intrigue card as nobet.",
-    "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 26%" }
+    "about": "Recast: once per crisis, play any Intrigue card as nobet."
   }
 ]

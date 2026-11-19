@@ -11,6 +11,7 @@ import { Figure, Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { charWords, kulWords } from '../words.ts';
 import { sfx } from '../sound.ts';
+import { seal } from '../skin.ts';
 import { Btn, Stp, playerName as name } from './Prompt.tsx';
 import { Court } from './Court.tsx';
 import { Slots } from './Mizan.tsx';
@@ -128,7 +129,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
     <div className="split decree">
       <div className="col">
         {a.to === g.sultan
-          ? <img src="/art/stills/tugra-suleyman.svg" alt="" className="tugra" />
+          ? seal() && <img src={seal()} alt="" className="seal" />
           : <p className="vo fisilti"><Head character={g.players[a.to].character} />{t('ask.decreeFisilti')}</p>}
         <p className="h-step">{t('step.decree')}</p>
         <p className="h-mid">{t(a.delta > 0 ? 'ask.decreeGive' : 'ask.decreeTake')}</p>

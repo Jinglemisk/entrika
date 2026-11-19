@@ -1,0 +1,10 @@
+Generate exactly one image with your image_gen tool, then stop. Do not run shell commands and do not write files.
+
+Use case: logo-brand
+Asset type: one game icon for "Entrika", a court card game set in a medieval fantasy royal castle (stone keep, iron throne, knights, heraldry). The game uses the file as a one-colour mask and tints it by meaning (green for loyalty, blood red for treason, steel blue for the council, wine for whispers, gold for the King). Used inline in card rules text at 16 px, in small gems on cards at 24 px, and large on card backs.
+__REF__Subject: __SUBJECT__
+Style/medium: heraldic charge (blazon): the object as one flat, solid silhouette, like a charge sewn onto a medieval banner or painted on a knight's shield. Bold, chunky, slightly chiselled straight-cut edges, as if cut from heavy felt or sheet iron; points are sharp and angular rather than curly. Inner detail is cut out as a few white negative-space slits and shapes, every cut at least 1/22 of the canvas wide, so the silhouette stays one connected piece. The cut-outs describe the object (its parts and openings), never decoration for its own sake.
+Colour: pure black #000000 on a pure white #FFFFFF background, nothing else. No grey, no gradient, no texture, no shading.
+Composition: one object only, centred, straight-on front or side view as heraldry would show it, symmetric where the subject allows, filling about 82% of a square canvas with even margins. A bold, instantly recognisable silhouette built from a few large shapes.
+Legibility: it must still read at 16 px. At most four interior cut-outs.
+Avoid: outline-only line drawing, hatching, thin lines, filigree, scrollwork, text, letters, numerals, 3D, perspective, a frame, roundel, shield or plaque behind the object (unless the subject is the shield itself).

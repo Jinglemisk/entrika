@@ -1,8 +1,9 @@
 // The court: every seat as a figure in a niche, one fixed row in seat order with Süleyman in the middle,
 // the same order on every phone. Taps pick a target when a picker is active, otherwise open the seat sheet.
-import { companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
+import { type Game, type PID } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Figure } from '../ui/Figure.tsx';
+import { still } from '../skin.ts';
 import { getTags, usePrefs } from '../prefs.ts';
 import { t } from '../strings.ts';
 import { cardWords, charWords, kulWords, powerName } from '../words.ts';
@@ -49,22 +50,22 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   const cls = ['st', p.sultan && 'sul', vk && 'vk', me && 'you', dim && 'dim', legal && 'legal', chosen && 'pick', waiting && 'busy']
     .filter(Boolean).join(' ');
   const lasting = lastingTags(g, id);
-  const comp = p.companion ? companionById[p.companion] : null;
+  const comp = p.companion ? still(`companions.${p.companion}`) ?? null : null;
   const offline = !room.seats[id]?.online && !room.dev;
   // your own cards aimed at this seat this wave, staged or sealed: only you see these
   const sealed = g.court?.submitted[seat];
   const mine = [...(Array.isArray(sealed) ? sealed : []), ...hand.staged].filter(x => x.target === id);
   // the art of the card in your hand, so the seat and the card it went to match (a recast still shows the card you hold)
   const held = mine.length ? g.players[seat].hand.find(c => c.uid === mine[0].uid) : undefined;
-  const mineArt = held ? intrigueById[held.kind].art : null;
+  const mineArt = held ? still(`intrigue.${held.kind}`) : undefined;
   return (
     <button type="button" className={cls} style={{ ['--nw' as string]: `${sw}px`, ['--nh' as string]: `${sh}px` }} onClick={onTap}>
       <div className="nc">
         <Figure character={p.character} nw={sw} nh={sh} brk={p.sultan ? 12 : 9} gilded={p.sultan} />
         {vk ? <span className="of">{t(vk === 1 ? 'min1' : 'min2')}</span> : null}
-        {!p.sultan && comp && (
+        {!p.sultan && p.companion && (
           <span className={`kl ${p.influence < 1 ? 'down' : ''}`} title={kulWords(p.companion!).name}>
-            {comp.art ? <img src={comp.art.src} alt="" style={{ objectPosition: comp.art.pos }} /> : <i className="kl-em" />}
+            {comp ? <img src={comp.src} alt="" style={{ objectPosition: comp.pos }} /> : <i className="kl-em" />}
           </span>
         )}
         {g.surgun.now === id && <span className="exile">{t('exiled')}</span>}

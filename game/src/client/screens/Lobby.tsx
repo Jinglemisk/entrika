@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { RULES } from '../../engine/index.ts';
 import { send, type RoomView } from '../net.ts';
-import { Gl, ICON } from '../ui/marks.tsx';
+import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { MODS, modName } from '../words.ts';
 import { Frieze } from './Frieze.tsx';
@@ -70,7 +70,7 @@ export function Lobby({ room }: { room: RoomView }) {
                 {room.host && (
                   <span className="ctl">
                     <button type="button" aria-label={t('lobby.makeSultan')} title={t('lobby.makeSultan')} className={room.sultan === i ? 'on' : ''} onClick={() => op({ op: 'sultan', seat: room.sultan === i ? null : i })}>
-                      <img src={ICON('suleyman')} alt="" />
+                      <Em k="suleyman" s={18} />
                     </button>
                     <button type="button" aria-label={t('lobby.up')} disabled={i === 0} onClick={() => op({ op: 'move', from: i, to: i - 1 })}><Gl k="up" /></button>
                     <button type="button" aria-label={t('lobby.down')} disabled={i === n - 1} onClick={() => op({ op: 'move', from: i, to: i + 1 })}><Gl k="down" /></button>

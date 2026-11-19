@@ -30,7 +30,8 @@ These aids exist only in test rooms and are marked `DEV` in the code; normal roo
 - **Interface wording:** `lang/tr.json` and `lang/en.json`, one sentence per key in each language. The game's own words come in by id, so one sentence serves every mod:
   - `{term.minister:dat}` is a term in one of its hand-written forms, `{card.valide}` a card's name, `{power.ferman}` a power's name (all placeholders are in `docs/mods.md`);
   - `{name}` inserts a value, and `{name:dat}` adds a Turkish case suffix (dat, acc, gen, loc, abl) to it, so a sentence reads "Mert'e itiraz etti".
-- **Mechanics:** `content/*.json` holds what each card, power, Kul, Hırs and Crisis does (ids, targets, copies, draw rules), with an `about` line in plain English, and `content/terms.json` lists the game's terms and their icons.
+- **Look:** the room's mod's skin: `mods/<id>/skin.json` with its card frames, stills, portraits, icons, seal, frieze and music, and `skin.css` for colours, fonts and decoration. The game keeps only the layout and a neutral look (`skin/`, `src/client/cards/cards.css`, `src/client/game.css`). `docs/mods.md` describes the format; `npm run mods` lists the gaps.
+- **Mechanics:** `content/*.json` holds what each card, power, Kul, Hırs and Crisis does (ids, targets, copies, draw rules), with an `about` line in plain English. `content/terms.json` lists the game's terms and their icons, and `content/icons.json` every icon the game draws.
 - **Numbers:** `content/rules.json` holds deck sizes, track lengths, the Allegiance table, the hand limit, the Objection cost and the Treason powers. Restart the server after editing it.
 - **New behaviour** (a new effect or power) is code: `src/engine/`.
 
@@ -38,9 +39,9 @@ These aids exist only in test rooms and are marked `DEV` in the code; normal roo
 
 With `npm run dev` running, open `http://localhost:4700/?duzenle`. Pick the mod and language at the top left, then a card; change its text in the middle and the card on the right redraws as you type. An empty field shows the mod's native text as a hint. Kaydet (or Ctrl/⌘+S) writes the change into `mods/<mod>/<lang>.json`. `/?kartlar` draws every card; its pickers switch the mod and language.
 
-- Only printed text can change: names, card text, flavor lines, power names and texts, Character quotes, Kader and Taraf lines, treason powers. The server refuses everything else (ids, targets, copies, draw rules, frequencies, art), and both the page and its save endpoint exist only on the dev server.
+- Only printed text can change: names, card text, flavor lines, power names and texts, Character quotes, Kader and Taraf lines, treason powers. The server refuses everything else (ids, targets, copies, draw rules, frequencies), and both the page and its save endpoint exist only on the dev server. Pictures are in the mod's skin.
 - Term icons need no markup: a word that starts with one of the mod's term stems, card names, Kul names or Character short names (case-sensitive, any suffix) gets its icon and bold type. The editor lists them.
-- Saves write two-space JSON that keeps short objects (art, copies) on one line, so a save changes only the line it edits.
+- Saves write two-space JSON that keeps short objects on one line, so a save changes only the line it edits.
 
 ## How it fits together
 
@@ -51,11 +52,11 @@ With `npm run dev` running, open `http://localhost:4700/?duzenle`. Pick the mod 
   - `court.ts` is Tertip in waves.
   - `actions.ts` holds the answers and the powers with no fixed timing.
 - **`server/`** is one Node process.
-  - It serves the app, plus the repo's `art/` folder at `/art/`.
+  - It serves the app, plus the repo's `art/` and `mods/` folders at `/art/` and `/mods/`.
   - It runs the engine for each room and pushes the state to every phone over WebSocket.
   - It saves rooms to `data/rooms.json`, so a restart or a locked phone loses nothing.
 - **`src/client/`** is React on the v3 design system (`ui/v3/src/ui.css`).
-  - `cards/` draws every card from data, ported from the art page's generator.
+  - `cards/` draws every card on the fixed layout, from the mod's words and skin (`words.ts`, `skin.ts`).
   - `game/` holds the table, the shelf, the prompt block and the full-screen moments.
 
 Every phone receives the whole state and shows only its owner's secrets. That is the friends-game trade-off in `docs/direction.md`: there is no anti-cheat, and the seat switch is simple.

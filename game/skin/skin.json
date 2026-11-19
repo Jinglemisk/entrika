@@ -1,0 +1,26 @@
+{
+  "about": "The neutral skin: what a mod shows for anything its own skin lacks. Plain on purpose, so a missing piece is easy to spot and never borrowed from another mod.",
+  "defs": "cards/defs.svg",
+  "faces": {
+    "char": {"frame": "cards/frame-char.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "sultan": {"frame": "cards/frame-char.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "kul": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "intr": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "crisis": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "kader-h": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "kader-x": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "hirs": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "taraf-s": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"},
+    "taraf-h": {"frame": "cards/frame.svg", "base": ["#e6e6e6", "#d2d2d2"], "darkGems": true, "art": "cards/art.svg"}
+  },
+  "backs": {
+    "intr": "cards/back.svg",
+    "kader": "cards/back.svg",
+    "taraf": "cards/back.svg",
+    "hirs": "cards/back.svg",
+    "kul": "cards/back.svg",
+    "char": "cards/back.svg",
+    "crisis": "cards/back.svg"
+  },
+  "niche": {"path": "M0 120V10Q0 0 10 0H90Q100 0 100 10V120Z"}
+}
