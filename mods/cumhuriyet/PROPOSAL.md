@@ -54,11 +54,11 @@ v0.9 has 7 court Characters plus the Gazi; the research had 8 for v0.7 slots. Mi
 | `sahsultan` İtiraz / Sürgün | Mahidevran | **Kâzım Karabekir** | Terakkiperver / Kara Liste | His v0.7 powers are exactly v0.9's `sahsultan` |
 | `mustafa` Veliaht / Ocak Sevgisi | Mustafa | **Fevzi Paşa** | Erkân-ı Harbiye / Ordunun Babası | New powers: the Chief of Staff steps into a seat at the last moment; a Gensoru against the army's father pays him |
 | `hatice` Himaye / Sezgi | Hatice | **Fethi Bey** | Hoşgörü / Paris'ten Mektup | Hoşgörü (v0.7: cancel a Tekdir) widens to v0.9's shield; a letter from Paris tells him whether two players share a Saf |
-| `rustem` Kulis / Yön Değiştir | Rüstem | **Celal Bayar** | Çankaya Sofrası / Saf Değiştir | Same powers as v0.7 |
+| `rustem` Kulis / Yön Değiştir | Rüstem | **Celal Bayar** | Çankaya Sofrası / Ciro | Same powers as v0.7 |
 | `barbaros` Ganimet / Gözcü | Barbaros | **Rauf Bey** | Hamidiye Baskını / Seyir Defteri | Same powers as v0.7 |
 | `gritti` Faiz / Venedik Postası | Gritti | **Cavid Bey** (Ecnebi) | Faiz / Lozan Dosyası | Same |
 | `sarlken` Feragat / Plus Ultra | Şarlken | **Abdülmecid Efendi** (Ecnebi) | Feragat / Ümmetin Halifesi | Same |
-| `tahmasp` Cephe / Yakıp Yıkma | Tahmasp | **Venizelos** (Ecnebi) | Ege Cephesi / Yakıp Yıkma | Ege Cephesi now picks the Buhran's field (v0.9 Cephe) instead of peeking at two Buhran cards |
+| `tahmasp` Cephe / Yakıp Yıkma | Tahmasp | **Venizelos** (Ecnebi) | Ege Cephesi / Megali İdea | Ege Cephesi now picks the Buhran's field (v0.9 Cephe) instead of peeking at two Buhran cards |
 
 ### Yaverler (every Yaver recasts in v0.9)
 
@@ -66,20 +66,20 @@ v0.9 has 7 court Characters plus the Gazi; the research had 8 for v0.7 slots. Mi
 |---|---|---|---|
 | `daye` → valide | **Recep Peker** | Meclis Kararı | Same: the party secretary writes the group's decision, never for himself |
 | `bali` → muhur | **Salih Bozok** | Tasdik | Same |
-| `ayas` → azil | **Kılıç Ali** | Kabine Tadili (seat swap, gone in v0.9) | The Gazi's man on the tribunal: the Gazi picks the newcomer |
-| `matrakci` → casus | **Falih Rıfkı** | Köşk Dedikodusu (peek hand and Hırs) | The journalist inside Çankaya sees what a player played and on whom |
+| `ayas` → azil | **Kâzım Özalp** (for Kılıç Ali, no portrait above 330 px) | Kabine Tadili (seat swap, gone in v0.9) | The Gazi's man on the tribunal: the Gazi picks the newcomer |
+| `matrakci` → casus | **Refet Paşa** (for Falih Rıfkı, only a 180 px photo) | Köşk Dedikodusu (peek hand and Hırs) | The journalist inside Çankaya sees what a player played and on whom |
 | `sumbul` → akil-hocasi | **Mahmut Esat Bozkurt** | Dokunulmazlık | Same; the jurist chooses its field |
-| `nigar` → muhurlu-evrak | **Hasan Rıza Soyak** | Şifreli Telgraf | Same |
-| `ebussuud` → teftis | **Ali Çetinkaya** | Tahkikat | Same |
-| `gulsah` → iftira | **Yunus Nadi** | Gazete Kampanyası | Same |
-| `seker` → saray-tabibi | **Tevfik Rüştü Bey** | Doktor Raporu | Same |
+| `nigar` → muhurlu-evrak | **Ali Fuat Paşa** (for Hasan Rıza Soyak, only a 180 px photo) | Şifreli Telgraf | Same |
+| `ebussuud` → teftis | **Tevfik Rüştü** (for Ali Çetinkaya, no portrait above 300 px) | Tahkikat | Same |
+| `gulsah` → iftira | **Ahmet Ağaoğlu** (for Yunus Nadi, only a 180 px photo) | Gazete Kampanyası | Same |
+| `seker` → saray-tabibi | **Safiye Ali** (Tevfik Rüştü moved to Tahkikat) | Doktor Raporu | Same |
 | `gulfem` → kefalet | **Nuri Conker** | İstiklal Madalyası (gone) | The childhood friend stands surety for a Vekil and shares his fate |
 | `iskender` → defterdar | **Abdülhalik Renda** | Special: Başvekil draws 4, discards 2 | That special is exactly v0.9's `defterdar` |
-| `firuze` → nazar | **Afet Hanım** | Special: +1 when gaining İtibar | Close to the Gazi: his Takdir or Tekdir on a Vekil counts double |
+| `firuze` → nazar | **Nezihe Muhiddin** (for Afet Hanım, no portrait above 225 px) | Special: +1 when gaining İtibar | Close to the Gazi: his Takdir or Tekdir on a Vekil counts double |
 | `gulaga` → sukut | **Makbule Hanım** | Special: hand limit 4 | The sister who kept his house keeps it quiet: a player sits out the next wave |
 | `lokman` → nobet | **Halide Edib** | Character (Mihrimah's slot, gone) | The writer finds out who played a card on a player |
 
-**Dropped: Sabiha.** She was 12 and adopted only in 1925, and her v0.7 special has no v0.9 home. Women: Latife, Halide, Afet, Makbule (4).
+**Dropped: Sabiha.** She was 12 and adopted only in 1925, and her v0.7 special has no v0.9 home. Women: Latife, Halide, Makbule, Nezihe Muhiddin, Safiye Ali (5).
 
 ### Entrika
 
@@ -268,4 +268,4 @@ All four list Latin Extended. Step 3 checks İ ı ş ğ in each.
 
 ## 4. Images
 
-To be redone for the 1924–25 cast and cards, with the same rules: Wikimedia Commons first, real photographs only for people, every portrait at least 400 px wide, sources in `art/manifest.json`, no unused files left behind.
+Redone for the 1924–25 cast and cards (`art/manifest.json`; weak picks carry status `weak`). Seven research Yaverler had no portrait above 400 px and were replaced within the same fit (table above). Same rules: Wikimedia Commons first, real photographs only for people, every portrait at least 400 px wide, sources in `art/manifest.json`, no unused files left behind.

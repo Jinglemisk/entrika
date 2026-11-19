@@ -1,155 +1,665 @@
 {
   "terms": {
-    "suleyman": {"name": "Gazi", "the": "the Gazi", "a": "the Gazi", "stems": ["Gazi"]},
-    "loyalist": {"name": "Reformist", "pl": "Reformists", "a": "a Reformist", "the": "the Reformist"},
-    "traitor": {"name": "Reactionary", "pl": "Reactionaries", "a": "a Reactionary", "the": "the Reactionary", "stems": ["Reactionar"]},
-    "allegiance": {"name": "Allegiance", "a": "an Allegiance", "the": "the Allegiance"},
-    "min1": {"name": "Prime Minister", "a": "a Prime Minister", "the": "the Prime Minister"},
-    "min2": {"name": "Speaker", "a": "a Speaker", "the": "the Speaker"},
-    "minister": {"name": "Minister", "pl": "Ministers", "a": "a Minister", "the": "the Minister"},
-    "character": {"name": "Figure", "pl": "Figures", "a": "a Figure", "the": "the Figure"},
-    "companion": {"name": "Aide", "pl": "Aides", "a": "an Aide", "the": "the Aide"},
-    "crisis": {"name": "Crisis", "pl": "Crises", "a": "a Crisis", "the": "the Crisis", "stems": ["Crisis", "Crises"]},
-    "court": {"name": "Lobbying", "a": "a round of Lobbying", "the": "Lobbying"},
-    "objection": {"name": "Censure", "pl": "Censures", "a": "a Censure", "the": "the Censure"},
-    "decree": {"name": "Praise or Reproof", "a": "a Praise or Reproof", "the": "the Praise or Reproof", "stems": ["Praise or Reproof", "Praise", "Reproof"]},
-    "kader": {"name": "Bill", "pl": "Bills", "a": "a Bill", "the": "the Bill", "stems": ["Bill", "Vote"]},
-    "hizmet": {"name": "Reform", "pl": "Reforms", "a": "a Reform", "the": "the Reform"},
-    "hiyanet": {"name": "Reaction", "pl": "Reactions", "a": "a Reaction", "the": "the Reaction"},
-    "intrigue": {"name": "Intrigue", "pl": "Intrigues", "a": "an Intrigue", "the": "the Intrigue"},
-    "ambition": {"name": "Ambition", "pl": "Ambitions", "a": "an Ambition", "the": "the Ambition"},
-    "harem": {"name": "Çankaya", "a": "Çankaya", "the": "Çankaya"},
-    "divan": {"name": "Assembly", "a": "an Assembly", "the": "the Assembly"},
-    "saray": {"name": "Ankara", "a": "Ankara", "the": "Ankara"},
-    "influence": {"name": "Standing", "a": "Standing", "the": "Standing"},
-    "base": {"name": "Merit", "a": "a Merit", "the": "the Merit"},
-    "favor": {"name": "Favour", "pl": "Favours", "a": "a Favour", "the": "the Favour"},
-    "loyalty": {"name": "Reform track", "a": "the Reform track", "the": "the Reform track", "stems": ["Reform track"]},
-    "treason": {"name": "Reaction track", "a": "the Reaction track", "the": "the Reaction track", "stems": ["Reaction track"]},
-    "secret": {"name": "Secret", "stems": ["Secret", "secret"]},
-    "once": {"name": "Once a game", "stems": ["Once a game", "once a game"]},
-    "percrisis": {"name": "Once a crisis", "stems": ["Once a crisis", "once a crisis"]},
-    "always": {"name": "Always", "stems": ["Always"]},
-    "investigator": {"name": "inspector", "a": "an inspector", "the": "the inspector"}
+    "suleyman": {
+      "name": "Gazi",
+      "the": "the Gazi",
+      "a": "the Gazi",
+      "stems": [
+        "Gazi"
+      ]
+    },
+    "loyalist": {
+      "name": "Reformist",
+      "pl": "Reformists",
+      "a": "a Reformist",
+      "the": "the Reformist"
+    },
+    "traitor": {
+      "name": "Reactionary",
+      "pl": "Reactionaries",
+      "a": "a Reactionary",
+      "the": "the Reactionary",
+      "stems": [
+        "Reactionar"
+      ]
+    },
+    "allegiance": {
+      "name": "Allegiance",
+      "a": "an Allegiance",
+      "the": "the Allegiance"
+    },
+    "min1": {
+      "name": "Prime Minister",
+      "a": "a Prime Minister",
+      "the": "the Prime Minister"
+    },
+    "min2": {
+      "name": "Speaker",
+      "a": "a Speaker",
+      "the": "the Speaker"
+    },
+    "minister": {
+      "name": "Minister",
+      "pl": "Ministers",
+      "a": "a Minister",
+      "the": "the Minister"
+    },
+    "character": {
+      "name": "Figure",
+      "pl": "Figures",
+      "a": "a Figure",
+      "the": "the Figure"
+    },
+    "companion": {
+      "name": "Aide",
+      "pl": "Aides",
+      "a": "an Aide",
+      "the": "the Aide"
+    },
+    "crisis": {
+      "name": "Crisis",
+      "pl": "Crises",
+      "a": "a Crisis",
+      "the": "the Crisis",
+      "stems": [
+        "Crisis",
+        "Crises"
+      ]
+    },
+    "court": {
+      "name": "Lobbying",
+      "a": "a round of Lobbying",
+      "the": "Lobbying"
+    },
+    "objection": {
+      "name": "Censure",
+      "pl": "Censures",
+      "a": "a Censure",
+      "the": "the Censure"
+    },
+    "decree": {
+      "name": "Praise or Reproof",
+      "a": "a Praise or Reproof",
+      "the": "the Praise or Reproof",
+      "stems": [
+        "Praise or Reproof",
+        "Praise",
+        "Reproof"
+      ]
+    },
+    "kader": {
+      "name": "Bill",
+      "pl": "Bills",
+      "a": "a Bill",
+      "the": "the Bill",
+      "stems": [
+        "Bill",
+        "Vote"
+      ]
+    },
+    "hizmet": {
+      "name": "Reform",
+      "pl": "Reforms",
+      "a": "a Reform",
+      "the": "the Reform"
+    },
+    "hiyanet": {
+      "name": "Reaction",
+      "pl": "Reactions",
+      "a": "a Reaction",
+      "the": "the Reaction"
+    },
+    "intrigue": {
+      "name": "Intrigue",
+      "pl": "Intrigues",
+      "a": "an Intrigue",
+      "the": "the Intrigue"
+    },
+    "ambition": {
+      "name": "Ambition",
+      "pl": "Ambitions",
+      "a": "an Ambition",
+      "the": "the Ambition"
+    },
+    "harem": {
+      "name": "Çankaya",
+      "a": "Çankaya",
+      "the": "Çankaya"
+    },
+    "divan": {
+      "name": "Assembly",
+      "a": "an Assembly",
+      "the": "the Assembly"
+    },
+    "saray": {
+      "name": "Ankara",
+      "a": "Ankara",
+      "the": "Ankara"
+    },
+    "influence": {
+      "name": "Standing",
+      "a": "Standing",
+      "the": "Standing"
+    },
+    "base": {
+      "name": "Merit",
+      "a": "a Merit",
+      "the": "the Merit"
+    },
+    "favor": {
+      "name": "Favour",
+      "pl": "Favours",
+      "a": "a Favour",
+      "the": "the Favour"
+    },
+    "loyalty": {
+      "name": "Reform track",
+      "a": "the Reform track",
+      "the": "the Reform track",
+      "stems": [
+        "Reform track"
+      ]
+    },
+    "treason": {
+      "name": "Reaction track",
+      "a": "the Reaction track",
+      "the": "the Reaction track",
+      "stems": [
+        "Reaction track"
+      ]
+    },
+    "secret": {
+      "name": "Secret",
+      "stems": [
+        "Secret",
+        "secret"
+      ]
+    },
+    "once": {
+      "name": "Once a game",
+      "stems": [
+        "Once a game",
+        "once a game"
+      ]
+    },
+    "percrisis": {
+      "name": "Once a crisis",
+      "stems": [
+        "Once a crisis",
+        "once a crisis"
+      ]
+    },
+    "always": {
+      "name": "Always",
+      "stems": [
+        "Always"
+      ]
+    },
+    "investigator": {
+      "name": "inspector",
+      "a": "an inspector",
+      "the": "the inspector"
+    }
   },
   "characters": {
-    "suleyman": {"name": "Gazi Mustafa Kemal", "short": "Mustafa Kemal",
-      "base": {"name": "Decree", "text": "When Lobbying ends, swap a Minister for an eligible player, even under Ratification. They draw 1 Intrigue card."},
-      "flavor": "Sovereignty is the nation's, without condition."},
-    "hurrem": {"name": "Latife Hanım", "short": "Latife",
-      "base": {"name": "Lady of the House", "text": "At the Praise or Reproof, you choose which Minister it falls on, instead of the Gazi."},
-      "favor": {"name": "Unveiled", "text": "In one wave, play two cards instead of one."},
-      "flavor": "The Gazi's wife, the Republic's first lady."},
-    "ibrahim": {"name": "İsmet Pasha", "short": "İsmet",
-      "base": {"name": "Forming the Cabinet", "text": "This crisis, you appoint both Ministers instead of the Gazi. You may appoint yourself."},
-      "favor": {"name": "Second Man", "text": "From now on, gain 1 Standing whenever a Reform passes while you are a Minister."},
-      "flavor": "At the head of Lausanne, then of the cabinet."},
-    "sahsultan": {"name": "Kâzım Karabekir", "short": "Karabekir",
-      "base": {"name": "Progressive Party", "text": "On your turn to censure, censure for free and choose the replacement. It counts as your Censure this crisis."},
-      "favor": {"name": "Blacklist", "text": "Name a player: next crisis they can't become a Minister by any route."},
-      "flavor": "He took Kars; in 1924 he founded the first opposition party."},
-    "mustafa": {"name": "Fevzi Pasha", "short": "Fevzi",
-      "base": {"name": "General Staff", "text": "When Lobbying ends, before the Decree, take a Minister's seat if eligible, even under Ratification."},
-      "favor": {"name": "Father of the Army", "text": "Whoever censures you gives you the Standing they paid."},
-      "flavor": "Chief of the General Staff; the army stays out of politics."},
-    "hatice": {"name": "Fethi Bey", "short": "Fethi",
-      "base": {"name": "Tolerance", "text": "Before Lobbying, pick a player: this crisis Intrigue can't unseat them, and they lose no Standing, Reproof included."},
-      "favor": {"name": "Letter from Paris", "text": "Pick two players other than the Gazi and you. Secretly learn if they share a side."},
-      "flavor": "Prime Minister in 1924-25, then envoy in Paris."},
-    "rustem": {"name": "Celal Bayar", "short": "Celal",
-      "base": {"name": "Çankaya Table", "text": "Before the Gazi appoints, talk with him alone for one minute."},
-      "favor": {"name": "Endorsement", "text": "When a wave flips, move one Intrigue card played on you to another player."},
-      "flavor": "He founded İş Bankası in 1924."},
-    "barbaros": {"name": "Rauf Bey", "short": "Rauf",
-      "base": {"name": "Hamidiye Raid", "text": "Take 1 random Intrigue card from another player's hand, then discard to your limit."},
-      "favor": {"name": "Ship's Log", "text": "After the Vote, secretly see what the Prime Minister discarded."},
-      "flavor": "Hamidiye's captain; a founder of the Progressives."},
-    "gritti": {"name": "Cavid Bey",
-      "base": {"name": "Interest", "text": "Name a player. The next time they gain Standing, you gain 1 too."},
-      "favor": {"name": "Lausanne File", "text": "Secretly look at the top 3 Bills. You may put one on the bottom."},
-      "flavor": "Former finance minister; an adviser on the Lausanne debts."},
-    "sarlken": {"name": "Abdülmecid Efendi", "short": "Abdülmecid",
-      "base": {"name": "Abdication", "text": "At Appoint, before any Censure, give your Minister seat to an eligible player. Gain 1 Standing; don't draw."},
-      "favor": {"name": "Caliph of the Faithful", "text": "Your Intrigue cards count as cards of an open field."},
-      "flavor": "The last caliph, and a painter; exiled in 1924."},
-    "tahmasp": {"name": "Venizelos",
-      "base": {"name": "Aegean Front", "text": "When the Crisis card flips, choose this crisis's field: Assembly, Çankaya or Ankara."},
-      "favor": {"name": "Megali Idea", "text": "Everyone, you included, keeps 1 Intrigue card of their choice and discards the rest."},
-      "flavor": "Greece's prime minister; he signed the 1930 friendship treaty."}
+    "suleyman": {
+      "name": "Gazi Mustafa Kemal",
+      "short": "Mustafa Kemal",
+      "base": {
+        "name": "Decree",
+        "text": "When Lobbying ends, swap a Minister for an eligible player, even under Ratification. They draw 1 Intrigue card."
+      },
+      "flavor": "Sovereignty is the nation's, without condition."
+    },
+    "hurrem": {
+      "name": "Latife Hanım",
+      "short": "Latife",
+      "base": {
+        "name": "Lady of the House",
+        "text": "At the Praise or Reproof, you choose which Minister it falls on, instead of the Gazi."
+      },
+      "favor": {
+        "name": "Unveiled",
+        "text": "In one wave, play two cards instead of one."
+      },
+      "flavor": "The Gazi's wife, the Republic's first lady."
+    },
+    "ibrahim": {
+      "name": "İsmet Pasha",
+      "short": "İsmet",
+      "base": {
+        "name": "Forming the Cabinet",
+        "text": "This crisis, you appoint both Ministers instead of the Gazi. You may appoint yourself."
+      },
+      "favor": {
+        "name": "Second Man",
+        "text": "From now on, gain 1 Standing whenever a Reform passes while you are a Minister."
+      },
+      "flavor": "At the head of Lausanne, then of the cabinet."
+    },
+    "sahsultan": {
+      "name": "Kâzım Karabekir",
+      "short": "Karabekir",
+      "base": {
+        "name": "Progressive Party",
+        "text": "On your turn to censure, censure for free and choose the replacement. It counts as your Censure this crisis."
+      },
+      "favor": {
+        "name": "Blacklist",
+        "text": "Name a player: next crisis they can't become a Minister by any route."
+      },
+      "flavor": "He took Kars, then founded the first opposition party."
+    },
+    "mustafa": {
+      "name": "Fevzi Pasha",
+      "short": "Fevzi",
+      "base": {
+        "name": "General Staff",
+        "text": "When Lobbying ends, before the Decree, take a Minister's seat if eligible, even under Ratification."
+      },
+      "favor": {
+        "name": "Father of the Army",
+        "text": "Whoever censures you gives you the Standing they paid."
+      },
+      "flavor": "Chief of the General Staff; the army stays out of politics."
+    },
+    "hatice": {
+      "name": "Fethi Bey",
+      "short": "Fethi",
+      "base": {
+        "name": "Tolerance",
+        "text": "Before Lobbying, pick a player: this crisis Intrigue can't unseat them, and they lose no Standing, Reproof included."
+      },
+      "favor": {
+        "name": "Letter from Paris",
+        "text": "Pick two players other than the Gazi and you. Secretly learn if they share a side."
+      },
+      "flavor": "Prime Minister in 1924-25, then envoy in Paris."
+    },
+    "rustem": {
+      "name": "Celal Bayar",
+      "short": "Celal",
+      "base": {
+        "name": "Çankaya Table",
+        "text": "Before the Gazi appoints, talk with him alone for one minute."
+      },
+      "favor": {
+        "name": "Endorsement",
+        "text": "When a wave flips, move one Intrigue card played on you to another player."
+      },
+      "flavor": "He founded İş Bankası in 1924."
+    },
+    "barbaros": {
+      "name": "Rauf Bey",
+      "short": "Rauf",
+      "base": {
+        "name": "Hamidiye Raid",
+        "text": "Take 1 random Intrigue card from another player's hand, then discard to your limit."
+      },
+      "favor": {
+        "name": "Ship's Log",
+        "text": "After the Vote, secretly see what the Prime Minister discarded."
+      },
+      "flavor": "Hamidiye's captain; a founder of the Progressives."
+    },
+    "gritti": {
+      "name": "Cavid Bey",
+      "base": {
+        "name": "Interest",
+        "text": "Name a player. The next time they gain Standing, you gain 1 too."
+      },
+      "favor": {
+        "name": "Lausanne File",
+        "text": "Secretly look at the top 3 Bills. You may put one on the bottom."
+      },
+      "flavor": "Former finance minister; an adviser on the Lausanne debts."
+    },
+    "sarlken": {
+      "name": "Abdülmecid Efendi",
+      "short": "Abdülmecid",
+      "base": {
+        "name": "Abdication",
+        "text": "At Appoint, before any Censure, give your Minister seat to an eligible player. Gain 1 Standing; don't draw."
+      },
+      "favor": {
+        "name": "Caliph of the Faithful",
+        "text": "Your Intrigue cards count as cards of an open field."
+      },
+      "flavor": "The last caliph, and a painter; exiled in 1924."
+    },
+    "tahmasp": {
+      "name": "Venizelos",
+      "base": {
+        "name": "Aegean Front",
+        "text": "When the Crisis card flips, choose this crisis's field: Assembly, Çankaya or Ankara."
+      },
+      "favor": {
+        "name": "Megali Idea",
+        "text": "Everyone, you included, keeps 1 Intrigue card of their choice and discards the rest."
+      },
+      "flavor": "Greece's prime minister; he signed the 1930 friendship treaty."
+    }
   },
   "companions": {
-    "daye": {"name": "Recep Peker", "text": "Play an Intrigue card as Assembly Resolution. You can't choose yourself.", "flavor": "The party's secretary-general writes the decision."},
-    "bali": {"name": "Salih Bozok", "text": "Play an Intrigue card as Ratification.", "flavor": "Childhood friend and aide; he never lets go."},
-    "ayas": {"name": "Kâzım Özalp", "text": "Play an Intrigue card as Cabinet Reshuffle.", "flavor": "Speaker from 1924; he reads the appointments out."},
-    "matrakci": {"name": "Refet Pasha", "text": "Play an Intrigue card as Plain-Clothes Man.", "flavor": "The first Minister of the Interior; he knows who visits whom."},
-    "sumbul": {"name": "Mahmut Esat", "text": "Play an Intrigue card as Immunity. You choose its field.", "flavor": "Minister of Justice, author of the Civil Code."},
-    "nigar": {"name": "Ali Fuat Pasha", "text": "Play an Intrigue card as Cipher Telegram.", "flavor": "Once envoy in Moscow; he knows the cipher."},
-    "ebussuud": {"name": "Tevfik Rüştü", "text": "Play an Intrigue card as Inquiry.", "flavor": "Doctor and deputy; he reads the discarded papers too."},
-    "gulsah": {"name": "Ahmet Ağaoğlu", "text": "Play an Intrigue card as Press Campaign.", "flavor": "The sharpest pen in the Ankara papers."},
-    "seker": {"name": "Safiye Ali", "text": "Play an Intrigue card as Doctor's Note.", "flavor": "Turkey's first woman doctor; nobody argues with her notes."},
-    "gulfem": {"name": "Nuri Conker", "text": "Play an Intrigue card as Guarantor.", "flavor": "The Gazi's childhood friend; he shares his man's fate."},
-    "iskender": {"name": "Abdülhalik Renda", "text": "Play an Intrigue card as Supplementary Bill.", "flavor": "Minister of Finance; there is always room for one more bill."},
-    "firuze": {"name": "Nezihe Muhiddin", "text": "Play an Intrigue card as Headline.", "flavor": "President of the Turkish Women's Union; she picks the headline."},
-    "gulaga": {"name": "Makbule Hanım", "text": "Play an Intrigue card as Censor.", "flavor": "The Gazi's sister; she keeps the house quiet."},
-    "lokman": {"name": "Halide Edib", "text": "Play an Intrigue card as Switchboard.", "flavor": "Novelist and corporal; she hears first who called whom."}
+    "daye": {
+      "name": "Recep Peker",
+      "text": "Play an Intrigue card as Assembly Resolution. You can't choose yourself.",
+      "flavor": "The party's secretary-general writes the decision."
+    },
+    "bali": {
+      "name": "Salih Bozok",
+      "text": "Play an Intrigue card as Ratification.",
+      "flavor": "Childhood friend and aide; he never lets go."
+    },
+    "ayas": {
+      "name": "Kâzım Özalp",
+      "text": "Play an Intrigue card as Cabinet Reshuffle.",
+      "flavor": "Speaker from 1924; he reads the appointments out."
+    },
+    "matrakci": {
+      "name": "Refet Pasha",
+      "text": "Play an Intrigue card as Plain-Clothes Man.",
+      "flavor": "The first Minister of the Interior; he knows who visits whom."
+    },
+    "sumbul": {
+      "name": "Mahmut Esat",
+      "text": "Play an Intrigue card as Immunity. You choose its field.",
+      "flavor": "Minister of Justice, author of the Civil Code."
+    },
+    "nigar": {
+      "name": "Ali Fuat Pasha",
+      "text": "Play an Intrigue card as Cipher Telegram.",
+      "flavor": "Once envoy in Moscow; he knows the cipher."
+    },
+    "ebussuud": {
+      "name": "Tevfik Rüştü",
+      "text": "Play an Intrigue card as Inquiry.",
+      "flavor": "Doctor and deputy; he reads the discarded papers too."
+    },
+    "gulsah": {
+      "name": "Ahmet Ağaoğlu",
+      "text": "Play an Intrigue card as Press Campaign.",
+      "flavor": "The sharpest pen in the Ankara papers."
+    },
+    "seker": {
+      "name": "Safiye Ali",
+      "text": "Play an Intrigue card as Doctor's Note.",
+      "flavor": "Turkey's first woman doctor; nobody argues with her notes."
+    },
+    "gulfem": {
+      "name": "Nuri Conker",
+      "text": "Play an Intrigue card as Guarantor.",
+      "flavor": "The Gazi's childhood friend; he shares his man's fate."
+    },
+    "iskender": {
+      "name": "Abdülhalik Renda",
+      "text": "Play an Intrigue card as Supplementary Bill.",
+      "flavor": "Minister of Finance; there is always room for one more bill."
+    },
+    "firuze": {
+      "name": "Nezihe Muhiddin",
+      "text": "Play an Intrigue card as Headline.",
+      "flavor": "President of the Turkish Women's Union; she picks the headline."
+    },
+    "gulaga": {
+      "name": "Makbule Hanım",
+      "text": "Play an Intrigue card as Censor.",
+      "flavor": "The Gazi's sister; she keeps the house quiet."
+    },
+    "lokman": {
+      "name": "Halide Edib",
+      "text": "Play an Intrigue card as Switchboard.",
+      "flavor": "Novelist and corporal; she hears first who called whom."
+    }
   },
   "intrigue": {
-    "akil-hocasi": {"name": "Immunity", "text": "For this crisis, cancels the other Intrigue cards of its field placed on this player.", "flavor": "What's said at the rostrum stays there."},
-    "muhur": {"name": "Ratification", "text": "Place on a Minister. Intrigue cards can't replace them this crisis; the Decree still can.", "flavor": "The seal is down; it's done."},
-    "valide": {"name": "Assembly Resolution", "text": "Place on a Minister. Replace them with an eligible player, yourself included. The new player takes the same seat.", "flavor": "The Assembly has decided."},
-    "azil": {"name": "Cabinet Reshuffle", "text": "Place on a Minister. The Gazi replaces them with an eligible player, who takes the same seat.", "flavor": "One memo, one new cabinet."},
-    "casus": {"name": "Plain-Clothes Man", "text": "When Lobbying ends, secretly see every Intrigue card this player played this crisis, and on whom.", "flavor": "In Ulus every step has a shadow."},
-    "muhurlu-evrak": {"name": "Cipher Telegram", "text": "Secretly look at the top 3 Bills and put them back in the same order.", "flavor": "News reaches the clerk before its owner."},
-    "saray-tabibi": {"name": "Doctor's Note", "text": "This player loses no Standing this crisis, Reproof included.", "flavor": "The sick answer to no one."},
-    "iftira": {"name": "Press Campaign", "text": "This player loses 1 Standing.", "flavor": "A column, a name, a stain."},
-    "kefalet": {"name": "Guarantor", "text": "Place on a Minister. If they still hold a seat at the Vote: you gain 1 Standing on a Reform, lose 1 on a Reaction.", "flavor": "Whoever stands surety signs the note too."},
-    "teftis": {"name": "Inquiry", "text": "Place on a Minister. After the Vote, secretly look at the card or cards that Minister discarded.", "flavor": "The committee reads every paper, even the bin."},
-    "defterdar": {"name": "Supplementary Bill", "text": "Place on the Prime Minister. If still Prime Minister at the Vote, they draw 4 instead of 3 and discard 2.", "flavor": "One more item on the agenda."},
-    "nobet": {"name": "Switchboard", "text": "When Lobbying ends, pick one card others played on this player this crisis; secretly learn who played it.", "flavor": "The switchboard knows who placed the call."},
-    "nazar": {"name": "Headline", "text": "Place on a Minister. If this crisis's Praise or Reproof falls on them, it counts 2 Standing instead of 1.", "flavor": "A headline makes a name or breaks it."},
-    "sukut": {"name": "Censor", "text": "This player can't play an Intrigue card in the next wave.", "flavor": "The column comes out blank; readers understand."}
+    "akil-hocasi": {
+      "name": "Immunity",
+      "text": "For this crisis, cancels the other Intrigue cards of its field placed on this player.",
+      "flavor": "What's said at the rostrum stays there."
+    },
+    "muhur": {
+      "name": "Ratification",
+      "text": "Place on a Minister. Intrigue cards can't replace them this crisis; the Decree still can.",
+      "flavor": "The seal is down; it's done."
+    },
+    "valide": {
+      "name": "Assembly Resolution",
+      "text": "Place on a Minister. Replace them with an eligible player, yourself included. The new player takes the same seat.",
+      "flavor": "The Assembly has decided."
+    },
+    "azil": {
+      "name": "Cabinet Reshuffle",
+      "text": "Place on a Minister. The Gazi replaces them with an eligible player, who takes the same seat.",
+      "flavor": "One memo, one new cabinet."
+    },
+    "casus": {
+      "name": "Plain-Clothes Man",
+      "text": "When Lobbying ends, secretly see every Intrigue card this player played this crisis, and on whom.",
+      "flavor": "In Ulus every step has a shadow."
+    },
+    "muhurlu-evrak": {
+      "name": "Cipher Telegram",
+      "text": "Secretly look at the top 3 Bills and put them back in the same order.",
+      "flavor": "News reaches the clerk before its owner."
+    },
+    "saray-tabibi": {
+      "name": "Doctor's Note",
+      "text": "This player loses no Standing this crisis, Reproof included.",
+      "flavor": "The sick answer to no one."
+    },
+    "iftira": {
+      "name": "Press Campaign",
+      "text": "This player loses 1 Standing.",
+      "flavor": "A column, a name, a stain."
+    },
+    "kefalet": {
+      "name": "Guarantor",
+      "text": "Place on a Minister. If still seated at the Vote: you gain 1 Standing on a Reform, lose 1 on a Reaction.",
+      "flavor": "Whoever stands surety signs the note too."
+    },
+    "teftis": {
+      "name": "Inquiry",
+      "text": "Place on a Minister. After the Vote, secretly look at the card or cards that Minister discarded.",
+      "flavor": "The committee reads every paper, even the bin."
+    },
+    "defterdar": {
+      "name": "Supplementary Bill",
+      "text": "Place on the Prime Minister. If still Prime Minister at the Vote, they draw 4 instead of 3 and discard 2.",
+      "flavor": "One more item on the agenda."
+    },
+    "nobet": {
+      "name": "Switchboard",
+      "text": "When Lobbying ends, pick one card others played on this player this crisis; secretly learn who played it.",
+      "flavor": "The switchboard knows who placed the call."
+    },
+    "nazar": {
+      "name": "Headline",
+      "text": "Place on a Minister. If this crisis's Praise or Reproof falls on them, it counts 2 Standing instead of 1.",
+      "flavor": "A headline makes a name or breaks it."
+    },
+    "sukut": {
+      "name": "Censor",
+      "text": "This player can't play an Intrigue card in the next wave.",
+      "flavor": "The column comes out blank; readers understand."
+    }
   },
   "ambitions": {
-    "divanda-nufuz": {"name": "Bring Down a Minister", "text": "Remove a Minister from their seat with an Intrigue card.", "flavor": "A Minister sits by one vote and falls by one."},
-    "suphe": {"name": "Under Suspicion", "text": "Be a Minister when a Reaction passes.", "flavor": "No smoke without fire."},
-    "takdir": {"name": "Party to Reform", "text": "Be a Minister when a Reform passes.", "flavor": "Your signature is on the reform too."},
-    "gozden": {"name": "Fall from Favour", "text": "Lose Standing.", "flavor": "The door of the house closes only once."},
-    "kulisci": {"name": "Lobbyist", "text": "Place Intrigue cards on 3 different players.", "flavor": "A key for every door."},
-    "yukselen": {"name": "A Seat in Cabinet", "text": "Be a Minister in 2 crises.", "flavor": "One cabinet is luck; the second is skill."},
-    "itirazci": {"name": "Moving Censure", "text": "Make a Censure.", "flavor": "\"Mr Speaker, I ask for the floor!\""},
-    "hedef": {"name": "Talk of the Town", "text": "Have other players place 2 or more Intrigue cards on you in one crisis.", "flavor": "No paper goes to print without your name."},
-    "ortak": {"name": "Comrade in Arms", "text": "Place a Ratification or a Guarantor on a Minister.", "flavor": "Side by side at the front, side by side in the Assembly."},
-    "hazine": {"name": "Mobilisation", "text": "Play 3 Intrigue cards in one crisis.", "flavor": "Everything you have, on the table."},
-    "koltuk": {"name": "Grab a Seat", "text": "Become a Minister through an Intrigue card.", "flavor": "A seat never stays empty."},
-    "kulak": {"name": "Eavesdropper", "text": "Use Plain-Clothes Man, Cipher Telegram, Inquiry or Switchboard.", "flavor": "The walls of the house have ears."}
+    "divanda-nufuz": {
+      "name": "Bring Down a Minister",
+      "text": "Remove a Minister from their seat with an Intrigue card.",
+      "flavor": "A Minister sits by one vote and falls by one."
+    },
+    "suphe": {
+      "name": "Under Suspicion",
+      "text": "Be a Minister when a Reaction passes.",
+      "flavor": "No smoke without fire."
+    },
+    "takdir": {
+      "name": "Party to Reform",
+      "text": "Be a Minister when a Reform passes.",
+      "flavor": "Your signature is on the reform too."
+    },
+    "gozden": {
+      "name": "Fall from Favour",
+      "text": "Lose Standing.",
+      "flavor": "The door of the house closes only once."
+    },
+    "kulisci": {
+      "name": "Lobbyist",
+      "text": "Place Intrigue cards on 3 different players.",
+      "flavor": "A key for every door."
+    },
+    "yukselen": {
+      "name": "A Seat in Cabinet",
+      "text": "Be a Minister in 2 crises.",
+      "flavor": "One cabinet is luck; the second is skill."
+    },
+    "itirazci": {
+      "name": "Moving Censure",
+      "text": "Make a Censure.",
+      "flavor": "\"Mr Speaker, I ask for the floor!\""
+    },
+    "hedef": {
+      "name": "Talk of the Town",
+      "text": "Have other players place 2 or more Intrigue cards on you in one crisis.",
+      "flavor": "No paper goes to print without your name."
+    },
+    "ortak": {
+      "name": "Comrade in Arms",
+      "text": "Place a Ratification or a Guarantor on a Minister.",
+      "flavor": "Side by side at the front, side by side in the Assembly."
+    },
+    "hazine": {
+      "name": "Mobilisation",
+      "text": "Play 3 Intrigue cards in one crisis.",
+      "flavor": "Everything you have, on the table."
+    },
+    "koltuk": {
+      "name": "Grab a Seat",
+      "text": "Become a Minister through an Intrigue card.",
+      "flavor": "A seat never stays empty."
+    },
+    "kulak": {
+      "name": "Eavesdropper",
+      "text": "Use Plain-Clothes Man, Cipher Telegram, Inquiry or Switchboard.",
+      "flavor": "The walls of the house have ears."
+    }
   },
   "crises": {
-    "yeniceri": {"name": "Sheikh Said Revolt", "text": "Players with 0 Standing draw 1 Intrigue card each.", "flavor": "February 1925: a revolt in the east; the army marches."},
-    "hazine": {"name": "The Public Debt", "text": "Nobody draws an Intrigue card this crisis.", "flavor": "The Ottoman debt still has to be paid."},
-    "venedik": {"name": "Embassies to Ankara", "text": "The two players beside the Gazi draw 1 Intrigue card each.", "flavor": "The envoys arrive; the town has no hotels."},
-    "harem": {"name": "A Quarrel at the House", "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.", "flavor": "Raised voices at Çankaya."},
-    "macar": {"name": "Martial Law", "text": "Nobody draws an Intrigue card this crisis.", "flavor": "February 1925: martial law in the east, silence in Ankara."},
-    "muhur": {"name": "The Missing Cipher", "text": "Last crisis's Ministers draw 1 Intrigue card each.", "flavor": "A cipher book is missing from the house."},
-    "divan": {"name": "The Opposition Party", "text": "Last crisis's Ministers draw 1 Intrigue card each.", "flavor": "November 1924: the first opposition party takes its seats."},
-    "sehzade": {"name": "The Succession", "text": "The two players beside the Gazi draw 1 Intrigue card each.", "flavor": "Nobody asks it out loud."},
-    "istanbul": {"name": "The Hat Law", "text": "Everyone except the Gazi draws 1 Intrigue card.", "flavor": "November 1925: every coffeehouse has an opinion."},
-    "irakeyn": {"name": "The Mosul Question", "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.", "flavor": "The League of Nations has decided."},
-    "isabella": {"name": "The Dynasty Exiled", "text": "Last crisis's Ministers draw 1 Intrigue card each.", "flavor": "March 1924: the dynasty has days to leave."}
+    "yeniceri": {
+      "name": "Sheikh Said Revolt",
+      "text": "Players with 0 Standing draw 1 Intrigue card each.",
+      "flavor": "February 1925: a revolt in the east; the army marches."
+    },
+    "hazine": {
+      "name": "The Public Debt",
+      "text": "Nobody draws an Intrigue card this crisis.",
+      "flavor": "The Ottoman debt still has to be paid."
+    },
+    "venedik": {
+      "name": "Embassies to Ankara",
+      "text": "The two players beside the Gazi draw 1 Intrigue card each.",
+      "flavor": "The envoys arrive; the town has no hotels."
+    },
+    "harem": {
+      "name": "A Quarrel at the House",
+      "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.",
+      "flavor": "Raised voices at Çankaya."
+    },
+    "macar": {
+      "name": "Martial Law",
+      "text": "Nobody draws an Intrigue card this crisis.",
+      "flavor": "February 1925: martial law in the east, silence in Ankara."
+    },
+    "muhur": {
+      "name": "The Missing Cipher",
+      "text": "Last crisis's Ministers draw 1 Intrigue card each.",
+      "flavor": "A cipher book is missing from the house."
+    },
+    "divan": {
+      "name": "The Opposition Party",
+      "text": "Last crisis's Ministers draw 1 Intrigue card each.",
+      "flavor": "November 1924: the first opposition party takes its seats."
+    },
+    "sehzade": {
+      "name": "The Succession",
+      "text": "The two players beside the Gazi draw 1 Intrigue card each.",
+      "flavor": "Nobody asks it out loud."
+    },
+    "istanbul": {
+      "name": "The Hat Law",
+      "text": "Everyone except the Gazi draws 1 Intrigue card.",
+      "flavor": "November 1925: every coffeehouse has an opinion."
+    },
+    "irakeyn": {
+      "name": "The Mosul Question",
+      "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.",
+      "flavor": "The League of Nations has decided."
+    },
+    "isabella": {
+      "name": "The Dynasty Exiled",
+      "text": "Last crisis's Ministers draw 1 Intrigue card each.",
+      "flavor": "March 1924: the dynasty has days to leave."
+    }
   },
   "kader": {
-    "h": {"name": "Reform", "text": ["Goes on the Reform track.", "Praise: the Gazi gives a Minister 1 Standing."], "flavor": "Passed."},
-    "x": {"name": "Reaction", "text": ["Goes on the Reaction track.", "Reproof: the Gazi takes 1 Standing from a Minister."], "flavor": "\"Pasha, I swear I did all I could; the Assembly wouldn't pass it!\""}
+    "h": {
+      "name": "Reform",
+      "text": [
+        "Goes on the Reform track.",
+        "Praise: the Gazi gives a Minister 1 Standing."
+      ],
+      "flavor": "Passed."
+    },
+    "x": {
+      "name": "Reaction",
+      "text": [
+        "Goes on the Reaction track.",
+        "Reproof: the Gazi takes 1 Standing from a Minister."
+      ],
+      "flavor": "\"Pasha, I swear I did all I could; the Assembly wouldn't pass it!\""
+    }
   },
   "taraf": {
-    "loyalist": {"name": "Reformist", "text": ["You win when 4 Reforms are on the Reform track.", "This card is secret."], "flavor": "Reform does not stop."},
-    "traitor": {"name": "Reactionary", "text": ["You win when 5 Reactions are on the Reaction track.", "Reactionaries know each other."], "flavor": "The old days will come back."}
+    "loyalist": {
+      "name": "Reformist",
+      "text": [
+        "You win when 4 Reforms are on the Reform track.",
+        "This card is secret."
+      ],
+      "flavor": "Reform does not stop."
+    },
+    "traitor": {
+      "name": "Reactionary",
+      "text": [
+        "You win when 5 Reactions are on the Reaction track.",
+        "Reactionaries know each other."
+      ],
+      "flavor": "The old days will come back."
+    }
   },
   "treason": {
-    "1": {"name": "No power", "text": "Nothing happens."},
-    "sorusturma": {"name": "Independence Tribunal", "text": "The Gazi names an inspector, who secretly looks at one player's Allegiance card, then may say anything."},
-    "hazineDefteri": {"name": "Police Report", "text": "Before the next crisis, the Gazi names a player, who secretly looks at the top 3 Bills."},
-    "fermanRefresh": {"name": "Law on the Maintenance of Order", "text": "The Gazi may use the Decree again. He never holds more than one."},
-    "death": {"name": "Counter-Revolution", "text": "The Reactionaries win."}
+    "1": {
+      "name": "No power",
+      "text": "Nothing happens."
+    },
+    "sorusturma": {
+      "name": "Independence Tribunal",
+      "text": "The Gazi names an inspector, who secretly looks at one player's Allegiance card, then may say anything."
+    },
+    "hazineDefteri": {
+      "name": "Police Report",
+      "text": "Before the next crisis, the Gazi names a player, who secretly looks at the top 3 Bills."
+    },
+    "fermanRefresh": {
+      "name": "Law on the Maintenance of Order",
+      "text": "The Gazi may use the Decree again. He never holds more than one."
+    },
+    "death": {
+      "name": "Counter-Revolution",
+      "text": "The Reactionaries win."
+    }
   },
   "strings": {
     "tagline": "There's a traitor at Çankaya.",

@@ -103,103 +103,103 @@
  },
  "art": {
   "companions.ayas": {
-   "src": "art/comp.ayas-1.jpg",
-   "pos": "50% 30%"
+   "src": "art/comp.ayas-2.jpg",
+   "pos": "50% 35%"
   },
   "companions.bali": {
-   "src": "art/comp.bali-3.jpg",
-   "pos": "45% 42%"
+   "src": "art/comp.bali-4.jpg",
+   "pos": "50% 30%"
   },
   "companions.daye": {
-   "src": "art/comp.daye-1.jpg",
-   "pos": "50% 40%"
+   "src": "art/comp.daye-3.jpg",
+   "pos": "50% 35%"
   },
   "companions.ebussuud": {
    "src": "art/comp.ebussuud-3.jpg",
    "pos": "50% 38%"
   },
   "companions.firuze": {
-   "src": "art/comp.firuze-3.jpg",
+   "src": "art/comp.firuze-4.jpg",
    "pos": "50% 40%"
   },
   "companions.gulaga": {
-   "src": "art/comp.gulaga-1.jpg",
-   "pos": "50% 30%"
-  },
-  "companions.gulfem": {
-   "src": "art/comp.gulfem-3.jpg",
-   "pos": "50% 35%"
-  },
-  "companions.gulsah": {
-   "src": "art/comp.gulsah-3.jpg",
+   "src": "art/comp.gulaga-2.jpg",
    "pos": "50% 40%"
   },
+  "companions.gulfem": {
+   "src": "art/comp.gulfem-4.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.gulsah": {
+   "src": "art/comp.gulsah-4.jpg",
+   "pos": "50% 30%"
+  },
   "companions.iskender": {
-   "src": "art/comp.iskender-2.jpg",
-   "pos": "50% 35%"
+   "src": "art/comp.iskender-3.jpg",
+   "pos": "50% 30%"
   },
   "companions.lokman": {
-   "src": "art/comp.lokman-3.jpg",
-   "pos": "50% 30%"
+   "src": "art/comp.lokman-4.jpg",
+   "pos": "38% 20%"
   },
   "companions.matrakci": {
-   "src": "art/comp.matrakci-1.jpg",
-   "pos": "50% 30%"
+   "src": "art/comp.matrakci-2.jpg",
+   "pos": "45% 42%"
   },
   "companions.nigar": {
-   "src": "art/comp.nigar-1.jpg",
-   "pos": "50% 25%"
+   "src": "art/comp.nigar-2.jpg",
+   "pos": "50% 30%"
   },
   "companions.seker": {
    "src": "art/comp.seker-2.jpg",
    "pos": "50% 30%"
   },
   "companions.sumbul": {
-   "src": "art/comp.sumbul-3.jpg",
-   "pos": "50% 30%"
+   "src": "art/comp.sumbul-4.jpg",
+   "pos": "55% 40%"
   },
   "crises.divan": {
-   "src": "art/crisis.divan-1.jpg",
-   "pos": "50% 50%"
+   "src": "art/crisis.divan-2.jpg",
+   "pos": "50% 35%"
   },
   "crises.harem": {
-   "src": "art/crisis.harem-1.jpg",
+   "src": "art/crisis.harem-2.jpg",
    "pos": "50% 50%"
   },
   "crises.hazine": {
-   "src": "art/crisis.hazine-1.jpg",
-   "pos": "40% 55%"
-  },
-  "crises.irakeyn": {
-   "src": "art/crisis.irakeyn-1.jpg",
-   "pos": "50% 45%"
-  },
-  "crises.isabella": {
-   "src": "art/crisis.isabella-1.jpg",
-   "pos": "50% 45%"
-  },
-  "crises.istanbul": {
-   "src": "art/crisis.istanbul-2.jpg",
-   "pos": "50% 45%"
-  },
-  "crises.macar": {
-   "src": "art/crisis.macar-1.jpg",
+   "src": "art/crisis.hazine-2.jpg",
    "pos": "50% 50%"
   },
+  "crises.irakeyn": {
+   "src": "art/crisis.irakeyn-2.jpg",
+   "pos": "30% 40%"
+  },
+  "crises.isabella": {
+   "src": "art/crisis.isabella-2.jpg",
+   "pos": "50% 35%"
+  },
+  "crises.istanbul": {
+   "src": "art/crisis.istanbul-3.jpg",
+   "pos": "50% 50%"
+  },
+  "crises.macar": {
+   "src": "art/crisis.macar-3.jpg",
+   "pos": "50% 45%"
+  },
   "crises.muhur": {
-   "src": "art/crisis.muhur-1.jpg",
-   "pos": "50% 40%"
+   "src": "art/crisis.muhur-2.jpg",
+   "pos": "40% 50%"
   },
   "crises.sehzade": {
-   "src": "art/crisis.sehzade-3.jpg",
+   "src": "art/crisis.sehzade-4.jpg",
    "pos": "50% 50%"
   },
   "crises.venedik": {
-   "src": "art/crisis.venedik-1.jpg",
-   "pos": "50% 45%"
+   "src": "art/crisis.venedik-2.jpg",
+   "pos": "50% 50%"
   },
   "crises.yeniceri": {
-   "src": "art/crisis.yeniceri-1.jpg",
+   "src": "art/crisis.yeniceri-2.jpg",
    "pos": "50% 50%"
   },
   "intrigue.akil-hocasi": {
@@ -207,7 +207,7 @@
    "pos": "50% 50%"
   },
   "intrigue.azil": {
-   "src": "art/card.azil-2.jpg",
+   "src": "art/card.azil-1.jpg",
    "pos": "50% 50%"
   },
   "intrigue.casus": {
@@ -247,29 +247,29 @@
    "pos": "50% 40%"
   },
   "intrigue.sukut": {
-   "src": "art/card.sukut-3.jpg",
-   "pos": "50% 50%"
+   "src": "art/card.sukut-4.jpg",
+   "pos": "50% 30%"
   },
   "intrigue.teftis": {
    "src": "art/card.teftis-1.jpg",
    "pos": "50% 50%"
   },
   "intrigue.valide": {
-   "src": "art/card.valide-1.jpg",
-   "pos": "50% 45%"
+   "src": "art/card.valide-2.jpg",
+   "pos": "50% 50%"
   },
   "kader.h": {
-   "src": "art/term.hizmet-2.jpg",
-   "pos": "35% 60%"
+   "src": "art/term.hizmet-4.jpg",
+   "pos": "50% 50%"
   },
   "kader.x": {
-   "src": "art/term.hiyanet-1.jpg",
-   "pos": "40% 65%"
+   "src": "art/term.hiyanet-2.jpg",
+   "pos": "50% 50%"
   }
  },
  "icons": {
   "dir": "icons/",
-  "version": "2"
+  "version": "3"
  },
  "niche": {
   "path": "M.5 119.5V28H12V16H24V6H76V16H88V28H99.5V119.5Z",
@@ -277,7 +277,43 @@
   "sultan": "table/gazi-seat.html"
  },
  "seal": "table/seal.svg",
- "frieze": [{ "char": "barbaros", "size": 92, "x": 0 }, { "char": "hurrem", "size": 92, "x": 86 }, { "char": "suleyman", "size": 104, "x": 172 }, { "char": "mustafa", "size": 94, "x": 270 }, { "char": "ibrahim", "size": 92, "x": 356 }],
+ "frieze": [
+  {
+   "char": "barbaros",
+   "size": 94,
+   "x": 0
+  },
+  {
+   "char": "hurrem",
+   "size": 94,
+   "x": 92
+  },
+  {
+   "char": "mustafa",
+   "size": 96,
+   "x": 180
+  },
+  {
+   "char": "suleyman",
+   "size": 98,
+   "x": 272
+  },
+  {
+   "char": "ibrahim",
+   "size": 96,
+   "x": 366
+  },
+  {
+   "char": "sahsultan",
+   "size": 94,
+   "x": 456
+  },
+  {
+   "char": "hatice",
+   "size": 94,
+   "x": 546
+  }
+ ],
  "music": {
   "drone": [
    146.83,
