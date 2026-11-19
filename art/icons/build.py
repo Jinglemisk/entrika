@@ -1,13 +1,14 @@
-# Builds the game's icon set from the Kat'ı masks.
-#   masks/<name>.png  512 px black silhouettes (alpha = the cut paper)
+# Builds a mod's icon set from its masks. An icons folder holds
+#   masks/<name>.png  512 px black silhouettes (alpha = the shape), one per icon id (game/content/icons.json)
 #   meaning.json      each icon's paper and lacquer colour
 #   -> set/<name>.png (512) and set/<name>-144/-72/-48.png, tinted with the paper colour
 # The game shows these files as they are on light grounds and masks them with the lacquer colour on dark ones.
-# usage: python3 -I art/icons/build.py   (from the repo root or from art/icons)
-import json, os, glob
+# usage: python3 -I art/icons/build.py [icons folder]
+#   no folder: this one, the muhtesem Kat'ı set; for another mod: python3 -I art/icons/build.py mods/got/icons
+import json, os, glob, sys
 from PIL import Image
 
-here = os.path.dirname(os.path.abspath(__file__))
+here = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
 colours = json.load(open(f'{here}/meaning.json'))['colours']
 paper = {t: v['paper'] for v in colours.values() for t in v['terms']}
 
