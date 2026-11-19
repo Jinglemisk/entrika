@@ -1,78 +1,74 @@
-/* Card styles, ported from the art page (art/directions, round 6).
-   A card is a 500 x 700 unit drawing = 100 x 140 cqw; .c3 is its own size container, so every length scales with the card's width.
-   Under 150 px the card switches to the compact frame, under 90 px the name banner goes too. */
+/* Card layout. A card is a 500 x 700 unit drawing = 100 x 140 cqw; .c3 is its own size container, so every length
+   scales with the card's width. Under 150 px the card switches to the compact layers, under 90 px the name goes too.
+   This file holds the layout and a plain, neutral look; each mod's skin.css gives the cards their look (colours,
+   fonts, textures, the plate, the still grade), so nothing here belongs to any one world. */
 
 /* the wrapper Card.tsx renders: fixes the size, the card fills it. Don't position it: a positioned wrapper changes
-   how Chromium rasterizes the filtered SVG layers, and the card drifts by a few pixel values from the art page. */
+   how Chromium rasterizes the filtered SVG layers, and the card drifts by a few pixel values. */
 .c3-slot{flex:none}
-/* the hidden defs sprite (<CardDefs />): gradients, patterns, filters; must stay in the layout tree, so no display:none */
+/* the hidden defs sprite (<CardDefs />): the skin's gradients, patterns, filters; must stay in the layout tree, so no display:none */
 .c3-sprite{position:absolute;width:0;height:0;overflow:hidden}
 
 .c3{container-type:inline-size;aspect-ratio:5/7;width:100%;position:relative;border-radius:4.8%/3.43%;overflow:hidden;isolation:isolate;
-  box-shadow:0 2px 3px rgba(0,0,0,.35),0 8px 22px rgba(30,15,5,.35);color:#2a1c12;font:16px/1.5 var(--f-body);text-align:left;
-  --f-display:"Alegreya SC",Georgia,serif;--f-body:"Alegreya",Georgia,serif;
-  --fiber:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-  --leather:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+  box-shadow:0 2px 3px rgba(0,0,0,.3);color:#222;font:16px/1.5 var(--f-body);text-align:left;
+  --f-display:Georgia,serif;--f-body:Georgia,serif}
 .c3,.c3 *,.c3 *::before,.c3 *::after{box-sizing:border-box}
 .c3 h4{margin:0;text-wrap:balance}
 .c3 p{margin:0}
 .c3 .ico{width:1em;height:1em;vertical-align:-.2em}
 
-/* Kat'ı icons (iconHtml, Em): the file is tinted for light grounds. On dark grounds (lacquer, the frequency discs,
-   black gem discs) the same silhouette is masked with its light colour --l; on a filled button it takes the label colour. */
+/* term icons (iconHtml, Em): the file is tinted for light grounds. On dark grounds (lacquer, the frequency discs,
+   dark slot discs) the same silhouette is masked with its light colour --l; on a filled button it takes the label colour. */
 .ico{display:inline-block;flex:none;background:var(--i) center/contain no-repeat}
 .zl .ico{background:var(--l);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 .zl .zp .ico,.zl .c3 .ico{background:var(--i) center/contain no-repeat;-webkit-mask:none;mask:none}
 .c3 .fq .ico,.c3.gem-dk :is(.mj,.fj) .ico{background:var(--l);-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 .b.pri .ico{background:currentColor;-webkit-mask:var(--i) center/contain no-repeat;mask:var(--i) center/contain no-repeat}
 
-.c3 > .base{position:absolute;inset:0;background:var(--leather),radial-gradient(120% 90% at 50% 30%,var(--e1),var(--e2))}
+/* the face's base colours (skin.json faces.*.base, or a card's tint) */
+.c3 > .base{position:absolute;inset:0;background:linear-gradient(var(--e1),var(--e2))}
 .c3 .L{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .c3 .small,.c3 .sname{display:none}
-.c3 .art{position:absolute;left:var(--ax);top:var(--ay);width:var(--aw);height:var(--ah);overflow:hidden;background:#140c08;-webkit-mask:var(--am) center/100% 100% no-repeat;mask:var(--am) center/100% 100% no-repeat}
-.c3 .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:url(#grade)}
+.c3 .art{position:absolute;left:var(--ax);top:var(--ay);width:var(--aw);height:var(--ah);overflow:hidden;background:#bdbdbd;-webkit-mask:var(--am) center/100% 100% no-repeat;mask:var(--am) center/100% 100% no-repeat}
+.c3 .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .c3 .art > svg{position:absolute;inset:0;width:100%;height:100%}
-.c3 .mj,.c3 .fj{position:absolute;top:calc(12cqw - 6.1cqw);width:12.2cqw;height:12.2cqw;display:grid;place-items:center;color:#fff6d8;z-index:3;
-  font:700 6cqw/1 var(--f-display);text-shadow:0 .3cqw .4cqw rgba(0,0,0,.6)}
+/* the two corner slots' icons */
+.c3 .mj,.c3 .fj{position:absolute;top:calc(12cqw - 6.1cqw);width:12.2cqw;height:12.2cqw;display:grid;place-items:center;z-index:3;
+  font:700 6cqw/1 var(--f-display)}
 .c3 .mj{left:calc(12cqw - 6.1cqw)}.c3 .fj{right:calc(12cqw - 6.1cqw)}
 .c3 .mj .ico,.c3 .fj .ico{width:10.2cqw;height:10.2cqw}
-.c3.t-intr .mj{color:#2a1c12;text-shadow:0 .3cqw 0 rgba(255,255,255,.7)}
+/* the name, centred on the name line */
 .c3 .nm{position:absolute;left:14cqw;right:14cqw;top:calc(var(--cy) - 6cqw);height:12cqw;display:grid;place-items:center;text-align:center;z-index:3;
-  font:700 6.4cqw/1.05 var(--f-display);letter-spacing:.03em;color:#6a1610;text-shadow:0 .25cqw 0 rgba(255,255,255,.65)}
+  font:700 6.4cqw/1.05 var(--f-display)}
 .c3 .nm.long{font-size:5.3cqw}
-.c3.t-kul .nm{color:#ffe6a0;text-shadow:0 .3cqw .2cqw rgba(0,0,0,.7)}
 
 /* text plate */
 .c3 .plate{position:absolute;left:10.4cqw;right:10.4cqw;top:var(--py);height:var(--ph);border-radius:1.6cqw;z-index:2;
-  background:var(--fiber),linear-gradient(#fbf3dc,#efdfb6);box-shadow:inset 0 0 2.4cqw rgba(110,70,20,.38),inset 0 .4cqw .8cqw rgba(90,55,10,.3),0 0 0 .5cqw #c99a3a,0 0 0 .9cqw #3a2208,0 .6cqw 1.2cqw rgba(0,0,0,.35)}
-.c3 .pin{position:absolute;inset:0;padding:2.4cqw 2.8cqw 2cqw;display:grid;align-content:center;gap:1.8cqw;text-align:center;font:400 5cqw/1.3 var(--f-body);color:#2a1c12}
+  background:#fafafa;box-shadow:0 0 0 .5cqw #8a8a8a}
+.c3 .pin{position:absolute;inset:0;padding:2.4cqw 2.8cqw 2cqw;display:grid;align-content:center;gap:1.8cqw;text-align:center;font:400 5cqw/1.3 var(--f-body)}
 .c3 .pin b{font-weight:700}
-.c3 .fl{font:italic 400 3.9cqw/1.2 var(--f-body);color:#6b5236}
-.c3 .fl::before,.c3 .fl::after{content:"❦";font-style:normal;color:#b88a2e;margin:0 1.2cqw;font-size:.9em}
+.c3 .fl{font:italic 400 3.9cqw/1.2 var(--f-body);color:#666}
 .c3.v-full .pin{font-size:5.4cqw}
 
-/* Character powers: base and Lütuf in the same raised panel, a line-diamond-line between them */
-.c3 .pw{border-radius:1.4cqw;padding:1.6cqw 2.2cqw 1.8cqw;display:grid;gap:.9cqw;position:relative;
-  background:linear-gradient(rgba(255,250,232,.55),rgba(214,186,128,.22));
-  box-shadow:inset 0 .3cqw .2cqw rgba(255,255,255,.7),inset 0 -.35cqw .4cqw rgba(110,70,20,.2),0 0 0 .3cqw rgba(160,118,48,.45),0 .4cqw .7cqw rgba(90,55,10,.18)}
+/* Character powers: base and Lütuf in the same panel, a separator between them */
+.c3 .pw{border-radius:1.4cqw;padding:1.6cqw 2.2cqw 1.8cqw;display:grid;gap:.9cqw;position:relative;background:rgba(0,0,0,.04)}
 .c3 .pw p{font-size:4.7cqw;line-height:1.28}
 /* a power's name leads its text: a size up, a little tracking, so it reads as a heading beside the frequency icon */
 .c3 .pn{font-size:1.14em;letter-spacing:.03em}
 .c3 .pw b.pn{font-weight:700}
 .c3 .pw-sep{display:flex;align-items:center;gap:1.4cqw;margin:-.3cqw 10cqw}
-.c3 .pw-sep::before,.c3 .pw-sep::after{content:"";flex:1;height:.35cqw;background:linear-gradient(90deg,transparent,#b88a2e)}
-.c3 .pw-sep::after{background:linear-gradient(270deg,transparent,#b88a2e)}
-.c3 .pw-sep i{width:1.5cqw;height:1.5cqw;background:#b88a2e;transform:rotate(45deg)}
+.c3 .pw-sep::before,.c3 .pw-sep::after{content:"";flex:1;height:.35cqw;background:#999}
+.c3 .pw-sep i{width:1.5cqw;height:1.5cqw;background:#999;transform:rotate(45deg)}
 /* a power's state in play */
 .c3 .pw.used p,.c3 .pw.locked p{opacity:.42}
 .c3 .pw-st{position:absolute;right:1.4cqw;top:-3.4cqw;z-index:1;display:grid;place-items:center;height:4.6cqw;padding:0 1.6cqw;border-radius:2.3cqw;
-  font:700 2.9cqw/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:#fbf3dc;background:#8a1c12;box-shadow:0 .3cqw .6cqw rgba(0,0,0,.3)}
-.c3 .pw-st.locked{width:4.6cqw;padding:0;background:#3a2a14}
-.c3 .pw-st svg{width:3cqw;height:3cqw;fill:none;stroke:#fbf3dc;stroke-width:2.2;stroke-linecap:round}
+  font:700 2.9cqw/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:#555}
+.c3 .pw-st.locked{width:4.6cqw;padding:0}
+.c3 .pw-st svg{width:3cqw;height:3cqw;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round}
 /* a card's state in play, stamped across the picture so the text stays readable */
 .c3 .stamp{position:absolute;z-index:4;left:50%;top:40cqw;transform:translate(-50%,-50%) rotate(-9deg);padding:1.4cqw 3.2cqw;
-  border:.8cqw solid currentColor;border-radius:1.6cqw;background:rgba(251,243,220,.82);font:700 7cqw/1 var(--f-display);letter-spacing:.08em;
-  text-transform:uppercase;white-space:nowrap;color:#8a1c12;box-shadow:0 .4cqw 1cqw rgba(0,0,0,.25)}
+  border:.8cqw solid currentColor;border-radius:1.6cqw;background:rgba(255,255,255,.85);font:700 7cqw/1 var(--f-display);letter-spacing:.08em;
+  text-transform:uppercase;white-space:nowrap;color:#a33}
 .c3 .stamp.ok{color:#2c6a4d}
 .c3.t-char .pin{gap:.7cqw;padding:1cqw 2cqw .8cqw}
 /* two powers and a flavor line share the plate */
@@ -80,9 +76,9 @@
 .c3.t-char .pw p{font-size:4cqw;line-height:1.25}
 .c3.t-char .fl{font-size:3.5cqw}
 
-/* frequency icon on its bronze disc */
-.c3 .fq{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;vertical-align:-.32em;margin-right:.18em;cursor:help;color:#ffe6a0;
-  background:radial-gradient(circle at 38% 32%,#6b5236,#2a1c10);box-shadow:0 0 0 .12em #c99a3a,0 0 0 .2em #3a2208,0 .1em .2em rgba(0,0,0,.4)}
+/* frequency icon on its disc */
+.c3 .fq{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;vertical-align:-.32em;margin-right:.18em;cursor:help;
+  background:#555}
 .c3 .fq .ico{width:1.12em;height:1.12em;margin:0;vertical-align:0}
 
 /* inline terms */
@@ -90,29 +86,18 @@
 .c3 .tm.ref{text-decoration:underline dashed;text-decoration-thickness:.3cqw;text-underline-offset:.8cqw}
 .c3 .tm .ico{width:1.2em;height:1.2em;margin-right:.12em;vertical-align:-.26em}
 
-/* art placement: v-full (Crisis, full art), v-break (Character, cut-out breaking the arch) */
+/* art placement: a Crisis is full art (v-full); a Character's cut-out may break the frame above the window (.cut) */
 .c3.v-full .art{left:7cqw;top:7cqw;width:86cqw;height:69cqw;-webkit-mask:none;mask:none;border-radius:1.4cqw 1.4cqw 0 0}
-.c3.v-full .art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,10,5,.35),transparent 22%,transparent 60%,rgba(20,10,5,.45))}
-.c3.v-full .mold,.c3.v-full .spandrel,.c3.v-full .alem,.c3.v-break .alem{display:none}
 .c3 .cut{position:absolute;top:0;pointer-events:none;overflow:hidden;clip-path:inset(4.6cqw 0 0 0)}
-.c3 .cut img{position:absolute;height:auto;max-width:none;filter:url(#grade)}
+.c3 .cut img{position:absolute;height:auto;max-width:none}
 .c3 .art img.fig{inset:auto;height:auto;max-width:none;object-fit:fill}
 
-/* the Sultan's card: gold leaf instead of enamel (.c3 > .base, since the base power panel is also .base) */
-.c3.sultan > .base{background:var(--leather),
-  radial-gradient(60% 40% at 30% 20%,rgba(255,246,210,.55),transparent 70%),
-  linear-gradient(135deg,#7c5616 0%,#d6ae55 18%,#fff0b4 34%,#c6963a 50%,#8a6420 66%,#e9c96c 82%,#b8892d 100%)}
-.c3.sultan .nm{color:#ffe6a0;text-shadow:0 .3cqw .2cqw rgba(0,0,0,.75)}
-.c3.sultan{box-shadow:0 0 0 1px #6e4b12,0 2px 3px rgba(0,0,0,.35),0 10px 26px rgba(120,80,10,.45)}
-
-/* backs */
+/* backs: the deck's word, centred unless the skin places it on its own plate */
 .c3.back .bk{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:2.4cqw;z-index:2}
-.c3.back .bw{font:700 4.6cqw/1 var(--f-display);letter-spacing:.24em;padding-left:.24em;color:#ffe6a0;text-shadow:0 .3cqw .3cqw rgba(0,0,0,.7)}
-.c3.b-taraf .bw{color:#6a1610;text-shadow:0 .25cqw 0 rgba(255,255,255,.6);position:absolute;bottom:14cqw;left:0;right:0;text-align:center}
-.c3.b-crisis .bw,.c3.b-kader .bw,.c3.b-hirs .bw,.c3.b-char .bw,.c3.b-kul .bw{position:absolute;bottom:calc(140cqw - 117.6cqw - 2.2cqw);left:0;right:0;text-align:center;color:#6a1610;text-shadow:0 .25cqw 0 rgba(255,255,255,.6)}
-.c3.b-intr .bw{position:absolute;top:88cqw;left:0;right:0;text-align:center;color:#1f3c86;text-shadow:0 .25cqw 0 rgba(255,255,255,.7);font-size:4cqw}
+.c3.back .bw{font:700 4.6cqw/1 var(--f-display);letter-spacing:.24em;padding-left:.24em;color:#eee}
 
-/* compact frame for small cards; a slot marked .whole keeps the full card, text and all, at any size */
+/* compact frame for small cards; a slot marked .whole keeps the full card, text and all, at any size. In a skin's
+   compact layers, the name band carries class="sname" and a back's word plate class="bplate", so both hide here. */
 @container (max-width:149px){
   :not(.whole) > .c3 .big,:not(.whole) > .c3 .plate,:not(.whole) > .c3 .cut{display:none}
   :not(.whole) > .c3 .small{display:block}
@@ -120,7 +105,6 @@
   :not(.whole) > .c3 .art{left:5.6cqw;top:5.6cqw;width:88.8cqw;height:128.8cqw;-webkit-mask:none;mask:none;border-radius:2.4cqw}
   :not(.whole) > .c3 .art img.fig{inset:0;left:0!important;top:0!important;width:100%!important;height:100%;object-fit:cover}
   :not(.whole) > .c3.v-full .art{height:126cqw;border-radius:1.4cqw}
-  :not(.whole) > .c3.sultan .art{left:7.6cqw;top:7.6cqw;width:84.8cqw;height:124.8cqw}
   :not(.whole) > .c3 .mj,:not(.whole) > .c3 .fj{top:8.8cqw;width:16cqw;height:16cqw;font-size:11cqw}
   :not(.whole) > .c3 .mj{left:8.8cqw}:not(.whole) > .c3 .fj{right:8.8cqw}
   :not(.whole) > .c3 .mj .ico,:not(.whole) > .c3 .fj .ico{width:13cqw;height:13cqw}

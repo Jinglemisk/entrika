@@ -3,77 +3,66 @@
     "id": "yeniceri",
     "field": "divan",
     "draw": "zeroInfluence",
-    "about": "Divan field. Players with 0 Influence draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.yeniceri.jpg", "pos": "50% 45%" }
+    "about": "Divan field. Players with 0 Influence draw 1 Intrigue card each."
   },
   {
     "id": "hazine",
     "field": "saray",
     "draw": "none",
-    "about": "Both fields (Saray). Nobody draws.",
-    "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "47% 30%" }
+    "about": "Both fields (Saray). Nobody draws."
   },
   {
     "id": "venedik",
     "field": "saray",
     "draw": "besideSultan",
-    "about": "Both fields (Saray). The two players beside the Sultan draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.venedik.jpg", "pos": "60% 30%" }
+    "about": "Both fields (Saray). The two players beside the Sultan draw 1 Intrigue card each."
   },
   {
     "id": "harem",
     "field": "harem",
     "draw": "leastInfluence",
-    "about": "Harem field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks.",
-    "art": { "src": "/art/directions/img/full-crisis.harem.jpg", "pos": "85% 47%" }
+    "about": "Harem field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks."
   },
   {
     "id": "macar",
     "field": "divan",
     "draw": "none",
-    "about": "Divan field. Nobody draws.",
-    "art": { "src": "/art/directions/img/full-crisis.macar.jpg", "pos": "20% 73%" }
+    "about": "Divan field. Nobody draws."
   },
   {
     "id": "muhur",
     "field": "harem",
     "draw": "lastMinisters",
-    "about": "Harem field. Last crisis's Ministers draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.muhur.jpg", "pos": "50% 45%" }
+    "about": "Harem field. Last crisis's Ministers draw 1 Intrigue card each."
   },
   {
     "id": "divan",
     "field": "divan",
     "draw": "lastMinisters",
-    "about": "Divan field. Last crisis's Ministers draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.divan.jpg", "pos": "56% 35%" }
+    "about": "Divan field. Last crisis's Ministers draw 1 Intrigue card each."
   },
   {
     "id": "sehzade",
     "field": "harem",
     "draw": "besideSultan",
-    "about": "Harem field. The two players beside the Sultan draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.sehzade.jpg", "pos": "47% 22%" }
+    "about": "Harem field. The two players beside the Sultan draw 1 Intrigue card each."
   },
   {
     "id": "istanbul",
     "field": "harem",
     "draw": "everyone",
-    "about": "Harem field. Everyone draws 1 Intrigue card.",
-    "art": { "src": "/art/directions/img/full-crisis.istanbul.jpg", "pos": "34% 35%" }
+    "about": "Harem field. Everyone draws 1 Intrigue card."
   },
   {
     "id": "irakeyn",
     "field": "divan",
     "draw": "leastInfluence",
-    "about": "Divan field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks.",
-    "art": { "src": "/art/directions/img/full-crisis.irakeyn.jpg", "pos": "23% 20%" }
+    "about": "Divan field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks."
   },
   {
     "id": "isabella",
     "field": "saray",
     "draw": "lastMinisters",
-    "about": "Both fields (Saray). Last crisis's Ministers draw 1 Intrigue card each.",
-    "art": { "src": "/art/directions/img/full-crisis.isabella.jpg", "pos": "52% 50%" }
+    "about": "Both fields (Saray). Last crisis's Ministers draw 1 Intrigue card each."
   }
 ]

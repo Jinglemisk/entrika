@@ -1,6 +1,7 @@
 // Sound without sound files: short effects and a quiet music loop are synthesised with Web Audio, so there are no
-// assets to license or load. The loop plays a plucked line in makam Hicaz over a drone. All of it is switchable.
+// assets to license or load. The loop's notes come from the mod's skin. All of it is switchable.
 import { getPrefs } from './prefs.ts';
+import { music, onSkinChange } from './skin.ts';
 
 let ctx: AudioContext | null = null;
 let master: GainNode | null = null;
@@ -73,17 +74,18 @@ export function buzz(pattern: number | number[] = [60, 40, 60]) {
   if (getPrefs().buzz) navigator.vibrate?.(pattern);
 }
 
-// ---------- music: drone on D, a plucked melody walking makam Hicaz (D Eb F# G A Bb C D)
-const HICAZ = [293.66, 311.13, 369.99, 392.0, 440.0, 466.16, 523.25, 587.33];
+// ---------- music: the skin's loop, a drone under a plucked melody that wanders its scale (an octave down, now and then
+// echoed at pitch). The muhtesem skin plays makam Hicaz over a drone on D. A skin without music is silent.
 let musicTimer: number | null = null;
 let drone: OscillatorNode[] = [];
 export function startMusic() {
   const c = audio();
-  if (!c || !master || musicTimer !== null) return;
+  const m = music();
+  if (!c || !master || !m || musicTimer !== null) return;
   const g = c.createGain();
   g.gain.value = 0.025;
   g.connect(master);
-  drone = [146.83, 147.4, 220].map(f => {
+  drone = m.drone.map(f => {
     const o = c.createOscillator();
     o.type = 'sine';
     o.frequency.value = f;
@@ -91,12 +93,13 @@ export function startMusic() {
     o.start();
     return o;
   });
+  const [lo, hi] = m.beat ?? [700, 1600];
   let i = 0;
   const step = () => {
-    i = Math.max(0, Math.min(HICAZ.length - 1, i + [-2, -1, -1, 0, 1, 1, 2][Math.floor(Math.random() * 7)]));
-    tone(HICAZ[i] / 2, 1.4, { type: 'triangle', gain: 0.035 });
-    if (Math.random() < 0.3) tone(HICAZ[i], 0.9, { type: 'triangle', gain: 0.015, at: 0.35 });
-    musicTimer = window.setTimeout(step, 700 + Math.random() * 900);
+    i = Math.max(0, Math.min(m.scale.length - 1, i + [-2, -1, -1, 0, 1, 1, 2][Math.floor(Math.random() * 7)]));
+    tone(m.scale[i] / 2, 1.4, { type: m.wave ?? 'triangle', gain: 0.035 });
+    if (Math.random() < 0.3) tone(m.scale[i], 0.9, { type: m.wave ?? 'triangle', gain: 0.015, at: 0.35 });
+    musicTimer = window.setTimeout(step, lo + Math.random() * (hi - lo));
   };
   step();
 }
@@ -106,3 +109,5 @@ export function stopMusic() {
   drone.forEach(o => o.stop());
   drone = [];
 }
+// a new mod brings its own music
+onSkinChange(() => { if (musicTimer !== null) { stopMusic(); startMusic(); } });

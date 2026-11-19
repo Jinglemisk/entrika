@@ -1,11 +1,15 @@
-// The mod check: what each mod is missing in each language, and the nomenclature worksheet for naming a new one.
-//   npm run mods                       every mod × language: missing names, texts, flavors, term forms, bad overrides
+// The mod check: what each mod is missing in each language and in its skin, and the nomenclature worksheet for naming
+// a new one.
+//   npm run mods                       every mod × language: missing names, texts, flavors, term forms, bad overrides;
+//                                      every mod's skin: missing frames, backs, stills, portraits, icons and the rest
 //   npm run mods -- --all              the same, every missing item listed
 //   npm run mods -- --worksheet got    Markdown: every id with what it does and its current names, for naming a mod
-// Exits 1 if a finished (non-draft) mod is missing anything in its native language, or the interface strings are broken.
+// Exits 1 if a finished (non-draft) mod is missing anything in its native language or its skin, or the interface strings
+// are broken.
 import fs from 'node:fs';
 import path from 'node:path';
 import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC, TERMS } from '../src/engine/index.ts';
+import iconsJson from '../content/icons.json' with { type: 'json' };
 
 type Lang = 'tr' | 'en';
 const LANGS: Lang[] = ['tr', 'en'];
@@ -58,6 +62,51 @@ function formsUsed(sentences: string[]): Map<string, Set<string>> {
   return used;
 }
 
+// ---------- what a complete skin holds (skin.ts, docs/mods.md)
+const FACES = ['char', 'sultan', 'kul', 'intr', 'crisis', 'kader-h', 'kader-x', 'hirs', 'taraf-s', 'taraf-h'];
+const DECKS = ['intr', 'kader', 'taraf', 'hirs', 'kul', 'char', 'crisis'];
+const LAYERS = ['under', 'frame', 'top', 'slot', 'small', 'slot-small'];
+const STILLS = [
+  ...INTRIGUE.map(c => `intrigue.${c.id}`), ...COMPANIONS.map(c => `companions.${c.id}`),
+  ...CRISES.map(c => `crises.${c.id}`), ...Object.keys(MISC.kader).map(k => `kader.${k}`),
+];
+const ICONS = Object.keys(iconsJson.icons);
+/** What a mod's skin lacks: its sourcing and drawing checklist. */
+function skinGaps(id: string): string[] {
+  const dir = path.join(MODS_DIR, id);
+  const file = (p: string) => (p.startsWith('/') ? path.join(ROOT, p.slice(1)) : path.join(dir, p));
+  const has = (p: string | undefined) => !!p && fs.existsSync(file(p.split('?')[0]));
+  const skin = readJson(path.join(dir, 'skin.json'));
+  if (!Object.keys(skin).length) return ['no skin.json: the mod shows the neutral skin'];
+  const gaps: string[] = [];
+  const need = (what: string, xs: string[]) => { if (xs.length) gaps.push(`${what} (${xs.length}): ${few(xs)}`); };
+  if (!fs.existsSync(path.join(dir, 'skin.css'))) gaps.push('no skin.css: interface colours, fonts and card look are neutral');
+  if (!has(skin.defs)) gaps.push('defs: no shared SVG defs file');
+  need('card frames', FACES.filter(f => {
+    const d = skin.faces?.[f];
+    if (!d || !has(d.frame) || !Array.isArray(d.base)) return true;
+    const svg = fs.readFileSync(file(d.frame), 'utf8');
+    return LAYERS.some(l => !svg.includes(`data-layer="${l}"`)) || (f !== 'crisis' && !svg.includes('data-layer="window"'));
+  }));
+  need('drawn art for cards without photos', ['char', 'sultan', 'kul', 'crisis', 'hirs', 'taraf-s', 'taraf-h'].filter(f => !has(skin.faces?.[f]?.art)));
+  need('card backs', DECKS.filter(k => !has(skin.backs?.[k])));
+  need('stills', STILLS.filter(k => !has(skin.art?.[k]?.src)));
+  need('unknown still ids', Object.keys(skin.art ?? {}).filter(k => !STILLS.includes(k)));
+  const portraits = readJson(path.join(dir, 'portraits.json'));
+  need('portraits (art/tools/portrait.py)', CHARACTERS.map(c => c.id).filter(c => !has(portraits[c]?.src)));
+  if (!skin.icons?.dir) gaps.push('icons: no icon set');
+  else {
+    need('icons (art/icons/build.py)', ICONS.filter(i => !has(`${skin.icons.dir}set/${i}-48.png`)));
+    const coloured = Object.values(readJson(file(`${skin.icons.dir}meaning.json`)).colours ?? {}).flatMap((c: any) => c.terms);
+    need('icon colours (meaning.json)', ICONS.filter(i => !coloured.includes(i)));
+  }
+  if (!skin.niche?.path) gaps.push('niche: no seat niche shape');
+  if (!has(skin.seal)) gaps.push('seal: no seal for the Decree screen');
+  if (!skin.frieze?.length) gaps.push('frieze: no figures for home and lobby');
+  if (!skin.music?.scale?.length) gaps.push('music: no music loop');
+  return gaps;
+}
+
 // ---------- the check
 function check(): boolean {
   let ok = true;
@@ -99,6 +148,10 @@ function check(): boolean {
       out.push(`  ${l}${native ? ' (native)' : ''}: ${problems.length ? '' : 'complete'}`);
       for (const p of problems) out.push(`    ${p}`);
     }
+    const gaps = skinGaps(m.id);
+    if (gaps.length && !m.draft) ok = false;
+    out.push(`  skin: ${gaps.length ? '' : 'complete'}`);
+    for (const g of gaps) out.push(`    ${g}`);
   }
   console.log(out.join('\n'));
   return ok;
