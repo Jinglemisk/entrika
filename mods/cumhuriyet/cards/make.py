@@ -194,15 +194,21 @@ def crisis_face():
     return face(None, band('p-halftone'), frame, nameband(yb), DARK, KARA)
 
 def kader_face(defeat):
-    # a telegram form: a ruled header strip with a violet date stamp, the message window below it
+    # a kanun tasarısı: a bill's head sheet over the picture, the Assembly's round stamp pressed on its corner.
+    # İnkılap gets a khaki rule; İrtica a black mourning border.
     yb = 380
-    win = rect(yb, 128)
+    win = rect(yb, 132)
     edge = KARA if defeat else HAKI
-    head = (f'<g filter="url(#f-shadow)"><rect x="50" y="64" width="400" height="56" fill="url(#g-paper)"/></g>'
-            f'<rect x="50" y="64" width="400" height="56" fill="url(#p-rule)"/>'
-            f'<path d="M58 78H330M58 92H300M58 106H320" stroke="{MOR}" stroke-width="1.2" opacity=".5" stroke-dasharray="14 4 3 4"/>'
-            f'<g transform="translate(400 92) rotate(-12)" opacity=".75" filter="url(#f-ink)"><circle r="22" fill="none" stroke="{MOR}" stroke-width="3"/>'
-            f'<circle r="15" fill="none" stroke="{MOR}" stroke-width="1.4"/><path d="M-10 0H10M0 -10V10" stroke="{MOR}" stroke-width="1.4"/></g>')
+    head = (f'<g filter="url(#f-shadow)"><path d="M50 60H450V124H50Z" fill="url(#g-paper)"/></g>'
+            f'<path d="M50 60H450V124H50Z" fill="url(#p-grain)" opacity=".6"/>'
+            f'<path d="M64 72H436" stroke="{INK}" stroke-width="2.4"/><path d="M64 77H436" stroke="{INK}" stroke-width=".8"/>'
+            f'<path d="M150 92H350M180 104H320M200 114H300" stroke="{INK}" stroke-width="3" opacity=".55"/>'
+            f'<path d="M64 120H436" stroke="{INK}" stroke-width=".8"/>'
+            f'<g transform="translate(92 98) rotate(-10)" opacity=".8" filter="url(#f-ink)" fill="{MOR}" stroke="{MOR}">'
+            f'<circle r="21" fill="none" stroke-width="2.6"/><circle r="15" fill="none" stroke-width="1"/>'
+            f'<use href="#s-rostrum" x="-11" y="-11" width="22" height="22" stroke="none"/></g>'
+            f'<g transform="translate(408 98)" fill="{AL if not defeat else INK}" opacity=".85">'
+            f'<path d="M-14 -16H14V12L0 4L-14 12Z"/></g>')
     mourn = f'<path d="{chamfer(36, 36, 464, 664, 12)}" fill="none" stroke="{INK}" stroke-width="9"/>' if defeat else ''
     return plain_face(win, yb, 'p-steps', edge, DARK, extra_frame=mourn + head)
 
@@ -269,10 +275,13 @@ def backs():
           + medallion('intrigue', 92, cy=300) + back_frame())
     write('cards/back-crisis.svg', ground('url(#g-al)', 'p-speed') + seal(250, 200, 92, PAPER, .7)
           + medallion('crisis', 70, cy=410) + plate() + back_frame())
-    env = (f'<path d="M60 150H440V560H60Z" fill="url(#g-paper)" filter="url(#f-shadow)"/>'
-           f'<path d="M60 150L250 330L440 150" fill="none" stroke="{MOR}" stroke-width="3" opacity=".6"/>'
-           f'<path d="M60 560L210 400M440 560L290 400" stroke="{MOR}" stroke-width="2" opacity=".4"/>')
-    write('cards/back-kader.svg', ground('url(#g-mor)', 'p-steps') + env + medallion('kader', 80, cy=330) + plate() + back_frame())
+    # the bill's folder: a buff dossier tied with a red tape, the Assembly's stamp on its cover
+    env = (f'<path d="M70 120H430V600H70Z" fill="url(#g-paper)" filter="url(#f-shadow)"/>'
+           f'<path d="M70 120H430V600H70Z" fill="url(#p-grain)" opacity=".7"/>'
+           f'<path d="M90 150H410M90 156H410" stroke="{INK}" stroke-width="1.6" opacity=".6"/>'
+           f'<rect x="70" y="420" width="360" height="14" fill="{AL}" opacity=".85"/>'
+           + seal(250, 300, 110, MOR, .75))
+    write('cards/back-kader.svg', ground('url(#g-mor)', 'p-steps') + env + plate() + back_frame())
     write('cards/back-hirs.svg', ground('url(#g-mor)', 'p-guilloche') + sunburst(250, 330, 32, 'url(#g-brass)', .3)
           + medallion('ambition', 82) + plate() + back_frame())
     flap = (f'<path d="M50 50H450V650H50Z" fill="url(#g-paper)"/><path d="M50 50L250 300L450 50" fill="#e2d6bb" stroke="{INK}" stroke-width="1.5" opacity=".9"/>'
