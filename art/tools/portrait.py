@@ -33,6 +33,18 @@ W, H = d['w'], d['h']
 if not d['face']:
     sys.exit('no face found: pick a photo with the face turned to the viewer')
 fx, fy, fw, fh = d['face']
+
+# ---- trim the cut-out to the person: their alpha box plus a 4 % margin, the bottom kept at the photo's bottom, so a
+#      wide photo doesn't leave the figure small in a frame of empty sides (the frieze sizes figures by width)
+im = Image.open(png)
+box = (np.array(im.getchannel('A')) > 8)
+cols, rows_ = np.where(box.any(0))[0], np.where(box.any(1))[0]
+mx, my = .04 * (cols[-1] - cols[0] + 1), .04 * (rows_[-1] - rows_[0] + 1)
+x0, x1 = max(0, int(cols[0] - mx)), min(W, int(cols[-1] + 1 + mx))
+y0 = max(0, int(rows_[0] - my))
+im.crop((x0, y0, x1, H)).save(png)
+fx, fy, fw, fh = (fx * W - x0) / (x1 - x0), (fy * H - y0) / (H - y0), fw * W / (x1 - x0), fh * H / (H - y0)
+W, H = x1 - x0, H - y0
 ar = H / W
 
 # ---- card: the art window is 10..90cqw across and 14.4cqw down to the name line at 70cqw
