@@ -58,6 +58,7 @@ export function setWords(modId: string, l: Lang) {
   listeners.forEach(f => f());
 }
 export const currentLang = () => lang;
+export const currentMod = () => mod.id;
 /** The words file of a mod in a language, created empty if the mod has none yet (the text editor fills it in). */
 export const wordsFile = (modId: string, l: Lang): Words => ((WORDS[modId] ??= {})[l] ??= {});
 

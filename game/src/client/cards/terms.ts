@@ -1,21 +1,10 @@
 // Inline term icons: every game term in card text gets its icon in front of it. What counts as a term comes from the
-// active mod's words (term stems, card, Kul and Character names, power names) and its icon from content/terms.json.
+// active mod's words (term stems, card, Kul and Character names, power names), its icon id from content/terms.json
+// and the icon itself from the mod's skin.
 // Port of the art page's DOM renderer, working on strings instead of nodes.
-import meaning from '../../../../art/icons/meaning.json' with { type: 'json' };
 import { CHARACTERS, COMPANIONS, INTRIGUE, MISC, TERMS } from '../../engine/index.ts';
 import { cardWords, charWords, kulWords, onWordsChange, powerName, termStems, treasonWords } from '../words.ts';
-
-export const ICON_BASE = '/art/icons/set/';
-// ?v= changes whenever the set is redrawn under the same file names, so browsers drop cached icons.
-export const iconUrl = (name: string, size: 48 | 72 | 144 = 48) => `${ICON_BASE}${name}-${size}.png?v=2`;
-
-// Kat'ı icons: each file is the silhouette tinted with its paper colour. On dark grounds the CSS masks the same file
-// with the icon's lacquer colour (--l), from art/icons/meaning.json.
-const LIGHT: Record<string, string> = {};
-for (const c of Object.values(meaning.colours)) for (const t of c.terms) LIGHT[t] = c.lacquer;
-export const iconLight = (name: string) => LIGHT[name] ?? '#efe6cf';
-export const iconHtml = (name: string, size: 48 | 72 | 144 = 48) =>
-  `<i class="ico" style="--i:url(${iconUrl(name, size)});--l:${iconLight(name)}" aria-hidden="true"></i>`;
+import { iconHtml } from '../skin.ts';
 
 /** One thing the matcher finds: its id (term.*, card.*, kul.*, char.*, power.*, treason.*) and its icon. */
 interface Term { id: string; icon: string }

@@ -1,12 +1,10 @@
 {
   "kader": {
     "h": {
-      "about": "The helpful Kader card: goes on the Loyalty track; the Decree then gives a Minister 1 Influence.",
-      "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "50% 50%" }
+      "about": "The helpful Kader card: goes on the Loyalty track; the Decree then gives a Minister 1 Influence."
     },
     "x": {
-      "about": "The harmful Kader card: goes on the Treason track; the Decree then takes 1 Influence from a Minister.",
-      "art": { "src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%" }
+      "about": "The harmful Kader card: goes on the Treason track; the Decree then takes 1 Influence from a Minister."
     }
   },
   "taraf": {

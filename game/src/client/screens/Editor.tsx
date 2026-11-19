@@ -5,7 +5,8 @@
 import { useEffect, useState } from 'react';
 import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC, type Field } from '../../engine/index.ts';
 import { Card, CardDefs } from '../cards/Card.tsx';
-import { iconUrl, knownTerms } from '../cards/terms.ts';
+import { knownTerms } from '../cards/terms.ts';
+import { iconUrl } from '../skin.ts';
 import { spec, type CardRef } from '../cardSpecs.ts';
 import { LANGS, MODS, setWords, wordsFile, type Group, type Lang } from '../words.ts';
 import './editor.css';

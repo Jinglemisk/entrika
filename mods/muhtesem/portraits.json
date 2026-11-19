@@ -1,0 +1,57 @@
+{
+  "suleyman": {
+    "src": "/art/directions/img/cut-char.suleyman.webp",
+    "card": {"cl": -9.6, "cw": 116.8, "ct": -29.48, "op": "51% 32%"},
+    "niche": {"hx": 0.455, "y0": 0.03, "ar": 1.3333, "w": 1.34}
+  },
+  "hurrem": {
+    "src": "/art/directions/img/cut-char.hurrem.webp",
+    "card": {"cl": 0.0, "cw": 101.5, "ct": -20.17, "op": "42% 27%"},
+    "niche": {"hx": 0.515, "y0": 0.0925, "ar": 1.3333, "w": 1.26}
+  },
+  "ibrahim": {
+    "src": "/art/directions/img/cut-char.ibrahim.webp",
+    "card": {"cl": 0.0, "cw": 100.4, "ct": -9.72, "op": "40% 19%"},
+    "niche": {"hx": 0.454, "y0": 0.063, "ar": 1.2667, "w": 1.5}
+  },
+  "sahsultan": {
+    "src": "/art/directions/img/cut-char.sahsultan.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -10.08, "op": "50% 26%"},
+    "niche": {"hx": 0.617, "y0": 0.0235, "ar": 0.9643, "w": 1.36}
+  },
+  "mustafa": {
+    "src": "/art/directions/img/cut-char.mustafa.webp",
+    "card": {"cl": 0.0, "cw": 101.3, "ct": -18.28, "op": "32% 25%"},
+    "niche": {"hx": 0.393, "y0": 0.0519, "ar": 1.3337, "w": 1.34}
+  },
+  "hatice": {
+    "src": "/art/directions/img/cut-char.hatice.webp",
+    "card": {"cl": -10.0, "cw": 110.0, "ct": -22.77, "op": "59% 26%"},
+    "niche": {"hx": 0.508, "y0": 0.0547, "ar": 1.3337, "w": 1.05}
+  },
+  "rustem": {
+    "src": "/art/directions/img/cut-char.rustem.webp",
+    "card": {"cl": -1.3, "cw": 101.3, "ct": -13.91, "op": "52% 20%"},
+    "niche": {"hx": 0.523, "y0": 0.069, "ar": 1.3333, "w": 1.36}
+  },
+  "barbaros": {
+    "src": "/art/directions/img/cut-char.barbaros.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -7.75, "op": "51% 26%"},
+    "niche": {"hx": 0.524, "y0": 0.0, "ar": 0.871, "w": 1.2}
+  },
+  "gritti": {
+    "src": "/art/directions/img/cut-char.gritti.webp",
+    "card": {"cl": -1.2, "cw": 101.9, "ct": -14.44, "op": "50% 20%"},
+    "niche": {"hx": 0.569, "y0": 0.0439, "ar": 1.3333, "w": 1.07}
+  },
+  "sarlken": {
+    "src": "/art/directions/img/cut-char.sarlken.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -18.95, "op": "50% 23%"},
+    "niche": {"hx": 0.446, "y0": 0.0263, "ar": 1.3333, "w": 1.05}
+  },
+  "tahmasp": {
+    "src": "/art/directions/img/cut-char.tahmasp.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -29.89, "op": "52% 35%"},
+    "niche": {"hx": 0.489, "y0": 0.0, "ar": 1.3333, "w": 1.07}
+  }
+}

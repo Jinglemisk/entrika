@@ -1,5 +1,22 @@
 /* Game additions on top of the v3 system (ui/v3/src/ui.css): the stage, interactive versions of v3 components,
-   full-screen layouts, sheets, home and lobby, the dev bar. Colours come from the zone tokens only. */
+   full-screen layouts, sheets, home and lobby, the dev bar. Colours come from the zone tokens only.
+   The look belongs to the mod: each mod's skin.css sets the tokens, fonts and decoration (mods/<id>/skin.css). The
+   values below are the neutral ones a mod without a skin shows, so nothing here belongs to any one world. */
+.ui{
+  --paper:#e9e9e9; --paper-2:#d9d9d9; --paper-hi:#f6f6f6;
+  --ink:#1e1e1e; --ink-2:#5a5a5a; --ink-line:rgba(0,0,0,.2);
+  --lake:#1d1f24; --lake-2:#25282e; --lake-hi:#33373f;
+  --ivory:#ececec; --ivory-2:#a0a0a0; --ivory-line:rgba(255,255,255,.18);
+  --gold:#b4b4b4; --gold-hi:#d8d8d8; --gold-ink:#1e1e1e;
+  --lapis:#3d5a99; --lapis-hi:#9db0dd;
+  --al:#a8403a; --al-hi:#e09088;
+  --mal:#3a7a5a; --mal-hi:#8cc8a8;
+  --f-ui:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-voice:Georgia,"Times New Roman",serif;
+  --f-card:Georgia,serif;
+  --fiber:none;
+  --arch:inherit;   /* the niche's mask, set on the page from the skin (skin.ts) */
+}
 
 html, body, #root { margin: 0; height: 100%; background: #0a0d18; overscroll-behavior: none; }
 body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
@@ -74,7 +91,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .kd .k > div { border-radius: 9px; box-shadow: 0 3px 5px rgba(0,0,0,.35), 0 14px 30px rgba(0,0,0,.3); }
 .kd .k.toss > div { filter: saturate(.25) brightness(.55); }
 .split.decree { grid-template-columns: 280px 1fr; }
-.split.decree .tugra { width: 88px; opacity: .82; }
+.split.decree .seal { width: 88px; opacity: .82; }
 .pair { display: flex; gap: 26px; justify-content: center; padding-top: 36px; }
 .pair .st { width: 176px; height: 250px; }
 .pair .st .nc { bottom: 52px; }
@@ -145,8 +162,8 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .seats small { color: var(--fg2); font: 500 11px/1 var(--f-ui); }
 .seats .ctl { margin-left: auto; display: flex; gap: 2px; }
 .seats .ctl button { width: 24px; height: 24px; display: grid; place-items: center; color: var(--fg2); border-radius: 3px; }
-.seats .ctl button img { width: 18px; height: 18px; opacity: .45; }
-.seats .ctl button.on img { opacity: 1; }
+.seats .ctl button .em { opacity: .45; }
+.seats .ctl button.on .em { opacity: 1; }
 .seats .ctl button:disabled { opacity: .25; }
 .seats .ctl .gl { width: 15px; height: 15px; }
 .lobby .bt { margin-top: 2px; flex-wrap: wrap; }
@@ -162,7 +179,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 
 /* ---------- card gallery (/?kartlar) */
 body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: text; }
-.gallery { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px; background: #e5d9bb; min-height: 100%; }
+.gallery { display: flex; flex-wrap: wrap; gap: 16px; padding: 20px; background: #e8e8e8; min-height: 100%; }
 .gallery-pick { position: fixed; top: 8px; right: 8px; z-index: 5; display: flex; gap: 6px; }
 .st .mytag { position: absolute; left: -3px; top: 20px; width: 17px; height: 17px; border-radius: 50%; display: grid; place-items: center; font: 800 11px/1 var(--f-ui); color: #f6ecd6; box-shadow: 0 0 0 2px var(--bg); }
 .st .mytag.suspect { background: var(--al); }
@@ -224,7 +241,7 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .head.kul-em { display: block; width: 100%; height: 100%; background: var(--lapis); --m: 70%; }
 .st .kl .kl-em, .head.kul-em { position: relative; }
 .st .kl .kl-em::after, .head.kul-em::after { content: ""; position: absolute; inset: 0; background: var(--ivory);
-  -webkit-mask: url(/art/icons/set/companion-72.png?v=kati) center/var(--m) no-repeat; mask: url(/art/icons/set/companion-72.png?v=kati) center/var(--m) no-repeat; }
+  -webkit-mask: var(--kul-icon) center/var(--m) no-repeat; mask: var(--kul-icon) center/var(--m) no-repeat; }
 .vchip { display: inline-flex; align-items: center; gap: 5px; min-height: 24px; padding: 2px 9px 2px 2px; line-height: 1.2; border-radius: 12px; font: 600 11.5px/1 var(--f-ui); color: var(--fg); box-shadow: inset 0 0 0 1px var(--s-gold); }
 .vchip .head { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; background: var(--sink); }
 
@@ -379,23 +396,11 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .secret .pop-who span, .pop-who span:only-of-type { font: italic 400 15px/1.2 var(--f-voice); }
 .st .pl b.long { font-size: 12px; letter-spacing: -.01em; }
 
-/* ---------- niches: a gilt lattice behind the Vekils, gilding round Süleyman, the Kul at the foot */
+/* ---------- niches: the skin may pattern a Vekil's niche (.nbg on .vk) and add an ornament round the Sultan's (.gilded) */
 .st .nbg { position: absolute; inset: 0; display: none; pointer-events: none;
   -webkit-mask: var(--arch) center/100% 100% no-repeat; mask: var(--arch) center/100% 100% no-repeat; }
-.st.vk .nbg { display: block;
-  background:
-    radial-gradient(circle, rgba(236,211,138,.75) 0 1.1px, transparent 1.6px) 4.5px 0/9px 9px,
-    repeating-linear-gradient(45deg, transparent 0 5.7px, rgba(236,211,138,.26) 5.7px 6.36px),
-    repeating-linear-gradient(-45deg, transparent 0 5.7px, rgba(236,211,138,.26) 5.7px 6.36px); }
-.st .nc > svg.gild { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.st .nc > svg.gild path { stroke: none; vector-effect: non-scaling-stroke; }
-.st .nc > svg.gild .ln { fill: none; stroke: #fff0b4; stroke-width: 1.4; opacity: .9; }
-.st .nc > svg.gild .rim { fill: none; stroke: url(#g-gold); stroke-width: 3; }
-.st .nc .ros { position: absolute; top: 36%; width: 9px; height: 9px; border-radius: 50%; z-index: 1;
-  background: radial-gradient(circle at 35% 30%, #fff0b4, #c6963a 55%, #6e4b12); box-shadow: 0 0 0 1.5px #7a5a14, 0 1px 2px rgba(0,0,0,.4); }
-.st .nc .ros.l { left: -8px; } .st .nc .ros.r { right: -8px; }
-.st .nc > svg.gild .pl { fill: url(#g-gold); }
-.st.sul .nc > svg:first-child path { stroke: #7a5a14; stroke-width: 2.4; }
+.st .nc .gilded { display: contents; }
+.star svg polygon { fill: #c4c4c4; stroke: #6a6a6a; }
 .st .kl { left: 50%; right: auto; margin-left: -10.5px; bottom: 3px; }
 .st.vk .kl { bottom: 19px; z-index: 2; }
 .st.vk .of { z-index: 3; }
@@ -404,19 +409,13 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .st .fg.out { clip-path: inset(-40px 2% 62% 2%); }
 .st .fg img { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%); mask-image: linear-gradient(to bottom, transparent, #000 6%); }
 
-/* ---------- the shelf: a faint lattice in the lacquer, three framed panels in relief (Shelf.tsx ShelfZones) */
-.ph > .shelf.zl { background:
-  repeating-linear-gradient(45deg, rgba(201,162,74,.05) 0 1px, transparent 1px 13px),
-  repeating-linear-gradient(-45deg, rgba(201,162,74,.05) 0 1px, transparent 1px 13px),
-  radial-gradient(120% 140% at 50% 0%, var(--lake-2), var(--lake) 70%); }
+/* ---------- the shelf: three framed panels (Shelf.tsx ShelfZones); the skin gives them their look */
 .zones { position: absolute; inset: 0; pointer-events: none; }
-.zone { position: absolute; top: 7px; height: 134px; border-radius: 7px;
-  background: linear-gradient(180deg, rgba(255,240,200,.045), rgba(0,0,0,.2));
-  box-shadow: inset 0 0 0 1px rgba(201,162,74,.34), inset 0 1px 0 rgba(255,240,180,.14), inset 0 12px 26px rgba(0,0,0,.3), 0 1px 0 rgba(255,240,180,.05); }
+.zone { position: absolute; top: 7px; height: 134px; border-radius: 7px; box-shadow: inset 0 0 0 1px var(--ivory-line); }
 .zone.mine { left: -10px; width: 242px; }
 .zone.mid { left: 236px; width: 260px; }
 .zone.side { left: 500px; right: -6px; }
-.zone .cn { position: absolute; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22' fill='none' stroke='%23c9a24a' stroke-linecap='round'%3E%3Cpath d='M1.5 21V9.5C1.5 5 5 1.5 9.5 1.5H21' stroke-width='1.6'/%3E%3Cpath d='M5 15c0-5 3-9.5 9.5-10' stroke-width='1' opacity='.8'/%3E%3Cpath d='M7.5 7.5c1.6-.2 2.6.6 2.4 2.2-1.6.2-2.6-.6-2.4-2.2z' fill='%23c9a24a' stroke='none'/%3E%3Ccircle cx='15.5' cy='4.5' r='1' fill='%23ecd38a' stroke='none'/%3E%3Ccircle cx='4.5' cy='15.5' r='1' fill='%23ecd38a' stroke='none'/%3E%3C/svg%3E") center/contain no-repeat; }
+.zone .cn { position: absolute; width: 18px; height: 18px; }
 .zone .cn.tl { left: 3px; top: 3px; }
 .zone .cn.tr { right: 3px; top: 3px; transform: scaleX(-1); }
 .zone .cn.bl { left: 3px; bottom: 3px; transform: scaleY(-1); }

@@ -3,98 +3,84 @@
     "id": "akil-hocasi",
     "copies": { "divan": 2, "harem": 2 },
     "target": "player",
-    "about": "Protection. Played on a player: cancels every other Intrigue card of its field played on them this crisis, in this wave and later ones. These cards don't cancel each other.",
-    "art": { "src": "/art/directions/img/card.akil-hocasi-1.jpg", "pos": "62% 35%" }
+    "about": "Protection. Played on a player: cancels every other Intrigue card of its field played on them this crisis, in this wave and later ones. These cards don't cancel each other."
   },
   {
     "id": "muhur",
     "copies": { "divan": 3 },
     "target": "minister",
-    "about": "Played on a Minister: Intrigue cards can't replace them this crisis. The Sultan's Ferman still can.",
-    "art": { "src": "/art/directions/img/card.muhur-1.jpg", "pos": "55% 45%" }
+    "about": "Played on a Minister: Intrigue cards can't replace them this crisis. The Sultan's Ferman still can."
   },
   {
     "id": "valide",
     "copies": { "divan": 4 },
     "target": "minister",
-    "about": "Played on a Minister: replace them with any eligible player you choose, yourself included. The newcomer takes the same seat.",
-    "art": { "src": "/art/directions/img/roster-card.valide.jpg", "pos": "50% 16%" }
+    "about": "Played on a Minister: replace them with any eligible player you choose, yourself included. The newcomer takes the same seat."
   },
   {
     "id": "azil",
     "copies": { "divan": 3 },
     "target": "minister",
-    "about": "Played on a Minister: the Sultan replaces them with an eligible player of his choice. The newcomer takes the same seat.",
-    "art": { "src": "/art/directions/img/card.azil-1.jpg", "pos": "54% 48%" }
+    "about": "Played on a Minister: the Sultan replaces them with an eligible player of his choice. The newcomer takes the same seat."
   },
   {
     "id": "casus",
     "copies": { "harem": 2 },
     "target": "other",
-    "about": "Played on another player: when Court ends, secretly see every Intrigue card they played this crisis, and on whom.",
-    "art": { "src": "/art/directions/img/card.casus-1.jpg", "pos": "35% 45%" }
+    "about": "Played on another player: when Court ends, secretly see every Intrigue card they played this crisis, and on whom."
   },
   {
     "id": "muhurlu-evrak",
     "copies": { "harem": 2 },
     "target": "none",
-    "about": "Played with no target: secretly look at the top 3 Kader cards and put them back in the same order.",
-    "art": { "src": "/art/directions/img/card.muhurlu-evrak-1.jpg", "pos": "50% 35%" }
+    "about": "Played with no target: secretly look at the top 3 Kader cards and put them back in the same order."
   },
   {
     "id": "saray-tabibi",
     "copies": { "harem": 2 },
     "target": "player",
-    "about": "Played on a player: they can't lose Influence this crisis, Decree included.",
-    "art": { "src": "/art/directions/img/card.saray-tabibi-1.jpg", "pos": "65% 40%" }
+    "about": "Played on a player: they can't lose Influence this crisis, Decree included."
   },
   {
     "id": "iftira",
     "copies": { "harem": 3 },
     "target": "player",
-    "about": "Played on a player: they lose 1 Influence.",
-    "art": { "src": "/art/directions/img/card.iftira-1.jpg", "pos": "76% 35%" }
+    "about": "Played on a player: they lose 1 Influence."
   },
   {
     "id": "kefalet",
     "copies": { "harem": 3 },
     "target": "minister",
-    "about": "Played on a Minister: if they still hold a seat at the Kader step, you gain 1 Influence when Hizmet is played and lose 1 when Hıyanet is played.",
-    "art": { "src": "/art/directions/img/card.kefalet-1.jpg", "pos": "30% 50%" }
+    "about": "Played on a Minister: if they still hold a seat at the Kader step, you gain 1 Influence when Hizmet is played and lose 1 when Hıyanet is played."
   },
   {
     "id": "teftis",
     "copies": { "divan": 3 },
     "target": "minister",
-    "about": "Played on a Minister: after the Kader step, secretly see the card or cards that Minister discarded.",
-    "art": { "src": "/art/directions/img/card.teftis-1.jpg", "pos": "50% 35%" }
+    "about": "Played on a Minister: after the Kader step, secretly see the card or cards that Minister discarded."
   },
   {
     "id": "defterdar",
     "copies": { "divan": 2 },
     "target": "first",
-    "about": "Played on the First Minister: if they still hold the seat at the Kader step, they draw 4 Kader cards instead of 3 and discard 2.",
-    "art": { "src": "/art/directions/img/card.defterdar-1.jpg", "pos": "70% 40%" }
+    "about": "Played on the First Minister: if they still hold the seat at the Kader step, they draw 4 Kader cards instead of 3 and discard 2."
   },
   {
     "id": "nobet",
     "copies": { "divan": 2 },
     "target": "player",
-    "about": "Played on a player: when Court ends, pick one card other players played on them this crisis and secretly learn who played it.",
-    "art": { "src": "/art/directions/img/card.nobet-1.jpg", "pos": "60% 40%" }
+    "about": "Played on a player: when Court ends, pick one card other players played on them this crisis and secretly learn who played it."
   },
   {
     "id": "nazar",
     "copies": { "harem": 2 },
     "target": "minister",
-    "about": "Played on a Minister: if this crisis's Decree falls on them, it gives or takes 2 Influence instead of 1.",
-    "art": { "src": "/art/directions/img/card.nazar-1.jpg", "pos": "55% 30%" }
+    "about": "Played on a Minister: if this crisis's Decree falls on them, it gives or takes 2 Influence instead of 1."
   },
   {
     "id": "sukut",
     "copies": { "harem": 2 },
     "target": "other",
-    "about": "Played on another player: they can't play an Intrigue card in the next wave.",
-    "art": { "src": "/art/directions/img/card.sukut-1.jpg", "pos": "68% 40%" }
+    "about": "Played on another player: they can't play an Intrigue card in the next wave."
   }
 ]

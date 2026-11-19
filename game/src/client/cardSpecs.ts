@@ -1,11 +1,9 @@
-// Content → card drawing. Every card face in the game is built here: mechanics and art from the content files, words
-// from the active mod (words.ts), so a name or text edit in a mod's words shows up on the cards with no other change.
-// The renderer gets every word it prints from here.
-import {
-  characterById, companionById, crisisById, intrigueById, MISC, soleField, type Field, type Freq, type Kader, type Side,
-} from '../engine/index.ts';
+// Content → card drawing. Every card face in the game is built here: mechanics from the content files, words from the
+// active mod's words (words.ts) and pictures from its skin (skin.ts), so an edit to either shows up on the cards with no
+// other change. The renderer gets every word and picture it prints from here.
+import { characterById, companionById, crisisById, soleField, type Field, type Freq, type Kader, type Side } from '../engine/index.ts';
 import { POWER_SEP, freqHtml, para, powerHtml, type BackKind, type CardSpec } from './cards/render.ts';
-import { cardPlacement, cutSrc } from './ui/Figure.tsx';
+import { portrait, still, tint } from './skin.ts';
 import { t } from './strings.ts';
 import {
   cardWords, charWords, crisisWords, currentLang, hirsWords, kaderWords, kulWords, onWordsChange, powerWords, tarafWords, term,
@@ -25,7 +23,7 @@ export type CardRef =
 
 const P = (text: string) => para(text);   // para() puts the term icons in
 const cache = new Map<string, CardSpec>();
-onWordsChange(() => cache.clear());
+onWordsChange(() => cache.clear());   // the skin switches with the words
 
 const FREQ_TERM: Record<NonNullable<Freq>, string> = { once: 'once', crisis: 'percrisis', always: 'always' };
 const freq = (f: Freq) => (f ? freqHtml(f, term(FREQ_TERM[f])) : '');
@@ -42,20 +40,22 @@ export function spec(ref: CardRef): CardSpec {
 function build(ref: CardRef): CardSpec {
   switch (ref.t) {
     case 'intr': {
-      const d = intrigueById[ref.kind], w = cardWords(ref.kind);
-      return { kind: 'intr', name: w.name, med: 'intrigue', field: ref.field, fieldLabel: fieldLabel(ref.field), art: d.art ?? undefined, bodyHtml: P(w.text), flavor: w.flavor };
+      const w = cardWords(ref.kind);
+      return {
+        kind: 'intr', face: 'intr', name: w.name, med: 'intrigue', field: ref.field, fieldLabel: fieldLabel(ref.field),
+        art: still(`intrigue.${ref.kind}`), tint: tint(`intrigue.${ref.kind}`), bodyHtml: P(w.text), flavor: w.flavor,
+      };
     }
     case 'char': {
       const d = characterById[ref.id], w = charWords(ref.id);
-      const place = cardPlacement(ref.id);
+      const cut = portrait(ref.id);
       const power = (slot: 'base' | 'favor') => {
         const p = d[slot]!, pw = powerWords(p.id);
         return powerHtml(slot, pw.name, freq(p.freq), pw.text, mark(ref.st?.[slot]));
       };
       return {
-        kind: 'char', name: w.name, med: 'character', variant: 'v-break', backdrop: 'studio',
-        ...(d.sultan ? { pal: 'sultan' as const } : {}),
-        ...(place ? { cut: { src: cutSrc(ref.id), ...place } } : { artSvg: { emblem: d.sultan ? 'suleyman' : 'character' } }),
+        kind: 'char', face: d.sultan ? 'sultan' : 'char', name: w.name, med: 'character', tint: tint(`char.${ref.id}`),
+        ...(cut ? { cut: { src: cut.src, ...cut.card } } : {}),
         bodyHtml: power('base') + (d.favor ? POWER_SEP + power('favor') : ''),
         flavor: w.flavor,
       };
@@ -64,8 +64,8 @@ function build(ref: CardRef): CardSpec {
       const d = companionById[ref.id], w = kulWords(ref.id);
       const field = d.recast ? soleField(d.recast) ?? undefined : undefined;
       return {
-        kind: 'kul', name: w.name, med: 'companion', field, ...(field ? { fieldLabel: fieldLabel(field) } : {}),
-        ...(d.art ? { art: d.art } : { artSvg: { emblem: 'companion' } }),
+        kind: 'kul', face: 'kul', name: w.name, med: 'companion', field, ...(field ? { fieldLabel: fieldLabel(field) } : {}),
+        art: still(`companions.${ref.id}`), tint: tint(`companions.${ref.id}`),
         bodyHtml: para((d.freq ? freq(d.freq) + ' ' : '') + w.text), flavor: w.flavor,
         ...(ref.st ? { stamp: { text: t(`stamp.${ref.st}`), tone: 'used' as const } } : {}),
       };
@@ -73,31 +73,32 @@ function build(ref: CardRef): CardSpec {
     case 'hirs': {
       const w = hirsWords(ref.id);
       return {
-        kind: 'hirs', name: w.name, med: 'ambition', artSvg: 'hirs', bodyHtml: para(w.text + '<br>' + t('hirs.unlock')), flavor: w.flavor,
+        kind: 'hirs', face: 'hirs', name: w.name, med: 'ambition', tint: tint(`ambitions.${ref.id}`), bodyHtml: para(w.text + '<br>' + t('hirs.unlock')), flavor: w.flavor,
         ...(ref.done ? { stamp: { text: t('stamp.done'), tone: 'ok' as const } } : {}),
       };
     }
     case 'crisis': {
       const d = crisisById[ref.id], w = crisisWords(ref.id);
       return {
-        kind: 'crisis', name: w.name, med: 'crisis', field: d.field, fieldLabel: fieldLabel(d.field), variant: 'v-full',
-        ...(d.art ? { art: d.art } : { artSvg: { emblem: 'crisis' } }),
+        kind: 'crisis', face: 'crisis', name: w.name, med: 'crisis', field: d.field, fieldLabel: fieldLabel(d.field),
+        art: still(`crises.${ref.id}`), tint: tint(`crises.${ref.id}`),
         bodyHtml: P(w.text), ...(w.flavor ? { flavor: w.flavor } : {}),
       };
     }
     case 'kader': {
-      const d = MISC.kader[ref.k], w = kaderWords(ref.k);
-      const field = ref.k === 'h' ? 'ly' : 'tr';
+      const w = kaderWords(ref.k);
+      const field = ref.k === 'h' ? 'ly' : 'tr', k = ref.k === 'h' ? 'kader-h' : 'kader-x';
       return {
-        kind: ref.k === 'h' ? 'kader-h' : 'kader-x', name: w.name, med: ref.k === 'h' ? 'hizmet' : 'hiyanet',
-        field, fieldLabel: fieldLabel(field), seal: ref.k === 'h' ? 'ok' : 'broken', art: d.art ?? undefined,
+        kind: k, face: k, name: w.name, med: ref.k === 'h' ? 'hizmet' : 'hiyanet',
+        field, fieldLabel: fieldLabel(field), art: still(`kader.${ref.k}`),
         bodyHtml: w.text.map(P).join(''), flavor: w.flavor,
       };
     }
     case 'taraf': {
       const w = tarafWords(ref.side);
       const s = ref.side === 'loyalist';
-      return { kind: s ? 'taraf-s' : 'taraf-h', name: w.name, med: s ? 'loyalist' : 'traitor', artSvg: s ? 'taraf-s' : 'taraf-h', bodyHtml: w.text.map(P).join(''), flavor: w.flavor };
+      const k = s ? 'taraf-s' : 'taraf-h';
+      return { kind: k, face: k, name: w.name, med: s ? 'loyalist' : 'traitor', bodyHtml: w.text.map(P).join(''), flavor: w.flavor };
     }
   }
 }
