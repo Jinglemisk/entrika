@@ -3,7 +3,7 @@
 // the prompt confirms.
 import { useEffect, useState, type ReactNode } from 'react';
 import {
-  RULES, characterById, clockwise, companionById, eligibleList, intrigueById, legalTargets, canRecast, readyPowerOf,
+  RULES, clockwise, companionById, eligibleList, legalTargets, canRecast, readyPowerOf,
   type Ask, type Game, type PID, type Seat,
 } from '../../engine/index.ts';
 import { actAs } from '../net.ts';
@@ -11,6 +11,7 @@ import { Em, Gl } from '../ui/marks.tsx';
 import { Head, KulHead } from '../ui/Figure.tsx';
 import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
+import { cardWords, isPower, kulWords, powerName } from '../words.ts';
 import { sfx } from '../sound.ts';
 import { shownWait, shownWaiting, useGame, useSecondsLeft } from './ctx.ts';
 
@@ -43,7 +44,7 @@ export function Btn({ children, pri, off, via, onClick }: {
   );
 }
 export const viaChar = (character: string, power: string) => ({ icon: <Head character={character} />, label: power });
-export const viaKul = (id: string) => ({ icon: <KulHead id={id} />, label: companionById[id].name });
+export const viaKul = (id: string) => ({ icon: <KulHead id={id} />, label: kulWords(id).name });
 
 const name = (g: { players: { name: string }[] }, id: PID | null | undefined) => (id === null || id === undefined ? '' : g.players[id].name);
 
@@ -125,8 +126,8 @@ function Waiting() {
     text = t(next !== undefined ? 'wait.objectionNext' : 'wait.objectionLast', { now: name(g, now), next: name(g, next) });
   }
   // every timed decision a player is known to be weighing reads the same way
-  if (open?.type === 'window') text = t('wait.window', { name: name(g, open.to), power: powerName(open.power) });
-  else if (open?.type === 'ferman') text = t('wait.window', { name: name(g, open.to), power: characterById.suleyman.base.name });
+  if (open?.type === 'window') text = t('wait.window', { name: name(g, open.to), power: windowName(open.power) });
+  else if (open?.type === 'ferman') text = t('wait.window', { name: name(g, open.to), power: powerName('ferman') });
   else if (open?.type === 'redirect') text = t('wait.window', { name: name(g, open.to), power: powerName('yonDegistir') });
   else if (g.asks.some(a => a.type === 'replace' && a.reason === 'valide' && a.to !== seat)) text = t('wait.valide');
   return (
@@ -146,7 +147,7 @@ function PlayList({ plays }: { plays: { as: string; target: PID }[] }) {
     <span className="plays">
       {plays.map((p, i) => (
         <span key={i} className="pl-row">
-          <Em k="intrigue" s={15} /><b>{intrigueById[p.as]?.name}</b><Gl k="next" />
+          <Em k="intrigue" s={15} /><b>{cardWords(p.as).name}</b><Gl k="next" />
           <Head character={g.players[p.target].character} />{g.players[p.target].name}
         </span>
       ))}
@@ -234,7 +235,7 @@ function KeepOne({ a }: { a: Ask }) {
   return (
     <>
       <Stp />
-      <p className="vo">{t('ask.keepOne')}<small>{kept ? t('ask.keeping', { card: intrigueById[kept.kind].name }) : t('ask.keepHow')}</small></p>
+      <p className="vo">{t('ask.keepOne')}<small>{kept ? t('ask.keeping', { card: cardWords(kept.kind).name }) : t('ask.keepHow')}</small></p>
       <div className="bt"><Btn pri off={!kept} onClick={() => { act({ t: 'answer', ask: a.id, value: hand.sel[0] }); hand.setSel([]); }}>{t('btn.keep')}</Btn></div>
     </>
   );
@@ -246,16 +247,10 @@ function KeepOne({ a }: { a: Ask }) {
 function powerVia(g: Game, a: Extract<Ask, { type: 'window' }>) {
   if (a.power === 'nobet') return undefined;
   const p = g.players[a.to];
-  return viaChar(p.character, powerName(a.power));
+  return viaChar(p.character, windowName(a.power));
 }
-function powerName(power: string) {
-  if (power === 'nobet') return intrigueById.nobet.name;
-  for (const c of Object.values(characterById)) {
-    if (c.base.id === power) return c.base.name;
-    if (c.favor?.id === power) return c.favor.name;
-  }
-  return power;
-}
+/** A power window's name: a Character power, or Nöbet's card. */
+const windowName = (power: string) => (isPower(power) ? powerName(power) : cardWords(power).name);
 
 /** Powers that pick a seat on the court once used, and what the pick answers. */
 function seatPick(g: Game, a: Extract<Ask, { type: 'window' }>): { legal: PID[]; value: (id: PID) => unknown } | null {
@@ -290,7 +285,7 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   return (
     <>
       <Stp />
-      <p className="vo"><b className="ref">{powerName(a.power)}</b>. {picking
+      <p className="vo"><b className="ref">{windowName(a.power)}</b>. {picking
         ? t(pick ? 'tapSeat' : a.power === 'cephe' ? 'pickField' : 'pickCard')   // the choices need the room on a phone
         : <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />}</p>
       {picking && a.power === 'cephe' && (
@@ -299,7 +294,7 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
       {picking && a.power === 'nobet' && (
         <div className="opts">{nobet.map(i => {
           const h = g.court!.history[i];
-          return <button type="button" key={i} className="chip" onClick={() => answer(i)}><Em k={h.field} s={14} />{intrigueById[h.as].name}<small>&nbsp;· {t('waveShort', { n: h.wave })}</small></button>;
+          return <button type="button" key={i} className="chip" onClick={() => answer(i)}><Em k={h.field} s={14} />{cardWords(h.as).name}<small>&nbsp;· {t('waveShort', { n: h.wave })}</small></button>;
         })}</div>
       )}
       <div className="bt">
@@ -358,7 +353,7 @@ function Appoint({ a }: { a: Ask }) {
       <p className="vo">{t(sadrazam ? 'ask.appointSadrazam' : 'ask.appoint')}<small>{t('ask.appointHow')}</small></p>
       <SeatSlots first={{ id: first }} second={{ id: second }} onTap={s => (s === 'first' ? setFirst(null) : setSecond(null))} />
       <div className="bt">
-        <Btn pri off={first === null || second === null} via={sadrazam ? viaChar('ibrahim', characterById.ibrahim.base.name) : undefined}
+        <Btn pri off={first === null || second === null} via={sadrazam ? viaChar('ibrahim', powerName('sadrazam')) : undefined}
           onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { first, second } }); }}>
           {t('btn.appoint')} <small>{[first, second].filter(x => x !== null).length}/2</small>
         </Btn>
@@ -380,7 +375,7 @@ function Replace({ a }: { a: Extract<Ask, { type: 'replace' }> }) {
   const open: SlotState = { id: pick, gone: a.removed };
   const kept: SlotState = { id: g.ministers[other], lock: true };
   const daye = a.not !== undefined;
-  const via = a.reason === 'itiraz' ? viaChar('sahsultan', characterById.sahsultan.base.name) : daye ? viaKul('daye') : undefined;
+  const via = a.reason === 'itiraz' ? viaChar('sahsultan', powerName('itiraz')) : daye ? viaKul('daye') : undefined;
   return (
     <>
       <Stp />
@@ -413,7 +408,7 @@ function Ferman({ a }: { a: Ask }) {
       {on && <SeatSlots first={slotOf('first')} second={slotOf('second')} onTap={s => { if (!seat) setSeat(s); else setPick(null); }} />}
       <div className="bt">
         {!on ? <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.skip')}</Btn> : <Btn onClick={back}>{t('btn.back')}</Btn>}
-        {!on && <Btn pri via={viaChar('suleyman', characterById.suleyman.base.name)} onClick={() => setOn(true)}>{t('btn.use')}</Btn>}
+        {!on && <Btn pri via={viaChar('suleyman', powerName('ferman'))} onClick={() => setOn(true)}>{t('btn.use')}</Btn>}
         {on && <Btn pri off={pick === null} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { seat, target: pick } }); }}>{t('btn.seat')}</Btn>}
       </div>
     </>
@@ -461,7 +456,7 @@ function Objection({ a }: { a: Ask }) {
       <div className="bt">
         {mode ? <Btn onClick={() => setMode(null)}>{t('btn.back')}</Btn> : <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.pass')}</Btn>}
         {!mode && <Btn pri off={!affordable(false).length} onClick={() => setMode('paid')}>{t('btn.object')} <small>−{cost}<Em k="influence" s={14} /></small></Btn>}
-        {!mode && canFree && <Btn via={viaChar('sahsultan', characterById.sahsultan.base.name)} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
+        {!mode && canFree && <Btn via={viaChar('sahsultan', powerName('itiraz'))} onClick={() => setMode('free')}>{t('btn.objectFree')}</Btn>}
       </div>
     </>
   );
@@ -506,7 +501,7 @@ function Wave({ a }: { a: Ask }) {
     <>
       <Stp label={t('waveN', { n: g.court?.wave ?? 1 })} />
       {aim ? (
-        <p className="vo"><span className="clamp"><b>{intrigueById[aim.as].name}</b>{aim.recast ? ` (${t('recastFrom', { card: intrigueById[kindOf(g, seat, aim.uid)].name })})` : ''}</span>
+        <p className="vo"><span className="clamp"><b>{cardWords(aim.as).name}</b>{aim.recast ? ` (${t('recastFrom', { card: cardWords(kindOf(g, seat, aim.uid)).name })})` : ''}</span>
           <small>{t('ask.waveTarget')}</small></p>
       ) : staged.length ? (
         <div className="vo">{t('ask.waveStaged')}<PlayList plays={staged} /></div>
@@ -516,7 +511,7 @@ function Wave({ a }: { a: Ask }) {
       {!aim && !staged.length && (cifte || kul) && (
         <div className="opts">
           {cifte && <span className="vchip"><Head character="hurrem" /><span><Refs text={t('hint.cifte')} /></span></span>}
-          {kul && <span className="vchip"><KulHead id={kul} /><span><Refs text={t('hint.recast', { name: companionById[kul].name, card: intrigueById[companionById[kul].recast].name })} /></span></span>}
+          {kul && <span className="vchip"><KulHead id={kul} /><span><Refs text={t('hint.recast', { name: kulWords(kul).name, card: cardWords(companionById[kul].recast).name })} /></span></span>}
         </div>
       )}
       <div className="bt">
@@ -548,7 +543,7 @@ function Redirect({ a }: { a: Extract<Ask, { type: 'redirect' }> }) {
       <Stp />
       <p className="vo"><b>{powerName('yonDegistir')}.</b> {t('ask.redirect')}{pick !== null && <small>{t('tapSeat')}</small>}</p>
       <div className="opts">{a.plays.map(i => (
-        <button type="button" key={i} className={`chip ${pick === i ? 'on' : ''}`} onClick={() => setPick(i)}><Em k="intrigue" s={14} />{intrigueById[plays[i].as].name}</button>
+        <button type="button" key={i} className={`chip ${pick === i ? 'on' : ''}`} onClick={() => setPick(i)}><Em k="intrigue" s={14} />{cardWords(plays[i].as).name}</button>
       ))}</div>
       <div className="bt"><Btn onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: null }); }}>{t('btn.skip')}</Btn></div>
     </>

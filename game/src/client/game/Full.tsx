@@ -2,13 +2,14 @@
 // the end of the game on paper. Public moments (Crisis, wave, result) live in the court area: see Moments.
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { RULES, characterById, companionById, type Ask, type Kader, type PID } from '../../engine/index.ts';
+import { RULES, type Ask, type Kader, type PID } from '../../engine/index.ts';
 import { send } from '../net.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Star } from '../ui/marks.tsx';
 import { Figure, Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
+import { charWords, kulWords } from '../words.ts';
 import { sfx } from '../sound.ts';
 import { Btn, Stp, playerName as name } from './Prompt.tsx';
 import { Court } from './Court.tsx';
@@ -47,7 +48,7 @@ function Companion({ a }: { a: Extract<Ask, { type: 'companion' }> }) {
         <p className="h-step">{t('setupTitle')}</p>
         <p className="h-mid">{t('ask.companion')}</p>
         <p className="vo">{t('ask.companionWhy', { name: me.name })}</p>
-        <div className="bt left"><Btn pri off={!pick} onClick={() => act({ t: 'answer', ask: a.id, value: pick })}>{pick ? t('btn.takeKul', { name: companionById[pick].name }) : t('btn.pickKul')}</Btn></div>
+        <div className="bt left"><Btn pri off={!pick} onClick={() => act({ t: 'answer', ask: a.id, value: pick })}>{pick ? t('btn.takeKul', { name: kulWords(pick).name }) : t('btn.pickKul')}</Btn></div>
       </div>
       <div className="cards">
         {a.offer.map(id => (
@@ -150,7 +151,7 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
     </div>
   );
 }
-const charName = (id: string) => characterById[id].name;
+const charName = (id: string) => charWords(id).name;
 
 function Venedik({ a }: { a: Extract<Ask, { type: 'venedik' }> }) {
   const { act } = useGame();

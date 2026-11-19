@@ -1,0 +1,57 @@
+{
+  "suleyman": {
+    "icon": "suleyman",
+    "about": "The Sultan role: the public player who appoints the Ministers and gives the Decree."
+  },
+  "loyalist": { "icon": "loyalist", "about": "The loyal side." },
+  "traitor": { "icon": "traitor", "about": "The traitor side." },
+  "allegiance": { "icon": "allegiance", "about": "The secret side card: Loyalist or Traitor." },
+  "min1": { "icon": "min1", "about": "First Minister: draws 3 Kader cards, discards 1, passes 2." },
+  "min2": { "icon": "min2", "about": "Second Minister: takes the 2 Kader cards, discards 1, plays 1." },
+  "minister": { "icon": "minister", "about": "Either Minister seat." },
+  "character": { "icon": "character", "about": "A player's public card: who they are, with two powers." },
+  "companion": {
+    "icon": "companion",
+    "about": "A player's public helper card. It recasts Intrigue cards and works only while its owner has Influence."
+  },
+  "crisis": { "icon": "crisis", "about": "One round of play, and the card flipped to start it." },
+  "court": { "icon": "court", "about": "The step where Intrigue cards are played in simultaneous waves." },
+  "objection": {
+    "icon": "objection",
+    "about": "Paying Influence in the Appoint step to have a Minister replaced."
+  },
+  "decree": {
+    "icon": "decree",
+    "about": "The last step: the Sultan gives 1 Influence to a Minister or takes 1 from one."
+  },
+  "kader": { "icon": "kader", "about": "The fate deck the Ministers draw from." },
+  "hizmet": { "icon": "hizmet", "about": "The helpful Kader card." },
+  "hiyanet": { "icon": "hiyanet", "about": "The harmful Kader card." },
+  "intrigue": { "icon": "intrigue", "about": "The scheming cards played in Court." },
+  "ambition": {
+    "icon": "ambition",
+    "about": "A secret personal goal; completing it unlocks the Favor power."
+  },
+  "harem": {
+    "icon": "harem",
+    "about": "A field of Intrigue cards and crises: cards that act on Influence and secrets."
+  },
+  "divan": {
+    "icon": "divan",
+    "about": "A field of Intrigue cards and crises: cards that act on the Minister seats."
+  },
+  "saray": { "icon": "saray", "about": "A crisis that opens both fields." },
+  "influence": { "icon": "influence", "about": "Public score tokens; also what an Objection costs." },
+  "base": { "icon": "base", "about": "A Character's first power, ready from the start." },
+  "favor": { "icon": "favor", "about": "A Character's second power, unlocked by completing the Ambition." },
+  "loyalty": { "icon": "loyalty", "about": "The Loyalty track: 4 Hizmet and the Loyalists win." },
+  "treason": { "icon": "treason", "about": "The Treason track: 5 Hıyanet and the Sultan dies." },
+  "secret": { "icon": "secret", "about": "Hidden from the other players." },
+  "once": { "icon": "once", "about": "Badge: once per game." },
+  "percrisis": { "icon": "percrisis", "about": "Badge: once per crisis." },
+  "always": { "icon": "always", "about": "Badge: always on." },
+  "investigator": {
+    "icon": null,
+    "about": "The player the Sultan names to look at someone's Allegiance (Treason track space 2)."
+  }
+}

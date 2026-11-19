@@ -7,6 +7,8 @@ import { Home } from './screens/Home.tsx';
 import { Lobby } from './screens/Lobby.tsx';
 import { Game } from './game/Game.tsx';
 import { t } from './strings.ts';
+import { usePrefs } from './prefs.ts';
+import { DEFAULT_MOD, setWords } from './words.ts';
 
 export function App() {
   const net = useNet();
@@ -16,13 +18,16 @@ export function App() {
     return () => clearTimeout(id);
   }, [net.errorAt]);
   const room = net.room;
+  // every word below comes from the room's mod, in this phone's language (home has no room: the default mod)
+  const { lang } = usePrefs();
+  setWords(room?.mod ?? DEFAULT_MOD, lang);
   return (
     <Stage upright={!room?.game}>
       {room?.game ? <Game key={room.code} room={room} /> : room ? <Lobby room={room} /> : <Home />}
       <AnimatePresence>
         {net.error && (
           <motion.div className="toast" key={net.errorAt} initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} onClick={clearError}>
-            {net.error}
+            {t(net.error.key, net.error.vars)}
           </motion.div>
         )}
       </AnimatePresence>

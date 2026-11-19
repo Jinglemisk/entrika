@@ -3,13 +3,14 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
-  RULES, crisisById, intrigueById, MISC, type Peek, type PID,
+  RULES, crisisById, intrigueById, type Peek, type PID,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
-import { t } from '../strings.ts';
+import { t, tIn } from '../strings.ts';
+import { cardWords, crisisWords, kaderWords, LANGS, treasonWords } from '../words.ts';
 import { logText } from '../logText.ts';
 import { getTags, markPeeksSeen, peeksSeen, setTag, setPrefs, usePrefs } from '../prefs.ts';
 import { send } from '../net.ts';
@@ -87,9 +88,9 @@ function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
     : { icon: 'influence', name: t('track.decreeGive'), text: '' });
   const treason = Array.from({ length: RULES.tracks.treason }, (_, i) => {
     const n = i + 1;
-    if (n === RULES.tracks.treason) return { icon: 'death', ...MISC.treason.death };
+    if (n === RULES.tracks.treason) return { icon: 'death', ...treasonWords('death') };
     const key = RULES.treasonPowers[String(n)];
-    const def = key ? MISC.treason[key as 'sorusturma'] : MISC.treason['1'];
+    const def = treasonWords(key ?? '1');
     return { icon: key ? (key === 'fermanRefresh' ? 'ferman' : 'treason') : 'pass', ...def };
   });
   const row = (cls: 'h' | 'x', icon: string, name: string, on: number, steps: { icon: string; name: string; text: string }[], every: string) => (
@@ -110,8 +111,8 @@ function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
   );
   return (
     <PopShell className="trackpop" onClose={close}>
-      {row('h', 'hizmet', t('hizmet'), g.tracks.loyalty, loyal, MISC.kader.h.text.join(' '))}
-      {row('x', 'hiyanet', t('hiyanet'), g.tracks.treason, treason, MISC.kader.x.text.join(' '))}
+      {row('h', 'hizmet', t('hizmet'), g.tracks.loyalty, loyal, kaderWords('h').text.join(' '))}
+      {row('x', 'hiyanet', t('hiyanet'), g.tracks.treason, treason, kaderWords('x').text.join(' '))}
     </PopShell>
   );
 }
@@ -160,9 +161,9 @@ function Sicil() {
         {g.sicil.map(r => (
           <tr key={r.c}>
             <td className="n">{r.c}</td>
-            <td>{r.crisis && <><b>{crisisById[r.crisis].name}</b><span className="f"><Em k={crisisById[r.crisis].field} s={15} /></span></>}</td>
+            <td>{r.crisis && <><b>{crisisWords(r.crisis).name}</b><span className="f"><Em k={crisisById[r.crisis].field} s={15} /></span></>}</td>
             <td>{hd(r.first)}{r.first !== null && <Gl k="arrow" className="ar" />}{hd(r.second)}</td>
-            <td>{r.result ? <span className={`res ${r.result}`}>{MISC.kader[r.result].name}</span> : <span className="res">{t('ongoing')}</span>}</td>
+            <td>{r.result ? <span className={`res ${r.result}`}>{kaderWords(r.result).name}</span> : <span className="res">{t('ongoing')}</span>}</td>
             <td>{r.decree ? `${g.players[r.decree.to].name} ${r.decree.delta > 0 ? '+' : '−'}${Math.abs(r.decree.delta)}` : ''}</td>
             <td className="nt">{r.events.map(e => logText(g, e)).filter(Boolean).join(' ')}</td>
           </tr>
@@ -218,15 +219,15 @@ export function PeekBody({ p }: { p: Peek }) {
       return (
         <div className="peek">
           <div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field ?? guessField(p.card) })} width={110} whole /></div>
-          {words(t('peek.playedBy', { on: n(p.on), name: n(p.by), card: intrigueById[p.card].name }))}
+          {words(t('peek.playedBy', { on: n(p.on), name: n(p.by), card: cardWords(p.card).name }))}
         </div>
       );
     case 'kaderTop': return <div className="peek">{kader(p.cards)}{words(t(`peek.kaderTop.${p.source}`))}</div>;
     case 'allegiance':
       return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={110} whole /></div>{words(t('peek.allegiance', { name: n(p.of), side: t(p.side) }))}</div>;
     case 'discards': return <div className="peek">{p.cards.length ? kader(p.cards) : null}{words(t(`peek.discards.${p.source}`, { name: n(p.of) }) + (p.cards.length ? '' : ' ' + t('peek.noDiscards')))}</div>;
-    case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field ?? guessField(p.card) })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name }))}</div>;
-    case 'robbed': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field })} width={110} whole /></div>{words(t('peek.robbed', { name: n(p.by), card: intrigueById[p.card].name }))}</div>;
+    case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field ?? guessField(p.card) })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: cardWords(p.card).name }))}</div>;
+    case 'robbed': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field })} width={110} whole /></div>{words(t('peek.robbed', { name: n(p.by), card: cardWords(p.card).name }))}</div>;
   }
 }
 
@@ -299,6 +300,10 @@ function SettingsSheet({ close }: { close: () => void }) {
               <b>{t(`pref.${k}`)}</b><small>{t(`pref.${k}.why`)}</small><span className="sw">{prefs[k] ? t('on') : t('off')}</span>
             </button>
           ))}
+        </div>
+        <div className="opts lang-pick">
+          <b>{t('lang')}</b>
+          {LANGS.map(l => <button type="button" key={l} lang={l} className={`chip ${prefs.lang === l ? 'on' : ''}`} onClick={() => setPrefs({ lang: l })}>{tIn(l, 'langName')}</button>)}
         </div>
         <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
         <div className="bt left">

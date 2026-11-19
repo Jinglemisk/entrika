@@ -1,5 +1,5 @@
 // Small state helpers shared by every step: randomness, asks, the log, drawing, Influence, the hand limit, eligibility.
-import { RULES, characterById, companionById, crisisById, intrigueById, type CrisisField, type Field } from './content.ts';
+import { RULES, characterById, companionById, crisisById, type CrisisField, type Field } from './content.ts';
 import type { Ask, CardInst, Game, Kader, Moment, PID, Player, Seat } from './types.ts';
 import { RuleError } from './types.ts';
 
@@ -20,8 +20,9 @@ export function shuffle<T>(g: Game, list: T[]): T[] {
 }
 
 // ---------- guards
-export function must(cond: unknown, msg: string): asserts cond {
-  if (!cond) throw new RuleError(msg);
+/** Throws a RuleError carrying a string key (err.*) and its values; the phone turns it into a sentence. */
+export function must(cond: unknown, key: string, vars?: Record<string, unknown>): asserts cond {
+  if (!cond) throw new RuleError(key, vars);
 }
 
 // ---------- players and seats
@@ -72,7 +73,6 @@ export const favorOn = (g: Game, id: PID, character: string) => {
 export const companionUp = (g: Game, id: PID) => !!P(g, id).companion && P(g, id).influence >= 1;
 export const companionIs = (g: Game, id: PID, comp: string) => P(g, id).companion === comp && companionUp(g, id);
 export const companionDef = (id: string | null) => (id ? companionById[id] : null);
-export const cardName = (kind: string) => intrigueById[kind].name;
 
 // ---------- asks and the log
 export function ask(g: Game, a: Omit<Ask, 'id'> & Record<string, unknown>): Ask {
@@ -201,4 +201,3 @@ export const fieldsOpen = (g: Game): Field[] => {
 };
 
 export const nameOf = (g: Game, id: PID) => P(g, id).name;
-export const characterName = (g: Game, id: PID) => characterById[P(g, id).character].name;

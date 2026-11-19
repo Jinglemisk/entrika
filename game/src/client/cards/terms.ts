@@ -1,7 +1,9 @@
-// Inline term icons: every game term in card text gets its icon in front of it, driven by art/terms.json.
+// Inline term icons: every game term in card text gets its icon in front of it. What counts as a term comes from the
+// active mod's words (term stems, card, Kul and Character names, power names) and its icon from content/terms.json.
 // Port of the art page's DOM renderer, working on strings instead of nodes.
-import terms from '../../../../art/terms.json' with { type: 'json' };
 import meaning from '../../../../art/icons/meaning.json' with { type: 'json' };
+import { CHARACTERS, COMPANIONS, INTRIGUE, MISC, TERMS } from '../../engine/index.ts';
+import { cardWords, charWords, kulWords, onWordsChange, powerName, termStems, treasonWords } from '../words.ts';
 
 export const ICON_BASE = '/art/icons/set/';
 // ?v= changes whenever the set is redrawn under the same file names, so browsers drop cached icons.
@@ -15,19 +17,45 @@ export const iconLight = (name: string) => LIGHT[name] ?? '#efe6cf';
 export const iconHtml = (name: string, size: 48 | 72 | 144 = 48) =>
   `<i class="ico" style="--i:url(${iconUrl(name, size)});--l:${iconLight(name)}" aria-hidden="true"></i>`;
 
-interface Term { id: string; stems: string[]; icon: string }
+/** One thing the matcher finds: its id (term.*, card.*, kul.*, char.*, power.*, treason.*) and its icon. */
+interface Term { id: string; icon: string }
 
-const byStem = new Map<string, Term>();
-for (const t of terms.terms as Term[]) for (const s of t.stems) byStem.set(s, t);
-// longer stems first, so Mühürlü Evrak wins over Mühür and Birinci Vekil over Vekil
-const stems = [...byStem.keys()].sort((a, b) => b.length - a.length);
+// A stem matches at the start of a word and runs on through any following letters, so Turkish suffixes stay attached
+// (Nüfuzu, Vekile, Divan'da). Matching is case-sensitive. \p{L} with the u flag, not \b: \b treats ı, ş and ğ as
+// word breaks. Longer stems go first, so Mühürlü Evrak wins over Mühür and Birinci Vekil over Vekil.
 const reEsc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const TERM_RE = new RegExp(terms.match.regex.replace('STEMS', stems.map(reEsc).join('|')), terms.match.flags);
+let matcher: { byStem: Map<string, Term>; re: RegExp } | null = null;
+onWordsChange(() => { matcher = null; });
+
+function build() {
+  const byStem = new Map<string, Term>();
+  const add = (id: string, icon: string | null | undefined, stems: string[]) => {
+    if (icon) for (const s of stems) if (s && !s.startsWith('⟦')) byStem.set(s, { id, icon });
+  };
+  // other cards named in the text first, so a game term spelled the same way wins
+  for (const c of INTRIGUE) add(`card.${c.id}`, 'intrigue', [cardWords(c.id).name]);
+  for (const c of COMPANIONS) add(`kul.${c.id}`, 'companion', [kulWords(c.id).name]);
+  for (const c of CHARACTERS) if (!c.sultan) add(`char.${c.id}`, 'character', [charWords(c.id).short]);
+  for (const c of CHARACTERS) for (const p of [c.base, c.favor]) if (p?.icon) add(`power.${p.id}`, p.icon, [powerName(p.id)]);
+  for (const [id, p] of Object.entries(MISC.treason)) if (p.icon) add(`treason.${id}`, p.icon, [treasonWords(id).name]);
+  for (const [id, d] of Object.entries(TERMS)) add(`term.${id}`, d.icon, termStems(id));
+  const stems = [...byStem.keys()].sort((a, b) => b.length - a.length);
+  const re = stems.length ? new RegExp(`(?<![\\p{L}\\p{N}])(${stems.map(reEsc).join('|')})(?:['’]\\p{L}+|\\p{L}*)`, 'gu') : /(?!)/gu;
+  return { byStem, re };
+}
+
+/** Every stem the matcher knows in the active mod and language, with its icon (the text editor lists them). */
+export function knownTerms(): { stem: string; icon: string; id: string }[] {
+  matcher ??= build();
+  return [...matcher.byStem].map(([stem, t]) => ({ stem, ...t }));
+}
 
 function renderText(text: string): string {
-  return text.replace(TERM_RE, (m, stem: string) => {
+  matcher ??= build();
+  const { byStem, re } = matcher;
+  return text.replace(re, (m, stem: string) => {
     const t = byStem.get(stem)!;
-    const ref = /^(card|comp|char)\./.test(t.id) ? ' ref' : '';   // another card named in the text: dashed underline
+    const ref = /^(card|kul|char|power)\./.test(t.id) ? ' ref' : '';   // another card named in the text: dashed underline
     return `<span class="tm t-${t.icon}${ref}" data-term="${t.id}">${iconHtml(t.icon)}${m}</span>`;
   });
 }

@@ -1,10 +1,11 @@
 // The court: every seat as a figure in a niche, one fixed row in seat order with Süleyman in the middle,
 // the same order on every phone. Taps pick a target when a picker is active, otherwise open the seat sheet.
-import { characterById, companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
+import { companionById, intrigueById, type Game, type PID } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Figure } from '../ui/Figure.tsx';
 import { getTags, usePrefs } from '../prefs.ts';
 import { t } from '../strings.ts';
+import { cardWords, charWords, kulWords, powerName } from '../words.ts';
 import { shownWaiting, useGame } from './ctx.ts';
 import { DevToggle } from './DevBar.tsx';
 import { SeatEffects } from './Fx.tsx';
@@ -62,7 +63,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
         <Figure character={p.character} nw={sw} nh={sh} brk={p.sultan ? 12 : 9} gilded={p.sultan} />
         {vk ? <span className="of">{t(vk === 1 ? 'min1' : 'min2')}</span> : null}
         {!p.sultan && comp && (
-          <span className={`kl ${p.influence < 1 ? 'down' : ''}`} title={comp.name}>
+          <span className={`kl ${p.influence < 1 ? 'down' : ''}`} title={kulWords(p.companion!).name}>
             {comp.art ? <img src={comp.art.src} alt="" style={{ objectPosition: comp.art.pos }} /> : <i className="kl-em" />}
           </span>
         )}
@@ -94,7 +95,7 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   );
 }
 
-const characterShort = (id: string) => characterById[id].name;
+const characterShort = (id: string) => charWords(id).name;
 
 export type Tag = { k: string; icons: string[]; title: string; mark?: 'lock' | 'bar' };
 /** Everything public that is still waiting on a seat (rulings R6). One chip per kind of effect, so the same kind always
@@ -108,10 +109,10 @@ export function lastingTags(g: Game, id: PID): Tag[] {
     else out.push({ k, icons, title, mark });
   };
   const c = g.court;
-  const card = (k: string) => intrigueById[k].name;
+  const card = (k: string) => cardWords(k).name;
   if (c) {
     const kaderDone = !!g.kader?.played;
-    if (c.himaye === id) add('himaye', ['seal', 'influence'], characterById.hatice.base.name, 'lock');
+    if (c.himaye === id) add('himaye', ['seal', 'influence'], powerName('himaye'), 'lock');
     if (c.sealed.includes(id)) add('muhur', ['seal'], card('muhur'), 'lock');
     if (c.akil[id]?.length) add('akil', c.akil[id], `${card('akil-hocasi')} (${c.akil[id].map(f => t(f)).join(', ')})`, 'lock');
     if (c.tabib.includes(id)) add('tabib', ['influence'], card('saray-tabibi'), 'lock');
@@ -125,8 +126,8 @@ export function lastingTags(g: Game, id: PID): Tag[] {
     if (!kaderDone && seated && c.kefalet.some(x => x.target === id)) add('kader', ['kader'], card('kefalet'));
     if (seated && c.nazar.includes(id)) add('nazar', ['decree'], card('nazar'));   // the crisis, and the court with it, ends at the Hüküm
   }
-  if (g.surgun.next === id) add('surgun', ['minister'], characterById.sahsultan.favor!.name, 'bar');
-  if (g.faiz?.on === id) add('faiz', ['base'], characterById.gritti.base.name);
+  if (g.surgun.next === id) add('surgun', ['minister'], powerName('surgun'), 'bar');
+  if (g.faiz?.on === id) add('faiz', ['base'], powerName('faiz'));
   return out;
 }
 

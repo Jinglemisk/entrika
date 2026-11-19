@@ -1,14 +1,15 @@
-// Per-phone conveniences kept in localStorage: sound switches, private tags on other players, peeks already shown.
+// Per-phone conveniences kept in localStorage: language, sound switches, private tags on other players, peeks already shown.
 import { useSyncExternalStore } from 'react';
+import type { Lang } from './words.ts';
 
-export interface Prefs { sfx: boolean; music: boolean; buzz: boolean }
+export interface Prefs { lang: Lang; sfx: boolean; music: boolean; buzz: boolean }
 const KEY = 'entrika:prefs';
 const read = <T,>(k: string, fallback: T): T => {
   try { return { ...fallback, ...JSON.parse(localStorage.getItem(k) ?? 'null') } as T; } catch { return fallback; }
 };
 const write = (k: string, v: unknown) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* private mode */ } };
 
-let prefs: Prefs = read(KEY, { sfx: true, music: false, buzz: true });
+let prefs: Prefs = read(KEY, { lang: 'tr', sfx: true, music: false, buzz: true });
 const subs = new Set<() => void>();
 export const getPrefs = () => prefs;
 export function setPrefs(p: Partial<Prefs>) {

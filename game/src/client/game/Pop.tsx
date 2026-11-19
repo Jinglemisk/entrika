@@ -12,6 +12,7 @@ import { spec, type CardRef } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { KulHead } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
+import { cardWords, kulWords, powerName } from '../words.ts';
 import { sfx } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
 import { useGame, type Form, type GameCtx } from './ctx.ts';
@@ -116,8 +117,8 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
     : hand.setAim({ ...f, uid }));
   const kul = me.companion;
   const btn = (f: Form) => (
-    <Btn key={f.as + f.field} pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
-      {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
+    <Btn key={f.as + f.field} pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: kulWords(kul).name } : undefined} onClick={aim(f)}>
+      {f.recast ? t('pop.playAs', { card: cardWords(f.as).name }) : t('pop.play')}
       {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
     </Btn>
   );
@@ -157,7 +158,7 @@ function powerButtons({ g, seat, act, setFreePick }: GameCtx, character: string,
   return (
     <div className="pop-acts">
       {usable.map(d => (
-        <Btn key={d!.id} pri onClick={use(d!.id)}>{t('btn.use')}: {d!.name}{FREE_POWERS[d!.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>
+        <Btn key={d!.id} pri onClick={use(d!.id)}>{t('btn.use')}: {powerName(d!.id)}{FREE_POWERS[d!.id].target ? <small>{t('pop.thenSeat')}</small> : null}</Btn>
       ))}
     </div>
   );
