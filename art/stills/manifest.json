@@ -558,6 +558,20 @@
             0.679,
             0.498
           ]
+        },
+        {
+          "file": "comp.lokman-3.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "source_url": "https://i.ytimg.com/vi/c6oc-enqvTo/maxres1.jpg",
+          "source_page": "https://www.youtube.com/watch?v=c6oc-enqvTo",
+          "note": "Clip \"MUSTAFA'M HAKKINDA LOKMAN AĞA'YA VAZİFE VERDİM\" on the show's official Sultan Süleyman character channel (@SultanSuleymanOfficial), the clip that identified Lokman for candidate 1 (episode 123 scene). Kaya Akkaya as Lokman Ağa, black turban and kaftan, head and chest, facing the viewer with eyes lowered, dark room. Sharp and still (candidate 1 is soft from motion), but the face fills about 37 % of the frame height, so a 4:5 roster crop stays tight (about 0.32). No wider shot of him is in this clip. YouTube's own auto-captured frame of the clip (maxres1.jpg, 1280x720, no overlay), fetched with curl from i.ytimg.com; the 1080p player grab is still the better source if the frame is wanted at full size.",
+          "focus": [
+            0.46,
+            0.48
+          ]
         }
       ],
       "roster": {
@@ -565,7 +579,8 @@
         "from": "comp.lokman-1.jpg",
         "posed": false,
         "face_share": 0.34
-      }
+      },
+      "card_check": "2026-11-20: candidate 3 compared on the card against candidate 1. It is sharper but darker, eyes lowered and just as tight, so candidate 1 stays."
     },
     "comp.ayas": {
       "status": "found",
@@ -581,6 +596,48 @@
             0.553,
             0.468
           ]
+        },
+        {
+          "file": "comp.ayas-2.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=X4pza04bzXc&t=36s",
+          "source_page": "https://www.youtube.com/watch?v=X4pza04bzXc",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"İbrahim Paşa, Ayaz Paşa'yı Yerin Dibine Soktu! | Muhteşem Yüzyıl\", at 36.1 s. Fehmi Karaarslan as Ayas Paşa, waist up and facing the viewer, in the white kallavi with the gold band, grey-blue entari and fur-trimmed kaftan, at the right of three viziers before a gilded lattice in the Divan. Verified: same face and costume as candidate 1, which matches his TMDB headshot and press photos (see identity). Full frame scaled to 1600x900; the roster crop is x 1056-1920 of the 1920x1080 frame (4:5), face about 0.22 of its height.",
+          "focus": [
+            0.85,
+            0.3
+          ],
+          "roster": {
+            "file": "roster/comp.ayas-2.jpg",
+            "crop_x": [
+              1056,
+              1920
+            ]
+          }
+        },
+        {
+          "file": "comp.ayas-3.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=X4pza04bzXc&t=101s",
+          "source_page": "https://www.youtube.com/watch?v=X4pza04bzXc",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"İbrahim Paşa, Ayaz Paşa'yı Yerin Dibine Soktu! | Muhteşem Yüzyıl\", at 101.0 s. Close-up of Ayas Paşa in the same scene, eyes on the viewer. Sharp, but the face fills about 0.45 of the height, as tight as candidate 1.",
+          "focus": [
+            0.47,
+            0.4
+          ],
+          "roster": {
+            "file": "roster/comp.ayas-3.jpg",
+            "crop_x": [
+              470,
+              1334
+            ]
+          }
         }
       ],
       "roster": {
@@ -588,7 +645,9 @@
         "from": "comp.ayas-1.jpg",
         "posed": false,
         "face_share": 0.46
-      }
+      },
+      "identity": "Candidate 1 is Fehmi Karaarslan as Ayas Paşa: the face matches his TMDB headshot (https://www.themoviedb.org/person/2380051-fehmi-karaarslan) and his press photos (tgrthaber.com, 2024), and the same face and costume head the fan compilation \"Fehmi Karaarslan - Ayas Paşa - Muhteşem Yüzyıl\" (https://www.youtube.com/watch?v=s2M_VpWBnsQ). Wikipedia and IMDb credit him as Ayas Paşa, seasons 1-3. The file's own source page is still unknown.",
+      "pick": "comp.ayas-2.jpg"
     },
     "comp.matrakci": {
       "status": "found",
@@ -1244,7 +1303,7 @@
       }
     },
     "crisis.muhur": {
-      "status": "stand-in",
+      "status": "found",
       "candidates": [
         {
           "file": "crisis.muhur-1.jpg",
@@ -1273,6 +1332,20 @@
             0.516,
             0.591
           ]
+        },
+        {
+          "file": "crisis.muhur-3.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=QNkPyj39An4&t=2412s",
+          "source_page": "https://www.youtube.com/watch?v=QNkPyj39An4",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Mahidevran, Hürrem'in Yüzüğünü Çaldı! | Muhteşem Yüzyıl\", at 2412.0 s; full frame scaled to 1600x900. Close-up of a hand wearing Hürrem's stolen emerald ring against a dark ground: a missing signet in the wrong hands. No face, and unlike Mühür's wax seal or Azil's grand-vizier seal. Replaces the stand-in.",
+          "focus": [
+            0.5,
+            0.35
+          ]
         }
       ],
       "full_art": {
@@ -1283,7 +1356,8 @@
         ],
         "device_px_per_css_px_at_258": 1.61,
         "quality": "soft on retina"
-      }
+      },
+      "pick": "crisis.muhur-3.jpg"
     },
     "crisis.divan": {
       "status": "found",
@@ -1469,6 +1543,76 @@
             0.161,
             0.256
           ]
+        },
+        {
+          "file": "crisis.irakeyn-3.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "source_url": "https://i.ytimg.com/vi/VCmuepvLR_Y/maxres1.jpg",
+          "source_page": "https://www.youtube.com/watch?v=VCmuepvLR_Y",
+          "note": "Official channel clip \"Tebriz Fethedildi! | Muhteşem Yüzyıl\" (episode 67): İbrahim Paşa in campaign dress in his tent with two officers and a helmeted soldier in mail, on the Tabriz leg of the Campaign of the Two Iraqs. On theme, unlike candidate 1 (a street sword fight), but it shows a Character's face and is 720 px tall (about 1.9 device px per CSS px at full art). The army-camp frames listed in frames_wanted are the better pick. YouTube's own auto-captured frame of the clip (maxres1.jpg, 1280x720, no overlay), fetched with curl from i.ytimg.com; the 1080p player grab is still the better source if the frame is wanted at full size.",
+          "focus": [
+            0.55,
+            0.4
+          ]
+        },
+        {
+          "file": "crisis.irakeyn-4.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=VCmuepvLR_Y&t=148s",
+          "source_page": "https://www.youtube.com/watch?v=VCmuepvLR_Y",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Tebriz Fethedildi! | Muhteşem Yüzyıl\", at 148.1 s; full frame scaled to 1600x900. Janissaries in red sit sharpening their swords before a white tent on the Persian steppe, on the Tabriz march of the Campaign of the Two Iraqs (episode 67). Wide, no lead face; 1080p, so sharp at full art.",
+          "focus": [
+            0.45,
+            0.5
+          ]
+        },
+        {
+          "file": "crisis.irakeyn-5.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=VCmuepvLR_Y&t=173s",
+          "source_page": "https://www.youtube.com/watch?v=VCmuepvLR_Y",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Tebriz Fethedildi! | Muhteşem Yüzyıl\", at 173.1 s; full frame scaled to 1600x900. Janissaries file through the camp between white and green tents.",
+          "focus": [
+            0.55,
+            0.55
+          ]
+        },
+        {
+          "file": "crisis.irakeyn-6.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=eAJxxv1uNqk&t=20s",
+          "source_page": "https://www.youtube.com/watch?v=eAJxxv1uNqk",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Sultan Süleyman, İskender'in Yargılanmasını İstedi! | Muhteşem Yüzyıl\", at 20.1 s; full frame scaled to 1600x900. The campaign camp in heavy rain: janissaries and a green-and-red tent, from the Irakeyn campaign itself.",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "file": "crisis.irakeyn-7.jpg",
+          "size": [
+            1600,
+            900
+          ],
+          "source_url": "https://www.youtube.com/watch?v=VCmuepvLR_Y&t=378s",
+          "source_page": "https://www.youtube.com/watch?v=VCmuepvLR_Y",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Tebriz Fethedildi! | Muhteşem Yüzyıl\", at 378.2 s; full frame scaled to 1600x900. The army drawn up in the plain below a hill, tents and a watchtower behind.",
+          "focus": [
+            0.5,
+            0.6
+          ]
         }
       ],
       "full_art": {
@@ -1480,7 +1624,8 @@
         "device_px_per_css_px_at_258": 1.61,
         "quality": "soft on retina"
       },
-      "renamed_from": "crisis.sinir"
+      "renamed_from": "crisis.sinir",
+      "pick": "crisis.irakeyn-4.jpg"
     },
     "card.akil-hocasi": {
       "status": "found",
@@ -1512,8 +1657,51 @@
             0.721,
             0.221
           ]
+        },
+        {
+          "file": "card.akil-hocasi-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=PSLctHvJgao&t=250s",
+          "source_page": "https://www.youtube.com/watch?v=PSLctHvJgao",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Sümbül Ağa, Hürrem'in Odasındaki Büyüyü Buldu! | Muhteşem Yüzyıl\", at 250.2 s; crop x 246-1866 (3:2), scaled to 1600x1067. Sümbül Ağa, Oyunbozan's Retainer, lifts the hidden spell (a knotted charm of cord and twigs) out of the box he found in Hürrem's room: the plot uncovered. Hands only, so no face repeats a Kul card. Dark.",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        },
+        {
+          "file": "card.akil-hocasi-4.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=PSLctHvJgao&t=254s",
+          "source_page": "https://www.youtube.com/watch?v=PSLctHvJgao",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Sümbül Ağa, Hürrem'in Odasındaki Büyüyü Buldu! | Muhteşem Yüzyıl\", at 254.0 s; crop x 300-1920 (3:2), scaled to 1600x1067. Sümbül Ağa looking down at what he found; his face repeats the Kul card.",
+          "focus": [
+            0.6,
+            0.35
+          ]
+        },
+        {
+          "file": "card.akil-hocasi-5.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=PSLctHvJgao&t=246s",
+          "source_page": "https://www.youtube.com/watch?v=PSLctHvJgao",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Sümbül Ağa, Hürrem'in Odasındaki Büyüyü Buldu! | Muhteşem Yüzyıl\", at 246.1 s; crop x 246-1866 (3:2), scaled to 1600x1067. Hands drawing the carved box out of a chest.",
+          "focus": [
+            0.55,
+            0.5
+          ]
         }
-      ]
+      ],
+      "pick": "card.akil-hocasi-3.jpg"
     },
     "card.muhur": {
       "status": "found",
@@ -1793,8 +1981,23 @@
             0.269,
             0.546
           ]
+        },
+        {
+          "file": "card.iftira-3.jpg",
+          "size": [
+            1280,
+            720
+          ],
+          "source_url": "https://i.ytimg.com/vi/QNkPyj39An4/maxres1.jpg",
+          "source_page": "https://www.youtube.com/watch?v=QNkPyj39An4",
+          "note": "Official channel clip \"Mahidevran, Hürrem'in Yüzüğünü Çaldı! | Muhteşem Yüzyıl\" (season 1 compilation). Mahidevran, from behind, whispers into Gülşah Hatun's ear; Gülşah (green-gold bodice, the comp.gulsah costume) smirks at the viewer. Two heads filling the frame, so it reads as slander at card size, and Gülşah is İftira's Retainer. Answers the designer's Redo (\"off frame\"). YouTube's own auto-captured frame of the clip (maxres1.jpg, 1280x720, no overlay), fetched with curl from i.ytimg.com; the 1080p player grab is still the better source if the frame is wanted at full size.",
+          "focus": [
+            0.55,
+            0.38
+          ]
         }
-      ]
+      ],
+      "pick": "card.iftira-3.jpg"
     },
     "card.kefalet": {
       "status": "found",
@@ -1826,6 +2029,17 @@
             0.47,
             0.3
           ]
+        }
+      ],
+      "frames_wanted": [
+        {
+          "clip": "Hatice'nin Tek Dileği İbrahim'in Yaşaması | Muhteşem Yüzyıl 13. Bölüm",
+          "url": "https://www.youtube.com/watch?v=c65-NDejqbE",
+          "at_s": [
+            325,
+            330
+          ],
+          "what": "Checked the whole clip: it cuts between the wide shot (candidate 1) and single close-ups (candidate 2); there is no medium two-shot. Nothing better found; listed so the search isn't repeated."
         }
       ]
     },
@@ -1859,8 +2073,37 @@
             0.171,
             0.301
           ]
+        },
+        {
+          "file": "card.teftis-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=n5EEqwb6b1M&t=51s",
+          "source_page": "https://www.youtube.com/watch?v=n5EEqwb6b1M",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Ebussuud Efendi, Ramazan Ayı Teftişinde! | Muhteşem Yüzyıl\", at 51.2 s; crop x 112-1732 (3:2), scaled to 1600x1067. Ebussuud Efendi (season 4, black turban) breaks a loaf from a market baker's stall and smells it during his Ramadan inspection, a crowd behind. A literal teftiş, and Ebussuud is this card's Retainer.",
+          "focus": [
+            0.47,
+            0.45
+          ]
+        },
+        {
+          "file": "card.teftis-4.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=n5EEqwb6b1M&t=49s",
+          "source_page": "https://www.youtube.com/watch?v=n5EEqwb6b1M",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Ebussuud Efendi, Ramazan Ayı Teftişinde! | Muhteşem Yüzyıl\", at 49.2 s; crop x 0-1620 (3:2), scaled to 1600x1067. The moment before: Ebussuud looks down at the bread in his hand.",
+          "focus": [
+            0.45,
+            0.4
+          ]
         }
-      ]
+      ],
+      "pick": "card.teftis-3.jpg"
     },
     "card.defterdar": {
       "status": "found",
@@ -1892,8 +2135,23 @@
             0.55,
             0.4
           ]
+        },
+        {
+          "file": "card.defterdar-3.jpg",
+          "size": [
+            1600,
+            1067
+          ],
+          "source_url": "https://www.youtube.com/watch?v=eAJxxv1uNqk&t=240s",
+          "source_page": "https://www.youtube.com/watch?v=eAJxxv1uNqk",
+          "note": "Frame taken from the official Muhteşem Yüzyıl YouTube channel's 1080p stream in the browser player (muted), drawn to a canvas, on 2026-11-20. Clip \"Sultan Süleyman, İskender'in Yargılanmasını İstedi! | Muhteşem Yüzyıl\", at 240.0 s; crop x 0-1620 (3:2), scaled to 1600x1067. A hand opens an ornate gilded chest in the campaign tent; a gold medallion lies on black cloth inside. The treasury, with no lead face (the stand-in candidate 1 repeated İbrahim's). From the clip about İskender Çelebi, the defterdar.",
+          "focus": [
+            0.4,
+            0.65
+          ]
         }
-      ]
+      ],
+      "pick": "card.defterdar-3.jpg"
     },
     "card.nazar": {
       "status": "found",
@@ -2223,7 +2481,9 @@
         "soft_at_258": false,
         "backdrop": "studio: umber gradient #4d4238 to #120e0b, gold halo behind the head, vignette",
         "note": "Served at 600x523 (the still is wider than 3:4); placement.json niche ar 0.871."
-      }
+      },
+      "cutout_source_note": "For the cut-out tool: candidate 2 (Preveze clip, 810x1080, already 3:4, head to waist on deck) gives a figure that fills the niche, which candidate 1 (1240x1080, cut-out 600x523) does not. The same scene's auto-captured frames (https://i.ytimg.com/vi/RF7UJaOTyUQ/maxres1.jpg, maxres2.jpg; 1280x720) are smaller than candidate 2, so no new file was added.",
+      "cutout_check": "2026-11-20: art/tools/portrait.py run on candidate 2 and compared in /?kartlar and in a test room's niche. The new cut-out shows a smaller, open-mouthed face that sits lower in the niche and a head that rises over the card's arch, so the candidate 1 cut-out stays."
     },
     "char.gritti": {
       "status": "found",
@@ -2529,5 +2789,7 @@
     "note": "Downloaded into its own empty folder, then sanitised: only path/g geometry kept, defs, metadata, namedview, styles, scripts, foreignObject, on* attributes and hrefs dropped (none were present beyond defs/metadata). Recoloured with currentColor and a 5-unit stroke for body. Used on the Kriz back (embossed gold) and as a faint watermark on Kriz text plates.",
     "rejected": "https://commons.wikimedia.org/wiki/File:Tughra_of_Suleiman_I_the_Magnificent.svg (also public domain, but a monoline trace without the calligraphic thick-thin stroke)."
   },
-  "manual_version": "v0.7 (ids follow its data-ref values)"
+  "manual_version": "v0.7 (ids follow its data-ref values)",
+  "frames_wanted_about": "frames_wanted on an entity lists player frames from the official channel that fix a gap but could not be fetched without the browser player (yt-dlp gets HTTP 403). Times come from the clip's storyboard (5 s steps, so search a few seconds either side). Grab at 1080p, crop as noted, add as the next candidate.",
+  "pick_about": "pick names the candidate the muhtesem skin shows (mods/muhtesem/skin.json art) where it isn't candidate 1. The game reads the art/directions/img copies: 720x480 for Entrika cards, 480x600 roster crops for Kul, full-crisis-*.jpg at up to 1600 px for Crises."
 }
