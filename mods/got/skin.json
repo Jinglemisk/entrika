@@ -322,33 +322,33 @@
  "frieze": [
   {
    "char": "rustem",
-   "size": 90,
-   "x": 0
+   "size": 114,
+   "x": -37
   },
   {
    "char": "hurrem",
-   "size": 96,
-   "x": 118
+   "size": 173,
+   "x": 27
   },
   {
    "char": "suleyman",
-   "size": 118,
-   "x": 206
+   "size": 229,
+   "x": 74
   },
   {
    "char": "ibrahim",
-   "size": 98,
-   "x": 318
+   "size": 122,
+   "x": 306
   },
   {
    "char": "hatice",
-   "size": 92,
-   "x": 404
+   "size": 163,
+   "x": 366
   },
   {
    "char": "mustafa",
-   "size": 94,
-   "x": 482
+   "size": 158,
+   "x": 444
   }
  ],
  "music": {
