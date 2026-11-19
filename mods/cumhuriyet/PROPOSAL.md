@@ -129,7 +129,7 @@ Facts in these tables are checked again when the flavor lines are written in ste
 | `sumbul` | Dokunulmazlık (field of choice) | **Ali Fuat Paşa** (Cebesoy) | Ankara's ambassador in Moscow (1920–22), then back in the Assembly. Diplomatic immunity or parliamentary immunity: his choice |
 | `nigar` | Telgrafhane | **Hüsamettin** (Ertürk) | Ran the MM Grubu, Ankara's secret network in occupied Istanbul. He read messages before their recipients did |
 | `ebussuud` | Tahkikat | **Falih Rıfkı** (Atay) | Journalist, then mebus from 1923. He reports what others threw away |
-| `gulsah` | Karalama | **Cemal Nadir** (Güler) | Cartoonist. One line of his pen lowers anyone's standing; satire is his trade, not slander |
+| `gulsah` | Karalama | **Aka Gündüz** (Enis Avni) | Writer and satirist who backed Ankara in the war years. His pen lowers anyone's standing; satire is his trade, not slander. Replaces Cemal Nadir, for whom no real portrait was found |
 | `seker` | Aşı | **Safiye Ali** | The first Turkish woman doctor; treated the wounded in the war years and opened her practice in 1922. She keeps one person from harm |
 | `gulfem` | Teminat | **Rifat Efendi** (Börekçi) | Müftü of Ankara; in April 1920 he led the Ankara fetva backing the national movement and put his own name behind Ankara's fate |
 | `iskender` | Bütçe | **Hasan** (Saka) | Maliye Vekili. He knows which budget line to drop |
@@ -327,82 +327,28 @@ All four list Latin Extended. Step 3 checks İ ı ş ğ in each.
 | Mood | Dignified and tense, not martial. No march, and no quotation of the İstiklal Marşı or any anthem |
 | Effects (if the skin carries them) | Telegraph key click to play a card; rubber-stamp thud and a typewriter bell for the Takdir; a short rising fourth for Zafer; a muted low cluster for Hezimet |
 
-## 4. Image sourcing plan
+## 4. Images (sourced 2026-11-20)
 
-Rules:
+Every Character, Yaver, Entrika, Buhran and Telgraf card has a real period photograph in `art/`, listed in `art/manifest.json` with its Commons file page, licence, author and date where given, a note and a focus point. The first candidate per id is the pick.
 
-- People appear only in real period photographs. Generated images are for icons and textures only (paper, halftone, guilloche).
-- Characters and Yavers: a posed portrait, facing the viewer, from 1918 to 1930 where one exists.
-- Sources, in order of preference: Wikimedia Commons (PD-old, PD-Turkey, PD-Iran), the Library of Congress (Bain News Service, no known restrictions), Gallica / BnF (Agence Rol and Meurisse, public domain), Europeana. Turkish archives (TBMM, Atatürk Kitaplığı, Anadolu Ajansı) only where the licence allows reuse.
-- Turkish copyright runs 70 years after the author's death, or after publication for anonymous works. Each file's author, date, licence and URL go in the mod's asset manifest.
-- Nothing is downloaded yet. The files named below came up in a quick Commons search; their framing, date and licence are unchecked.
+- **Sources:** all from Wikimedia Commons. The richest set is the Albert Kahn mission's autochromes of Ankara, December 1922 (Frédéric Gadmer; CC BY-SA 4.0): the Assembly hall, the council room, the post office, the committee building, Hacı Bayram, the Soviet embassy, Çankaya. The rest are public domain: Gallica (Agence Rol and Meurisse press photos), the Library of Congress, the Nationaal Archief, the TBMM album.
+- **Gazi:** a frontal 1922 kalpak portrait (Agence Meurisse via Gallica), with a second from the Nationaal Archief. No other still shows him; a Hâkimiyet-i Milliye front page and an İzmir painting that did were dropped.
+- **Icons:** the Damga masks are in `icons/masks/`, made with `icons/gen.sh` from `icons/template.txt` and `icons/subjects.tsv`, colours in `icons/meaning.json`.
 
-### Şahsiyetler
+Weak or missing (status in the manifest):
 
-| Şahsiyet | Photograph | Commons candidate |
-|---|---|---|
-| Gazi Mustafa Kemal Paşa | Frontal portrait, 1920–23, kalpak or uniform. Not a candid, not private life | `Mustafa Kemal Atatürk 1921.jpg`, more under his 1920s categories |
-| Fevzi Paşa | Uniform portrait, 1920s | `Mareşal Fevzi Çakmak.jpg`, `Fevzi Çakmak.jpg` |
-| İsmet Paşa | Portrait from the Lozan delegation, 1922–23 | Commons; Gallica (Agence Rol, Lausanne 1923); LoC (Bain) |
-| Hüseyin Avni Bey | Portrait | `Hussein Avni.jpg` (check identity: another Hüseyin Avni was a 19th-century grand vizier) |
-| Halide Edib | Portrait, around 1920 | `Halide Edib Adıvar.jpg`, `Halide adivar.jpg` |
-| Dr. Adnan Bey | Portrait | `Adnan Bey.jpg` |
-| Celal Bey | Portrait from the 1920s, not a later presidential one | Commons (many; pick by date) |
-| Rauf Bey | Portrait, 1922 | `Rauf Orbay 1922.jpg`, `Hüseyin Rauf Bey.jpg` |
-| Franklin-Bouillon | Portrait | `Henry Franklin-Bouillon-1917.jpg`; Gallica |
-| Lloyd George | Portrait, around 1919–22 | `David Lloyd George.jpg`; LoC (Bain) |
-| Rıza Han | Portrait as war minister | `RezaKhanWarMinister.jpg`, `RezaShahSardarSepah.jpg` |
-
-### Yaverler
-
-| Yaver | Commons candidate |
+| Id | Problem |
 |---|---|
-| Mazhar Müfit | `Mazhar Müfit Bey Kansu.jpg` |
-| Kılıç Ali | `Kılıç Ali.jpg`, `Kilic Ali Bey.jpg` |
-| Salih (Bozok) | `Salih Bozok.jpg`, `Salih Bey Bozok.jpg` |
-| Kara Fatma | `Fatma Seher (Kara Fatma).jpg` |
-| Ali Fuat Paşa | `Ali Fuat Cebesoy.jpg` |
-| Hüsamettin (Ertürk) | `Miralay Hüsamettin Ertürk.jpg` |
-| Falih Rıfkı | `Falih Rıfkı Bey.jpg` |
-| Cemal Nadir | No portrait found yet (only a 1935 newspaper scan). Check Akbaba archives; swap the Yaver if none turns up |
-| Nezihe Muhiddin | `Nezihe Muhiddin.jpg` |
-| Vehbi Koç | `Vehbi Koç.jpg` (check date and licence) |
-| Hasan (Saka) | `Hasan Hüsnü Saka.jpg` |
-| Yunus Nadi | `Yunus Nadi Bey.jpg` |
-| Ahmet Ağaoğlu | `Ağaoğlu Ahmet Bey.jpg` |
-| Cevat Abbas | `Cevat Abbas Gürer.jpg` |
+| `char.hurrem` (Halide Edib) | No frontal 1920s portrait found; the pick is a seated studio photo with a small head, the alternative is veiled (1917) |
+| `char.ibrahim` (Fevzi), `char.hatice` (Adnan) | Frontal but small (under 300 px wide) |
+| `char.rustem` (Celal Bayar) | Dated 1940; no 1920s portrait found |
+| `comp.ebussuud`, `comp.iskender`, `comp.firuze`, `comp.lokman` | TBMM album thumbnails at 120 px; the 180 px originals were rate-limited |
+| `comp.bali`, `comp.gulfem` | Small (about 250 px) |
+| `card.nobet` (Santral) | A Seattle switchboard, 1921: no Turkish one found |
+| `card.sukut` (Sansür) | Placeholder (a masthead): no photo of censored blank columns found |
+| `crisis.macar` (Sakarya) | An army exercise of April 1922, not the battle: the Sakarya photos show Mustafa Kemal |
 
-### Stills (scenes, no Gazi)
-
-| Card | Photograph |
-|---|---|
-| Dokunulmazlık | The First Assembly hall, deputies seated |
-| İtimat Oyu | The Assembly in session, a vote |
-| Grup Kararı | Deputies in front of the Assembly building, 1920 |
-| Tayin | A 1920s appointment document with its stamp |
-| Takip | Ulus street, 1920s, a walking figure |
-| Telgrafhane | A telegraph office and operators |
-| Tekzip | A newspaper press (Hakimiyet-i Milliye, Ankara) |
-| Karalama | A 1920s satirical magazine cover |
-| Hisse | An Ankara market street, Karaoğlan Çarşısı |
-| Tahkikat | An Assembly committee at its table |
-| Bütçe | Ledgers or an office desk of the period |
-| Santral | Telephone switchboard operators, Turkey, 1920s–30s |
-| Manşet | A Hakimiyet-i Milliye front page, Sept 1922 |
-| Sansür | An occupied-Istanbul newspaper with censored blank columns |
-| Kuva-yi Seyyare İsyanı | An irregular militia group, 1920 |
-| Tekâlif-i Milliye | Ox carts carrying ammunition |
-| Moskova Heyeti | The Ankara delegation in Moscow, 1921 |
-| Taşhan Dedikodusu | Taşhan, Ulus |
-| Sakarya | Troops in the Sakarya lines, 1921 |
-| Londra Anlaşmaları | The London Conference delegates, 1921 |
-| Teşkilât-ı Esasiye | The First Assembly in session |
-| Aday Listesi | The 1923 election, the Assembly building |
-| Casus Avı | Ankara railway station, 1920s |
-| Büyük Taarruz | Troops advancing, Aug 1922 |
-| Lozan | The Lozan conference table, 1923 |
-| Zafer | Cavalry entering İzmir, 9 Eylül 1922 |
-| Hezimet | Allied troops in Istanbul, 16 Mart 1920 |
+`Cemal Nadir` had no real portrait, so the Karalama Yaver is now Aka Gündüz.
 
 ## 5. Decisions (review, 2026-11-20)
 
