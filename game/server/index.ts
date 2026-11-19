@@ -7,7 +7,7 @@ import os from 'node:os';
 import { WebSocketServer, type WebSocket } from 'ws';
 import { RuleError } from '../src/engine/index.ts';
 import {
-  backToLobby, createRoom, timed, join, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
+  backToLobby, createRoom, timed, join, leave, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
 } from './rooms.ts';
 import { contentEdit } from './content.ts';
 
@@ -136,7 +136,7 @@ function handle(c: Conn, m: In) {
       const prev = room;
       c.code = null;
       send(c, { t: 'home', token: c.token });
-      if (prev) push(prev);
+      if (prev) { leave(prev, c.token); push(prev); }
       return;
     }
   }

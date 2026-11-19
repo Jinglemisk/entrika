@@ -49,7 +49,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .pr .b { height: 40px; padding: 0 13px; font-size: 14px; }
 
 .opts { display: flex; flex-wrap: wrap; gap: 5px; }
-.chip { height: 26px; padding: 0 10px; border-radius: 13px; font: 700 12px/1 var(--f-ui); color: var(--fg2); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
+.chip { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 13px; font: 700 12px/1 var(--f-ui); color: var(--fg2); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
 .chip.on { background: var(--s-gold); color: var(--gold-ink); box-shadow: none; }
 .zp .chip.on { background: var(--ink); color: var(--paper-hi); }
 .pr .slot { text-align: left; }
@@ -122,13 +122,15 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .homescreen .title .vo, .lobby .title .vo { font-size: 19px; }
 .lobby .title .vo.small { font-size: 14px; margin-top: 6px; color: var(--fg2); }
 .title .rules-link { justify-self: start; font: 700 13px/1 var(--f-ui); color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
-.lobby .opts.host { margin-top: 10px; }
+.lobby .title .opts { margin-top: 10px; }
+.lobby .title .vo.small + .vo.small { margin-top: 0; }
 .homescreen .panel { position: absolute; right: 6px; top: 20px; width: 340px; display: grid; gap: 10px; }
 .field { display: grid; gap: 5px; font: 700 12px/1 var(--f-ui); color: var(--fg2); }
 .homescreen .row2 { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
 .code-in input { letter-spacing: .3em; text-transform: uppercase; font: 800 22px/1 var(--f-voice); }
 .homescreen .bt { margin-top: 0; }
-.homescreen .b.pri { width: 100%; }
+.homescreen .bt .b { width: 100%; }
+.homescreen .b.quiet { height: 36px; background: none; box-shadow: inset 0 0 0 1px var(--line); }
 .testline { display: flex; align-items: center; gap: 8px; font: 500 12px/1.2 var(--f-ui); color: var(--fg2); margin-top: 6px; }
 .testline select { height: 38px; font-size: 13px; }
 .lobby .side { position: absolute; right: 6px; top: 16px; width: 340px; display: grid; gap: 8px; justify-items: stretch; }
@@ -136,7 +138,6 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .lobby .code { justify-content: flex-end; }
 .seats { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; max-height: 196px; overflow-y: auto; background: var(--fiber), var(--paper); position: relative; z-index: 1; }
 .seats li { display: flex; align-items: center; gap: 7px; height: 24px; font: 700 13px/1 var(--f-ui); }
-.seats li.me b { text-decoration: underline; text-underline-offset: 3px; }
 .seats .no { width: 16px; color: var(--fg2); font-weight: 800; }
 .seats small { color: var(--fg2); font: 500 11px/1 var(--f-ui); }
 .seats .ctl { margin-left: auto; display: flex; gap: 2px; }
@@ -152,6 +153,8 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .toast { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); z-index: 60; max-width: 520px; padding: 10px 16px; border-radius: 3px; background: var(--al); color: #f6ecd6; font: 700 14px/1.25 var(--f-ui); box-shadow: 0 6px 20px rgba(0,0,0,.4); }
 .offline-bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 60; padding: 6px; text-align: center; background: #000c; color: #efe6cf; font: 700 12px/1 var(--f-ui); }
 .lobby .frieze { transform: scale(.7); transform-origin: left bottom; }
+.frieze::after { bottom: -80px; height: 134px; background: linear-gradient(transparent, var(--paper) 46px); }   /* covers the cut-outs below the strip too */
+.lobby .frieze::after { right: -700px; }   /* the fade spans the screen at the smaller scale */
 .lobby .side { z-index: 1; }
 
 /* ---------- card gallery (/?kartlar) */
@@ -465,3 +468,17 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .mo-line .who.minus b { color: var(--al); }
 .mo-line .who small { font-size: 11px; opacity: .75; margin-left: 3px; }
 .who.minus b { margin-left: 2px; font-weight: 800; }
+
+/* ---------- home and lobby held upright (393×852): one column, the court along the bottom */
+.ph.tall { width: 393px; height: 852px; }
+.tall .full > .bd { left: 0; width: 393px; height: 852px; }
+.tall .homescreen .title, .tall .lobby .title { left: 24px; right: 24px; top: 56px; max-width: none; }
+.tall .homescreen .title .vo, .tall .lobby .title .vo { white-space: normal; }
+.tall .homescreen .panel { left: 24px; right: 24px; top: 230px; width: auto; }
+.tall .lobby .title { top: 40px; }
+.tall .lobby .side { left: 24px; right: 24px; top: 300px; width: auto; }
+.tall .lobby .side .h-step { text-align: left; }
+.tall .lobby .code { justify-content: flex-start; }
+.tall .lobby .seats { max-height: 232px; }
+.tall .frieze, .tall .lobby .frieze { left: -6px; transform: scale(.67); transform-origin: left bottom; }
+.tall .frieze::after { right: -400px; }

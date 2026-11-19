@@ -1,5 +1,6 @@
 // The lobby: the room code to share, the seats in table order, and the host's settings. Seat order is the order
 // around the real table (Objections go clockwise), so the host can move people to match where they sit.
+import { useState } from 'react';
 import { RULES } from '../../engine/index.ts';
 import { send, type RoomView } from '../net.ts';
 import { Gl, ICON } from '../ui/marks.tsx';
@@ -11,10 +12,15 @@ export function Lobby({ room }: { room: RoomView }) {
   const ok = n >= RULES.players.min && n <= RULES.players.max;
   const op = (o: Record<string, unknown>) => send({ t: 'lobby', o });
   const link = `${location.origin}/?oda=${room.code}`;
+  const [copied, setCopied] = useState(false);
   const share = async () => {
     try {
       if (navigator.share) await navigator.share({ title: 'Entrika', text: t('lobby.shareText', { code: room.code }), url: link });
-      else await navigator.clipboard.writeText(link);
+      else {
+        await navigator.clipboard.writeText(link);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
     } catch { /* cancelled */ }
   };
   return (
@@ -25,14 +31,21 @@ export function Lobby({ room }: { room: RoomView }) {
           <b>Entrika</b>
           <p className="vo">{t('tagline')}</p>
           <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
-          {room.host && (
-            <div className="opts host">
+          {/* the host sets the game up; everyone else sees how it is set */}
+          {room.host ? (
+            <div className="opts">
               <button type="button" className={`chip ${room.learning ? 'on' : ''}`} onClick={() => op({ op: 'learning', value: !room.learning })}>{t('lobby.learning')}</button>
               {!room.learning && <button type="button" className={`chip ${room.timers ? 'on' : ''}`} onClick={() => op({ op: 'timers', value: !room.timers })}>{t('lobby.timers')}</button>}
               <button type="button" className="chip" onClick={() => op({ op: 'shuffle' })}>{t('lobby.shuffle')}</button>
             </div>
+          ) : (
+            <div className="opts">
+              <span className="chip on">{t(room.learning ? 'lobby.learning' : 'lobby.full')}</span>
+              {!room.learning && room.timers && <span className="chip on">{t('lobby.timers')}</span>}
+            </div>
           )}
           <p className="vo small">{t(room.learning ? 'lobby.learningWhy' : 'lobby.fullWhy')}</p>
+          <p className="vo small">{t('lobby.seatWhy')}</p>
         </div>
         <div className="side">
           <p className="h-step">{t('lobby.code')}</p>
@@ -41,12 +54,12 @@ export function Lobby({ room }: { room: RoomView }) {
             {room.seats.map((s, i) => (
               <li key={i} className={room.mine.includes(i) ? 'me' : ''}>
                 <span className="no">{i + 1}</span>
-                <b>{s.name}</b>
+                <b>{room.mine.includes(i) && !room.dev ? t('youName', { name: s.name }) : s.name}</b>
                 {room.sultan === i && <span className="tg">{t('lobby.sultan')}</span>}
                 {!s.online && !room.dev && <small>{t('offline')}</small>}
                 {room.host && (
                   <span className="ctl">
-                    <button type="button" aria-label={t('lobby.makeSultan')} className={room.sultan === i ? 'on' : ''} onClick={() => op({ op: 'sultan', seat: room.sultan === i ? null : i })}>
+                    <button type="button" aria-label={t('lobby.makeSultan')} title={t('lobby.makeSultan')} className={room.sultan === i ? 'on' : ''} onClick={() => op({ op: 'sultan', seat: room.sultan === i ? null : i })}>
                       <img src={ICON('suleyman')} alt="" />
                     </button>
                     <button type="button" aria-label={t('lobby.up')} disabled={i === 0} onClick={() => op({ op: 'move', from: i, to: i - 1 })}><Gl k="up" /></button>
@@ -57,10 +70,13 @@ export function Lobby({ room }: { room: RoomView }) {
               </li>
             ))}
           </ol>
-          <p className="wait">{t('lobby.count', { n, min: RULES.players.min, max: RULES.players.max })}{room.sultan === null ? ' ' + t('lobby.sultanRandom') : ''}</p>
+          <p className="wait">
+            {t('lobby.count', { n, min: RULES.players.min, max: RULES.players.max })}{' '}
+            {room.sultan !== null ? '' : t(room.host ? 'lobby.sultanPick' : 'lobby.sultanRandom')}
+          </p>
           <div className="bt">
             <button type="button" className="b" onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</button>
-            <button type="button" className="b" onClick={share}><Gl k="share" />{t('lobby.share')}</button>
+            <button type="button" className="b" onClick={share}><Gl k="share" />{t(copied ? 'lobby.copied' : 'lobby.share')}</button>
             {room.host ? <button type="button" className="b pri" disabled={!ok} onClick={() => send({ t: 'start' })}>{t('lobby.start')}</button>
               : <span className="wait">{t('lobby.waitHost')}</span>}
           </div>

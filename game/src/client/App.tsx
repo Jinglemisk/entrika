@@ -17,7 +17,7 @@ export function App() {
   }, [net.errorAt]);
   const room = net.room;
   return (
-    <Stage>
+    <Stage upright={!room?.game}>
       {room?.game ? <Game key={room.code} room={room} /> : room ? <Lobby room={room} /> : <Home />}
       <AnimatePresence>
         {net.error && (

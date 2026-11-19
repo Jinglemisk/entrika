@@ -200,6 +200,17 @@ export function lobby(room: Room, token: string, o: LobbyOp) {
   changed(room);
 }
 
+/** Leaving a lobby frees the seat; the host's role passes to the next seat. Leaving a game keeps the seat for a rejoin. */
+export function leave(room: Room, token: string) {
+  if (room.game || room.dev) return;
+  const i = room.seats.findIndex(s => s.token === token);
+  if (i < 0) return;
+  room.seats.splice(i, 1);
+  room.sultan = null;
+  if (room.host === token && room.seats.length) room.host = room.seats[0].token;
+  changed(room);
+}
+
 export function start(room: Room, token: string) {
   if (token !== room.host) throw new RuleError('Oyunu odayı kuran başlatır.');
   const n = room.seats.length;
