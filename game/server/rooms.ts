@@ -7,6 +7,7 @@ import {
   timeoutAnswer, type Action, type Game,
 } from '../src/engine/index.ts';
 import { botAnswer, botPower } from '../src/engine/bot.ts';
+import { DEFAULT_MOD, modById } from './mods.ts';
 
 export interface Seat { name: string; token: string; bot: boolean }
 export interface Room {
@@ -16,6 +17,7 @@ export interface Room {
   host: string;                 // token of the creator
   dev: boolean;                 // test room: one phone may act for every seat
   learning: boolean;
+  mod?: string;                 // the world the game is set in (mods/<id>); missing = the default mod
   timers?: boolean;             // timed power windows and waves (off in learning games); missing = on, except test rooms
   deadlines?: Record<number, number>;   // ask id -> epoch ms when it times out
   sultan: number | null;        // seat that plays Süleyman, null = random
@@ -121,7 +123,7 @@ function newCode() {
 
 export function createRoom(name: string, token: string, test: number | null): Room {
   const room: Room = {
-    code: newCode(), created: Date.now(), touched: Date.now(), host: token, dev: test !== null, learning: false, sultan: null,
+    code: newCode(), created: Date.now(), touched: Date.now(), host: token, dev: test !== null, learning: false, mod: DEFAULT_MOD, sultan: null,
     seats: [], game: null, version: 0,
   };
   if (test) {
@@ -136,8 +138,8 @@ export function createRoom(name: string, token: string, test: number | null): Ro
 export function join(room: Room, name: string, token: string): number {
   const mine = room.seats.findIndex(s => s.token === token);
   if (mine >= 0 && !room.dev) return mine;
-  if (room.game) throw new RuleError('Oyun başladı; yeni oyuncu katılamaz.');
-  if (room.seats.length >= RULES.players.max) throw new RuleError('Oda dolu.');
+  if (room.game) throw new RuleError('err.started');
+  if (room.seats.length >= RULES.players.max) throw new RuleError('err.full');
   room.seats.push({ name: name || `Oyuncu ${room.seats.length + 1}`, token, bot: false });
   changed(room);
   return room.seats.length - 1;
@@ -151,6 +153,7 @@ export function seatsOf(room: Room, token: string): number[] {
 
 export type LobbyOp =
   | { op: 'learning'; value: boolean }
+  | { op: 'mod'; value: string }
   | { op: 'timers'; value: boolean }
   | { op: 'sultan'; seat: number | null }
   | { op: 'move'; from: number; to: number }
@@ -162,19 +165,25 @@ export type LobbyOp =
 export function lobby(room: Room, token: string, o: LobbyOp) {
   const host = token === room.host;
   if (o.op === 'rename') {
-    if (!seatsOf(room, token).includes(o.seat)) throw new RuleError('Bu koltuk senin değil.');
+    if (!seatsOf(room, token).includes(o.seat)) throw new RuleError('err.notYourSeat');
     room.seats[o.seat].name = String(o.name).slice(0, 18) || room.seats[o.seat].name;
     return changed(room);
   }
   if (o.op === 'bots') {
-    if (!room.dev || !host) throw new RuleError('Botlar yalnız test odasında.');
+    if (!room.dev || !host) throw new RuleError('err.botsDevOnly');
     room.seats.forEach((s, i) => { s.bot = o.seats.includes(i); });
     return changed(room);
   }
-  if (!host) throw new RuleError('Bunu yalnız odayı kuran yapabilir.');
-  if (room.game) throw new RuleError('Oyun sürüyor.');
+  if (!host) throw new RuleError('err.hostOnly');
+  if (room.game) throw new RuleError('err.inGame');
   switch (o.op) {
     case 'learning': room.learning = !!o.value; break;
+    case 'mod': {
+      const m = modById(String(o.value));
+      if (!m || (m.draft && !room.dev)) throw new RuleError('err.badMod');   // unfinished mods are for test rooms
+      room.mod = m.id;
+      break;
+    }
     case 'timers': room.timers = !!o.value; break;
     case 'sultan': room.sultan = o.seat === null || room.seats[o.seat] ? o.seat : null; break;
     case 'move': {
@@ -192,7 +201,7 @@ export function lobby(room: Room, token: string, o: LobbyOp) {
       room.sultan = null;
       break;
     case 'kick':
-      if (room.seats[o.seat]?.token === room.host && !room.dev) throw new RuleError('Kendini çıkaramazsın.');
+      if (room.seats[o.seat]?.token === room.host && !room.dev) throw new RuleError('err.kickSelf');
       room.seats.splice(o.seat, 1);
       room.sultan = null;
       break;
@@ -212,9 +221,9 @@ export function leave(room: Room, token: string) {
 }
 
 export function start(room: Room, token: string) {
-  if (token !== room.host) throw new RuleError('Oyunu odayı kuran başlatır.');
+  if (token !== room.host) throw new RuleError('err.hostStarts');
   const n = room.seats.length;
-  if (n < RULES.players.min || n > RULES.players.max) throw new RuleError(`${RULES.players.min}–${RULES.players.max} oyuncu gerekir.`);
+  if (n < RULES.players.min || n > RULES.players.max) throw new RuleError('err.playerCount', { min: RULES.players.min, max: RULES.players.max });
   room.game = createGame(room.seats.map(s => s.name), {
     learning: room.learning, sultan: room.sultan ?? undefined, seed: Math.floor(Math.random() * 2 ** 31),
   });
@@ -222,14 +231,14 @@ export function start(room: Room, token: string) {
 }
 
 export function backToLobby(room: Room, token: string) {
-  if (token !== room.host) throw new RuleError('Yalnız odayı kuran yeni oyun açabilir.');
+  if (token !== room.host) throw new RuleError('err.hostNewGame');
   room.game = null;
   changed(room);
 }
 
 export function play(room: Room, token: string, seat: number, action: Action) {
-  if (!room.game) throw new RuleError('Oyun başlamadı.');
-  if (!seatsOf(room, token).includes(seat)) throw new RuleError('Bu koltuk senin değil.');
+  if (!room.game) throw new RuleError('err.notStarted');
+  if (!seatsOf(room, token).includes(seat)) throw new RuleError('err.notYourSeat');
   room.game = act(room.game, seat, action);
   changed(room);
 }

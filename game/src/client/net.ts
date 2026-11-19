@@ -4,6 +4,7 @@ import type { Action, Game } from '../engine/index.ts';
 
 export interface RoomView {
   code: string; dev: boolean; learning: boolean; sultan: number | null; version: number; host: boolean;
+  mod: string;                           // the world the room plays in (mods/<id>)
   seats: { name: string; bot: boolean; online: boolean }[];
   mine: number[];
   game: Game | null;
@@ -12,7 +13,9 @@ export interface RoomView {
   now: number;                           // server clock when this view was sent
   skew: number;                          // added here: server clock minus this phone's, so countdowns agree
 }
-export interface NetState { status: 'connecting' | 'open' | 'closed'; room: RoomView | null; home: boolean; error: string | null; errorAt: number }
+/** A server error: a string key (err.*) and its values, worded on this phone in its own language. */
+export interface NetError { key: string; vars?: Record<string, unknown> }
+export interface NetState { status: 'connecting' | 'open' | 'closed'; room: RoomView | null; home: boolean; error: NetError | null; errorAt: number }
 
 const TOKEN = 'entrika:token';
 const ROOM = 'entrika:room';
@@ -53,7 +56,7 @@ function connect() {
     } else if (m.t === 'home') {
       store.set(ROOM, null);
       set({ room: null, home: true });
-    } else if (m.t === 'error') set({ error: m.msg, errorAt: Date.now() });
+    } else if (m.t === 'error') set({ error: { key: m.key, vars: m.vars }, errorAt: Date.now() });
   };
   ws.onclose = () => {
     set({ status: 'closed' });

@@ -16,6 +16,7 @@ export interface CardSpec {
   name: string;
   med: string;                                                   // corner-gem icon name
   field?: 'harem' | 'divan' | 'saray' | 'ly' | 'tr';
+  fieldLabel?: string;                                           // the field gem's tooltip ("Alan: Harem")
   art?: { src: string; pos?: string };                           // photo in the window (full URL)
   cut?: { src: string; cl: number; cw: number; ct: number; op: string }; // character cut-out, cutplace.json semantics
   backdrop?: 'studio' | 'dusk';                                  // behind a cut-out
@@ -164,10 +165,7 @@ const T: Record<CardKind | 'sultan', Pal> = {
   'taraf-h': { e1: '#3a0c10', e2: '#070203', band: 'p-rumi', span: 'p-cintemani', jewel: 'j-black', win: pointed, accent: '#b3311d', cart: 'ivory' },
 };
 const CART_FILL = { ivory: 'url(#g-ivory)', lapis: 'url(#g-enamel-lapis)', crimson: 'url(#g-enamel-crimson)' };
-const FIELD_J = {
-  harem: ['harem', 'Alan: Harem'], divan: ['divan', 'Alan: Divan'], saray: ['saray', 'Alan: Saray (Harem ve Divan)'],
-  ly: ['loyalty', 'Sadakat yolu'], tr: ['treason', 'İhanet yolu'],
-} as const;
+const FIELD_ICON = { harem: 'harem', divan: 'divan', saray: 'saray', ly: 'loyalty', tr: 'treason' } as const;
 
 // ------------------------------------------------------------------ drawn art
 // portrait backdrops behind a cut-out: their own lit space, contrasting with the red velvet frame
@@ -214,12 +212,11 @@ function drawnArt(a: CardSpec['artSvg']): string {
 }
 
 // ------------------------------------------------------------------ text helpers
-const FQ: Record<Freq, [string, string]> = { once: ['once', 'Oyunda bir'], crisis: ['percrisis', 'Krizde bir'], always: ['always', 'Her zaman'] };
+const FQ: Record<Freq, string> = { once: 'once', crisis: 'percrisis', always: 'always' };
 
-/** The frequency icon on its bronze disc; the words are the tooltip. */
-export function freqHtml(freq: Freq): string {
-  const [ic, label] = FQ[freq];
-  return `<span class="fq" title="${label}" aria-label="${label}" role="img" data-noterms>${I(ic)}</span>`;
+/** The frequency icon on its bronze disc; the words ("Oyunda bir") are the tooltip. */
+export function freqHtml(freq: Freq, label: string): string {
+  return `<span class="fq" title="${esc(label)}" aria-label="${esc(label)}" role="img" data-noterms>${I(FQ[freq])}</span>`;
 }
 
 
@@ -234,12 +231,12 @@ const LOCK = '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4.5" y="9" wi
 /** The state of a power in play: used powers are faded and labelled, a locked Lütuf power carries a lock. */
 export interface PowerMark { state: 'ready' | 'used' | 'locked'; label: string }
 
-/** A Character power: frequency icon, name, text, in one run. Base and Lütuf look alike (the Lütuf power is the lower
- *  one); a mark shows its state in play. */
-export function powerHtml(kind: 'base' | 'favor', name: string, freq: Freq | null, textHtml: string, mark?: PowerMark): string {
+/** A Character power: frequency icon (freqHtml, or ''), name, text, in one run. Base and Lütuf look alike (the Lütuf
+ *  power is the lower one); a mark shows its state in play. */
+export function powerHtml(kind: 'base' | 'favor', name: string, freq: string, textHtml: string, mark?: PowerMark): string {
   const st = mark && mark.state !== 'ready'
     ? `<span class="pw-st ${mark.state}" title="${esc(mark.label)}">${mark.state === 'locked' ? LOCK : esc(mark.label)}</span>` : '';
-  const inner = `${freq ? freqHtml(freq) + ' ' : ''}<b class="pn">${name}:</b> ${textHtml}`;
+  const inner = `${freq ? freq + ' ' : ''}<b class="pn">${name}:</b> ${textHtml}`;
   return `<div class="pw ${kind} ${mark?.state ?? ''}">${st}<p data-terms>${termsInHtml(inner)}</p></div>`;
 }
 
@@ -349,8 +346,8 @@ export function cardHtml(s: CardSpec): string {
   // ---- HTML text
   let fld = '';
   if (field) {
-    const [ic, tip] = FIELD_J[field];
-    fld = `<span class="fj" title="${tip}" aria-label="${tip}" role="img">${I(ic, 72)}</span>`;
+    const tip = esc(s.fieldLabel ?? '');
+    fld = `<span class="fj" title="${tip}" aria-label="${tip}" role="img">${I(FIELD_ICON[field], 72)}</span>`;
   }
   const nmCls = [...name].length > 13 ? 'nm long' : 'nm';
   const py = cy + 42, ph = 650 - cy - 42; // every type: the plate starts right under the name and runs to the bottom margin
@@ -366,7 +363,8 @@ export function cardHtml(s: CardSpec): string {
 }
 
 // ------------------------------------------------------------------ card backs
-export function backHtml(kind: BackKind): string {
+/** A deck's back: `word` is printed on it ("ENTRİKA"), `label` is what a screen reader hears. */
+export function backHtml(kind: BackKind, word: string, label: string): string {
   const corner = 'M14 14h44c-6 18-24 34-44 44z';
   const corners = `<g fill="url(#g-gold)" filter="url(#f-bevel)"><path d="${corner}" transform="translate(28 28) scale(2)"/>`
     + `<path d="${corner}" transform="translate(472 28) scale(-2 2)"/><path d="${corner}" transform="translate(28 672) scale(2 -2)"/>`
@@ -384,10 +382,9 @@ export function backHtml(kind: BackKind): string {
   const semse = 'M250 186C318 236 352 292 352 350S318 464 250 514C182 464 148 408 148 350S182 236 250 186Z';
   const pend = 'M250 140c12 8 18 17 18 26s-8 16-18 16s-18-7-18-16s6-18 18-26z';
   const pend2 = 'M250 560c12-8 18-17 18-26s-8-16-18-16s-18 7-18 16s6 18 18 26z';
-  let word: string, label: string, body: string;
+  let body: string;
   switch (kind) {
     case 'intr':
-      word = 'ENTRİKA'; label = 'Entrika kart sırtı';
       body = '<rect width="500" height="700" fill="#1f3c86"/><rect width="500" height="700" fill="url(#p-halkari)" opacity=".8"/>'
         + `<g fill="url(#g-gold)" filter="url(#f-bevel)"><path d="${semse}"/><path d="${pend}"/><path d="${pend2}"/></g>`
         + `<path d="${semse}" transform="translate(250 350) scale(.86) translate(-250 -350)" fill="#f3e9cf"/>`
@@ -395,14 +392,12 @@ export function backHtml(kind: BackKind): string {
         + IMG('intrigue', 180, 268, 140);
       break;
     case 'kader':
-      word = 'KADER'; label = 'Kader kart sırtı';
       body = '<rect width="500" height="700" fill="url(#g-ebru)" filter="url(#f-ebru)"/><rect width="500" height="700" fill="#2a0c10" opacity=".18"/>'
         + `<g transform="translate(250 340)" filter="url(#f-shadow)"><path d="${SEAL}" transform="scale(2.6)" fill="url(#g-gold)" filter="url(#f-bevel)"/>`
         + '<circle r="86" fill="url(#j-crimson)"/><circle r="86" fill="none" stroke="#3a2208" stroke-width="3"/></g>'
         + IMG('kader', 175, 265, 150) + plate();
       break;
     case 'taraf':
-      word = 'TARAF'; label = 'Taraf kart sırtı';
       body = '<rect width="500" height="700" fill="#efe2c2"/><rect width="500" height="700" fill="url(#p-zerefsan)"/>'
         + '<path d="M40 40L250 330L460 40M40 660L250 380L460 660" fill="none" stroke="#b39050" stroke-width="2" opacity=".6"/>'
         + '<path d="M40 40L250 330L460 40Z" fill="#e3d3ab" opacity=".55"/>'
@@ -411,19 +406,16 @@ export function backHtml(kind: BackKind): string {
         + IMG('allegiance', 190, 292, 120);
       break;
     case 'hirs':
-      word = 'HIRS'; label = 'Hırs kart sırtı';
       body = '<rect width="500" height="700" fill="#4a1f46"/><rect width="500" height="700" fill="url(#p-cintemani)"/>'
         + medal('ambition', 340, 92, 'j-plum') + plate();
       break;
     case 'kul':
-      word = 'KUL'; label = 'Kul kart sırtı';
       body = '<defs><radialGradient id="g-kulback" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#2f5bb8"/><stop offset=".6" stop-color="#173068"/><stop offset="1" stop-color="#081430"/></radialGradient></defs>'
         + '<rect width="500" height="700" fill="url(#g-kulback)"/><rect width="500" height="700" fill="url(#p-rumi)" opacity=".35"/>'
         + '<rect x="60" y="60" width="380" height="580" rx="190" fill="none" stroke="url(#g-gold)" stroke-width="2" opacity=".7"/>'
         + medal('companion', 340, 92, 'j-cobalt') + plate();
       break;
     case 'char': {
-      word = 'KARAKTER'; label = 'Karakter kart sırtı';
       const arch = pointed(160, 340, 200, 290, 470);
       body = '<rect width="500" height="700" fill="#5a1218"/><rect width="500" height="700" fill="url(#p-ogival)"/>'
         + `<g filter="url(#f-shadow)"><path d="${arch}" fill="url(#g-ivory)"/></g>`
@@ -432,7 +424,6 @@ export function backHtml(kind: BackKind): string {
       break;
     }
     case 'crisis': // Süleyman's tuğra above, the Kriz flame in a medallion below
-      word = 'KRİZ'; label = 'Kriz kart sırtı';
       body = '<defs><radialGradient id="g-lacquer" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="#1d3a33"/><stop offset=".6" stop-color="#0c1f1b"/><stop offset="1" stop-color="#040a09"/></radialGradient></defs>'
         + '<rect width="500" height="700" fill="url(#g-lacquer)"/><rect width="500" height="700" fill="url(#p-halkari)" opacity=".55"/>'
         + '<rect width="500" height="700" fill="url(#p-zerefsan)" opacity=".7"/>'
@@ -441,6 +432,6 @@ export function backHtml(kind: BackKind): string {
         + medal('crisis', 438, 64, 'j-crimson', 'j-ivory', 104) + plate();
       break;
   }
-  return `<article class="c3 back b-${kind}" role="img" aria-label="${label}"><svg class="L" viewBox="0 0 500 700" aria-hidden="true">${body}${corners}${frame}</svg>`
-    + `<div class="bk"><span class="bw">${word}</span></div></article>`;
+  return `<article class="c3 back b-${kind}" role="img" aria-label="${esc(label)}"><svg class="L" viewBox="0 0 500 700" aria-hidden="true">${body}${corners}${frame}</svg>`
+    + `<div class="bk"><span class="bw">${esc(word)}</span></div></article>`;
 }

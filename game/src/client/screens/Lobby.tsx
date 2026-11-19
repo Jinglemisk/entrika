@@ -5,6 +5,7 @@ import { RULES } from '../../engine/index.ts';
 import { send, type RoomView } from '../net.ts';
 import { Gl, ICON } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
+import { MODS, modName } from '../words.ts';
 import { Frieze } from './Frieze.tsx';
 
 export function Lobby({ room }: { room: RoomView }) {
@@ -34,12 +35,21 @@ export function Lobby({ room }: { room: RoomView }) {
           {/* the host sets the game up; everyone else sees how it is set */}
           {room.host ? (
             <div className="opts">
+              {/* the world the game is set in; unfinished mods only in test rooms */}
+              {MODS.filter(m => !m.draft || room.dev).map(m => (
+                <button type="button" key={m.id} className={`chip ${room.mod === m.id ? 'on' : ''}`} onClick={() => op({ op: 'mod', value: m.id })}>{modName(m)}</button>
+              ))}
+            </div>
+          ) : null}
+          {room.host ? (
+            <div className="opts">
               <button type="button" className={`chip ${room.learning ? 'on' : ''}`} onClick={() => op({ op: 'learning', value: !room.learning })}>{t('lobby.learning')}</button>
               {!room.learning && <button type="button" className={`chip ${room.timers ? 'on' : ''}`} onClick={() => op({ op: 'timers', value: !room.timers })}>{t('lobby.timers')}</button>}
               <button type="button" className="chip" onClick={() => op({ op: 'shuffle' })}>{t('lobby.shuffle')}</button>
             </div>
           ) : (
             <div className="opts">
+              <span className="chip on">{modName(MODS.find(m => m.id === room.mod) ?? MODS[0])}</span>
               <span className="chip on">{t(room.learning ? 'lobby.learning' : 'lobby.full')}</span>
               {!room.learning && room.timers && <span className="chip on">{t('lobby.timers')}</span>}
             </div>

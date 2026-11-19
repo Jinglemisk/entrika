@@ -1,0 +1,480 @@
+{
+  "terms": {
+    "suleyman": {
+      "name": "Süleyman",
+      "acc": "Süleyman'ı",
+      "dat": "Süleyman'a",
+      "gen": "Süleyman'ın",
+      "loc": "Süleyman'da",
+      "abl": "Süleyman'dan",
+      "you": "Süleyman'sın",
+      "stems": ["Süleyman", "Padişah"]
+    },
+    "loyalist": { "name": "Sadık", "pl": "Sadıklar", "you": "Sadıksın", "stems": ["Sadık", "Sadığ"] },
+    "traitor": { "name": "Hain", "pl": "Hainler", "plAcc": "Hainleri", "you": "Hainsin" },
+    "allegiance": { "name": "Taraf" },
+    "min1": {
+      "name": "Birinci Vekil",
+      "acc": "Birinci Vekili",
+      "dat": "Birinci Vekile",
+      "gen": "Birinci Vekilin",
+      "stems": ["Birinci Vekil", "birinci Vekil"]
+    },
+    "min2": {
+      "name": "İkinci Vekil",
+      "acc": "İkinci Vekili",
+      "dat": "İkinci Vekile",
+      "gen": "İkinci Vekilin",
+      "stems": ["İkinci Vekil", "ikinci Vekil"]
+    },
+    "minister": {
+      "name": "Vekil",
+      "acc": "Vekili",
+      "dat": "Vekile",
+      "gen": "Vekilin",
+      "loc": "Vekilde",
+      "abl": "Vekilden",
+      "pl": "Vekiller"
+    },
+    "character": { "name": "Karakter" },
+    "companion": { "name": "Kul" },
+    "crisis": {
+      "name": "Kriz",
+      "acc": "Krizi",
+      "dat": "Krize",
+      "gen": "Krizin",
+      "loc": "Krizde",
+      "abl": "Krizden",
+      "pl": "Krizler"
+    },
+    "court": {
+      "name": "Tertip",
+      "acc": "Tertip'i",
+      "dat": "Tertip'e",
+      "loc": "Tertip'te",
+      "abl": "Tertip'ten"
+    },
+    "objection": { "name": "İtiraz", "pl": "İtirazlar" },
+    "decree": {
+      "name": "Hüküm",
+      "acc": "Hükmü",
+      "dat": "Hüküm'e",
+      "loc": "Hüküm'de",
+      "stems": ["Hüküm", "Hükm"]
+    },
+    "kader": { "name": "Kader", "loc": "Kader'de", "abl": "Kader'den" },
+    "hizmet": { "name": "Hizmet" },
+    "hiyanet": { "name": "Hıyanet" },
+    "intrigue": { "name": "Entrika" },
+    "ambition": { "name": "Hırs" },
+    "harem": { "name": "Harem" },
+    "divan": { "name": "Divan" },
+    "saray": { "name": "Saray" },
+    "influence": { "name": "Nüfuz", "acc": "Nüfuzu", "loc": "Nüfuzda" },
+    "base": { "name": "Temel güç" },
+    "favor": { "name": "Lütuf", "stems": ["Lütuf", "Lütf"] },
+    "loyalty": { "name": "Sadakat yolu", "loc": "Sadakat yolunda", "stems": ["Sadakat"] },
+    "treason": { "name": "İhanet yolu", "gen": "İhanet yolunun", "stems": ["İhanet"] },
+    "secret": { "name": "Gizli", "stems": ["Gizli", "gizli"] },
+    "once": { "name": "Oyunda bir", "stems": ["Oyunda bir", "oyunda bir"] },
+    "percrisis": { "name": "Krizde bir", "stems": ["Krizde bir", "krizde bir"] },
+    "always": { "name": "Her zaman", "stems": ["Her zaman", "her zaman"] },
+    "investigator": { "name": "müfettiş" }
+  },
+  "characters": {
+    "suleyman": {
+      "name": "Süleyman Han",
+      "base": {
+        "name": "Ferman",
+        "text": "Tertip bitince bir Vekili uygun bir oyuncuyla değiştir, Mühür'e rağmen. Çıkan 1 Entrika kartı çeker."
+      },
+      "flavor": "Zıllüllâhi fî'l-arz!"
+    },
+    "hurrem": {
+      "name": "Hürrem Sultan",
+      "short": "Hürrem",
+      "base": {
+        "name": "Fısıltı",
+        "text": "Hüküm'de Nüfuzu hangi Vekilin alacağını Süleyman yerine sen seçersin."
+      },
+      "favor": { "name": "Çifte Oyun", "text": "Bir dalgada bir yerine iki kart oyna." },
+      "flavor": "Esir geldi, Haseki oldu."
+    },
+    "ibrahim": {
+      "name": "Pargalı İbrahim",
+      "short": "Pargalı",
+      "base": {
+        "name": "Sadrazam",
+        "text": "Bu kriz iki Vekili Süleyman yerine sen atarsın; kendini de atayabilirsin."
+      },
+      "favor": { "name": "Divan Nüfuzu", "text": "Bundan sonra Vekilken Hizmet oynanırsa 1 Nüfuz kazan." },
+      "flavor": "Parga'dan bir balıkçı oğlu, Sultan'ın sağ eli."
+    },
+    "sahsultan": {
+      "name": "Şah Sultan",
+      "base": {
+        "name": "İtiraz",
+        "text": "İtiraz sıran gelince bedavaya itiraz et; yerine geçecek oyuncuyu sen seç. Bu krizdeki İtiraz'ın sayılır."
+      },
+      "favor": { "name": "Sürgün", "text": "Bir oyuncu seç: gelecek kriz hiçbir yolla Vekil olamaz." },
+      "flavor": "Yavuz'un kızı; sözü sarayda dinlenir."
+    },
+    "mustafa": {
+      "name": "Şehzade Mustafa",
+      "short": "Mustafa",
+      "base": {
+        "name": "Veliaht",
+        "text": "Tertip bitince, Ferman'dan önce, uygunsan bir Vekilin yerine geç, Mühür'e rağmen."
+      },
+      "favor": { "name": "Ocak Sevgisi", "text": "Sana itiraz eden, ödediği Nüfuzu sana verir." },
+      "flavor": "Ordunun sevgilisi, tahtın varisi."
+    },
+    "hatice": {
+      "name": "Hatice Sultan",
+      "short": "Hatice",
+      "base": {
+        "name": "Himaye",
+        "text": "Tertip'ten önce bir oyuncu seç: bu kriz Entrika kartlarıyla koltuğundan edilemez ve Hüküm dahil Nüfuz kaybetmez."
+      },
+      "favor": {
+        "name": "Sezgi",
+        "text": "Süleyman ve kendin dışında iki oyuncu seç: aynı tarafta olup olmadıklarını gizlice öğren."
+      },
+      "flavor": "Sultan'ın kız kardeşi, sadrazamın eşi."
+    },
+    "rustem": {
+      "name": "Rüstem Paşa",
+      "short": "Rüstem",
+      "base": { "name": "Kulis", "text": "Süleyman atamadan önce onunla bir dakika baş başa konuş." },
+      "favor": {
+        "name": "Yön Değiştir",
+        "text": "Bir dalga açılınca sana oynanan bir Entrika kartını başka bir oyuncuya kaydır."
+      },
+      "flavor": "Sabırlı bir hesap adamı; her kapıyı bilir."
+    },
+    "barbaros": {
+      "name": "Barbaros Hayrettin",
+      "short": "Barbaros",
+      "base": {
+        "name": "Ganimet",
+        "text": "Başka bir oyuncunun elinden rastgele 1 Entrika kartı al, sonra el sınırına kadar at."
+      },
+      "favor": {
+        "name": "Gözcü",
+        "text": "Kader adımından sonra Birinci Vekilin attığı kart ya da kartlara gizlice bak."
+      },
+      "flavor": "Akdeniz'in kaptan-ı deryası."
+    },
+    "gritti": {
+      "name": "Sinyor Gritti",
+      "short": "Gritti",
+      "base": {
+        "name": "Faiz",
+        "text": "Bir oyuncu seç. O bir dahaki Nüfuz kazanışında sen de 1 kazanırsın."
+      },
+      "favor": {
+        "name": "Venedik Postası",
+        "text": "Kader destesinin üstteki 3 kartına gizlice bak; birini alta koyabilirsin."
+      },
+      "flavor": "Doç'un oğlu, Galata'nın tüccarı."
+    },
+    "sarlken": {
+      "name": "Şarlken",
+      "base": {
+        "name": "Feragat",
+        "text": "Atama'da, itirazlardan önce, Vekil koltuğunu uygun bir oyuncuya ver. 1 Nüfuz kazan; kart çekmezsin."
+      },
+      "favor": { "name": "Plus Ultra", "text": "Entrika kartların açık bir alanın kartı sayılır." },
+      "flavor": "Batının imparatoru, Sultan'ın rakibi."
+    },
+    "tahmasp": {
+      "name": "Tahmasp",
+      "short": "Şah Tahmasp",
+      "base": {
+        "name": "Cephe",
+        "text": "Kriz kartı açılınca bu krizin alanını sen seç: Divan, Harem ya da Saray."
+      },
+      "favor": {
+        "name": "Yakıp Yıkma",
+        "text": "Herkes, sen de, seçtiği 1 Entrika kartını tutar; gerisini atar."
+      },
+      "flavor": "Doğu sınırının öte yanındaki şah."
+    }
+  },
+  "companions": {
+    "daye": {
+      "name": "Daye Hatun",
+      "text": "Bir Entrika kartını Valide'nin Buyruğu olarak oyna; yerine kendini seçemezsin.",
+      "flavor": "Valide'nin sırrı, Daye'nin dilinde."
+    },
+    "bali": {
+      "name": "Malkoçoğlu",
+      "text": "Bir Entrika kartını Mühür olarak oyna.",
+      "flavor": "Akıncı kılıcı sarayın kapısında bekler."
+    },
+    "ayas": {
+      "name": "Ayas Paşa",
+      "text": "Bir Entrika kartını Azil olarak oyna.",
+      "flavor": "Hangi vezirin gideceğini önce o bilir."
+    },
+    "matrakci": {
+      "name": "Matrakçı Nasuh",
+      "text": "Bir Entrika kartını Mantık olarak oyna.",
+      "flavor": "Kalemi de kılıcı kadar keskin."
+    },
+    "sumbul": {
+      "name": "Sümbül Ağa",
+      "text": "Bir Entrika kartını Oyunbozan olarak oyna; alanını sen seç.",
+      "flavor": "Haremde ne olursa önce onun kulağına gelir."
+    },
+    "nigar": {
+      "name": "Nigar Kalfa",
+      "text": "Bir Entrika kartını Mühürlü Evrak olarak oyna.",
+      "flavor": "Mektupları önce o taşır, sonra okur."
+    },
+    "ebussuud": {
+      "name": "Ebussuud Efendi",
+      "text": "Bir Entrika kartını Teftiş olarak oyna.",
+      "flavor": "Fetva da defter de onun elinden geçer."
+    },
+    "gulsah": {
+      "name": "Gülşah Hatun",
+      "text": "Bir Entrika kartını İftira olarak oyna.",
+      "flavor": "Efendisi için her yalanı söyler."
+    },
+    "seker": {
+      "name": "Şeker Ağa",
+      "text": "Bir Entrika kartını Çeşnigir olarak oyna.",
+      "flavor": "Padişahın sofrasına giden her lokma önce ondan geçer."
+    },
+    "gulfem": {
+      "name": "Gülfem Hatun",
+      "text": "Bir Entrika kartını Kefalet olarak oyna.",
+      "flavor": "Sultan'ın en eski dostu, en sessiz tanığı."
+    },
+    "iskender": {
+      "name": "İskender Çelebi",
+      "text": "Bir Entrika kartını Defterdar olarak oyna.",
+      "flavor": "Hazinenin hesabı onun defterinde."
+    },
+    "firuze": {
+      "name": "Firuze Hatun",
+      "text": "Bir Entrika kartını Nazar olarak oyna.",
+      "flavor": "Padişahın gönlüne giden yolu bilir."
+    },
+    "gulaga": {
+      "name": "Gül Ağa",
+      "text": "Bir Entrika kartını Sükût olarak oyna.",
+      "flavor": "Cariyelere saray adabını o öğretir."
+    },
+    "lokman": {
+      "name": "Lokman Ağa",
+      "text": "Bir Entrika kartını Nöbet olarak oyna.",
+      "flavor": "Padişahın kapı ağası; kapının ardını o bilir."
+    }
+  },
+  "intrigue": {
+    "akil-hocasi": {
+      "name": "Oyunbozan",
+      "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.",
+      "flavor": "Oyunu gören, oyuna gelmez."
+    },
+    "muhur": {
+      "name": "Mühür",
+      "text": "Bir Vekile koy. Bu kriz Entrika kartlarıyla değiştirilemez; Ferman yine değiştirir.",
+      "flavor": "Mühür kimdeyse söz ondadır."
+    },
+    "valide": {
+      "name": "Valide'nin Buyruğu",
+      "text": "Bir Vekile koy. Onu uygun bir oyuncuyla değiştir, kendini de seçebilirsin. Yeni oyuncu aynı koltuğa oturur.",
+      "flavor": "Sarayda son sözü Valide söyler."
+    },
+    "azil": {
+      "name": "Azil",
+      "text": "Bir Vekile koy. Süleyman onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
+      "flavor": "Padişahın bir sözü, bir vezirin sonu."
+    },
+    "casus": {
+      "name": "Mantık",
+      "text": "Tertip bitince, bu oyuncunun bu kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.",
+      "flavor": "Hesap tutarsa, fail ortaya çıkar."
+    },
+    "muhurlu-evrak": {
+      "name": "Mühürlü Evrak",
+      "text": "Kader destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
+      "flavor": "Mührü kırılmadan okunan mektup."
+    },
+    "saray-tabibi": {
+      "name": "Çeşnigir",
+      "text": "Bu oyuncu bu kriz, Hüküm dahil, Nüfuz kaybetmez.",
+      "flavor": "Zehir önce onun diline değer."
+    },
+    "iftira": {
+      "name": "İftira",
+      "text": "Bu oyuncu 1 Nüfuz kaybeder.",
+      "flavor": "Bir isim, bir fısıltı, bir düşüş."
+    },
+    "kefalet": {
+      "name": "Kefalet",
+      "text": "Bir Vekile koy. Kader'de hâlâ Vekilse: Hizmet oynanırsa 1 Nüfuz kazanırsın, Hıyanet oynanırsa 1 Nüfuz kaybedersin.",
+      "flavor": "Kefil olan, borcu da üstlenir."
+    },
+    "teftis": {
+      "name": "Teftiş",
+      "text": "Bir Vekile koy. Kader adımından sonra o Vekilin attığı kart ya da kartlara gizlice bak.",
+      "flavor": "Defterler yalan söylemez."
+    },
+    "defterdar": {
+      "name": "Defterdar",
+      "text": "Birinci Vekile koy. Kader'de hâlâ Birinci Vekilse 3 yerine 4 kart çeker, 2'sini atar.",
+      "flavor": "Hesabı bilen, hangi kalemi sileceğini de bilir."
+    },
+    "nobet": {
+      "name": "Nöbet",
+      "text": "Tertip bitince, bu kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.",
+      "flavor": "Kapıyı kim çaldıysa, nöbetçi bilir."
+    },
+    "nazar": {
+      "name": "Nazar",
+      "text": "Bir Vekile koy. Bu kriz Hüküm bu Vekile düşerse 1 yerine 2 Nüfuz verir ya da alır.",
+      "flavor": "Padişahın nazarı ya yüceltir ya yakar."
+    },
+    "sukut": {
+      "name": "Sükût",
+      "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.",
+      "flavor": "Sarayda susmayı bilen uzun yaşar."
+    }
+  },
+  "ambitions": {
+    "divanda-nufuz": {
+      "name": "Divanda Nüfuz",
+      "text": "Bir Entrika kartıyla bir Vekili koltuğundan et.",
+      "flavor": "Vezir bir sözle oturur, bir sözle kalkar."
+    },
+    "suphe": {
+      "name": "Şüphe Altında",
+      "text": "Hıyanet oynandığında Vekil ol.",
+      "flavor": "Ateş olmayan yerden duman çıkmaz."
+    },
+    "takdir": {
+      "name": "Padişahın Takdiri",
+      "text": "Hizmet oynandığında Vekil ol.",
+      "flavor": "Bir bakışı bin altına bedel."
+    },
+    "gozden": {
+      "name": "Gözden Düşmek",
+      "text": "Nüfuz kaybet.",
+      "flavor": "Düşenin dostu olmaz; olsa da gizlidir."
+    },
+    "kulisci": {
+      "name": "Kulisçi",
+      "text": "Üç farklı oyuncuya Entrika kartı koy.",
+      "flavor": "Her kapıya bir anahtar."
+    },
+    "yukselen": {
+      "name": "Yükselen Yıldız",
+      "text": "İki krizde Vekil ol.",
+      "flavor": "Sarayda yükselmek, düşmemekten zordur."
+    },
+    "itirazci": { "name": "İtirazcı", "text": "Bir İtiraz yap.", "flavor": "Susan razı sayılır." },
+    "hedef": {
+      "name": "Hedef Tahtası",
+      "text": "Aynı krizde başka oyuncular sana 2 ya da daha fazla Entrika kartı koysun.",
+      "flavor": "Ağaç ne kadar yüksekse rüzgârı o kadar çok alır."
+    },
+    "ortak": {
+      "name": "Ortak Kader",
+      "text": "Bir Vekile Mühür ya da Kefalet koy.",
+      "flavor": "Aynı gemide olanlar birlikte batar."
+    },
+    "hazine": {
+      "name": "Saray Hazinesi",
+      "text": "Bir krizde 3 Entrika kartı oyna.",
+      "flavor": "Biriktiren, ihtiyaç günü güler."
+    },
+    "koltuk": {
+      "name": "Koltuk Kapmak",
+      "text": "Bir Entrika kartıyla Vekil ol.",
+      "flavor": "Koltuk boş kalmaz."
+    },
+    "kulak": {
+      "name": "Kulak Misafiri",
+      "text": "Mantık, Mühürlü Evrak, Teftiş ya da Nöbet kullan.",
+      "flavor": "Duvarların kulağı, kapıların dili var."
+    }
+  },
+  "crises": {
+    "yeniceri": { "name": "Yeniçeri İsyanı", "text": "Nüfuzu 0 olan oyuncular birer Entrika kartı çeker." },
+    "hazine": { "name": "Hazine Açığı", "text": "Bu krizde kimse Entrika kartı çekemez." },
+    "venedik": {
+      "name": "Venedik Elçiliği",
+      "text": "Süleyman'ın iki yanındaki oyuncular birer Entrika kartı çeker."
+    },
+    "harem": {
+      "name": "Haremde Skandal",
+      "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer."
+    },
+    "macar": { "name": "Macar Seferi", "text": "Bu krizde kimse Entrika kartı çekmez." },
+    "muhur": { "name": "Kaybolan Mühür", "text": "Geçen krizin Vekilleri birer Entrika kartı çeker." },
+    "divan": { "name": "Divan Kavgası", "text": "Geçen krizin Vekilleri birer Entrika kartı çeker." },
+    "sehzade": {
+      "name": "Şehzade Meselesi",
+      "text": "Süleyman'ın iki yanındaki oyuncular birer Entrika kartı çeker."
+    },
+    "istanbul": { "name": "Huzursuz Ahali", "text": "Süleyman dışında herkes birer Entrika kartı çeker." },
+    "irakeyn": {
+      "name": "Irakeyn Seferi",
+      "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer."
+    },
+    "isabella": {
+      "name": "Isabella Fortuna",
+      "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
+      "flavor": "Korsanların kaçırıp Sultan'a sattığı Kastilyalı prenses. Kaçmaktan vazgeçmez."
+    }
+  },
+  "kader": {
+    "h": {
+      "name": "Hizmet",
+      "text": ["Sadakat yoluna konur.", "Hüküm: Süleyman bir Vekile 1 Nüfuz verir."],
+      "flavor": "Devlete hizmet, Padişaha sadakat."
+    },
+    "x": {
+      "name": "Hıyanet",
+      "text": ["İhanet yoluna konur.", "Hüküm: Süleyman bir Vekilden 1 Nüfuz alır."],
+      "flavor": "«Sultanım, yemin ederim size yardım etmek istedim, fakat yapamadım!»"
+    }
+  },
+  "taraf": {
+    "loyalist": {
+      "name": "Sadık",
+      "text": ["Sadakat yolunda 4 Hizmet olunca kazanırsın.", "Bu kart gizlidir."],
+      "flavor": "Padişahım çok yaşa."
+    },
+    "traitor": {
+      "name": "Hain",
+      "text": ["İhanet yolunda 5 Hıyanet olunca kazanırsın.", "Hainler birbirini tanır."],
+      "flavor": "Gölgede bekleyen sabırlıdır."
+    }
+  },
+  "treason": {
+    "1": { "name": "Güç yok", "text": "Hiçbir şey olmaz." },
+    "sorusturma": {
+      "name": "Soruşturma",
+      "text": "Süleyman bir müfettiş seçer. Müfettiş bir oyuncunun Taraf kartına gizlice bakar, sonra istediğini söyler."
+    },
+    "hazineDefteri": {
+      "name": "Hazine Defteri",
+      "text": "Gelecek krizden önce Süleyman bir oyuncu seçer. O oyuncu Kader destesinin üstteki 3 kartına gizlice bakar."
+    },
+    "fermanRefresh": {
+      "name": "Ferman yenilenir",
+      "text": "Süleyman Ferman'ı yeniden kullanabilir. Elinde birden fazla Ferman olmaz."
+    },
+    "death": { "name": "Süleyman'ın ölümü", "text": "Hainler kazanır." }
+  },
+  "strings": {
+    "tagline": "Sarayda bir hain var.",
+    "endLoyalty": "Dördüncü {term.hizmet} oynandı. Devlet ayakta.",
+    "pref.music.why": "Hicaz makamında sessiz bir döngü."
+  }
+}

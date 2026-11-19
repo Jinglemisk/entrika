@@ -36,12 +36,12 @@ Three layers, and who owns each:
 
 ## Phases
 
-### 1. Groundwork: words
+### 1. Groundwork: words (done 2026-11-20, see `docs/mods.md`)
 - Content files keep only mechanics. Each mechanic gets a short neutral English line saying what it does, for mod authors.
 - Every name, text and flavor line moves into the `muhtesem` mod's Turkish words.
 - Engine and server errors become keys with values.
 - Words hard-coded in components and the card renderer become keys.
-- Interface sentences are rewritten from scratch with placeholders, in Turkish and in English. Each term gets hand-written forms. The card-text icon matcher reads its stems from the active mod and language.
+- Interface sentences are rewritten from scratch with placeholders (`{term.minister:dat}`, `{card.valide}`), in Turkish and in English. Each term gets hand-written forms. The card-text icon matcher reads its stems from the active mod and language.
 - A language switch goes on the home screen and in settings.
 - The room gets a `mod` setting, and the host picks it in the lobby. Phones switch mods while running.
 - The card gallery and the text editor get mod and language pickers. The editor saves into the mod's words.

@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import { RULES } from '../../engine/index.ts';
 import { send, useNet } from '../net.ts';
-import { t } from '../strings.ts';
+import { t, tIn } from '../strings.ts';
+import { setPrefs, usePrefs } from '../prefs.ts';
+import { LANGS } from '../words.ts';
 import { Frieze } from './Frieze.tsx';
 
 const NAME = 'entrika:name';
@@ -16,6 +18,8 @@ export function Home() {
   const [test, setTest] = useState(7);
   const keep = (v: string) => { setName(v); try { localStorage.setItem(NAME, v); } catch { /* private mode */ } };
   const busy = net.status !== 'open';
+  const { lang } = usePrefs();
+  const other = LANGS.find(l => l !== lang)!;
   // with a code typed or brought by a shared link, joining is the main button and making a new room steps back
   const joining = code.length === 4;
   return (
@@ -25,7 +29,11 @@ export function Home() {
         <div className="title">
           <b>Entrika</b>
           <p className="vo">{t('tagline')}</p>
-          <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+          <span className="links">
+            <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+            {/* the other language, named in itself */}
+            <button type="button" className="rules-link" lang={other} onClick={() => setPrefs({ lang: other })}>{tIn(other, 'langName')}</button>
+          </span>
         </div>
         <div className="panel">
           <label className="field"><span>{t('home.name')}</span>

@@ -84,23 +84,23 @@ export function openWave(g: Game) {
 /** Check a wave submission and turn it into plays. Throws a RuleError with a Turkish message if it breaks a rule. */
 export function checkWave(g: Game, id: PID, plays: WavePlay[]): Play[] {
   const p = P(g, id);
-  must(Array.isArray(plays), 'Geçersiz hamle.');
+  must(Array.isArray(plays), 'err.badMove');
   if (!plays.length) return [];
-  must(plays.length <= waveAllowance(g, id), 'Bu dalgada bir kart oynayabilirsin.');
-  must(new Set(plays.map(x => x.uid)).size === plays.length, 'Aynı kart iki kez oynanamaz.');
-  must(plays.filter(x => x.recastAs).length <= 1, 'Kul bu krizde bir kez çevirir.');
+  must(plays.length <= waveAllowance(g, id), 'err.waveLimit');
+  must(new Set(plays.map(x => x.uid)).size === plays.length, 'err.sameCardTwice');
+  must(plays.filter(x => x.recastAs).length <= 1, 'err.recastOnce');
   return plays.map(wp => {
     const card = p.hand.find(c => c.uid === wp.uid);
-    must(card, 'Bu kart elinde değil.');
+    must(card, 'err.notInHand');
     let as = card.kind;
     if (wp.recastAs) {
-      must(canRecast(g, id) === wp.recastAs, 'Kulun şu an bu kartı çeviremez.');
+      must(canRecast(g, id) === wp.recastAs, 'err.cantRecast');
       as = wp.recastAs;
-      if (as === 'akil-hocasi') must(wp.field === 'harem' || wp.field === 'divan', 'Oyunbozan için alan seç.');
+      if (as === 'akil-hocasi') must(wp.field === 'harem' || wp.field === 'divan', 'err.pickFieldFor');
     }
     const field = effectiveField(g, id, card.field, as, wp.recastAs ? wp.field : undefined);
-    must(field, 'Bu kart açık alanın kartı değil.');
-    must(legalTargets(g, id, as).includes(wp.target), 'Bu kart o oyuncuya oynanamaz.');
+    must(field, 'err.fieldClosed');
+    must(legalTargets(g, id, as).includes(wp.target), 'err.badTarget');
     return { owner: id, card, as, field, target: wp.target, recast: !!wp.recastAs };
   });
 }
@@ -298,8 +298,8 @@ function endCourt(g: Game) {
 /** A Minister leaves the seat to a new player: Valide'nin Buyruğu, Azil, an Objection, Feragat, Veliaht or the Ferman. */
 export function replaceMinister(g: Game, removed: PID, by: PID, reason: string, newcomer: PID) {
   const seat = seatOf(g, removed);
-  must(seat, 'O oyuncu artık Vekil değil.');
-  must(newcomer !== removed && eligibleList(g, seat).includes(newcomer), 'Bu oyuncu o koltuğa uygun değil.');
+  must(seat, 'err.noLongerMinister');
+  must(newcomer !== removed && eligibleList(g, seat).includes(newcomer), 'err.notEligible');
   g.ministers[seat] = newcomer;
   log(g, 'replaced', { seat, removed, newcomer, reason, by });
   if (REPLACERS.includes(reason)) P(g, newcomer).stats.seatByIntrigue = true;

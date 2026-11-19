@@ -1,128 +1,100 @@
 [
   {
     "id": "daye",
-    "name": "Daye Hatun",
     "recast": "valide",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Valide'nin Buyruğu olarak oyna; yerine kendini seçemezsin.",
-    "flavor": "Valide'nin sırrı, Daye'nin dilinde.",
+    "about": "Recast: once per crisis, play any Intrigue card as valide. You can't choose yourself as the new Minister.",
     "art": { "src": "/art/directions/img/roster-comp.daye.jpg", "pos": "50% 0%" }
   },
   {
     "id": "bali",
-    "name": "Malkoçoğlu",
     "recast": "muhur",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Mühür olarak oyna.",
-    "flavor": "Akıncı kılıcı sarayın kapısında bekler.",
+    "about": "Recast: once per crisis, play any Intrigue card as muhur.",
     "art": { "src": "/art/directions/img/roster-comp.bali.jpg", "pos": "50% 18%" }
   },
   {
     "id": "ayas",
-    "name": "Ayas Paşa",
     "recast": "azil",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Azil olarak oyna.",
-    "flavor": "Hangi vezirin gideceğini önce o bilir.",
+    "about": "Recast: once per crisis, play any Intrigue card as azil.",
     "art": { "src": "/art/directions/img/roster-comp.ayas.jpg", "pos": "50% 18%" }
   },
   {
     "id": "matrakci",
-    "name": "Matrakçı Nasuh",
     "recast": "casus",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Mantık olarak oyna.",
-    "flavor": "Kalemi de kılıcı kadar keskin.",
+    "about": "Recast: once per crisis, play any Intrigue card as casus.",
     "art": { "src": "/art/directions/img/roster-comp.matrakci.jpg", "pos": "50% 0%" }
   },
   {
     "id": "sumbul",
-    "name": "Sümbül Ağa",
     "recast": "akil-hocasi",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Oyunbozan olarak oyna; alanını sen seç.",
-    "flavor": "Haremde ne olursa önce onun kulağına gelir.",
+    "about": "Recast: once per crisis, play any Intrigue card as akil-hocasi. You choose its field.",
     "art": { "src": "/art/directions/img/roster-comp.sumbul.jpg", "pos": "50% 33%" }
   },
   {
     "id": "nigar",
-    "name": "Nigar Kalfa",
     "recast": "muhurlu-evrak",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Mühürlü Evrak olarak oyna.",
-    "flavor": "Mektupları önce o taşır, sonra okur.",
+    "about": "Recast: once per crisis, play any Intrigue card as muhurlu-evrak.",
     "art": { "src": "/art/directions/img/roster-comp.nigar.jpg", "pos": "50% 20%" }
   },
   {
     "id": "ebussuud",
-    "name": "Ebussuud Efendi",
     "recast": "teftis",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Teftiş olarak oyna.",
-    "flavor": "Fetva da defter de onun elinden geçer.",
+    "about": "Recast: once per crisis, play any Intrigue card as teftis.",
     "art": { "src": "/art/directions/img/roster-comp.ebussuud.jpg", "pos": "50% 40%" }
   },
   {
     "id": "gulsah",
-    "name": "Gülşah Hatun",
     "recast": "iftira",
     "freq": "crisis",
-    "text": "Bir Entrika kartını İftira olarak oyna.",
-    "flavor": "Efendisi için her yalanı söyler.",
+    "about": "Recast: once per crisis, play any Intrigue card as iftira.",
     "art": { "src": "/art/directions/img/roster-comp.gulsah.jpg", "pos": "50% 0%" }
   },
   {
     "id": "seker",
-    "name": "Şeker Ağa",
     "recast": "saray-tabibi",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Çeşnigir olarak oyna.",
-    "flavor": "Padişahın sofrasına giden her lokma önce ondan geçer.",
+    "about": "Recast: once per crisis, play any Intrigue card as saray-tabibi.",
     "art": { "src": "/art/directions/img/roster-comp.seker.jpg", "pos": "50% 12%" }
   },
   {
     "id": "gulfem",
-    "name": "Gülfem Hatun",
     "recast": "kefalet",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Kefalet olarak oyna.",
-    "flavor": "Sultan'ın en eski dostu, en sessiz tanığı.",
+    "about": "Recast: once per crisis, play any Intrigue card as kefalet.",
     "art": { "src": "/art/directions/img/roster-comp.gulfem.jpg", "pos": "50% 12%" }
   },
   {
     "id": "iskender",
-    "name": "İskender Çelebi",
     "recast": "defterdar",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Defterdar olarak oyna.",
-    "flavor": "Hazinenin hesabı onun defterinde.",
+    "about": "Recast: once per crisis, play any Intrigue card as defterdar.",
     "art": { "src": "/art/directions/img/roster-comp.iskender.jpg", "pos": "50% 20%" }
   },
   {
     "id": "firuze",
-    "name": "Firuze Hatun",
     "recast": "nazar",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Nazar olarak oyna.",
-    "flavor": "Padişahın gönlüne giden yolu bilir.",
+    "about": "Recast: once per crisis, play any Intrigue card as nazar.",
     "art": { "src": "/art/directions/img/roster-comp.firuze.jpg", "pos": "50% 38%" }
   },
   {
     "id": "gulaga",
-    "name": "Gül Ağa",
     "recast": "sukut",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Sükût olarak oyna.",
-    "flavor": "Cariyelere saray adabını o öğretir.",
+    "about": "Recast: once per crisis, play any Intrigue card as sukut.",
     "art": { "src": "/art/directions/img/roster-comp.gulaga.jpg", "pos": "50% 0%" }
   },
   {
     "id": "lokman",
-    "name": "Lokman Ağa",
     "recast": "nobet",
     "freq": "crisis",
-    "text": "Bir Entrika kartını Nöbet olarak oyna.",
-    "flavor": "Padişahın kapı ağası; kapının ardını o bilir.",
+    "about": "Recast: once per crisis, play any Intrigue card as nobet.",
     "art": { "src": "/art/directions/img/roster-comp.lokman.jpg", "pos": "50% 26%" }
   }
 ]
