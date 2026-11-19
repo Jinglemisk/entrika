@@ -1,6 +1,6 @@
 # Entrika — plan
 
-The game is playable end to end (rules v0.9, `game/README.md`). The current work is **mods and languages**: the same game in three settings, each in Turkish and English.
+The game is playable end to end (rules v0.9, `game/README.md`) in three settings, each in Turkish and English. The mods work below is done (2026-11-20); what's left is under Next.
 
 | Mod | Setting | Written first in |
 |---|---|---|
@@ -64,7 +64,7 @@ Three layers, and who owns each:
 - **Done when:** screenshots match today's, and a crude test skin proves that every slot switches.
 - Landed as: `mods/<id>/skin.json` (frames as layered SVGs, backs, stills, tints, icons, niche, seal, frieze, music), `skin.css` (tokens, fonts, decoration), `portraits.json`; the neutral fallback skin in `game/skin/`; the portrait tool `art/tools/portrait.py` (+ `cutout.swift`); `art/icons/build.py <icons folder>`; `game/content/icons.json` lists every icon id; `npm run mods` lists each skin's gaps, the mod authors' sourcing checklist.
 
-### 3. The mods
+### 3. The mods (done 2026-11-20)
 One agent per mod, each on its own branch:
 
 1. **Proposal:** art direction, plus who each Character and Kul is, and what each Entrika, Hırs, Crisis and term is called. Reviewed before any writing.
@@ -79,11 +79,22 @@ One agent per mod, each on its own branch:
 
 `muhtesem` needs its English words and any missing art, not a new look.
 
+Each mod's `PROPOSAL.md` holds its world, roster and art direction, and the decisions taken in review. Each `art/manifest.json` marks its weak images.
+
 ### Rules for every mod
 - Same mechanics, ids and card counts. No new effects.
 - Every screen, card and line reads as that world. Nothing Ottoman leaks into `got` or `cumhuriyet`.
 - Real people are shown only in real images, never generated ones.
 - Sources go in the mod's asset manifest.
+
+## Next
+- **Check the Turkish names in `got`** against the official translation: Kanun Ustası, Yeminbozan, Serçeparmak, Maiyet, Kumpas, İtibar, Kuzgun Kulesi (`mods/got/art/manifest.json`, `turkish_unverified`).
+- **Weak images** (each mod's manifest marks them `weak`):
+  - `got`: Standing Guard, A Quarrel in Council, Dismissed (a close-up);
+  - `cumhuriyet`: Sansür (no censored page found), Santral (a Seattle switchboard), Sakarya, Celal Bayar's 1940 portrait, Halide Edib's identity per the Commons caption;
+  - `muhtesem`: Pledge, Counterplot (dark), Lokman (close-up).
+- **Cumhuriyet's Sultan role** is the Gazi, under respect rules: real portraits only, on his card, seat and the frieze centre; the Traitors' win is "Meclis dağılır" and nobody dies. Its proposal keeps an alternative where the Assembly itself is the role.
+- **Bundle size:** every mod's words and frame SVGs are bundled, so the app is over 800 kB. Load a mod's skin files on demand if it grows.
 
 ## Later
 - The rules manual for each mod and language. Today it is English with Ottoman names, at `/kurallar`. The mod files become the one source for names, and the manual's Lexicon retires.

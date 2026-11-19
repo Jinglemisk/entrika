@@ -2,7 +2,7 @@
 
 **There's a traitor in the palace.** Entrika is a social-deduction card game for 5 to 8 friends, set in the Ottoman court of the TV series *Muhteşem Yüzyıl*. You play it in the browser, on phones held sideways, either around one table or over a call. A game takes about 30 minutes.
 
-It is an unofficial fan game, played in Turkish. It was formerly called *Sarayda Hain Var!*.
+It is an unofficial fan game, played in Turkish or English. Besides the original Ottoman court, the same game can be set in Game of Thrones or the early Turkish Republic (see `mods/` below). It was formerly called *Sarayda Hain Var!*.
 
 ## The game
 
@@ -48,7 +48,7 @@ It isn't hosted yet. It runs from one computer, and phones on the same Wi-Fi joi
 ## What's in the repo
 
 - `game/` is the browser game: the rules engine, the server and the phone app. The mechanics and numbers are JSON in `game/content/`; the interface sentences, in Turkish and English, are in `game/lang/`.
-- `mods/` holds the worlds the game can be set in: each mod's names, card text and (soon) look. `docs/mods.md` says how to make one.
+- `mods/` holds the worlds the game can be set in, each with its names, card text and look, in Turkish and English: `muhtesem` (Muhteşem Yüzyıl, the original), `got` (Game of Thrones) and `cumhuriyet` (the early Republic). The host picks one in the lobby; each phone picks its language. `docs/mods.md` says how to make one.
 - `manual.html` is the living rules manual. Names and flavor text are edited in its Lexicon, which lives in the published artifact's database.
 - `art/` has the card stills, character cut-outs and the Kat'ı term icons, plus the scripts that build them.
 - `ui/v3/` is the design system the game screens are built on.
