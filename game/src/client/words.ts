@@ -38,9 +38,10 @@ for (const [p, data] of Object.entries(files)) {
   if (file === 'mod') infos.push(data as ModInfo);
   else if ((LANGS as string[]).includes(file)) (WORDS[mod] ??= {})[file as Lang] = data as Words;
 }
-/** Every mod, finished ones first. */
-export const MODS = infos.sort((a, b) => Number(!!a.draft) - Number(!!b.draft) || a.id.localeCompare(b.id));
 export const DEFAULT_MOD = 'muhtesem';
+/** Every mod: the original first, then finished ones, then drafts. */
+const rank = (m: ModInfo) => (m.id === DEFAULT_MOD ? 0 : m.draft ? 2 : 1);
+export const MODS = infos.sort((a, b) => rank(a) - rank(b) || a.id.localeCompare(b.id));
 const modInfo = (id: string) => MODS.find(m => m.id === id) ?? MODS.find(m => m.id === DEFAULT_MOD)!;
 
 let mod = modInfo(DEFAULT_MOD);

@@ -103,7 +103,7 @@
   "lobby.shuffle": "Yerleri karıştır",
   "lobby.learningWhy": "Öğrenme oyunu: {term.companion}, {term.ambition} ve {term.favor} güçleri yok, dış karakterler dağıtılmaz.",
   "lobby.full": "Tam oyun",
-  "lobby.fullWhy": "Tam oyun: herkese bir {term.companion} ve bir {term.ambition} kartı, karakterlerin {term.favor} güçleri açık.",
+  "lobby.fullWhy": "Tam oyun: herkese bir {term.companion} ve bir {term.ambition} kartı; {term.favor} güçleri açık.",
   "lobby.seatWhy": "Sıra, masadaki oturuş sırası olsun: {term.objection} sırası buna göre döner.",
   "setupTitle": "Kuruluş",
   "crisisN": "{term.crisis} {n}",
