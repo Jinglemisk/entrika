@@ -1,0 +1,435 @@
+{
+  "terms": {
+    "suleyman": { "name": "Süleyman", "the": "Süleyman", "stems": ["Süleyman"] },
+    "loyalist": { "name": "Loyalist", "pl": "Loyalists", "a": "a Loyalist" },
+    "traitor": { "name": "Traitor", "pl": "Traitors", "a": "a Traitor" },
+    "allegiance": { "name": "Allegiance" },
+    "min1": { "name": "First Vizier", "stems": ["First Vizier"] },
+    "min2": { "name": "Second Vizier", "stems": ["Second Vizier"] },
+    "minister": { "name": "Vizier", "pl": "Viziers", "a": "a Vizier" },
+    "character": { "name": "Character" },
+    "companion": { "name": "Retainer", "pl": "Retainers", "a": "a Retainer" },
+    "crisis": { "name": "Crisis", "pl": "Crises", "a": "a Crisis", "stems": ["Crisis", "Crises"] },
+    "court": { "name": "Plotting" },
+    "objection": { "name": "Objection", "pl": "Objections", "a": "an Objection" },
+    "decree": { "name": "Decree" },
+    "kader": { "name": "Fate" },
+    "hizmet": { "name": "Service" },
+    "hiyanet": { "name": "Treason" },
+    "intrigue": { "name": "Intrigue", "a": "an Intrigue" },
+    "ambition": { "name": "Ambition", "pl": "Ambitions", "a": "an Ambition" },
+    "harem": { "name": "Harem" },
+    "divan": { "name": "Divan" },
+    "saray": { "name": "Palace" },
+    "influence": { "name": "Influence" },
+    "base": { "name": "Base power" },
+    "favor": { "name": "Favor" },
+    "loyalty": { "name": "Loyalty track", "stems": ["Loyalty"] },
+    "treason": { "name": "Treason track", "stems": ["Treason track"] },
+    "secret": { "name": "Secret", "stems": ["Secret", "secret"] },
+    "once": { "name": "Once per game", "stems": ["Once per game", "once per game"] },
+    "percrisis": { "name": "Once per crisis", "stems": ["Once per crisis", "once per crisis"] },
+    "always": { "name": "Always", "stems": ["Always"] },
+    "investigator": { "name": "investigator", "a": "an investigator", "the": "the investigator" }
+  },
+  "characters": {
+    "suleyman": {
+      "name": "Sultan Süleyman",
+      "base": {
+        "name": "Firman",
+        "text": "After Plotting, swap a Vizier for an eligible player, even under Seal. The loser draws 1 Intrigue card."
+      },
+      "flavor": "The Shadow of God on Earth!"
+    },
+    "hurrem": {
+      "name": "Hürrem Sultan",
+      "short": "Hürrem",
+      "base": {
+        "name": "Whisper",
+        "text": "At the Decree, you pick which Vizier it falls on, instead of Süleyman."
+      },
+      "favor": { "name": "Double Game", "text": "Play two cards in one wave instead of one." },
+      "flavor": "Sold as a slave, she married the Sultan."
+    },
+    "ibrahim": {
+      "name": "Pargalı İbrahim",
+      "short": "İbrahim",
+      "base": {
+        "name": "Grand Vizier",
+        "text": "This crisis, you appoint both Viziers instead of Süleyman, yourself included."
+      },
+      "favor": {
+        "name": "Voice of the Divan",
+        "text": "Whenever Service is played while you're a Vizier, gain 1 Influence."
+      },
+      "flavor": "A fisherman's son from Parga, the Sultan's right hand."
+    },
+    "sahsultan": {
+      "name": "Şah Sultan",
+      "base": {
+        "name": "Veto",
+        "text": "On your Objection turn, object for free and pick who takes the seat. This is your Objection this crisis."
+      },
+      "favor": { "name": "Exile", "text": "Pick a player: next crisis, nothing can make them a Vizier." },
+      "flavor": "Selim the Grim's daughter; the palace heeds her word."
+    },
+    "mustafa": {
+      "name": "Prince Mustafa",
+      "short": "Mustafa",
+      "base": {
+        "name": "Heir Apparent",
+        "text": "After Plotting, before the Firman, take a Vizier's seat if eligible, even under Seal."
+      },
+      "favor": { "name": "Love of the Janissaries", "text": "Whoever objects to you pays you the Influence." },
+      "flavor": "The army's darling, heir to the throne."
+    },
+    "hatice": {
+      "name": "Hatice Sultan",
+      "short": "Hatice",
+      "base": {
+        "name": "Patronage",
+        "text": "Before Plotting, pick a player: this crisis, Intrigue cards can't unseat them and they lose no Influence at all."
+      },
+      "favor": {
+        "name": "Intuition",
+        "text": "Pick two players besides Süleyman and yourself: learn in secret if they're on the same side."
+      },
+      "flavor": "The Sultan's sister, the Grand Vizier's wife."
+    },
+    "rustem": {
+      "name": "Rüstem Pasha",
+      "short": "Rüstem",
+      "base": { "name": "Private Audience", "text": "Before Süleyman appoints, talk with him alone for one minute." },
+      "favor": {
+        "name": "Deflect",
+        "text": "When a wave flips, move an Intrigue card played on you to another player."
+      },
+      "flavor": "A patient, calculating man; he knows every door."
+    },
+    "barbaros": {
+      "name": "Hayreddin Barbarossa",
+      "short": "Barbarossa",
+      "base": {
+        "name": "Plunder",
+        "text": "Steal a random Intrigue card from another player, then discard to your hand limit."
+      },
+      "favor": {
+        "name": "Lookout",
+        "text": "After the Fate step, secretly see what the First Vizier discarded."
+      },
+      "flavor": "Grand Admiral of the Mediterranean."
+    },
+    "gritti": {
+      "name": "Signor Gritti",
+      "short": "Gritti",
+      "base": {
+        "name": "Interest",
+        "text": "Pick a player. The next time they gain Influence, you gain 1 too."
+      },
+      "favor": {
+        "name": "Venetian Post",
+        "text": "Look in secret at the top 3 Fate cards; you may put one on the bottom."
+      },
+      "flavor": "The Doge's son, the merchant of Galata."
+    },
+    "sarlken": {
+      "name": "Charles V",
+      "base": {
+        "name": "Abdication",
+        "text": "When appointed, before objections, give your seat to an eligible player and gain 1 Influence. You don't draw."
+      },
+      "favor": { "name": "Plus Ultra", "text": "Your Intrigue cards count as cards of an open field." },
+      "flavor": "Emperor of the West, the Sultan's rival."
+    },
+    "tahmasp": {
+      "name": "Shah Tahmasp",
+      "short": "Tahmasp",
+      "base": {
+        "name": "Front",
+        "text": "When the Crisis card flips, pick this crisis's field: Divan, Harem or Palace."
+      },
+      "favor": {
+        "name": "Scorched Earth",
+        "text": "Everyone, you included, keeps 1 chosen Intrigue card and discards the rest."
+      },
+      "flavor": "The shah beyond the eastern border."
+    }
+  },
+  "companions": {
+    "daye": {
+      "name": "Daye Hatun",
+      "text": "Play any Intrigue card as Mother's Demand; you can't pick yourself.",
+      "flavor": "The Queen Mother's secrets sit on Daye's tongue."
+    },
+    "bali": {
+      "name": "Malkoçoğlu",
+      "text": "Play any Intrigue card as Seal.",
+      "flavor": "A raider's sword waits at the palace gate."
+    },
+    "ayas": {
+      "name": "Ayas Pasha",
+      "text": "Play any Intrigue card as Dismissal.",
+      "flavor": "He knows first which vizier is next to fall."
+    },
+    "matrakci": {
+      "name": "Matrakçı Nasuh",
+      "text": "Play any Intrigue card as Deduction.",
+      "flavor": "His pen is as sharp as his sword."
+    },
+    "sumbul": {
+      "name": "Sümbül Agha",
+      "text": "Play any Intrigue card as Counterplot; you choose its field.",
+      "flavor": "Whatever happens in the harem reaches his ear first."
+    },
+    "nigar": {
+      "name": "Nigar Kalfa",
+      "text": "Play any Intrigue card as Sealed Letter.",
+      "flavor": "She carries the letters, then reads them."
+    },
+    "ebussuud": {
+      "name": "Ebussuud Efendi",
+      "text": "Play any Intrigue card as Audit.",
+      "flavor": "Fatwas and ledgers alike pass through his hands."
+    },
+    "gulsah": {
+      "name": "Gülşah Hatun",
+      "text": "Play any Intrigue card as Slander.",
+      "flavor": "She'll tell any lie for her mistress."
+    },
+    "seker": {
+      "name": "Şeker Agha",
+      "text": "Play any Intrigue card as Taster.",
+      "flavor": "Every bite for the Sultan's table passes him first."
+    },
+    "gulfem": {
+      "name": "Gülfem Hatun",
+      "text": "Play any Intrigue card as Pledge.",
+      "flavor": "The Sultan's oldest friend, his quietest witness."
+    },
+    "iskender": {
+      "name": "İskender Çelebi",
+      "text": "Play any Intrigue card as Treasurer.",
+      "flavor": "The treasury's accounts live in his ledger."
+    },
+    "firuze": {
+      "name": "Firuze Hatun",
+      "text": "Play any Intrigue card as Royal Gaze.",
+      "flavor": "She knows the way to the Sultan's heart."
+    },
+    "gulaga": {
+      "name": "Gül Agha",
+      "text": "Play any Intrigue card as Silence.",
+      "flavor": "He teaches the concubines palace manners."
+    },
+    "lokman": {
+      "name": "Lokman Agha",
+      "text": "Play any Intrigue card as Sentry.",
+      "flavor": "He guards the Sultan's door, and what lies behind it."
+    }
+  },
+  "intrigue": {
+    "akil-hocasi": {
+      "name": "Counterplot",
+      "text": "Cancels every other Intrigue card of its field placed on this player this crisis.",
+      "flavor": "See the scheme, and you won't fall for it."
+    },
+    "muhur": {
+      "name": "Seal",
+      "text": "Place on a Vizier. Intrigue cards can't replace them this crisis; the Firman still can.",
+      "flavor": "Whoever holds the seal holds the word."
+    },
+    "valide": {
+      "name": "Mother's Demand",
+      "text": "Place on a Vizier. Replace them with an eligible player; you may pick yourself. The newcomer takes the same seat.",
+      "flavor": "The Queen Mother has the last word."
+    },
+    "azil": {
+      "name": "Dismissal",
+      "text": "Place on a Vizier. Süleyman replaces them with an eligible player, who takes the same seat.",
+      "flavor": "One word from the Sultan, and a vizier is done."
+    },
+    "casus": {
+      "name": "Deduction",
+      "text": "After Plotting, see in secret which Intrigue cards this player played this crisis, and on whom.",
+      "flavor": "When the sums add up, the culprit shows."
+    },
+    "muhurlu-evrak": {
+      "name": "Sealed Letter",
+      "text": "Look in secret at the top 3 Fate cards and put them back in order.",
+      "flavor": "A letter read without breaking the seal."
+    },
+    "saray-tabibi": {
+      "name": "Taster",
+      "text": "This player loses no Influence this crisis, Decree included.",
+      "flavor": "Poison touches his tongue first."
+    },
+    "iftira": {
+      "name": "Slander",
+      "text": "This player loses 1 Influence.",
+      "flavor": "A name, a whisper, a fall."
+    },
+    "kefalet": {
+      "name": "Pledge",
+      "text": "Place on a Vizier. If still a Vizier at the Fate step: you gain 1 Influence on Service, lose 1 on Treason.",
+      "flavor": "Vouch for a man, and his debt is yours."
+    },
+    "teftis": {
+      "name": "Audit",
+      "text": "Place on a Vizier. After the Fate step, secretly see what that Vizier discarded.",
+      "flavor": "Ledgers don't lie."
+    },
+    "defterdar": {
+      "name": "Treasurer",
+      "text": "Place on the First Vizier. At Fate, if still seated, they draw 4 cards, not 3, and discard 2.",
+      "flavor": "Who knows the accounts knows which line to strike."
+    },
+    "nobet": {
+      "name": "Sentry",
+      "text": "After Plotting, pick a card others played on this player this crisis; learn in secret who played it.",
+      "flavor": "The sentry knows who knocked."
+    },
+    "nazar": {
+      "name": "Royal Gaze",
+      "text": "Place on a Vizier. This crisis, a Decree on them gives or takes 2 Influence, not 1.",
+      "flavor": "The Sultan's gaze either raises you or burns you."
+    },
+    "sukut": {
+      "name": "Silence",
+      "text": "This player can't play an Intrigue card next wave.",
+      "flavor": "In the palace, the silent live long."
+    }
+  },
+  "ambitions": {
+    "divanda-nufuz": {
+      "name": "Sway in the Divan",
+      "text": "Unseat a Vizier with an Intrigue card.",
+      "flavor": "A vizier rises on a word and falls on a word."
+    },
+    "suphe": {
+      "name": "Under Suspicion",
+      "text": "Be a Vizier when Treason is played.",
+      "flavor": "There's no smoke without fire."
+    },
+    "takdir": {
+      "name": "The Sultan's Esteem",
+      "text": "Be a Vizier when Service is played.",
+      "flavor": "One look from him is worth a thousand ducats."
+    },
+    "gozden": {
+      "name": "Fall from Grace",
+      "text": "Lose Influence.",
+      "flavor": "The fallen have no friends, or only secret ones."
+    },
+    "kulisci": {
+      "name": "Schemer",
+      "text": "Place Intrigue cards on three different players.",
+      "flavor": "A key for every door."
+    },
+    "yukselen": {
+      "name": "Rising Star",
+      "text": "Be a Vizier in two crises.",
+      "flavor": "In the palace, rising is harder than staying up."
+    },
+    "itirazci": { "name": "Dissenter", "text": "Make an Objection.", "flavor": "Silence means consent." },
+    "hedef": {
+      "name": "Lightning Rod",
+      "text": "Have others place 2 or more Intrigue cards on you in one crisis.",
+      "flavor": "The taller the tree, the more wind it catches."
+    },
+    "ortak": {
+      "name": "Shared Fate",
+      "text": "Place a Seal or a Pledge on a Vizier.",
+      "flavor": "Those in the same boat sink together."
+    },
+    "hazine": {
+      "name": "War Chest",
+      "text": "Play 3 Intrigue cards in one crisis.",
+      "flavor": "Save up, and you'll smile on the day of need."
+    },
+    "koltuk": {
+      "name": "Seize a Seat",
+      "text": "Become a Vizier through an Intrigue card.",
+      "flavor": "No seat stays empty."
+    },
+    "kulak": {
+      "name": "Eavesdropper",
+      "text": "Use Deduction, Sealed Letter, Audit or Sentry.",
+      "flavor": "Walls have ears, and doors have tongues."
+    }
+  },
+  "crises": {
+    "yeniceri": { "name": "Janissary Revolt", "text": "Players with 0 Influence draw 1 Intrigue card each." },
+    "hazine": { "name": "Empty Treasury", "text": "Nobody may draw Intrigue cards this crisis." },
+    "venedik": {
+      "name": "Venetian Embassy",
+      "text": "The two players beside Süleyman draw 1 Intrigue card each."
+    },
+    "harem": {
+      "name": "Scandal in the Harem",
+      "text": "The poorest in Influence draws 1 Intrigue card; Süleyman breaks ties."
+    },
+    "macar": { "name": "Hungarian Campaign", "text": "Nobody draws Intrigue cards this crisis." },
+    "muhur": { "name": "The Lost Seal", "text": "Last crisis's Viziers draw 1 Intrigue card each." },
+    "divan": { "name": "Uproar in the Divan", "text": "Last crisis's Viziers draw 1 Intrigue card each." },
+    "sehzade": {
+      "name": "The Succession",
+      "text": "The two players beside Süleyman draw 1 Intrigue card each."
+    },
+    "istanbul": { "name": "Unrest in the City", "text": "Everyone but Süleyman draws 1 Intrigue card." },
+    "irakeyn": {
+      "name": "Persian Campaign",
+      "text": "The poorest in Influence draws 1 Intrigue card; Süleyman breaks ties."
+    },
+    "isabella": {
+      "name": "Isabella Fortuna",
+      "text": "Last crisis's Viziers draw 1 Intrigue card each.",
+      "flavor": "A Castilian princess, sold to the Sultan by corsairs. She keeps trying to escape."
+    }
+  },
+  "kader": {
+    "h": {
+      "name": "Service",
+      "text": ["Goes on the Loyalty track.", "Decree: Süleyman gives a Vizier 1 Influence."],
+      "flavor": "Service to the state, loyalty to the Sultan."
+    },
+    "x": {
+      "name": "Treason",
+      "text": ["Goes on the Treason track.", "Decree: Süleyman takes 1 Influence from a Vizier."],
+      "flavor": "“My Sultan, I swear I wanted to help you, but I couldn't!”"
+    }
+  },
+  "taraf": {
+    "loyalist": {
+      "name": "Loyalist",
+      "text": ["You win when 4 Service cards are on the Loyalty track.", "This card is secret."],
+      "flavor": "Long live the Sultan."
+    },
+    "traitor": {
+      "name": "Traitor",
+      "text": ["You win when 5 Treason cards are on the Treason track.", "Traitors know each other."],
+      "flavor": "Those who wait in the shadows are patient."
+    }
+  },
+  "treason": {
+    "1": { "name": "No power", "text": "Nothing happens." },
+    "sorusturma": {
+      "name": "Investigation",
+      "text": "Süleyman names an investigator, who secretly looks at a player's Allegiance card, then says anything."
+    },
+    "hazineDefteri": {
+      "name": "Treasury Ledger",
+      "text": "Before the next crisis, Süleyman names a player, who looks in secret at the top 3 cards of the Fate deck."
+    },
+    "fermanRefresh": {
+      "name": "Firman Renewed",
+      "text": "Süleyman may use the Firman again. He never holds more than one."
+    },
+    "death": { "name": "Süleyman's Death", "text": "The Traitors win." }
+  },
+  "strings": {
+    "tagline": "There's a traitor in the palace.",
+    "endLoyalty": "The fourth {term.hizmet} is played. The empire stands.",
+    "pref.music.why": "A quiet loop in the Hicaz mode.",
+    "sicil": "Chronicle"
+  }
+}
