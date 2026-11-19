@@ -35,6 +35,8 @@ The standing brief for the browser game. Read it before starting any work on the
 
 ## Art
 
+This section is the `muhtesem` mod's art direction. Each mod has its own look, built to the same layout and rules (`docs/mods.md`): real images for people, one icon family, ornate cards and plain controls. The pipeline is shared: `art/tools/portrait.py` makes every mod's character cut-outs and crops, and `art/icons/build.py` builds every mod's icon set.
+
 - **Chosen direction:** B, Ottoman miniature (cream paper, gold leaf, lapis and vermilion, manuscript-style names), with stills graded in direction A's red-to-gold hue at reduced strength. Details live in `art/directions/notes.md`. Art direction and UI are separate tracks: the art page covers cards, icons and stills; UI is built on top of it.
 - Real stills from the show only, never AI-generated or regenerated. Any card showing a person uses a standard posed hero shot, like a cast promo or a roster image: same framing, same eye line, facing the viewer. Event cards use scenes, e.g. a janissary riot for Yeniçeri İsyanı. Online sources are fine.
 - Card layouts are consistent. Characters' two powers sit in clearly separate panels. Card titles and body text are centred. Harem and Divan show as icons only; tooltips carry the words.
@@ -71,7 +73,7 @@ Decided so far (the full list is in `art/directions/notes.md`): Birinci Vekil / 
 - TypeScript, React, Vite, and Motion for card animations. The game lives in `game/`; its README says how to run it.
 - One player creates a room and shares a four-letter code; others join with it, the same way at a table or remotely.
 - **The relay runs the rules.** The server applies every action with the same engine the phones carry and keeps the latest state, saved to disk. A locked phone rejoins, and two phones can't disagree about the state. It still sends the whole state to every phone, which shows only its owner's secrets (no anti-cheat, as above). In development it runs on the Mac with phones on the same Wi-Fi; later it can move to the Hetzner box. Production hosting isn't a concern yet.
-- **Content is data.** Mechanics and art paths are in `game/content/*.json`, the dials in `game/content/rules.json`, card names and texts in each mod's words (`mods/<id>/<lang>.json`), and interface sentences in `game/lang/<lang>.json`. Behaviour is code in `game/src/engine/`. The manual doesn't read these files yet; until it does, a text change goes in both places.
-- **Cards are drawn, not baked.** The art page's card generator is ported to the game, so every face is built from content data at run time.
-- **Sound is synthesised** with Web Audio: the effects and a quiet loop in makam Hicaz. There are no audio files to source.
+- **Content is data.** Mechanics are in `game/content/*.json`, the dials in `game/content/rules.json`, card names and texts in each mod's words (`mods/<id>/<lang>.json`), pictures and the whole look in each mod's skin (`mods/<id>/skin.json`, `skin.css`), and interface sentences in `game/lang/<lang>.json`. Behaviour is code in `game/src/engine/`. The manual doesn't read these files yet; until it does, a text change goes in both places.
+- **Cards are drawn, not baked.** Every face is built at run time on one fixed layout, from the mod's words and its skin's frame layers (SVG). The Ottoman frames came from the art page's generator and now live in the `muhtesem` skin.
+- **Sound is synthesised** with Web Audio: the effects and a quiet loop whose notes come from the mod's skin (makam Hicaz in `muhtesem`). There are no audio files to source.
 - **Rulings.** Cases the manual leaves open are decided in the engine and listed in `docs/rulings.md`.
