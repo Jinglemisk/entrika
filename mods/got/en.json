@@ -1,687 +1,228 @@
 {
   "terms": {
-    "suleyman": {
-      "name": "King",
-      "the": "the King",
-      "a": "the King",
-      "stems": [
-        "King"
-      ]
-    },
-    "loyalist": {
-      "name": "Sworn",
-      "pl": "Sworn",
-      "a": "Sworn",
-      "the": "the Sworn"
-    },
-    "traitor": {
-      "name": "Oathbreaker",
-      "pl": "Oathbreakers",
-      "a": "an Oathbreaker",
-      "the": "the Oathbreaker"
-    },
-    "allegiance": {
-      "name": "Oath",
-      "pl": "Oaths",
-      "a": "an Oath",
-      "the": "the Oath"
-    },
-    "min1": {
-      "name": "Hand",
-      "pl": "Hands",
-      "a": "the Hand",
-      "the": "the Hand",
-      "stems": [
-        "Hand"
-      ]
-    },
-    "min2": {
-      "name": "Master of Laws",
-      "pl": "Masters of Laws",
-      "a": "the Master of Laws",
-      "the": "the Master of Laws"
-    },
-    "minister": {
-      "name": "Councillor",
-      "pl": "Councillors",
-      "a": "a Councillor",
-      "the": "the Councillor"
-    },
-    "character": {
-      "name": "Character",
-      "pl": "Characters",
-      "a": "a Character",
-      "the": "the Character"
-    },
-    "companion": {
-      "name": "Retainer",
-      "pl": "Retainers",
-      "a": "a Retainer",
-      "the": "the Retainer"
-    },
-    "crisis": {
-      "name": "Crisis",
-      "pl": "Crises",
-      "a": "a Crisis",
-      "the": "the Crisis",
-      "stems": [
-        "Crisis",
-        "Crises"
-      ]
-    },
-    "court": {
-      "name": "Scheming",
-      "the": "Scheming"
-    },
-    "objection": {
-      "name": "Challenge",
-      "pl": "Challenges",
-      "a": "a Challenge",
-      "the": "the Challenge"
-    },
-    "decree": {
-      "name": "Judgment",
-      "the": "the Judgment",
-      "a": "a Judgment"
-    },
-    "kader": {
-      "name": "Raven",
-      "pl": "Ravens",
-      "a": "a Raven",
-      "the": "the Raven"
-    },
-    "hizmet": {
-      "name": "Fealty",
-      "a": "a Fealty",
-      "pl": "Fealty"
-    },
-    "hiyanet": {
-      "name": "Treachery",
-      "a": "a Treachery",
-      "pl": "Treachery"
-    },
-    "intrigue": {
-      "name": "Scheme",
-      "pl": "Schemes",
-      "a": "a Scheme",
-      "the": "the Scheme"
-    },
-    "ambition": {
-      "name": "Ambition",
-      "pl": "Ambitions",
-      "a": "an Ambition",
-      "the": "the Ambition"
-    },
-    "harem": {
-      "name": "Whispers",
-      "the": "Whispers"
-    },
-    "divan": {
-      "name": "Council",
-      "the": "the Council"
-    },
-    "saray": {
-      "name": "Red Keep",
-      "the": "the Red Keep"
-    },
-    "influence": {
-      "name": "Favor",
-      "the": "Favor"
-    },
-    "base": {
-      "name": "Birthright",
-      "pl": "Birthrights",
-      "a": "a Birthright"
-    },
-    "favor": {
-      "name": "Boon",
-      "pl": "Boons",
-      "a": "a Boon"
-    },
-    "loyalty": {
-      "name": "King's Peace",
-      "the": "the King's Peace"
-    },
-    "treason": {
-      "name": "Conspiracy",
-      "the": "the Conspiracy"
-    },
-    "secret": {
-      "name": "Secret",
-      "stems": [
-        "Secret",
-        "secret"
-      ]
-    },
-    "once": {
-      "name": "Once a game",
-      "stems": [
-        "Once a game",
-        "once a game"
-      ]
-    },
-    "percrisis": {
-      "name": "Once a crisis",
-      "stems": [
-        "Once a crisis",
-        "once a crisis"
-      ]
-    },
-    "always": {
-      "name": "Always",
-      "stems": [
-        "Always"
-      ]
-    },
-    "investigator": {
-      "name": "Inquirer",
-      "the": "the Inquirer",
-      "a": "an Inquirer"
-    }
+    "suleyman": { "name": "King", "the": "the King", "a": "the King", "stems": ["King"] },
+    "loyalist": { "name": "Loyalist", "pl": "Loyalists", "a": "a Loyalist", "the": "the Loyalist" },
+    "traitor": { "name": "Turncloak", "pl": "Turncloaks", "a": "a Turncloak", "the": "the Turncloak" },
+    "allegiance": { "name": "Allegiance", "pl": "Allegiances", "a": "an Allegiance", "the": "the Allegiance" },
+    "min1": { "name": "Hand", "pl": "Hands", "a": "the Hand", "the": "the Hand", "stems": ["Hand"] },
+    "min2": { "name": "Master of Coin", "pl": "Masters of Coin", "a": "the Master of Coin", "the": "the Master of Coin" },
+    "minister": { "name": "Councillor", "pl": "Councillors", "a": "a Councillor", "the": "the Councillor" },
+    "character": { "name": "Character", "pl": "Characters", "a": "a Character", "the": "the Character" },
+    "companion": { "name": "Retainer", "pl": "Retainers", "a": "a Retainer", "the": "the Retainer" },
+    "crisis": { "name": "Crisis", "pl": "Crises", "a": "a Crisis", "the": "the Crisis", "stems": ["Crisis", "Crises"] },
+    "court": { "name": "The Game", "the": "the Game", "stems": ["The Game", "the Game"] },
+    "objection": { "name": "Dissent", "pl": "Dissents", "a": "a Dissent", "the": "the Dissent" },
+    "decree": { "name": "Judgment", "the": "the King's Judgment", "a": "a Judgment" },
+    "kader": { "name": "Cup", "pl": "Cups", "a": "a Cup", "the": "the Cup" },
+    "hizmet": { "name": "Arbor Red", "a": "an Arbor Red", "pl": "Arbor Red" },
+    "hiyanet": { "name": "Strangler", "a": "a Strangler", "pl": "Stranglers" },
+    "intrigue": { "name": "Scheme", "pl": "Schemes", "a": "a Scheme", "the": "the Scheme" },
+    "ambition": { "name": "Ambition", "pl": "Ambitions", "a": "an Ambition", "the": "the Ambition" },
+    "harem": { "name": "Holdfast", "the": "the Holdfast" },
+    "divan": { "name": "Small Council", "the": "the Small Council" },
+    "saray": { "name": "Red Keep", "the": "the Red Keep" },
+    "influence": { "name": "Gold", "the": "Gold" },
+    "base": { "name": "Base", "pl": "Base powers", "a": "a Base power" },
+    "favor": { "name": "Favor", "pl": "Favors", "a": "a Favor" },
+    "loyalty": { "name": "Long May He Reign", "the": "Long May He Reign" },
+    "treason": { "name": "The Purple Wedding", "the": "the Purple Wedding", "stems": ["The Purple Wedding", "the Purple Wedding", "Purple Wedding"] },
+    "secret": { "name": "Secret", "stems": ["Secret", "secret"] },
+    "once": { "name": "Once a game", "stems": ["Once a game", "once a game"] },
+    "percrisis": { "name": "Once a crisis", "stems": ["Once a crisis", "once a crisis"] },
+    "always": { "name": "Always", "stems": ["Always"] },
+    "investigator": { "name": "Interrogator", "the": "the Interrogator", "a": "an Interrogator" }
   },
   "characters": {
     "suleyman": {
-      "name": "Robert Baratheon",
-      "short": "Robert",
-      "base": {
-        "name": "Royal Command",
-        "text": "When Scheming ends, replace a Councillor with an eligible player, even under the King's Seal. They draw 1 Scheme."
-      },
-      "flavor": "Ours is the Fury."
-    },
-    "hurrem": {
-      "name": "Cersei Lannister",
-      "short": "Cersei",
-      "base": {
-        "name": "The Queen's Counsel",
-        "text": "At the Judgment, you choose which Councillor gets the Favor instead of the King."
-      },
-      "favor": {
-        "name": "Power Is Power",
-        "text": "In one wave, play two cards instead of one."
-      },
-      "flavor": "When you play the game of thrones, you win or you die."
-    },
-    "ibrahim": {
-      "name": "Eddard Stark",
-      "short": "Ned",
-      "base": {
-        "name": "In the King's Name",
-        "text": "This Crisis you name both Councillors instead of the King; you may name yourself."
-      },
-      "favor": {
-        "name": "Honor",
-        "text": "From now on, whenever Fealty is sent while you are a Councillor, gain 1 Favor."
-      },
-      "flavor": "Winter is coming."
-    },
-    "sahsultan": {
-      "name": "Renly Baratheon",
-      "short": "Renly",
-      "base": {
-        "name": "The King's Brother",
-        "text": "On your Challenge turn, Challenge for free and pick the replacement. It counts as your Challenge this Crisis."
-      },
-      "favor": {
-        "name": "Banished from Court",
-        "text": "Pick a player: next Crisis they can't become a Councillor by any means."
-      },
-      "flavor": "Lord of Storm's End, the King's youngest brother."
-    },
-    "mustafa": {
       "name": "Joffrey Baratheon",
       "short": "Joffrey",
-      "base": {
-        "name": "Crown Prince",
-        "text": "When Scheming ends, before Royal Command, take a Councillor's seat if eligible, even under the King's Seal."
-      },
-      "favor": {
-        "name": "Mine to Torment",
-        "text": "Whoever Challenges you gives you the Favor they paid."
-      },
+      "base": { "name": "I Am the King", "text": "When the Game ends, replace a Councillor with an eligible player, even under The King's Seal. They draw 1 Scheme." },
       "flavor": "Everyone is mine to torment."
     },
+    "hurrem": {
+      "name": "Margaery Tyrell",
+      "short": "Margaery",
+      "base": { "name": "The King's Ear", "text": "At the Judgment, you choose which Councillor gets the Gold instead of the King." },
+      "favor": { "name": "Rose and Thorn", "text": "In one wave, play two cards instead of one." },
+      "flavor": "I don't want to be a queen. I want to be the queen."
+    },
+    "ibrahim": {
+      "name": "Tywin Lannister",
+      "short": "Tywin",
+      "base": { "name": "Send Him to Bed", "text": "This Crisis you appoint both Councillors instead of the King; you may appoint yourself." },
+      "favor": { "name": "Gold of the Rock", "text": "From now on, whenever Arbor Red is served while you are a Councillor, gain 1 Gold." },
+      "flavor": "Any man who must say \"I am the king\" is no true king."
+    },
+    "sahsultan": {
+      "name": "Cersei Lannister",
+      "short": "Cersei",
+      "base": { "name": "The Queen's Displeasure", "text": "On your Dissent turn, dissent for free and pick the replacement. It counts as your Dissent this Crisis." },
+      "favor": { "name": "Banishment", "text": "Pick a player: next Crisis they can't become a Councillor by any means." },
+      "flavor": "Everything I do is for my children."
+    },
+    "mustafa": {
+      "name": "Jaime Lannister",
+      "short": "Jaime",
+      "base": { "name": "The Lord Commander's Seat", "text": "When the Game ends, before I Am the King, take a Councillor's seat if eligible, even under The King's Seal." },
+      "favor": { "name": "Kingslayer's Price", "text": "Whoever dissents against you gives you the Gold they paid." },
+      "flavor": "I've killed one king already."
+    },
     "hatice": {
-      "name": "Varys",
-      "short": "Varys",
-      "base": {
-        "name": "I Serve the Realm",
-        "text": "Before Scheming, pick a player: this Crisis no Scheme unseats them and they lose no Favor, Judgment included."
-      },
-      "favor": {
-        "name": "Little Birds",
-        "text": "Pick two players other than the King and you: learn in secret whether they are on the same side."
-      },
-      "flavor": "A very small man can cast a very large shadow."
+      "name": "Tyrion Lannister",
+      "short": "Tyrion",
+      "base": { "name": "The Slap", "text": "Before the Game, pick a player: this Crisis no Scheme unseats them and they lose no Gold, Judgment included." },
+      "favor": { "name": "I Drink and I Know Things", "text": "Pick two players other than the King and you: learn in secret whether they are on the same side." },
+      "flavor": "I wish I were the monster you think I am."
     },
     "rustem": {
       "name": "Petyr Baelish",
       "short": "Littlefinger",
-      "base": {
-        "name": "A Quiet Word",
-        "text": "Before the King names the Councillors, talk with him alone for a minute."
-      },
-      "favor": {
-        "name": "Chaos Is a Ladder",
-        "text": "When a wave flips, move a Scheme played on you to another player."
-      },
-      "flavor": "I did warn you not to trust me."
+      "base": { "name": "A Private Word", "text": "Before the King appoints, talk with him alone for up to a minute." },
+      "favor": { "name": "Chaos Is a Ladder", "text": "When a wave flips, move a Scheme played on you to another player." },
+      "flavor": "The crown owes me a fortune. Dead kings don't pay."
     },
     "barbaros": {
-      "name": "Arya Stark",
-      "short": "Arya",
-      "base": {
-        "name": "Quick as a Snake",
-        "text": "Take a random Scheme from another player's hand, then discard down to your hand limit."
-      },
-      "favor": {
-        "name": "Beneath the Keep",
-        "text": "After the Ravens, look in secret at the card or cards the Hand burned."
-      },
-      "flavor": "Stick them with the pointy end."
+      "name": "Varys",
+      "short": "Varys",
+      "base": { "name": "Stolen Letters", "text": "Take a random Scheme from another player's hand, then discard down to your hand limit." },
+      "favor": { "name": "Little Birds", "text": "After the Pouring, look in secret at the cup or cups the Hand discarded." },
+      "flavor": "I serve the realm, and the realm needs a king."
     },
     "gritti": {
-      "name": "Tyrion Lannister",
-      "short": "Tyrion",
-      "base": {
-        "name": "A Lannister's Debt",
-        "text": "Pick a player. The next time they gain Favor, you gain 1 too."
-      },
-      "favor": {
-        "name": "A Mind Needs Books",
-        "text": "Look in secret at the top 3 Ravens; you may put one on the bottom."
-      },
-      "flavor": "A Lannister always pays his debts."
+      "name": "Tycho Nestoris",
+      "short": "Tycho",
+      "base": { "name": "Interest", "text": "Pick another player. The next time they gain Gold, you gain 1 too." },
+      "favor": { "name": "The Iron Bank Will Have Its Due", "text": "Look in secret at the top 3 Cups; you may put one on the bottom." },
+      "flavor": "The Iron Bank backs the throne that pays."
     },
     "sarlken": {
-      "name": "Jon Snow",
-      "short": "Jon",
-      "base": {
-        "name": "Take the Black",
-        "text": "When Councillors are named, before Challenges, hand your seat to an eligible player. Gain 1 Favor; draw nothing."
-      },
-      "favor": {
-        "name": "Beyond the Wall",
-        "text": "Your Schemes count as cards of an open field."
-      },
-      "flavor": "I am the sword in the darkness."
+      "name": "Oberyn Martell",
+      "short": "Oberyn",
+      "base": { "name": "Not Here for a Seat", "text": "When Councillors are appointed, before Dissents, hand your seat to an eligible player. Gain 1 Gold; draw nothing." },
+      "favor": { "name": "Unbowed, Unbent, Unbroken", "text": "Your Schemes count as cards of an open field." },
+      "flavor": "Elia Martell. Her children. Say their names."
     },
     "tahmasp": {
       "name": "Daenerys Targaryen",
       "short": "Daenerys",
-      "base": {
-        "name": "Khaleesi",
-        "text": "When the Crisis flips, you pick its field: Council, Whispers or Red Keep."
-      },
-      "favor": {
-        "name": "Fire and Blood",
-        "text": "Everyone, you included, keeps 1 Scheme of their choice and discards the rest."
-      },
-      "flavor": "I am the blood of the dragon."
+      "base": { "name": "Mother of Dragons", "text": "When the Crisis flips, you pick its field: Small Council, Holdfast or Red Keep." },
+      "favor": { "name": "Dracarys", "text": "Everyone, you included, keeps 1 Scheme of their choice and discards the rest." },
+      "flavor": "I will take what is mine with fire and blood."
     }
   },
   "companions": {
-    "daye": {
-      "name": "Jaime Lannister",
-      "text": "Play a Scheme as Usurper; you can't pick yourself.",
-      "flavor": "The things I do for love."
-    },
-    "bali": {
-      "name": "Sandor Clegane",
-      "text": "Play a Scheme as King's Seal.",
-      "flavor": "Nobody gets past the Hound."
-    },
-    "ayas": {
-      "name": "Ilyn Payne",
-      "text": "Play a Scheme as Dismissed.",
-      "flavor": "The King's Justice never says a word."
-    },
-    "matrakci": {
-      "name": "Ros",
-      "text": "Play a Scheme as Shadowed.",
-      "flavor": "Every man talks on the Street of Silk."
-    },
-    "sumbul": {
-      "name": "Syrio Forel",
-      "text": "Play a Scheme as Not Today; you pick its field.",
-      "flavor": "What do we say to the god of death?"
-    },
-    "nigar": {
-      "name": "Grand Maester Pycelle",
-      "text": "Play a Scheme as Opened Letters.",
-      "flavor": "Every raven passes through his rookery."
-    },
-    "ebussuud": {
-      "name": "Jory Cassel",
-      "text": "Play a Scheme as Inquiry.",
-      "flavor": "Captain of the Stark guard, and the Hand's legs."
-    },
-    "gulsah": {
-      "name": "Shae",
-      "text": "Play a Scheme as Rumor.",
-      "flavor": "One word from her can hang a lord."
-    },
-    "seker": {
-      "name": "Lancel Lannister",
-      "text": "Play a Scheme as Food Taster.",
-      "flavor": "The King's cup passes through his hand first."
-    },
-    "gulfem": {
-      "name": "Sansa Stark",
-      "text": "Play a Scheme as Tourney Wager.",
-      "flavor": "She always backs her champion."
-    },
-    "iskender": {
-      "name": "Janos Slynt",
-      "text": "Play a Scheme as Crown's Ledgers.",
-      "flavor": "Bought with the crown's own gold."
-    },
-    "firuze": {
-      "name": "Loras Tyrell",
-      "text": "Play a Scheme as King's Eye.",
-      "flavor": "The Knight of Flowers draws every eye."
-    },
-    "gulaga": {
-      "name": "Septa Mordane",
-      "text": "Play a Scheme as Hold Your Tongue.",
-      "flavor": "A lady listens more than she speaks."
-    },
-    "lokman": {
-      "name": "Barristan Selmy",
-      "text": "Play a Scheme as Standing Guard.",
-      "flavor": "Forty years at the King's door."
-    }
+    "daye": { "name": "Ilyn Payne", "text": "Play a Scheme as The Queen Regent's Command; you can't pick yourself.", "flavor": "The King's Justice never says a word." },
+    "bali": { "name": "Sandor Clegane", "text": "Play a Scheme as The King's Seal.", "flavor": "Joffrey's sworn shield. Nobody gets past the Hound." },
+    "ayas": { "name": "Janos Slynt", "text": "Play a Scheme as Stripped of Office.", "flavor": "He sold one Hand. He can sell another." },
+    "matrakci": { "name": "Ros", "text": "Play a Scheme as Paid Informer.", "flavor": "Littlefinger's girl, and Varys's ears." },
+    "sumbul": { "name": "Bronn", "text": "Play a Scheme as Sworn Sword; you pick its field.", "flavor": "A sellsword sells to whoever pays more." },
+    "nigar": { "name": "Grand Maester Pycelle", "text": "Play a Scheme as Dark Wings.", "flavor": "Every raven passes through his rookery." },
+    "ebussuud": { "name": "Olenna Tyrell", "text": "Play a Scheme as Confession.", "flavor": "The Queen of Thorns knows what was in the cup." },
+    "gulsah": { "name": "Lancel Lannister", "text": "Play a Scheme as Slander.", "flavor": "He served one king the strongwine." },
+    "seker": { "name": "Qyburn", "text": "Play a Scheme as Maester's Remedy.", "flavor": "A maester without a chain, and without scruples." },
+    "gulfem": { "name": "Dontos Hollard", "text": "Play a Scheme as A Fool's Wager.", "flavor": "A drunk fool with a necklace to give." },
+    "iskender": { "name": "Kevan Lannister", "text": "Play a Scheme as The Crown's Ledgers.", "flavor": "Tywin's steady brother keeps the books." },
+    "firuze": { "name": "Shae", "text": "Play a Scheme as The King's Eye.", "flavor": "Sansa's maid, and Tyrion's secret." },
+    "gulaga": { "name": "Sansa Stark", "text": "Play a Scheme as Hold Your Tongue.", "flavor": "A hostage learns to say nothing at all." },
+    "lokman": { "name": "Podrick Payne", "text": "Play a Scheme as Kingsguard Watch.", "flavor": "The squire at the door sees who comes in." }
   },
   "intrigue": {
-    "akil-hocasi": {
-      "name": "Not Today",
-      "text": "This Crisis, cancels the other Schemes of its field played on this player.",
-      "flavor": "What do we say to the god of death? Not today."
-    },
-    "muhur": {
-      "name": "King's Seal",
-      "text": "Place on a Councillor. This Crisis no Scheme can replace them; Royal Command still can.",
-      "flavor": "Sealed with the crowned stag."
-    },
-    "valide": {
-      "name": "Usurper",
-      "text": "Place on a Councillor. Replace them with an eligible player, you included. The newcomer takes the same seat.",
-      "flavor": "What the dragon's heirs call the King."
-    },
-    "azil": {
-      "name": "Dismissed",
-      "text": "Place on a Councillor. The King replaces them with an eligible player; the newcomer takes the same seat.",
-      "flavor": "You are relieved of your duties."
-    },
-    "casus": {
-      "name": "Shadowed",
-      "text": "When Scheming ends, see in secret which Schemes this player played this Crisis, and on whom.",
-      "flavor": "Someone followed them all the way down."
-    },
-    "muhurlu-evrak": {
-      "name": "Opened Letters",
-      "text": "Look in secret at the top 3 Ravens, then put them back in the same order.",
-      "flavor": "Read, resealed, delivered."
-    },
-    "saray-tabibi": {
-      "name": "Food Taster",
-      "text": "This player loses no Favor this Crisis, Judgment included.",
-      "flavor": "Someone always drinks first."
-    },
-    "iftira": {
-      "name": "Rumor",
-      "text": "This player loses 1 Favor.",
-      "flavor": "A name, a whisper, a fall."
-    },
-    "kefalet": {
-      "name": "Tourney Wager",
-      "text": "Place on a Councillor. If still one at the Ravens: gain 1 Favor if Fealty is sent, lose 1 if Treachery is.",
-      "flavor": "Back a champion, and pay if he falls."
-    },
-    "teftis": {
-      "name": "Inquiry",
-      "text": "Place on a Councillor. After the Ravens, look in secret at the card or cards they burned.",
-      "flavor": "The Hand reads what others throw away."
-    },
-    "defterdar": {
-      "name": "Crown's Ledgers",
-      "text": "Place on the Hand. If still the Hand at the Ravens, they draw 4 instead of 3 and burn 2.",
-      "flavor": "Six million in debt, every line accounted for."
-    },
-    "nobet": {
-      "name": "Standing Guard",
-      "text": "When Scheming ends, pick one Scheme others played on this player this Crisis; learn in secret who played it.",
-      "flavor": "The guard knows who knocked."
-    },
-    "nazar": {
-      "name": "King's Eye",
-      "text": "Place on a Councillor. If the Judgment falls on them this Crisis, it gives or takes 2 instead of 1.",
-      "flavor": "Robert is watching. Pray he likes what he sees."
-    },
-    "sukut": {
-      "name": "Hold Your Tongue",
-      "text": "This player can't play a Scheme in the next wave.",
-      "flavor": "A lady holds her tongue."
-    }
+    "akil-hocasi": { "name": "Sworn Sword", "text": "This Crisis, cancels the other Schemes of its field played on this player.", "flavor": "A sword that's paid for stays drawn." },
+    "muhur": { "name": "The King's Seal", "text": "Place on a Councillor. This Crisis no Scheme can replace them; I Am the King still can.", "flavor": "Lion and stag, pressed in wax." },
+    "valide": { "name": "The Queen Regent's Command", "text": "Place on a Councillor. Replace them with an eligible player, you included. The newcomer takes the same seat.", "flavor": "The king is a boy. His mother is not." },
+    "azil": { "name": "Stripped of Office", "text": "Place on a Councillor. The King replaces them with an eligible player; the newcomer takes the same seat.", "flavor": "You are relieved of your duties." },
+    "casus": { "name": "Paid Informer", "text": "When the Game ends, see in secret which Schemes this player played this Crisis, and on whom.", "flavor": "Everyone talks for a little silver." },
+    "muhurlu-evrak": { "name": "Dark Wings", "text": "Look in secret at the top 3 Cups, then put them back in the same order.", "flavor": "Dark wings, dark words." },
+    "saray-tabibi": { "name": "Maester's Remedy", "text": "This player loses no Gold this Crisis, Judgment included.", "flavor": "An antidote, if you can pay for it." },
+    "iftira": { "name": "Slander", "text": "This player loses 1 Gold.", "flavor": "A name, a whisper, a fall." },
+    "kefalet": { "name": "A Fool's Wager", "text": "Place on a Councillor. If still one at the Pouring: gain 1 Gold if Arbor Red is served, lose 1 if a Strangler is.", "flavor": "Only a fool bets on a councillor." },
+    "teftis": { "name": "Confession", "text": "Place on a Councillor. After the Pouring, look in secret at the cup or cups they discarded.", "flavor": "Every cup that left the table is accounted for." },
+    "defterdar": { "name": "The Crown's Ledgers", "text": "Place on the Hand. If still the Hand at the Pouring, they draw 4 instead of 3 and discard 2.", "flavor": "The crown owes millions. Someone keeps count." },
+    "nobet": { "name": "Kingsguard Watch", "text": "When the Game ends, pick one Scheme others played on this player this Crisis; learn in secret who played it.", "flavor": "The white cloaks see who comes and goes." },
+    "nazar": { "name": "The King's Eye", "text": "Place on a Councillor. If the Judgment falls on them this Crisis, it gives or takes 2 instead of 1.", "flavor": "Joffrey is watching. Pray he's amused." },
+    "sukut": { "name": "Hold Your Tongue", "text": "This player can't play a Scheme in the next wave.", "flavor": "At this court, silence keeps your head." }
   },
   "ambitions": {
-    "divanda-nufuz": {
-      "name": "Strip the Pin",
-      "text": "Unseat a Councillor with a Scheme.",
-      "flavor": "Even a Hand can lose his pin."
-    },
-    "suphe": {
-      "name": "Under Suspicion",
-      "text": "Be a Councillor when Treachery is sent.",
-      "flavor": "Where there's smoke, someone lit a fire."
-    },
-    "takdir": {
-      "name": "The King's Gratitude",
-      "text": "Be a Councillor when Fealty is sent.",
-      "flavor": "Robert never forgets a friend."
-    },
-    "gozden": {
-      "name": "Fall From Grace",
-      "text": "Lose Favor.",
-      "flavor": "The higher you climb, the further you fall."
-    },
-    "kulisci": {
-      "name": "Many Webs",
-      "text": "Place Schemes on three different players.",
-      "flavor": "A thread to every door."
-    },
-    "yukselen": {
-      "name": "The King's Favorite",
-      "text": "Be a Councillor in two Crises.",
-      "flavor": "Rising is easy. Staying up is not."
-    },
-    "itirazci": {
-      "name": "Refuse to Kneel",
-      "text": "Make a Challenge.",
-      "flavor": "Silence is consent."
-    },
-    "hedef": {
-      "name": "Knives in the Dark",
-      "text": "Have other players place 2 or more Schemes on you in one Crisis.",
-      "flavor": "Every knife in the room points your way."
-    },
-    "ortak": {
-      "name": "Back a Champion",
-      "text": "Place King's Seal or Tourney Wager on a Councillor.",
-      "flavor": "Rise together, fall together."
-    },
-    "hazine": {
-      "name": "Play the Game",
-      "text": "Play 3 Schemes in one Crisis.",
-      "flavor": "You win or you die."
-    },
-    "koltuk": {
-      "name": "Seize a Seat",
-      "text": "Become a Councillor through a Scheme.",
-      "flavor": "No chair stays empty for long."
-    },
-    "kulak": {
-      "name": "Listen at Doors",
-      "text": "Use Shadowed, Opened Letters, Inquiry or Standing Guard.",
-      "flavor": "The walls have ears, and so do the cellars."
-    }
+    "divanda-nufuz": { "name": "Strip the Chain", "text": "Unseat a Councillor with a Scheme.", "flavor": "Every chain of office comes off." },
+    "suphe": { "name": "Under Suspicion", "text": "Be a Councillor when a Strangler is served.", "flavor": "I swear the cup was clean when I passed it!" },
+    "takdir": { "name": "A Toast to the King", "text": "Be a Councillor when Arbor Red is served.", "flavor": "Long may he reign." },
+    "gozden": { "name": "A Lighter Purse", "text": "Lose Gold.", "flavor": "A Lannister always pays. So do the rest of us." },
+    "kulisci": { "name": "Many Threads", "text": "Place Schemes on three different players.", "flavor": "A thread to every door." },
+    "yukselen": { "name": "A Seat at the Table", "text": "Be a Councillor in two Crises.", "flavor": "The chair is worth more than the man." },
+    "itirazci": { "name": "Dissenter", "text": "Make a Dissent.", "flavor": "Silence is consent." },
+    "hedef": { "name": "Marked", "text": "Have other players place 2 or more Schemes on you in one Crisis.", "flavor": "Every knife in the room points your way." },
+    "ortak": { "name": "Stand Surety", "text": "Place The King's Seal or A Fool's Wager on a Councillor.", "flavor": "Rise together, fall together." },
+    "hazine": { "name": "Play the Game", "text": "Play 3 Schemes in one Crisis.", "flavor": "You win or you die." },
+    "koltuk": { "name": "Climb the Ladder", "text": "Become a Councillor through a Scheme.", "flavor": "Chaos is a ladder." },
+    "kulak": { "name": "Eavesdropper", "text": "Use Paid Informer, Dark Wings, Confession or Kingsguard Watch.", "flavor": "The walls of the Red Keep have ears." }
   },
   "crises": {
-    "yeniceri": {
-      "name": "Swords in the Street",
-      "text": "Players with 0 Favor draw 1 Scheme each."
-    },
-    "hazine": {
-      "name": "The Crown's Debts",
-      "text": "Nobody can draw a Scheme this Crisis."
-    },
-    "venedik": {
-      "name": "The Iron Bank's Envoy",
-      "text": "The players on either side of the King draw 1 Scheme each."
-    },
-    "harem": {
-      "name": "Scandal on the Street of Silk",
-      "text": "The player with the least Favor draws 1 Scheme; on a tie the King picks."
-    },
-    "macar": {
-      "name": "Raids in the Riverlands",
-      "text": "Nobody draws a Scheme this Crisis."
-    },
-    "muhur": {
-      "name": "The Death of Jon Arryn",
-      "text": "Last Crisis's Councillors draw 1 Scheme each."
-    },
-    "divan": {
-      "name": "A Quarrel in Council",
-      "text": "Last Crisis's Councillors draw 1 Scheme each."
-    },
-    "sehzade": {
-      "name": "The Heir in Question",
-      "text": "The players on either side of the King draw 1 Scheme each."
-    },
-    "istanbul": {
-      "name": "The Hand's Tourney",
-      "text": "Everyone but the King draws 1 Scheme."
-    },
-    "irakeyn": {
-      "name": "The Targaryen Threat",
-      "text": "The player with the least Favor draws 1 Scheme; on a tie the King picks."
-    },
-    "isabella": {
-      "name": "Trouble on the Kingsroad",
-      "text": "Last Crisis's Councillors draw 1 Scheme each.",
-      "flavor": "A butcher's boy, a direwolf and a prince's pride. Somebody pays for it."
-    }
+    "yeniceri": { "name": "Riot in Flea Bottom", "text": "Players with 0 Gold draw 1 Scheme each.", "flavor": "The bread runs out and the mob turns on the royal party." },
+    "hazine": { "name": "Debt to the Iron Bank", "text": "Nobody can draw a Scheme this Crisis.", "flavor": "The crown owes Braavos more than it can pay." },
+    "venedik": { "name": "The Tyrells Arrive", "text": "The players on either side of the King draw 1 Scheme each.", "flavor": "Highgarden brings grain, an army and a bride." },
+    "harem": { "name": "Bastard Letters", "text": "The player with the least Gold draws 1 Scheme; on a tie the King picks.", "flavor": "Stannis's letters say the king is Jaime's son." },
+    "macar": { "name": "Battle of the Blackwater", "text": "Nobody draws a Scheme this Crisis.", "flavor": "Wildfire on the bay. Nobody has time to scheme." },
+    "muhur": { "name": "A Stone Goes Missing", "text": "Last Crisis's Councillors draw 1 Scheme each.", "flavor": "One stone is missing from Sansa's necklace." },
+    "divan": { "name": "Small Council Quarrel", "text": "Last Crisis's Councillors draw 1 Scheme each.", "flavor": "Tyrion drags his chair to the head of the table." },
+    "sehzade": { "name": "Who Marries Tommen?", "text": "The players on either side of the King draw 1 Scheme each.", "flavor": "If Joffrey falls, the next boy needs a bride." },
+    "istanbul": { "name": "Talk in the Taverns", "text": "Everyone but the King draws 1 Scheme.", "flavor": "Every alehouse in King's Landing has a theory." },
+    "irakeyn": { "name": "News of the Red Wedding", "text": "The player with the least Gold draws 1 Scheme; on a tie the King picks.", "flavor": "The war is won at the Twins, and nobody trusts the winners." },
+    "isabella": { "name": "The Stark Girl Is Gone", "text": "Last Crisis's Councillors draw 1 Scheme each.", "flavor": "Arya slipped out of the Red Keep. Whoever had the watch answers for it." }
   },
   "kader": {
-    "h": {
-      "name": "Fealty",
-      "text": [
-        "Goes on the King's Peace.",
-        "Judgment: the King gives a Councillor 1 Favor."
-      ],
-      "flavor": "The realm holds."
-    },
-    "x": {
-      "name": "Treachery",
-      "text": [
-        "Goes on the Conspiracy.",
-        "Judgment: the King takes 1 Favor from a Councillor."
-      ],
-      "flavor": "«Your Grace, I swear I did all I could.»"
-    }
+    "h": { "name": "Arbor Red", "text": ["Goes on Long May He Reign.", "Judgment: the King gives a Councillor 1 Gold."], "flavor": "To the king!" },
+    "x": { "name": "Strangler", "text": ["Goes on the Purple Wedding.", "Judgment: the King takes 1 Gold from a Councillor."], "flavor": "«I swear the cup was clean when I passed it!»" }
   },
   "taraf": {
-    "loyalist": {
-      "name": "Sworn",
-      "text": [
-        "You win with 4 Fealty on the King's Peace.",
-        "This card is secret."
-      ],
-      "flavor": "Long may he reign."
-    },
-    "traitor": {
-      "name": "Oathbreaker",
-      "text": [
-        "You win with 5 Treachery on the Conspiracy.",
-        "Oathbreakers know each other."
-      ],
-      "flavor": "Words are wind."
-    }
+    "loyalist": { "name": "Loyalist", "text": ["You win with 4 Arbor Red on Long May He Reign.", "This card is secret."], "flavor": "Long may he reign." },
+    "traitor": { "name": "Turncloak", "text": ["You win with 5 Stranglers on the Purple Wedding.", "Turncloaks know each other."], "flavor": "Tommen will be easier." }
   },
   "treason": {
-    "1": {
-      "name": "Quiet Days",
-      "text": "Nothing happens."
-    },
-    "sorusturma": {
-      "name": "The Seed Is Strong",
-      "text": "The King names an Inquirer, who looks in secret at one player's Oath, then says whatever they like."
-    },
-    "hazineDefteri": {
-      "name": "The Rookery",
-      "text": "Before the next Crisis the King names a player, who looks in secret at the top 3 Ravens."
-    },
-    "fermanRefresh": {
-      "name": "A New Command",
-      "text": "The King may use Royal Command again. He never holds more than one."
-    },
-    "death": {
-      "name": "The Boar",
-      "text": "Oathbreakers win."
-    }
+    "1": { "name": "Nothing Yet", "text": "Nothing happens." },
+    "sorusturma": { "name": "The Black Cells", "text": "The King names an Interrogator, who looks in secret at one player's Allegiance, then says whatever they like." },
+    "hazineDefteri": { "name": "Iron Bank Ledger", "text": "Before the next Crisis the King names a player, who looks in secret at the top 3 Cups." },
+    "fermanRefresh": { "name": "The King's Justice", "text": "The King may use I Am the King again. He never holds it twice." },
+    "death": { "name": "The Purple Wedding", "text": "Joffrey dies. Turncloaks win." }
   },
   "strings": {
-    "tagline": "There's a traitor in the Red Keep.",
-    "endLoyalty": "The fourth {term.hizmet} is sent. {term.loyalty:the} holds.",
-    "endTreason": "The fifth {term.hiyanet} is sent. {term.suleyman:the} is dead.",
+    "tagline": "Someone at this table poured the wine.",
+    "endLoyalty": "The fourth {term.hizmet} is served. Long may he reign.",
+    "endTreason": "The fifth {term.hiyanet} is served. {term.suleyman:the} is dead.",
     "pref.music.why": "A quiet loop in D minor.",
     "sicil": "Chronicle",
     "exiled": "Banished",
     "err.exiled": "A banished player can't be {term.minister:a} this {term.crisis}.",
     "log.surgun": "{who} is banished this {term.crisis}: they can't be {term.minister:a}.",
-    "step.appoint": "Naming",
-    "step.objections": "Naming, {term.objection:pl}",
-    "step.kader": "Ravens",
+    "step.kader": "The Pouring",
     "step.result": "Aftermath",
     "resultN": "Aftermath, {term.crisis} {n}",
-    "ask.appoint": "Name two {term.minister:pl}. You can't name yourself.",
-    "ask.appointSadrazam": "{power.sadrazam}: you name both {term.minister:pl}; you may name yourself.",
-    "window.sadrazam": "This {term.crisis}, you name both {term.minister:pl} instead of {term.suleyman:the}.",
-    "btn.seat": "Name",
-    "log.appoint": "{by} named {first} {term.min1} and {second} {term.min2}.",
-    "ask.object": "Your turn to Challenge.",
-    "btn.object": "Challenge",
-    "btn.objectFree": "Challenge for free",
-    "err.ownSeat": "You can't Challenge your own seat.",
+    "ask.object": "Your turn to dissent.",
+    "btn.object": "Dissent",
+    "btn.objectFree": "Dissent for free",
+    "err.ownSeat": "You can't dissent against your own seat.",
     "err.objected": "You have already made {term.objection:a} this {term.crisis}.",
-    "ask.objectNotSelf": "You can't Challenge your own seat, but you can Challenge the other.",
-    "log.objection": "{who} paid {n} {term.influence} to Challenge {against}.",
-    "wait.objectionNext": "{now} may Challenge now, then {next}.",
-    "wait.objectionLast": "{now} may Challenge now; theirs is the last word.",
-    "min1Does": "reads three Ravens",
-    "min2Does": "sends one of two",
-    "wait.kader": "Ravens: nobody talks, nobody shows a card.",
-    "log.kaderStart": "Ravens: {first} reads, {second} sends.",
-    "ask.kaderFirst": "Burn {n}; {second} gets the rest.",
-    "ask.kaderSecond": "{first} sent you two Ravens. Send one.",
-    "kader.toss": "Burn",
-    "kader.play": "Send",
-    "btn.playKader": "Send",
-    "ack.result": "The Raven is sent.",
-    "kader.defterdar": "{card.defterdar}: you read 4 Ravens instead of 3.",
-    "window.gozcu": "You may look in secret at the card the {term.min1} burned.",
-    "peek.discards.teftis": "{card.teftis}: the card {name} burned.",
-    "peek.discards.gozcu": "{power.gozcu}: the card the {term.min1}, {name}, burned.",
-    "peek.noDiscards": "Burned nothing.",
-    "ask.venedik": "The top 3 Ravens.",
-    "ask.hazineName": "{treason.hazineDefteri}: who reads the top 3 Ravens?",
-    "peek.kaderTop.muhurlu-evrak": "{card.muhurlu-evrak}: the top 3 Ravens, in order.",
-    "peek.kaderTop.hazineDefteri": "{treason.hazineDefteri}: the top 3 Ravens, in order.",
-    "peek.kaderTop.venedikPostasi": "{power.venedikPostasi}: the top 3 Ravens.",
-    "log.result": "{card} was sent. {term.hizmet} {loyalty}, {term.hiyanet} {treason}.",
-    "ask.decreeGiveWhy": "{term.hizmet} was sent.",
-    "ask.decreeTakeWhy": "{term.hiyanet} was sent. Whoever loses draws {term.intrigue:a}.",
+    "ask.objectNotSelf": "You can't dissent against your own seat, but you can against the other.",
+    "log.objection": "{who} paid {n} {term.influence} to dissent against {against}.",
+    "wait.objectionNext": "{now} may dissent now, then {next}.",
+    "wait.objectionLast": "{now} may dissent now; theirs is the last word.",
+    "min1Does": "pours three cups",
+    "min2Does": "serves one of two",
+    "wait.kader": "The Pouring: nobody talks, nobody shows a cup.",
+    "log.kaderStart": "The Pouring: {first} pours, {second} serves.",
+    "ask.kaderFirst": "Discard {n}; {second} gets the rest.",
+    "ask.kaderSecond": "{first} passed you two cups. Serve one.",
+    "kader.play": "Serve",
+    "btn.playKader": "Serve",
+    "ack.result": "The cup is served.",
+    "kader.defterdar": "{card.defterdar}: you poured 4 cups instead of 3.",
+    "ask.venedik": "The top 3 Cups.",
+    "ask.hazineName": "{treason.hazineDefteri}: who looks at the top 3 Cups?",
+    "peek.kaderTop.muhurlu-evrak": "{card.muhurlu-evrak}: the top 3 Cups, in order.",
+    "peek.kaderTop.hazineDefteri": "{treason.hazineDefteri}: the top 3 Cups, in order.",
+    "peek.kaderTop.venedikPostasi": "{power.venedikPostasi}: the top 3 Cups.",
+    "log.result": "{card} was served. {term.hizmet} {loyalty}, {term.hiyanet} {treason}.",
+    "ask.decreeGiveWhy": "{term.hizmet} was served.",
+    "ask.decreeTakeWhy": "{term.hiyanet} was served. Whoever loses draws {term.intrigue:a}.",
     "btn.decree": "Pass Judgment",
     "wait.decree": "{name} is passing Judgment.",
     "ask.decreeFisilti": "{power.fisilti}: you pass Judgment.",
