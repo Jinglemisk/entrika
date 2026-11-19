@@ -302,6 +302,7 @@ function SettingsSheet({ close }: { close: () => void }) {
         </div>
         <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
         <div className="bt left">
+          <a className="b" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
           <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
           {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
         </div>

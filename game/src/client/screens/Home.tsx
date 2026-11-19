@@ -21,6 +21,7 @@ export function Home() {
         <div className="title">
           <b>Entrika</b>
           <p className="vo">{t('tagline')}</p>
+          <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
         </div>
         <div className="panel">
           <label className="field"><span>{t('home.name')}</span>

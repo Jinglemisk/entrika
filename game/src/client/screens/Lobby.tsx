@@ -24,6 +24,7 @@ export function Lobby({ room }: { room: RoomView }) {
         <div className="title">
           <b>Entrika</b>
           <p className="vo">{t('tagline')}</p>
+          <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
           {room.host && (
             <div className="opts host">
               <button type="button" className={`chip ${room.learning ? 'on' : ''}`} onClick={() => op({ op: 'learning', value: !room.learning })}>{t('lobby.learning')}</button>

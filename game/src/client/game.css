@@ -121,6 +121,7 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .homescreen .title b, .lobby .title b { font: 800 62px/1 var(--f-card); letter-spacing: .03em; }
 .homescreen .title .vo, .lobby .title .vo { font-size: 19px; }
 .lobby .title .vo.small { font-size: 14px; margin-top: 6px; color: var(--fg2); }
+.title .rules-link { justify-self: start; font: 700 13px/1 var(--f-ui); color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
 .lobby .opts.host { margin-top: 10px; }
 .homescreen .panel { position: absolute; right: 6px; top: 20px; width: 340px; display: grid; gap: 10px; }
 .field { display: grid; gap: 5px; font: 700 12px/1 var(--f-ui); color: var(--fg2); }
