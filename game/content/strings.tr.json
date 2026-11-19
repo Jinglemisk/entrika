@@ -139,8 +139,6 @@
   "btn.object": "İtiraz et",
   "btn.objectFree": "Bedelsiz itiraz",
   "btn.next.court": "Tertip'i aç",
-  "btn.ferman": "Ferman'ı kullan",
-  "btn.noFerman": "Kullanma",
   "btn.discard": "At ({n}/{total})",
   "btn.keep": "Bunu tut",
   "btn.takeKul": "{name} yanıma gelsin",

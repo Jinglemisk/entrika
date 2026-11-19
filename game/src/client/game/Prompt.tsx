@@ -290,8 +290,9 @@ function Window({ a }: { a: Extract<Ask, { type: 'window' }> }) {
   return (
     <>
       <Stp />
-      <p className="vo"><b className="ref">{powerName(a.power)}</b>. <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />
-        {picking && <small>{t(pick ? 'tapSeat' : a.power === 'cephe' ? 'pickField' : 'pickCard')}</small>}</p>
+      <p className="vo"><b className="ref">{powerName(a.power)}</b>. {picking
+        ? t(pick ? 'tapSeat' : a.power === 'cephe' ? 'pickField' : 'pickCard')   // the choices need the room on a phone
+        : <Refs text={t(`window.${a.power}`, ctxVars(g, a))} />}</p>
       {picking && a.power === 'cephe' && (
         <div className="opts">{FIELDS.map(f => <button type="button" key={f} className="chip" onClick={() => answer(f)}><Em k={f} s={14} />{t(f)}</button>)}</div>
       )}
@@ -411,8 +412,8 @@ function Ferman({ a }: { a: Ask }) {
       <p className="vo">{t(!on ? 'ask.ferman' : !seat ? 'ask.fermanWho' : 'ask.fermanNew')}{on && <small>{t('tapSeat')}</small>}</p>
       {on && <SeatSlots first={slotOf('first')} second={slotOf('second')} onTap={s => { if (!seat) setSeat(s); else setPick(null); }} />}
       <div className="bt">
-        {!on ? <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.noFerman')}</Btn> : <Btn onClick={back}>{t('btn.back')}</Btn>}
-        {!on && <Btn pri onClick={() => setOn(true)}>{t('btn.ferman')}</Btn>}
+        {!on ? <Btn onClick={() => act({ t: 'answer', ask: a.id, value: null })}>{t('btn.skip')}</Btn> : <Btn onClick={back}>{t('btn.back')}</Btn>}
+        {!on && <Btn pri via={viaChar('suleyman', characterById.suleyman.base.name)} onClick={() => setOn(true)}>{t('btn.use')}</Btn>}
         {on && <Btn pri off={pick === null} onClick={() => { setPicker(null); act({ t: 'answer', ask: a.id, value: { seat, target: pick } }); }}>{t('btn.seat')}</Btn>}
       </div>
     </>

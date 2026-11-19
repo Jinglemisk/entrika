@@ -96,6 +96,10 @@ function ResultMoment() {
   const card = k.played!;
   const power = card === 'x' ? RULES.treasonPowers[String(g.tracks.treason)] : null;
   const def = power ? MISC.treason[power as 'sorusturma'] : null;
+  // Nüfuz that moved with the result (Kefalet, Divan Nüfuzu, Faiz): the Hüküm screen may cover the seats next
+  const from = g.log.findLastIndex(e => e.k === 'result');
+  const moved = g.log.slice(from + 1).filter(e => (e.k === 'gain' || e.k === 'lose') && e.c === g.crisisNo)
+    .map(e => ({ k: e.k, who: e.p!.who as PID, n: e.p!.n as number, why: e.p!.why as string }));
   return (
     <div className="mo-split">
       <motion.div className="mo-card" {...flip()}><Card spec={spec({ t: 'kader', k: card })} width={118} /></motion.div>
@@ -103,6 +107,11 @@ function ResultMoment() {
         <p className="h-step">{t('resultN', { n: g.crisisNo })}</p>
         <p className={`mo-title ${card === 'x' ? 'al' : 'mal'}`}><Em k={card === 'x' ? 'hiyanet' : 'hizmet'} s={30} />{MISC.kader[card].name}</p>
         <p className="mo-line"><Who id={k.first} /><Gl k="next" /><Who id={k.second} /><span>{t('moment.kaderWho')}</span></p>
+        {moved.length > 0 && (
+          <p className="mo-line"><Em k="influence" s={22} />
+            {moved.map((e, i) => <span key={i} className={`who ${e.k === 'gain' ? 'plus' : 'minus'}`}><Head character={g.players[e.who].character} />{g.players[e.who].name}<b>{e.k === 'gain' ? '+' : '−'}{e.n}</b><small>{t(`why.${e.why}`)}</small></span>)}
+          </p>
+        )}
         <div className="mo-tracks bigtrk">
           <span className="h"><Em k="hizmet" s={18} /><Slots big n={RULES.tracks.loyalty} on={g.tracks.loyalty} fresh={card === 'h' ? g.tracks.loyalty - 1 : undefined} /></span>
           <span className="x"><Em k="hiyanet" s={18} /><Slots big n={RULES.tracks.treason} on={g.tracks.treason} fresh={card === 'x' ? g.tracks.treason - 1 : undefined} end /></span>

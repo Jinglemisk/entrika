@@ -92,5 +92,8 @@ export const shownWaiting = (g: Game): PID[] => [...new Set(g.asks.filter(shownW
 /** The public moment waiting for Devam presses, if any. */
 export const pendingMoment = (g: Game): Moment | null => {
   const a = g.asks.find(x => x.type === 'ack');
-  return a && a.type === 'ack' ? a.what : null;
+  if (a && a.type === 'ack') return a.what;
+  // a flipped wave waiting on a Valide'nin Buyruğu or Azil pick: the table sees the flip first, then waits for the seat
+  if (g.step === 'court' && g.sub === 'valide' && g.court?.reveals.length) return 'wave';
+  return null;
 };

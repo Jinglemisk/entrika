@@ -13,7 +13,7 @@ export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'seat'; 
 export interface Banner { key: number; who: PID | null; text: string }
 
 const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', pay: 'lose', draw: 'draw' };
-const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
+const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh', 'decree']);
 /** The Ferman's banner is its seat change, said with Süleyman's face. */
 const isBanner = (e: LogEntry) => BANNER_KINDS.has(e.k) || (e.k === 'replaced' && e.p?.reason === 'ferman');
 const SEAT_MS = 2200;

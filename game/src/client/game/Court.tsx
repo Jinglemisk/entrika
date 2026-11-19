@@ -110,10 +110,12 @@ export function lastingTags(g: Game, id: PID): Tag[] {
     if (!c.done && (c.silenceNext.includes(id) || c.silenced.includes(id))) add('sukut', ['intrigue'], card('sukut'), 'bar');
     if (!c.done && c.casus.some(x => x.target === id)) add('look', ['secret'], card('casus'));
     if (!c.done && c.nobet.some(x => x.target === id)) add('look', ['secret'], card('nobet'));
-    if (!kaderDone && c.teftis.some(x => x.target === id)) add('look', ['secret'], card('teftis'));
-    if (!kaderDone && c.defterdar.includes(id)) add('kader', ['kader'], card('defterdar'));
-    if (!kaderDone && c.kefalet.some(x => x.target === id)) add('kader', ['kader'], card('kefalet'));
-    if (c.nazar.includes(id)) add('nazar', ['decree'], card('nazar'));   // the crisis, and the court with it, ends at the Hüküm
+    // cards that need their player still in a Vekil seat go quiet when the seat is lost
+    const seated = g.ministers.first === id || g.ministers.second === id;
+    if (!kaderDone && seated && c.teftis.some(x => x.target === id)) add('look', ['secret'], card('teftis'));
+    if (!kaderDone && g.ministers.first === id && c.defterdar.includes(id)) add('kader', ['kader'], card('defterdar'));
+    if (!kaderDone && seated && c.kefalet.some(x => x.target === id)) add('kader', ['kader'], card('kefalet'));
+    if (seated && c.nazar.includes(id)) add('nazar', ['decree'], card('nazar'));   // the crisis, and the court with it, ends at the Hüküm
   }
   if (g.surgun.next === id) add('surgun', ['minister'], characterById.sahsultan.favor!.name, 'bar');
   if (g.faiz?.on === id) add('faiz', ['base'], characterById.gritti.base.name);
