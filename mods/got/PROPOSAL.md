@@ -2,7 +2,9 @@
 
 Step 1 of the mod plan (`plan.md`, Phase 3). Names, concepts and art direction for review; the card text and flavor lines come in step 2. Written in English first; the Turkish follows the official Turkish translation of the books and series where a name exists there (Kral Eli, Kızıl Kale, Küçük Konsey, Demir Taht).
 
-Subtitle: **Entrika: King's Landing**. The setting fits the subtitle and avoids putting HBO's title on the box; "Entrika: Game of Thrones" is the alternative (open question 1).
+Subtitle: **Entrika: Game of Thrones**, so it's recognisable in the lobby picker. "King's Landing" appears in the flavor lines.
+
+**Approved 2026-11-19.** The reviewer's decisions on the open questions are recorded in section 5.
 
 ---
 
@@ -446,16 +448,15 @@ The Blazon icons (the 35 terms above, plus whatever the mod check lists); the cr
 
 ---
 
-## 5. Open questions
+## 5. Decisions (review, 2026-11-19)
 
-1. **Subtitle:** "Entrika: King's Landing" (recommended) or "Entrika: Game of Thrones"?
-2. **Seat names:** Hand of the King and Master of Laws. In canon, Renly *is* Master of Laws in season 1, so "Varys is Master of Laws this crisis" reads odd to fans. Alternatives for the second seat: Lord Commander, Grand Maester (fits the ravens, but Pycelle is a Retainer), or a neutral "Second Councillor".
-3. **Sides:** Sworn / Oathbreaker, or plain Loyalist / Traitor?
-4. **Retainers outside King's Landing in season 1:** Shae (Rumor) is the clearest liar in the show but isn't at court yet. Keep her, or use someone from the court (Lancel, with the Taster going to someone else)?
-5. **Later-season stills** for Rumor (S5) and the Iron Bank (S4): fine, or should every still come from season 1?
-6. **Outsiders:** Tyrion, Jon, Daenerys. Tywin (Tyrion's slot) and Illyrio (Gritti's exact mirror) are the alternatives.
-7. **Quotes from later seasons** as power names ("Power Is Power", S2; "Chaos Is a Ladder", S3; "Mine to Torment", S2): fine as long as they're recognisable?
-8. **House tints on Character frames** need a per-card colour in the skin (the renderer already takes a `variant`). Is that in the skin format the refactor is building, or should every Character share one frame?
-9. **Interface font:** keep Alegreya Sans, or switch the interface too (e.g. Source Sans 3)?
-10. **Ravens vs. a fate word:** "Ravens" for the Kader deck and step, with Fealty and Treachery as the two kinds. Is that what the table will say out loud ("I drew three Treachery")?
-11. **Turkish:** the official translation gives Kral Eli, Kızıl Kale, Küçük Konsey and Demir Taht. For Master of Laws, Ravens (Kuzgun), Oathbreaker and the rest, I'll look up the translation in step 2 rather than coin words.
+| Question | Decision |
+|---|---|
+| Subtitle | **Game of Thrones**. "King's Landing" goes in the flavor lines. |
+| Seat names | **Keep Hand of the King and Master of Laws.** Seats are offices the King hands out each crisis, so Renly's own title won't confuse anyone. |
+| Shae | **Keep her.** |
+| People's looks | **Seasons 1–2 only** for every Character and Retainer (Joffrey and Arya especially; Cersei's season 1 hair). Later seasons are fine for objects and scenes (Schemes, Crises) when the still is better. |
+| Later-season power names | Fine. |
+| House tints | An optional per-card colour override is requested in the skin format. The frames must also work without it. |
+
+Still open for step 2: Sworn/Oathbreaker as side names, the interface font, and the Turkish terms (taken from the official translation, not coined).
