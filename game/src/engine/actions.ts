@@ -10,8 +10,8 @@ import type { Action, Ask, Game, Kader, PID, Seat, WavePlay } from './types.ts';
 
 export function act(prev: Game, who: PID, a: Action): Game {
   const g = structuredClone(prev);
-  must(g.step !== 'over', 'Oyun bitti.');
-  must(g.players[who], 'Böyle bir oyuncu yok.');
+  must(g.step !== 'over', 'err.over');
+  must(g.players[who], 'err.noPlayer');
   if (a.t === 'answer') answer(g, who, a.ask, a.value);
   else if (a.t === 'power') usePower(g, who, a.power, a.target, a.also);
   else if (a.t === 'retract') retract(g, who);
@@ -23,34 +23,34 @@ export function act(prev: Game, who: PID, a: Action): Game {
 
 function answer(g: Game, who: PID, askId: number, value: unknown) {
   const a = g.asks.find(x => x.id === askId);
-  must(a, 'Bu soru artık geçerli değil.');
-  must(a.to === who, 'Bu karar senin değil.');
+  must(a, 'err.staleAsk');
+  must(a.to === who, 'err.notYours');
   const handler = ANSWERS[a.type] as (g: Game, a: Ask, v: unknown) => void;
   handler(g, a, value);
   dropAsk(g, a.id);
 }
 
 const asPid = (g: Game, v: unknown): PID => {
-  must(typeof v === 'number' && g.players[v], 'Bir oyuncu seç.');
+  must(typeof v === 'number' && g.players[v], 'err.pickPlayer');
   return v;
 };
-const notSultan = (g: Game, id: PID) => must(!P(g, id).sultan, 'Süleyman seçilemez.');
+const notSultan = (g: Game, id: PID) => must(!P(g, id).sultan, 'err.notSultan');
 
 // v comes off the network: every handler checks it before use
 type Handlers = { [K in Ask['type']]: (g: Game, a: Extract<Ask, { type: K }>, v: any) => void };
 
 const ANSWERS: Handlers = {
   companion(g, a, v) {
-    must(a.offer.includes(v), 'Bu Kul sana gelmedi.');
+    must(a.offer.includes(v), 'err.notOffered');
     P(g, a.to).companion = v;
   },
 
   discard(g, a, v) {
     const p = P(g, a.to);
-    must(Array.isArray(v) && v.length === a.n && new Set(v).size === v.length, `${a.n} kart seç.`);
+    must(Array.isArray(v) && v.length === a.n && new Set(v).size === v.length, 'err.pickN', { n: a.n });
     for (const uid of v) {
       const c = p.hand.find(x => x.uid === uid);
-      must(c, 'Bu kart elinde değil.');
+      must(c, 'err.notInHand');
       p.hand = p.hand.filter(x => x.uid !== uid);
       discardCard(g, c);
     }
@@ -59,7 +59,7 @@ const ANSWERS: Handlers = {
   keepOne(g, a, v) {
     const p = P(g, a.to);
     const keep = p.hand.find(x => x.uid === v);
-    must(keep, 'Tutacağın kartı seç.');
+    must(keep, 'err.pickKeep');
     for (const c of p.hand) if (c !== keep) discardCard(g, c);
     p.hand = [keep];
     checkHand(g, a.to);   // a hand-limit discard owed from before is void now
@@ -75,7 +75,7 @@ const ANSWERS: Handlers = {
     };
     switch (a.power) {
       case 'cephe':
-        must(v === 'divan' || v === 'harem' || v === 'saray', 'Bir alan seç.');
+        must(v === 'divan' || v === 'harem' || v === 'saray', 'err.pickField');
         g.field = v;
         spend('base', { field: v });
         return;
@@ -94,7 +94,7 @@ const ANSWERS: Handlers = {
         return;
       case 'veliaht': {
         const seat = (v as { seat?: unknown }).seat;
-        must((seat === 'first' || seat === 'second') && eligible(g, a.to, seat), 'Bu koltuğa geçemezsin.');
+        must((seat === 'first' || seat === 'second') && eligible(g, a.to, seat), 'err.cantSit');
         const removed = g.ministers[seat]!;
         replaceMinister(g, removed, a.to, 'veliaht', a.to);
         spend('base');
@@ -112,7 +112,7 @@ const ANSWERS: Handlers = {
       case 'nobet': {
         // a card's secret look, not a power: nothing goes in the public log
         const { on, plays } = a.ctx as { on: PID; plays: number[] };
-        must(typeof v === 'number' && plays.includes(v), 'Bir kart seç.');
+        must(typeof v === 'number' && plays.includes(v), 'err.pickCard');
         const h = g.court!.history[v];
         g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'playedBy', on, by: h.owner, card: h.as, field: h.field });
         return;
@@ -122,16 +122,16 @@ const ANSWERS: Handlers = {
   },
 
   tie(g, a, v) {
-    must(a.candidates.includes(v), 'Eşit olanlardan birini seç.');
+    must(a.candidates.includes(v), 'err.pickTied');
     crisisDraw(g, [v]);
   },
 
   appoint(g, a, v) {
     const { first, second } = (v ?? {}) as { first?: unknown; second?: unknown };
     const f = asPid(g, first), s = asPid(g, second);
-    must(f !== s, 'İki ayrı oyuncu seç.');
+    must(f !== s, 'err.twoPlayers');
     notSultan(g, f); notSultan(g, s);
-    must(g.surgun.now !== f && g.surgun.now !== s, 'Sürgündeki oyuncu bu kriz Vekil olamaz.');
+    must(g.surgun.now !== f && g.surgun.now !== s, 'err.exiled');
     g.ministers = { first: f, second: s };
     log(g, 'appoint', { first: f, second: s, by: a.to });
   },
@@ -145,16 +145,16 @@ const ANSWERS: Handlers = {
     }
     const { seat, free } = v as { seat: Seat; free?: boolean };
     const p = P(g, a.to);
-    must(seat === 'first' || seat === 'second', 'Bir Vekil seç.');
+    must(seat === 'first' || seat === 'second', 'err.pickMinister');
     const target = g.ministers[seat]!;
-    must(target !== a.to, 'Kendi koltuğuna itiraz edemezsin.');
-    must(!p.objected, 'Bu kriz zaten itiraz ettin.');
+    must(target !== a.to, 'err.ownSeat');
+    must(!p.objected, 'err.objected');
     if (free) {
-      must(readyPower(g, 'sahsultan', 'base')?.id === a.to, 'İtiraz gücün yok.');
+      must(readyPower(g, 'sahsultan', 'base')?.id === a.to, 'err.noItiraz');
       p.base = 'used';
     } else {
       const cost = RULES.objectionCost;
-      must(p.influence >= cost, `İtiraz ${cost} Nüfuz tutar.`);
+      must(p.influence >= cost, 'err.objectionCost', { n: cost });
       p.influence -= cost;
       log(g, 'pay', { who: a.to, n: cost });   // spending, not losing: no Gözden Düşmek, no draw
       kulTurn(g, a.to, p.influence + cost);
@@ -162,21 +162,21 @@ const ANSWERS: Handlers = {
     }
     p.objected = true;
     p.stats.objected = true;
-    must(eligibleList(g, seat).some(id => id !== target), 'Yerine geçebilecek kimse yok.');
+    must(eligibleList(g, seat).some(id => id !== target), 'err.noReplacement');
     log(g, free ? 'itiraz' : 'objection', { who: a.to, against: target, seat, ...(free ? {} : { n: RULES.objectionCost }) });
     ask(g, { to: free ? a.to : g.appointer ?? g.sultan, type: 'replace', seat, removed: target, reason: free ? 'itiraz' : 'objection' });
   },
 
   replace(g, a, v) {
     const newcomer = asPid(g, v);
-    must(newcomer !== a.not, 'Daye Hatun ile kendini seçemezsin.');
+    must(newcomer !== a.not, 'err.dayeSelf');
     replaceMinister(g, a.removed, a.to, a.reason, newcomer);
     drawForSeatLoss(g, a.removed);
     if (a.reason === 'valide' || a.reason === 'azil') P(g, g.court!.replaceQueue.shift()!.owner).stats.unseatedByIntrigue = true;
   },
 
   wave(g, a, v) {
-    must(!g.asks.some(x => x.type === 'discard' && x.to === a.to), 'Önce el sınırına kadar kart at.');
+    must(!g.asks.some(x => x.type === 'discard' && x.to === a.to), 'err.discardFirst');
     const plays = (Array.isArray(v) ? v : []) as WavePlay[];
     checkWave(g, a.to, plays);
     g.court!.submitted[a.to] = plays.length ? plays : null;
@@ -185,10 +185,10 @@ const ANSWERS: Handlers = {
   redirect(g, a, v) {
     if (v === null || v === undefined || v === false) return;
     const { play, target } = v as { play: number; target: unknown };
-    must(a.plays.includes(play), 'Sana oynanan bir kart seç.');
+    must(a.plays.includes(play), 'err.pickPlayedOnYou');
     const t = asPid(g, target);
     notSultan(g, t);
-    must(t !== a.to, 'Kartı başka bir oyuncuya kaydır.');
+    must(t !== a.to, 'err.redirectOther');
     const pl = g.court!.plays[play];
     pl.movedFrom = pl.target;
     pl.target = t;
@@ -199,7 +199,7 @@ const ANSWERS: Handlers = {
   ferman(g, a, v) {
     if (v === null || v === undefined || v === false) return;
     const { seat, target } = v as { seat: Seat; target: unknown };
-    must(seat === 'first' || seat === 'second', 'Bir Vekil seç.');
+    must(seat === 'first' || seat === 'second', 'err.pickMinister');
     const removed = g.ministers[seat]!;
     replaceMinister(g, removed, a.to, 'ferman', asPid(g, target));
     g.ferman = false;
@@ -210,7 +210,7 @@ const ANSWERS: Handlers = {
 
   kaderFirst(g, a, v) {
     const k = g.kader!;
-    must(Array.isArray(v) && v.length === a.discard && new Set(v).size === v.length && v.every(i => a.cards[i]), `${a.discard} kart at.`);
+    must(Array.isArray(v) && v.length === a.discard && new Set(v).size === v.length && v.every(i => a.cards[i]), 'err.discardN', { n: a.discard });
     const tossed: Kader[] = v.map((i: number) => a.cards[i]);
     k.passed = a.cards.filter((_, i) => !v.includes(i));
     k.discards.first = tossed;
@@ -220,7 +220,7 @@ const ANSWERS: Handlers = {
 
   kaderSecond(g, a, v) {
     const k = g.kader!;
-    must(v === 0 || v === 1, 'Oynayacağın kartı seç.');
+    must(v === 0 || v === 1, 'err.pickKader');
     const play = a.cards[v];
     k.played = play;
     k.discards.second = [a.cards[1 - v]];
@@ -237,7 +237,7 @@ const ANSWERS: Handlers = {
   investigate(g, a, v) {
     const of = asPid(g, v);
     notSultan(g, of);
-    must(of !== a.to, 'Başka bir oyuncunun Tarafına bak.');
+    must(of !== a.to, 'err.investigateOther');
     g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'allegiance', of, side: P(g, of).side! });
     log(g, 'investigated', { by: a.to, of });
   },
@@ -256,13 +256,13 @@ const ANSWERS: Handlers = {
 
   decree(g, _a, v) {
     const id = asPid(g, v);
-    must(id === g.ministers.first || id === g.ministers.second, 'Vekillerden birini seç.');
+    must(id === g.ministers.first || id === g.ministers.second, 'err.pickOneMinister');
     g.decree!.target = id;
   },
 
   venedik(g, a, v) {
     if (v === null || v === undefined || v === false) return;
-    must(typeof v === 'number' && a.cards[v] !== undefined, 'Bir kart seç ya da olduğu gibi bırak.');
+    must(typeof v === 'number' && a.cards[v] !== undefined, 'err.pickOrLeave');
     const [card] = g.decks.kader.splice(v, 1);
     g.decks.kader.push(card);
     log(g, 'venedikBottom', { who: a.to });
@@ -273,9 +273,9 @@ const ANSWERS: Handlers = {
 
 function retract(g: Game, who: PID) {
   const c = g.court;
-  must(g.step === 'court' && g.sub === 'wave' && c && who in c.submitted, 'Geri alınacak kart yok.');
-  must(!g.asks.some(x => x.type === 'wave' && x.to === who), 'Henüz kart koymadın.');
-  must(waveAllowance(g, who) > 0 && P(g, who).hand.some(card => playableForms(g, who, card.uid).length), 'Bu dalgada oynayabileceğin kart yok.');
+  must(g.step === 'court' && g.sub === 'wave' && c && who in c.submitted, 'err.nothingToUndo');
+  must(!g.asks.some(x => x.type === 'wave' && x.to === who), 'err.notPlaced');
+  must(waveAllowance(g, who) > 0 && P(g, who).hand.some(card => playableForms(g, who, card.uid).length), 'err.nothingPlayable');
   delete c.submitted[who];
   ask(g, { to: who, type: 'wave' });
 }
@@ -304,10 +304,10 @@ export function freePowerTargets(g: Game, who: PID, power: string): PID[] | null
 
 function usePower(g: Game, who: PID, power: string, target?: PID, also?: PID) {
   const targets = freePowerTargets(g, who, power);
-  must(targets, 'Bu güç şu an kullanılamaz.');
+  must(targets, 'err.powerNotNow');
   const def = FREE_POWERS[power];
-  if (def.target) must(target !== undefined && targets.includes(target), 'Bir oyuncu seç.');
-  if (def.target === 'two') must(also !== undefined && also !== target && targets.includes(also), 'İki ayrı oyuncu seç.');
+  if (def.target) must(target !== undefined && targets.includes(target), 'err.pickPlayer');
+  if (def.target === 'two') must(also !== undefined && also !== target && targets.includes(also), 'err.twoPlayers');
   const p = P(g, who);
   p[def.which] = 'used';
   log(g, 'power', { who, power, ...(def.target ? { target } : {}), ...(def.target === 'two' ? { also } : {}) });

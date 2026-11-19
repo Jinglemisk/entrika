@@ -2,6 +2,7 @@
 import { crisisById, crisisField, RULES } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
+import { crisisWords } from '../words.ts';
 import { useGame } from './ctx.ts';
 import { BotToggle } from './DevBar.tsx';
 
@@ -27,7 +28,7 @@ export function Mizan() {
       <button type="button" className="trk h" title={t('loyaltyTrack')} onClick={() => setSheet({ t: 'track', which: 'h' })}><Em k="hizmet" s={20} /><span>{t('hizmet')}</span><Slots n={RULES.tracks.loyalty} on={g.tracks.loyalty} /></button>
       <button type="button" className="kz" onClick={() => c && setSheet({ t: 'card', ref: { t: 'crisis', id: c.id } })}>
         <small>{t('crisisN', { n: g.crisisNo || 1 })}</small>
-        <b>{c ? c.name : g.crisisNo ? t('crisisComing') : t('setupTitle')}</b>
+        <b>{c ? crisisWords(c.id).name : g.crisisNo ? t('crisisComing') : t('setupTitle')}</b>
         {c && <span className="chipf"><Em k={FIELD_ICON[field]} s={16} />{t(field)}</span>}
       </button>
       <div className="r">

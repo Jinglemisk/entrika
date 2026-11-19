@@ -1,91 +1,79 @@
 [
   {
     "id": "yeniceri",
-    "name": "Yeniçeri İsyanı",
     "field": "divan",
     "draw": "zeroInfluence",
-    "text": "Nüfuzu 0 olan oyuncular birer Entrika kartı çeker.",
+    "about": "Divan field. Players with 0 Influence draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.yeniceri.jpg", "pos": "50% 45%" }
   },
   {
     "id": "hazine",
-    "name": "Hazine Açığı",
     "field": "saray",
     "draw": "none",
-    "text": "Bu krizde kimse Entrika kartı çekemez.",
+    "about": "Both fields (Saray). Nobody draws.",
     "art": { "src": "/art/directions/img/full-crisis.hazine.jpg", "pos": "47% 30%" }
   },
   {
     "id": "venedik",
-    "name": "Venedik Elçiliği",
     "field": "saray",
     "draw": "besideSultan",
-    "text": "Süleyman'ın iki yanındaki oyuncular birer Entrika kartı çeker.",
+    "about": "Both fields (Saray). The two players beside the Sultan draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.venedik.jpg", "pos": "60% 30%" }
   },
   {
     "id": "harem",
-    "name": "Haremde Skandal",
     "field": "harem",
     "draw": "leastInfluence",
-    "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer.",
+    "about": "Harem field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks.",
     "art": { "src": "/art/directions/img/full-crisis.harem.jpg", "pos": "85% 47%" }
   },
   {
     "id": "macar",
-    "name": "Macar Seferi",
     "field": "divan",
     "draw": "none",
-    "text": "Bu krizde kimse Entrika kartı çekmez.",
+    "about": "Divan field. Nobody draws.",
     "art": { "src": "/art/directions/img/full-crisis.macar.jpg", "pos": "20% 73%" }
   },
   {
     "id": "muhur",
-    "name": "Kaybolan Mühür",
     "field": "harem",
     "draw": "lastMinisters",
-    "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
+    "about": "Harem field. Last crisis's Ministers draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.muhur.jpg", "pos": "50% 45%" }
   },
   {
     "id": "divan",
-    "name": "Divan Kavgası",
     "field": "divan",
     "draw": "lastMinisters",
-    "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
+    "about": "Divan field. Last crisis's Ministers draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.divan.jpg", "pos": "56% 35%" }
   },
   {
     "id": "sehzade",
-    "name": "Şehzade Meselesi",
     "field": "harem",
     "draw": "besideSultan",
-    "text": "Süleyman'ın iki yanındaki oyuncular birer Entrika kartı çeker.",
+    "about": "Harem field. The two players beside the Sultan draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.sehzade.jpg", "pos": "47% 22%" }
   },
   {
     "id": "istanbul",
-    "name": "Huzursuz Ahali",
     "field": "harem",
     "draw": "everyone",
-    "text": "Süleyman dışında herkes birer Entrika kartı çeker.",
+    "about": "Harem field. Everyone draws 1 Intrigue card.",
     "art": { "src": "/art/directions/img/full-crisis.istanbul.jpg", "pos": "34% 35%" }
   },
   {
     "id": "irakeyn",
-    "name": "Irakeyn Seferi",
     "field": "divan",
     "draw": "leastInfluence",
-    "text": "Nüfuzu en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Süleyman seçer.",
+    "about": "Divan field. The player with the least Influence draws 1 Intrigue card; on a tie the Sultan picks.",
     "art": { "src": "/art/directions/img/full-crisis.irakeyn.jpg", "pos": "23% 20%" }
   },
   {
     "id": "isabella",
-    "name": "Isabella Fortuna",
     "field": "saray",
     "draw": "lastMinisters",
-    "text": "Geçen krizin Vekilleri birer Entrika kartı çeker.",
-    "flavor": "Korsanların kaçırıp Sultan'a sattığı Kastilyalı prenses. Kaçmaktan vazgeçmez.",
+    "about": "Both fields (Saray). Last crisis's Ministers draw 1 Intrigue card each.",
     "art": { "src": "/art/directions/img/full-crisis.isabella.jpg", "pos": "52% 50%" }
   }
 ]

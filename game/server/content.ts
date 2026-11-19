@@ -1,49 +1,49 @@
-// Dev-only backend of the card text editor (/?duzenle): writes display text into content/*.json. Only the fields
-// listed here can change; ids, targets, copies, draw rules, frequencies and art are game behaviour and stay out of reach.
+// Dev-only backend of the card text editor (/?duzenle): writes the printed words of a card into a mod's words file,
+// mods/<mod>/<lang>.json. Only the text fields listed here can change, and only for ids the game has; ids, targets,
+// copies, draw rules, frequencies and art are game behaviour and stay out of reach.
 import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 import type http from 'node:http';
+import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC } from '../src/engine/index.ts';
+import { MODS_DIR, modById } from './mods.ts';
 
-const DIR = path.join(import.meta.dirname, '..', 'content');
+const LANGS = ['tr', 'en'];
 const CARD = ['name', 'text', 'flavor'];
-// Files that hold a list of entries with an id, and the text fields of each entry.
-const LISTS: Record<string, string[]> = {
-  characters: ['name', 'base.name', 'base.text', 'favor.name', 'favor.text', 'flavor'],
-  companions: CARD, intrigue: CARD, crises: CARD, ambitions: CARD,
+const LINES = ['name', 'text.0', 'text.1', 'flavor'];
+// Each words group: the ids it may hold and the text fields of each entry.
+const GROUPS: Record<string, { ids: string[]; fields: string[] }> = {
+  characters: { ids: CHARACTERS.map(c => c.id), fields: ['name', 'short', 'base.name', 'base.text', 'favor.name', 'favor.text', 'flavor'] },
+  companions: { ids: COMPANIONS.map(c => c.id), fields: CARD },
+  intrigue: { ids: INTRIGUE.map(c => c.id), fields: CARD },
+  crises: { ids: CRISES.map(c => c.id), fields: CARD },
+  ambitions: { ids: AMBITIONS.map(c => c.id), fields: CARD },
+  kader: { ids: Object.keys(MISC.kader), fields: LINES },
+  taraf: { ids: Object.keys(MISC.taraf), fields: LINES },
+  treason: { ids: Object.keys(MISC.treason), fields: ['name', 'text'] },
 };
 
 type Entry = Record<string, unknown>;
-interface Edit { file: string; id: string; set: Record<string, unknown> }
+interface Edit { mod: string; lang: string; group: string; id: string; set: Record<string, unknown> }
 
-/** The entry an edit addresses and the fields it may change there, or undefined for anything unknown. */
-function locate(file: string, id: string, data: unknown): { entry: Entry; fields: string[] } | undefined {
-  if (Object.hasOwn(LISTS, file)) {
-    const entry = (data as Entry[]).find(e => e.id === id);
-    return entry && { entry, fields: LISTS[file] };
-  }
-  // misc.json is keyed by group: Kader and Taraf cards print their text as lines, treason powers have no card
-  const m = file === 'misc' ? /^(kader|taraf|treason)\.([\w-]+)$/.exec(id) : null;
-  const group = m && (data as Record<string, Record<string, Entry>>)[m[1]];
-  const entry = m && group && Object.hasOwn(group, m[2]) ? group[m[2]] : undefined;
-  if (!m || !entry) return;
-  if (m[1] === 'treason') return { entry, fields: ['name', 'text'] };
-  return { entry, fields: ['name', 'flavor', ...(entry.text as string[]).map((_, i) => `text.${i}`)] };
-}
-
-function applyEdit(data: unknown, { file, id, set }: Edit) {
-  const hit = typeof id === 'string' ? locate(file, id, data) : undefined;
-  if (!hit) throw new Error(`Bilinmeyen kart: ${file} / ${id}`);
+/** Writes the edit's fields into the words object; an empty field removes the word (the native one shows again). */
+function applyEdit(words: Entry, { group, id, set }: Edit) {
+  const g = Object.hasOwn(GROUPS, group) ? GROUPS[group] : undefined;
+  if (!g || !g.ids.includes(id)) throw new Error(`Bilinmeyen kart: ${group} / ${id}`);
   const edits = Object.entries(set ?? {});
   if (!edits.length) throw new Error('Değişiklik yok.');
   for (const [field, value] of edits) {
-    if (!hit.fields.includes(field)) throw new Error(`Bu alan düzenlenemez: ${field}`);
+    if (!g.fields.includes(field)) throw new Error(`Bu alan düzenlenemez: ${field}`);
     if (typeof value !== 'string') throw new Error(`Metin değil: ${field}`);
   }
+  const entry = ((words[group] ??= {}) as Entry)[id] ??= {};
   for (const [field, value] of edits) {
     const keys = field.split('.');
-    const last = keys.pop()!;
-    (keys.reduce((o, k) => o[k] as Entry, hit.entry))[last] = value;
+    let o = entry as Entry;
+    keys.slice(0, -1).forEach((k, i) => { o = (o[k] ??= /^\d+$/.test(keys[i + 1]) ? [] : {}) as Entry; });
+    const last = keys[keys.length - 1];
+    if (value) o[last] = value;
+    else delete o[last];
   }
 }
 
@@ -70,12 +70,13 @@ function format(v: unknown, indent = '', column = 0): string {
 }
 
 function save(edit: Edit) {
-  // a fixed list of names, so the path can never leave content/
-  if (typeof edit.file !== 'string' || (!Object.hasOwn(LISTS, edit.file) && edit.file !== 'misc')) throw new Error(`Bilinmeyen dosya: ${edit.file}`);
-  const file = path.join(DIR, `${edit.file}.json`);
-  const data: unknown = JSON.parse(fs.readFileSync(file, 'utf8'));   // fresh, in case the file was edited by hand
-  applyEdit(data, edit);
-  fs.writeFileSync(file, format(data) + '\n');
+  // a mod the server knows and a language from a fixed list, so the path can never leave mods/
+  if (typeof edit.mod !== 'string' || !modById(edit.mod)) throw new Error(`Bilinmeyen mod: ${edit.mod}`);
+  if (!LANGS.includes(edit.lang)) throw new Error(`Bilinmeyen dil: ${edit.lang}`);
+  const file = path.join(MODS_DIR, edit.mod, `${edit.lang}.json`);
+  const words = (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {}) as Entry;   // fresh, in case it was edited by hand
+  applyEdit(words, edit);
+  fs.writeFileSync(file, format(words) + '\n');
 }
 
 // Only the editor page itself may write: same origin, and a host that is this machine's name or address, so a
@@ -87,7 +88,7 @@ function trusted(req: http.IncomingMessage): boolean {
   return req.headers.origin === `http://${host}` && (name === 'localhost' || net.isIP(name) !== 0);
 }
 
-/** POST { file, id, set: { field: text } } → { ok: true } or { error }. Routed only outside production. */
+/** POST { mod, lang, group, id, set: { field: text } } → { ok: true } or { error }. Routed only outside production. */
 export function contentEdit(req: http.IncomingMessage, res: http.ServerResponse) {
   const reply = (status: number, body: object) =>
     res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' }).end(JSON.stringify(body));

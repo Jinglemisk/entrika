@@ -10,6 +10,7 @@ import {
   backToLobby, createRoom, timed, join, leave, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
 } from './rooms.ts';
 import { contentEdit } from './content.ts';
+import { DEFAULT_MOD, MODS_DIR } from './mods.ts';
 
 const PORT = Number(process.env.PORT ?? 4700);
 const PROD = process.env.NODE_ENV === 'production';
@@ -48,6 +49,7 @@ if (!PROD) {
 server.on('request', (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
   if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), res, 'public, max-age=86400');
+  if (url.pathname.startsWith('/mods/')) return serveFrom(MODS_DIR, url.pathname.slice(6), res, 'public, max-age=86400');
   if (url.pathname === '/kurallar') return manual(res);
   if (!PROD && url.pathname === '/dev/content') return contentEdit(req, res);   // the card text editor, /?duzenle
   if (vite) return vite.middlewares(req, res);
@@ -92,7 +94,7 @@ server.on('upgrade', (req, socket, head) => {
 
 function view(room: Room, token: string) {
   return {
-    code: room.code, dev: room.dev, learning: room.learning, sultan: room.sultan, version: room.version,
+    code: room.code, dev: room.dev, learning: room.learning, mod: room.mod ?? DEFAULT_MOD, sultan: room.sultan, version: room.version,
     timers: timed(room) || (!room.game && !room.learning && (room.timers ?? !room.dev)), deadlines: room.deadlines ?? {}, now: Date.now(),
     host: token === room.host,
     seats: room.seats.map(s => ({ name: s.name, bot: s.bot, online: [...conns].some(c => c.code === room.code && c.token === s.token) })),
@@ -126,7 +128,7 @@ function handle(c: Conn, m: In) {
     }
     case 'join': {
       const r = rooms.get(String(m.code ?? '').trim().toUpperCase());
-      if (!r) throw new RuleError('Bu kodla bir oda yok.');
+      if (!r) throw new RuleError('err.noRoom');
       c.code = r.code;
       join(r, String(m.name ?? '').slice(0, 18), c.token);
       push(r);
@@ -140,7 +142,7 @@ function handle(c: Conn, m: In) {
       return;
     }
   }
-  if (!room) throw new RuleError('Önce bir odaya gir.');
+  if (!room) throw new RuleError('err.noRoomYet');
   if (m.t === 'lobby') lobby(room, c.token, m.o);
   else if (m.t === 'start') start(room, c.token);
   else if (m.t === 'lobbyAgain') backToLobby(room, c.token);
@@ -156,9 +158,9 @@ wss.on('connection', ws => {
     try {
       handle(c, m);
     } catch (e) {
-      const msg = e instanceof RuleError ? e.message : 'Sunucu hatası.';
+      // the phone words the error in its own language: a string key and its values
       if (!(e instanceof RuleError)) console.error(e);
-      send(c, { t: 'error', msg });
+      send(c, e instanceof RuleError ? { t: 'error', key: e.message, vars: e.vars } : { t: 'error', key: 'err.server' });
     }
   });
   ws.on('close', () => {

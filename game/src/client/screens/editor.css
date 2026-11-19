@@ -63,3 +63,8 @@ body:has(.editor) { overflow: auto; -webkit-user-select: text; user-select: text
   .ed-form { overflow: visible; padding: 16px; }
   .ed-preview { border-left: 0; border-top: 1px solid var(--line); }
 }
+
+.ed-pick { display: flex; gap: 6px; margin-top: 10px; }
+.ed-pick select { flex: 1; min-width: 0; padding: 6px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper-hi); }
+.ed-missing { color: var(--al); font-style: normal; }
+.ed-about { margin: 6px 0 0; color: var(--ink-2); font-style: italic; }

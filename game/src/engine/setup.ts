@@ -17,7 +17,7 @@ const blankStats = () => ({
 
 export function createGame(names: string[], opts: SetupOptions = {}): Game {
   const n = names.length;
-  must(n >= RULES.players.min && n <= RULES.players.max, `Oyuncu sayısı ${RULES.players.min}–${RULES.players.max} olmalı.`);
+  must(n >= RULES.players.min && n <= RULES.players.max, 'err.playerCount', { min: RULES.players.min, max: RULES.players.max });
   const learning = !!opts.learning;
   const g: Game = {
     v: 3, rng: (opts.seed ?? Date.now()) | 0, learning, players: [], sultan: 0, nextUid: 1, nextAsk: 1,
