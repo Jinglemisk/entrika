@@ -52,7 +52,10 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
   const offline = !room.seats[id]?.online && !room.dev;
   // your own cards aimed at this seat this wave, staged or sealed: only you see these
   const sealed = g.court?.submitted[seat];
-  const mine = [...(Array.isArray(sealed) ? sealed : []), ...hand.staged].filter(x => x.target === id).length;
+  const mine = [...(Array.isArray(sealed) ? sealed : []), ...hand.staged].filter(x => x.target === id);
+  // the art of the card in your hand, so the seat and the card it went to match (a recast still shows the card you hold)
+  const held = mine.length ? g.players[seat].hand.find(c => c.uid === mine[0].uid) : undefined;
+  const mineArt = held ? intrigueById[held.kind].art : null;
   return (
     <button type="button" className={cls} style={{ ['--nw' as string]: `${sw}px`, ['--nh' as string]: `${sh}px` }} onClick={onTap}>
       <div className="nc">
@@ -65,7 +68,12 @@ function SeatView({ id, nw, me, onTap, compact, tag }: { id: PID; nw: number; me
         )}
         {g.surgun.now === id && <span className="exile">{t('exiled')}</span>}
         {tag && <span className={`mytag ${tag}`} title={t(`tag.${tag}`)}>{tag === 'suspect' ? '?' : '✓'}</span>}
-        {mine > 0 && <span className="myplay" title={t('myPlayHere')}><Em k="intrigue" s={14} />{mine > 1 ? mine : ''}</span>}
+        {mine.length > 0 && (
+          <span className={`myplay ${mineArt ? 'art' : ''} ${mine.length === 1 ? 'solo' : ''}`} title={t('myPlayHere')}>
+            {mineArt ? <img src={mineArt.src} alt="" style={{ objectPosition: mineArt.pos }} /> : <Em k="intrigue" s={14} />}
+            {mine.length > 1 ? mine.length : ''}
+          </span>
+        )}
         <DevToggle id={id} />
         <SeatEffects id={id} />
       </div>

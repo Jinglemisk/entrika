@@ -19,6 +19,8 @@ import { useGame, type Form, type GameCtx } from './ctx.ts';
 /** Card widths in a pop-up: as big as the 393 px stage allows, a little smaller when a row sits beneath. */
 export const POP_BIG = 258;
 export const POP_CARD = 226;
+/** Two cards side by side, each with its button beneath: a Kul's recast next to the card as printed. */
+const POP_PAIR = 206;
 
 // ---------- cards as they stand in play
 
@@ -63,6 +65,7 @@ export function CardPop({ cardRef, uid, own }: { cardRef: CardRef; uid?: number;
   const below = cardRef.t === 'intr' && uid !== undefined ? handActions(ctx, uid, close)
     : cardRef.t === 'char' && own ? powerButtons(ctx, cardRef.id, close)
     : null;
+  if (below && typeof below === 'object' && 'pair' in below) return <PopShell onClose={close} cards={below.pair} />;
   return (
     <PopShell onClose={close} cards={<Card spec={spec(cardRef)} width={below ? POP_CARD : POP_BIG} />}>
       {below}
@@ -72,7 +75,9 @@ export function CardPop({ cardRef, uid, own }: { cardRef: CardRef; uid?: number;
 
 // ---------- a card in your hand: what you can do with it now
 
-function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: () => void): ReactNode {
+/** Usually the buttons beneath the card. When your Kul can recast it, the card as printed and the card it turns into
+ *  stand side by side instead (`pair`), each with its own button, so you read both effects before choosing. */
+function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: () => void): ReactNode | { pair: ReactNode } {
   const done = (f: () => void) => () => { sfx('tap'); f(); close(); };
   if (hand.mode === 'discard') {
     const a = asks[0];
@@ -110,18 +115,31 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
     ? hand.setStaged([...hand.staged, { ...f, uid, target: seat }])
     : hand.setAim({ ...f, uid }));
   const kul = me.companion;
-  return (
-    <div className="pop-acts">
-      {forms.map(f => (
-        <div key={f.as + f.field} className="pop-row">
-          <Btn pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
-            {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
-            {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
-          </Btn>
-        </div>
-      ))}
-    </div>
+  const btn = (f: Form) => (
+    <Btn key={f.as + f.field} pri={!f.recast} via={f.recast && kul ? { icon: <KulHead id={kul} />, label: companionById[kul].name } : undefined} onClick={aim(f)}>
+      {f.recast ? t('pop.playAs', { card: intrigueById[f.as].name }) : t('pop.play')}
+      {f.recast && f.as === 'akil-hocasi' && <small><Em k={f.field} s={14} />{t(f.field)}</small>}
+    </Btn>
   );
+  const recasts = forms.filter(f => f.recast);
+  if (!recasts.length) return <div className="pop-acts">{forms.map(btn)}</div>;
+  const own = me.hand.find(c => c.uid === uid)!;
+  const printed = forms.find(f => !f.recast);
+  const w = recasts.length > 1 ? POP_PAIR - 40 : POP_PAIR;   // an Oyunbozan recast stacks a button per field
+  return {
+    pair: (
+      <>
+        <div className="pop-col">
+          <Card spec={spec({ t: 'intr', kind: own.kind, field: own.field })} width={w} />
+          {printed ? btn(printed) : <p className="pop-note bad">{t('pop.cantPlay')}</p>}
+        </div>
+        <div className="pop-col">
+          <Card spec={spec({ t: 'intr', kind: recasts[0].as, field: recasts[0].field })} width={w} />
+          <div className="pop-row">{recasts.map(btn)}</div>
+        </div>
+      </>
+    ),
+  };
 }
 
 // ---------- your Character: a button for each power you can use right now
