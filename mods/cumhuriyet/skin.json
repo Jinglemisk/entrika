@@ -277,43 +277,7 @@
   "sultan": "table/gazi-seat.html"
  },
  "seal": "table/seal.svg",
- "frieze": [
-  {
-   "char": "barbaros",
-   "size": 94,
-   "x": 0
-  },
-  {
-   "char": "hurrem",
-   "size": 94,
-   "x": 92
-  },
-  {
-   "char": "mustafa",
-   "size": 96,
-   "x": 180
-  },
-  {
-   "char": "suleyman",
-   "size": 98,
-   "x": 272
-  },
-  {
-   "char": "ibrahim",
-   "size": 96,
-   "x": 366
-  },
-  {
-   "char": "sahsultan",
-   "size": 94,
-   "x": 456
-  },
-  {
-   "char": "hatice",
-   "size": 94,
-   "x": 546
-  }
- ],
+ "frieze": [{ "char": "barbaros", "size": 92, "x": 0 }, { "char": "hurrem", "size": 92, "x": 86 }, { "char": "suleyman", "size": 104, "x": 172 }, { "char": "ibrahim", "size": 94, "x": 270 }, { "char": "mustafa", "size": 92, "x": 356 }],
  "music": {
   "drone": [
    146.83,

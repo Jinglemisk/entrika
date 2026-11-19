@@ -5,8 +5,8 @@ The game is playable end to end (rules v0.9, `game/README.md`) in three settings
 | Mod | Setting | Written first in |
 |---|---|---|
 | `muhtesem` | Muhteşem Yüzyıl, Süleyman's court, 1520s–1550s | Turkish |
-| `got` | Game of Thrones, the court at King's Landing | English |
-| `cumhuriyet` | The early Turkish Republic, 1920s–1930s | Turkish |
+| `got` | Game of Thrones: Joffrey's court, Blackwater to the Purple Wedding (seasons 3–4) | English |
+| `cumhuriyet` | Ankara, November 1924 to August 1925: who comes after the Gazi | Turkish |
 
 ## The model
 
@@ -88,12 +88,13 @@ Each mod's `PROPOSAL.md` holds its world, roster and art direction, and the deci
 - Sources go in the mod's asset manifest.
 
 ## Next
-- **Check the Turkish names in `got`** against the official translation: Kanun Ustası, Yeminbozan, Serçeparmak, Maiyet, Kumpas, İtibar, Kuzgun Kulesi (`mods/got/art/manifest.json`, `turkish_unverified`).
+- **Sources:** `got` and `cumhuriyet` follow the designer's research pages, "Entrika Westeros" (https://claude.ai/artifact/KcTKLNY8bj3YjP9eHbaixP) and "Entrika Cumhuriyet" (https://claude.ai/artifact/5zr1hAMcnsd6ZuCZAQfCYB), adapted from rules v0.7 to v0.9. Each mod's `PROPOSAL.md` has the mapping.
+- **Check the Turkish names in `got`** against the official translation; `mods/got/art/manifest.json` lists the unverified ones (Hazine Ustası, Dönek, Arbor Kırmızısı, Boğucu, Mor Düğün, Serçeparmak and others).
 - **Weak images** (each mod's manifest marks them `weak`):
-  - `got`: Standing Guard, A Quarrel in Council, Dismissed (a close-up);
-  - `cumhuriyet`: Sansür (no censored page found), Santral (a Seattle switchboard), Sakarya, Celal Bayar's 1940 portrait, Halide Edib's identity per the Commons caption;
+  - `got`: Dontos's portrait, Bastard Letters (a generic letter), a few season 1–2 stills (Kingsguard Watch, Talk in the Taverns, A Fool's Wager, Maester's Remedy);
+  - `cumhuriyet`: Latife (not frontal), Halide (small head), portraits dated after 1925 (Celal Bayar, Recep Peker, Nuri Conker, Renda, Ali Fuat), Mahmut Esat in profile, Şeyh Said İsyanı and Şapka Kanunu (stand-ins: their real photos show leaders or the Gazi), Santral (a Seattle switchboard), Musul Meselesi (a map);
   - `muhtesem`: Pledge, Counterplot (dark), Lokman (close-up).
-- **Cumhuriyet's Sultan role** is the Gazi, under respect rules: real portraits only, on his card, seat and the frieze centre; the Traitors' win is "Meclis dağılır" and nobody dies. Its proposal keeps an alternative where the Assembly itself is the role.
+- **Cumhuriyet's Gazi** is under respect rules: real portraits only, on his card, seat and the frieze centre; the Traitors' win is "Karşı Devrim" and nobody dies. Seven research Yaverler with no portrait above 400 px were swapped for figures with the same fit (table in its proposal).
 - **Bundle size:** every mod's words and frame SVGs are bundled, so the app is over 800 kB. Load a mod's skin files on demand if it grows.
 
 ## Later
