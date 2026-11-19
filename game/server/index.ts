@@ -25,18 +25,27 @@ const TYPES: Record<string, string> = {
   '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.ico': 'image/x-icon',
 };
 
-function sendFile(res: http.ServerResponse, file: string, cache: string) {
+// Art and mod files keep their names when they're redrawn, so phones revalidate them on every load (a cheap 304 when
+// unchanged) rather than keeping a stale portrait for a day.
+const REVALIDATE = 'no-cache';
+function sendFile(req: http.IncomingMessage, res: http.ServerResponse, file: string, cache: string) {
   fs.stat(file, (err, st) => {
     if (err || !st.isFile()) { res.writeHead(404).end(); return; }
-    res.writeHead(200, { 'Content-Type': TYPES[path.extname(file).toLowerCase()] ?? 'application/octet-stream', 'Cache-Control': cache });
+    const modified = new Date(Math.floor(st.mtimeMs / 1000) * 1000);
+    const since = req.headers['if-modified-since'];
+    if (since && new Date(since) >= modified) { res.writeHead(304, { 'Cache-Control': cache }).end(); return; }
+    res.writeHead(200, {
+      'Content-Type': TYPES[path.extname(file).toLowerCase()] ?? 'application/octet-stream', 'Cache-Control': cache,
+      'Last-Modified': modified.toUTCString(),
+    });
     fs.createReadStream(file).pipe(res);
   });
 }
 /** Serve a file from inside a folder, refusing paths that climb out of it. */
-function serveFrom(dir: string, urlPath: string, res: http.ServerResponse, cache: string) {
+function serveFrom(dir: string, urlPath: string, req: http.IncomingMessage, res: http.ServerResponse, cache: string) {
   const file = path.normalize(path.join(dir, decodeURIComponent(urlPath)));
   if (!file.startsWith(dir + path.sep)) { res.writeHead(403).end(); return; }
-  sendFile(res, file, cache);
+  sendFile(req, res, file, cache);
 }
 
 const server = http.createServer();
@@ -48,14 +57,14 @@ if (!PROD) {
 
 server.on('request', (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
-  if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), res, 'public, max-age=86400');
-  if (url.pathname.startsWith('/mods/')) return serveFrom(MODS_DIR, url.pathname.slice(6), res, 'public, max-age=86400');
+  if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), req, res, REVALIDATE);
+  if (url.pathname.startsWith('/mods/')) return serveFrom(MODS_DIR, url.pathname.slice(6), req, res, REVALIDATE);
   if (url.pathname === '/kurallar') return manual(res);
   if (!PROD && url.pathname === '/dev/content') return contentEdit(req, res);   // the card text editor, /?duzenle
   if (vite) return vite.middlewares(req, res);
   const asset = url.pathname !== '/' && fs.existsSync(path.join(DIST, url.pathname));
-  if (asset) return serveFrom(DIST, url.pathname.slice(1), res, 'public, max-age=31536000, immutable');
-  sendFile(res, path.join(DIST, 'index.html'), 'no-cache');
+  if (asset) return serveFrom(DIST, url.pathname.slice(1), req, res, 'public, max-age=31536000, immutable');
+  sendFile(req, res, path.join(DIST, 'index.html'), 'no-cache');
 });
 
 // The rules: the manual published as an artifact, read fresh on each request so it never lags the repo. It is written
