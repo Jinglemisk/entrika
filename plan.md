@@ -1,32 +1,99 @@
 # Entrika — plan
 
-The living rules are the player manual (`manual.html`, published as an artifact). Its Notes section holds open decisions, tuning dials and parked ideas.
+The game is playable end to end (rules v0.9, `game/README.md`). The current work is **mods and languages**: the same game in three settings, each in Turkish and English.
 
-## Next
-1. Review the v0.8 manual; confirm the "Proposed" items and settle the open questions in Notes. v0.7 is the 1534 court; the reasoning behind it is at https://claude.ai/artifact/Tgm55z6tdi3NwjVtsEMHEH.
-2. 3–5 learning games in Basic mode, in the browser build (lobby: "Öğrenme oyunu"). Paper is out since v0.7: Court is played in waves, and a physical table can't hide who played what across waves.
-3. Log every game: player count, winner, final track state, minutes, what the losing side called unfair.
-4. Tune the dials: Kader deck ratio, track lengths, allegiance counts.
-5. Then Full mode (Companions, Ambitions, Favor powers).
+| Mod | Setting | Written first in |
+|---|---|---|
+| `muhtesem` | Muhteşem Yüzyıl, Süleyman's court, 1520s–1550s | Turkish |
+| `got` | Game of Thrones, the court at King's Landing | English |
+| `cumhuriyet` | The early Turkish Republic, 1920s–1930s | Turkish |
 
-## Browser game (see `docs/direction.md`)
-1. Art: direction B, at https://claude.ai/artifact/KHGRZwpyu91CbWxZNv7kZH. It covers v0.7 card texts, Süleyman's gold-leaf frame, backs for all seven decks and the Varak ve mine icons (set in `art/icons/set/`, sheet at https://claude.ai/artifact/9xBpkHTszW3Fca2HkSsnC1). Tokens are in `art/directions/notes.md`, the term-icon table in `art/terms.json`. Still open:
-   - the art page and the art review still show the old Varak ve mine icons; the game uses Kat'ı (picked 2026-11-15 from https://claude.ai/artifact/413jtyCL6ffgKCK6g74R9G).
-   - confirm the grade strength (15%);
-   - AI-generated textures (deferred).
-2. UI: the v3 design system is the way forward (decided 2026-11-15, all six recommendations taken): https://claude.ai/artifact/7drJc9A7wWYvoCAVvUkSzH, source in `ui/v3/src/`, notes in `ui/v3/notes.md`, decisions in the UI section of `docs/direction.md`. The v2 prototype is retired.
-3. First playable: done (branch `feat/playable-game`, folder `game/`). Every rule in manual v0.7 is in it: setup with Kul choice, Atama with Objections and every timed power, Tertip in waves, Ferman, Kader, the Treason powers, the Decree, Hırs cards and the overall winner. There are rooms with a share code, rejoin after a locked phone, test rooms with bots, sound, and critical rules tests. How to run it: `game/README.md`.
-4. Next:
-   - Play a real game on phones over Wi-Fi.
-   - Decide whether the manual should read `game/content/` so card text lives in one place. The game serves the manual at `/kurallar` (Notes and Lexicon hidden), linked from home, lobby and settings.
-   - Before release: remove the test-room aids marked `DEV` in `game/src/client/` (seat eyes, corner heads, Devam heads that switch seats, the robot button, the test-game row on home, shown only on the server's own computer or with `?test`) along with test rooms.
-   - Card balance: both passes are in the game (listed in `docs/rulings.md`). The 2026-11-18 Hırs and Kul pass (https://claude.ai/artifact/UN4Bfz4nMi8i1hyLckntu2) made every Kul recast a card. It added Defterdar, Nöbet, Nazar and Sükût (37 cards), renamed Casus to Mantık and Akıl Hocası to Oyunbozan, swapped Sümbül's and Matrakçı's cards, and gave seven Hırs cards new goals. Manual v0.9 (2026-11-19) has it. Watch Defterdar and Sükût in playtests.
-   - Feedback audit (2026-11-19, https://claude.ai/artifact/H5orxdR2AtHFBTRypuQmm2): every card and power now shows the same way as others of its kind, Kul recasts and Valide picks no longer name their owner, and Mühürlü Evrak has no target. The rules for what each phone shows are at the end of `docs/rulings.md`. The manual needs the Mühürlü Evrak text.
-   - Art round 15 gave Azil, Kefalet, Casus and Çeşnigir their own stills (notes in `art/directions/notes.md`). Kefalet is the weakest pick (two small full-length figures); its alternate 2 is a close-up. The art comparison page and the UI proposal still link the old cards' stills. Round 16 widened 11 Kul card crops to head and shoulders; Lokman stays a close-up (no medium shot found).
-   - Watch in playtests: does Tertip stay anonymous with Casus, Sümbül Ağa, Lokman Ağa and Sezgi? Do players stop objecting once they hold Azil? Tally the Kader 7/11 deck: after about 10 games, 7 or more Loyalist wins → 6/12; 7 or more Traitor wins → 7/10.
-   - Not built yet: chat or a private Kulis channel for remote play; hosting beyond this Mac; handing a seat to a bot or a new player when someone leaves; a record of every finished game for playtest logging; in-game rules help.
+## The model
+
+- **Mod** is picked by the host in the lobby and holds for the whole room. **Language** is picked on each phone, so one room can read in two languages. The log and every prompt are stored as keys, so this works.
+- A mod is written first in its native language. The other language is written from it. A phone whose language the mod lacks falls back to the mod's native language.
+- The game is called **Entrika** in every mod. The mod's name is its subtitle.
+
+Three layers, and who owns each:
+
+| Layer | Owner | Example |
+|---|---|---|
+| Mechanics | The engine, shared by every mod | `valide`: a Divan card played on a Minister that replaces them; the owner may pick themselves |
+| Words | Each mod, in each language | `valide` is "Valide'nin Buyruğu" (muhtesem/tr), "Mother's Demand" (muhtesem/en), something of its own in got/en |
+| Look | Each mod's skin | Card frames, colours, patterns, icons, portraits, stills, seal, fonts, music |
+
+- **Ids are internal.** They keep their current, Ottoman-flavoured spelling (`valide`, `suleyman`, `kader`) and are never shown. A mod names an id for its own world; it doesn't translate the Ottoman name.
+- **Interface sentences are written once per language,** not per mod. They name game things by id, and the mod fills the name in: `Bu el {card:valide} kartını oynayamazsın`, `{term:minister:dat} itiraz et`.
+- **Grammatical forms are written by hand,** not computed:
+  - each Turkish term has its case forms (Vekil, Vekili, Vekile, Vekilin, Vekilde, Vekilden);
+  - each English term has its singular, plural and article form.
+
+  Computed suffixes are kept only for player names. A mod may override a whole sentence when its world needs other wording.
+- **Fixed layout, free look.**
+  - Fixed in every mod: the card's size, the positions of the name band, art window, text box, flavor line and two corner icon slots; the table layout (seat row, name position, Influence counter under it, tracks, shelf, prompt block).
+  - Changed by each mod: the frame drawn for each card kind, the art window's shape, card backs, palettes, patterns, the seat niche, the seal, the frieze, interface colours, fonts, the still grade and music.
+- **A skin is data and files, not code.** The renderer knows the layout and nothing about any setting. Adding a mod means adding a folder.
+
+## Phases
+
+### 1. Groundwork: words
+- Content files keep only mechanics. Each mechanic gets a short neutral English line saying what it does, for mod authors.
+- Every name, text and flavor line moves into the `muhtesem` mod's Turkish words.
+- Engine and server errors become keys with values.
+- Words hard-coded in components and the card renderer become keys.
+- Interface sentences are rewritten from scratch with placeholders, in Turkish and in English. Each term gets hand-written forms. The card-text icon matcher reads its stems from the active mod and language.
+- A language switch goes on the home screen and in settings.
+- The room gets a `mod` setting, and the host picks it in the lobby. Phones switch mods while running.
+- The card gallery and the text editor get mod and language pickers. The editor saves into the mod's words.
+- A **mod check** lists what each mod is missing in each language: names, texts, forms, sentence overrides and assets. It also prints the **nomenclature worksheet**: every id with its mechanical line, for naming.
+- **Done when:** a screenshot comparison of every card and a staged game shows no change, and the tests pass.
+
+### 2. Groundwork: skins
+- The card renderer is rebuilt around the fixed layout. Frames, window shapes, backs, palettes, patterns and the still grade come from the mod's skin.
+- The skin also supplies:
+  - the seat niche (with the Süleyman seat's gilding);
+  - the seal on the Decree screen and the Crisis back;
+  - the frieze;
+  - interface colour tokens and fonts;
+  - the term icons and their colours;
+  - portraits with their card and niche crops;
+  - card stills;
+  - music settings.
+- Today's Ottoman look moves into the `muhtesem` skin and must come out identical. Asset paths in a skin are relative to the mod folder; `muhtesem` keeps pointing at the existing `art/` files, so nothing is moved.
+- A repo tool makes character cut-outs (macOS Vision foreground mask) and computes their crops from the face, so every mod produces portraits the same way.
+- **Done when:** screenshots match today's, and a crude test skin proves that every slot switches.
+
+### 3. The mods
+One agent per mod, each on its own branch:
+
+1. **Proposal:** art direction, plus who each Character and Kul is, and what each Entrika, Hırs, Crisis and term is called. Reviewed before any writing.
+2. **Words:** every name, text and flavor line in the native language, then the second language. Reviewed.
+3. **Skin and assets:** frames, colours, patterns, icons, seal, fonts and music. Portraits and stills sourced for every Character, Kul, Entrika, Crisis and Kader card. People are shown with real images only:
+   - `got`: stills from the series;
+   - `cumhuriyet`: period photographs;
+   - `muhtesem`: the existing stills, filling any gaps.
+
+   Generated images are allowed for icons and textures only.
+4. **Merge:** the mod check passes for both languages, a full game is played through in each mod, and every screen is checked.
+
+`muhtesem` needs its English words and any missing art, not a new look.
+
+### Rules for every mod
+- Same mechanics, ids and card counts. No new effects.
+- Every screen, card and line reads as that world. Nothing Ottoman leaks into `got` or `cumhuriyet`.
+- Real people are shown only in real images, never generated ones.
+- Sources go in the mod's asset manifest.
+
+## Later
+- The rules manual for each mod and language. Today it is English with Ottoman names, at `/kurallar`. The mod files become the one source for names, and the manual's Lexicon retires.
+- Before release, remove the test aids marked `DEV` in the client: seat eyes, corner heads, the Devam heads that switch seats, the robot button, the test-game row on home, and the test rooms themselves.
+- Playtests:
+  - log every game (player count, winner, final tracks, minutes, what the losing side called unfair);
+  - tune the Kader deck (7/11), the track lengths and the allegiance counts;
+  - watch Defterdar, Sükût, and whether Tertip stays anonymous.
+- Not built: hosting beyond this Mac, chat or a private Kulis channel for remote play, handing a seat to a bot when someone leaves.
 
 ## Sources
-- `docs/rulebook-v0.1.pdf` — first ChatGPT rulebook.
-- `docs/chatgpt-transcript.md` — the original ChatGPT conversation, recovered from the share link.
-- `docs/chatgpt-v0.2-rulebook-source.py` — the script ChatGPT used for its v0.2 PDF; the only copy of v0.2's card text.
+- `docs/direction.md` is the standing brief. `docs/rulings.md` lists the engine's rulings and the rules for what each phone shows.
+- `docs/rulebook-v0.1.pdf`, `docs/chatgpt-transcript.md` and `docs/chatgpt-v0.2-rulebook-source.py` are the design history.
+- `art/directions/notes.md` holds the Ottoman art rounds; `art/stills/manifest.json` lists the still sources.
