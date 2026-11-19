@@ -1,0 +1,338 @@
+{
+ "defs": "cards/defs.svg",
+ "faces": {
+  "char": {
+   "frame": "cards/char.svg",
+   "base": [
+    "#2f4f80",
+    "#0e1a2e"
+   ],
+   "art": "cards/art-character.svg",
+   "darkGems": true,
+   "backdrop": "cards/backdrop.svg",
+   "breakY": 156
+  },
+  "sultan": {
+   "frame": "cards/sultan.svg",
+   "base": [
+    "#c9a85a",
+    "#5a4318"
+   ],
+   "art": "cards/art-suleyman.svg",
+   "backdrop": "cards/backdrop.svg",
+   "breakY": 156
+  },
+  "kul": {
+   "frame": "cards/kul.svg",
+   "base": [
+    "#2f4f80",
+    "#0e1a2e"
+   ],
+   "art": "cards/art-companion.svg",
+   "darkGems": true
+  },
+  "intr": {
+   "frame": "cards/intr.svg",
+   "base": [
+    "#6b7178",
+    "#2a2e33"
+   ],
+   "darkGems": true
+  },
+  "crisis": {
+   "frame": "cards/crisis.svg",
+   "base": [
+    "#4a403a",
+    "#0d0b0a"
+   ],
+   "art": "cards/art-crisis.svg",
+   "darkGems": true
+  },
+  "kader-h": {
+   "frame": "cards/kader-h.svg",
+   "base": [
+    "#6e8640",
+    "#222b12"
+   ],
+   "darkGems": true
+  },
+  "kader-x": {
+   "frame": "cards/kader-x.svg",
+   "base": [
+    "#4a403a",
+    "#0d0b0a"
+   ],
+   "darkGems": true
+  },
+  "hirs": {
+   "frame": "cards/hirs.svg",
+   "base": [
+    "#6a5596",
+    "#1c1430"
+   ],
+   "art": "cards/art-hirs.svg",
+   "darkGems": true
+  },
+  "taraf-s": {
+   "frame": "cards/taraf-s.svg",
+   "base": [
+    "#6e8640",
+    "#222b12"
+   ],
+   "art": "cards/art-taraf-s.svg",
+   "darkGems": true
+  },
+  "taraf-h": {
+   "frame": "cards/taraf-h.svg",
+   "base": [
+    "#4a403a",
+    "#0d0b0a"
+   ],
+   "art": "cards/art-taraf-h.svg",
+   "darkGems": true
+  }
+ },
+ "backs": {
+  "intr": "cards/back-intr.svg",
+  "kader": "cards/back-kader.svg",
+  "taraf": "cards/back-taraf.svg",
+  "hirs": "cards/back-hirs.svg",
+  "kul": "cards/back-kul.svg",
+  "char": "cards/back-char.svg",
+  "crisis": "cards/back-crisis.svg"
+ },
+ "art": {
+  "companions.ayas": {
+   "src": "art/comp.ayas-1.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.bali": {
+   "src": "art/comp.bali-3.jpg",
+   "pos": "45% 42%"
+  },
+  "companions.daye": {
+   "src": "art/comp.daye-1.jpg",
+   "pos": "50% 40%"
+  },
+  "companions.ebussuud": {
+   "src": "art/comp.ebussuud-3.jpg",
+   "pos": "50% 38%"
+  },
+  "companions.firuze": {
+   "src": "art/comp.firuze-3.jpg",
+   "pos": "50% 40%"
+  },
+  "companions.gulaga": {
+   "src": "art/comp.gulaga-1.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.gulfem": {
+   "src": "art/comp.gulfem-3.jpg",
+   "pos": "50% 35%"
+  },
+  "companions.gulsah": {
+   "src": "art/comp.gulsah-3.jpg",
+   "pos": "50% 40%"
+  },
+  "companions.iskender": {
+   "src": "art/comp.iskender-2.jpg",
+   "pos": "50% 35%"
+  },
+  "companions.lokman": {
+   "src": "art/comp.lokman-3.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.matrakci": {
+   "src": "art/comp.matrakci-1.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.nigar": {
+   "src": "art/comp.nigar-1.jpg",
+   "pos": "50% 25%"
+  },
+  "companions.seker": {
+   "src": "art/comp.seker-2.jpg",
+   "pos": "50% 30%"
+  },
+  "companions.sumbul": {
+   "src": "art/comp.sumbul-3.jpg",
+   "pos": "50% 30%"
+  },
+  "crises.divan": {
+   "src": "art/crisis.divan-1.jpg",
+   "pos": "50% 50%"
+  },
+  "crises.harem": {
+   "src": "art/crisis.harem-1.jpg",
+   "pos": "50% 50%"
+  },
+  "crises.hazine": {
+   "src": "art/crisis.hazine-1.jpg",
+   "pos": "40% 55%"
+  },
+  "crises.irakeyn": {
+   "src": "art/crisis.irakeyn-1.jpg",
+   "pos": "50% 45%"
+  },
+  "crises.isabella": {
+   "src": "art/crisis.isabella-1.jpg",
+   "pos": "50% 45%"
+  },
+  "crises.istanbul": {
+   "src": "art/crisis.istanbul-2.jpg",
+   "pos": "50% 45%"
+  },
+  "crises.macar": {
+   "src": "art/crisis.macar-1.jpg",
+   "pos": "50% 50%"
+  },
+  "crises.muhur": {
+   "src": "art/crisis.muhur-1.jpg",
+   "pos": "50% 40%"
+  },
+  "crises.sehzade": {
+   "src": "art/crisis.sehzade-3.jpg",
+   "pos": "50% 50%"
+  },
+  "crises.venedik": {
+   "src": "art/crisis.venedik-1.jpg",
+   "pos": "50% 45%"
+  },
+  "crises.yeniceri": {
+   "src": "art/crisis.yeniceri-1.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.akil-hocasi": {
+   "src": "art/card.akil-hocasi-3.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.azil": {
+   "src": "art/card.azil-2.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.casus": {
+   "src": "art/card.casus-1.jpg",
+   "pos": "50% 55%"
+  },
+  "intrigue.defterdar": {
+   "src": "art/card.defterdar-2.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.iftira": {
+   "src": "art/card.iftira-2.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.kefalet": {
+   "src": "art/card.kefalet-1.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.muhur": {
+   "src": "art/card.muhur-1.jpg",
+   "pos": "50% 45%"
+  },
+  "intrigue.muhurlu-evrak": {
+   "src": "art/card.muhurlu-evrak-1.jpg",
+   "pos": "50% 55%"
+  },
+  "intrigue.nazar": {
+   "src": "art/card.nazar-2.jpg",
+   "pos": "50% 30%"
+  },
+  "intrigue.nobet": {
+   "src": "art/card.nobet-1.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.saray-tabibi": {
+   "src": "art/card.saray-tabibi-2.jpg",
+   "pos": "50% 40%"
+  },
+  "intrigue.sukut": {
+   "src": "art/card.sukut-3.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.teftis": {
+   "src": "art/card.teftis-1.jpg",
+   "pos": "50% 50%"
+  },
+  "intrigue.valide": {
+   "src": "art/card.valide-1.jpg",
+   "pos": "50% 45%"
+  },
+  "kader.h": {
+   "src": "art/term.hizmet-2.jpg",
+   "pos": "35% 60%"
+  },
+  "kader.x": {
+   "src": "art/term.hiyanet-1.jpg",
+   "pos": "40% 65%"
+  }
+ },
+ "icons": {
+  "dir": "icons/",
+  "version": "2"
+ },
+ "niche": {
+  "path": "M.5 119.5V28H12V16H24V6H76V16H88V28H99.5V119.5Z",
+  "mask": "M0 120V27H12V15H24V5H76V15H88V27H100V120Z",
+  "sultan": "table/gazi-seat.html"
+ },
+ "seal": "table/seal.svg",
+ "frieze": [
+  {
+   "char": "barbaros",
+   "size": 94,
+   "x": 0
+  },
+  {
+   "char": "hurrem",
+   "size": 94,
+   "x": 92
+  },
+  {
+   "char": "mustafa",
+   "size": 96,
+   "x": 180
+  },
+  {
+   "char": "suleyman",
+   "size": 98,
+   "x": 272
+  },
+  {
+   "char": "ibrahim",
+   "size": 96,
+   "x": 366
+  },
+  {
+   "char": "sahsultan",
+   "size": 94,
+   "x": 456
+  },
+  {
+   "char": "hatice",
+   "size": 94,
+   "x": 546
+  }
+ ],
+ "music": {
+  "drone": [
+   146.83,
+   220.0
+  ],
+  "scale": [
+   293.66,
+   329.63,
+   349.23,
+   392.0,
+   440.0,
+   493.88,
+   523.25,
+   587.33
+  ],
+  "wave": "triangle",
+  "beat": [
+   460,
+   1380
+  ]
+ }
+}

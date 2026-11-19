@@ -1,0 +1,57 @@
+{
+  "suleyman": {
+    "src": "art/cut-char.suleyman.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -44.11, "op": "52% 44%"},
+    "niche": {"hx": 0.508, "y0": 0.1037, "ar": 1.3877, "w": 1.01}
+  },
+  "mustafa": {
+    "src": "art/cut-char.mustafa.webp",
+    "card": {"cl": 0.0, "cw": 100.12, "ct": -33.68, "op": "44% 37%"},
+    "niche": {"hx": 0.521, "y0": 0.0919, "ar": 1.3986, "w": 1.23}
+  },
+  "sahsultan": {
+    "src": "art/cut-char.sahsultan.webp",
+    "card": {"cl": 0.0, "cw": 109.05, "ct": -37.36, "op": "44% 38%"},
+    "niche": {"hx": 0.475, "y0": 0.1677, "ar": 1.3565, "w": 1.34}
+  },
+  "hurrem": {
+    "src": "art/cut-char.hurrem.webp",
+    "card": {"cl": -54.41, "cw": 225.55, "ct": -52.61, "op": "46% 24%"},
+    "niche": {"hx": 0.44, "y0": 0.1425, "ar": 1.4559, "w": 2.77}
+  },
+  "hatice": {
+    "src": "art/cut-char.hatice.webp",
+    "card": {"cl": -26.52, "cw": 138.2, "ct": -31.93, "op": "55% 27%"},
+    "niche": {"hx": 0.524, "y0": 0.1507, "ar": 1.3321, "w": 1.69}
+  },
+  "rustem": {
+    "src": "art/cut-char.rustem.webp",
+    "card": {"cl": -13.07, "cw": 123.12, "ct": -8.53, "op": "51% 12%"},
+    "niche": {"hx": 0.565, "y0": 0.0, "ar": 1.4401, "w": 1.51}
+  },
+  "barbaros": {
+    "src": "art/cut-char.barbaros.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -31.04, "op": "48% 30%"},
+    "niche": {"hx": 0.473, "y0": 0.0238, "ar": 1.3865, "w": 0.91}
+  },
+  "gritti": {
+    "src": "art/cut-char.gritti.webp",
+    "card": {"cl": 0.0, "cw": 100.0, "ct": -20.25, "op": "47% 25%"},
+    "niche": {"hx": 0.496, "y0": 0.1278, "ar": 1.3208, "w": 1.14}
+  },
+  "sarlken": {
+    "src": "art/cut-char.sarlken.webp",
+    "card": {"cl": -44.84, "cw": 189.76, "ct": -54.82, "op": "50% 30%"},
+    "niche": {"hx": 0.502, "y0": 0.2069, "ar": 1.4467, "w": 2.33}
+  },
+  "tahmasp": {
+    "src": "art/cut-char.tahmasp.webp",
+    "card": {"cl": -45.53, "cw": 158.44, "ct": -21.05, "op": "60% 17%"},
+    "niche": {"hx": 0.534, "y0": 0.0394, "ar": 1.3841, "w": 1.94}
+  },
+  "ibrahim": {
+    "src": "art/cut-char.ibrahim.webp",
+    "card": {"cl": -18.66, "cw": 118.89, "ct": -26.82, "op": "58% 29%"},
+    "niche": {"hx": 0.511, "y0": 0.0346, "ar": 1.2592, "w": 1.46}
+  }
+}
