@@ -1,0 +1,1226 @@
+{
+ "about": "Stills and portraits for the got mod (Game of Thrones, HBO 2011-2019), for the private Entrika fan game. Keys follow the game ids: char.<id> Characters, comp.<id> Retainers (Kul), card.<id> Schemes, crisis.<id> Crises, term.hizmet / term.hiyanet the Raven (Kader) cards. Each candidate: file (in this folder, long edge <= 1600 px, JPEG q80), size [w,h], source_url (the image), source_page (where it was found), note (who or what is in frame, plus concerns), focus [x,y] = subject centre as fractions (Character and Retainer faces from macOS Vision; scenes set by eye), usable as CSS object-position; posed = an official HBO portrait (true) or a screencap (false). The first candidate is the pick; status 'weak' marks a stand-in worth replacing.",
+ "people": "Characters and Retainers keep their season 1-2 look. Most portraits are HBO's own character images from hbo.com's cast-and-crew pages (16:9, head and shoulders), fetched from the Wayback Machine because hbo.com now redirects to Max. Where HBO had none (Ilyn Payne, Loras, Ros's season 1 look, a season 1 Jaime), a wiki screencap is used.",
+ "not_covered": {
+  "amb.*": "Ambitions are icon-only by design; no stills.",
+  "cutout": "Character cut-outs and crops wait for the skin refactor's cut-out tool.",
+  "grade": "The Red Keep dusk grade is applied later, as for muhtesem."
+ },
+ "frieze": {
+  "row": [
+   "char.rustem",
+   "char.hurrem",
+   "char.suleyman",
+   "char.ibrahim",
+   "char.hatice",
+   "char.mustafa"
+  ],
+  "note": "Littlefinger, Cersei, Robert (centre, largest), Ned, Varys, Joffrey, cut from their -1 portraits. Cersei, Ned, Littlefinger and Varys sit on soft, even backgrounds that should cut out cleanly; Robert (wicker behind the crown) and Joffrey (the Iron Throne's blades behind him) are busy and may need hand cleanup."
+ },
+ "rights": "All stills and portraits belong to HBO. Private, non-commercial use among friends only; do not publish the game or these files.",
+ "entities": {
+  "card.akil-hocasi": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.akil-hocasi-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/d/d6/Syrio%27s_last_stand.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ASyrio%27s_last_stand.jpg",
+     "note": "Syrio's wooden sword against Meryn Trant and the Lannister guards, season 1 episode 8.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    },
+    {
+     "file": "card.akil-hocasi-2.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/0/0c/Syrio_Forel.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ASyrio_Forel.jpg",
+     "note": "Syrio with his wooden swords facing Arya, season 1.",
+     "focus": [
+      0.4,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.azil": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.azil-1.jpg",
+     "size": [
+      1018,
+      571
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/1/1a/Ned%27s_execution.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ANed%27s_execution.jpg",
+     "note": "Ilyn Payne with Ice above Ned on the steps of Baelor, season 1 episode 9: the Hand removed for good. Dark subject.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.casus": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.casus-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/60/Varys_and_Illyrio.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AVarys_and_Illyrio.jpg",
+     "note": "Varys and Illyrio plotting in the dungeons, the talk Arya overhears, season 1 episode 5.",
+     "focus": [
+      0.5,
+      0.45
+     ]
+    }
+   ]
+  },
+  "card.defterdar": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.defterdar-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/2/2c/Tower_of_the_Hand_Official_Guide.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ATower_of_the_Hand_Official_Guide.jpg",
+     "note": "The Hand's solar, Ned at his desk with papers, season 1.",
+     "focus": [
+      0.6,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.iftira": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "card.iftira-1.jpg",
+     "size": [
+      621,
+      627
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/69/Unella.png",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AUnella.png",
+     "note": "Septa Unella, who leads the shaming, season 5–6 (a scene card, so later seasons are allowed).",
+     "focus": [
+      0.471,
+      0.246
+     ]
+    }
+   ]
+  },
+  "card.kefalet": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.kefalet-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/0/0d/Tourney.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ATourney.jpg",
+     "note": "Knights tilting in the lists at the Hand's Tourney, season 1 episode 4–5.",
+     "focus": [
+      0.35,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.muhur": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.muhur-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/8/8c/Eddard%27s_letter.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AEddard%27s_letter.jpg",
+     "note": "A letter sealed with wax, close-up, season 1.",
+     "focus": [
+      0.45,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.muhurlu-evrak": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "card.muhurlu-evrak-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/b/b4/Winterfell_ravens.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AWinterfell_ravens.jpg",
+     "note": "Weak stand-in: Winterfell under ravens (season 1). No still of the hidden letter was found.",
+     "focus": [
+      0.5,
+      0.4
+     ]
+    }
+   ]
+  },
+  "card.nazar": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.nazar-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/d/d7/Robert-Baratheon-game-of-thrones-19598756-1280-720.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ARobert-Baratheon-game-of-thrones-19598756-1280-720.jpg",
+     "note": "Robert at the roadside table, looking out, season 1.",
+     "focus": [
+      0.45,
+      0.4
+     ]
+    }
+   ]
+  },
+  "card.nobet": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "card.nobet-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/8/8e/1x07Goldcloaks.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3A1x07Goldcloaks.jpg",
+     "note": "Gold Cloaks standing guard with spears in the throne room, season 1 episode 7.",
+     "focus": [
+      0.5,
+      0.45
+     ]
+    }
+   ]
+  },
+  "card.saray-tabibi": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.saray-tabibi-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/65/Robert_and_Lancel.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ARobert_and_Lancel.jpg",
+     "note": "Lancel attending Robert in his chambers before the hunt, season 1 episode 7.",
+     "focus": [
+      0.5,
+      0.45
+     ]
+    },
+    {
+     "file": "card.saray-tabibi-2.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/3/3f/Lancel.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ALancel.jpg",
+     "note": "Lancel holding the King's cup, season 1 (repeats the Retainer face).",
+     "focus": [
+      0.6,
+      0.4
+     ]
+    }
+   ]
+  },
+  "card.sukut": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.sukut-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/9/92/Mordane_praises_Sansa.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AMordane_praises_Sansa.jpg",
+     "note": "Sansa at her needlework under Septa Mordane, season 1 episode 1.",
+     "focus": [
+      0.5,
+      0.45
+     ]
+    }
+   ]
+  },
+  "card.teftis": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.teftis-1.jpg",
+     "size": [
+      1200,
+      643
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/4/49/Eddard_and_the_book.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AEddard_and_the_book.jpg",
+     "note": "Ned reading the Lineages by candlelight, season 1.",
+     "focus": [
+      0.25,
+      0.4
+     ]
+    },
+    {
+     "file": "card.teftis-2.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/a/ae/House_Baratheon_lineage.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AHouse_Baratheon_lineage.jpg",
+     "note": "The House Baratheon page of the Lineages, season 1.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "card.valide": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "card.valide-1.jpg",
+     "size": [
+      1600,
+      898
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/f/f5/Jaime_on_the_Iron_Throne.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AJaime_on_the_Iron_Throne.jpg",
+     "note": "The Iron Throne in the throne room, season 1 (wiki title \"Jaime on the Iron Throne\"; the sitter is small in frame).",
+     "focus": [
+      0.5,
+      0.45
+     ]
+    },
+    {
+     "file": "card.valide-2.jpg",
+     "size": [
+      1600,
+      1065
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/7/71/Joffrey_throne_season_2.jpeg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AJoffrey_throne_season_2.jpeg",
+     "note": "Joffrey on the Iron Throne, season 2 (Joffrey is a Character).",
+     "focus": [
+      0.4,
+      0.4
+     ]
+    }
+   ]
+  },
+  "char.barbaros": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.barbaros-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816013755id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/arya-stark-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Maisie Williams as Arya, season 2 (Harrenhal); season 1 has no large HBO portrait.",
+     "focus": [
+      0.596,
+      0.405
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.gritti": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.gritti-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20131005191803id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/tyrion-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Peter Dinklage as Tyrion, season 1 (furs, Winterfell).",
+     "focus": [
+      0.54,
+      0.475
+     ],
+     "posed": true
+    },
+    {
+     "file": "char.gritti-2.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816011444id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/tyrion-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Tyrion, season 2 HBO portrait (Hand's doublet).",
+     "focus": [
+      0.56,
+      0.398
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.hatice": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.hatice-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20130115184220id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/maester-varys-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Conleth Hill as Varys, season 1.",
+     "focus": [
+      0.481,
+      0.426
+     ],
+     "posed": true
+    },
+    {
+     "file": "char.hatice-2.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816015535id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/varys-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Varys, season 2 HBO portrait.",
+     "focus": [
+      0.584,
+      0.383
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.hurrem": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.hurrem-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20160816174946id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/cersei-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Lena Headey as Cersei, season 1 look (long hair). Seated, faces slightly left.",
+     "focus": [
+      0.501,
+      0.385
+     ],
+     "posed": true
+    },
+    {
+     "file": "char.hurrem-2.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816022804id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/cersei-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Cersei, season 2 HBO portrait (red gown).",
+     "focus": [
+      0.564,
+      0.371
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.ibrahim": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.ibrahim-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906102217id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/eddard-ned-stark-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Sean Bean as Eddard Stark in King's Landing leathers, season 1.",
+     "focus": [
+      0.362,
+      0.416
+     ],
+     "posed": true
+    },
+    {
+     "file": "char.ibrahim-2.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816023201id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/eddard-ned-stark-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Eddard at Winterfell in furs, season 1 (1024 px).",
+     "focus": [
+      0.477,
+      0.418
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.mustafa": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.mustafa-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816011721id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/joffrey-baratheon-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Jack Gleeson as Joffrey on the Iron Throne, season 2 (crowned king).",
+     "focus": [
+      0.493,
+      0.461
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.rustem": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.rustem-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816020503id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/petyr-baelish-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Aidan Gillen as Petyr Baelish, season 1.",
+     "focus": [
+      0.51,
+      0.445
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.sahsultan": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.sahsultan-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906102802id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/renly-baratheon-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Gethin Anthony as Renly, season 2, wearing his antler crown as a claimant king.",
+     "focus": [
+      0.497,
+      0.533
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.sarlken": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.sarlken-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120919140113id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/jon-snow-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Kit Harington as Jon Snow, season 1.",
+     "focus": [
+      0.554,
+      0.473
+     ],
+     "posed": true
+    },
+    {
+     "file": "char.sarlken-2.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816012143id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/jon-snow-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Jon Snow, season 2 (Night's Watch black, snow).",
+     "focus": [
+      0.415,
+      0.44
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.suleyman": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.suleyman-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20160129144516id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/robert-baratheon-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Mark Addy as Robert Baratheon, season 1, crowned, at Winterfell.",
+     "focus": [
+      0.486,
+      0.427
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "char.tahmasp": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "char.tahmasp-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120626030612id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/daenerys-targaryen-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Emilia Clarke as Daenerys, season 2 (Qarth).",
+     "focus": [
+      0.553,
+      0.431
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.ayas": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.ayas-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/d/d0/Ilyn_Payne.png",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AIlyn_Payne.png",
+     "note": "Wilko Johnson as Ilyn Payne, season 1 (screencap; no HBO portrait exists).",
+     "focus": [
+      0.371,
+      0.374
+     ],
+     "posed": false
+    },
+    {
+     "file": "comp.ayas-2.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/60/Ilyn_Payne_1x02.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AIlyn_Payne_1x02.jpg",
+     "note": "Ilyn Payne in profile, season 1 episode 2.",
+     "focus": [
+      0.435,
+      0.455
+     ],
+     "posed": false
+    }
+   ]
+  },
+  "comp.bali": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.bali-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816003622id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/sandor-hound-clegane-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Rory McCann as Sandor Clegane, season 2.",
+     "focus": [
+      0.553,
+      0.344
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.daye": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.daye-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816011540id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/jaime-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Nikolaj Coster-Waldau as Jaime, season 2, a prisoner in Robb's camp; no season 1 HBO portrait was archived.",
+     "focus": [
+      0.577,
+      0.43
+     ],
+     "posed": true
+    },
+    {
+     "file": "comp.daye-2.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/e/e8/Jaime_1x05.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AJaime_1x05.jpg",
+     "note": "Jaime with sword drawn in the street fight, season 1 episode 5 (screencap).",
+     "focus": [
+      0.482,
+      0.196
+     ],
+     "posed": false
+    }
+   ]
+  },
+  "comp.ebussuud": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.ebussuud-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906123945id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/jory-cassel-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Jamie Sives as Jory Cassel, season 1.",
+     "focus": [
+      0.479,
+      0.456
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.firuze": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.firuze-1.jpg",
+     "size": [
+      780,
+      1072
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/7/79/Loras-Tyrell-HD.png",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ALoras-Tyrell-HD.png",
+     "note": "Finn Jones as Loras Tyrell; season 2–3 doublet (season unconfirmed). No HBO portrait archived.",
+     "focus": [
+      0.548,
+      0.429
+     ],
+     "posed": false
+    }
+   ]
+  },
+  "comp.gulaga": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.gulaga-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906102721id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/septa-mordane-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Susan Brown as Septa Mordane, season 1.",
+     "focus": [
+      0.541,
+      0.441
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.gulfem": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.gulfem-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816005513id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/sansa-stark-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Sophie Turner as Sansa, season 2.",
+     "focus": [
+      0.592,
+      0.39
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.gulsah": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.gulsah-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816013943id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s2/shae-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Sibel Kekilli as Shae, season 2.",
+     "focus": [
+      0.536,
+      0.398
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.iskender": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.iskender-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906110233id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/janos-slynt-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Dominic Carter as Janos Slynt in his Gold Cloak helmet, season 1. Small face, white ground.",
+     "focus": [
+      0.51,
+      0.32
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.lokman": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.lokman-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816014607id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/barristan-selmy-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Ian McElhinney as Barristan Selmy, season 1.",
+     "focus": [
+      0.488,
+      0.434
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.matrakci": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.matrakci-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/b/b6/Ros.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ARos.jpg",
+     "note": "Esmé Bianco as Ros, season 1 (screencap, Winterfell).",
+     "focus": [
+      0.623,
+      0.281
+     ],
+     "posed": false
+    },
+    {
+     "file": "comp.matrakci-2.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906194459id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/ros-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Ros, HBO portrait from season 3 (same look as seasons 1–2).",
+     "focus": [
+      0.534,
+      0.558
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.nigar": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.nigar-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20161116012727id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/maester-pycelle-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Julian Glover as Grand Maester Pycelle, season 1. Dark frame.",
+     "focus": [
+      0.487,
+      0.346
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.seker": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.seker-1.jpg",
+     "size": [
+      1024,
+      576
+     ],
+     "source_url": "http://web.archive.org/web/20120816014627id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/lancel-lannister-1024.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Eugene Simon as Lancel Lannister, season 1.",
+     "focus": [
+      0.51,
+      0.487
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "comp.sumbul": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "comp.sumbul-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "http://web.archive.org/web/20150906195443id_/http://i.lv3.hbo.com/assets/images/series/game-of-thrones/character/s5/syrio-forel-1920.jpg",
+     "source_page": "https://web.archive.org/web/2012/http://www.hbo.com/game-of-thrones/cast-and-crew/",
+     "note": "HBO official character portrait (hbo.com cast-and-crew, archived by the Wayback Machine). Miltos Yerolemou as Syrio Forel with Arya at the right edge, season 1.",
+     "focus": [
+      0.549,
+      0.442
+     ],
+     "posed": true
+    }
+   ]
+  },
+  "crisis.divan": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "crisis.divan-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/65/Littlefinger_and_Ned_1x03.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ALittlefinger_and_Ned_1x03.jpg",
+     "note": "Ned pins Littlefinger to the wall, season 1 episode 3. Stand-in: no wide season 1 council still was found.",
+     "focus": [
+      0.5,
+      0.4
+     ]
+    }
+   ]
+  },
+  "crisis.harem": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "crisis.harem-1.jpg",
+     "size": [
+      1280,
+      718
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/2/24/Littlefinger%27s_brothel_entrance_mockingbird_sigil.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ALittlefinger%27s_brothel_entrance_mockingbird_sigil.jpg",
+     "note": "Weak: the door of Littlefinger's brothel with the mockingbird sigil.",
+     "focus": [
+      0.7,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.hazine": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.hazine-1.jpg",
+     "size": [
+      1600,
+      900
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/a/a0/Small_Council_Official_Guide.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ASmall_Council_Official_Guide.jpg",
+     "note": "The Small Council chamber in the Red Keep, empty.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.irakeyn": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.irakeyn-1.jpg",
+     "size": [
+      1600,
+      898
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/3/36/Daenerys-capture-dothraki.png",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ADaenerys-capture-dothraki.png",
+     "note": "A Dothraki khalasar riding, season 6 (a scene, so a later season is allowed).",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.isabella": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.isabella-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/2/24/Mycah.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AMycah.jpg",
+     "note": "Mycah, the butcher's boy, at the Trident on the Kingsroad, season 1 episode 2.",
+     "focus": [
+      0.6,
+      0.45
+     ]
+    }
+   ]
+  },
+  "crisis.istanbul": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.istanbul-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/8/80/Cripples-Bastards-and-Broken-Things-sansa-stark-23083167-1280-720.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ACripples-Bastards-and-Broken-Things-sansa-stark-23083167-1280-720.jpg",
+     "note": "The stands at the Hand's Tourney, season 1 episode 4.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.macar": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.macar-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/4/48/Lannister_camp.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ALannister_camp.jpg",
+     "note": "The Lannister host camped in the Riverlands, season 1.",
+     "focus": [
+      0.5,
+      0.55
+     ]
+    }
+   ]
+  },
+  "crisis.muhur": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.muhur-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/7/7a/Jon_Arryn_funeral_bier.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AJon_Arryn_funeral_bier.jpg",
+     "note": "Jon Arryn on his bier, stones on his eyes, season 1 episode 1.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.sehzade": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.sehzade-1.jpg",
+     "size": [
+      1207,
+      865
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/a/a6/Cersei-win-or-die1.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ACersei-win-or-die1.jpg",
+     "note": "Ned and Cersei in the godswood, season 1 episode 7.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.venedik": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.venedik-1.jpg",
+     "size": [
+      1366,
+      768
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/7/77/Iron_Bank_of_Braavos.png",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AIron_Bank_of_Braavos.png",
+     "note": "The Iron Bank of Braavos, season 4.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    },
+    {
+     "file": "crisis.venedik-2.jpg",
+     "size": [
+      1366,
+      768
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/5/57/Davos_at_the_Iron_Bank_of_Braavos.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3ADavos_at_the_Iron_Bank_of_Braavos.jpg",
+     "note": "Davos before the Iron Bank, season 4.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "crisis.yeniceri": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "crisis.yeniceri-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/6/67/Eddard_Jaime_Confrontation.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AEddard_Jaime_Confrontation.jpg",
+     "note": "Jaime's men and the Hand's guard fighting in the rain, season 1 episode 5.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "term.hiyanet": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "term.hiyanet-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/e/e3/Petyr_1x07.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3APetyr_1x07.jpg",
+     "note": "Littlefinger in the throne room at the moment he betrays Ned (\"I did warn you not to trust me\"), season 1 episode 7.",
+     "focus": [
+      0.743,
+      0.407
+     ]
+    }
+   ]
+  },
+  "term.hizmet": {
+   "status": "weak",
+   "candidates": [
+    {
+     "file": "term.hizmet-1.jpg",
+     "size": [
+      1280,
+      720
+     ],
+     "source_url": "https://static.wikia.nocookie.net/gameofthrones/images/7/72/Winter_is_Coming_Myrcella_Tommen_intro.jpg",
+     "source_page": "https://gameofthrones.fandom.com/wiki/File%3AWinter_is_Coming_Myrcella_Tommen_intro.jpg",
+     "note": "Weak: the royal party arrives at Winterfell, season 1 episode 1. No kneeling still was found.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  }
+ }
+}
