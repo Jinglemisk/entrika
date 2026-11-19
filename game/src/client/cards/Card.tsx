@@ -2,6 +2,7 @@
 // Thin React layer over the card string builders. The markup is built once per distinct spec and set as innerHTML.
 import { memo, useLayoutEffect, useMemo, useRef, type RefObject } from 'react';
 import { backHtml, cardHtml, CARD_DEFS, type BackKind, type CardSpec } from './render.ts';
+import { backWords } from '../cardSpecs.ts';
 import './cards.css';
 
 // Chromium can paint an image that decodes after its SVG filter (the photo grade) as blank: drop the filter when
@@ -38,10 +39,12 @@ export const Card = memo(function Card({ spec, width, className, whole }: { spec
   return <Slot html={html} width={width} className={[className, whole && 'whole'].filter(Boolean).join(' ') || undefined} />;
 });
 
-export const CardBack = memo(function CardBack({ kind, width, className }: { kind: BackKind; width: number; className?: string }) {
-  const html = useMemo(() => backHtml(kind), [kind]);
+/** Not memoised: its word follows the mod and language, which aren't props. */
+export function CardBack({ kind, width, className }: { kind: BackKind; width: number; className?: string }) {
+  const { word, label } = backWords(kind);
+  const html = useMemo(() => backHtml(kind, word, label), [kind, word, label]);
   return <Slot html={html} width={width} className={className} />;
-});
+}
 
 /** The gradients, patterns and filters every card points at. Render once per page, before or beside the cards. */
 export const CardDefs = memo(function CardDefs() {

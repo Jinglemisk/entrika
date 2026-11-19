@@ -20,7 +20,7 @@ async function client(): Promise<Client> {
     const m = JSON.parse(String(e.data));
     if (m.token) c.token = m.token;
     if (m.t === 'room') c.room = m.room;
-    if (m.t === 'error') c.errors.push(m.msg);
+    if (m.t === 'error') c.errors.push(m.key);
   };
   await new Promise(r => (ws.onopen = r));
   ws.send(JSON.stringify({ t: 'hello' }));
@@ -58,7 +58,7 @@ test('five phones play a full game by room code', async () => {
     const victim = others[2].room.mine[0];
     send(spoof, { t: 'act', seat: victim, action: { t: 'answer', ask: 1, value: null } });
     await sleep(200);
-    assert.ok(spoof.errors.some(e => e.includes('senin değil')), 'a phone cannot act for another seat');
+    assert.ok(spoof.errors.includes('err.notYourSeat'), 'a phone cannot act for another seat');
 
     let rounds = 0;
     while (!host.room.game?.winner) {

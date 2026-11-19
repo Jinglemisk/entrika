@@ -2,13 +2,14 @@
 // player has pressed Devam (the engine waits on an "ack" from everyone); the prompt below holds the button.
 import { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { MISC, RULES, crisisById, crisisField, intrigueById, type Moment, type PID, type RevealedPlay } from '../../engine/index.ts';
+import { RULES, crisisById, crisisField, intrigueById, type Moment, type PID, type RevealedPlay } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
 import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
+import { crisisWords, kaderWords, treasonWords } from '../words.ts';
 import { sfx } from '../sound.ts';
 import { Slots } from './Mizan.tsx';
 import { useGame } from './ctx.ts';
@@ -41,13 +42,13 @@ function CrisisMoment() {
       <motion.div className="mo-card" {...flip()}><Card spec={spec({ t: 'crisis', id: c.id })} width={118} /></motion.div>
       <div className="mo-col">
         <p className="h-step">{t('crisisN', { n: g.crisisNo })}</p>
-        <p className="mo-title">{c.name}</p>
+        <p className="mo-title">{crisisWords(c.id).name}</p>
         <p className="mo-line"><Em k={f} s={22} /><b>{t(f)}</b><span>{t(`fieldOpen.${f}`)}{g.field && ` ${t('moment.cephe')}`}</span></p>
         <p className="mo-line"><Em k="intrigue" s={22} />
           {drew.length ? <>{drew.map((id, i) => <span key={i} className="who plus"><Head character={g.players[id].character} />{g.players[id].name}<b>+1</b></span>)}</>
             : <span>{t('moment.nobodyDraws')}</span>}
         </p>
-        <p className="mo-note">{c.text}</p>
+        <p className="mo-note">{crisisWords(c.id).text}</p>
       </div>
     </div>
   );
@@ -95,7 +96,7 @@ function ResultMoment() {
   const k = g.kader!;
   const card = k.played!;
   const power = card === 'x' ? RULES.treasonPowers[String(g.tracks.treason)] : null;
-  const def = power ? MISC.treason[power as 'sorusturma'] : null;
+  const def = power ? treasonWords(power) : null;
   // Nüfuz that moved with the result (Kefalet, Divan Nüfuzu, Faiz): the Hüküm screen may cover the seats next
   const from = g.log.findLastIndex(e => e.k === 'result');
   const moved = g.log.slice(from + 1).filter(e => (e.k === 'gain' || e.k === 'lose') && e.c === g.crisisNo)
@@ -105,7 +106,7 @@ function ResultMoment() {
       <motion.div className="mo-card" {...flip()}><Card spec={spec({ t: 'kader', k: card })} width={118} /></motion.div>
       <div className="mo-col">
         <p className="h-step">{t('resultN', { n: g.crisisNo })}</p>
-        <p className={`mo-title ${card === 'x' ? 'al' : 'mal'}`}><Em k={card === 'x' ? 'hiyanet' : 'hizmet'} s={30} />{MISC.kader[card].name}</p>
+        <p className={`mo-title ${card === 'x' ? 'al' : 'mal'}`}><Em k={card === 'x' ? 'hiyanet' : 'hizmet'} s={30} />{kaderWords(card).name}</p>
         <p className="mo-line"><Who id={k.first} /><Gl k="next" /><Who id={k.second} /><span>{t('moment.kaderWho')}</span></p>
         {moved.length > 0 && (
           <p className="mo-line"><Em k="influence" s={22} />

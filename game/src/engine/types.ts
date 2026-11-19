@@ -184,4 +184,9 @@ export type Action =
   | { t: 'power'; power: string; target?: PID; also?: PID }   // also: Sezgi's second player
   | { t: 'retract' };
 
-export class RuleError extends Error {}
+/** A broken rule. The message is a key into the interface strings (err.*), with the values it needs, so each
+ *  phone shows it in its own language. */
+export class RuleError extends Error {
+  vars?: Record<string, unknown>;
+  constructor(key: string, vars?: Record<string, unknown>) { super(key); this.vars = vars; }
+}

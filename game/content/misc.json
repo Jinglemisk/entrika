@@ -1,44 +1,29 @@
 {
   "kader": {
     "h": {
-      "name": "Hizmet",
-      "text": ["Sadakat yoluna konur.", "Hüküm: Süleyman bir Vekile 1 Nüfuz verir."],
-      "flavor": "Devlete hizmet, Padişaha sadakat.",
+      "about": "The helpful Kader card: goes on the Loyalty track; the Decree then gives a Minister 1 Influence.",
       "art": { "src": "/art/directions/img/term.hizmet-1.jpg", "pos": "50% 50%" }
     },
     "x": {
-      "name": "Hıyanet",
-      "text": ["İhanet yoluna konur.", "Hüküm: Süleyman bir Vekilden 1 Nüfuz alır."],
-      "flavor": "«Sultanım, yemin ederim size yardım etmek istedim, fakat yapamadım!»",
+      "about": "The harmful Kader card: goes on the Treason track; the Decree then takes 1 Influence from a Minister.",
       "art": { "src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%" }
     }
   },
   "taraf": {
-    "loyalist": {
-      "name": "Sadık",
-      "text": ["Sadakat yolunda 4 Hizmet olunca kazanırsın.", "Bu kart gizlidir."],
-      "flavor": "Padişahım çok yaşa."
-    },
+    "loyalist": { "about": "Allegiance card: Loyalist. Wins with 4 Hizmet on the Loyalty track." },
     "traitor": {
-      "name": "Hain",
-      "text": ["İhanet yolunda 5 Hıyanet olunca kazanırsın.", "Hainler birbirini tanır."],
-      "flavor": "Gölgede bekleyen sabırlıdır."
+      "about": "Allegiance card: Traitor. Wins with 5 Hıyanet on the Treason track. Traitors know each other."
     }
   },
   "treason": {
-    "1": { "name": "Güç yok", "text": "Hiçbir şey olmaz." },
+    "1": { "about": "Treason track space 1: no power." },
     "sorusturma": {
-      "name": "Soruşturma",
-      "text": "Süleyman bir müfettiş seçer. Müfettiş bir oyuncunun Taraf kartına gizlice bakar, sonra istediğini söyler."
+      "about": "Treason track space 2: the Sultan names an investigator, who secretly sees one player's Allegiance."
     },
     "hazineDefteri": {
-      "name": "Hazine Defteri",
-      "text": "Gelecek krizden önce Süleyman bir oyuncu seçer. O oyuncu Kader destesinin üstteki 3 kartına gizlice bakar."
+      "about": "Treason track space 3: before the next crisis the Sultan names a player who secretly sees the top 3 Kader cards."
     },
-    "fermanRefresh": {
-      "name": "Ferman yenilenir",
-      "text": "Süleyman Ferman'ı yeniden kullanabilir. Elinde birden fazla Ferman olmaz."
-    },
-    "death": { "name": "Süleyman'ın ölümü", "text": "Hainler kazanır." }
+    "fermanRefresh": { "about": "Treason track space 4: the Sultan may use his Ferman again." },
+    "death": { "about": "Treason track space 5: the Sultan dies and the Traitors win.", "icon": "death" }
   }
 }

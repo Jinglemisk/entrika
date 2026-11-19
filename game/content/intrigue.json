@@ -1,128 +1,100 @@
 [
   {
     "id": "akil-hocasi",
-    "name": "Oyunbozan",
     "copies": { "divan": 2, "harem": 2 },
     "target": "player",
-    "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.",
-    "flavor": "Oyunu gören, oyuna gelmez.",
+    "about": "Protection. Played on a player: cancels every other Intrigue card of its field played on them this crisis, in this wave and later ones. These cards don't cancel each other.",
     "art": { "src": "/art/directions/img/card.akil-hocasi-1.jpg", "pos": "62% 35%" }
   },
   {
     "id": "muhur",
-    "name": "Mühür",
     "copies": { "divan": 3 },
     "target": "minister",
-    "text": "Bir Vekile koy. Bu kriz Entrika kartlarıyla değiştirilemez; Ferman yine değiştirir.",
-    "flavor": "Mühür kimdeyse söz ondadır.",
+    "about": "Played on a Minister: Intrigue cards can't replace them this crisis. The Sultan's Ferman still can.",
     "art": { "src": "/art/directions/img/card.muhur-1.jpg", "pos": "55% 45%" }
   },
   {
     "id": "valide",
-    "name": "Valide'nin Buyruğu",
     "copies": { "divan": 4 },
     "target": "minister",
-    "text": "Bir Vekile koy. Onu uygun bir oyuncuyla değiştir, kendini de seçebilirsin. Yeni oyuncu aynı koltuğa oturur.",
-    "flavor": "Sarayda son sözü Valide söyler.",
+    "about": "Played on a Minister: replace them with any eligible player you choose, yourself included. The newcomer takes the same seat.",
     "art": { "src": "/art/directions/img/roster-card.valide.jpg", "pos": "50% 16%" }
   },
   {
     "id": "azil",
-    "name": "Azil",
     "copies": { "divan": 3 },
     "target": "minister",
-    "text": "Bir Vekile koy. Süleyman onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
-    "flavor": "Padişahın bir sözü, bir vezirin sonu.",
+    "about": "Played on a Minister: the Sultan replaces them with an eligible player of his choice. The newcomer takes the same seat.",
     "art": { "src": "/art/directions/img/card.azil-1.jpg", "pos": "54% 48%" }
   },
   {
     "id": "casus",
-    "name": "Mantık",
     "copies": { "harem": 2 },
     "target": "other",
-    "text": "Tertip bitince, bu oyuncunun bu kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.",
-    "flavor": "Hesap tutarsa, fail ortaya çıkar.",
+    "about": "Played on another player: when Court ends, secretly see every Intrigue card they played this crisis, and on whom.",
     "art": { "src": "/art/directions/img/card.casus-1.jpg", "pos": "35% 45%" }
   },
   {
     "id": "muhurlu-evrak",
-    "name": "Mühürlü Evrak",
     "copies": { "harem": 2 },
     "target": "none",
-    "text": "Kader destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
-    "flavor": "Mührü kırılmadan okunan mektup.",
+    "about": "Played with no target: secretly look at the top 3 Kader cards and put them back in the same order.",
     "art": { "src": "/art/directions/img/card.muhurlu-evrak-1.jpg", "pos": "50% 35%" }
   },
   {
     "id": "saray-tabibi",
-    "name": "Çeşnigir",
     "copies": { "harem": 2 },
     "target": "player",
-    "text": "Bu oyuncu bu kriz, Hüküm dahil, Nüfuz kaybetmez.",
-    "flavor": "Zehir önce onun diline değer.",
+    "about": "Played on a player: they can't lose Influence this crisis, Decree included.",
     "art": { "src": "/art/directions/img/card.saray-tabibi-1.jpg", "pos": "65% 40%" }
   },
   {
     "id": "iftira",
-    "name": "İftira",
     "copies": { "harem": 3 },
     "target": "player",
-    "text": "Bu oyuncu 1 Nüfuz kaybeder.",
-    "flavor": "Bir isim, bir fısıltı, bir düşüş.",
+    "about": "Played on a player: they lose 1 Influence.",
     "art": { "src": "/art/directions/img/card.iftira-1.jpg", "pos": "76% 35%" }
   },
   {
     "id": "kefalet",
-    "name": "Kefalet",
     "copies": { "harem": 3 },
     "target": "minister",
-    "text": "Bir Vekile koy. Kader'de hâlâ Vekilse: Hizmet oynanırsa 1 Nüfuz kazanırsın, Hıyanet oynanırsa 1 Nüfuz kaybedersin.",
-    "flavor": "Kefil olan, borcu da üstlenir.",
+    "about": "Played on a Minister: if they still hold a seat at the Kader step, you gain 1 Influence when Hizmet is played and lose 1 when Hıyanet is played.",
     "art": { "src": "/art/directions/img/card.kefalet-1.jpg", "pos": "30% 50%" }
   },
   {
     "id": "teftis",
-    "name": "Teftiş",
     "copies": { "divan": 3 },
     "target": "minister",
-    "text": "Bir Vekile koy. Kader adımından sonra o Vekilin attığı kart ya da kartlara gizlice bak.",
-    "flavor": "Defterler yalan söylemez.",
+    "about": "Played on a Minister: after the Kader step, secretly see the card or cards that Minister discarded.",
     "art": { "src": "/art/directions/img/card.teftis-1.jpg", "pos": "50% 35%" }
   },
   {
     "id": "defterdar",
-    "name": "Defterdar",
     "copies": { "divan": 2 },
     "target": "first",
-    "text": "Birinci Vekile koy. Kader'de hâlâ Birinci Vekilse 3 yerine 4 kart çeker, 2'sini atar.",
-    "flavor": "Hesabı bilen, hangi kalemi sileceğini de bilir.",
+    "about": "Played on the First Minister: if they still hold the seat at the Kader step, they draw 4 Kader cards instead of 3 and discard 2.",
     "art": { "src": "/art/directions/img/card.defterdar-1.jpg", "pos": "70% 40%" }
   },
   {
     "id": "nobet",
-    "name": "Nöbet",
     "copies": { "divan": 2 },
     "target": "player",
-    "text": "Tertip bitince, bu kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.",
-    "flavor": "Kapıyı kim çaldıysa, nöbetçi bilir.",
+    "about": "Played on a player: when Court ends, pick one card other players played on them this crisis and secretly learn who played it.",
     "art": { "src": "/art/directions/img/card.nobet-1.jpg", "pos": "60% 40%" }
   },
   {
     "id": "nazar",
-    "name": "Nazar",
     "copies": { "harem": 2 },
     "target": "minister",
-    "text": "Bir Vekile koy. Bu kriz Hüküm bu Vekile düşerse 1 yerine 2 Nüfuz verir ya da alır.",
-    "flavor": "Padişahın nazarı ya yüceltir ya yakar.",
+    "about": "Played on a Minister: if this crisis's Decree falls on them, it gives or takes 2 Influence instead of 1.",
     "art": { "src": "/art/directions/img/card.nazar-1.jpg", "pos": "55% 30%" }
   },
   {
     "id": "sukut",
-    "name": "Sükût",
     "copies": { "harem": 2 },
     "target": "other",
-    "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.",
-    "flavor": "Sarayda susmayı bilen uzun yaşar.",
+    "about": "Played on another player: they can't play an Intrigue card in the next wave.",
     "art": { "src": "/art/directions/img/card.sukut-1.jpg", "pos": "68% 40%" }
   }
 ]

@@ -1,86 +1,54 @@
 [
   {
     "id": "divanda-nufuz",
-    "name": "Divanda Nüfuz",
     "goal": { "type": "unseatedByIntrigue" },
-    "text": "Bir Entrika kartıyla bir Vekili koltuğundan et.",
-    "flavor": "Vezir bir sözle oturur, bir sözle kalkar."
+    "about": "Goal: remove a Minister from their seat with an Intrigue card."
   },
   {
     "id": "suphe",
-    "name": "Şüphe Altında",
     "goal": { "type": "ministerOnHiyanet" },
-    "text": "Hıyanet oynandığında Vekil ol.",
-    "flavor": "Ateş olmayan yerden duman çıkmaz."
+    "about": "Goal: be a Minister when Hıyanet is played."
   },
   {
     "id": "takdir",
-    "name": "Padişahın Takdiri",
     "goal": { "type": "ministerOnHizmet" },
-    "text": "Hizmet oynandığında Vekil ol.",
-    "flavor": "Bir bakışı bin altına bedel."
+    "about": "Goal: be a Minister when Hizmet is played."
   },
-  {
-    "id": "gozden",
-    "name": "Gözden Düşmek",
-    "goal": { "type": "lostInfluence" },
-    "text": "Nüfuz kaybet.",
-    "flavor": "Düşenin dostu olmaz; olsa da gizlidir."
-  },
+  { "id": "gozden", "goal": { "type": "lostInfluence" }, "about": "Goal: lose Influence." },
   {
     "id": "kulisci",
-    "name": "Kulisçi",
     "goal": { "type": "distinctTargets", "n": 3 },
-    "text": "Üç farklı oyuncuya Entrika kartı koy.",
-    "flavor": "Her kapıya bir anahtar."
+    "about": "Goal: play Intrigue cards on 3 different players, not counting yourself."
   },
   {
     "id": "yukselen",
-    "name": "Yükselen Yıldız",
     "goal": { "type": "appointedCrises", "n": 2 },
-    "text": "İki krizde Vekil ol.",
-    "flavor": "Sarayda yükselmek, düşmemekten zordur."
+    "about": "Goal: be appointed Minister in 2 different crises."
   },
-  {
-    "id": "itirazci",
-    "name": "İtirazcı",
-    "goal": { "type": "objected" },
-    "text": "Bir İtiraz yap.",
-    "flavor": "Susan razı sayılır."
-  },
+  { "id": "itirazci", "goal": { "type": "objected" }, "about": "Goal: make an Objection." },
   {
     "id": "hedef",
-    "name": "Hedef Tahtası",
     "goal": { "type": "targetedInCrisis", "n": 2 },
-    "text": "Aynı krizde başka oyuncular sana 2 ya da daha fazla Entrika kartı koysun.",
-    "flavor": "Ağaç ne kadar yüksekse rüzgârı o kadar çok alır."
+    "about": "Goal: have other players play 2 or more Intrigue cards on you in the same crisis."
   },
   {
     "id": "ortak",
-    "name": "Ortak Kader",
     "goal": { "type": "backedMinister" },
-    "text": "Bir Vekile Mühür ya da Kefalet koy.",
-    "flavor": "Aynı gemide olanlar birlikte batar."
+    "about": "Goal: play a muhur or kefalet card on a Minister."
   },
   {
     "id": "hazine",
-    "name": "Saray Hazinesi",
     "goal": { "type": "playedInCrisis", "n": 3 },
-    "text": "Bir krizde 3 Entrika kartı oyna.",
-    "flavor": "Biriktiren, ihtiyaç günü güler."
+    "about": "Goal: play 3 Intrigue cards in one crisis."
   },
   {
     "id": "koltuk",
-    "name": "Koltuk Kapmak",
     "goal": { "type": "seatByIntrigue" },
-    "text": "Bir Entrika kartıyla Vekil ol.",
-    "flavor": "Koltuk boş kalmaz."
+    "about": "Goal: become a Minister through an Intrigue card."
   },
   {
     "id": "kulak",
-    "name": "Kulak Misafiri",
     "goal": { "type": "usedInfoCard" },
-    "text": "Mantık, Mühürlü Evrak, Teftiş ya da Nöbet kullan.",
-    "flavor": "Duvarların kulağı, kapıların dili var."
+    "about": "Goal: use an information card: casus, muhurlu-evrak, teftis or nobet."
   }
 ]
