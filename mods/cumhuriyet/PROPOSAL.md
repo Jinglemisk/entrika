@@ -2,6 +2,8 @@
 
 Step 1 of the mod plan (`plan.md`, "The mods"). This file has names, concepts and art direction only. Card text and flavor lines come in step 2, assets in step 3. Prose is in English; every name is Turkish.
 
+**Approved** with the decisions in section 5. The tables below already include them.
+
 ## 1. The world
 
 ### The moment
@@ -44,7 +46,7 @@ Respect rules if A is chosen (they apply in steps 2 and 3):
 | The two Minister seats | **Birinci Vekil** / **İkinci Vekil**, the members of the İcra Vekilleri Heyeti handling this buhran |
 | Crisis | **Buhran**: a real event of 1920 to 1923 |
 | Court | **Gizli Celse**: the Assembly's closed sessions, where the real fights happened. Waves are **tur** (rounds of a vote) |
-| Objection | **Takrir**: a motion against a Vekil, paid with İtibar |
+| Objection | **İtiraz**: an objection to a Vekil from the floor, paid with İtibar |
 | Decree | **Takdir**: Gazi's verdict on a Vekil after the result. The word means both praise and discretion |
 | Kader deck | **Telgraf**: the war was run by telegraph. The Birinci Vekil reads three telegrams, holds one back and passes two. Nobody else sees what was held back |
 | Hizmet / Hıyanet | **Zafer** / **Hezimet**: the telegram brings a victory or a defeat |
@@ -77,7 +79,7 @@ Every glossary term in the manual, with the muhtesem name for reference.
 | Crisis | Kriz | **Buhran** | The word of the 1920s and 30s ("1929 buhranı") |
 | Court | Tertip | **Gizli Celse** | The closed sessions of the First Assembly |
 | Wave | dalga | **tur** | A round of voting |
-| Objection | İtiraz | **Takrir** | A parliamentary motion. Readability is an open question |
+| Objection | İtiraz | **İtiraz** | Kept: plain and clear at the table (*Takrir* was the period word, but few know it today) |
 | Decree | Hüküm | **Takdir** | Praise and discretion in one word |
 | Sultan's base power | Ferman | **Başkumandanlık** | The 1921 law that gave him the Assembly's powers over the army |
 | Kader deck | Kader | **Telgraf** | See above |
@@ -91,7 +93,7 @@ Every glossary term in the manual, with the muhtesem name for reference.
 | Loyalty track | Sadakat yolu | **Kurtuluş yolu** | The war of liberation |
 | Treason track | İhanet yolu | **Esaret yolu** | What Sevr meant for Anatolia |
 | Süleyman's death | Süleyman'ın ölümü | **Meclis dağılır** | The conspiracy's victory, not anyone's death |
-| Investigator (Treason 2) | müfettiş | **hâkim** | Belongs to the İstiklal Mahkemesi power |
+| Investigator (Treason 2) | müfettiş | **sorgu hâkimi** | Belongs to the Sorgu power |
 | Secret / Public | Gizli / – | **Gizli / Açık** | Kept |
 | Steps | Kriz, Atama, Tertip, Kader, Sonuç, Hüküm | **Buhran, Atama, Gizli Celse, Telgraf, Sonuç, Takdir** | |
 | Tagline | Sarayda bir hain var. | **Mecliste bir hain var.** | |
@@ -106,21 +108,21 @@ Facts in these tables are checked again when the flavor lines are written in ste
 |---|---|---|---|---|
 | `suleyman` | **Gazi Mustafa Kemal Paşa** | TBMM Reisi; Başkumandan from Aug 1921 | **Başkumandanlık**: replace a Vekil after Gizli Celse, even under İtimat Oyu. The 1921 law put him above the Assembly's own protections, for three months at a time | None. He gets the Esaret yolu powers |
 | `ibrahim` | **Fevzi Paşa** (Çakmak) | İcra Vekilleri Heyeti Reisi (Jan 1921 to Jul 1922), Erkân-ı Harbiye Reisi | **Heyet Reisi**: appoint both Vekils this buhran, yourself included. He chaired the council of Vekils | **Mareşal** (always): +1 İtibar whenever Zafer is played while you are a Vekil. The Assembly made him Mareşal after the Büyük Taarruz, a rank earned by victory |
-| `mustafa` | **İsmet Paşa** (İnönü) | Batı Cephesi Kumandanı from Nov 1920; chief delegate at Lozan | **İkinci Adam**: after Gizli Celse, before the Başkumandanlık, take a Vekil seat, even under İtimat Oyu. He took over the Western Front from Ali Fuat mid-war, and "İkinci Adam" is what history calls him (Aydemir's biography) | **Lozan** (always): whoever makes a Takrir against you gives you the İtibar they paid. At Lozan he let Curzon's objections pass him by and came home with what he came for |
-| `sahsultan` | **Hüseyin Avni Bey** (Ulaş) | Erzurum mebusu; leader of the İkinci Grup, the First Assembly's opposition | **İkinci Grup**: on your Takrir turn, make one free and choose the replacement. The opposition bloc's votes | **Veto**: name a player; next buhran they can't become a Vekil by any route |
+| `mustafa` | **İsmet Paşa** (İnönü) | Batı Cephesi Kumandanı from Nov 1920; chief delegate at Lozan | **İkinci Adam**: after Gizli Celse, before the Başkumandanlık, take a Vekil seat, even under İtimat Oyu. He took over the Western Front from Ali Fuat mid-war, and "İkinci Adam" is what history calls him (Aydemir's biography) | **Lozan** (always): whoever makes an İtiraz against you gives you the İtibar they paid. At Lozan he let Curzon's objections pass him by and came home with what he came for |
+| `sahsultan` | **Kâzım Karabekir Paşa** | Şark Cephesi Kumandanı; took Kars (Oct 1920) and signed the Gümrü treaty (Dec 1920); ran the eastern front with open independence from Ankara | **Şark Cephesi**: on your İtiraz turn, make one free and choose the replacement. The commander of a whole front could press Ankara to change its choices | **Kars Kalesi**: name a player; next buhran they can't become a Vekil by any route. The fortress he took keeps a door shut |
 | `hurrem` | **Halide Edib** (Adıvar) | Novelist; co-founded Anadolu Ajansı (Apr 1920); served at the front as onbaşı, then çavuş | **Anadolu Ajansı**: at the Takdir, you choose which Vekil it falls on, not Gazi. The news agency decides whose name the praise or the blame carries | **Kalem ve Tüfek**: play two cards in one tur. She worked with a pen and in uniform at the same time |
 | `hatice` | **Dr. Adnan Bey** (Adıvar) | Sıhhiye Vekili (1920–21), deputy speaker of the Assembly, Halide's husband | **Karantina**: before Gizli Celse, choose a player; this buhran Entrika can't unseat them and they lose no İtibar. The health minister isolates one person from the contagion | **Teşhis**: choose two players and secretly learn whether they share a side. A diagnosis |
 | `rustem` | **Celal Bey** (Bayar) | İktisat Vekili (1921–22); in 1919 organised resistance around İzmir under the alias "Galip Hoca" | **Çankaya**: before Gazi appoints, a private minute with him. Business in Ankara was settled at the Çankaya table | **Galip Hoca**: when a tur flips, move one Entrika played on you to another player. The man who worked under a false name sends trouble to another address |
 | `barbaros` | **Rauf Bey** (Orbay) | Captain of the cruiser Hamidiye in the Balkan War raids; Malta exile; Heyet Reisi (Jul 1922 to Aug 1923) | **Hamidiye**: take a random Entrika from another player's hand. A raider strikes where nobody expects | **Seyir Defteri**: after the Telgraf step, see what the Birinci Vekil discarded. A captain reads the log |
 | `gritti` (Ecnebi) | **Franklin-Bouillon** | French deputy; came to Ankara in 1921 and signed the Ankara İtilafnamesi (20 Ekim 1921) | **İtilafname**: name a player; the next time they gain İtibar, you gain 1. An agreement that pays both sides | **Diplomatik Çanta**: look at the top 3 Telgraf cards, put one on the bottom. The pouch no customs officer opens |
-| `sarlken` (Ecnebi) | **Lloyd George** | British Başvekil, the Greek campaign's backer; resigned on 19 Oct 1922 after the Çanak crisis | **İstifa**: in Atama, before Takrirs, hand your Vekil seat to an eligible player, gain 1 İtibar, don't draw. Leaving office on your own terms | **Güneş Batmaz** (always): your Entrika cards count as cards of an open field. The empire on which the sun never sets acts in every arena |
+| `sarlken` (Ecnebi) | **Lloyd George** | British Başvekil, the Greek campaign's backer; resigned on 19 Oct 1922 after the Çanak crisis | **İstifa**: in Atama, before the İtirazlar, hand your Vekil seat to an eligible player, gain 1 İtibar, don't draw. Leaving office on your own terms | **Güneş Batmaz** (always): your Entrika cards count as cards of an open field. The empire on which the sun never sets acts in every arena |
 | `tahmasp` (Ecnebi) | **Rıza Han** | Iran's war minister after his coup of Feb 1921; the neighbour beyond the eastern border | **Hudut**: when the Buhran flips, choose its field (Meclis, Kulis or Ankara). The man on the border decides where trouble comes from | **Darbe**: everyone, you included, keeps 1 Entrika and discards the rest. His 1921 coup cleared the board in Tehran |
 
 ### Yaverler (14)
 
 | id | Recast as | Yaver | Why |
 |---|---|---|---|
-| `daye` | Grup Kararı (not yourself) | **Mazhar Müfit** (Kansu) | Kept the minutes at the Erzurum and Sivas congresses. He writes down who the group seats, never himself |
+| `daye` | Grup Kararı (not yourself) | **Nezihe Muhiddin** | Journalist; founded the Kadınlar Halk Fırkası in June 1923 to bring women into politics, when women could neither vote nor stand. She pushed for seats she could not take herself |
 | `bali` | İtimat Oyu | **Kılıç Ali** | Led the Antep militia; "Kılıç" is his nickname from those days. He stands by a Vekil like a sword at the door |
 | `ayas` | Tayin | **Salih** (Bozok) | Mustafa Kemal's friend from Selanik and his yaver. He hears first who is to go |
 | `matrakci` | Takip | **Kara Fatma** (Fatma Seher Erden) | Led her own militia unit and scouted behind the lines; İstiklal Madalyası. She follows one person and reports every move |
@@ -128,8 +130,8 @@ Facts in these tables are checked again when the flavor lines are written in ste
 | `nigar` | Telgrafhane | **Hüsamettin** (Ertürk) | Ran the MM Grubu, Ankara's secret network in occupied Istanbul. He read messages before their recipients did |
 | `ebussuud` | Tahkikat | **Falih Rıfkı** (Atay) | Journalist, then mebus from 1923. He reports what others threw away |
 | `gulsah` | Karalama | **Cemal Nadir** (Güler) | Cartoonist. One line of his pen lowers anyone's standing; satire is his trade, not slander |
-| `seker` | Tekzip | **Nezihe Muhiddin** | Journalist; founded the Kadınlar Halk Fırkası in 1923, which was refused registration. She spent the decade answering the press |
-| `gulfem` | Hisse | **Vehbi Koç** | Young Ankara shopkeeper who bet on the new capital and grew with it |
+| `seker` | Aşı | **Safiye Ali** | The first Turkish woman doctor; treated the wounded in the war years and opened her practice in 1922. She keeps one person from harm |
+| `gulfem` | Teminat | **Rifat Efendi** (Börekçi) | Müftü of Ankara; in April 1920 he led the Ankara fetva backing the national movement and put his own name behind Ankara's fate |
 | `iskender` | Bütçe | **Hasan** (Saka) | Maliye Vekili. He knows which budget line to drop |
 | `firuze` | Manşet | **Yunus Nadi** (Abalıoğlu) | Brought his paper Yeni Gün to Ankara, co-founded Anadolu Ajansı, later founded the newspaper Cumhuriyet. He decides whose name makes the headline |
 | `gulaga` | Sansür | **Ahmet Ağaoğlu** | Back from Malta, he headed the Matbuat ve İstihbarat Umum Müdürlüğü (1921). What gets printed passes his desk |
@@ -147,9 +149,9 @@ Meclis cards act on the seats; Kulis cards act on İtibar and secrets.
 | `azil` | Meclis 3 | **Tayin** | A new appointment: Gazi names the successor |
 | `casus` | Kulis 2 | **Takip** | Tail a player and learn every card they played this buhran, and on whom |
 | `muhurlu-evrak` | Kulis 2 | **Telgrafhane** | A look into the telegraph office: the top 3 Telgraf cards |
-| `saray-tabibi` | Kulis 2 | **Tekzip** | The printed correction: this player loses no İtibar this buhran |
+| `saray-tabibi` | Kulis 2 | **Aşı** | Immunity: this player loses no İtibar this buhran |
 | `iftira` | Kulis 3 | **Karalama** | A smear: −1 İtibar |
-| `kefalet` | Kulis 3 | **Hisse** | A share in a Vekil: you gain on Zafer and lose on Hezimet |
+| `kefalet` | Kulis 3 | **Teminat** | You stand surety for a Vekil: you gain on Zafer and lose on Hezimet |
 | `teftis` | Meclis 3 | **Tahkikat** | An Assembly inquiry: see what this Vekil discarded |
 | `defterdar` | Meclis 2 | **Bütçe** | More on the table: the Birinci Vekil draws 4 Telgraf and discards 2 |
 | `nobet` | Meclis 2 | **Santral** | The switchboard knows who called: learn who played one card on this player |
@@ -166,9 +168,9 @@ Meclis cards act on the seats; Kulis cards act on İtibar and secrets.
 | `gozden` | Lose İtibar | **Fedakârlık** |
 | `kulisci` | Place Entrika on 3 different players | **Mekik Dokumak** |
 | `yukselen` | Be a Vekil in 2 buhrans | **İki Kabine** |
-| `itirazci` | Make a Takrir | **Söz İstiyorum** |
+| `itirazci` | Make an İtiraz | **Söz İstiyorum** |
 | `hedef` | Have 2+ Entrika placed on you in one buhran | **Herkesin Dilinde** |
-| `ortak` | Place İtimat Oyu or Hisse on a Vekil | **Arka Çıkmak** |
+| `ortak` | Place İtimat Oyu or Teminat on a Vekil | **Arka Çıkmak** |
 | `hazine` | Play 3 Entrika in one buhran | **Seferberlik** |
 | `koltuk` | Become a Vekil through an Entrika | **Arka Kapıdan** |
 | `kulak` | Use Takip, Telgrafhane, Tahkikat or Santral | **Hat Dinlemek** |
@@ -200,7 +202,7 @@ Field split matches the original: Meclis 4, Kulis 4, Ankara 3.
 | Taraf `loyalist` | **Vatansever** | Wins at 4 Zafer: Cumhuriyet |
 | Taraf `traitor` | **Hain** | Wins at 5 Hezimet: Meclis dağılır. Hainler know each other |
 | Esaret 1 | **Güç yok** | |
-| Esaret 2 `sorusturma` | **İstiklal Mahkemesi** | The Assembly set up the tribunals in Sept 1920 to try desertion and treason. Gazi names a hâkim who secretly reads one Taraf |
+| Esaret 2 `sorusturma` | **Sorgu** | Gazi names a sorgu hâkimi, who secretly reads one Taraf and may then say anything |
 | Esaret 3 `hazineDefteri` | **Haber Alma** | The intelligence report: before the next buhran, a named player sees the top 3 Telgraf |
 | Esaret 4 `fermanRefresh` | **Başkumandanlık uzatılır** | The Assembly extended the law several times in 1921–22 |
 | Esaret 5 `death` | **Meclis dağılır** | The conspiracy wins |
@@ -240,7 +242,7 @@ Flat rubber-stamp silhouettes with Deco geometry: straight cuts, 45° chamfers, 
 | Haki `#556B2F` / `#B9CF8E` | Zafer (laurel wreath), Vatansever (rising sun), Kurtuluş yolu (milestone), güvenilir (handshake) |
 | Ankara taşı `#A0624D` / `#EDB9A5` | Kulis (door ajar) |
 | Kopya kalemi `#4F3B78` / `#C4B3EA` | Telgraf (Morse key), Emel (Deco steps), Madalya (medal on ribbon), Taraf (coin, two faces), Gizli (padlock) |
-| Kara `#2B2522` / `#D9CEC2` | Hezimet (broken sabre), Hain (dagger), Esaret yolu (chain), Buhran (folded newspaper), Takrir (raised hand), şüpheli (magnifier), Meclis dağılır (toppled chair) |
+| Kara `#2B2522` / `#D9CEC2` | Hezimet (broken sabre), Hain (dagger), Esaret yolu (chain), Buhran (folded newspaper), İtiraz (raised hand), şüpheli (magnifier), Meclis dağılır (toppled chair) |
 | Kurşun `#5A6168` / `#D3D8DC` | Entrika (envelope), Meziyet (key), Şahsiyet (Deco profile head) |
 
 Corner gems become **enamel lapel badges**: a round badge with a brass rim. The contrast disc rule stays (black disc on light frames, white on dark).
@@ -402,15 +404,15 @@ Rules:
 | Zafer | Cavalry entering İzmir, 9 Eylül 1922 |
 | Hezimet | Allied troops in Istanbul, 16 Mart 1920 |
 
-## 5. Open questions
+## 5. Decisions (review, 2026-11-20)
 
-1. **Gazi or Meclis?** Framing A (Mustafa Kemal under the respect rules) or B (the Assembly as the role, nobody depicted)?
-2. **The window.** 1920–23 for the story and 1923–38 for the look, or move everything to 1930s Ankara? The 1930s would bring native Art Deco and more women at the centre (Afet İnan, Sabiha Gökçen, the 1935 women deputies), but it puts secret traitors inside a single-party state.
-3. **Takrir or İtiraz** for Objection? Takrir is the period word; İtiraz is clearer at the table.
-4. **İstiklal Mahkemesi** for Treason 2? The tribunals later handed down death sentences. The plainer alternative is **Sorgu**.
-5. **Hüseyin Avni Bey** fits the free Takrir and the Veto best, but few players will know him. Kâzım Karabekir is famous but fits less well. Which?
-6. **Gender balance:** 1 woman of 11 Şahsiyetler and 2 of 14 Yaverler, which is what the First Assembly looked like. Accept it, or widen the Yaverler beyond Ankara (Safiye Ali, Nakiye Elgün, Şükûfe Nihal)?
-7. **Real foreigners as Ecnebi:** are Lloyd George, Franklin-Bouillon and Rıza Han fine? Is **Darbe** fine as a power name, given Turkey's own coups?
-8. **Vehbi Koç** is the founder of a living company. Keep him, or pick a non-commercial Ankara notable?
-9. **Ecnebi** can sound dated or slightly cold today. Alternatives are **Yabancı** or **Misafir**.
-10. **Kept from muhtesem on purpose:** Vekil, Hain, Taraf, Entrika, Gizli. Is that fine, or should Taraf change (for example to **Saf**)?
+1. **Gazi, framing A**, under the respect rules in section 1. They hold everywhere, including flavor lines and the log.
+2. **The window stays:** the story in 1920–23, the look from 1923–38.
+3. **İtiraz** for Objection.
+4. **Sorgu** for Treason 2.
+5. **Kâzım Karabekir** takes `sahsultan`. His flavor draws on his outspoken independence from Ankara, within the window.
+6. **More women among the Yaverler** where the fit is real: Nezihe Muhiddin (`daye`) and Safiye Ali (`seker`) join Kara Fatma. With Halide Edib that makes 4.
+7. **Real foreigners and Darbe** are fine.
+8. **Vehbi Koç** is replaced by Rifat Efendi (Börekçi), and the card becomes Teminat. Cemal Nadir is replaced if no real portrait turns up (see section 4).
+9. **Ecnebi** stays.
+10. **Vekil, Hain, Taraf, Entrika and Gizli** stay.
