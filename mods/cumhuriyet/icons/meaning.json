@@ -1,0 +1,40 @@
+{
+  "about": "Damga icon colours by meaning for the cumhuriyet mod (PROPOSAL.md, section 3). Each icon is one silhouette in masks/; the game tints it with its paper colour on light grounds and its bakalit colour on dark ones (the shared build turns masks into set/). Names are the engine's internal icon ids; the pictures are this mod's own: kalpak (suleyman = Gazi), rostrum (divan = Meclis), door ajar (harem = Kulis), Ankara citadel (saray = Ankara), Morse key (kader = Telgraf), laurel (hizmet = Zafer), broken sabre (hiyanet = Hezimet), toppled rostrum (death = Meclis dağılır).",
+  "colours": {
+    "al": {
+      "paper": "#b3221f",
+      "lacquer": "#f2958a",
+      "terms": ["suleyman", "influence", "decree", "ferman", "saray"]
+    },
+    "lacivert": {
+      "paper": "#23406e",
+      "lacquer": "#9eb4de",
+      "terms": ["divan", "minister", "min1", "min2", "court", "companion", "seal", "once", "percrisis", "always"]
+    },
+    "haki": {
+      "paper": "#556b2f",
+      "lacquer": "#b9cf8e",
+      "terms": ["hizmet", "loyalist", "loyalty", "trusted"]
+    },
+    "ankara-tasi": {
+      "paper": "#a0624d",
+      "lacquer": "#edb9a5",
+      "terms": ["harem"]
+    },
+    "kopya-kalemi": {
+      "paper": "#4f3b78",
+      "lacquer": "#c4b3ea",
+      "terms": ["kader", "ambition", "favor", "allegiance", "secret"]
+    },
+    "kara": {
+      "paper": "#2b2522",
+      "lacquer": "#d9cec2",
+      "terms": ["hiyanet", "traitor", "treason", "crisis", "objection", "suspect", "death"]
+    },
+    "kursun": {
+      "paper": "#5a6168",
+      "lacquer": "#d3d8dc",
+      "terms": ["intrigue", "base", "character"]
+    }
+  }
+}

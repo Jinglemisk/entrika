@@ -1,0 +1,10 @@
+Generate exactly one image with your image_gen tool, then stop. Do not run shell commands and do not write files.
+
+Use case: logo-brand
+Asset type: one game icon for "Entrika: Cumhuriyet", a card game set in Ankara in 1920-1923, during the founding of the Turkish Republic. The game uses the file as a one-colour mask and tints it by meaning (khaki for loyalty, black for treason, navy for the Assembly, flag red for the leader). Used inline in card rules text at 16 px, in small badges on cards at 24 px, and large on card backs.
+__REF__Subject: __SUBJECT__
+Style/medium: Art Deco rubber stamp and stencil pictogram, like the small vignettes on Turkish stamps, posters and printers' ornaments of the 1920s and 1930s. One solid flat silhouette built from geometric shapes: straight cuts, 45-degree chamfers, circles and arcs, slightly rounded terminals. Machine-made and precise, not hand-drawn, not calligraphic. Inner detail is cut out as a few bold white negative-space shapes or parallel bars (Deco speed lines), each at least 1/22 of the canvas wide, so the silhouette stays one connected piece. The cut-outs describe the object (its parts, openings and folds), never decoration for its own sake.
+Colour: pure black #000000 on a pure white #FFFFFF background, nothing else. No grey, no gradient, no texture, no shading.
+Composition: one object only, centred, straight-on front view, symmetric where the subject allows, filling about 82% of a square canvas with even margins. A bold, instantly recognisable silhouette built from a few large shapes.
+Legibility: it must still read at 16 px. At most four interior cut-outs.
+Avoid: outline-only line drawing, hatching, thin lines, distressed or grunge stamp texture, ink spatter, text, letters, numerals, faces, 3D, perspective, a frame, roundel or plaque behind the object, Ottoman or Islamic ornament (arches, tulips, rumi leaves, calligraphy).
