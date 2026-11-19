@@ -11,28 +11,28 @@ import termsJson from '../../content/terms.json' with { type: 'json' };
 export type Field = 'harem' | 'divan';
 export type CrisisField = Field | 'saray';
 export type Freq = 'once' | 'crisis' | 'always' | null;
-export type Art = { src: string; pos?: string } | null;
 
 /** Every entry carries an `about` line: what it does, in neutral English, for mod authors. The words players see (names,
- *  card text, flavor) live in each mod's words files (mods/<id>/<lang>.json), keyed by these ids. */
+ *  card text, flavor) live in each mod's words files (mods/<id>/<lang>.json) and its pictures in the mod's skin
+ *  (mods/<id>/skin.json), both keyed by these ids. */
 export interface PowerDef { id: string; freq: Freq; icon?: string; about: string }
 /** Süleyman has no Lütuf power. */
 export interface CharacterDef { id: string; sultan?: boolean; wildcard?: boolean; about: string; base: PowerDef; favor?: PowerDef }
 /** Who a card may be played on: any player but Süleyman, only the two Vekils, only the Birinci Vekil, anyone but
  *  yourself, or always yourself. */
 export type TargetRule = 'player' | 'minister' | 'first' | 'other' | 'self' | 'none';   // none: played with no target (counts as its owner's, never shown)
-export interface IntrigueDef { id: string; copies: Partial<Record<Field, number>>; target: TargetRule; about: string; art: Art }
-export interface CompanionDef { id: string; recast: string; freq: Freq; about: string; art: Art }
+export interface IntrigueDef { id: string; copies: Partial<Record<Field, number>>; target: TargetRule; about: string }
+export interface CompanionDef { id: string; recast: string; freq: Freq; about: string }
 export type GoalType =
   | 'appointedCrises' | 'ministerOnHiyanet' | 'ministerOnHizmet' | 'lostInfluence' | 'distinctTargets' | 'objected'
   | 'targetedInCrisis' | 'playedInCrisis' | 'backedMinister' | 'unseatedByIntrigue' | 'seatByIntrigue' | 'usedInfoCard';
 export interface AmbitionDef { id: string; goal: { type: GoalType; n?: number }; about: string }
 export type DrawRule = 'none' | 'zeroInfluence' | 'leastInfluence' | 'besideSultan' | 'lastMinisters' | 'everyone';
-export interface CrisisDef { id: string; field: CrisisField; draw: DrawRule; about: string; art: Art }
+export interface CrisisDef { id: string; field: CrisisField; draw: DrawRule; about: string }
 /** A game term (Vekil, Nüfuz, Tertip...): the icon drawn in front of it in card text. Its words are in each mod. */
 export interface TermDef { icon: string | null; about: string }
 export interface MiscDef {
-  kader: Record<'h' | 'x', { about: string; art: Art }>;
+  kader: Record<'h' | 'x', { about: string }>;
   taraf: Record<'loyalist' | 'traitor', { about: string }>;
   treason: Record<string, { about: string; icon?: string }>;
 }

@@ -1,6 +1,6 @@
-// Small marks from the v3 system: line glyphs for interface chrome, Kat'ı emblems for game terms, the Nüfuz star.
+// Small marks from the v3 system: line glyphs for interface chrome, the skin's icons for game terms (Em), the Nüfuz star.
 import type { CSSProperties } from 'react';
-import { iconLight, iconUrl } from '../cards/terms.ts';
+import { iconLight, iconUrl } from '../skin.ts';
 
 const G: Record<string, string> = {
   check: 'M4 10.5l4 4 8-9',
@@ -42,7 +42,7 @@ export function Star({ n, size, label }: { n: number; size?: number; label?: str
   const st = size ? { width: size, height: size, fontSize: Math.round(size * 0.52) } : undefined;
   return (
     <span className={`star ${n === 0 ? 'zero' : ''}`} style={st} title={label}>
-      <svg viewBox="0 0 24 24"><polygon points={STAR} fill="#d2ab52" stroke="#6b4d0f" strokeWidth="1" /></svg>
+      <svg viewBox="0 0 24 24"><polygon points={STAR} strokeWidth="1" /></svg>
       <span>{label ?? n}</span>
     </span>
   );

@@ -1,17 +1,15 @@
-// The row of court figures along the bottom of the home and lobby screens.
-import { cutSrc, nichePlacement } from '../ui/Figure.tsx';
-
-const ROW: [string, number, number][] = [
-  ['hatice', 84, 0], ['rustem', 98, 132], ['suleyman', 116, 206], ['hurrem', 94, 306], ['ibrahim', 88, 378], ['sahsultan', 105, 444],
-];
+// The row of figures along the bottom of the home and lobby screens: which Characters, how tall and where come from
+// the mod's skin; a Character without a cut-out is left out.
+import { frieze, portrait } from '../skin.ts';
 
 export function Frieze() {
   return (
     <div className="frieze" aria-hidden="true">
-      {ROW.map(([c, w, x]) => {
-        const k = nichePlacement(c);
-        const ar = k?.ar ?? 4 / 3;
-        return <img key={c} src={cutSrc(c)} alt="" style={{ left: x, width: w * 1.5, height: w * 1.5 * ar, bottom: -w * 1.5 * ar * 0.3 }} />;
+      {frieze().map(({ char, size, x }) => {
+        const p = portrait(char);
+        if (!p) return null;
+        const w = size * 1.5, h = w * p.niche.ar;
+        return <img key={char} src={p.src} alt="" style={{ left: x, width: w, height: h, bottom: -h * 0.3 }} />;
       })}
     </div>
   );

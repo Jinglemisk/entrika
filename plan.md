@@ -48,7 +48,7 @@ Three layers, and who owns each:
 - A **mod check** lists what each mod is missing in each language: names, texts, forms, sentence overrides and assets. It also prints the **nomenclature worksheet**: every id with its mechanical line, for naming.
 - **Done when:** a screenshot comparison of every card and a staged game shows no change, and the tests pass.
 
-### 2. Groundwork: skins
+### 2. Groundwork: skins (done 2026-11-20, see `docs/mods.md`, "The skin")
 - The card renderer is rebuilt around the fixed layout. Frames, window shapes, backs, palettes, patterns and the still grade come from the mod's skin.
 - The skin also supplies:
   - the seat niche (with the Süleyman seat's gilding);
@@ -62,6 +62,7 @@ Three layers, and who owns each:
 - Today's Ottoman look moves into the `muhtesem` skin and must come out identical. Asset paths in a skin are relative to the mod folder; `muhtesem` keeps pointing at the existing `art/` files, so nothing is moved.
 - A repo tool makes character cut-outs (macOS Vision foreground mask) and computes their crops from the face, so every mod produces portraits the same way.
 - **Done when:** screenshots match today's, and a crude test skin proves that every slot switches.
+- Landed as: `mods/<id>/skin.json` (frames as layered SVGs, backs, stills, tints, icons, niche, seal, frieze, music), `skin.css` (tokens, fonts, decoration), `portraits.json`; the neutral fallback skin in `game/skin/`; the portrait tool `art/tools/portrait.py` (+ `cutout.swift`); `art/icons/build.py <icons folder>`; `game/content/icons.json` lists every icon id; `npm run mods` lists each skin's gaps, the mod authors' sourcing checklist.
 
 ### 3. The mods
 One agent per mod, each on its own branch:

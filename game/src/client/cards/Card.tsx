@@ -1,7 +1,9 @@
 /// <reference types="vite/client" />
 // Thin React layer over the card string builders. The markup is built once per distinct spec and set as innerHTML.
 import { memo, useLayoutEffect, useMemo, useRef, type RefObject } from 'react';
-import { backHtml, cardHtml, CARD_DEFS, type BackKind, type CardSpec } from './render.ts';
+import { backHtml, cardHtml, type BackKind, type CardSpec } from './render.ts';
+import { defs } from '../skin.ts';
+import { currentMod } from '../words.ts';
 import { backWords } from '../cardSpecs.ts';
 import './cards.css';
 
@@ -34,19 +36,23 @@ function Slot({ html, width, className }: { html: string; width: number; classNa
 /** A card face, `width` px wide (height = width x 1.4). Below 150 px it draws the compact frame, below 90 px without the
  *  name, unless `whole` keeps the full card with its text at any size. */
 export const Card = memo(function Card({ spec, width, className, whole }: { spec: CardSpec; width: number; className?: string; whole?: boolean }) {
-  const key = JSON.stringify(spec); // specs written inline still hit the memo
+  const key = currentMod() + JSON.stringify(spec); // specs written inline still hit the memo; a new mod draws anew
   const html = useMemo(() => cardHtml(spec), [key]); // eslint-disable-line react-hooks/exhaustive-deps
   return <Slot html={html} width={width} className={[className, whole && 'whole'].filter(Boolean).join(' ') || undefined} />;
 });
 
-/** Not memoised: its word follows the mod and language, which aren't props. */
+/** Not memoised: its word and drawing follow the mod and language, which aren't props. */
 export function CardBack({ kind, width, className }: { kind: BackKind; width: number; className?: string }) {
   const { word, label } = backWords(kind);
-  const html = useMemo(() => backHtml(kind, word, label), [kind, word, label]);
+  const mod = currentMod();
+  const html = useMemo(() => backHtml(kind, word, label), [kind, word, label, mod]); // eslint-disable-line react-hooks/exhaustive-deps
   return <Slot html={html} width={width} className={className} />;
 }
 
-/** The gradients, patterns and filters every card points at. Render once per page, before or beside the cards. */
-export const CardDefs = memo(function CardDefs() {
-  return <div aria-hidden="true" dangerouslySetInnerHTML={{ __html: CARD_DEFS }} />;
-});
+/** The skin's gradients, patterns, filters and symbols, which every card points at. Render once per page, before or
+ *  beside the cards. */
+export function CardDefs() {
+  const mod = currentMod();
+  const html = useMemo(() => `<svg class="c3-sprite" aria-hidden="true" focusable="false">${defs()}</svg>`, [mod]); // eslint-disable-line react-hooks/exhaustive-deps
+  return <div aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />;
+}
