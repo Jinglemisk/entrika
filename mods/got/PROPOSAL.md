@@ -1,232 +1,153 @@
 # `got` mod: proposal
 
-Step 1 of the mod plan (`plan.md`, Phase 3). Names, concepts and art direction for review; the card text and flavor lines come in step 2. Written in English first; the Turkish follows the official Turkish translation of the books and series where a name exists there (Kral Eli, Kızıl Kale, Küçük Konsey, Demir Taht).
+**Rework, 2026-11-20.** The mod now follows the designer's research page "Entrika Westeros" (https://claude.ai/artifact/KcTKLNY8bj3YjP9eHbaixP), which was written for rules v0.7, adapted here to v0.9. The `about` lines in `game/content/*.json` say what each id does now. The first version (Robert's court, season 1) is in this file's git history.
 
-Subtitle: **Entrika: Game of Thrones**, so it's recognisable in the lobby picker. "King's Landing" appears in the flavor lines.
-
-**Approved 2026-11-19.** The reviewer's decisions on the open questions are recorded in section 5.
+Subtitle: **Entrika: Game of Thrones**. Written in English first. The Turkish follows the official translation where a name is established (Kral Eli, Küçük Konsey, Kızıl Kale); names that couldn't be verified are listed in the art manifest.
 
 ---
 
 ## 1. The world
 
-**When:** King's Landing, 298 AC, season 1 of the series. Jon Arryn, Hand of the King, is dead. Ned Stark has come south, Cersei and Littlefinger and Varys are working the Red Keep, and King Robert drinks, hunts and lets others rule. It ends at Robert's hunt: Lancel's strongwine, the boar, the torn will.
+**When:** Joffrey's court, from the Battle of the Blackwater to the Purple Wedding (seasons 3–4). Tywin is Hand, the Tyrells are at court, Sansa is still a hostage, and Joffrey is alive. Nobody is at court for all of it: Littlefinger leaves for the Vale midway and Jaime only comes home at the end.
 
-**Why this moment:** it is the show's court drama in its purest form, and it matches the engine. The King is loyal, well liked and doomed. Nobody at court knows who is plotting his death. The Hand's seat changes hands, so a King who names a new Hand every crisis fits the story. The outsiders (Tyrion on the road, Jon at the Wall, Daenerys across the sea) are part of the same season.
-
-### What the pieces mean
-
-| Piece | In Westeros |
-|---|---|
-| The Sultan role | **The King**, Robert Baratheon. Public, always loyal. He names the Hand and the Master of Laws, hands down Judgment, and holds the Royal Command. |
-| His death on the 5th Treason space | **The Boar**: Robert gored on the hunt after Lancel served him strongwine, on Cersei's orders. The conspiracy wins. |
-| Loyalists / Traitors | **Sworn** (kept their oath to the King) / **Oathbreakers** (plotting his death). Oathbreakers know each other. |
-| The two Minister seats | **Hand of the King** draws the ravens, burns one, passes two. **Master of Laws** burns one and sends one. Together they are **Councillors**. |
-| Crisis | **Crisis**: trouble comes to the Small Council, from swords in the street to a debt to the Iron Bank. The word is plain English, so it stays. |
-| Court (Tertip) | **Scheming**: anonymous knives in waves. Nobody sees whose hand placed the card. |
-| Objection | **Challenge**: in open council, a lord pays Favor to contest an appointment. |
-| Decree | **Judgment**: the King rewards or punishes one of his two Councillors. |
-| Kader deck | **Ravens**: the letters the Hand reads for this crisis. Burned ones go face down into the fire. |
-| Its two card kinds | **Fealty** (the realm holds; goes on the King's Peace) and **Treachery** (another step toward the boar; goes on the Conspiracy). |
-| Loyalty track (4) | **The King's Peace**: four Fealty and the realm holds. |
-| Treason track (5) | **The Conspiracy**: five Treachery and the King is dead. |
-| Harem field | **Whispers**: Favor, secrets, rumors, poison. |
-| Divan field | **Council**: the seats at the Small Council table. |
-| Saray (both) | **Red Keep**: the whole castle is in play. |
-| Influence | **Favor**: the King's favor. It is your score and what you spend to Challenge. The token is a gold dragon. |
-| Base power | **Birthright**: what your name already gives you. Once a game, ready from the start. |
-| Favor power | **Boon**: what you get once your Ambition is fulfilled. "I ask a boon" is said at court in the show (Sansa to Joffrey). |
-| Character | **Character**: your public card, who you are at court. |
-| Allegiance | **Oath**: your secret card, Sworn or Oathbreaker. |
-| Companion | **Retainer**: a household knight, servant or hanger-on who works for you. |
-| Intrigue | **Scheme**: a card played in Scheming. |
-| Ambition | **Ambition**: "chaos is a ladder". It is a Westeros word already. |
+**Why this king:** everyone at this court has a reason to keep Joffrey (Lannisters and Tyrells have staked their houses on him) and a reason to kill him (he is cruel, and Tommen would be easier). The show ends him at his own wedding feast, so the Kader chain becomes the feast: the Hand pours three cups and passes two; the Master of Coin serves one to the king.
 
 ### Term table
 
-| Glossary term (game id) | `got` name (en) | Why |
+| Glossary term (id) | `got` name | Why |
 |---|---|---|
-| Süleyman / the Sultan (`suleyman`) | **the King** (card: King Robert Baratheon) | The one public, always-loyal player whom the plot wants dead. |
-| Loyalist (`loyalist`) | **Sworn** | Sworn to the King. Oaths are what Westeros loyalty is made of. |
-| Traitor (`traitor`) | **Oathbreaker** | The show's own word for the worst thing a lord can be. |
-| First Minister (`min1`) | **Hand of the King** (short: **Hand**) | The office the season is about. The Hand reads first and decides most. |
-| Second Minister (`min2`) | **Master of Laws** | A real Small Council seat. The Master of Laws enacts: he gets two options and makes one law. |
-| Minister (`minister`) | **Councillor** | Both seats sit on the Small Council. |
-| Eligible | **eligible** | A rules word, no world needed. |
-| Character (`character`) | **Character** | Plain. "Lord" or "highborn" don't cover Jon (a bastard) or Arya (a child). |
-| Wildcard | **Outsider** | Tyrion, Jon and Daenerys are away from King's Landing all season. |
-| Allegiance (`allegiance`) | **Oath** | What you swore, kept secret. |
-| Companion (`companion`) | **Retainer** | Household men and women who do a lord's errands. |
-| Crisis (`crisis`) | **Crisis** | Plain; the card names the trouble. |
-| Court (`court`) | **Scheming** | Step 3. Anonymous waves of Schemes. |
-| Wave | **wave** | Unchanged. |
-| Objection (`objection`) | **Challenge** | Contesting an appointment in open council. A thrown gauntlet is its icon. |
-| Decree (`decree`) | **Judgment** | Robert, or the Hand in his chair, judges petitioners every day. |
-| Ferman (Sultan's power, `ferman`) | **Royal Command** | Robert overrules his council: "I am the King!" It works even against the King's Seal, because the King can break his own seal. |
-| Kader deck (`kader`) | **Ravens** | "Dark wings, dark words." The Hand reads them, burns some, and the Master of Laws sends one. |
-| Hizmet (`hizmet`) | **Fealty** | Service kept. |
-| Hıyanet (`hiyanet`) | **Treachery** | Service betrayed. |
-| Intrigue (`intrigue`) | **Scheme** | The thing you do in Scheming. |
-| Ambition (`ambition`) | **Ambition** | Already a Westeros word. |
-| Harem (`harem`) | **Whispers** | Favor and secrets move by whispering: little birds, brothels, the queen's ear. |
-| Divan (`divan`) | **Council** | The Small Council table. These cards move people in and out of its seats. |
-| Saray (`saray`) | **Red Keep** | Both fields: the whole castle. |
-| Influence (`influence`) | **Favor** | The King's favor is the currency of court. |
-| Base power (`base`) | **Birthright** | Ready from the start, like a name. |
-| Favor power (`favor`) | **Boon** | Granted once your Ambition is fulfilled. |
-| Loyalty track (`loyalty`) | **the King's Peace** | A real legal idea in Westeros, and what four Fealty keep. |
-| Treason track (`treason`) | **the Conspiracy** | Each Treachery is one more step. |
-| Süleyman's death (`death`) | **the Boar** | How Robert dies. |
-| once per game (`once`) | **once a game** | Unchanged. |
-| once per crisis (`percrisis`) | **once a crisis** | Unchanged. |
-| always on (`always`) | **always** | Unchanged. |
-| Secret / Public (`secret`) | **Secret / Public** | Unchanged. |
-| Sicil (the game log) | **the Chronicle** | The maesters write it. |
-| Exiled (Sürgün mark) | **Banished** | Same mechanic, same word as Renly's Boon. |
-| Investigator (Soruşturma) | **Inquirer** | The player the King sends to look at an Oath. |
+| Süleyman / the Sultan (`suleyman`) | **the King** (card: Joffrey Baratheon) | Public, always a Loyalist, alive until the fifth Strangler. |
+| Loyalist / Traitor (`loyalist`, `traitor`) | **Loyalist / Turncloak** | Westeros's own word for a traitor. |
+| Allegiance (`allegiance`) | **Allegiance** | Kept. |
+| First / Second Minister (`min1`, `min2`) | **Hand of the King / Master of Coin** | The two seats that run the realm in season 3. |
+| Minister (`minister`) | **Councillor** | Either seat. |
+| Divan / Harem / Saray (`divan`, `harem`, `saray`) | **Small Council / Holdfast / Red Keep** | Maegor's Holdfast is the royal family's keep. |
+| Intrigue (`intrigue`) | **Scheme** | |
+| Companion (`companion`) | **Retainer** | |
+| Court (`court`) | **The Game** | Played in waves. |
+| Influence (`influence`) | **Gold** | Dissent is a bribe; the richest player on the winning side wins. |
+| Favor power (`favor`) | **Favor** | |
+| Base power (`base`) | **Base** | Plain; unchanged from the manual. |
+| Objection (`objection`) | **Dissent** | |
+| Decree (`decree`) | **The King's Judgment** | |
+| Ferman (`ferman`) | **I Am the King** | Joffrey's own line. |
+| Kader deck (`kader`) | **Cups** | |
+| Hizmet / Hıyanet (`h`, `x`) | **Arbor Red / Strangler** | The Strangler is the poison that kills Joffrey. |
+| Kader step | **The Pouring** | The Hand pours three, passes two; the Master of Coin serves one. |
+| Loyalty / Treason track | **Long May He Reign / The Purple Wedding** | |
+| Süleyman's death (`death`) | **The Purple Wedding**: Joffrey dies, the Turncloaks win | |
+| Investigator | **Interrogator** | The Black Cells. |
 
-### Steps, as the phone names them
+### Purple Wedding track (Treason powers)
 
-| Step | `got` |
-|---|---|
-| Kriz | Crisis |
-| Atama | Naming |
-| İtirazlar | Challenges |
-| Tertip | Scheming |
-| Kader | Ravens |
-| Sonuç | Aftermath |
-| Hüküm | Judgment |
-
-Win lines: *"The fourth Fealty is sent. The King's Peace holds."* / *"The fifth Treachery is sent. The King is dead."* Tagline: *"There's a traitor in the Red Keep."*
+| Space | id | Name | Effect |
+|---|---|---|---|
+| 1 | `1` | — | Nothing. |
+| 2 | `sorusturma` | **The Black Cells** | An interrogator looks at one Allegiance card. |
+| 3 | `hazineDefteri` | **Iron Bank Ledger** | A named player looks at the top 3 cups. |
+| 4 | `fermanRefresh` | **The King's Justice** | Joffrey may use I Am the King again. |
+| 5 | `death` | **The Purple Wedding** | Joffrey dies. Turncloaks win. |
 
 ---
 
-## 2. Roster
+## 2. Roster: v0.7 research → v0.9 ids
 
-### Characters (11)
+### Characters
 
-Picked by mechanics: each Ottoman power was read for what it does, then matched to the person whose story does that thing.
-
-| id | Character | Actor | Birthright (Base) | Boon (Favor) | Why it fits |
-|---|---|---|---|---|---|
-| `suleyman` | **Robert Baratheon**, the King | Mark Addy | **Royal Command**: when Scheming ends, replace a Councillor, even under the King's Seal | none (gets the Conspiracy powers) | He ignores his council and does what he likes. "Ours Is the Fury." |
-| `hurrem` | **Cersei Lannister** | Lena Headey | **The Queen's Counsel**: you choose who gets the Judgment instead of the King | **Power Is Power**: play two Schemes in one wave | The queen steers her husband's favor. Two knives at once is how she says "power is power" to Littlefinger. |
-| `ibrahim` | **Eddard Stark** | Sean Bean | **In the King's Name**: you name both Councillors this crisis, yourself included | **Honor**: always, +1 Favor when Fealty is sent while you are a Councillor | The Hand rules from the throne while Robert hunts. Honest service is what Ned is for. |
-| `sahsultan` | **Renly Baratheon** | Gethin Anthony | **The King's Brother**: a free Challenge, and you pick the replacement | **Banished from Court**: one player can't be a Councillor next crisis | The King's younger brother has his ear, the way Şah Sultan had her brother's. Renly wants Ned's enemies out of the way. |
-| `mustafa` | **Prince Joffrey** | Jack Gleeson | **Crown Prince**: when Scheming ends, take a Councillor's seat, even under the King's Seal | **Mine to Torment**: whoever Challenges you pays their Favor to you | The heir takes what he thinks is his, and he makes anyone who crosses him pay. |
-| `hatice` | **Lord Varys** | Conleth Hill | **I Serve the Realm**: before Scheming, shield a player: no Scheme unseats them and they lose no Favor this crisis | **Little Birds**: learn whether two players share an Oath | He protects whoever keeps the realm steady, and his little birds tell him who stands with whom. |
-| `rustem` | **Petyr Baelish** (Littlefinger) | Aidan Gillen | **A Quiet Word**: one minute alone with the King before he names Councillors | **Chaos Is a Ladder**: move a Scheme played on you onto another player | A patient man with a private word for everyone. When the knife comes, someone else is holding it. |
-| `barbaros` | **Arya Stark** | Maisie Williams | **Quick as a Snake**: take a random Scheme from another player's hand | **Beneath the Red Keep**: after the Ravens step, secretly see what the Hand burned | Syrio's lessons and a pickpocket's hands. In the dungeons she overhears what she shouldn't. |
-| `gritti` (Outsider) | **Tyrion Lannister** | Peter Dinklage | **A Lannister's Debt**: choose a player; the next time they gain Favor, you gain 1 too | **A Mind Needs Books**: look at the top 3 Ravens, may put one at the bottom | Lannister gold always comes back with interest. He reads and he knows things. Away from court all season (Winterfell, the Wall, the Eyrie). |
-| `sarlken` (Outsider) | **Jon Snow** | Kit Harington | **Take the Black**: when Councillors are named, give your seat to an eligible player and gain 1 Favor; you draw nothing | **Beyond the Wall**: always, your Schemes count as cards of an open field | He gives up name and seat for the Watch, and the Watch takes no part in the realm's fields. Şarlken's abdication and *plus ultra* in one man. |
-| `tahmasp` (Outsider) | **Daenerys Targaryen** | Emilia Clarke | **Khaleesi**: when the Crisis flips, you choose its field: Council, Whispers or Red Keep | **Fire and Blood**: everyone, you too, keeps 1 chosen Scheme and burns the rest | The rival across the sea picks where the war is fought, and she ends the season in fire. |
-
-Considered and left out: Jaime, Barristan, Sansa, Pycelle and the Hound are Retainers. Tywin would be a strong Outsider in Tyrion's slot, and Illyrio Mopatis would mirror Gritti exactly, but both are less known (open question 6).
-
-### Retainers (14)
-
-Each Retainer lets you play any Scheme as one specific Scheme, once a crisis. The person is chosen for that one Scheme.
-
-| id | Plays as | Retainer | Actor | Why |
+| id (v0.9) | Who | Base | Favor | From the research |
 |---|---|---|---|---|
-| `daye` | Usurper (`valide`), never yourself | **Ser Jaime Lannister** | Nikolaj Coster-Waldau | The Kingslayer ended a king's reign and seats whoever Cersei wants. Kingsguard hold no office, so he can't name himself. |
-| `bali` | King's Seal (`muhur`) | **Sandor Clegane**, the Hound | Rory McCann | A sworn shield: nobody moves the person he stands behind. |
-| `ayas` | Dismissed (`azil`) | **Ser Ilyn Payne**, the King's Justice | Wilko Johnson | He carries out the King's removals. The King chooses who comes next. |
-| `matrakci` | Shadowed (`casus`) | **Ros** | Esmé Bianco | She works the Street of Silk and reports what each man did, and to whom. |
-| `sumbul` | Not Today (`akil-hocasi`), you pick the field | **Syrio Forel** | Miltos Yerolemou | "What do we say to the god of death?" The water dancer picks his own ground. |
-| `nigar` | Opened Letters (`muhurlu-evrak`) | **Grand Maester Pycelle** | Julian Glover | He keeps the rookery and reads every raven before it is delivered. |
-| `ebussuud` | Inquiry (`teftis`) | **Jory Cassel** | Jamie Sives | Captain of Ned's guard; he does the Hand's legwork. |
-| `gulsah` | Rumor (`iftira`) | **Shae** | Sibel Kekilli | Her testimony at Tyrion's trial is the show's most famous lie. Not at court in season 1 (open question 4). |
-| `seker` | The Taster (`saray-tabibi`) | **Lancel Lannister** | Eugene Simon | Robert's squire and cupbearer. Every cup passes his hand first, which is also how the strongwine reached the King. |
-| `gulfem` | Tourney Wager (`kefalet`) | **Sansa Stark** | Sophie Turner | She lives for the tourney and backs her champion. She also begs for her father's life. |
-| `iskender` | The Crown's Ledgers (`defterdar`) | **Janos Slynt** | Dominic Carter | Commander of the Gold Cloaks, bought with crown money. He knows what the ledgers can buy. |
-| `firuze` | The King's Eye (`nazar`) | **Ser Loras Tyrell** | Finn Jones | The Knight of Flowers draws every eye at the tourney. Whoever he stands beside, the King notices twice as much. |
-| `gulaga` | Hold Your Tongue (`sukut`) | **Septa Mordane** | Susan Brown | She teaches the Stark girls a lady's silence. |
-| `lokman` | Standing Guard (`nobet`) | **Ser Barristan Selmy** | Ian McElhinney | Lord Commander at the King's door. He knows who knocked. |
+| `suleyman` | **Joffrey Baratheon** | I Am the King | — | Same. |
+| `hurrem` | **Margaery Tyrell** | The King's Ear | Rose and Thorn | Same powers. |
+| `ibrahim` | **Tywin Lannister** | Send Him to Bed | **Gold of the Rock** (new) | Base same. Favor changed from "gain 1 Gold when appointed" to "gain 1 Gold when Arbor Red is served while you're a Councillor". |
+| `sahsultan` | **Cersei Lannister** | The Queen's Displeasure | Banishment | Was Mahidevran in v0.7; v0.9 gave those exact powers to `sahsultan`. |
+| `mustafa` | **Jaime Lannister** | **The Lord Commander's Seat** (new) | **Kingslayer's Price** (new) | Powers changed: take a seat when the Game ends, even under the King's Seal; whoever dissents against you pays you. Still Jaime: the Kingsguard walks in, and crossing the Kingslayer costs. |
+| `hatice` | **Tyrion Lannister** | The Slap | I Drink and I Know Things | Powers grew: the shield now covers Schemes as well as Judgment, and the knowing is "are these two on the same side" instead of an Ambition. Research names kept; they still say what the powers do. |
+| `rustem` | **Petyr Baelish** | A Private Word | Chaos Is a Ladder | Same. |
+| `barbaros` | **Varys** | Stolen Letters | Little Birds | Same. |
+| `gritti` (wildcard) | **Tycho Nestoris** | Interest | The Iron Bank Will Have Its Due | Same. |
+| `sarlken` (wildcard) | **Oberyn Martell** | Not Here for a Seat | Unbowed, Unbent, Unbroken | Same. |
+| `tahmasp` (wildcard) | **Daenerys Targaryen** | **Mother of Dragons** (new) | Dracarys | Base changed from "look at the top 2 crises" to "choose this crisis's field". |
 
-### Schemes (14 kinds, 37 cards)
+**Sansa moves to a Retainer** (v0.7 Mihrimah has no v0.9 slot): she carries the necklace that holds the poison, so she stays in the Purple Wedding; she takes the High Septon's place, who is barely on screen in seasons 3–4.
 
-| id | Field (copies) | Name | Concept |
+### Retainers (every one recasts a Scheme)
+
+| id | Recasts | Retainer | Why |
 |---|---|---|---|
-| `akil-hocasi` | Council 2, Whispers 2 | **Not Today** | Syrio's answer to death. Cancels every other Scheme of its field on its player. |
-| `muhur` | Council 3 | **The King's Seal** | Your appointment bears the crowned stag. No Scheme moves you, but the King's own Royal Command can. |
-| `valide` | Council 4 | **Usurper** | What the Targaryens call Robert. Take the seat and put anyone in it, even yourself. |
-| `azil` | Council 3 | **Dismissed** | "Ser Barristan, you are relieved." The King names the replacement. |
-| `casus` | Whispers 2 | **Shadowed** | Someone followed them. After Scheming you see what they played and on whom. |
-| `muhurlu-evrak` | Whispers 2 | **Opened Letters** | Read the next three ravens and reseal them. |
-| `saray-tabibi` | Whispers 2 | **The Taster** | Someone drinks first. Their player loses no Favor this crisis. |
-| `iftira` | Whispers 3 | **Rumor** | A name passed around the Street of Silk. −1 Favor. |
-| `kefalet` | Whispers 3 | **Tourney Wager** | Back a Councillor like a knight in the lists: you win if Fealty is sent, you lose if Treachery is. |
-| `teftis` | Council 3 | **Inquiry** | The Hand's kind of investigation: see what this Councillor burned. |
-| `defterdar` | Council 2 | **The Crown's Ledgers** | The Hand has the Master of Coin's books open, and reads four ravens instead of three. |
-| `nobet` | Council 2 | **Standing Guard** | A Kingsguard at the door: learn who played one Scheme on this player. |
-| `nazar` | Whispers 2 | **The King's Eye** | Robert is watching this Councillor. Judgment counts double, for reward or punishment. |
-| `sukut` | Whispers 2 | **Hold Your Tongue** | They sit out the next wave. |
+| `daye` | The Queen Regent's Command (`valide`), not yourself | **Ser Ilyn Payne** | Research pick. The headsman carries out Cersei's will, never his own. |
+| `bali` | The King's Seal (`muhur`) | **Sandor Clegane** | Research pick. |
+| `ayas` | Stripped of Office (`azil`) | **Janos Slynt** | Research pick; Tyrion strips him of the City Watch. |
+| `matrakci` | Paid Informer (`casus`) | **Ros** | Research had her on Whispers (look at a hand); v0.9's nearest is `casus` (see what a player played). |
+| `sumbul` | Sworn Sword (`akil-hocasi`), you pick the field | **Bronn** | Research pick; a sellsword picks his side. |
+| `nigar` | Dark Wings (`muhurlu-evrak`) | **Grand Maester Pycelle** | Research pick. |
+| `ebussuud` | Confession (`teftis`) | **Olenna Tyrell** | Was a special (hand limit 4). She knows exactly what went into the cup. |
+| `gulsah` | Slander (`iftira`) | **Lancel Lannister** | Research pick. |
+| `seker` | Maester's Remedy (`saray-tabibi`) | **Qyburn** | Research had him on Maester's Remedy. |
+| `gulfem` | A Fool's Wager (`kefalet`) | **Ser Dontos Hollard** | His card (Lannister Gold) is gone; a drunk fool's bet on a Councillor fits him. |
+| `iskender` | The Crown's Ledgers (`defterdar`) | **Ser Kevan Lannister** | Was a special: "as Hand, draw 4 and discard 2", which is now the `defterdar` card. |
+| `firuze` | The King's Eye (`nazar`) | **Shae** | Was a special (+1 Gold). The Judgment counts double on whoever she stands beside. |
+| `gulaga` | Hold Your Tongue (`sukut`) | **Sansa Stark** | Moved from Characters. A hostage learns silence and teaches it. |
+| `lokman` | Kingsguard Watch (`nobet`) | **Podrick Payne** | Was a special (return a card). The squire at the door knows who came in. |
 
-### Ambitions (12)
+Dropped: **the High Septon**.
 
-| id | Goal | Name |
-|---|---|---|
-| `divanda-nufuz` | Unseat a Councillor with a Scheme | **Strip the Pin** |
-| `suphe` | Be a Councillor when Treachery is sent | **Under Suspicion** |
-| `takdir` | Be a Councillor when Fealty is sent | **The King's Gratitude** |
-| `gozden` | Lose Favor | **Fall From Grace** |
-| `kulisci` | Play Schemes on three different players | **Many Webs** |
-| `yukselen` | Be a Councillor in two crises | **The King's Favorite** |
-| `itirazci` | Make a Challenge | **Refuse to Kneel** |
-| `hedef` | Have 2+ Schemes played on you by others in one crisis | **Knives in the Dark** |
-| `ortak` | Play the King's Seal or a Tourney Wager on a Councillor | **Back a Champion** |
-| `hazine` | Play 3 Schemes in one crisis | **Play the Game** |
-| `koltuk` | Become a Councillor through a Scheme | **Seize a Seat** |
-| `kulak` | Use Shadowed, Opened Letters, Inquiry or Standing Guard | **Listen at Doors** |
+### Schemes
 
-### Crises (11)
-
-Each field matches the trouble: Council crises are about offices and force, Whispers crises are about secrets and reputation, and Red Keep crises are about the whole crown.
-
-| id | Field | Draw | Name | The trouble |
+| id | Field (copies) | Name | v0.9 effect | From the research |
 |---|---|---|---|---|
-| `yeniceri` | Council | at 0 Favor | **Swords in the Street** | Jaime's men attack the Hand's guard in the rain after Catelyn seizes Tyrion. Those with nothing left to lose arm themselves. |
-| `hazine` | Red Keep | nobody | **The Crown's Debts** | Six million in debt, half of it to the Lannisters. Nobody gets anything. |
-| `venedik` | Red Keep | beside the King | **The Iron Bank's Envoy** | Braavos comes to collect. Those seated next to the King get a word in. |
-| `harem` | Whispers | least Favor | **Scandal in the Street of Silk** | A royal bastard in a brothel cradle. The least favored has the most to gain. |
-| `macar` | Council | nobody | **Raids in the Riverlands** | Gregor Clegane burns the Riverlands. The council musters, nobody schemes. |
-| `muhur` | Whispers | last Councillors | **The Death of Jon Arryn** | "The seed is strong." Last crisis's Councillors are under suspicion. |
-| `divan` | Council | last Councillors | **A Quarrel in Council** | The council votes to kill a pregnant Targaryen girl. Ned lays down the pin. |
-| `sehzade` | Whispers | beside the King | **The Heir in Question** | Whose son is Joffrey? The people closest to the King hear it first. |
-| `istanbul` | Whispers | everyone but the King | **The Hand's Tourney** | All of King's Landing in the stands, and everyone has a plan. |
-| `irakeyn` | Council | least Favor | **The Targaryen Threat** | A Dothraki khalasar and a pregnant queen across the Narrow Sea. |
-| `isabella` | Red Keep | last Councillors | **Trouble on the Kingsroad** | Arya, Joffrey, a butcher's boy and a direwolf. The court takes sides and a wolf dies for it. |
+| `akil-hocasi` | Council 2, Holdfast 2 | **Sworn Sword** | Cancels the other Schemes of its field on this player | Same. |
+| `muhur` | Council 3 | **The King's Seal** | Schemes can't replace this Councillor; I Am the King still can | Same. |
+| `valide` | Council 4 | **The Queen Regent's Command** | Replace a Councillor with anyone, you included | Same. |
+| `azil` | Council 3 | **Stripped of Office** (new) | The King replaces this Councillor | Council Reshuffle (swap seats) is gone. |
+| `casus` | Holdfast 2 | **Paid Informer** (new) | After the Game, see what this player played and on whom | Whispers looked at a hand. |
+| `muhurlu-evrak` | Holdfast 2 | **Dark Wings** | Look at the top 3 cups, put them back | Same. |
+| `saray-tabibi` | Holdfast 2 | **Maester's Remedy** | This player loses no Gold, Judgment included | Same. |
+| `iftira` | Holdfast 3 | **Slander** | −1 Gold | Same. |
+| `kefalet` | Holdfast 3 | **A Fool's Wager** (new) | On a Councillor: gain 1 on Arbor Red, lose 1 on Strangler | Replaces Lannister Gold. |
+| `teftis` | Council 3 | **Confession** | See what this Councillor discarded | Same. |
+| `defterdar` | Council 2 | **The Crown's Ledgers** (new) | The Hand draws 4 and discards 2 | New in v0.9. |
+| `nobet` | Council 2 | **Kingsguard Watch** (new) | Learn who played one card on this player | New in v0.9. |
+| `nazar` | Holdfast 2 | **The King's Eye** (new) | The Judgment on this Councillor gives or takes 2 | New in v0.9. |
+| `sukut` | Holdfast 2 | **Hold Your Tongue** (new) | This player sits out the next wave | New in v0.9. |
 
-### Ravens (Kader cards)
+### Crises (the research's eleven, by field and draw)
 
-| Kind | Name | Concept | Still |
+| id | Field | Draw | Name |
 |---|---|---|---|
-| `h` | **Fealty** | The realm holds. Goes on the King's Peace; Judgment: the King grants 1 Favor. | Winterfell kneels as Robert arrives (S1E1). |
-| `x` | **Treachery** | One step closer to the boar. Goes on the Conspiracy; Judgment: the King takes 1 Favor. | Cersei tears Robert's will in the throne room (S1E7). |
+| `yeniceri` | Small Council | 0 Gold | **Riot in Flea Bottom** |
+| `hazine` | Red Keep | nobody | **Debt to the Iron Bank** |
+| `venedik` | Red Keep | beside the King | **The Tyrells Arrive** |
+| `harem` | Holdfast | least Gold | **Bastard Letters** |
+| `macar` | Small Council | nobody | **Battle of the Blackwater** |
+| `muhur` | Holdfast | last Councillors | **A Stone Goes Missing** |
+| `divan` | Small Council | last Councillors | **Small Council Quarrel** |
+| `sehzade` | Holdfast | beside the King | **Who Marries Tommen?** |
+| `istanbul` | Holdfast | everyone | **Talk in the Taverns** |
+| `irakeyn` | Small Council | least Gold | **News of the Red Wedding** |
+| `isabella` | Red Keep | last Councillors | **The Stark Girl Is Gone** |
 
-The "I swear I tried" line on the Treachery card becomes a Westeros one in step 2.
+### Ambitions
 
-### Oaths (Taraf)
-
-| Kind | Name | Art |
-|---|---|---|
-| `loyalist` | **Sworn** | Drawn: a sword point-down on a white field. Wins when the King's Peace holds (4 Fealty). |
-| `traitor` | **Oathbreaker** | Drawn: a broken sword on blood red. Wins at the Boar (5 Treachery). Oathbreakers know each other. |
-
-### Conspiracy powers (Treason track)
-
-| Space | id | Name | Concept |
+| id | v0.9 goal | Name | From the research |
 |---|---|---|---|
-| 1 | `1` | **Quiet Days** | Nothing happens. |
-| 2 | `sorusturma` | **The Seed Is Strong** | Jon Arryn's last words. The King names an Inquirer, who secretly reads one Oath. |
-| 3 | `hazineDefteri` | **The Rookery** | The King sends someone up to the ravens: they read the top 3 before the next crisis. |
-| 4 | `fermanRefresh` | **A New Command** | The King's Royal Command is ready again. |
-| 5 | `death` | **The Boar** | The King is dead. Oathbreakers win. |
+| `divanda-nufuz` | Unseat a Councillor with a Scheme | **Strip the Chain** (new) | Goal changed. |
+| `suphe` | Be a Councillor when Strangler is served | **Under Suspicion** | Same. |
+| `takdir` | Be a Councillor when Arbor Red is served | **A Toast to the King** (new) | Goal changed. |
+| `gozden` | Lose Gold | **A Lighter Purse** (new) | Goal changed (any loss, not only the Judgment). |
+| `kulisci` | Schemes on 3 different players | **Many Threads** (new) | Goal changed (3, not 2). |
+| `yukselen` | Be a Councillor in two crises | **A Seat at the Table** | Research name, moved to the goal it fits. |
+| `itirazci` | Make a Dissent | **Dissenter** | Same. |
+| `hedef` | 2+ Schemes on you in one crisis | **Marked** | Same. |
+| `ortak` | Put the King's Seal or A Fool's Wager on a Councillor | **Stand Surety** (new) | Goal changed. |
+| `hazine` | Play 3 Schemes in one crisis | **Play the Game** (new) | Goal changed. |
+| `koltuk` | Become a Councillor through a Scheme | **Climb the Ladder** | Same. |
+| `kulak` | Use Paid Informer, Dark Wings, Confession or Kingsguard Watch | **Eavesdropper** | Same, with the v0.9 cards. |
 
 ---
 
 ## 3. Art direction
+
+*From the first version. Kept: iron frames, fonts, music. Being reworked for the new world: the Kader deck becomes cups (back, icons, stills), the frieze, house tints, the icons whose meaning moved, and every portrait (seasons 3–4). Sections 4–5 below describe the first version.*
 
 **The idea: vellum and iron.** The Ottoman version is paper and lacquer. Here the public surfaces are **maester's vellum** (court, tracks, reveals, Judgment) and the private ones are **blackened iron and oiled leather** (your hand, your Oath, the Ravens, peeks). Gold is spent on the King and Favor only. Stone is the Red Keep's warm red sandstone, and the light is candles and braziers.
 

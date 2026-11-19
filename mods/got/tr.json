@@ -1,221 +1,738 @@
 {
   "terms": {
-    "suleyman": { "name": "Kral", "acc": "Kralı", "dat": "Krala", "gen": "Kralın", "loc": "Kralda", "abl": "Kraldan", "you": "Kralsın", "stems": ["Kral"] },
-    "loyalist": { "name": "Yeminli", "acc": "Yeminliyi", "pl": "Yeminliler", "plAcc": "Yeminlileri", "you": "Yeminlisin" },
-    "traitor": { "name": "Yeminbozan", "acc": "Yeminbozanı", "pl": "Yeminbozanlar", "plAcc": "Yeminbozanları", "you": "Yeminbozansın" },
-    "allegiance": { "name": "Yemin", "acc": "Yemini", "stems": ["Yemin"] },
-    "min1": { "name": "Kral Eli", "acc": "Kral Elini", "dat": "Kral Eline", "gen": "Kral Elinin", "loc": "Kral Elinde", "abl": "Kral Elinden", "stems": ["Kral Eli", "Kral Elin"] },
-    "min2": { "name": "Kanun Ustası", "acc": "Kanun Ustasını", "dat": "Kanun Ustasına", "gen": "Kanun Ustasının", "loc": "Kanun Ustasında", "abl": "Kanun Ustasından", "stems": ["Kanun Ustas"] },
-    "minister": { "name": "Danışman", "acc": "Danışmanı", "dat": "Danışmana", "gen": "Danışmanın", "loc": "Danışmanda", "abl": "Danışmandan", "pl": "Danışmanlar", "plAcc": "Danışmanları" },
-    "character": { "name": "Karakter" },
-    "companion": { "name": "Maiyet", "acc": "Maiyeti", "pl": "Maiyetler" },
-    "crisis": { "name": "Kriz", "acc": "Krizi", "dat": "Krize", "gen": "Krizin", "loc": "Krizde", "abl": "Krizden", "pl": "Krizler" },
-    "court": { "name": "Kumpas", "acc": "Kumpası", "dat": "Kumpasa", "gen": "Kumpasın", "loc": "Kumpasta", "abl": "Kumpastan" },
-    "objection": { "name": "Meydan Okuma", "acc": "Meydan Okumayı", "pl": "Meydan Okumalar", "stems": ["Meydan Okuma", "meydan oku"] },
-    "decree": { "name": "Yargı", "acc": "Yargıyı", "dat": "Yargıya", "gen": "Yargının", "loc": "Yargıda", "abl": "Yargıdan" },
-    "kader": { "name": "Kuzgun", "acc": "Kuzgunu", "loc": "Kuzgunlarda", "abl": "Kuzgunlardan", "pl": "Kuzgunlar", "stems": ["Kuzgun"] },
-    "hizmet": { "name": "Bağlılık", "stems": ["Bağlılık", "Bağlılığ"] },
-    "hiyanet": { "name": "İhanet" },
-    "intrigue": { "name": "Entrika", "pl": "Entrikalar" },
-    "ambition": { "name": "Hırs", "stems": ["Hırs"] },
-    "harem": { "name": "Fısıltı", "stems": ["Fısıltı"] },
-    "divan": { "name": "Konsey", "stems": ["Konsey"] },
-    "saray": { "name": "Kızıl Kale", "stems": ["Kızıl Kale"] },
-    "influence": { "name": "İtibar", "acc": "İtibarı", "dat": "İtibara", "loc": "İtibarda", "stems": ["İtibar"] },
-    "base": { "name": "Doğum hakkı", "stems": ["Doğum hakkı", "Doğum Hakkı"] },
-    "favor": { "name": "Lütuf", "stems": ["Lütuf", "Lütf"] },
-    "loyalty": { "name": "Kralın Barışı", "acc": "Kralın Barışını", "dat": "Kralın Barışına", "loc": "Kralın Barışında", "stems": ["Kralın Barış"] },
-    "treason": { "name": "Komplo", "acc": "Komployu", "dat": "Komploya", "gen": "Komplonun", "loc": "Komploda", "stems": ["Komplo"] },
-    "secret": { "name": "Gizli", "stems": ["Gizli", "gizli"] },
-    "once": { "name": "Oyunda bir", "stems": ["Oyunda bir", "oyunda bir"] },
-    "percrisis": { "name": "Krizde bir", "stems": ["Krizde bir", "krizde bir"] },
-    "always": { "name": "Her zaman", "stems": ["Her zaman", "her zaman"] },
-    "investigator": { "name": "sorgucu" }
+    "suleyman": {
+      "name": "Kral",
+      "acc": "Kralı",
+      "dat": "Krala",
+      "gen": "Kralın",
+      "loc": "Kralda",
+      "abl": "Kraldan",
+      "you": "Kralsın",
+      "stems": [
+        "Kral"
+      ]
+    },
+    "loyalist": {
+      "name": "Sadık",
+      "acc": "Sadığı",
+      "pl": "Sadıklar",
+      "plAcc": "Sadıkları",
+      "you": "Sadıksın",
+      "stems": [
+        "Sadık",
+        "Sadığ"
+      ]
+    },
+    "traitor": {
+      "name": "Dönek",
+      "acc": "Döneği",
+      "pl": "Dönekler",
+      "plAcc": "Dönekleri",
+      "you": "Döneksin",
+      "stems": [
+        "Dönek",
+        "Döneğ"
+      ]
+    },
+    "allegiance": {
+      "name": "Saf",
+      "acc": "Safı",
+      "stems": [
+        "Saf"
+      ]
+    },
+    "min1": {
+      "name": "Kral Eli",
+      "acc": "Kral Elini",
+      "dat": "Kral Eline",
+      "gen": "Kral Elinin",
+      "loc": "Kral Elinde",
+      "abl": "Kral Elinden",
+      "stems": [
+        "Kral Eli",
+        "Kral Elin"
+      ]
+    },
+    "min2": {
+      "name": "Hazine Ustası",
+      "acc": "Hazine Ustasını",
+      "dat": "Hazine Ustasına",
+      "gen": "Hazine Ustasının",
+      "loc": "Hazine Ustasında",
+      "abl": "Hazine Ustasından",
+      "stems": [
+        "Hazine Ustas"
+      ]
+    },
+    "minister": {
+      "name": "Danışman",
+      "acc": "Danışmanı",
+      "dat": "Danışmana",
+      "gen": "Danışmanın",
+      "loc": "Danışmanda",
+      "abl": "Danışmandan",
+      "pl": "Danışmanlar",
+      "plAcc": "Danışmanları"
+    },
+    "character": {
+      "name": "Karakter"
+    },
+    "companion": {
+      "name": "Maiyet",
+      "acc": "Maiyeti",
+      "pl": "Maiyetler"
+    },
+    "crisis": {
+      "name": "Kriz",
+      "acc": "Krizi",
+      "dat": "Krize",
+      "gen": "Krizin",
+      "loc": "Krizde",
+      "abl": "Krizden",
+      "pl": "Krizler"
+    },
+    "court": {
+      "name": "Oyun",
+      "acc": "Oyunu",
+      "dat": "Oyuna",
+      "gen": "Oyunun",
+      "loc": "Oyunda",
+      "abl": "Oyundan",
+      "stems": [
+        "Oyun"
+      ]
+    },
+    "objection": {
+      "name": "Muhalefet",
+      "acc": "Muhalefeti",
+      "pl": "Muhalefetler",
+      "stems": [
+        "Muhalefet",
+        "muhalefet"
+      ]
+    },
+    "decree": {
+      "name": "Yargı",
+      "acc": "Yargıyı",
+      "dat": "Yargıya",
+      "gen": "Yargının",
+      "loc": "Yargıda",
+      "abl": "Yargıdan"
+    },
+    "kader": {
+      "name": "Kadeh",
+      "acc": "Kadehi",
+      "loc": "Sunuşta",
+      "abl": "Kadehlerden",
+      "pl": "Kadehler",
+      "stems": [
+        "Kadeh",
+        "Sunuş"
+      ]
+    },
+    "hizmet": {
+      "name": "Arbor Kırmızısı",
+      "stems": [
+        "Arbor Kırmızı"
+      ]
+    },
+    "hiyanet": {
+      "name": "Boğucu",
+      "stems": [
+        "Boğucu"
+      ]
+    },
+    "intrigue": {
+      "name": "Entrika",
+      "pl": "Entrikalar"
+    },
+    "ambition": {
+      "name": "Hırs",
+      "stems": [
+        "Hırs"
+      ]
+    },
+    "harem": {
+      "name": "İç Kale",
+      "stems": [
+        "İç Kale"
+      ]
+    },
+    "divan": {
+      "name": "Küçük Konsey",
+      "stems": [
+        "Küçük Konsey"
+      ]
+    },
+    "saray": {
+      "name": "Kızıl Kale",
+      "stems": [
+        "Kızıl Kale"
+      ]
+    },
+    "influence": {
+      "name": "Altın",
+      "acc": "Altını",
+      "dat": "Altına",
+      "loc": "Altında",
+      "stems": [
+        "Altın"
+      ]
+    },
+    "base": {
+      "name": "Temel güç",
+      "stems": [
+        "Temel güç",
+        "Temel Güç"
+      ]
+    },
+    "favor": {
+      "name": "Lütuf",
+      "stems": [
+        "Lütuf",
+        "Lütf"
+      ]
+    },
+    "loyalty": {
+      "name": "Uzun Saltanat",
+      "acc": "Uzun Saltanatı",
+      "dat": "Uzun Saltanata",
+      "loc": "Uzun Saltanatta",
+      "stems": [
+        "Uzun Saltanat"
+      ]
+    },
+    "treason": {
+      "name": "Mor Düğün",
+      "acc": "Mor Düğünü",
+      "dat": "Mor Düğüne",
+      "gen": "Mor Düğünün",
+      "loc": "Mor Düğünde",
+      "stems": [
+        "Mor Düğün"
+      ]
+    },
+    "secret": {
+      "name": "Gizli",
+      "stems": [
+        "Gizli",
+        "gizli"
+      ]
+    },
+    "once": {
+      "name": "Oyunda bir",
+      "stems": [
+        "Oyunda bir",
+        "oyunda bir"
+      ]
+    },
+    "percrisis": {
+      "name": "Krizde bir",
+      "stems": [
+        "Krizde bir",
+        "krizde bir"
+      ]
+    },
+    "always": {
+      "name": "Her zaman",
+      "stems": [
+        "Her zaman",
+        "her zaman"
+      ]
+    },
+    "investigator": {
+      "name": "sorgucu"
+    }
   },
   "characters": {
     "suleyman": {
-      "name": "Robert Baratheon",
-      "short": "Robert",
-      "base": { "name": "Kraliyet Emri", "text": "Kumpas bitince bir Danışmanı uygun bir oyuncuyla değiştir, Kralın Mührü olsa bile. Çıkan 1 Entrika kartı çeker." },
-      "flavor": "Öfke bizimdir."
-    },
-    "hurrem": {
-      "name": "Cersei Lannister",
-      "short": "Cersei",
-      "base": { "name": "Kraliçenin Öğüdü", "text": "Yargıda İtibarı hangi Danışmanın alacağını Kral yerine sen seçersin." },
-      "favor": { "name": "Güç Güçtür", "text": "Bir dalgada bir yerine iki kart oyna." },
-      "flavor": "Taht oyununda ya kazanırsın ya ölürsün."
-    },
-    "ibrahim": {
-      "name": "Eddard Stark",
-      "short": "Ned",
-      "base": { "name": "Kral Adına", "text": "Bu Kriz iki Danışmanı Kral yerine sen atarsın; kendini de atayabilirsin." },
-      "favor": { "name": "Onur", "text": "Bundan sonra Danışmanken Bağlılık gönderilirse 1 İtibar kazan." },
-      "flavor": "Kış geliyor."
-    },
-    "sahsultan": {
-      "name": "Renly Baratheon",
-      "short": "Renly",
-      "base": { "name": "Kralın Kardeşi", "text": "Meydan Okuma sıran gelince bedavaya meydan oku; yerine geleni sen seç. Bu Krizdeki Meydan Okuman sayılır." },
-      "favor": { "name": "Kaleden Sürgün", "text": "Bir oyuncu seç: gelecek Kriz hiçbir yolla Danışman olamaz." },
-      "flavor": "Fırtına Burnu'nun lordu, Kralın en küçük kardeşi."
-    },
-    "mustafa": {
       "name": "Joffrey Baratheon",
       "short": "Joffrey",
-      "base": { "name": "Veliaht Prens", "text": "Kumpas bitince, Kraliyet Emri'nden önce, uygunsan bir Danışmanın yerine geç, Kralın Mührü olsa bile." },
-      "favor": { "name": "Eziyet Hakkım", "text": "Sana meydan okuyan, ödediği İtibarı sana verir." },
+      "base": {
+        "name": "Kral Benim",
+        "text": "Oyun bitince bir Danışmanı uygun bir oyuncuyla değiştir, Kralın Mührü olsa bile. Çıkan 1 Entrika kartı çeker."
+      },
       "flavor": "Herkese eziyet etmek benim hakkım."
     },
+    "hurrem": {
+      "name": "Margaery Tyrell",
+      "short": "Margaery",
+      "base": {
+        "name": "Kralın Kulağı",
+        "text": "Yargıda Altını hangi Danışmanın alacağını Kral yerine sen seçersin."
+      },
+      "favor": {
+        "name": "Gül ve Diken",
+        "text": "Bir dalgada bir yerine iki kart oyna."
+      },
+      "flavor": "Bir kraliçe olmak istemiyorum. Kraliçe olmak istiyorum."
+    },
+    "ibrahim": {
+      "name": "Tywin Lannister",
+      "short": "Tywin",
+      "base": {
+        "name": "Yatağına Gönder",
+        "text": "Bu Kriz iki Danışmanı Kral yerine sen atarsın; kendini de atayabilirsin."
+      },
+      "favor": {
+        "name": "Kaya'nın Altını",
+        "text": "Bundan sonra Danışmanken Arbor Kırmızısı sunulursa 1 Altın kazan."
+      },
+      "flavor": "\"Ben kralım\" diyen, gerçek kral değildir."
+    },
+    "sahsultan": {
+      "name": "Cersei Lannister",
+      "short": "Cersei",
+      "base": {
+        "name": "Kraliçenin Hoşnutsuzluğu",
+        "text": "Muhalefet sıran gelince bedavaya muhalefet et; yerine geleni sen seç. Bu Krizdeki Muhalefetin sayılır."
+      },
+      "favor": {
+        "name": "Sürgün",
+        "text": "Bir oyuncu seç: gelecek Kriz hiçbir yolla Danışman olamaz."
+      },
+      "flavor": "Ne yapıyorsam çocuklarım için yapıyorum."
+    },
+    "mustafa": {
+      "name": "Jaime Lannister",
+      "short": "Jaime",
+      "base": {
+        "name": "Lord Komutanın Koltuğu",
+        "text": "Oyun bitince, Kral Benim'den önce, uygunsan bir Danışmanın yerine geç, Kralın Mührü olsa bile."
+      },
+      "favor": {
+        "name": "Kral Katili'nin Bedeli",
+        "text": "Sana muhalefet eden, ödediği Altını sana verir."
+      },
+      "flavor": "Bir kralı zaten öldürdüm."
+    },
     "hatice": {
-      "name": "Varys",
-      "short": "Varys",
-      "base": { "name": "Krallığa Hizmet", "text": "Kumpastan önce bir oyuncu seç: bu Kriz Entrika kartlarıyla koltuğundan edilemez ve Yargı dahil İtibar kaybetmez." },
-      "favor": { "name": "Küçük Kuşlar", "text": "Kral ve kendin dışında iki oyuncu seç: aynı tarafta olup olmadıklarını gizlice öğren." },
-      "flavor": "Çok küçük bir adam çok büyük bir gölge düşürebilir."
+      "name": "Tyrion Lannister",
+      "short": "Tyrion",
+      "base": {
+        "name": "Tokat",
+        "text": "Oyundan önce bir oyuncu seç: bu Kriz Entrika kartlarıyla koltuğundan edilemez ve Yargı dahil Altın kaybetmez."
+      },
+      "favor": {
+        "name": "İçerim ve Bir Şeyler Bilirim",
+        "text": "Kral ve kendin dışında iki oyuncu seç: aynı safta olup olmadıklarını gizlice öğren."
+      },
+      "flavor": "Keşke sandığın canavar olsaydım."
     },
     "rustem": {
       "name": "Petyr Baelish",
       "short": "Serçeparmak",
-      "base": { "name": "Kulağa Bir Söz", "text": "Kral Danışmanları atamadan önce onunla bir dakika baş başa konuş." },
-      "favor": { "name": "Kaos Bir Merdivendir", "text": "Bir dalga açılınca sana oynanan bir Entrika kartını başka bir oyuncuya kaydır." },
-      "flavor": "Bana güvenme demiştim."
+      "base": {
+        "name": "Baş Başa Bir Söz",
+        "text": "Kral atamadan önce onunla bir dakikaya kadar baş başa konuş."
+      },
+      "favor": {
+        "name": "Kaos Bir Merdivendir",
+        "text": "Bir dalga açılınca sana oynanan bir Entrika kartını başka bir oyuncuya kaydır."
+      },
+      "flavor": "Tacın bana borcu büyük. Ölü krallar borç ödemez."
     },
     "barbaros": {
-      "name": "Arya Stark",
-      "short": "Arya",
-      "base": { "name": "Yılan Gibi Çevik", "text": "Başka bir oyuncunun elinden rastgele 1 Entrika kartı al, sonra el sınırına kadar at." },
-      "favor": { "name": "Kalenin Altında", "text": "Kuzgunlardan sonra Kral Elinin yaktığı kart ya da kartlara gizlice bak." },
-      "flavor": "Sivri ucuyla sapla."
+      "name": "Varys",
+      "short": "Varys",
+      "base": {
+        "name": "Çalınan Mektuplar",
+        "text": "Başka bir oyuncunun elinden rastgele 1 Entrika kartı al, sonra el sınırına kadar at."
+      },
+      "favor": {
+        "name": "Küçük Kuşlar",
+        "text": "Sunuştan sonra Kral Elinin attığı kadeh ya da kadehlere gizlice bak."
+      },
+      "flavor": "Krallığa hizmet ederim."
     },
     "gritti": {
-      "name": "Tyrion Lannister",
-      "short": "Tyrion",
-      "base": { "name": "Lannister Borcu", "text": "Bir oyuncu seç. O bir dahaki İtibar kazanışında sen de 1 kazanırsın." },
-      "favor": { "name": "Akıl Kitap İster", "text": "Kuzgun destesinin üstteki 3 kartına gizlice bak; birini alta koyabilirsin." },
-      "flavor": "Bir Lannister borcunu her zaman öder."
+      "name": "Tycho Nestoris",
+      "short": "Tycho",
+      "base": {
+        "name": "Faiz Hakkı",
+        "text": "Başka bir oyuncu seç. O bir dahaki Altın kazanışında sen de 1 kazanırsın."
+      },
+      "favor": {
+        "name": "Demir Banka Alacağını Alır",
+        "text": "Kadeh destesinin üstteki 3 kartına gizlice bak; birini alta koyabilirsin."
+      },
+      "flavor": "Demir Banka, borcunu ödeyen tahtın arkasındadır."
     },
     "sarlken": {
-      "name": "Jon Snow",
-      "short": "Jon",
-      "base": { "name": "Siyahları Giy", "text": "Atamada, Meydan Okumalardan önce, koltuğunu uygun bir oyuncuya ver. 1 İtibar kazan; kart çekmezsin." },
-      "favor": { "name": "Duvarın Ötesi", "text": "Entrika kartların açık bir alanın kartı sayılır." },
-      "flavor": "Ben karanlıktaki kılıcım."
+      "name": "Oberyn Martell",
+      "short": "Oberyn",
+      "base": {
+        "name": "Koltuk İçin Gelmedim",
+        "text": "Atamada, Muhalefetlerden önce, koltuğunu uygun bir oyuncuya ver. 1 Altın kazan; kart çekmezsin."
+      },
+      "favor": {
+        "name": "Eğilmez, Bükülmez, Kırılmaz",
+        "text": "Entrika kartların açık bir alanın kartı sayılır."
+      },
+      "flavor": "Elia Martell. Çocukları. Adlarını söyle."
     },
     "tahmasp": {
       "name": "Daenerys Targaryen",
       "short": "Daenerys",
-      "base": { "name": "Khaleesi", "text": "Kriz kartı açılınca bu Krizin alanını sen seç: Konsey, Fısıltı ya da Kızıl Kale." },
-      "favor": { "name": "Ateş ve Kan", "text": "Herkes, sen de, seçtiği 1 Entrika kartını tutar; gerisini atar." },
-      "flavor": "Ben ejderhanın kanıyım."
+      "base": {
+        "name": "Ejderhaların Annesi",
+        "text": "Kriz kartı açılınca bu Krizin alanını sen seç: Küçük Konsey, İç Kale ya da Kızıl Kale."
+      },
+      "favor": {
+        "name": "Dracarys",
+        "text": "Herkes, sen de, seçtiği 1 Entrika kartını tutar; gerisini atar."
+      },
+      "flavor": "Benim olanı ateş ve kanla alacağım."
     }
   },
   "companions": {
-    "daye": { "name": "Jaime Lannister", "text": "Bir Entrika kartını Gaspçı olarak oyna; yerine kendini seçemezsin.", "flavor": "Aşk için yaptıklarım." },
-    "bali": { "name": "Sandor Clegane", "text": "Bir Entrika kartını Kralın Mührü olarak oyna.", "flavor": "Tazı'yı kimse geçemez." },
-    "ayas": { "name": "Ilyn Payne", "text": "Bir Entrika kartını Görevden Alma olarak oyna.", "flavor": "Kralın Adaleti tek kelime etmez." },
-    "matrakci": { "name": "Ros", "text": "Bir Entrika kartını Peşinde olarak oyna.", "flavor": "İpek Sokağı'nda her erkek konuşur." },
-    "sumbul": { "name": "Syrio Forel", "text": "Bir Entrika kartını Bugün Değil olarak oyna; alanını sen seç.", "flavor": "Ölüm tanrısına ne deriz?" },
-    "nigar": { "name": "Büyük Üstat Pycelle", "text": "Bir Entrika kartını Açılmış Mektuplar olarak oyna.", "flavor": "Her kuzgun önce onun kulesinden geçer." },
-    "ebussuud": { "name": "Jory Cassel", "text": "Bir Entrika kartını Soruşturma olarak oyna.", "flavor": "Stark muhafızlarının yüzbaşısı, Kral Elinin ayakları." },
-    "gulsah": { "name": "Shae", "text": "Bir Entrika kartını Söylenti olarak oyna.", "flavor": "Tek sözü bir lordu astırır." },
-    "seker": { "name": "Lancel Lannister", "text": "Bir Entrika kartını Tadımcı olarak oyna.", "flavor": "Kralın kadehi önce onun elinden geçer." },
-    "gulfem": { "name": "Sansa Stark", "text": "Bir Entrika kartını Turnuva Bahsi olarak oyna.", "flavor": "Şampiyonunu hep o tutar." },
-    "iskender": { "name": "Janos Slynt", "text": "Bir Entrika kartını Tacın Defterleri olarak oyna.", "flavor": "Tacın kendi altınıyla satın alındı." },
-    "firuze": { "name": "Loras Tyrell", "text": "Bir Entrika kartını Kralın Gözü olarak oyna.", "flavor": "Çiçekler Şövalyesi her gözü üstüne çeker." },
-    "gulaga": { "name": "Septa Mordane", "text": "Bir Entrika kartını Dilini Tut olarak oyna.", "flavor": "Bir hanımefendi konuşmaktan çok dinler." },
-    "lokman": { "name": "Barristan Selmy", "text": "Bir Entrika kartını Kapıda Nöbet olarak oyna.", "flavor": "Kralın kapısında kırk yıl." }
+    "daye": {
+      "name": "Ilyn Payne",
+      "text": "Bir Entrika kartını Naibe Kraliçenin Emri olarak oyna; yerine kendini seçemezsin.",
+      "flavor": "Kralın Adaleti tek kelime etmez."
+    },
+    "bali": {
+      "name": "Sandor Clegane",
+      "text": "Bir Entrika kartını Kralın Mührü olarak oyna.",
+      "flavor": "Joffrey'nin yeminli kalkanı. Tazı'yı kimse geçemez."
+    },
+    "ayas": {
+      "name": "Janos Slynt",
+      "text": "Bir Entrika kartını Görevden Alındı olarak oyna.",
+      "flavor": "Bir Kral Elini sattı, birini daha satar."
+    },
+    "matrakci": {
+      "name": "Ros",
+      "text": "Bir Entrika kartını Paralı Muhbir olarak oyna.",
+      "flavor": "Serçeparmak'ın kızı, Varys'in kulağı."
+    },
+    "sumbul": {
+      "name": "Bronn",
+      "text": "Bir Entrika kartını Yeminli Kılıç olarak oyna; alanını sen seç.",
+      "flavor": "Paralı asker, kim çok verirse ona çalışır."
+    },
+    "nigar": {
+      "name": "Büyük Üstat Pycelle",
+      "text": "Bir Entrika kartını Kara Kanatlar olarak oyna.",
+      "flavor": "Her kuzgun önce onun kulesinden geçer."
+    },
+    "ebussuud": {
+      "name": "Olenna Tyrell",
+      "text": "Bir Entrika kartını İtiraf olarak oyna.",
+      "flavor": "Dikenler Kraliçesi kadehte ne olduğunu bilir."
+    },
+    "gulsah": {
+      "name": "Lancel Lannister",
+      "text": "Bir Entrika kartını Kara Çalma olarak oyna.",
+      "flavor": "Bir krala sert şarabı o sundu."
+    },
+    "seker": {
+      "name": "Qyburn",
+      "text": "Bir Entrika kartını Üstadın İlacı olarak oyna.",
+      "flavor": "Zincirsiz bir üstat, vicdansız da."
+    },
+    "gulfem": {
+      "name": "Dontos Hollard",
+      "text": "Bir Entrika kartını Soytarı Bahsi olarak oyna.",
+      "flavor": "Verecek bir kolyesi olan sarhoş bir soytarı."
+    },
+    "iskender": {
+      "name": "Kevan Lannister",
+      "text": "Bir Entrika kartını Tacın Defterleri olarak oyna.",
+      "flavor": "Tywin'in sağlam kardeşi hesabı tutar."
+    },
+    "firuze": {
+      "name": "Shae",
+      "text": "Bir Entrika kartını Kralın Gözü olarak oyna.",
+      "flavor": "Sansa'nın hizmetçisi, Tyrion'un sırrı."
+    },
+    "gulaga": {
+      "name": "Sansa Stark",
+      "text": "Bir Entrika kartını Dilini Tut olarak oyna.",
+      "flavor": "Bir rehine hiçbir şey söylememeyi öğrenir."
+    },
+    "lokman": {
+      "name": "Podrick Payne",
+      "text": "Bir Entrika kartını Muhafız Nöbeti olarak oyna.",
+      "flavor": "Kapıdaki seyis kimin girdiğini görür."
+    }
   },
   "intrigue": {
-    "akil-hocasi": { "name": "Bugün Değil", "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.", "flavor": "Ölüm tanrısına ne deriz? Bugün değil." },
-    "muhur": { "name": "Kralın Mührü", "text": "Bir Danışmana koy. Bu Kriz Entrika kartlarıyla değiştirilemez; Kraliyet Emri yine değiştirir.", "flavor": "Taçlı geyikle mühürlü." },
-    "valide": { "name": "Gaspçı", "text": "Bir Danışmana koy. Onu uygun bir oyuncuyla değiştir, kendini de seçebilirsin. Yeni oyuncu aynı koltuğa oturur.", "flavor": "Ejderhanın varisleri Krala böyle der." },
-    "azil": { "name": "Görevden Alma", "text": "Bir Danışmana koy. Kral onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.", "flavor": "Görevinden alındın." },
-    "casus": { "name": "Peşinde", "text": "Kumpas bitince, bu oyuncunun bu Kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.", "flavor": "Biri onu ta zindanlara kadar izledi." },
-    "muhurlu-evrak": { "name": "Açılmış Mektuplar", "text": "Kuzgun destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.", "flavor": "Okundu, yeniden mühürlendi, teslim edildi." },
-    "saray-tabibi": { "name": "Tadımcı", "text": "Bu oyuncu bu Kriz, Yargı dahil, İtibar kaybetmez.", "flavor": "Birileri hep önce içer." },
-    "iftira": { "name": "Söylenti", "text": "Bu oyuncu 1 İtibar kaybeder.", "flavor": "Bir isim, bir fısıltı, bir düşüş." },
-    "kefalet": { "name": "Turnuva Bahsi", "text": "Bir Danışmana koy. Kuzgunlarda hâlâ Danışmansa: Bağlılık gönderilirse 1 İtibar kazanırsın, İhanet gönderilirse 1 kaybedersin.", "flavor": "Şampiyonunu tut; düşerse sen ödersin." },
-    "teftis": { "name": "Soruşturma", "text": "Bir Danışmana koy. Kuzgunlardan sonra onun yaktığı kart ya da kartlara gizlice bak.", "flavor": "Kral Eli başkalarının attığını okur." },
-    "defterdar": { "name": "Tacın Defterleri", "text": "Kral Eline koy. Kuzgunlarda hâlâ Kral Eliyse 3 yerine 4 kart çeker, 2'sini yakar.", "flavor": "Altı milyon borç, her kalemi yazılı." },
-    "nobet": { "name": "Kapıda Nöbet", "text": "Kumpas bitince, bu Kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.", "flavor": "Kapıyı kim çaldıysa nöbetçi bilir." },
-    "nazar": { "name": "Kralın Gözü", "text": "Bir Danışmana koy. Bu Kriz Yargı bu Danışmana düşerse 1 yerine 2 İtibar verir ya da alır.", "flavor": "Robert seni izliyor. Gördüğünü sevsin diye dua et." },
-    "sukut": { "name": "Dilini Tut", "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.", "flavor": "Bir hanımefendi dilini tutar." }
+    "akil-hocasi": {
+      "name": "Yeminli Kılıç",
+      "text": "Bu kriz boyunca bu oyuncuya konan, kendi alanındaki diğer Entrika kartlarını iptal eder.",
+      "flavor": "Parası ödenmiş kılıç kınına girmez."
+    },
+    "muhur": {
+      "name": "Kralın Mührü",
+      "text": "Bir Danışmana koy. Bu Kriz Entrika kartlarıyla değiştirilemez; Kral Benim yine değiştirir.",
+      "flavor": "Aslan ve geyik, mumda."
+    },
+    "valide": {
+      "name": "Naibe Kraliçenin Emri",
+      "text": "Bir Danışmana koy. Onu uygun bir oyuncuyla değiştir, kendini de seçebilirsin. Yeni oyuncu aynı koltuğa oturur.",
+      "flavor": "Kral bir çocuk. Annesi değil."
+    },
+    "azil": {
+      "name": "Görevden Alındı",
+      "text": "Bir Danışmana koy. Kral onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
+      "flavor": "Görevinden alındın."
+    },
+    "casus": {
+      "name": "Paralı Muhbir",
+      "text": "Oyun bitince, bu oyuncunun bu Kriz oynadığı Entrika kartlarını ve kime oynadığını gizlice gör.",
+      "flavor": "Biraz gümüşe herkes konuşur."
+    },
+    "muhurlu-evrak": {
+      "name": "Kara Kanatlar",
+      "text": "Kadeh destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
+      "flavor": "Kara kanatlar, kara haberler."
+    },
+    "saray-tabibi": {
+      "name": "Üstadın İlacı",
+      "text": "Bu oyuncu bu Kriz, Yargı dahil, Altın kaybetmez.",
+      "flavor": "Parasını ödersen bir panzehir."
+    },
+    "iftira": {
+      "name": "Kara Çalma",
+      "text": "Bu oyuncu 1 Altın kaybeder.",
+      "flavor": "Bir isim, bir fısıltı, bir düşüş."
+    },
+    "kefalet": {
+      "name": "Soytarı Bahsi",
+      "text": "Bir Danışmana koy. Sunuşta hâlâ Danışmansa: Arbor Kırmızısı sunulursa 1 Altın kazanırsın, Boğucu sunulursa 1 kaybedersin.",
+      "flavor": "Danışmana ancak bir soytarı bahse girer."
+    },
+    "teftis": {
+      "name": "İtiraf",
+      "text": "Bir Danışmana koy. Sunuştan sonra onun attığı kadeh ya da kadehlere gizlice bak.",
+      "flavor": "Masadan kalkan her kadehin hesabı sorulur."
+    },
+    "defterdar": {
+      "name": "Tacın Defterleri",
+      "text": "Kral Eline koy. Sunuşta hâlâ Kral Eliyse 3 yerine 4 kadeh doldurur, 2'sini atar.",
+      "flavor": "Tacın milyonlarca borcu var. Biri sayıyor."
+    },
+    "nobet": {
+      "name": "Muhafız Nöbeti",
+      "text": "Oyun bitince, bu Kriz bu oyuncuya başkalarının oynadığı kartlardan birini seç; onu kimin oynadığını gizlice öğren.",
+      "flavor": "Beyaz pelerinler kimin gelip gittiğini görür."
+    },
+    "nazar": {
+      "name": "Kralın Gözü",
+      "text": "Bir Danışmana koy. Bu Kriz Yargı bu Danışmana düşerse 1 yerine 2 Altın verir ya da alır.",
+      "flavor": "Joffrey izliyor. Eğlensin diye dua et."
+    },
+    "sukut": {
+      "name": "Dilini Tut",
+      "text": "Bu oyuncu sonraki dalgada Entrika kartı oynayamaz.",
+      "flavor": "Bu sarayda susan kafasını korur."
+    }
   },
   "ambitions": {
-    "divanda-nufuz": { "name": "Rozeti Sök", "text": "Bir Entrika kartıyla bir Danışmanı koltuğundan et.", "flavor": "Kral Eli bile rozetini kaybedebilir." },
-    "suphe": { "name": "Kuşku Altında", "text": "İhanet gönderildiğinde Danışman ol.", "flavor": "Duman varsa, biri ateş yakmıştır." },
-    "takdir": { "name": "Kralın Minneti", "text": "Bağlılık gönderildiğinde Danışman ol.", "flavor": "Robert dostunu unutmaz." },
-    "gozden": { "name": "Gözden Düşüş", "text": "İtibar kaybet.", "flavor": "Ne kadar yükseğe çıkarsan o kadar sert düşersin." },
-    "kulisci": { "name": "Her Yerde Ağ", "text": "Üç farklı oyuncuya Entrika kartı koy.", "flavor": "Her kapıya bir iplik." },
-    "yukselen": { "name": "Kralın Gözdesi", "text": "İki Krizde Danışman ol.", "flavor": "Yükselmek kolay, orada kalmak zor." },
-    "itirazci": { "name": "Diz Çökmeyen", "text": "Bir Meydan Okuma yap.", "flavor": "Susan razı sayılır." },
-    "hedef": { "name": "Karanlıkta Bıçaklar", "text": "Aynı Krizde başka oyuncular sana 2 ya da daha fazla Entrika kartı koysun.", "flavor": "Odadaki her bıçak sana dönük." },
-    "ortak": { "name": "Şampiyonunu Tut", "text": "Bir Danışmana Kralın Mührü ya da Turnuva Bahsi koy.", "flavor": "Birlikte yüksel, birlikte düş." },
-    "hazine": { "name": "Oyunu Oyna", "text": "Bir Krizde 3 Entrika kartı oyna.", "flavor": "Ya kazanırsın ya ölürsün." },
-    "koltuk": { "name": "Koltuğu Kap", "text": "Bir Entrika kartıyla Danışman ol.", "flavor": "Hiçbir koltuk uzun süre boş kalmaz." },
-    "kulak": { "name": "Kapı Ardında", "text": "Peşinde, Açılmış Mektuplar, Soruşturma ya da Kapıda Nöbet kullan.", "flavor": "Duvarların kulağı, zindanların dili var." }
+    "divanda-nufuz": {
+      "name": "Zinciri Sök",
+      "text": "Bir Entrika kartıyla bir Danışmanı koltuğundan et.",
+      "flavor": "Her makam zinciri bir gün çıkar."
+    },
+    "suphe": {
+      "name": "Kuşku Altında",
+      "text": "Boğucu sunulduğunda Danışman ol.",
+      "flavor": "Yemin ederim, verdiğimde kadeh temizdi!"
+    },
+    "takdir": {
+      "name": "Krala Kadeh Kaldır",
+      "text": "Arbor Kırmızısı sunulduğunda Danışman ol.",
+      "flavor": "Uzun yaşasın Kral."
+    },
+    "gozden": {
+      "name": "Hafifleyen Kese",
+      "text": "Altın kaybet.",
+      "flavor": "Bir Lannister borcunu öder. Biz de öderiz."
+    },
+    "kulisci": {
+      "name": "Her Yerde İplik",
+      "text": "Üç farklı oyuncuya Entrika kartı koy.",
+      "flavor": "Her kapıya bir iplik."
+    },
+    "yukselen": {
+      "name": "Masada Bir Koltuk",
+      "text": "İki Krizde Danışman ol.",
+      "flavor": "Koltuk, oturandan değerlidir."
+    },
+    "itirazci": {
+      "name": "Muhalif",
+      "text": "Bir Muhalefet yap.",
+      "flavor": "Susan razı sayılır."
+    },
+    "hedef": {
+      "name": "Hedefte",
+      "text": "Aynı Krizde başka oyuncular sana 2 ya da daha fazla Entrika kartı koysun.",
+      "flavor": "Odadaki her bıçak sana dönük."
+    },
+    "ortak": {
+      "name": "Kefil Ol",
+      "text": "Bir Danışmana Kralın Mührü ya da Soytarı Bahsi koy.",
+      "flavor": "Birlikte yüksel, birlikte düş."
+    },
+    "hazine": {
+      "name": "Oyunu Oyna",
+      "text": "Bir Krizde 3 Entrika kartı oyna.",
+      "flavor": "Ya kazanırsın ya ölürsün."
+    },
+    "koltuk": {
+      "name": "Merdiveni Tırman",
+      "text": "Bir Entrika kartıyla Danışman ol.",
+      "flavor": "Kaos bir merdivendir."
+    },
+    "kulak": {
+      "name": "Kapı Dinleyen",
+      "text": "Paralı Muhbir, Kara Kanatlar, İtiraf ya da Muhafız Nöbeti kullan.",
+      "flavor": "Kızıl Kale'nin duvarlarının kulağı var."
+    }
   },
   "crises": {
-    "yeniceri": { "name": "Sokakta Kılıçlar", "text": "İtibarı 0 olan oyuncular birer Entrika kartı çeker." },
-    "hazine": { "name": "Tacın Borçları", "text": "Bu Krizde kimse Entrika kartı çekemez." },
-    "venedik": { "name": "Demir Banka'nın Elçisi", "text": "Kralın iki yanındaki oyuncular birer Entrika kartı çeker." },
-    "harem": { "name": "İpek Sokağı'nda Skandal", "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Kral seçer." },
-    "macar": { "name": "Nehir Toprakları'nda Yağma", "text": "Bu Krizde kimse Entrika kartı çekmez." },
-    "muhur": { "name": "Jon Arryn'in Ölümü", "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker." },
-    "divan": { "name": "Konseyde Kavga", "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker." },
-    "sehzade": { "name": "Tartışmalı Varis", "text": "Kralın iki yanındaki oyuncular birer Entrika kartı çeker." },
-    "istanbul": { "name": "Kral Eli Turnuvası", "text": "Kral dışında herkes birer Entrika kartı çeker." },
-    "irakeyn": { "name": "Targaryen Tehdidi", "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Kral seçer." },
-    "isabella": { "name": "Kral Yolu'nda Bela", "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker.", "flavor": "Bir kasap çırağı, bir ulu kurt ve bir prensin gururu. Bedelini biri öder." }
+    "yeniceri": {
+      "name": "Pire Dibi'nde İsyan",
+      "text": "Altını 0 olan oyuncular birer Entrika kartı çeker.",
+      "flavor": "Ekmek bitti; ayaktakımı kral alayına saldırıyor."
+    },
+    "hazine": {
+      "name": "Demir Banka'ya Borç",
+      "text": "Bu Krizde kimse Entrika kartı çekemez.",
+      "flavor": "Tacın Braavos'a borcu ödeyebileceğinden fazla."
+    },
+    "venedik": {
+      "name": "Tyrell'ler Geliyor",
+      "text": "Kralın iki yanındaki oyuncular birer Entrika kartı çeker.",
+      "flavor": "Highgarden tahıl, ordu ve bir gelin getiriyor."
+    },
+    "harem": {
+      "name": "Piç Mektupları",
+      "text": "Altını en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Kral seçer.",
+      "flavor": "Stannis'in mektuplarına göre kral Jaime'nin oğlu."
+    },
+    "macar": {
+      "name": "Karasu Savaşı",
+      "text": "Bu Krizde kimse Entrika kartı çekmez.",
+      "flavor": "Körfezde orman ateşi. Kimsenin entrikaya vakti yok."
+    },
+    "muhur": {
+      "name": "Kayıp Bir Taş",
+      "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker.",
+      "flavor": "Sansa'nın kolyesinden bir taş eksik."
+    },
+    "divan": {
+      "name": "Küçük Konseyde Kavga",
+      "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker.",
+      "flavor": "Tyrion sandalyesini masanın başına sürüklüyor."
+    },
+    "sehzade": {
+      "name": "Tommen Kiminle Evlenecek?",
+      "text": "Kralın iki yanındaki oyuncular birer Entrika kartı çeker.",
+      "flavor": "Joffrey düşerse sıradaki çocuğa bir gelin gerek."
+    },
+    "istanbul": {
+      "name": "Meyhanelerde Dedikodu",
+      "text": "Kral dışında herkes birer Entrika kartı çeker.",
+      "flavor": "Kral Toprakları'ndaki her meyhanenin bir teorisi var."
+    },
+    "irakeyn": {
+      "name": "Kızıl Düğün Haberi",
+      "text": "Altını en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Kral seçer.",
+      "flavor": "Savaş İkizler'de kazanıldı ve kazananlara kimse güvenmiyor."
+    },
+    "isabella": {
+      "name": "Stark Kızı Kayıp",
+      "text": "Geçen Krizin Danışmanları birer Entrika kartı çeker.",
+      "flavor": "Arya Kızıl Kale'den sıvıştı. Nöbetteki hesap verecek."
+    }
   },
   "kader": {
-    "h": { "name": "Bağlılık", "text": ["Kralın Barışına konur.", "Yargı: Kral bir Danışmana 1 İtibar verir."], "flavor": "Krallık ayakta." },
-    "x": { "name": "İhanet", "text": ["Komploya konur.", "Yargı: Kral bir Danışmandan 1 İtibar alır."], "flavor": "«Majesteleri, yemin ederim elimden geleni yaptım.»" }
+    "h": {
+      "name": "Arbor Kırmızısı",
+      "text": [
+        "Uzun Saltanata konur.",
+        "Yargı: Kral bir Danışmana 1 Altın verir."
+      ],
+      "flavor": "Krala!"
+    },
+    "x": {
+      "name": "Boğucu",
+      "text": [
+        "Mor Düğüne konur.",
+        "Yargı: Kral bir Danışmandan 1 Altın alır."
+      ],
+      "flavor": "«Yemin ederim, verdiğimde kadeh temizdi!»"
+    }
   },
   "taraf": {
-    "loyalist": { "name": "Yeminli", "text": ["Kralın Barışında 4 Bağlılık olunca kazanırsın.", "Bu kart gizlidir."], "flavor": "Uzun yaşasın Kral." },
-    "traitor": { "name": "Yeminbozan", "text": ["Komploda 5 İhanet olunca kazanırsın.", "Yeminbozanlar birbirini tanır."], "flavor": "Sözler rüzgârdır." }
+    "loyalist": {
+      "name": "Sadık",
+      "text": [
+        "Uzun Saltanatta 4 Arbor Kırmızısı olunca kazanırsın.",
+        "Bu kart gizlidir."
+      ],
+      "flavor": "Uzun yaşasın Kral."
+    },
+    "traitor": {
+      "name": "Dönek",
+      "text": [
+        "Mor Düğünde 5 Boğucu olunca kazanırsın.",
+        "Dönekler birbirini tanır."
+      ],
+      "flavor": "Tommen'i yönetmek daha kolay."
+    }
   },
   "treason": {
-    "1": { "name": "Sessiz Günler", "text": "Hiçbir şey olmaz." },
-    "sorusturma": { "name": "Tohum Güçlüdür", "text": "Kral bir sorgucu seçer. Sorgucu bir oyuncunun Yemin kartına gizlice bakar, sonra istediğini söyler." },
-    "hazineDefteri": { "name": "Kuzgun Kulesi", "text": "Gelecek Krizden önce Kral bir oyuncu seçer. O oyuncu Kuzgun destesinin üstteki 3 kartına gizlice bakar." },
-    "fermanRefresh": { "name": "Yeni Emir", "text": "Kral Kraliyet Emri'ni yeniden kullanabilir. Elinde birden fazla Emir olmaz." },
-    "death": { "name": "Yaban Domuzu", "text": "Yeminbozanlar kazanır." }
+    "1": {
+      "name": "Henüz Bir Şey Yok",
+      "text": "Hiçbir şey olmaz."
+    },
+    "sorusturma": {
+      "name": "Kara Hücreler",
+      "text": "Kral bir sorgucu seçer. Sorgucu bir oyuncunun Saf kartına gizlice bakar, sonra istediğini söyler."
+    },
+    "hazineDefteri": {
+      "name": "Demir Banka Defteri",
+      "text": "Gelecek Krizden önce Kral bir oyuncu seçer. O oyuncu Kadeh destesinin üstteki 3 kartına gizlice bakar."
+    },
+    "fermanRefresh": {
+      "name": "Kralın Adaleti",
+      "text": "Kral, Kral Benim gücünü yeniden kullanabilir. Elinde birden fazla olmaz."
+    },
+    "death": {
+      "name": "Mor Düğün",
+      "text": "Joffrey ölür. Dönekler kazanır."
+    }
   },
   "strings": {
-    "tagline": "Kızıl Kale'de bir hain var.",
-    "endLoyalty": "Dördüncü {term.hizmet} gönderildi. {term.loyalty} sürüyor.",
-    "endTreason": "Beşinci {term.hiyanet} gönderildi. {term.suleyman} öldü.",
+    "tagline": "Şarabı bu masadan biri doldurdu.",
+    "endLoyalty": "Dördüncü {term.hizmet} sunuldu. Uzun yaşasın Kral.",
+    "endTreason": "Beşinci {term.hiyanet} sunuldu. {term.suleyman} öldü.",
     "pref.music.why": "Re minörde sessiz bir döngü.",
     "sicil": "Kronik",
     "exiled": "Sürgünde",
-    "step.kader": "Kuzgunlar",
-    "err.ownSeat": "Kendi koltuğuna meydan okuyamazsın.",
-    "err.objected": "Bu {term.crisis} zaten meydan okudun.",
-    "btn.object": "Meydan oku",
-    "btn.objectFree": "Bedelsiz meydan oku",
-    "ask.objectNotSelf": "Kendi koltuğuna meydan okuyamazsın, ötekine okuyabilirsin.",
-    "log.objection": "{who}, {n} {term.influence} ödeyip {against:dat} meydan okudu.",
-    "min1Does": "üç Kuzgun okur",
-    "min2Does": "iki Kuzgundan birini gönderir",
-    "wait.kader": "Kuzgunlar: kimse konuşmaz, kimse kart göstermez.",
-    "log.kaderStart": "Kuzgunlar: {first} okuyor, {second} gönderecek.",
-    "ask.kaderFirst": "{n} kart yak, kalanları {second} alır.",
-    "ask.kaderSecond": "{first} sana iki Kuzgun gönderdi. Birini gönder.",
-    "kader.toss": "Yakılacak",
-    "kader.play": "Gönderilecek",
-    "btn.playKader": "Gönder",
-    "ack.result": "Kuzgun uçtu.",
-    "kader.defterdar": "{card.defterdar}: 3 yerine 4 Kuzgun okudun.",
-    "window.gozcu": "{term.min1:gen} yaktığı karta gizlice bakabilirsin.",
-    "peek.discards.teftis": "{card.teftis}: {name:gen} yaktığı kart.",
-    "peek.discards.gozcu": "{power.gozcu}: {term.min1} {name:gen} yaktığı kart.",
-    "peek.noDiscards": "Kart yakmadı.",
-    "log.result": "{card} gönderildi. {term.hizmet} {loyalty}, {term.hiyanet} {treason}.",
-    "ask.decreeGiveWhy": "{term.hizmet} gönderildi.",
-    "ask.decreeTakeWhy": "{term.hiyanet} gönderildi. Kaybeden bir {term.intrigue} kartı çeker.",
+    "step.kader": "Sunuş",
+    "err.ownSeat": "Kendi koltuğuna muhalefet edemezsin.",
+    "err.objected": "Bu {term.crisis} zaten muhalefet ettin.",
+    "btn.object": "Muhalefet et",
+    "btn.objectFree": "Bedelsiz muhalefet",
+    "ask.objectNotSelf": "Kendi koltuğuna muhalefet edemezsin, ötekine edebilirsin.",
+    "log.objection": "{who}, {n} {term.influence} ödeyip {against:dat} muhalefet etti.",
+    "min1Does": "üç kadeh doldurur",
+    "min2Does": "iki kadehten birini sunar",
+    "wait.kader": "Sunuş: kimse konuşmaz, kimse kadeh göstermez.",
+    "log.kaderStart": "Sunuş: {first} dolduruyor, {second} sunacak.",
+    "ask.kaderFirst": "{n} kadeh at, kalanları {second} alır.",
+    "ask.kaderSecond": "{first} sana iki kadeh verdi. Birini sun.",
+    "kader.play": "Sunulacak",
+    "btn.playKader": "Sun",
+    "ack.result": "Kadeh sunuldu.",
+    "kader.defterdar": "{card.defterdar}: 3 yerine 4 kadeh doldurdun.",
+    "log.result": "{card} sunuldu. {term.hizmet} {loyalty}, {term.hiyanet} {treason}.",
+    "ask.decreeGiveWhy": "{term.hizmet} sunuldu.",
+    "ask.decreeTakeWhy": "{term.hiyanet} sunuldu. Kaybeden bir {term.intrigue} kartı çeker.",
     "btn.decree": "Yargıyı ver"
   }
 }
