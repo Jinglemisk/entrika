@@ -8,7 +8,7 @@ The standing brief for the browser game. Read it before starting any work on the
 - A browser game played on phones (current iPhones, Safari/Chrome), either around one table or remotely. Phones only for now; a shared TV or table screen showing the board is a good later idea.
 - **Played in landscape.** Phones are held horizontally; every screen is designed for that.
 - It's for friends. No anti-cheat, no server-side bookkeeping, no accounts. People talk at the table or on their own WhatsApp call, so there's no in-app chat or voice.
-- The UI is in Turkish. English comes later through i18n, so every UI string goes through a string table from the start.
+- The UI is in Turkish and English, picked on each phone. Every sentence goes through a string table per language (`game/lang/`), and the game's world (names, card text, look) comes from the room's mod (`mods/`, see `docs/mods.md`).
 - The digital game doesn't carry paper workarounds. Placement is private and simultaneous on each phone, so the eyes-closed night, the call order and Boş Mektup aren't needed.
 - **It's an online game, not a paper one.** Each phone shows only its owner's secrets and the game knows everything, so rules that exist to manage a physical table don't apply:
   - Choose and look cards aren't claimed; the owner decides privately on their phone.
@@ -23,7 +23,7 @@ The standing brief for the browser game. Read it before starting any work on the
 
 - **Data-driven at the core.** Cards, Characters, Companions, Ambitions, Crises, actions, effects, resolve order, formulas and dials (deck counts, track lengths, the Allegiance table, Influence rules) live in data that a small rules engine reads. Changing a number, a name or a card count never means touching engine code.
 - **Content is hot-editable; mechanics are code.** Names, portraits, descriptions and flavor text can change at any time without a code change. A brand-new effect needs code; renaming or re-describing an existing one doesn't.
-- **One content source.** The manual and the game read the same content, and they stay in sync. The manual's Lexicon is where names and text get edited.
+- **One content source.** The game's words live in the mods (`mods/<id>/<lang>.json`); the manual should read them too, and its Lexicon retires (plan.md, Later).
 - **Clean, simple code.** Small modules, plain names, no speculative abstractions.
 
 ## How we work
@@ -40,7 +40,7 @@ The standing brief for the browser game. Read it before starting any work on the
 - Card layouts are consistent. Characters' two powers sit in clearly separate panels. Card titles and body text are centred. Harem and Divan show as icons only; tooltips carry the words.
 - **Icon style: Kat'ı** (picked 2026-11-15, replacing Varak ve mine, which read as generic gold specks at text size). Ottoman paper-cut silhouettes, one shape and one colour per term, the colour taken from its meaning (lapis office, vermilion treason, malachite loyalty, gold the Sultan, rose Harem, plum Kader and Hırs). Motifs are court objects, not stock symbols. Each icon is made from the template in `art/icons/proposals/r2/kati/`; `art/icons/README.md` says how the set is built.
 - **Corner gems** carry a contrast disc: black on light frames (Entrika, Kriz, Süleyman's gold), white on dark frames, so the icon stands out.
-- **Terms carry their icons.** Wherever card or UI text names a game term, its icon is drawn in front of it ("play any [icon] Entrika card"). One renderer does this from a data table of terms, Turkish stems and icons, so it also catches suffixed forms.
+- **Terms carry their icons.** Wherever card or UI text names a game term, its icon is drawn in front of it ("play any [icon] Entrika card"). One renderer does this from the active mod's term table (stems per language) and the icons in `game/content/terms.json`, so it also catches suffixed forms. `art/terms.json` is the art page's older copy; the game no longer reads it.
 - Clear popups that carry each action. Neat card animations: drawing, placing, the simultaneous reveal, the Kader hand-off, a card landing on a track, the Decree.
 - Mobile-first and light. No heavy engines.
 
@@ -71,7 +71,7 @@ Decided so far (the full list is in `art/directions/notes.md`): Birinci Vekil / 
 - TypeScript, React, Vite, and Motion for card animations. The game lives in `game/`; its README says how to run it.
 - One player creates a room and shares a four-letter code; others join with it, the same way at a table or remotely.
 - **The relay runs the rules.** The server applies every action with the same engine the phones carry and keeps the latest state, saved to disk. A locked phone rejoins, and two phones can't disagree about the state. It still sends the whole state to every phone, which shows only its owner's secrets (no anti-cheat, as above). In development it runs on the Mac with phones on the same Wi-Fi; later it can move to the Hetzner box. Production hosting isn't a concern yet.
-- **Content is data.** Card names, texts and art paths are in `game/content/*.json`, the dials in `game/content/rules.json`, and interface strings in `game/content/strings.tr.json`. Behaviour is code in `game/src/engine/`. The manual doesn't read these files yet; until it does, a text change goes in both places.
+- **Content is data.** Mechanics and art paths are in `game/content/*.json`, the dials in `game/content/rules.json`, card names and texts in each mod's words (`mods/<id>/<lang>.json`), and interface sentences in `game/lang/<lang>.json`. Behaviour is code in `game/src/engine/`. The manual doesn't read these files yet; until it does, a text change goes in both places.
 - **Cards are drawn, not baked.** The art page's card generator is ported to the game, so every face is built from content data at run time.
 - **Sound is synthesised** with Web Audio: the effects and a quiet loop in makam Hicaz. There are no audio files to source.
 - **Rulings.** Cases the manual leaves open are decided in the engine and listed in `docs/rulings.md`.

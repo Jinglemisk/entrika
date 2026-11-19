@@ -26,19 +26,20 @@ These aids exist only in test rooms and are marked `DEV` in the code; normal roo
 
 ## Change the game
 
-- **Names, card text, flavor:** `content/*.json`, or the card text editor below. Each card face is drawn from this data, so an edit appears on the next reload.
-- **Interface wording:** `content/strings.tr.json`.
-  - `{name}` inserts a value.
-  - `{name:dat}` adds a Turkish case suffix (dat, acc, gen, loc, abl), so a sentence reads "Mert'e itiraz etti".
+- **Names, card text, flavor:** the room's mod, in `mods/<id>/<lang>.json` at the repo root, or the card text editor below. Each card face is drawn from these words, so an edit appears on the next reload. `docs/mods.md` says how a mod is built; `npm run mods` lists what each mod still lacks.
+- **Interface wording:** `lang/tr.json` and `lang/en.json`, one sentence per key in each language. The game's own words come in by id, so one sentence serves every mod:
+  - `{term.minister:dat}` is a term in one of its hand-written forms, `{card.valide}` a card's name, `{power.ferman}` a power's name (all placeholders are in `docs/mods.md`);
+  - `{name}` inserts a value, and `{name:dat}` adds a Turkish case suffix (dat, acc, gen, loc, abl) to it, so a sentence reads "Mert'e itiraz etti".
+- **Mechanics:** `content/*.json` holds what each card, power, Kul, Hırs and Crisis does (ids, targets, copies, draw rules), with an `about` line in plain English, and `content/terms.json` lists the game's terms and their icons.
 - **Numbers:** `content/rules.json` holds deck sizes, track lengths, the Allegiance table, the hand limit, the Objection cost and the Treason powers. Restart the server after editing it.
 - **New behaviour** (a new effect or power) is code: `src/engine/`.
 
 ## Edit card text
 
-With `npm run dev` running, open `http://localhost:4700/?duzenle`. Pick a card on the left and change its text in the middle; the card on the right redraws as you type. Kaydet (or Ctrl/⌘+S) writes the change into `content/*.json`, and the game and `/?kartlar` pick it up without a reload.
+With `npm run dev` running, open `http://localhost:4700/?duzenle`. Pick the mod and language at the top left, then a card; change its text in the middle and the card on the right redraws as you type. An empty field shows the mod's native text as a hint. Kaydet (or Ctrl/⌘+S) writes the change into `mods/<mod>/<lang>.json`. `/?kartlar` draws every card; its pickers switch the mod and language.
 
 - Only printed text can change: names, card text, flavor lines, power names and texts, Character quotes, Kader and Taraf lines, treason powers. The server refuses everything else (ids, targets, copies, draw rules, frequencies, art), and both the page and its save endpoint exist only on the dev server.
-- Term icons need no markup: a word that starts with a term from `art/terms.json` (case-sensitive, any suffix) gets its icon and bold type. The editor lists the terms.
+- Term icons need no markup: a word that starts with one of the mod's term stems, card names, Kul names or Character short names (case-sensitive, any suffix) gets its icon and bold type. The editor lists them.
 - Saves write two-space JSON that keeps short objects (art, copies) on one line, so a save changes only the line it edits.
 
 ## How it fits together

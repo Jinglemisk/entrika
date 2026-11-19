@@ -47,7 +47,8 @@ It isn't hosted yet. It runs from one computer, and phones on the same Wi-Fi joi
 
 ## What's in the repo
 
-- `game/` is the browser game: the rules engine, the server and the phone app. The content (card names, text, numbers) is JSON in `game/content/`.
+- `game/` is the browser game: the rules engine, the server and the phone app. The mechanics and numbers are JSON in `game/content/`; the interface sentences, in Turkish and English, are in `game/lang/`.
+- `mods/` holds the worlds the game can be set in: each mod's names, card text and (soon) look. `docs/mods.md` says how to make one.
 - `manual.html` is the living rules manual. Names and flavor text are edited in its Lexicon, which lives in the published artifact's database.
 - `art/` has the card stills, character cut-outs and the Kat'ı term icons, plus the scripts that build them.
 - `ui/v3/` is the design system the game screens are built on.
