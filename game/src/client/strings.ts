@@ -5,8 +5,8 @@
 //   {kul.daye}           a Kul's name                  {power.ferman}       a Character power's name
 //   {treason.sorusturma} an İhanet yolu power's name
 // and values passed in by the caller: {name}, and {name:dat} for a player name with its Turkish case suffix (dat, acc,
-// gen, loc, abl; English ignores the case). A mod may override any sentence in its words file. A sentence that opens
-// with a game word gets a capital letter, so "the King" can start a sentence as "The King".
+// gen, loc, abl; English ignores the case). A mod may override any sentence in its words file. A game word that opens a
+// sentence gets a capital letter, so "the King" can start one as "The King".
 import tr from '../../lang/tr.json' with { type: 'json' };
 import en from '../../lang/en.json' with { type: 'json' };
 import { suffix, type Case } from './turkish.ts';
@@ -35,12 +35,15 @@ const PLACE = /\{(\w+)(?:\.([\w-]+))?(?::(\w+))?\}/g;
 /** Fills in a sentence's references and values. */
 export function fill(s: string, vars?: Record<string, unknown>): string {
   const lang = currentLang();
-  const out = s.replace(PLACE, (m, a: string, id: string | undefined, form: string | undefined) => {
-    if (id !== undefined) return ref(a, id, form) ?? m;
-    const v = String(vars?.[a] ?? '');
-    return form && lang === 'tr' ? suffix(v, form as Case) : v;
+  return s.replace(PLACE, (m, a: string, id: string | undefined, form: string | undefined, at: number) => {
+    if (id === undefined) {
+      const v = String(vars?.[a] ?? '');
+      return form && lang === 'tr' ? suffix(v, form as Case) : v;
+    }
+    const w = ref(a, id, form) ?? m;
+    // a game word that opens a sentence takes a capital: "the King" → "The King is dead."
+    return /^\s*$|[.!?]\s+$/.test(s.slice(0, at)) ? w.charAt(0).toLocaleUpperCase(lang) + w.slice(1) : w;
   });
-  return /^\{\w+\.[\w-]+/.test(s) ? out.charAt(0).toLocaleUpperCase(lang) + out.slice(1) : out;
 }
 
 /** A string exactly as one language writes it, placeholders and all: for naming a language in itself. */
