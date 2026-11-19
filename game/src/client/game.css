@@ -48,7 +48,11 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .st .kl .kl-em { display: block; width: 100%; height: 100%; background: var(--lapis); --m: 80%; }
 .st .sil { position: absolute; }
 
-.mz button.kz { position: absolute; }
+/* the Crisis sits in the room between the two tracks, so a long name (some mods and languages have them) shortens
+   with an ellipsis instead of running over the Treason track */
+.mz button.kz { position: static; transform: none; flex: 1; min-width: 0; justify-content: center; margin: 0 10px; }
+.mz .kz b { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.mz .kz .chipf { flex: none; }
 .mz .nav button { width: 28px; height: 30px; display: grid; place-items: center; position: relative; color: var(--fg2); }
 .mz .nav .dot::after { content: none; }
 
