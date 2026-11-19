@@ -12,8 +12,10 @@ import { useGame } from './ctx.ts';
 export interface SeatFx { key: number; kind: 'gain' | 'lose' | 'draw' | 'seat'; n: number }
 export interface Banner { key: number; who: PID | null; text: string }
 
-const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', draw: 'draw' };
-const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'ferman', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
+const SEAT_KINDS: Record<string, SeatFx['kind']> = { gain: 'gain', lose: 'lose', pay: 'lose', draw: 'draw' };
+const BANNER_KINDS = new Set(['power', 'itiraz', 'objection', 'faiz', 'ambition', 'sorusturma', 'hazineDefteri', 'fermanRefresh']);
+/** The Ferman's banner is its seat change, said with Süleyman's face. */
+const isBanner = (e: LogEntry) => BANNER_KINDS.has(e.k) || (e.k === 'replaced' && e.p?.reason === 'ferman');
 const SEAT_MS = 2200;
 const BANNER_MS = 3200;
 
@@ -30,7 +32,7 @@ export function useLogFx(g: Game, courtVisible: boolean) {
     const fresh = g.log.slice(seen.current).map((e, k) => ({ i: seen.current + k, e }));
     seen.current = g.log.length;
     if (!fresh.length) return;
-    const bs = fresh.filter(({ e }) => BANNER_KINDS.has(e.k)).map(({ i, e }) => ({ key: i, who: whoOf(e), text: logText(g, e) ?? '' })).filter(b => b.text);
+    const bs = fresh.filter(({ e }) => isBanner(e)).map(({ i, e }) => ({ key: i, who: whoOf(e), text: logText(g, e) ?? '' })).filter(b => b.text);
     if (bs.length) setBanners(b => [...b, ...bs]);
     setQueue(q => [...q, ...fresh.filter(({ e }) => SEAT_KINDS[e.k] || e.k === 'replaced')]);
   }, [g.log.length]);

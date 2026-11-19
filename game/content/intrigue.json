@@ -48,8 +48,8 @@
     "id": "muhurlu-evrak",
     "name": "Mühürlü Evrak",
     "copies": { "harem": 2 },
-    "target": "self",
-    "text": "Kendi önüne koy. Kader destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
+    "target": "none",
+    "text": "Kader destesinin üstteki 3 kartına gizlice bak, aynı sırayla geri koy.",
     "flavor": "Mührü kırılmadan okunan mektup.",
     "art": { "src": "/art/directions/img/card.muhurlu-evrak-1.jpg", "pos": "50% 35%" }
   },

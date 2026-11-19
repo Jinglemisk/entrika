@@ -55,8 +55,8 @@ export function Mine() {
         <Card spec={spec(charRef(g, me.character))} width={SHELF_CARD} whole />
       </button>
       {me.companion && (
-        <button type="button" className="mc" onClick={open(kulRef(me))}>
-          <Card spec={spec(kulRef(me))} width={SHELF_CARD} whole />
+        <button type="button" className="mc" onClick={open(kulRef(me, me.id))}>
+          <Card spec={spec(kulRef(me, me.id))} width={SHELF_CARD} whole />
         </button>
       )}
     </div>

@@ -124,7 +124,11 @@ function Waiting() {
     const next = now !== undefined ? order[order.indexOf(now) + 1] : undefined;
     text = t(next !== undefined ? 'wait.objectionNext' : 'wait.objectionLast', { now: name(g, now), next: name(g, next) });
   }
+  // every timed decision a player is known to be weighing reads the same way
   if (open?.type === 'window') text = t('wait.window', { name: name(g, open.to), power: powerName(open.power) });
+  else if (open?.type === 'ferman') text = t('wait.window', { name: name(g, open.to), power: characterById.suleyman.base.name });
+  else if (open?.type === 'redirect') text = t('wait.window', { name: name(g, open.to), power: powerName('yonDegistir') });
+  else if (g.asks.some(a => a.type === 'replace' && a.reason === 'valide' && a.to !== seat)) text = t('wait.valide');
   return (
     <>
       <Stp ask={open?.id} />
@@ -495,7 +499,7 @@ function Wave({ a }: { a: Ask }) {
     setPicker(null);
     act({ t: 'answer', ask: a.id, value: plays.map(p => ({ uid: p.uid, target: p.target, ...(p.recast ? { recastAs: p.as, field: p.field } : {}) })) });
   };
-  const cifte = readyPowerOf(g, seat, 'hurrem', 'favor');
+  const cifte = readyPowerOf(g, seat, 'hurrem', 'favor') && g.court?.cifte !== seat;
   const kul = canRecast(g, seat) && me.companion;
   return (
     <>

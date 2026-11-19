@@ -16,7 +16,7 @@ const REPLACERS = ['valide', 'azil'];
 /** How many cards this player may still put down in the current wave. */
 export function waveAllowance(g: Game, id: PID): number {
   if (g.court?.silenced.includes(id)) return 0;   // Sükût
-  const perWave = readyPower(g, 'hurrem', 'favor')?.id === id ? 2 : 1;
+  const perWave = readyPower(g, 'hurrem', 'favor')?.id === id && g.court?.cifte !== id ? 2 : 1;   // Çifte Oyun, once a game
   return Math.min(perWave, P(g, id).hand.length);
 }
 
@@ -42,7 +42,7 @@ export function legalTargets(g: Game, owner: PID, as: string): PID[] {
   return g.players
     .filter(p => !p.sultan)
     .filter(p => rule === 'minister' ? isMinister(g, p.id) : rule === 'first' ? g.ministers.first === p.id
-      : rule === 'other' ? p.id !== owner : rule === 'self' ? p.id === owner : true)
+      : rule === 'other' ? p.id !== owner : rule === 'self' || rule === 'none' ? p.id === owner : true)
     .map(p => p.id);
 }
 
@@ -120,10 +120,7 @@ export function flipWave(g: Game) {
       continue;
     }
     const p = P(g, id);
-    if (checked.length > 1) {
-      p.favor = 'used';
-      log(g, 'power', { who: id, power: 'cifteOyun' });
-    }
+    if (checked.length > 1) c.cifte = id;   // spent; the banner waits for Tertip's end so no wave is pinned on Hürrem
     for (const pl of checked) {
       p.hand = p.hand.filter(x => x.uid !== pl.card.uid);
       if (pl.recast) p.companionUsed = true;
@@ -136,7 +133,7 @@ export function flipWave(g: Game) {
   if (!plays.length) return endCourt(g);
   log(g, 'waveFlip', { wave: c.wave, n: plays.length });
   const r = readyPower(g, 'rustem', 'favor');
-  const onHim = r ? plays.map((pl, i) => (pl.target === r.id ? i : -1)).filter(i => i >= 0) : [];
+  const onHim = r ? plays.map((pl, i) => (pl.target === r.id && intrigueById[pl.as].target !== 'none' ? i : -1)).filter(i => i >= 0) : [];
   if (r && onHim.length) {
     g.sub = 'redirect';
     ask(g, { to: r.id, type: 'redirect', plays: onHim });
@@ -160,7 +157,8 @@ export function resolveWave(g: Game) {
     if (!list.includes(pl.field)) list.push(pl.field);
   });
   plays.forEach((pl, i) => {
-    if (pl.as !== 'akil-hocasi' && c.akil[pl.target]?.includes(pl.field)) set(i, 'cancelled', 'akil');
+    // a card with no target sits on nobody, so no Oyunbozan reaches it
+    if (pl.as !== 'akil-hocasi' && intrigueById[pl.as].target !== 'none' && c.akil[pl.target]?.includes(pl.field)) set(i, 'cancelled', 'akil');
   });
   // a card that needs a Minister checks for one at the flip
   plays.forEach((pl, i) => {
@@ -278,6 +276,10 @@ function endCourt(g: Game) {
   const c = g.court!;
   c.done = true;
   log(g, 'courtEnd', { waves: c.wave });
+  if (c.cifte !== null) {
+    P(g, c.cifte).favor = 'used';
+    log(g, 'power', { who: c.cifte, power: 'cifteOyun' });
+  }
   for (const k of c.casus) {
     const plays = c.history.filter(h => h.owner === k.target).map(h => ({ as: h.as, field: h.field, target: h.target }));
     g.peeks.push({ to: k.owner, c: g.crisisNo, kind: 'casus', of: k.target, plays });

@@ -1,7 +1,7 @@
 // Player input. act() validates an answer or a power against the rules, applies it to a copy of the state and advances.
 import { RULES } from './content.ts';
 import {
-  P, ask, checkHand, discardCard, dropAsk, eligible, eligibleList, ensureKader, favorOn, gain, log, must, rand,
+  P, ask, checkHand, discardCard, dropAsk, eligible, eligibleList, ensureKader, favorOn, gain, kulTurn, log, must, rand,
   readyPower, top,
 } from './core.ts';
 import { checkWave, drawForSeatLoss, playableForms, replaceMinister, waveAllowance } from './court.ts';
@@ -114,7 +114,7 @@ const ANSWERS: Handlers = {
         const { on, plays } = a.ctx as { on: PID; plays: number[] };
         must(typeof v === 'number' && plays.includes(v), 'Bir kart seç.');
         const h = g.court!.history[v];
-        g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'playedBy', on, by: h.owner, card: h.as });
+        g.peeks.push({ to: a.to, c: g.crisisNo, kind: 'playedBy', on, by: h.owner, card: h.as, field: h.field });
         return;
       }
     }
@@ -156,12 +156,14 @@ const ANSWERS: Handlers = {
       const cost = RULES.objectionCost;
       must(p.influence >= cost, `İtiraz ${cost} Nüfuz tutar.`);
       p.influence -= cost;
+      log(g, 'pay', { who: a.to, n: cost });   // spending, not losing: no Gözden Düşmek, no draw
+      kulTurn(g, a.to, p.influence + cost);
       if (favorOn(g, target, 'mustafa')) gain(g, target, cost, 'ocakSevgisi');   // Ocak Sevgisi: the fee goes to Mustafa
     }
     p.objected = true;
     p.stats.objected = true;
     must(eligibleList(g, seat).some(id => id !== target), 'Yerine geçebilecek kimse yok.');
-    log(g, free ? 'itiraz' : 'objection', { who: a.to, against: target, seat });
+    log(g, free ? 'itiraz' : 'objection', { who: a.to, against: target, seat, ...(free ? {} : { n: RULES.objectionCost }) });
     ask(g, { to: free ? a.to : g.appointer ?? g.sultan, type: 'replace', seat, removed: target, reason: free ? 'itiraz' : 'objection' });
   },
 
@@ -319,7 +321,8 @@ function usePower(g: Game, who: PID, power: string, target?: PID, also?: PID) {
       const i = Math.floor(rand(g) * from.hand.length);
       const [card] = from.hand.splice(i, 1);
       p.hand.push(card);
-      g.peeks.push({ to: who, c: g.crisisNo, kind: 'stolen', from: target!, card: card.kind });
+      g.peeks.push({ to: who, c: g.crisisNo, kind: 'stolen', from: target!, card: card.kind, field: card.field });
+      g.peeks.push({ to: target!, c: g.crisisNo, kind: 'robbed', by: who, card: card.kind, field: card.field });
       checkHand(g, who);
       checkHand(g, target!);   // the victim may have owed a hand-limit discard counted on the bigger hand
       return;

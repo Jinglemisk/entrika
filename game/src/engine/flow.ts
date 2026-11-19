@@ -146,7 +146,7 @@ const STEPS: Record<Game['step'], (g: Game) => void> = {
       case 'begin': {
         g.court = {
           wave: 0, submitted: {}, plays: [], akil: {}, sealed: [], tabib: [], himaye: null, teftis: [], kefalet: [], casus: [],
-          nobet: [], defterdar: [], nazar: [], silenced: [], silenceNext: [],
+          nobet: [], defterdar: [], nazar: [], silenced: [], silenceNext: [], cifte: null,
           history: [], reveals: [], replaceQueue: [], drawsOwed: {}, done: false,
         };
         g.sub = 'himaye';

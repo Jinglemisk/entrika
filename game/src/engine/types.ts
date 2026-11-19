@@ -81,6 +81,7 @@ export interface Court {
   nazar: PID[];                                   // the Hüküm on this Vekil counts 2
   silenced: PID[];                                // Sükût: can't play in this wave
   silenceNext: PID[];                             // Sükût played this wave: can't play in the next
+  cifte: PID | null;                              // Çifte Oyun used this Tertip: announced when Tertip ends, never per wave
   history: { owner: PID; as: string; field: Field; target: PID; wave: number }[];   // every card flipped this crisis, for Mantık and Nöbet
   reveals: RevealedPlay[][];                      // every flipped wave this crisis, public
   replaceQueue: { owner: PID; target: PID; play: number; reason: 'valide' | 'azil'; noSelf: boolean }[];
@@ -103,8 +104,9 @@ export type Peek =
   | { to: PID; c: number; kind: 'discards'; of: PID; cards: Kader[]; source: string }
   | { to: PID; c: number; kind: 'casus'; of: PID; plays: { as: string; field: Field; target: PID }[] }
   | { to: PID; c: number; kind: 'sameSide'; a: PID; b: PID; same: boolean }
-  | { to: PID; c: number; kind: 'playedBy'; on: PID; by: PID | null; card: string | null }   // Nöbet; null: nobody else played on them
-  | { to: PID; c: number; kind: 'stolen'; from: PID; card: string }
+  | { to: PID; c: number; kind: 'playedBy'; on: PID; by: PID | null; card: string | null; field?: Field }   // Nöbet; null: nobody else played on them
+  | { to: PID; c: number; kind: 'stolen'; from: PID; card: string; field?: Field }
+  | { to: PID; c: number; kind: 'robbed'; by: PID; card: string; field: Field }   // Ganimet, told to the player it was taken from
   | { to: PID; c: number; kind: 'role'; side: Side; traitors: PID[] };   // dealt at setup; traitors see each other
 
 export interface LogEntry { c: number; k: string; p?: Record<string, unknown> }
@@ -144,7 +146,7 @@ export type Ask =
   | { id: number; to: PID; type: 'venedik'; cards: Kader[] };
 
 export interface Game {
-  v: 2;                                   // bump when the state's shape changes: older saved games go back to the lobby
+  v: 3;                                   // bump when the state's shape changes: older saved games go back to the lobby
   rng: number;
   learning: boolean;
   players: Player[];

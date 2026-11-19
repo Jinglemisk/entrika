@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import {
   FREE_POWERS, characterById, companionById, freePowerTargets, intrigueById, playableForms, waveAllowance,
-  type Game, type Player,
+  type Game, type PID, type Player,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec, type CardRef } from '../cardSpecs.ts';
@@ -29,10 +29,11 @@ export function charRef(g: Game, character: string): CardRef {
   if (p.sultan) return { t: 'char', id: character, st: { base: g.ferman ? 'ready' : 'used' } };
   return { t: 'char', id: character, st: { base: p.base, favor: g.learning ? 'locked' : p.favor } };
 }
-/** A player's Kul card, stamped when it is face down (0 Influence) or spent. */
-export function kulRef(p: Player): CardRef {
+/** A player's Kul card, stamped when it is face down (0 Influence, public) or spent (only its owner sees that: a recast
+ *  stays as anonymous as any other card). */
+export function kulRef(p: Player, viewer: PID): CardRef {
   const c = companionById[p.companion!];
-  const st = p.influence < 1 ? 'down' : c.freq !== 'always' && p.companionUsed ? 'used' : undefined;
+  const st = p.influence < 1 ? 'down' : viewer === p.id && c.freq !== 'always' && p.companionUsed ? 'used' : undefined;
   return { t: 'kul', id: c.id, ...(st ? { st } : {}) };
 }
 /** Your Hırs card, stamped once completed. */
@@ -104,7 +105,10 @@ function handActions({ g, seat, me, hand, asks }: GameCtx, uid: number, close: (
   const recastUsed = hand.staged.some(s => s.recast);
   const forms = playableForms(g, seat, uid).filter(f => !(f.recast && recastUsed));
   if (!forms.length) return <p className="pop-note bad">{t('pop.cantPlay')}</p>;
-  const aim = (f: Form) => done(() => hand.setAim({ ...f, uid }));
+  // a card with no target goes down as it is, without a seat to tap
+  const aim = (f: Form) => done(() => intrigueById[f.as].target === 'none'
+    ? hand.setStaged([...hand.staged, { ...f, uid, target: seat }])
+    : hand.setAim({ ...f, uid }));
   const kul = me.companion;
   return (
     <div className="pop-acts">

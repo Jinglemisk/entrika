@@ -68,7 +68,7 @@ function WaveMoment() {
             <Card spec={spec({ t: 'intr', kind: r.as, field: r.field })} width={w} />
             <span className={`wv-out ${r.outcome}`} title={outcomeText(r)}><Gl k={OUTCOME_ICON[r.outcome]} /></span>
           </div>
-          <span className="wv-to"><Gl k="next" /><Who id={r.target} /></span>
+          {intrigueById[r.as].target !== 'none' && <span className="wv-to"><Gl k="next" /><Who id={r.target} /></span>}
           {outcomeText(r) !== t('outcome.ok') && <span className={`wv-why ${r.outcome !== 'ok' ? 'bad' : ''}`}><Refs text={outcomeText(r)} /></span>}
         </motion.div>
       ))}
@@ -85,8 +85,7 @@ function outcomeText(r: RevealedPlay): string {
   if (r.movedFrom !== undefined && r.outcome === 'ok') return t('outcome.moved');
   if (r.outcome === 'ok') {
     if (r.note) return t(`outcome.${r.note}`);
-    if (r.recast) return t('outcome.recast', { card: intrigueById[r.card.kind].name });
-    return t(LATER[r.as] ?? 'outcome.ok');
+    return t(LATER[r.as] ?? 'outcome.ok');   // a recast shows as played, like any card: saying so would name its Kul's owner
   }
   return t(`outcome.${r.note ?? r.outcome}`);
 }
@@ -109,7 +108,7 @@ function ResultMoment() {
           <span className="x"><Em k="hiyanet" s={18} /><Slots big n={RULES.tracks.treason} on={g.tracks.treason} fresh={card === 'x' ? g.tracks.treason - 1 : undefined} end /></span>
         </div>
         <p className="mo-note">
-          {def ? <><Em k="treason" s={16} /><b>{def.name}.</b> {def.text}</> : <><Em k="decree" s={16} />{t(card === 'h' ? 'moment.decreeGive' : 'moment.decreeTake')}</>}
+          {def ? <><Em k="treason" s={16} /><b>{def.name}.</b> {def.text}</> : <><Em k="decree" s={16} />{t(card === 'h' ? 'moment.decreeGive' : 'moment.decreeTake')}{g.court?.nazar.some(id => id === k.first || id === k.second) ? ` ${t('moment.nazar')}` : ''}</>}
         </p>
       </div>
     </div>

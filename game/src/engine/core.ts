@@ -164,6 +164,7 @@ export function gain(g: Game, id: PID, n: number, why: string) {
   const p = P(g, id);
   p.influence += n;
   log(g, 'gain', { who: id, n, why });
+  kulTurn(g, id, p.influence - n);
   if (g.faiz && g.faiz.on === id) {
     const by = g.faiz.by;
     g.faiz = null;
@@ -179,7 +180,14 @@ export function lose(g: Game, id: PID, n: number, why: string): number {
   p.influence -= lost;
   p.stats.lostInfluence = true;
   log(g, 'lose', { who: id, n: lost, why });
+  kulTurn(g, id, p.influence + lost);
   return lost;
+}
+/** A Kul works only from 1 Nüfuz: say so when a change of Nüfuz turns it face down or back up. */
+export function kulTurn(g: Game, id: PID, before: number) {
+  const p = P(g, id);
+  if (!p.companion || (before >= 1) === (p.influence >= 1)) return;
+  log(g, p.influence >= 1 ? 'kulUp' : 'kulDown', { who: id, kul: p.companion });
 }
 
 export function sideOf(g: Game, id: PID) {

@@ -18,6 +18,7 @@ import { Btn } from './Prompt.tsx';
 import { CardPop, POP_CARD, PopShell, charRef, hirsRef, kulRef } from './Pop.tsx';
 import { Refs } from '../ui/Refs.tsx';
 import { useGame } from './ctx.ts';
+import { TagChip, lastingTags } from './Court.tsx';
 
 const fade = { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0 }, transition: { duration: 0.2 } };
 
@@ -44,6 +45,8 @@ export function SheetView() {
 function SeatSheet({ id, close }: { id: PID; close: () => void }) {
   const { g, seat, room } = useGame();
   const p = g.players[id];
+  const lasting = lastingTags(g, id);
+  const w = lasting.length ? POP_CARD - 36 : POP_CARD;   // room for the list of what is waiting on this seat
   const [tags, setTags] = useState(() => getTags(room.code, seat));
   const tag = (v: 'suspect' | 'trusted') => {
     setTag(room.code, seat, id, tags[id] === v ? null : v);
@@ -51,8 +54,8 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
   };
   return (
     <PopShell className="seatpop" onClose={close} cards={<>
-      <Card spec={spec(charRef(g, p.character))} width={POP_CARD} />
-      {p.companion && <Card spec={spec(kulRef(p))} width={POP_CARD} />}
+      <Card spec={spec(charRef(g, p.character))} width={w} />
+      {p.companion && <Card spec={spec(kulRef(p, seat))} width={w} />}
     </>}>
       <div className="pop-who">
         <b>{p.name}{id === seat ? ` ${t('you')}` : ''}</b>
@@ -66,6 +69,11 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
           </span>
         )}
       </div>
+      {lasting.length > 0 && (
+        <ul className="pop-tags">
+          {lasting.map(l => <li key={l.k}><TagChip tag={l} /><span>{l.title}</span></li>)}
+        </ul>
+      )}
     </PopShell>
   );
 }
@@ -187,19 +195,29 @@ export function PeekBody({ p }: { p: Peek }) {
           {p.plays.length > 0 && (
             <div className="peek-cards">
               {p.plays.map((x, i) => (
-                <span key={i} className="peek-play"><Card spec={spec({ t: 'intr', kind: x.as, field: x.field })} width={90} whole /><small><Gl k="next" />{n(x.target)}</small></span>
+                <span key={i} className="peek-play"><Card spec={spec({ t: 'intr', kind: x.as, field: x.field })} width={90} whole />{intrigueById[x.as].target !== 'none' && <small><Gl k="next" />{n(x.target)}</small>}</span>
               ))}
             </div>
           )}
           {words(t('peek.casus', { name: n(p.of) }) + (p.plays.length ? '' : ' ' + t('peek.casusNone')))}
         </div>
       );
-    case 'sameSide': return <div className="peek">{words(t(p.same ? 'peek.sameSide' : 'peek.otherSide', { a: n(p.a), b: n(p.b) }))}</div>;
+    case 'sameSide':
+      return (
+        <div className="peek">
+          <div className="peek-cards peek-pair">
+            <span className="peek-who"><Head character={g.players[p.a].character} /><b>{n(p.a)}</b></span>
+            <b className={`peek-eq ${p.same ? 'same' : 'other'}`}>{p.same ? '=' : '≠'}</b>
+            <span className="peek-who"><Head character={g.players[p.b].character} /><b>{n(p.b)}</b></span>
+          </div>
+          {words(t(p.same ? 'peek.sameSide' : 'peek.otherSide', { a: n(p.a), b: n(p.b) }))}
+        </div>
+      );
     case 'playedBy':
       if (p.by === null || p.card === null) return <div className="peek">{words(t('peek.playedByNone', { on: n(p.on) }))}</div>;
       return (
         <div className="peek">
-          <div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: intrigueById[p.card].copies.harem ? 'harem' : 'divan' })} width={110} whole /></div>
+          <div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field ?? guessField(p.card) })} width={110} whole /></div>
           {words(t('peek.playedBy', { on: n(p.on), name: n(p.by), card: intrigueById[p.card].name }))}
         </div>
       );
@@ -207,9 +225,13 @@ export function PeekBody({ p }: { p: Peek }) {
     case 'allegiance':
       return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={110} whole /></div>{words(t('peek.allegiance', { name: n(p.of), side: t(p.side) }))}</div>;
     case 'discards': return <div className="peek">{p.cards.length ? kader(p.cards) : null}{words(t(`peek.discards.${p.source}`, { name: n(p.of) }) + (p.cards.length ? '' : ' ' + t('peek.noDiscards')))}</div>;
-    case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: intrigueById[p.card].copies.harem ? 'harem' : 'divan' })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name }))}</div>;
+    case 'stolen': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field ?? guessField(p.card) })} width={110} whole /></div>{words(t('peek.stolen', { name: n(p.from), card: intrigueById[p.card].name }))}</div>;
+    case 'robbed': return <div className="peek"><div className="peek-cards"><Card spec={spec({ t: 'intr', kind: p.card, field: p.field })} width={110} whole /></div>{words(t('peek.robbed', { name: n(p.by), card: intrigueById[p.card].name }))}</div>;
   }
 }
+
+/** Looks saved before the field was recorded: the card's only field, or Harem. */
+const guessField = (kind: string) => (intrigueById[kind].copies.harem ? 'harem' : 'divan') as 'harem' | 'divan';
 
 /** New private information pops up once on its owner's phone. */
 export function PeekPopup() {

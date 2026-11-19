@@ -7,7 +7,7 @@ import { send } from '../net.ts';
 import { Card } from '../cards/Card.tsx';
 import { spec } from '../cardSpecs.ts';
 import { Em, Star } from '../ui/marks.tsx';
-import { Figure } from '../ui/Figure.tsx';
+import { Figure, Head } from '../ui/Figure.tsx';
 import { t } from '../strings.ts';
 import { sfx } from '../sound.ts';
 import { Btn, Stp, playerName as name } from './Prompt.tsx';
@@ -91,6 +91,7 @@ function KaderFirst({ a }: { a: Extract<Ask, { type: 'kaderFirst' }> }) {
       <div className="col">
         <Stp label={t('step.kader')} />
         <p className="h-mid">{t('ask.kaderFirst', { n: a.discard, second: name(g, g.kader!.second) })}</p>
+        {a.cards.length > 3 && <p className="vo small">{t('kader.defterdar')}</p>}
         <p className="vo small dim">{t('ask.kaderSilence')}</p>
         <div className="bt left"><Btn pri off={toss.length !== a.discard} onClick={() => act({ t: 'answer', ask: a.id, value: toss })}>{t('btn.passKader', { name: name(g, g.kader!.second) })}</Btn></div>
       </div>
@@ -125,7 +126,9 @@ function Decree({ a }: { a: Extract<Ask, { type: 'decree' }> }) {
   return (
     <div className="split decree">
       <div className="col">
-        <img src="/art/stills/tugra-suleyman.svg" alt="" className="tugra" />
+        {a.to === g.sultan
+          ? <img src="/art/stills/tugra-suleyman.svg" alt="" className="tugra" />
+          : <p className="vo fisilti"><Head character={g.players[a.to].character} />{t('ask.decreeFisilti')}</p>}
         <p className="h-step">{t('step.decree')}</p>
         <p className="h-mid">{t(a.delta > 0 ? 'ask.decreeGive' : 'ask.decreeTake')}</p>
         <p className="vo small">{t(a.delta > 0 ? 'ask.decreeGiveWhy' : 'ask.decreeTakeWhy')}

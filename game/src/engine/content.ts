@@ -20,7 +20,7 @@ export interface CharacterDef {
 }
 /** Who a card may be played on: any player but Süleyman, only the two Vekils, only the Birinci Vekil, anyone but
  *  yourself, or always yourself. */
-export type TargetRule = 'player' | 'minister' | 'first' | 'other' | 'self';
+export type TargetRule = 'player' | 'minister' | 'first' | 'other' | 'self' | 'none';   // none: played with no target (counts as its owner's, never shown)
 export interface IntrigueDef {
   id: string; name: string; copies: Partial<Record<Field, number>>; target: TargetRule;
   text: string; flavor: string; art: Art;

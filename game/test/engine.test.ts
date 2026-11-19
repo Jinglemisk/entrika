@@ -349,34 +349,55 @@ test('Ganimet can\'t be used while every other hand is empty', () => {
   assert.throws(() => act(g, 1, { t: 'power', power: 'ganimet', target: 2 }), RuleError);
 });
 
-test('Matrakçı Nasuh can recast a printed Akıl Hocası into the other field', () => {
+test('Sümbül Ağa can recast a printed Oyunbozan into the other field', () => {
   let g = court({ first: 1, second: 2 });   // Hazine Açığı opens both fields
   const ak = card('akil-hocasi', 'harem'), m = card('muhur', 'divan');
   g = hands(g, { 3: [ak], 4: [m] });
-  g.players[3].companion = 'matrakci';
+  g.players[3].companion = 'sumbul';
   assert.deepEqual(playableForms(g, 3, ak.uid).map(f => [f.field, f.recast]), [['harem', false], ['divan', true]]);
   g = wave(g, { 3: [{ uid: ak.uid, target: 1, recastAs: 'akil-hocasi', field: 'divan' }], 4: [{ uid: m.uid, target: 1 }] });
   assert.deepEqual(lastReveal(g).map(r => [r.as, r.field, r.outcome]), [['akil-hocasi', 'divan', 'ok'], ['muhur', 'divan', 'cancelled']]);
 });
 
-test('Gül Ağa raises the hand limit to 4 while face up; Lokman Ağa learns who played a card on him, once a crisis', () => {
+test('Sükût silences its target for the next wave only; Nöbet names who played one card on the watched player', () => {
   let g = court({ first: 1, second: 2 });
-  const i = card('iftira', 'harem'), a = card('teftis', 'divan'), b = card('teftis', 'divan');
-  g = hands(g, { 4: [i], 3: [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')], 5: [a, b] });
-  g.players[3].companion = 'gulaga';
-  g.players[3].influence = 2;
-  g.players[1].companion = 'lokman';
-  g = wave(g, { 4: [{ uid: i.uid, target: 3 }], 5: [{ uid: a.uid, target: 1 }] });
-  assert.equal(g.players[3].hand.length, 4, 'lost 1 Influence, drew to 4, still face up: no discard');
-  assert.ok(!g.asks.some(x => x.type === 'discard'));
-  const w = ask(g, 'window', 1);
-  assert.ok(w.type === 'window' && w.power === 'lokman');
-  g = act(g, 1, { t: 'answer', ask: w.id, value: (w.ctx as { plays: number[] }).plays[0] });
-  const peek = g.peeks.find(p => p.kind === 'playedBy');
-  assert.ok(peek && peek.kind === 'playedBy' && peek.to === 1 && peek.by === 5 && peek.card === 'teftis');
+  const nb = card('nobet', 'divan'), m1 = card('muhur', 'divan'), m2 = card('muhur', 'divan'), sk = card('sukut', 'harem');
+  const t1 = card('teftis', 'divan'), t2 = card('teftis', 'divan');
+  g = hands(g, { 2: [nb], 3: [m1, m2], 4: [sk], 5: [t1, t2] });
+  g = wave(g, { 2: [{ uid: nb.uid, target: 1 }], 3: [{ uid: m1.uid, target: 1 }], 4: [{ uid: sk.uid, target: 3 }], 5: [{ uid: t1.uid, target: 1 }] });
   g = seen(g);
-  g = wave(g, { 5: [{ uid: b.uid, target: 1 }] });
-  assert.ok(!g.asks.some(x => x.type === 'window'), 'once a crisis');
+  assert.equal(g.court!.submitted[3], null, 'silenced: passed at once, though a card is in hand');
+  g = wave(g, { 5: [{ uid: t2.uid, target: 1 }] });
+  g = seen(g);
+  assert.ok(g.asks.some(x => x.type === 'wave' && x.to === 3), 'free again a wave later');
+  g = wave(g, {});
+  const w = ask(g, 'window', 2);
+  assert.ok(w.type === 'window' && w.power === 'nobet');
+  const plays = (w.ctx as { plays: number[] }).plays;
+  assert.equal(plays.length, 3, 'the Mühür and both Teftiş, not the watcher\'s own Nöbet');
+  g = act(g, 2, { t: 'answer', ask: w.id, value: plays[0] });
+  const peek = g.peeks.find(p => p.kind === 'playedBy');
+  assert.ok(peek && peek.kind === 'playedBy' && peek.to === 2 && peek.by === 3 && peek.card === 'muhur' && peek.field === 'divan');
+});
+
+test('Çifte Oyun plays two cards in a wave and is announced only when Tertip ends', () => {
+  let g = court({ first: 1, second: 2 });
+  g.learning = false;
+  const h = g.players[3];
+  const holder = g.players.find(p => p.character === 'hurrem' && p.id !== 3);
+  if (holder) holder.character = h.character;
+  h.character = 'hurrem';
+  h.favor = 'ready';
+  const a = card('muhur', 'divan'), b = card('teftis', 'divan'), c = card('teftis', 'divan');
+  g = hands(g, { 3: [a, b, c] });
+  g = wave(g, { 3: [{ uid: a.uid, target: 1 }, { uid: b.uid, target: 2 }] });
+  assert.equal(lastReveal(g).length, 2);
+  assert.ok(!g.log.some(e => e.k === 'power' && e.p?.power === 'cifteOyun'), 'no banner while the wave is up');
+  g = seen(g);
+  assert.throws(() => wave(g, { 3: [{ uid: c.uid, target: 1 }, { uid: c.uid + 999, target: 2 }] }), RuleError, 'once a game');
+  g = wave(g, {});
+  assert.ok(g.log.some(e => e.k === 'power' && e.p?.power === 'cifteOyun' && e.p?.who === 3));
+  assert.equal(g.players[3].favor, 'used');
 });
 
 test('Veliaht takes a Vekil seat when Tertip ends, past Mühür; the Vekil who leaves draws', () => {
@@ -416,9 +437,14 @@ test('Saray Hazinesi counts on the crisis that ends the game and breaks the over
   for (const p of g.players) if (!p.sultan) p.side = 'loyalist';
   g.players[4].influence = 4;
   g.players[5].influence = 4;
-  g = hands(g, { 4: [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')] });
+  const [a, b, c] = [card('muhur', 'divan'), card('muhur', 'divan'), card('teftis', 'divan')];
+  g = hands(g, { 4: [a, b, c] });
   g.players[4].ambition = 'hazine';
   g.decks.kader = ['h', 'h', 'h', ...g.decks.kader];
+  for (const [x, on] of [[a, 1], [b, 2], [c, 1]] as const) {
+    g = wave(g, { 4: [{ uid: x.uid, target: on }] });
+    g = seen(g);
+  }
   g = wave(g, {});
   g = answer(g, 'ferman', null, 0);
   g = answer(g, 'kaderFirst', [0], 1);

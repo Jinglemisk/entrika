@@ -41,7 +41,7 @@ export function load() {
     for (const r of list) {
       if (Date.now() - r.touched >= MAX_AGE) continue;
       // a game saved by an older engine, or before a card was cut, can't be played on: send the room back to its lobby
-      if (r.game && (r.game.v !== 2 || !fitsContent(r.game))) {
+      if (r.game && (r.game.v !== 3 || !fitsContent(r.game))) {
         console.warn(`room ${r.code}: its game was saved by an older engine or uses cards no longer in the content; back to the lobby`);
         r.game = null;
       }
