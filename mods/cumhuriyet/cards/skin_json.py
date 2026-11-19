@@ -45,7 +45,7 @@ skin = {
     },
     'backs': {k: f'cards/back-{k}.svg' for k in ('intr', 'kader', 'taraf', 'hirs', 'kul', 'char', 'crisis')},
     'art': dict(sorted(art.items())),
-    'icons': {'dir': 'icons/', 'version': '2'},
+    'icons': {'dir': 'icons/', 'version': '3'},
     'niche': {
         'path': 'M.5 119.5V28H12V16H24V6H76V16H88V28H99.5V119.5Z',
         'mask': 'M0 120V27H12V15H24V5H76V15H88V27H100V120Z',
