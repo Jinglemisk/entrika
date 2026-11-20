@@ -742,7 +742,6 @@
     "lobby.shareText": "Entrika masasına gel, Meclis toplanıyor. Oda kodu: {code}",
     "err.exiled": "Bu oyuncu bu {term.crisis} {power.surgun} yüzünden {term.minister} olamaz.",
     "log.surgun": "{who} bu {term.crisis} {power.surgun} yüzünden {term.minister} olamaz.",
-    "lobby.learningWhy": "Öğrenme oyunu: {term.companion}, {term.ambition} ve {term.favor} güçleri yok, dışarıdan şahsiyetler dağıtılmaz.",
     "step.kader": "Oylama",
     "wait.kader": "Oylama: kimse konuşmaz, kimse kart göstermez.",
     "log.kaderStart": "Oylama: {first} tasarıları çekiyor, {second} birini geçirecek.",

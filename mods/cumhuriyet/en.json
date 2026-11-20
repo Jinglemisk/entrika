@@ -670,7 +670,6 @@
     "lobby.shareText": "Join my Entrika table; the Assembly is sitting. Room code: {code}",
     "err.exiled": "Under {power.surgun}, this player can't be {term.minister:a} this {term.crisis}.",
     "log.surgun": "{who} is held out by {power.surgun} this {term.crisis}: they can't be {term.minister:a}.",
-    "lobby.learningWhy": "Learning game: no {term.companion:pl}, {term.ambition:pl} or {term.favor} powers, and no outside Figures dealt.",
     "step.kader": "Vote",
     "wait.kader": "The Vote: nobody talks, nobody shows a card.",
     "log.kaderStart": "Vote: {first} drafts the bills, {second} passes one.",

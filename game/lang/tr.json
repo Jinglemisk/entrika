@@ -90,7 +90,6 @@
   "lobby.shareText": "Entrika masasına gel. Oda kodu: {code}",
   "lobby.start": "Oyunu başlat",
   "lobby.waitHost": "Odayı kuran başlatacak.",
-  "lobby.count": "{n} oyuncu masada. {min} ile {max} arası oynanır.",
   "lobby.sultan": "{term.suleyman}",
   "lobby.makeSultan": "{term.suleyman} yap",
   "lobby.sultanRandom": "{term.suleyman} rastgele seçilir.",
@@ -101,9 +100,7 @@
   "lobby.kick": "Çıkar",
   "lobby.learning": "Öğrenme oyunu",
   "lobby.shuffle": "Yerleri karıştır",
-  "lobby.learningWhy": "Öğrenme oyunu: {term.companion}, {term.ambition} ve {term.favor} güçleri yok, dış karakterler dağıtılmaz.",
-  "lobby.full": "Tam oyun",
-  "lobby.fullWhy": "Tam oyun: herkese bir {term.companion} ve bir {term.ambition} kartı; {term.favor} güçleri açık.",
+  "lobby.learningWhy": "{term.companion}, {term.ambition} ve {term.favor} güçleri olmadan; ilk oyun için.",
   "lobby.seatWhy": "Sıra, masadaki oturuş sırası olsun: {term.objection} sırası buna göre döner.",
   "setupTitle": "Kuruluş",
   "crisisN": "{term.crisis} {n}",
@@ -425,5 +422,8 @@
   "wait.valide": "{card.valide}: yeni {term.minister} seçiliyor.",
   "kader.defterdar": "{card.defterdar}: 3 yerine 4 kart çektin.",
   "moment.nazar": "{card.nazar}: {term.minister:dat} 2.",
-  "ask.decreeFisilti": "{power.fisilti}: {term.decree:acc} sen veriyorsun."
+  "ask.decreeFisilti": "{power.fisilti}: {term.decree:acc} sen veriyorsun.",
+  "lobby.timersWhy": "Dalgalara ve güç anlarına süre; dolunca pas geçilir.",
+  "lobby.timersOff": "Öğrenme oyununda süre yok.",
+  "lobby.players": "Oyuncular · {n}/{max}"
 }

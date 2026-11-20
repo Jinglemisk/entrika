@@ -84,14 +84,7 @@
     "sultan": "table/sultan-seat.html"
   },
   "seal": "/art/stills/tugra-suleyman.svg",
-  "frieze": [
-    {"char": "hatice", "size": 84, "x": 0},
-    {"char": "rustem", "size": 98, "x": 132},
-    {"char": "suleyman", "size": 116, "x": 206},
-    {"char": "hurrem", "size": 94, "x": 306},
-    {"char": "ibrahim", "size": 88, "x": 378},
-    {"char": "sahsultan", "size": 105, "x": 444}
-  ],
+  "frieze": ["hatice", "rustem", "suleyman", "hurrem", "ibrahim"],
   "music": {
     "drone": [146.83, 147.4, 220],
     "scale": [293.66, 311.13, 369.99, 392.0, 440.0, 466.16, 523.25, 587.33],

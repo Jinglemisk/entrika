@@ -319,7 +319,7 @@
   "sultan": "table/king-seat.html"
  },
  "seal": "table/seal.svg",
- "frieze": [{ "char": "rustem", "size": 117, "x": -37 }, { "char": "sahsultan", "size": 127, "x": 70 }, { "char": "suleyman", "size": 176, "x": 150 }, { "char": "hurrem", "size": 142, "x": 278 }, { "char": "ibrahim", "size": 158, "x": 356 }],
+ "frieze": ["rustem", "sahsultan", "suleyman", "hurrem", "ibrahim"],
  "music": {
   "drone": [
    146.83,

@@ -90,7 +90,6 @@
   "lobby.shareText": "Join my Entrika table. Room code: {code}",
   "lobby.start": "Start the game",
   "lobby.waitHost": "The host will start.",
-  "lobby.count": "{n} at the table. {min} to {max} can play.",
   "lobby.sultan": "{term.suleyman}",
   "lobby.makeSultan": "Make {term.suleyman:the}",
   "lobby.sultanRandom": "{term.suleyman:the} is picked at random.",
@@ -101,9 +100,7 @@
   "lobby.kick": "Remove",
   "lobby.learning": "Learning game",
   "lobby.shuffle": "Shuffle seats",
-  "lobby.learningWhy": "Learning game: no {term.companion:pl}, {term.ambition:pl} or {term.favor} powers, and no outsiders dealt.",
-  "lobby.full": "Full game",
-  "lobby.fullWhy": "Full game: everyone gets {term.companion:a} and {term.ambition:a}, and {term.favor} powers are in play.",
+  "lobby.learningWhy": "No {term.companion:pl}, {term.ambition:pl} or {term.favor} powers; for a first game.",
   "lobby.seatWhy": "Order the list the way you sit around the table: {term.objection:pl} go round in this order.",
   "setupTitle": "Setup",
   "crisisN": "{term.crisis} {n}",
@@ -425,5 +422,8 @@
   "wait.valide": "{card.valide}: a new {term.minister} is being chosen.",
   "kader.defterdar": "{card.defterdar}: you drew 4 cards instead of 3.",
   "moment.nazar": "{card.nazar}: 2 for this {term.minister}.",
-  "ask.decreeFisilti": "{power.fisilti}: you give the {term.decree}."
+  "ask.decreeFisilti": "{power.fisilti}: you give the {term.decree}.",
+  "lobby.timersWhy": "Waves and power moments get a time limit; then you pass.",
+  "lobby.timersOff": "No timers in a learning game.",
+  "lobby.players": "Players · {n}/{max}"
 }

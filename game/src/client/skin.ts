@@ -28,7 +28,7 @@ interface SkinDef {
   icons?: { dir: string; version?: string };
   niche?: { path: string; mask?: string; sultan?: string };
   seal?: string;
-  frieze?: { char: string; size: number; x: number }[];
+  frieze?: string[];
   music?: Music;
 }
 
@@ -161,8 +161,8 @@ export function niche() {
 }
 /** The seal on the Decree screen. */
 export const seal = () => { const s = mod(); return s?.def.seal ? s.url(s.def.seal) : undefined; };
-/** The figures along the bottom of home and lobby: which Characters, how tall, where. */
-export const frieze = () => mod()?.def.frieze ?? [];
+/** The Characters standing along the bottom of home and lobby, left to right (the game lays them out). */
+export const frieze = (): string[] => mod()?.def.frieze ?? [];
 export const music = () => mod()?.def.music;
 
 // ---------- switching: the skin follows the mod (words.ts setWords)

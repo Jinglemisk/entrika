@@ -142,25 +142,47 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .homescreen .title, .lobby .title { position: absolute; left: 10px; top: 26px; display: grid; gap: 4px; max-width: 330px; }
 .homescreen .title b, .lobby .title b { font: 800 62px/1 var(--f-card); letter-spacing: .03em; }
 .homescreen .title .vo, .lobby .title .vo { font-size: 19px; }
-.lobby .title .vo.small { font-size: 14px; margin-top: 6px; color: var(--fg2); }
 .title .links { display: flex; gap: 14px; }
 .title .links button { padding: 0; border: 0; background: none; cursor: pointer; }
-.title .rules-link { justify-self: start; font: 700 13px/1 var(--f-ui); color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
-.lobby .title .opts { margin-top: 10px; }
-.lobby .title .vo.small + .vo.small { margin-top: 0; }
+.title .rules-link { justify-self: start; font: 700 13px/1 var(--f-ui); font-style: normal; color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
 .homescreen .panel { position: absolute; right: 6px; top: 20px; width: 340px; display: grid; gap: 10px; }
 .field { display: grid; gap: 5px; font: 700 12px/1 var(--f-ui); color: var(--fg2); }
 .homescreen .row2 { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
 .code-in input { letter-spacing: .3em; text-transform: uppercase; font: 800 22px/1 var(--f-voice); }
 .homescreen .bt { margin-top: 0; }
 .homescreen .bt .b { width: 100%; }
-.homescreen .b.quiet { height: 36px; background: none; box-shadow: inset 0 0 0 1px var(--line); }
+.b.quiet { background: none; box-shadow: inset 0 0 0 1px var(--line); }
+.homescreen .b.quiet { height: 36px; }
 .testline { display: flex; align-items: center; gap: 8px; font: 500 12px/1.2 var(--f-ui); color: var(--fg2); margin-top: 6px; }
 .testline select { height: 38px; font-size: 13px; }
-.lobby .side { position: absolute; right: 6px; top: 16px; width: 340px; display: grid; gap: 8px; justify-items: stretch; }
-.lobby .side .h-step { text-align: right; }
-.lobby .code { justify-content: flex-end; }
-.seats { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; max-height: 196px; overflow-y: auto; background: var(--fiber), var(--paper); position: relative; z-index: 1; }
+
+/* the lobby: title and setup on the left over the frieze, the room on the right */
+.lobby .title { top: 16px; gap: 6px; }
+.lobby .title b { font-size: 50px; }
+.lobby .title .vo { font-size: 17px; }
+.lobby .setup { position: absolute; left: 10px; top: 100px; width: 330px; display: grid; gap: 6px; z-index: 2; }
+.lobby .setup .h-step { margin-top: 4px; }
+.worlds { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; height: 36px; border-radius: 6px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--line); }
+.worlds button { padding: 0 4px; font: 700 11.5px/1.1 var(--f-ui); text-align: center; color: var(--fg2); box-shadow: -1px 0 0 var(--line); }
+.worlds button.on { background: var(--ink); color: var(--paper-hi); box-shadow: none; }
+.worlds button:disabled { cursor: default; }
+.worlds button:disabled:not(.on) { opacity: .6; }
+.opt { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; cursor: pointer; }
+.opt input { appearance: none; width: 18px; height: 18px; margin: 1px 0 0; border-radius: 4px; box-shadow: inset 0 0 0 1.5px var(--fg2); cursor: inherit; }
+.opt input:checked { background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4.5 9.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat; box-shadow: none; }
+.opt input:disabled { cursor: default; }
+.opt b { display: block; font: 700 13.5px/1.2 var(--f-ui); }
+.opt small { display: block; margin-top: 2px; font: 500 11.5px/1.3 var(--f-ui); color: var(--fg2); }
+.opt.off { cursor: default; }
+.opt.off b, .opt.off input { opacity: .5; }
+.lobby .side { position: absolute; right: 0; top: 12px; bottom: 4px; width: 360px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+.lobby .room { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+.lobby .room .h-step { margin-bottom: 4px; }
+.lobby .code i { width: 34px; height: 38px; font-size: 25px; }
+.lobby .room .b { height: 38px; padding: 0 14px; font-size: 14px; }
+.seats-h { display: flex; align-items: baseline; justify-content: space-between; margin-top: 4px; }
+.ln { padding: 0; font: 700 12px/1 var(--f-ui); color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
+.seats { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: 1px; flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .seats li { display: flex; align-items: center; gap: 7px; height: 24px; font: 700 13px/1 var(--f-ui); }
 .seats .no { width: 16px; color: var(--fg2); font-weight: 800; }
 .seats small { color: var(--fg2); font: 500 11px/1 var(--f-ui); }
@@ -170,16 +192,20 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .seats .ctl button.on .em { opacity: 1; }
 .seats .ctl button:disabled { opacity: .25; }
 .seats .ctl .gl { width: 15px; height: 15px; }
-.lobby .bt { margin-top: 2px; flex-wrap: wrap; }
-.lobby .bt .b { height: 40px; padding: 0 12px; font-size: 14px; }
+.lobby .hint { margin: 0; font: 500 11px/1.3 var(--f-ui); color: var(--fg2); }
+.lobby .bt { margin-top: 2px; display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; }
+.lobby .bt .b { height: 38px; padding: 0 16px; font-size: 14px; }
+
+/* the frieze: a strip three times as wide as it is tall; Frieze.tsx places the figures in it */
+.frieze { height: auto; aspect-ratio: 3; overflow: hidden; -webkit-mask-image: linear-gradient(#000 60%, transparent 97%); mask-image: linear-gradient(#000 60%, transparent 97%); }
+.frieze::after { content: none; }
+.frieze img { height: auto; }
+.homescreen .frieze { left: 62px; width: 390px; }
+.lobby .frieze { left: 0; bottom: -4px; width: 330px; z-index: 1; }
 
 /* ---------- toast, offline */
 .toast { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); z-index: 60; max-width: 520px; padding: 10px 16px; border-radius: 3px; background: var(--al); color: #f6ecd6; font: 700 14px/1.25 var(--f-ui); box-shadow: 0 6px 20px rgba(0,0,0,.4); }
 .offline-bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 60; padding: 6px; text-align: center; background: #000c; color: #efe6cf; font: 700 12px/1 var(--f-ui); }
-.lobby .frieze { transform: scale(.7); transform-origin: left bottom; }
-.frieze::after { bottom: -80px; height: 134px; background: linear-gradient(transparent, var(--paper) 46px); }   /* covers the cut-outs below the strip too */
-.lobby .frieze::after { right: -700px; }   /* the fade spans the screen at the smaller scale */
-.lobby .side { z-index: 1; }
 
 /* ---------- card gallery (/?kartlar) */
 body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: text; }
@@ -476,16 +502,13 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .mo-line .who small { font-size: 11px; opacity: .75; margin-left: 3px; }
 .who.minus b { margin-left: 2px; font-weight: 800; }
 
-/* ---------- home and lobby held upright (393×852): one column, the court along the bottom */
+/* ---------- home and lobby held upright (393×852): one column, the frieze along the bottom */
 .ph.tall { width: 393px; height: 852px; }
 .tall .full > .bd { left: 0; width: 393px; height: 852px; }
 .tall .homescreen .title, .tall .lobby .title { left: 24px; right: 24px; top: 56px; max-width: none; }
 .tall .homescreen .title .vo, .tall .lobby .title .vo { white-space: normal; }
 .tall .homescreen .panel { left: 24px; right: 24px; top: 230px; width: auto; }
-.tall .lobby .title { top: 40px; }
-.tall .lobby .side { left: 24px; right: 24px; top: 300px; width: auto; }
-.tall .lobby .side .h-step { text-align: left; }
-.tall .lobby .code { justify-content: flex-start; }
-.tall .lobby .seats { max-height: 232px; }
-.tall .frieze, .tall .lobby .frieze { left: -6px; transform: scale(.67); transform-origin: left bottom; }
-.tall .frieze::after { right: -400px; }
+.tall .lobby .title { top: 36px; }
+.tall .lobby .setup { left: 24px; right: 24px; top: 130px; width: auto; }
+.tall .lobby .side { left: 24px; right: 24px; top: 318px; bottom: 120px; width: auto; }
+.tall .homescreen .frieze, .tall .lobby .frieze { left: 24px; right: auto; bottom: 0; width: 345px; }

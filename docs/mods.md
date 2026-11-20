@@ -125,7 +125,7 @@ It never borrows a word from another mod. A finished mod has no markers in its n
   "icons":    { "dir": "icons/", "version": "1" },
   "niche":    { "path": "M0 120V46C0 22 30 12 50 0C70 12 100 22 100 46V120z", "sultan": "table/sultan-seat.html" },
   "seal":     "table/seal.svg",
-  "frieze":   [{ "char": "hatice", "size": 84, "x": 0 }, …],
+  "frieze":   ["hatice", "rustem", "suleyman", "hurrem", "ibrahim"],
   "music":    { "drone": [146.83, 220], "scale": [293.66, 311.13, 369.99, 392, 440, 466.16, 523.25, 587.33],
                 "wave": "triangle", "beat": [700, 1600] }
 }
@@ -192,7 +192,7 @@ That writes `icons/set/<id>.png` and the -144, -72 and -48 sizes the game shows.
 
 - **`niche`**: the seat's niche, a path in a `0 0 100 120` box; `mask` if the figure's mask should differ from the drawn shape; `sultan`, an HTML file drawn round the Sultan's niche (an SVG and any extra elements, styled in `skin.css`).
 - **`seal`**: the image on the Decree screen.
-- **`frieze`**: the Characters standing along the bottom of the home and lobby screens, with their height and left edge in pixels on the 852-wide screen.
+- **`frieze`**: the Characters standing along the bottom of the home and lobby screens, left to right. The game spaces them evenly and sizes every head the same from its portrait crop, the Sultan a little larger; five reads best, with the Sultan in the middle.
 - **`music`**: the quiet loop. A drone of `drone` frequencies, under a plucked melody that wanders `scale` (played an octave down), one note every `beat` milliseconds, in the `wave` oscillator's timbre.
 
 ### skin.css
