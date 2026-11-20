@@ -84,7 +84,7 @@ function manual(res: http.ServerResponse) {
 
 type In =
   | { t: 'hello'; code?: string; token?: string }
-  | { t: 'create'; name: string; test?: number }
+  | { t: 'create'; name: string; test?: number; mod?: string; start?: boolean }
   | { t: 'join'; code: string; name: string }
   | { t: 'leave' }
   | { t: 'lobby'; o: LobbyOp }
@@ -131,6 +131,9 @@ function handle(c: Conn, m: In) {
     }
     case 'create': {
       const r = createRoom(String(m.name ?? '').slice(0, 18), c.token, m.test ? Number(m.test) : null);
+      // DEV ONLY: a test game can be set in a world and dealt at once, straight from home (?hizli=got)
+      if (r.dev && m.mod) lobby(r, c.token, { op: 'mod', value: m.mod });
+      if (r.dev && m.start) start(r, c.token);
       c.code = r.code;
       push(r);
       return;

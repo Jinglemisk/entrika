@@ -16,7 +16,7 @@ For production, run `npm run build`, then `npm start`. The `PORT` variable chang
 
 ## Test alone
 
-On the home screen, "Test oyunu" opens a room where this browser plays every seat:
+On the home screen, the quick-test row deals a game straight away (no lobby) in the world you pick, with every seat in this browser. A link does the same: `http://localhost:4700/?hizli=got`, or `?hizli=cumhuriyet&n=6` for six players (seven by default). In that game:
 
 - The small eye on each seat switches to that seat's phone. While the court is covered, the row of heads in the corner (or the Devam heads) does the same.
 - The robot button in the top bar hands every other seat to a bot, which plays random legal moves.

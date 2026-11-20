@@ -155,7 +155,8 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .homescreen .bt .b { width: 100%; }
 .b.quiet { background: none; box-shadow: inset 0 0 0 1px var(--line); }
 .homescreen .b.quiet { height: 36px; }
-.testline { display: flex; align-items: center; gap: 8px; font: 500 12px/1.2 var(--f-ui); color: var(--fg2); margin-top: 6px; }
+.testline { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 6px 8px; font: 500 12px/1.2 var(--f-ui); color: var(--fg2); margin-top: 6px; }
+.testline > span { grid-column: 1 / -1; }
 .testline select { height: 38px; font-size: 13px; }
 
 /* the lobby: title and setup on the left over the frieze, the room on the right */

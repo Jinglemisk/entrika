@@ -83,7 +83,7 @@
   "home.code": "Room code",
   "home.join": "Join",
   "home.create": "New room",
-  "home.test": "Test game, every seat on this device:",
+  "home.test": "Quick test: every seat on this device, dealt at once.",
   "home.testGo": "Start",
   "lobby.code": "Room code",
   "lobby.share": "Share",
