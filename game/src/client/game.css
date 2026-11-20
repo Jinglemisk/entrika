@@ -139,6 +139,8 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .settings .lang-pick { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; font: 700 13px/1 var(--f-ui); color: var(--fg2); }
 
 /* ---------- home and lobby */
+/* one type for home and the lobby, whatever world is picked, so switching worlds never moves anything */
+.homescreen, .lobby { --f-ui: "Alegreya Sans", "Gill Sans", "Trebuchet MS", sans-serif; --f-voice: "Alegreya", Georgia, serif; --f-card: "Alegreya SC", Georgia, serif; }
 .homescreen .title, .lobby .title { position: absolute; left: 10px; top: 26px; display: grid; gap: 4px; max-width: 330px; }
 .homescreen .title b, .lobby .title b { font: 800 62px/1 var(--f-card); letter-spacing: .03em; }
 .homescreen .title .vo, .lobby .title .vo { font-size: 19px; }
