@@ -22,8 +22,8 @@
     "kader-h": {"frame": "cards/kader-h.svg", "base": ["#22694b", "#0a2a1c"]},
     "kader-x": {"frame": "cards/kader-x.svg", "base": ["#2a1a1e", "#060304"]},
     "hirs": {"frame": "cards/hirs.svg", "base": ["#5a2a55", "#1e0a1c"], "art": "cards/art-hirs.svg"},
-    "taraf-s": {"frame": "cards/taraf-s.svg", "base": ["#17605f", "#05201f"], "art": "cards/art-taraf-s.svg"},
-    "taraf-h": {"frame": "cards/taraf-h.svg", "base": ["#3a0c10", "#070203"], "art": "cards/art-taraf-h.svg"}
+    "taraf-s": {"frame": "cards/taraf-s.svg", "base": ["#17605f", "#05201f"]},
+    "taraf-h": {"frame": "cards/taraf-h.svg", "base": ["#3a0c10", "#070203"]}
   },
   "backs": {
     "intr": "cards/back-intr.svg",
@@ -75,7 +75,9 @@
     "crises.irakeyn": {"src": "/art/directions/img/full-crisis.irakeyn-4.jpg", "pos": "45% 50%"},
     "crises.isabella": {"src": "/art/directions/img/full-crisis.isabella.jpg", "pos": "52% 50%"},
     "kader.h": {"src": "/art/directions/img/term.hizmet-1.jpg", "pos": "50% 50%"},
-    "kader.x": {"src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%"}
+    "kader.x": {"src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%"},
+    "taraf.loyalist": {"src": "/art/stills/taraf.loyalist-1.jpg", "pos": "50% 50%"},
+    "taraf.traitor": {"src": "/art/stills/taraf.traitor-1.jpg", "pos": "50% 50%"}
   },
   "icons": {"dir": "/art/icons/", "version": "2"},
   "niche": {

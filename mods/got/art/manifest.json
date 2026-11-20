@@ -1152,6 +1152,57 @@
      ]
     }
    ]
+  },
+  "taraf.loyalist": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "taraf.loyalist-1.jpg",
+     "size": [
+      900,
+      900
+     ],
+     "generated": true,
+     "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+     "prompt": "Generate an image.\nImage 1 is a reference only for the sword's shape; do not copy its photo background.\nScene: a cinematic still-life in a medieval castle hall in the look of a prestige fantasy TV drama (red sandstone castle, King's Landing mood): photorealistic, candle and brazier light, warm gold highlights against teal-iron shadows, shallow depth of field, a blurred great hall behind.\nSubject: a knight's longsword (shaped like Image 1, a plain steel hand-and-a-half sword) standing upright, POINT-DOWN, its tip set into the stone floor, perfectly vertical and centred, the sword before which a knight kneels to swear fealty. A pristine WHITE wool cloak is draped over its crossguard: the cloak of a sworn knight of the king's guard. Behind it, out of focus, the steps of a dais and hanging crimson and gold banners.\nMeaning to convey at a glance: a sworn oath to the king, kept. Calm, vertical, dignified, lit.\nPalette: deep forest green and teal-iron shadows (#3a5a48 to #0e1c14), bright white cloak, steel, candle gold.\nDo not reproduce any specific frame from a TV show.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+     "references": [
+      {
+       "what": "Hand and a Half Sword, ca. 1500-1525, The Met 27169 (public domain)",
+       "url": "https://www.metmuseum.org/art/collection/search/27169"
+      }
+     ],
+     "note": "Loyalist: a longsword standing point-down before the throne steps, a white Kingsguard cloak over its crossguard: the oath kept. No people, no text.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "taraf.traitor": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "taraf.traitor-1.jpg",
+     "size": [
+      900,
+      900
+     ],
+     "generated": true,
+     "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+     "prompt": "Generate an image.\nImage 1 is the STYLE and SETTING reference: the new image is its companion card and must look like the same cinematographer shot it in the same castle hall: photorealistic, the same throne-room steps, pillars and hanging banners in the blurred background, the same camera height. Change only what is described below.\nChanges from Image 1:\n- The light turns sinister: the braziers burn low and ember-red, the hall sinks into blood-red and near-black shadow (#4e0e0c to #100303); the candles are out.\n- The sword no longer stands. The same plain steel longsword lies on the flagstones SNAPPED IN TWO: the hilt half and the blade-tip half lie apart at an angle, with a jagged break and a few small steel shards between them.\n- The white cloak has been thrown down: it lies crumpled and torn on the floor under the broken sword, stained and dirty, a ripped gold cloak-clasp beside it.\n- Composition: the broken sword and the cloak in the middle of the frame, seen from a bit higher so they read clearly; a strong diagonal.\nMeaning to convey at a glance: the oath broken, the cloak turned: the knight has betrayed his king.\nDo not reproduce any specific frame from a TV show.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+     "references": [
+      {
+       "what": "its companion card, taraf.loyalist-1.jpg, as the style and setting reference"
+      }
+     ],
+     "note": "Turncloak: the same hall in ember red, the sword snapped in two on the white cloak thrown to the floor, its clasp torn off. No people, no text.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
   }
  }
 }

@@ -28,6 +28,8 @@ for key, ent in man.items():
         art['kader.h'] = {'src': f'art/{c["file"]}', 'pos': pos}
     if key == 'term.hiyanet':
         art['kader.x'] = {'src': f'art/{c["file"]}', 'pos': pos}
+    if key.startswith('taraf.'):
+        art[key] = {'src': f'art/{c["file"]}', 'pos': pos}
 
 skin = {
     'defs': 'cards/defs.svg',
@@ -40,8 +42,8 @@ skin = {
         'kader-h': face('kader-h', HAKI),
         'kader-x': face('kader-x', KARA),
         'hirs': face('hirs', MOR, 'art-hirs'),
-        'taraf-s': face('taraf-s', HAKI, 'art-taraf-s'),
-        'taraf-h': face('taraf-h', KARA, 'art-taraf-h'),
+        'taraf-s': face('taraf-s', HAKI),
+        'taraf-h': face('taraf-h', KARA),
     },
     'backs': {k: f'cards/back-{k}.svg' for k in ('intr', 'kader', 'taraf', 'hirs', 'kul', 'char', 'crisis')},
     'art': dict(sorted(art.items())),

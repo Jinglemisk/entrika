@@ -79,7 +79,6 @@
     "#3a5a48",
     "#0e1c14"
    ],
-   "art": "cards/art-taraf-s.svg",
    "darkGems": true
   },
   "taraf-h": {
@@ -88,7 +87,6 @@
     "#4e0e0c",
     "#100303"
    ],
-   "art": "cards/art-taraf-h.svg",
    "darkGems": true
   }
  },
@@ -307,6 +305,14 @@
   "kader.h": {
    "src": "art/term.hizmet-1.jpg",
    "pos": "35% 40%"
+  },
+  "taraf.loyalist": {
+   "src": "art/taraf.loyalist-1.jpg",
+   "pos": "50% 50%"
+  },
+  "taraf.traitor": {
+   "src": "art/taraf.traitor-1.jpg",
+   "pos": "50% 50%"
   }
  },
  "icons": {

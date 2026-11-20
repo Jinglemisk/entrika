@@ -260,15 +260,6 @@ def drawn_art():
         + '</g>' + ''.join(f'<rect x="80" y="{338 - i * 40}" width="240" height="7" fill="url(#g-iron)"/>' for i in range(9))
         + '<g filter="url(#f-shadow)"><circle cx="200" cy="176" r="86" fill="url(#g-iron-r)" filter="url(#f-bevel)"/><circle cx="200" cy="176" r="74" fill="url(#g-disc)"/></g>'
         + icon('ambition', 142, 118, 116))
-    shield = 'M200 34L296 64V160C296 236 252 278 200 304C148 278 104 236 104 160V64Z'
-    inner = 'M200 56L276 80V160C276 220 242 254 200 276C158 254 124 220 124 160V80Z'
-    art('cards/art-taraf-s.svg', '<rect x="-40" y="-40" width="480" height="430" fill="#2e5b3e"/><rect x="-40" y="-40" width="480" height="430" fill="url(#p-mail)"/>'
-        f'<g filter="url(#f-shadow)"><path d="{shield}" fill="url(#g-steel)" filter="url(#f-bevel)"/><path d="{inner}" fill="#f3ead3"/></g>'
-        + icon('loyalist', 130, 96, 140))
-    art('cards/art-taraf-h.svg', '<rect x="-40" y="-40" width="480" height="430" fill="#4e0e0c"/><rect x="-40" y="-40" width="480" height="430" fill="url(#p-chevron)" opacity=".35"/>'
-        '<g fill="none" stroke="url(#g-iron)" stroke-width="12"><rect x="24" y="150" width="70" height="40" rx="20"/><rect x="306" y="150" width="70" height="40" rx="20" transform="rotate(14 340 170)"/></g>'
-        f'<g filter="url(#f-shadow)"><path d="{shield}" fill="url(#g-iron)" filter="url(#f-bevel)"/><path d="{inner}" fill="#f3ead3"/></g>'
-        + icon('traitor', 130, 96, 140))
     write('cards/backdrop.svg', '<rect width="400" height="310" fill="url(#st-bg)"/><rect width="400" height="310" fill="url(#p-ashlar-faint)"/>'
           '<rect width="400" height="310" fill="url(#st-halo)"/><rect width="400" height="310" fill="url(#st-vig)"/>', '0 0 400 310', ' preserveAspectRatio="xMidYMid slice"')
 
