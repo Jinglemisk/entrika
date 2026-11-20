@@ -45,13 +45,17 @@ const COLOURS = import.meta.glob(['../../../mods/*/icons/meaning.json', '../../.
 /** One skin, its paths resolved: `key` finds a bundled file, `url` an image. */
 interface Loaded {
   def: SkinDef; portraits: Record<string, Portrait>;
-  key: (p: string) => string; url: (p: string) => string;
+  key: (p: string) => string; path: (p: string) => string; url: (p: string) => string;
 }
+const CACHE = 2;
 function load(def: SkinDef, dir: string | null): Loaded {
   // a bundled file's glob key; /art/... and /mods/... are repo paths
   const key = (p: string) => (p.startsWith('/') ? ROOT + p.slice(1) : dir ? `${ROOT}mods/${dir}/${p}` : `../../skin/${p}`);
-  const url = (p: string) => (p.startsWith('/') || !dir ? p : `/mods/${dir}/${p}`);
-  return { def, portraits: (dir && PORTRAITS[`${ROOT}mods/${dir}/portraits.json`]) || {}, key, url };
+  // ?v= drops copies that phones cached for a day before the server switched to revalidating (Nov 2026); since then a
+  // redrawn file shows on the next load, so this never needs bumping for new art.
+  const path = (p: string) => (p.startsWith('/') || !dir ? p : `/mods/${dir}/${p}`);
+  const url = (p: string) => `${path(p)}${p.includes('?') ? '&' : '?'}v=${CACHE}`;
+  return { def, portraits: (dir && PORTRAITS[`${ROOT}mods/${dir}/portraits.json`]) || {}, key, path, url };
 }
 const NEUTRAL = load(neutralJson as unknown as SkinDef, null);
 const loaded = new Map<string, Loaded | null>();
@@ -143,7 +147,7 @@ function icons() {
   const light: Record<string, string> = {};
   const colours = COLOURS[s.key(`${i.dir}meaning.json`)]?.colours ?? {};
   for (const c of Object.values(colours)) for (const t of c.terms) light[t] = c.lacquer;
-  return { base: s.url(`${i.dir}set/`), v: i.version ?? '1', light };
+  return { base: s.path(`${i.dir}set/`), v: `${i.version ?? '1'}.${CACHE}`, light };
 }
 let iconSet: ReturnType<typeof icons> = null;   // set by apply()
 /** An icon's file at a size, or '' when the skin has no icons. */
