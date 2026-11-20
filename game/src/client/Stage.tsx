@@ -2,6 +2,7 @@
 // so the layout is the same on every phone and on a desktop browser. Home and the lobby also stand upright on a
 // 393×852 canvas, so a name can be typed with the phone held normally; the game asks for the phone turned.
 import { useEffect, useState, type ReactNode } from 'react';
+import { usePrefs } from './prefs.ts';
 import { t } from './strings.ts';
 
 export const W = 852;
@@ -19,6 +20,7 @@ function fit(upright: boolean) {
 }
 
 export function Stage({ children, theme = 'zp', upright = false }: { children: ReactNode; theme?: string; upright?: boolean }) {
+  const { lang } = usePrefs();
   const [f, setF] = useState(() => fit(upright));
   useEffect(() => setF(fit(upright)), [upright]);
   useEffect(() => {
@@ -29,7 +31,7 @@ export function Stage({ children, theme = 'zp', upright = false }: { children: R
   }, [upright]);
   return (
     <div className="stage">
-      <div className={`ph ui th-split ${theme} ${f.tall ? 'tall' : ''}`} lang="tr" style={{ transform: `scale(${f.scale})` }}>
+      <div className={`ph ui th-split ${theme} ${f.tall ? 'tall' : ''}`} lang={lang} style={{ transform: `scale(${f.scale})` }}>
         {children}
       </div>
       {f.portrait && (
