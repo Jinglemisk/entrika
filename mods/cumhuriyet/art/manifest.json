@@ -2,7 +2,7 @@
  "about": "Period photographs for the cumhuriyet mod. Keys are the game's kind.id ids (char.*, comp.* for Yaver cards, card.* for Entrika, crisis.*, term.hizmet / term.hiyanet for the Zafer and Hezimet Telgraf cards, ui.frieze for frieze backdrops). Each candidate: file (in this folder, long edge <= 1600 px, JPEG ~80%), size [w,h], source_url (the image), source_page (its Wikimedia Commons file page), licence (as stated on the file page, with author and date where given), note (who or what is in frame, plus concerns), focus [x,y] = subject centre as fractions, usable as CSS object-position. First candidate is the pick. status: found, weak (usable but small, off-period or not the exact subject) or placeholder.",
  "not_covered": {
   "amb.*": "Emel cards are drawn art by design; no photographs.",
-  "taraf.*": "Taraf cards are drawn art (rising sun, dagger and shadow); no real person appears on them.",
+  "taraf.*": "Taraf cards are generated still lifes (hat in daylight, fez and revolver by lamplight); no real person and no flag on the Mürteci card.",
   "cut-outs": "Character cut-outs wait for the shared cut-out tool from the skin refactor. Portraits were picked for a clean head and shoulders."
  },
  "rules": "Real people appear only in real photographs, never generated or retouched. Mustafa Kemal appears only on char.suleyman (his card, seat niche and the frieze centre): no Entrika, Buhran or Telgraf still shows him. No Turkish flag on Hezimet or Hain art.",
@@ -1106,6 +1106,57 @@
      "source_page": "https://commons.wikimedia.org/wiki/File:Turquie,_Angora,_Palais_de_la_Gde_Assembl%C3%A9e_-_A37028.jpg",
      "licence": "CC BY-SA 4.0 (Wikimedia Commons); author: Gadmer Frédéric; date: 27 December 1922",
      "note": "The Assembly building, 27 Dec 1922; autochrome by Frédéric Gadmer.",
+     "focus": [
+      0.5,
+      0.5
+     ]
+    }
+   ]
+  },
+  "taraf.loyalist": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "taraf.loyalist-1.jpg",
+     "size": [
+      900,
+      900
+     ],
+     "generated": true,
+     "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+     "prompt": "Generate an image.\nImage 1 is a reference only for the flag's exact design; do not copy it as a whole image.\nScene: an authentic black-and-white press photograph from Ankara, 1925, printed on matte paper: fine film grain, a slightly soft period lens, warm sepia-neutral tones, rich blacks. Raking morning sunlight streams in from a tall window behind, its light rays fanning across the room like a sunburst.\nSubject: on a plain wooden office desk: a gentleman's modern brimmed felt hat (a homburg or fedora, the new Western hat of the Republic), a pair of leather gloves beside it, a fountain pen, and a small Turkish desk flag on a short brass stand (a crescent and a five-pointed star exactly as in Image 1: the star just outside the crescent's opening, upright, the flag hanging flat and clean, correct proportions). The hat is the main subject, centred, bathed in the morning light.\nMeaning to convey at a glance: the Republic's reformist: modern, open, in the daylight of a new era. Calm, optimistic, dignified.\nRespect: the flag is shown whole, clean and upright; nothing rests on it.\nMonochrome: a black and white photograph only.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+     "references": [
+      {
+       "what": "Flag of Turkey, Wikimedia Commons (public domain)",
+       "url": "https://commons.wikimedia.org/wiki/File:Flag_of_Turkey.svg"
+      }
+     ],
+     "note": "İnkılapçı: a brimmed felt hat, gloves and a pen on a desk in morning sun, a small Turkish desk flag drawn whole and upright. No people, no text.",
+     "focus": [
+      0.35,
+      0.5
+     ]
+    }
+   ]
+  },
+  "taraf.traitor": {
+   "status": "found",
+   "candidates": [
+    {
+     "file": "taraf.traitor-1.jpg",
+     "size": [
+      900,
+      900
+     ],
+     "generated": true,
+     "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+     "prompt": "Generate an image.\nImage 1 is the STYLE and SETTING reference: the new image is its companion card and must look like the same 1925 press photographer shot it at the same wooden desk, from the same camera position: an authentic black-and-white photograph on matte paper, fine film grain, slightly soft period lens, warm sepia-neutral tones. Change only what is described below.\nChanges from Image 1:\n- It is NIGHT. The window behind is covered by a heavy drawn curtain; no sunlight, no rays. The only light is a small kerosene oil lamp with a glass chimney standing on the desk, low and warm, throwing long hard shadows; most of the frame falls into deep black.\n- The modern brimmed hat, the gloves, the pen and the flag are all gone. No flag anywhere.\n- In the hat's place, centred: a classic Ottoman fez: a short truncated cone of felt, FLAT TOP, straight tapering sides, with a black silk tassel hanging from the centre of the top over one side. It must read instantly as a fez.\n- Beside it, half hidden under a folded blank sheet of paper, an old revolver, its grip showing.\nMeaning to convey at a glance: the counter-revolutionary conspiracy, plotting in the dark to bring the old days back. Secretive, tense.\nNo religious objects, no writing on the paper.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+     "references": [
+      {
+       "what": "its companion card, taraf.loyalist-1.jpg, as the style and setting reference"
+      }
+     ],
+     "note": "Mürteci: the same desk at night by an oil lamp, curtain drawn: a fez and a revolver half hidden under a folded sheet. No flag. No people, no text.",
      "focus": [
       0.5,
       0.5

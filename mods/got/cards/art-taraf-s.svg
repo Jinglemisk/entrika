@@ -1,3 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice">
-<rect x="-40" y="-40" width="480" height="430" fill="#2e5b3e"/><rect x="-40" y="-40" width="480" height="430" fill="url(#p-mail)"/><g filter="url(#f-shadow)"><path d="M200 34L296 64V160C296 236 252 278 200 304C148 278 104 236 104 160V64Z" fill="url(#g-steel)" filter="url(#f-bevel)"/><path d="M200 56L276 80V160C276 220 242 254 200 276C158 254 124 220 124 160V80Z" fill="#f3ead3"/></g><image href="icons/set/loyalist-144.png" x="130" y="96" width="140" height="140"/>
-</svg>

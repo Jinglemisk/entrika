@@ -22,8 +22,8 @@
     "kader-h": {"frame": "cards/kader-h.svg", "base": ["#22694b", "#0a2a1c"]},
     "kader-x": {"frame": "cards/kader-x.svg", "base": ["#2a1a1e", "#060304"]},
     "hirs": {"frame": "cards/hirs.svg", "base": ["#5a2a55", "#1e0a1c"], "art": "cards/art-hirs.svg"},
-    "taraf-s": {"frame": "cards/taraf-s.svg", "base": ["#17605f", "#05201f"], "art": "cards/art-taraf-s.svg"},
-    "taraf-h": {"frame": "cards/taraf-h.svg", "base": ["#3a0c10", "#070203"], "art": "cards/art-taraf-h.svg"}
+    "taraf-s": {"frame": "cards/taraf-s.svg", "base": ["#17605f", "#05201f"]},
+    "taraf-h": {"frame": "cards/taraf-h.svg", "base": ["#3a0c10", "#070203"]}
   },
   "backs": {
     "intr": "cards/back-intr.svg",
@@ -84,7 +84,9 @@
     "track.x2": {"src": "/art/stills/card.teftis-1.jpg", "pos": "40% 40%"},
     "track.x3": {"src": "/art/stills/crisis.hazine-2.jpg", "pos": "45% 50%"},
     "track.x4": {"src": "/art/stills/card.muhur-1.jpg", "pos": "50% 50%"},
-    "track.x5": {"src": "/art/stills/term.hiyanet-1.jpg", "pos": "45% 40%"}
+    "track.x5": {"src": "/art/stills/term.hiyanet-1.jpg", "pos": "45% 40%"},
+    "taraf.loyalist": {"src": "/art/stills/taraf.loyalist-1.jpg", "pos": "50% 50%"},
+    "taraf.traitor": {"src": "/art/stills/taraf.traitor-1.jpg", "pos": "50% 50%"}
   },
   "icons": {"dir": "/art/icons/", "version": "2"},
   "niche": {

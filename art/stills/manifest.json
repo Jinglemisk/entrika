@@ -2779,6 +2779,65 @@
         "posed": false,
         "face_share": 0.28
       }
+    },
+    "taraf.loyalist": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "taraf.loyalist-1.jpg",
+          "size": [
+            900,
+            900
+          ],
+          "generated": true,
+          "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+          "prompt": "Generate an image.\nImage 1 is the STYLE and COMPOSITION reference: the new image is its companion card and must look like the same photographer shot it in the same studio session: the same photorealistic cinematic still-life, the same camera angle and distance, the same plump square Ottoman velvet cushion with brocade pattern and four gold tassels, the same black background. Change only what is described below.\nImage 2 is a reference for the sword's hilt and scabbard (the yatagan from Süleyman's court); do not copy its photo background.\nChanges from Image 1:\n- The cushion is deep TEAL-GREEN silk velvet (#17605f to #05201f) with gold brocade pomegranate and çintemani pattern.\n- The light is warm, golden and generous: a soft pool of candlelight from above falls on the whole cushion; the scene is calm and radiant instead of sinister. The background stays dark.\n- On the cushion, an Ottoman yatagan short sword lies diagonally, fully SHEATHED in its gold-mounted scabbard, with a carved ivory hilt with the yatagan's distinctive two \"ears\" at the pommel, set with rubies and turquoise (like Image 2). No bare blade anywhere, no dagger, no cloth over it, no vial.\nMeaning to convey at a glance: loyal service sworn to the Sultan: the blade sheathed and offered openly in the light, laid before the throne.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+          "references": [
+            {
+              "what": "Short Sword (Yatagan) from the Court of Süleyman the Magnificent, ca. 1525-30, The Met 24953 (public domain)",
+              "url": "https://www.metmuseum.org/art/collection/search/24953"
+            },
+            {
+              "what": "its companion card, taraf.traitor-1.jpg, as the style and setting reference"
+            }
+          ],
+          "note": "Sadık: a sheathed yatagan laid on a teal velvet cushion, offered in the light: service sworn to the Sultan. No people, no text.",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ]
+    },
+    "taraf.traitor": {
+      "status": "found",
+      "candidates": [
+        {
+          "file": "taraf.traitor-1.jpg",
+          "size": [
+            900,
+            900
+          ],
+          "generated": true,
+          "tool": "Codex image generation (codex exec, built-in image_gen), 2026-11-20; 1254 px square, scaled to 900 px, JPEG",
+          "prompt": "Generate an image.\nImage 1 and Image 2 are references only (object shape and textile pattern); do not copy their photo backgrounds.\nScene: a cinematic still-life close-up, as if a prop shot from a lavish 16th-century Ottoman palace TV drama (Topkapı, Süleyman the Magnificent's court), at night. Photorealistic, shallow depth of field, a single thin blade of candlelight cutting across, most of the frame in deep shadow.\nSubject: the same kind of plump square Ottoman silk velvet cushion with gold tassels (pattern like Image 2), but deep oxblood crimson, half in shadow. On it lies a jewelled Ottoman hançer dagger DRAWN from its sheath: the curved steel blade bare and gleaming, the gold and ruby hilt (like Image 1), its empty scabbard beside it, the blade half hidden under a fold of dark crimson silk. Next to it a small Ottoman glass poison vial, tipped over and open, a dark drop on the blade's tip.\nMeaning to convey at a glance: treachery at court: a drawn, hidden blade and poison, in the shadows. Tense diagonal composition.\nPalette: blood crimson and near-black (#3a0c10 to #070203), dull gold, cold steel highlight.\n\nOutput: one square image, 1024x1024. It is the art on a secret identity card in a digital card game; it is shown both as a landscape crop (the middle 77% of the height) and as a tall portrait crop (the middle 69% of the width) at only ~110 px wide, so: one bold, simple subject with a strong silhouette, the whole subject inside the central two-thirds of the frame, calm dark space near all four edges, and nothing important in the top corners.\nHard rules: no people, no faces, no hands, no body parts. No text, letters, numbers, calligraphy, inscriptions, signatures or watermarks anywhere. No borders or frames. Save the image and reply only with its path.",
+          "references": [
+            {
+              "what": "Dagger with Sheath, Ottoman blade and sheath, late 17th century, The Met 24298 (public domain)",
+              "url": "https://www.metmuseum.org/art/collection/search/24298"
+            },
+            {
+              "what": "Cushion Cover (Yastik), Ottoman velvet, 17th century, The Met 448679 (public domain)",
+              "url": "https://www.metmuseum.org/art/collection/search/448679"
+            }
+          ],
+          "note": "Hain: on the same cushion in crimson, a jewelled hançer drawn and half hidden under silk, with a spilled poison vial. No people, no text.",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ]
     }
   },
   "tugra": {

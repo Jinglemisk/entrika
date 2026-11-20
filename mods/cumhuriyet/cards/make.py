@@ -310,17 +310,6 @@ def drawn_art():
     art('cards/art-hirs.svg', '<rect x="-40" y="-40" width="480" height="430" fill="url(#g-mor)"/>' + sunburst(200, 176, 32, 'url(#g-brass)', .3)
         + '<g filter="url(#f-shadow)"><circle cx="200" cy="176" r="86" fill="url(#g-brass-r)" filter="url(#f-bevel)"/><circle cx="200" cy="176" r="74" fill="url(#g-disc)"/></g>'
         + icon('ambition', 145, 121, 110))
-    # Vatansever: a rising sun over a horizon line; Hain: a long cast shadow and the dagger. No person, no flag.
-    art('cards/art-taraf-s.svg', '<rect x="-40" y="-40" width="480" height="430" fill="url(#g-haki)"/>'
-        + sunburst(200, 250, 30, '#e6cf8f', .4)
-        + f'<circle cx="200" cy="250" r="78" fill="url(#g-brass-r)"/><rect x="-40" y="250" width="480" height="140" fill="{KARA}" opacity=".85"/>'
-        + f'<path d="M-40 250H440" stroke="#e6cf8f" stroke-width="4"/>'
-        )
-    art('cards/art-taraf-h.svg', '<rect x="-40" y="-40" width="480" height="430" fill="url(#g-kara)"/>'
-        + f'<path d="M150 330L250 330L420 40L360 40Z" fill="#000" opacity=".35"/>'
-        + f'<path d="M-40 330H440" stroke="#d9cec2" stroke-width="2" opacity=".5"/>'
-        + '<g filter="url(#f-shadow)"><circle cx="200" cy="176" r="86" fill="url(#g-brass-r)" filter="url(#f-bevel)"/><circle cx="200" cy="176" r="74" fill="url(#g-disc)"/></g>'
-        + icon('traitor', 145, 121, 110))
     write('cards/backdrop.svg', '<rect width="400" height="310" fill="url(#st-bg)"/>' + sunburst(200, 90, 36, '#f0e7d3', .06)
           + '<rect width="400" height="310" fill="url(#st-halo)"/><rect width="400" height="310" fill="url(#st-vig)"/>',
           '0 0 400 310', ' preserveAspectRatio="xMidYMid slice"')

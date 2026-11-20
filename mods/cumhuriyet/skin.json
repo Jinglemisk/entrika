@@ -79,7 +79,6 @@
     "#6e8640",
     "#222b12"
    ],
-   "art": "cards/art-taraf-s.svg",
    "darkGems": true
   },
   "taraf-h": {
@@ -88,7 +87,6 @@
     "#4a403a",
     "#0d0b0a"
    ],
-   "art": "cards/art-taraf-h.svg",
    "darkGems": true
   }
  },
@@ -300,6 +298,14 @@
   },
   "track.x5": {
    "src": "art/term.hiyanet-2.jpg",
+   "pos": "50% 50%"
+  },
+  "taraf.loyalist": {
+   "src": "art/taraf.loyalist-1.jpg",
+   "pos": "35% 50%"
+  },
+  "taraf.traitor": {
+   "src": "art/taraf.traitor-1.jpg",
    "pos": "50% 50%"
   }
  },

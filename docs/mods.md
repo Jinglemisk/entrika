@@ -164,7 +164,7 @@ A Crisis is all picture: its art runs edge to edge above the name, with no windo
   The layers point at gradients, patterns and filters in **`defs`**, one shared SVG of `<defs>` for the whole skin. `#grade` there is the still grade if `skin.css` applies it (`.c3 .art img{filter:url(#grade)}`).
 - **`base`**: the two colours of the card's ground (`--e1`, `--e2`); `skin.css` decides how they're painted.
 - **`darkGems`**: the corner icons sit on a dark ground, so they're drawn in their light colour.
-- **`art`**: the drawn art (an SVG) for a card without a photo: Hırs and Taraf always, a Character without a portrait, a Kul or Crisis without a still.
+- **`art`**: the drawn art (an SVG) for a card without a photo: Hırs always, a Character without a portrait, a Kul or Crisis without a still.
 - **`backdrop`**: what a Character's cut-out stands in front of.
 - **`breakY`**: on Character cards, the portrait's head rises over the frame down to this line (the arch's spring line in `muhtesem`). Leave it out and the portrait stays inside the window.
 
@@ -176,10 +176,10 @@ In any skin SVG or HTML file, a relative `href` or `src` points into the mod fol
 
 ### Stills and portraits
 
-- **`art`** maps each card to its photo: `intrigue.<id>`, `companions.<id>`, `crises.<id>`, `kader.h`, `kader.x`. `pos` is the CSS object-position that keeps the subject in frame.
+- **`art`** maps each card to its photo: `intrigue.<id>`, `companions.<id>`, `crises.<id>`, `kader.h`, `kader.x`, `taraf.loyalist`, `taraf.traitor`. `pos` is the CSS object-position that keeps the subject in frame. The art window is landscape on a full card and tall on a compact one, so keep the subject in the picture's middle.
 - **`art`** may also give each space of the track sheet a still, shown very faded behind the space's words: `track.h1` to `track.h4` (Hizmet; the last is the Loyalists' win) and `track.x1` to `track.x5` (Hıyanet: no power, the investigation, the look at the Kader deck, the renewed Ferman, the Sultan's end). Pick stills that match what the space does. A space without one shows none.
 - **Portraits** are cut-outs of each Character, standing in their seat's niche and on their card. Make them with the portrait tool (below); it writes `portraits.json`. Each entry has the cut-out's `src`, its `card` crop (`cl`, `cw`, `ct` place it in the art window; `op` places it when the compact card crops it) and its `niche` crop (`hx` the head's centre, `y0` its top, `ar` the photo's height over width, `w` its width against the niche's). Nudge the numbers by hand if a portrait sits wrong.
-- People are shown in real images only, never generated ones. Record every source in `art/manifest.json` (`source_url`, `source_page`, `note`, `focus`).
+- People are shown in real images only, never generated ones. The Taraf pictures are generated still lifes with no people in them; their manifest entries say so and keep the prompt. Record every source in `art/manifest.json` (`source_url`, `source_page`, `note`, `focus`).
 
 ### Icons
 
