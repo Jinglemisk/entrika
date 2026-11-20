@@ -16,7 +16,7 @@ export type Sheet =
   | { t: 'log' }
   | { t: 'settings' }
   | { t: 'secret' }
-  | { t: 'track'; which: 'h' | 'x' }
+  | { t: 'track' }
   | null;
 
 /** One way to put a hand card down: as printed, or recast by your Kul. */

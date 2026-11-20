@@ -177,6 +177,7 @@ In any skin SVG or HTML file, a relative `href` or `src` points into the mod fol
 ### Stills and portraits
 
 - **`art`** maps each card to its photo: `intrigue.<id>`, `companions.<id>`, `crises.<id>`, `kader.h`, `kader.x`. `pos` is the CSS object-position that keeps the subject in frame.
+- **`art`** may also give each space of the track sheet a still, shown very faded behind the space's words: `track.h1` to `track.h4` (Hizmet; the last is the Loyalists' win) and `track.x1` to `track.x5` (Hıyanet: no power, the investigation, the look at the Kader deck, the renewed Ferman, the Sultan's end). Pick stills that match what the space does. A space without one shows none.
 - **Portraits** are cut-outs of each Character, standing in their seat's niche and on their card. Make them with the portrait tool (below); it writes `portraits.json`. Each entry has the cut-out's `src`, its `card` crop (`cl`, `cw`, `ct` place it in the art window; `op` places it when the compact card crops it) and its `niche` crop (`hx` the head's centre, `y0` its top, `ar` the photo's height over width, `w` its width against the niche's). Nudge the numbers by hand if a portrait sits wrong.
 - People are shown in real images only, never generated ones. Record every source in `art/manifest.json` (`source_url`, `source_page`, `note`, `focus`).
 

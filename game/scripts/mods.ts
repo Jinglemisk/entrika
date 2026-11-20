@@ -8,7 +8,7 @@
 // are broken.
 import fs from 'node:fs';
 import path from 'node:path';
-import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC, TERMS } from '../src/engine/index.ts';
+import { AMBITIONS, CHARACTERS, COMPANIONS, CRISES, INTRIGUE, MISC, RULES, TERMS } from '../src/engine/index.ts';
 import iconsJson from '../content/icons.json' with { type: 'json' };
 
 type Lang = 'tr' | 'en';
@@ -70,6 +70,11 @@ const STILLS = [
   ...INTRIGUE.map(c => `intrigue.${c.id}`), ...COMPANIONS.map(c => `companions.${c.id}`),
   ...CRISES.map(c => `crises.${c.id}`), ...Object.keys(MISC.kader).map(k => `kader.${k}`),
 ];
+/** optional: a faded still behind each space of the track sheet ("track.h1", "track.x5") */
+const TRACK_STILLS = [
+  ...Array.from({ length: RULES.tracks.loyalty }, (_, i) => `track.h${i + 1}`),
+  ...Array.from({ length: RULES.tracks.treason }, (_, i) => `track.x${i + 1}`),
+];
 const ICONS = Object.keys(iconsJson.icons);
 /** What a mod's skin lacks: its sourcing and drawing checklist. */
 function skinGaps(id: string): string[] {
@@ -91,7 +96,8 @@ function skinGaps(id: string): string[] {
   need('drawn art for cards without photos', ['char', 'sultan', 'kul', 'crisis', 'hirs', 'taraf-s', 'taraf-h'].filter(f => !has(skin.faces?.[f]?.art)));
   need('card backs', DECKS.filter(k => !has(skin.backs?.[k])));
   need('stills', STILLS.filter(k => !has(skin.art?.[k]?.src)));
-  need('unknown still ids', Object.keys(skin.art ?? {}).filter(k => !STILLS.includes(k)));
+  need('unknown still ids', Object.keys(skin.art ?? {}).filter(k => !STILLS.includes(k) && !TRACK_STILLS.includes(k)));
+  need('missing track stills', TRACK_STILLS.filter(k => skin.art?.[k] && !has(skin.art[k].src)));
   const portraits = readJson(path.join(dir, 'portraits.json'));
   need('portraits (art/tools/portrait.py)', CHARACTERS.map(c => c.id).filter(c => !has(portraits[c]?.src)));
   if (!skin.icons?.dir) gaps.push('icons: no icon set');

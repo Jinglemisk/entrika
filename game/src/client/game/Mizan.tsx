@@ -25,14 +25,14 @@ export function Mizan() {
   const unread = g.log.length;
   return (
     <div className="mz">
-      <button type="button" className="trk h" title={t('loyaltyTrack')} onClick={() => setSheet({ t: 'track', which: 'h' })}><Em k="hizmet" s={20} /><span>{t('hizmet')}</span><Slots n={RULES.tracks.loyalty} on={g.tracks.loyalty} /></button>
+      <button type="button" className="trk h" title={t('loyaltyTrack')} onClick={() => setSheet({ t: 'track' })}><Em k="hizmet" s={20} /><span>{t('hizmet')}</span><Slots n={RULES.tracks.loyalty} on={g.tracks.loyalty} /></button>
       <button type="button" className="kz" onClick={() => c && setSheet({ t: 'card', ref: { t: 'crisis', id: c.id } })}>
         <small>{t('crisisN', { n: g.crisisNo || 1 })}</small>
         <b>{c ? crisisWords(c.id).name : g.crisisNo ? t('crisisComing') : t('setupTitle')}</b>
         {c && <span className="chipf"><Em k={FIELD_ICON[field]} s={16} />{t(field)}</span>}
       </button>
       <div className="r">
-        <button type="button" className="trk x" title={t('treasonTrack')} onClick={() => setSheet({ t: 'track', which: 'x' })}><Slots n={RULES.tracks.treason} on={g.tracks.treason} end /><span>{t('hiyanet')}</span><Em k="hiyanet" s={20} /></button>
+        <button type="button" className="trk x" title={t('treasonTrack')} onClick={() => setSheet({ t: 'track' })}><Slots n={RULES.tracks.treason} on={g.tracks.treason} end /><span>{t('hiyanet')}</span><Em k="hiyanet" s={20} /></button>
         <div className="nav">
           <button type="button" className={unread ? 'dot' : ''} onClick={() => setSheet({ t: 'log' })} aria-label={t('sicil')}><Gl k="log" /></button>
           <button type="button" onClick={() => setSheet({ t: 'settings' })} aria-label={t('settings')}><Gl k="set" /></button>

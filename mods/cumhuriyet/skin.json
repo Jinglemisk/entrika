@@ -265,6 +265,42 @@
   "kader.x": {
    "src": "art/term.hiyanet-2.jpg",
    "pos": "50% 50%"
+  },
+  "track.h1": {
+   "src": "art/card.azil-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.h2": {
+   "src": "art/card.valide-2.jpg",
+   "pos": "50% 50%"
+  },
+  "track.h3": {
+   "src": "art/card.defterdar-2.jpg",
+   "pos": "50% 50%"
+  },
+  "track.h4": {
+   "src": "art/card.muhur-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x1": {
+   "src": "art/crisis.istanbul-3.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x2": {
+   "src": "art/card.teftis-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x3": {
+   "src": "art/crisis.muhur-2.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x4": {
+   "src": "art/card.sukut-4.jpg",
+   "pos": "50% 25%"
+  },
+  "track.x5": {
+   "src": "art/term.hiyanet-2.jpg",
+   "pos": "50% 50%"
   }
  },
  "icons": {

@@ -75,7 +75,16 @@
     "crises.irakeyn": {"src": "/art/directions/img/full-crisis.irakeyn-4.jpg", "pos": "45% 50%"},
     "crises.isabella": {"src": "/art/directions/img/full-crisis.isabella.jpg", "pos": "52% 50%"},
     "kader.h": {"src": "/art/directions/img/term.hizmet-1.jpg", "pos": "50% 50%"},
-    "kader.x": {"src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%"}
+    "kader.x": {"src": "/art/directions/img/term.hiyanet-1.jpg", "pos": "50% 35%"},
+    "track.h1": {"src": "/art/stills/term.hizmet-2.jpg", "pos": "50% 40%"},
+    "track.h2": {"src": "/art/stills/term.hizmet-3.jpg", "pos": "40% 50%"},
+    "track.h3": {"src": "/art/stills/crisis.divan-2.jpg", "pos": "50% 50%"},
+    "track.h4": {"src": "/art/stills/crisis.macar-1.jpg", "pos": "60% 40%"},
+    "track.x1": {"src": "/art/stills/crisis.muhur-2.jpg", "pos": "50% 50%"},
+    "track.x2": {"src": "/art/stills/card.teftis-1.jpg", "pos": "40% 40%"},
+    "track.x3": {"src": "/art/stills/crisis.hazine-2.jpg", "pos": "45% 50%"},
+    "track.x4": {"src": "/art/stills/card.muhur-1.jpg", "pos": "50% 50%"},
+    "track.x5": {"src": "/art/stills/term.hiyanet-1.jpg", "pos": "45% 40%"}
   },
   "icons": {"dir": "/art/icons/", "version": "2"},
   "niche": {

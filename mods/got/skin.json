@@ -307,6 +307,42 @@
   "kader.h": {
    "src": "art/term.hizmet-1.jpg",
    "pos": "35% 40%"
+  },
+  "track.h1": {
+   "src": "art/card.nobet-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.h2": {
+   "src": "art/card.akil-hocasi-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.h3": {
+   "src": "art/term.hizmet-1.jpg",
+   "pos": "35% 40%"
+  },
+  "track.h4": {
+   "src": "art/crisis.venedik-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x1": {
+   "src": "art/card.iftira-1.jpg",
+   "pos": "60% 40%"
+  },
+  "track.x2": {
+   "src": "art/card.casus-1.jpg",
+   "pos": "50% 40%"
+  },
+  "track.x3": {
+   "src": "art/crisis.hazine-1.jpg",
+   "pos": "50% 50%"
+  },
+  "track.x4": {
+   "src": "art/card.nazar-1.jpg",
+   "pos": "50% 40%"
+  },
+  "track.x5": {
+   "src": "art/term.hiyanet-1.jpg",
+   "pos": "40% 40%"
   }
  },
  "icons": {

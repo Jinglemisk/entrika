@@ -1,11 +1,12 @@
 // Sheets over the table: a seat's details, a card at reading size, the two tracks, the Sicil and log, settings, your
 // secrets (press and hold your Taraf), and the pop-up for new private information. Credits opens from home as well.
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { motion } from 'motion/react';
 import {
   RULES, crisisById, intrigueById, type Peek, type PID,
 } from '../../engine/index.ts';
 import { Card } from '../cards/Card.tsx';
+import { still, type Still } from '../skin.ts';
 import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
@@ -37,7 +38,7 @@ export function SheetView() {
     case 'log': return <LogSheet close={close} />;
     case 'settings': return <SettingsSheet close={close} />;
     case 'secret': return <SecretSheet close={close} />;
-    case 'track': return <TrackSheet which={sheet.which} close={close} />;
+    case 'track': return <TrackSheet close={close} />;
   }
 }
 
@@ -79,10 +80,15 @@ function SeatSheet({ id, close }: { id: PID; close: () => void }) {
   );
 }
 
-// ---------- the two tracks: what each Hizmet and each Hıyanet brings
+// ---------- the two tracks: what each Hizmet and each Hıyanet brings. Your side's row is framed in gold (the Sultan's is
+// Hizmet); each space may have a faded still behind it, from the skin's art ("track.h1"…"track.x5").
 
-function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
-  const { g } = useGame();
+/** A track space's still, for the stylesheet to fade behind the words. */
+const bg = (s: Still | undefined) => s && ({ '--still': `url("${s.src}")`, '--still-pos': s.pos ?? '50% 50%' } as CSSProperties);
+
+function TrackSheet({ close }: { close: () => void }) {
+  const { g, me } = useGame();
+  const yours = me.side === 'traitor' ? 'x' : 'h';
   const loyal = Array.from({ length: RULES.tracks.loyalty }, (_, i) => i + 1 === RULES.tracks.loyalty
     ? { icon: 'loyalist', name: t('loyalistsWin'), text: '' }
     : { icon: 'influence', name: t('track.decreeGive'), text: '' });
@@ -94,11 +100,11 @@ function TrackSheet({ which, close }: { which: 'h' | 'x'; close: () => void }) {
     return { icon: key ? (key === 'fermanRefresh' ? 'ferman' : 'treason') : 'pass', ...def };
   });
   const row = (cls: 'h' | 'x', icon: string, name: string, on: number, steps: { icon: string; name: string; text: string }[], every: string) => (
-    <div className={`trow ${cls} ${which === cls ? 'focus' : ''}`}>
+    <div className={`trow ${cls} ${yours === cls ? 'yours' : ''}`}>
       <p className="trow-head"><Em k={icon} s={20} /><b>{name}</b><span>{on}/{steps.length}</span><i><Refs text={every} /></i></p>
       <ol className="tsteps">
         {steps.map((st, i) => (
-          <li key={i} className={i < on ? 'on' : i === on ? 'next' : ''}>
+          <li key={i} className={i < on ? 'on' : i === on ? 'next' : ''} style={bg(still(`track.${cls}${i + 1}`))}>
             <span className={`slot-ic ${cls === 'x' && i === steps.length - 1 ? 'end' : ''}`} />
             <small>{i + 1}</small>
             <Em k={st.icon} s={18} />
