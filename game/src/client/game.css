@@ -48,9 +48,14 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .st .kl .kl-em { display: block; width: 100%; height: 100%; background: var(--lapis); --m: 80%; }
 .st .sil { position: absolute; }
 
-/* the Crisis sits in the room between the two tracks, so a long name (some mods and languages have them) shortens
-   with an ellipsis instead of running over the Treason track */
-.mz button.kz { position: static; transform: none; flex: 1; min-width: 0; justify-content: center; margin: 0 10px; }
+/* the top line is three columns: the two tracks take equal shares of what the Crisis leaves, so the Crisis sits on
+   the screen's axis, over the ruler. The tracks' labels differ in length by mod and language and the right one carries
+   the buttons, so a side never shrinks below its content: a Crisis too long to stay centred first slides toward the
+   shorter side, then shortens with an ellipsis instead of running over a track. */
+.mz { display: grid; grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(max-content, 1fr); column-gap: 8px; }
+.mz > .trk.h { justify-self: start; }
+.mz > .r { justify-self: end; }
+.mz button.kz { position: static; transform: none; min-width: 0; justify-content: center; }
 .mz .kz b { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .mz .kz .chipf { flex: none; }
 .mz .nav button { width: 28px; height: 30px; display: grid; place-items: center; position: relative; color: var(--fg2); }
@@ -61,24 +66,17 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .hc .c3-slot, .hc > div { border-radius: 5px; box-shadow: 0 2px 3px rgba(0,0,0,.5), 0 8px 16px rgba(0,0,0,.35); }
 .hc.sel > div { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
 .hc.toss > div { outline-color: var(--al-hi); filter: saturate(.3) brightness(.7); }
-.pr { top: 9px; bottom: 8px; gap: 5px; }
-.pr .bt:has(> .b:nth-child(3)) .b { height: 36px; }
-.pr .vo { font-size: 14px; line-height: 1.2; overflow: hidden; flex: 0 0 auto; }
-.pr .vo .clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
-.pr .vo small { font-size: 11.5px; }
-.pr .bt { margin-top: auto; flex-wrap: wrap; row-gap: 6px; flex: none; }
-.pr .b { height: 40px; padding: 0 13px; font-size: 14px; }
 
 .opts { display: flex; flex-wrap: wrap; gap: 5px; }
 .chip { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 13px; font: 700 12px/1 var(--f-ui); color: var(--fg2); box-shadow: inset 0 0 0 1px var(--line); white-space: nowrap; }
 .chip.on { background: var(--s-gold); color: var(--gold-ink); box-shadow: none; }
 .zp .chip.on { background: var(--ink); color: var(--paper-hi); }
-.pr .slot { text-align: left; }
 
 /* ---------- full screens */
 .full { z-index: 20; }
 .full > .bd.block { display: block; }
-.split { display: grid !important; grid-template-columns: 250px 1fr; gap: 26px; padding: 24px 0 0 6px; align-items: start; }
+/* a private ask stands in the middle of the screen, its words on the left and its cards on the right */
+.split { display: grid !important; grid-template-columns: 250px 1fr; gap: 26px; align-self: center; padding: 0 0 0 6px; align-items: start; }
 .split .col { display: grid; align-content: start; gap: 10px; position: relative; }
 .split .cards { display: flex; gap: 16px; justify-content: center; padding-top: 6px; }
 .pickcard { border-radius: 9px; transition: transform .15s; }
@@ -343,7 +341,7 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .wv-why.bad { color: var(--s-al); }
 
 .ord.done { text-decoration: none; opacity: .4; }
-.pr .b small { display: inline-flex; align-items: center; gap: 2px; font: 800 12px/1 var(--f-ui); }
+.pr .b > small { display: inline-flex; align-items: center; gap: 2px; font: 800 12px/1 var(--f-ui); }   /* a cost, not a power's name (.via-tx small) */
 .ackheads > span { cursor: default; }
 
 /* ---------- compact sheets on the pop-up frame */
@@ -412,16 +410,77 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .st.you .pl b { background: none; color: var(--fg); padding: 0; }
 .st.you .pl i { background: var(--fg); color: var(--bg); padding: 1px 6px 2px; border-radius: 2px; }
 
-/* ---------- shelf: whole cards on one top line (Shelf.tsx: SHELF_CARD 80, back 52) */
-.mine { position: absolute; left: 0; top: 16px; display: flex; gap: 6px; align-items: flex-start; width: auto; grid-template-columns: none; }
+/* ---------- the shelf: three framed panels in a row, each holding its own things (Shelf.tsx, Prompt.tsx)
+   Each frame and what it holds share one grid cell, so the cards are centred in their frame by construction. The
+   first two panels are sized from the cards (Shelf.tsx: SHELF_CARD 80, back 52, hand limit 3) and never change with
+   the hand, the mod or the language, so nothing moves; the prompt takes the rest. The frames bleed one inset into the
+   side margins, so the cards themselves start on the safe board's edge. */
+.shelf > .bd {
+  --card: 80px; --back: 52px; --cgap: 6px; --in: 10px; --zgap: 6px;
+  --mine-w: calc(var(--back) + 2 * var(--card) + 2 * var(--cgap) + 2 * var(--in));
+  --hand-w: calc(3 * var(--card) - 2 * var(--cgap) + 2 * var(--in));   /* a full hand overlaps by a gap, leaving the prompt room for two buttons */
+  left: calc(59px - var(--in)); width: calc(734px + 2 * var(--in)); top: 8px; height: 134px;
+  display: grid; grid-template-columns: var(--mine-w) var(--hand-w) minmax(0, 1fr); grid-template-rows: 100%; column-gap: var(--zgap);
+}
+.zones { display: contents; }
+.zone { position: relative; grid-row: 1; min-width: 0; border-radius: 7px; box-shadow: inset 0 0 0 1px var(--ivory-line); pointer-events: none; }
+.z-mine, .shelf .mine { grid-area: 1 / 1; }
+.z-hand, .shelf .hand { grid-area: 1 / 2; }
+.z-side, .shelf .pr { grid-area: 1 / 3; }
+.zone .cn { position: absolute; width: 18px; height: 18px; }
+.zone .cn.tl { left: 3px; top: 3px; }
+.zone .cn.tr { right: 3px; top: 3px; transform: scaleX(-1); }
+.zone .cn.bl { left: 3px; bottom: 3px; transform: scaleY(-1); }
+.zone .cn.br { right: 3px; bottom: 3px; transform: scale(-1); }
+/* the label is set into the top border between the corner pieces, over the cards when one is lifted */
+.zone .zlabel { position: absolute; z-index: 2; left: 50%; top: -7px; transform: translateX(-50%); max-width: calc(100% - 44px); padding: 1px 7px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font: 700 9px/12px var(--f-card); letter-spacing: .05em; color: var(--gold-hi); background: var(--lake);
+  border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); }
+
+/* your Taraf, Character and Kul: whole cards on one top line */
+.shelf .mine { position: relative; z-index: 1; inset: auto; width: auto; align-self: center; justify-self: center;
+  display: flex; gap: var(--cgap); align-items: flex-start; }
 .mine .mc { position: relative; display: grid; justify-items: center; gap: 4px; }
+.mine .mc.tf { width: var(--back); }
 .mine .mc > .c3-slot { border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.45); }
-.mine .mc small { font: 500 9.5px/1.1 var(--f-ui); color: var(--fg2); text-align: center; white-space: pre-line; }
+/* the caption may use the gaps beside the back, never more, and at most three lines, so the back stays no taller than a card */
+.mine .mc small { justify-self: stretch; margin: 0 calc(-1 * var(--cgap)); font: 500 9.5px/10px var(--f-ui); color: var(--fg2); text-align: center; white-space: pre-line; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 .mine .mc.live > .c3-slot { outline: 2px solid var(--gold-hi); outline-offset: 2px; animation: legal 1.6s ease-in-out infinite; }
-.hand { left: 240px; top: 16px; right: auto; overflow: visible; }
-.empty-hand { position: absolute; left: 0; top: 40px; width: 240px; text-align: center; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
-.pr { left: 520px; right: 24px; top: 17px !important; bottom: 15px !important; }
-.pr .slots { left: -280px; top: -1px; width: 248px; }
+
+/* your hand */
+.shelf .hand { position: relative; z-index: 1; inset: auto; align-self: center; justify-self: center; align-items: flex-start; }
+.empty-hand { margin: 0; max-width: calc(var(--hand-w) - 2 * var(--in)); text-align: center; font: italic 400 14px/1.3 var(--f-voice); color: var(--fg2); }
+
+/* the prompt: the step, one sentence, a few buttons, centred in its frame; the text gives way before the buttons do.
+   Only the step line and the buttons can reach the corners, and both keep clear of the corner pieces. */
+.shelf .pr { position: relative; z-index: 1; inset: auto; min-height: 0; padding: 6px 14px; gap: 5px;
+  justify-content: safe center; align-items: center; text-align: center; }
+.pr > :not(.slots) { max-width: 100%; }
+.pr .vo { font-size: 14px; line-height: 1.2; overflow: hidden; flex: 0 1 auto; min-height: 0; }
+.pr .vo .clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.pr .vo small { font-size: 11.5px; }
+/* the step line can sit level with the corner pieces, so it keeps clear of them; a long step name drops under the dashes */
+.pr .stp { flex-wrap: wrap; justify-content: center; row-gap: 4px; padding: 0 8px; }
+.pr .stp .tk i { width: 10px; }
+.pr .wait, .pr .opts, .pr .ackheads { justify-content: center; }
+.pr .plays { justify-items: center; }
+.pr .bt { margin-top: 3px; padding: 0 8px; justify-content: center; flex-wrap: wrap; row-gap: 6px; flex: none; }
+.pr .b { height: 40px; padding: 0 13px; font-size: 14px; }
+.pr .bt:has(> .b:nth-child(3)) .b { height: 36px; }
+/* a button riding on a power keeps to the buttons' row: a long power name shortens (the sentence above names it in full) */
+.pr .b.via { flex: 1 1 0; min-width: 0; max-width: max-content; }
+.pr .b.via .via-tx { min-width: 0; }
+.pr .b.via .via-tx small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pr .ackheads { gap: 3px; }
+.pr .ackheads > span, .pr .ackheads .head { width: 21px; height: 21px; }
+/* a clock sits in the prompt frame's top border, as the other frames' labels do */
+.pr .stp .clock { position: absolute; z-index: 2; right: var(--in); top: -9px; margin: 0; background: var(--lake); box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); color: var(--gold-hi); }
+.pr .stp .clock.low { background: var(--al); color: #f6ecd6; }
+/* the two Minister seats fill the hand's frame while the hand steps aside */
+.pr .slots { left: auto; right: calc(100% + var(--zgap)); top: 0; bottom: 0; width: var(--hand-w); padding: 0 var(--in); align-content: center; gap: 6px; }
+.pr .slot { height: 52px; text-align: left; }
 .pop > .x-close { right: -13px; top: -13px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); color: var(--fg); box-shadow: 0 0 0 1px rgba(236,211,138,.45), 0 4px 10px rgba(0,0,0,.4); }
 .pop > .x-close .gl { width: 16px; height: 16px; }
 
@@ -452,21 +511,6 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .st .fg.out { clip-path: inset(-40px 2% 62% 2%); }
 .st .fg img { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%); mask-image: linear-gradient(to bottom, transparent, #000 6%); }
 
-/* ---------- the shelf: three framed panels (Shelf.tsx ShelfZones); the skin gives them their look */
-.zones { position: absolute; inset: 0; pointer-events: none; }
-.zone { position: absolute; top: 7px; height: 134px; border-radius: 7px; box-shadow: inset 0 0 0 1px var(--ivory-line); }
-.zone.mine { left: -10px; width: 242px; }
-.zone.mid { left: 236px; width: 260px; }
-.zone.side { left: 500px; right: -6px; }
-.zone .cn { position: absolute; width: 18px; height: 18px; }
-.zone .cn.tl { left: 3px; top: 3px; }
-.zone .cn.tr { right: 3px; top: 3px; transform: scaleX(-1); }
-.zone .cn.bl { left: 3px; bottom: 3px; transform: scaleY(-1); }
-.zone .cn.br { right: 3px; bottom: 3px; transform: scale(-1); }
-.zone .zlabel { position: absolute; left: 50%; top: -7px; transform: translateX(-50%); padding: 1px 9px; white-space: nowrap;
-  font: 700 10px/12px var(--f-card); letter-spacing: .1em; color: var(--gold-hi); background: var(--lake);
-  border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); }
-
 /* ---------- effects from the log (Fx.tsx): floats off a seat, a glow on a seat that changed hands, the power banner */
 .st .fx { position: absolute; left: 50%; top: 38%; z-index: 5; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 2px; padding: 2px 8px 2px 9px;
   border-radius: 12px; font: 800 15px/1 var(--f-ui); white-space: nowrap; pointer-events: none; box-shadow: 0 3px 10px rgba(0,0,0,.35); }
@@ -488,8 +532,6 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .pop { background: none !important; box-shadow: none !important; }
 .pop .pop-who, .pop .pop-note, .pop .pop-meta, .pop .pop-text, .pop .pop-name, .pop .pop-kind { color: #efe6cf; }
 .pop .pop-who span, .pop .pop-note { color: rgba(239,230,207,.75); }
-.pr .stp .clock { position: absolute; right: 2px; top: -16px; margin: 0; background: var(--lake); box-shadow: inset 0 0 0 1px rgba(201,162,74,.45); color: var(--gold-hi); }
-.pr .stp .clock.low { background: var(--al); color: #f6ecd6; }
 .pop > .x-close { right: -54px; top: 6px; }
 
 /* Sezgi: the two players, same side or not */

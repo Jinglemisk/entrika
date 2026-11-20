@@ -12,9 +12,11 @@ import { sfx } from '../sound.ts';
 import { useGame } from './ctx.ts';
 import { charRef, kulRef } from './Pop.tsx';
 
-export const SHELF_CARD = 80;   // Character, Kul and hand cards (game.css lays the shelf out around this)
+export const SHELF_CARD = 80;   // Character, Kul and hand cards (game.css sizes the shelf's panels from these: --card, --back)
 const BACK = 52;               // the Taraf back
-const HAND_W = 248;            // the hand panel's inner width (game.css: .zone.mid, .hand)
+const GAP = 6;                 // between cards (game.css: --cgap)
+const HAND_W = RULES.handLimit * SHELF_CARD - (RULES.handLimit - 1) * GAP;   // a full hand overlaps by a gap (game.css: --hand-w)
+const LIFT = 9;                // a picked card rises, a tossed one sinks, this far, and stays inside its frame
 
 /** The shelf's three framed panels (yours, your hand, the prompt), drawn behind the cards with a label set into
  *  each top border. */
@@ -22,9 +24,9 @@ export function ShelfZones() {
   const { me } = useGame();
   return (
     <div className="zones" aria-hidden="true">
-      <Zone k="mine" label={t(me.sultan ? 'zone.sultan' : 'zone.mine')} />
-      <Zone k="mid" label={me.sultan ? '' : t('zone.hand', { n: me.hand.length, limit: RULES.handLimit })} />
-      <Zone k="side" label="" />
+      <Zone k="z-mine" label={t(me.sultan ? 'zone.sultan' : 'zone.mine')} />
+      <Zone k="z-hand" label={me.sultan ? '' : t('zone.hand', { n: me.hand.length, limit: RULES.handLimit })} />
+      <Zone k="z-side" label="" />
     </div>
   );
 }
@@ -65,8 +67,8 @@ export function Mine() {
 
 export function Hand() {
   const { g, me, hand, setSheet, asks } = useGame();
-  if (me.sultan) return <div className="hand"><p className="empty-hand">{t('sultanNoHand')}</p></div>;
   if (['appoint', 'replace', 'ferman'].includes(asks[0]?.type ?? '')) return null;   // seat slots show here instead
+  if (me.sultan) return <div className="hand"><p className="empty-hand">{t('sultanNoHand')}</p></div>;
   const open = (uid: number) => {
     sfx('tap');
     const c = me.hand.find(x => x.uid === uid)!;
@@ -75,7 +77,7 @@ export function Hand() {
   // a hand bigger than the space overlaps instead of shrinking
   const n = Math.max(1, me.hand.length);
   const w = SHELF_CARD;
-  const gap = n > 1 ? Math.min(6, Math.floor((HAND_W - w * n) / (n - 1))) : 6;   // negative: the cards overlap
+  const gap = n > 1 ? Math.min(GAP, Math.floor((HAND_W - w * n) / (n - 1))) : GAP;   // negative: the cards overlap
   return (
     <div className="hand" style={{ gap: 0 }}>
       <AnimatePresence initial={false}>
@@ -87,7 +89,7 @@ export function Hand() {
           const cls = ['hc', up && 'sel', toss && 'toss', staged && 'staged'].filter(Boolean).join(' ');
           return (
             <motion.button type="button" key={c.uid} className={cls} style={{ width: w, height: w * 1.4, marginLeft: i ? gap : 0 }} onClick={() => open(c.uid)}
-              layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: toss ? 14 : up || staged ? -14 : 0, opacity: 1, rotate: 0 }}
+              layout initial={{ y: -60, opacity: 0, rotate: -6 }} animate={{ y: toss ? LIFT : up || staged ? -LIFT : 0, opacity: 1, rotate: 0 }}
               exit={{ y: -90, opacity: 0, scale: 0.8 }} transition={{ type: 'spring', stiffness: 380, damping: 30 }}>
               <Card spec={spec(intrRef(c))} width={w} whole />
               {staged && <span className="aimed"><Head character={g.players[staged.target].character} /></span>}
