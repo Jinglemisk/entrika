@@ -10,6 +10,7 @@ import {
   backToLobby, createRoom, timed, join, leave, load, lobby, newToken, play, rooms, seatsOf, setListener, start, type LobbyOp, type Room,
 } from './rooms.ts';
 import { contentEdit } from './content.ts';
+import { credits } from './credits.ts';
 import { DEFAULT_MOD, MODS_DIR } from './mods.ts';
 
 const PORT = Number(process.env.PORT ?? 4700);
@@ -60,6 +61,7 @@ server.on('request', (req, res) => {
   if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), req, res, REVALIDATE);
   if (url.pathname.startsWith('/mods/')) return serveFrom(MODS_DIR, url.pathname.slice(6), req, res, REVALIDATE);
   if (url.pathname === '/kurallar') return manual(res);
+  if (url.pathname === '/kaynaklar') return credits(req, res);
   if (!PROD && url.pathname === '/dev/content') return contentEdit(req, res);   // the card text editor, /?duzenle
   if (vite) return vite.middlewares(req, res);
   const asset = url.pathname !== '/' && fs.existsSync(path.join(DIST, url.pathname));

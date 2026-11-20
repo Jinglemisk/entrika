@@ -7,7 +7,12 @@ import { CHARACTERS, type Kader, type Side } from '../engine/index.ts';
 export type Lang = 'tr' | 'en';
 export const LANGS: Lang[] = ['tr', 'en'];
 
-export interface ModInfo { id: string; native: Lang; name: Partial<Record<Lang, string>>; draft?: boolean }
+/** mod.json: `sources` is the mod's list of where each picture came from (shown on /kaynaklar), `rights` one line
+ *  naming who owns the world it borrows. */
+export interface ModInfo {
+  id: string; native: Lang; name: Partial<Record<Lang, string>>; draft?: boolean;
+  sources?: string; rights?: Partial<Record<Lang, string>>;
+}
 interface PowerWords { name?: string; text?: string }
 interface CardWords { name?: string; text?: string; flavor?: string }
 interface CharWords { name?: string; short?: string; flavor?: string; base?: PowerWords; favor?: PowerWords }
@@ -65,6 +70,10 @@ export const wordsFile = (modId: string, l: Lang): Words => ((WORDS[modId] ??= {
 
 /** A mod's name in the phone's language, or in its own. */
 export const modName = (m: ModInfo) => m.name[lang] ?? m.name[m.native] ?? m.id;
+/** Who owns the active mod's world, in the phone's language. */
+export const modRights = () => mod.rights?.[lang] ?? mod.rights?.[mod.native] ?? '';
+/** The credits page, in the phone's language. */
+export const creditsHref = () => (lang === 'en' ? '/kaynaklar?dil=en' : '/kaynaklar');
 
 const missing = (key: string) => `⟦${key}⟧`;
 type Pick<T> = (w: Words) => T | undefined;

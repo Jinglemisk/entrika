@@ -4,7 +4,7 @@ import { RULES } from '../../engine/index.ts';
 import { send, useNet } from '../net.ts';
 import { t, tIn } from '../strings.ts';
 import { setPrefs, usePrefs } from '../prefs.ts';
-import { LANGS, MODS, modName } from '../words.ts';
+import { creditsHref, LANGS, MODS, modName } from '../words.ts';
 import { Frieze } from './Frieze.tsx';
 
 const NAME = 'entrika:name';
@@ -45,6 +45,7 @@ export function Home() {
           <p className="vo">{t('tagline')}</p>
           <span className="links">
             <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+            <a className="rules-link" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
             {/* the other language, named in itself */}
             <button type="button" className="rules-link" lang={other} onClick={() => setPrefs({ lang: other })}>{tIn(other, 'langName')}</button>
           </span>

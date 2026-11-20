@@ -425,5 +425,7 @@
   "ask.decreeFisilti": "{power.fisilti}: {term.decree:acc} sen veriyorsun.",
   "lobby.timersWhy": "Dalgalara ve güç anlarına süre; dolunca pas geçilir.",
   "lobby.timersOff": "Öğrenme oyununda süre yok.",
-  "lobby.players": "Oyuncular · {n}/{max}"
+  "lobby.players": "Oyuncular · {n}/{max}",
+  "about": "Entrika resmi olmayan, ticari olmayan bir hayran oyunudur; hiçbir yapımcı ya da yayıncıyla bağı yoktur.",
+  "credits": "Kaynaklar"
 }

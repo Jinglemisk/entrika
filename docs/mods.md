@@ -23,12 +23,16 @@ mods/<id>/
 `mod.json`:
 
 ```json
-{ "id": "got", "native": "en", "draft": true, "name": { "en": "Game of Thrones", "tr": "Taht Oyunları" } }
+{ "id": "got", "native": "en", "draft": true, "name": { "en": "Game of Thrones", "tr": "Taht Oyunları" },
+  "sources": "art/manifest.json",
+  "rights": { "en": "Game of Thrones and its characters belong to HBO and George R. R. Martin…", "tr": "…" } }
 ```
 
 - **`native`** is the language the mod is written in first. A phone set to the other language falls back to it word by word, until that language's file has the word.
 - **`draft: true`** means the mod is unfinished. The host can pick it only in test rooms. Remove the flag when `npm run mods` reports its native language complete.
 - **`name`** is shown on the lobby's chips, in each language.
+- **`sources`** is the mod's list of where every picture came from (a path in the mod folder, or `/art/...`). The game's `/kaynaklar` page reads it, so keep a `source_page` (and a `licence`, where one applies) for every picture.
+- **`rights`** is one line, in each language, saying who owns the world the mod borrows. It is shown in the in-game settings and on `/kaynaklar`. A mod set in someone else's work needs it.
 
 ## The words file
 

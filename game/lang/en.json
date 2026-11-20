@@ -425,5 +425,7 @@
   "ask.decreeFisilti": "{power.fisilti}: you give the {term.decree}.",
   "lobby.timersWhy": "Waves and power moments get a time limit; then you pass.",
   "lobby.timersOff": "No timers in a learning game.",
-  "lobby.players": "Players · {n}/{max}"
+  "lobby.players": "Players · {n}/{max}",
+  "about": "Entrika is an unofficial, non-commercial fan game, not affiliated with any producer or broadcaster.",
+  "credits": "Credits"
 }

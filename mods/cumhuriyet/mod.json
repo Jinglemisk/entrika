@@ -1,1 +1,13 @@
-{"id": "cumhuriyet", "native": "tr", "name": {"tr": "Cumhuriyet", "en": "The Republic"}}
+{
+  "id": "cumhuriyet",
+  "native": "tr",
+  "name": {
+    "tr": "Cumhuriyet",
+    "en": "The Republic"
+  },
+  "sources": "art/manifest.json",
+  "rights": {
+    "tr": "Fotoğraflar kamu malıdır ya da CC BY-SA 4.0 lisanslıdır (Albert-Kahn renkli fotoğrafları: Musée départemental Albert-Kahn, Frédéric Gadmer).",
+    "en": "The photographs are public domain or CC BY-SA 4.0 (the Albert-Kahn colour plates: Musée départemental Albert-Kahn, Frédéric Gadmer)."
+  }
+}

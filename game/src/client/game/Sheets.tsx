@@ -10,7 +10,7 @@ import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
 import { t, tIn } from '../strings.ts';
-import { cardWords, crisisWords, kaderWords, LANGS, treasonWords } from '../words.ts';
+import { cardWords, creditsHref, crisisWords, kaderWords, LANGS, modRights, treasonWords } from '../words.ts';
 import { logText } from '../logText.ts';
 import { getTags, markPeeksSeen, peeksSeen, setTag, setPrefs, usePrefs } from '../prefs.ts';
 import { send } from '../net.ts';
@@ -306,8 +306,10 @@ function SettingsSheet({ close }: { close: () => void }) {
           {LANGS.map(l => <button type="button" key={l} lang={l} className={`chip ${prefs.lang === l ? 'on' : ''}`} onClick={() => setPrefs({ lang: l })}>{tIn(l, 'langName')}</button>)}
         </div>
         <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
+        <p className="about">{t('about')} {modRights()}</p>
         <div className="bt left">
           <a className="b" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+          <a className="b" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
           <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
           {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
         </div>
