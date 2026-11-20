@@ -1,5 +1,5 @@
 // Sheets over the table: a seat's details, a card at reading size, the two tracks, the Sicil and log, settings, your
-// secrets (press and hold your Taraf), and the pop-up for new private information.
+// secrets (press and hold your Taraf), and the pop-up for new private information. Credits opens from home as well.
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import {
@@ -10,7 +10,7 @@ import { spec } from '../cardSpecs.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { Head } from '../ui/Figure.tsx';
 import { t, tIn } from '../strings.ts';
-import { cardWords, creditsHref, crisisWords, kaderWords, LANGS, modRights, treasonWords } from '../words.ts';
+import { cardWords, crisisWords, kaderWords, LANGS, MODS, modName, modRights, treasonWords } from '../words.ts';
 import { logText } from '../logText.ts';
 import { getTags, markPeeksSeen, peeksSeen, setTag, setPrefs, usePrefs } from '../prefs.ts';
 import { send } from '../net.ts';
@@ -286,6 +286,7 @@ function SecretSheet({ close }: { close: () => void }) {
 function SettingsSheet({ close }: { close: () => void }) {
   const prefs = usePrefs();
   const { room, g } = useGame();
+  const [credits, setCredits] = useState(false);
   const toggle = (k: 'sfx' | 'music' | 'buzz') => {
     setPrefs({ [k]: !prefs[k] });
     if (k === 'music') (prefs.music ? stopMusic : startMusic)();
@@ -309,9 +310,29 @@ function SettingsSheet({ close }: { close: () => void }) {
         <p className="about">{t('about')} {modRights()}</p>
         <div className="bt left">
           <a className="b" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
-          <a className="b" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
+          <Btn onClick={() => setCredits(true)}>{t('credits')}</Btn>
           <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
           {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
+        </div>
+      </div>
+      {credits && <CreditsSheet close={() => setCredits(false)} />}
+    </motion.div>
+  );
+}
+
+// ---------- credits: what Entrika is, and who owns each finished world. Needs no game, so home opens it too.
+
+export function CreditsSheet({ close }: { close: () => void }) {
+  return (
+    <motion.div className="full zp sheet log credits" {...fade}>
+      <div className="bd block">
+        <div className="log-head"><p className="h-mid">{t('credits.title')}</p><Close onClick={close} /></div>
+        <div className="scroll">
+          <p className="lead">{t('credits.about')}</p>
+          <p>{t('credits.own')}</p>
+          {MODS.filter(m => !m.draft).map(m => (
+            <section key={m.id}><h3>{modName(m)}</h3><p>{modRights(m)}</p></section>
+          ))}
         </div>
       </div>
     </motion.div>

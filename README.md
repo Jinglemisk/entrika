@@ -103,6 +103,6 @@ Entrika is an **unofficial, non-commercial fan project**, made to be played amon
   - Game of Thrones belongs to HBO and George R. R. Martin.
   - The Cumhuriyet photographs are public domain or CC BY-SA 4.0, as marked; the Albert-Kahn colour plates are by Frédéric Gadmer, at the Musée départemental Albert-Kahn.
 
-  Every picture's source is listed in its world's manifest and on the game's `/kaynaklar` page. A rights holder who wants anything removed can ask, and it will be removed.
+  The credits are in the game, under Credits on the home screen and in settings. Every picture's source is listed in its world's manifest. A rights holder who wants anything removed can ask, and it will be removed.
 
 The full terms are in [LICENSE](LICENSE). The repository is private and the game is not published; keep it that way unless the borrowed images are replaced.

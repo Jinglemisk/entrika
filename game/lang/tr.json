@@ -427,5 +427,8 @@
   "lobby.timersOff": "Öğrenme oyununda süre yok.",
   "lobby.players": "Oyuncular · {n}/{max}",
   "about": "Entrika resmi olmayan, ticari olmayan bir hayran oyunudur; hiçbir yapımcı ya da yayıncıyla bağı yoktur.",
-  "credits": "Kaynaklar"
+  "credits": "Kaynaklar",
+  "credits.title": "Hakkında ve kaynaklar",
+  "credits.about": "Entrika resmi olmayan, ticari olmayan bir hayran oyunudur; arkadaşlar arasında oynanmak için yapıldı. Hiçbir yapımcı, yayıncı ya da yayıneviyle bağı yoktur, onlarca onaylanmamıştır. Dizilerin ve kitapların adları, karakterleri ve görüntüleri sahiplerine aittir. Bir hak sahibi bir şeyin kaldırılmasını isterse kaldırılır.",
+  "credits.own": "Oyunun kuralları, kart metinleri ve kodu Entrika'nındır."
 }

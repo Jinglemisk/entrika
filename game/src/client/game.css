@@ -138,6 +138,10 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .settings { padding: 6px 8px 0; }
 .settings .about { margin: 6px 0 0; max-width: 560px; font: 500 11.5px/1.35 var(--f-ui); color: var(--fg2); }
 .settings .lang-pick { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; font: 700 13px/1 var(--f-ui); color: var(--fg2); }
+.credits .scroll { max-width: 620px; padding: 0 10px 40px 0; font: 500 14px/1.45 var(--f-ui); }
+.credits .scroll p { margin: 0 0 8px; }
+.credits .scroll .lead { font: italic 400 16px/1.4 var(--f-voice); }
+.credits .scroll h3 { margin: 14px 0 3px; font: 800 18px/1.1 var(--f-voice); }
 
 /* ---------- home and lobby */
 /* one type for home and the lobby, whatever world is picked, so switching worlds never moves anything */

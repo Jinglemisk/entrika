@@ -4,7 +4,8 @@ import { RULES } from '../../engine/index.ts';
 import { send, useNet } from '../net.ts';
 import { t, tIn } from '../strings.ts';
 import { setPrefs, usePrefs } from '../prefs.ts';
-import { creditsHref, LANGS, MODS, modName } from '../words.ts';
+import { LANGS, MODS, modName } from '../words.ts';
+import { CreditsSheet } from '../game/Sheets.tsx';
 import { Frieze } from './Frieze.tsx';
 
 const NAME = 'entrika:name';
@@ -21,6 +22,7 @@ export function Home() {
   const [name, setName] = useState(() => localStorage.getItem(NAME) ?? '');
   const [code, setCode] = useState(() => new URLSearchParams(location.search).get('oda')?.toUpperCase() ?? '');
   const [test, setTest] = useState(7);
+  const [credits, setCredits] = useState(false);
   const [testMod, setTestMod] = useState(() => localStorage.getItem(TEST_MOD) ?? MODS[0].id);
   const pickTestMod = (m: string) => { setTestMod(m); try { localStorage.setItem(TEST_MOD, m); } catch { /* private mode */ } };
   const keep = (v: string) => { setName(v); try { localStorage.setItem(NAME, v); } catch { /* private mode */ } };
@@ -45,7 +47,7 @@ export function Home() {
           <p className="vo">{t('tagline')}</p>
           <span className="links">
             <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
-            <a className="rules-link" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
+            <button type="button" className="rules-link" onClick={() => setCredits(true)}>{t('credits')}</button>
             {/* the other language, named in itself */}
             <button type="button" className="rules-link" lang={other} onClick={() => setPrefs({ lang: other })}>{tIn(other, 'langName')}</button>
           </span>
@@ -78,6 +80,7 @@ export function Home() {
           {busy && <p className="wait">{t('connecting')}</p>}
         </div>
       </div>
+      {credits && <CreditsSheet close={() => setCredits(false)} />}
     </div>
   );
 }
