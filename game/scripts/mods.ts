@@ -69,6 +69,7 @@ const LAYERS = ['under', 'frame', 'top', 'slot', 'small', 'slot-small'];
 const STILLS = [
   ...INTRIGUE.map(c => `intrigue.${c.id}`), ...COMPANIONS.map(c => `companions.${c.id}`),
   ...CRISES.map(c => `crises.${c.id}`), ...Object.keys(MISC.kader).map(k => `kader.${k}`),
+  ...Object.keys(MISC.taraf).map(k => `taraf.${k}`),
 ];
 const ICONS = Object.keys(iconsJson.icons);
 /** What a mod's skin lacks: its sourcing and drawing checklist. */
@@ -88,7 +89,7 @@ function skinGaps(id: string): string[] {
     const svg = fs.readFileSync(file(d.frame), 'utf8');
     return LAYERS.some(l => !svg.includes(`data-layer="${l}"`)) || (f !== 'crisis' && !svg.includes('data-layer="window"'));
   }));
-  need('drawn art for cards without photos', ['char', 'sultan', 'kul', 'crisis', 'hirs', 'taraf-s', 'taraf-h'].filter(f => !has(skin.faces?.[f]?.art)));
+  need('drawn art for cards without photos', ['char', 'sultan', 'kul', 'crisis', 'hirs'].filter(f => !has(skin.faces?.[f]?.art)));
   need('card backs', DECKS.filter(k => !has(skin.backs?.[k])));
   need('stills', STILLS.filter(k => !has(skin.art?.[k]?.src)));
   need('unknown still ids', Object.keys(skin.art ?? {}).filter(k => !STILLS.includes(k)));

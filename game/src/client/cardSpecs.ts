@@ -98,7 +98,10 @@ function build(ref: CardRef): CardSpec {
       const w = tarafWords(ref.side);
       const s = ref.side === 'loyalist';
       const k = s ? 'taraf-s' : 'taraf-h';
-      return { kind: k, face: k, name: w.name, med: s ? 'loyalist' : 'traitor', bodyHtml: w.text.map(P).join(''), flavor: w.flavor };
+      return {
+        kind: k, face: k, name: w.name, med: s ? 'loyalist' : 'traitor', art: still(`taraf.${ref.side}`),
+        bodyHtml: w.text.map(P).join(''), flavor: w.flavor,
+      };
     }
   }
 }
