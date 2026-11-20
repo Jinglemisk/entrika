@@ -506,7 +506,8 @@ function Wave({ a }: { a: Ask }) {
       ) : staged.length ? (
         <div className="vo">{t('ask.waveStaged')}<PlayList plays={staged} /></div>
       ) : (
-        <p className="vo">{t('ask.wave')}<small>{t('ask.waveHow')}</small></p>
+        // a power's hint below takes the how-to's place: the prompt has room for one of them
+        <p className="vo">{t('ask.wave')}{!(cifte || kul) && <small>{t('ask.waveHow')}</small>}</p>
       )}
       {!aim && !staged.length && (cifte || kul) && (
         <div className="opts">
