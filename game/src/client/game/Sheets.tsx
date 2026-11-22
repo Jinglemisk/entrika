@@ -302,24 +302,30 @@ function SettingsSheet({ close }: { close: () => void }) {
     <motion.div className="full zp sheet" {...fade}>
       <div className="bd block settings">
         <div className="log-head"><p className="h-mid">{t('settings')}</p><Close onClick={close} /></div>
-        <div className="rows">
-          {(['sfx', 'music', 'buzz'] as const).map(k => (
-            <button type="button" key={k} className={`row ${prefs[k] ? 'on' : ''}`} onClick={() => toggle(k)}>
-              <b>{t(`pref.${k}`)}</b><small>{t(`pref.${k}.why`)}</small><span className="sw">{prefs[k] ? t('on') : t('off')}</span>
-            </button>
-          ))}
-        </div>
-        <div className="opts lang-pick">
-          <b>{t('lang')}</b>
-          {LANGS.map(l => <button type="button" key={l} lang={l} className={`chip ${prefs.lang === l ? 'on' : ''}`} onClick={() => setPrefs({ lang: l })}>{tIn(l, 'langName')}</button>)}
-        </div>
-        <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
-        <p className="about">{t('about')} {modRights()}</p>
-        <div className="bt left">
-          <Btn onClick={() => openRules()}>{t('rules')}</Btn>
-          <Btn onClick={() => setCredits(true)}>{t('credits')}</Btn>
-          <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
-          {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
+        <div className="cols">
+          <div>
+            <div className="rows">
+              {(['sfx', 'music', 'buzz'] as const).map(k => (
+                <button type="button" key={k} className={`row ${prefs[k] ? 'on' : ''}`} onClick={() => toggle(k)}>
+                  <b>{t(`pref.${k}`)}</b><small>{t(`pref.${k}.why`)}</small><span className="sw">{prefs[k] ? t('on') : t('off')}</span>
+                </button>
+              ))}
+            </div>
+            <div className="opts lang-pick">
+              <b>{t('lang')}</b>
+              {LANGS.map(l => <button type="button" key={l} lang={l} className={`chip ${prefs.lang === l ? 'on' : ''}`} onClick={() => setPrefs({ lang: l })}>{tIn(l, 'langName')}</button>)}
+            </div>
+          </div>
+          <div>
+            <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
+            <p className="about">{t('about')} {modRights()} {t('fiction')}</p>
+            <div className="bt left">
+              <Btn onClick={() => openRules()}>{t('rules')}</Btn>
+              <Btn onClick={() => setCredits(true)}>{t('credits')}</Btn>
+              <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
+              {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
+            </div>
+          </div>
         </div>
       </div>
       {credits && <CreditsSheet close={() => setCredits(false)} />}
@@ -337,6 +343,7 @@ export function CreditsSheet({ close }: { close: () => void }) {
         <div className="scroll">
           <p className="lead">{t('credits.about')}</p>
           <p>{t('credits.own')}</p>
+          <p>{t('fiction')}</p>
           {MODS.filter(m => !m.draft).map(m => (
             <section key={m.id}><h3>{modName(m)}</h3><p>{modRights(m)}</p></section>
           ))}

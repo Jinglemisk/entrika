@@ -96,6 +96,8 @@ Rules v0.9, one playtest. The game is playable from start to finish with 5 to 8 
 
 Entrika is an **unofficial, non-commercial fan project**, made to be played among friends. It is not affiliated with or endorsed by any producer, broadcaster or publisher, and it makes no money.
 
+**It is fiction.** The characters come from TV series, books and history, but who stays loyal, who betrays, and everything anyone says or does in the game is invented for play. None of it describes real people, their personalities or real events, and nothing in it is a claim about history.
+
 - **Code:** MIT.
 - **Entrika's own material:** the rules, the manual, the card text and the art made for Entrika (icons, card frames) are CC BY-NC 4.0, free to share and adapt for non-commercial use, with credit.
 - **Everyone else's material is theirs and isn't licensed here.**

@@ -127,14 +127,17 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .events li { padding: 6px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 26px 1fr; }
 .events .c { font: 800 15px/1.2 var(--f-voice); color: var(--fg2); }
 .peeks { display: grid; gap: 14px; }
-.settings .rows { display: grid; gap: 8px; margin: 10px 0 14px; max-width: 520px; }
+.settings .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: start; margin-top: 10px; }
+.tall .settings .cols { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.settings .rows { display: grid; gap: 8px; margin: 0 0 14px; }
 .settings .row { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 10px 14px; border-radius: 3px; box-shadow: inset 0 0 0 1px var(--line); }
 .settings .row b { font: 700 15px/1.1 var(--f-ui); }
 .settings .row small { grid-column: 1; font: 500 12px/1.2 var(--f-ui); color: var(--fg2); }
 .settings .row .sw { grid-row: 1 / span 2; grid-column: 2; font: 800 12px/1 var(--f-ui); color: var(--fg2); }
 .settings .row.on .sw { color: var(--s-mal); }
 .settings { padding: 6px 8px 0; }
-.settings .about { margin: 6px 0 0; max-width: 560px; font: 500 11.5px/1.35 var(--f-ui); color: var(--fg2); }
+.settings .bt { flex-wrap: wrap; gap: 8px; }
+.settings .about { margin: 6px 0 12px; font: 500 11.5px/1.35 var(--f-ui); color: var(--fg2); }
 .settings .lang-pick { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; font: 700 13px/1 var(--f-ui); color: var(--fg2); }
 .credits .scroll { max-width: 620px; padding: 0 10px 40px 0; font: 500 14px/1.45 var(--f-ui); }
 .credits .scroll p { margin: 0 0 8px; }
