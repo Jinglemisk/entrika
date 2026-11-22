@@ -18,6 +18,7 @@ import { startMusic, stopMusic } from '../sound.ts';
 import { Btn } from './Prompt.tsx';
 import { CardPop, POP_CARD, PopShell, charRef, hirsRef, kulRef } from './Pop.tsx';
 import { Refs } from '../ui/Refs.tsx';
+import { openRules } from '../ui/Rules.tsx';
 import { useGame } from './ctx.ts';
 import { TagChip, lastingTags } from './Court.tsx';
 
@@ -308,7 +309,7 @@ function SettingsSheet({ close }: { close: () => void }) {
         <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
         <p className="about">{t('about')} {modRights()}</p>
         <div className="bt left">
-          <a className="b" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+          <Btn onClick={() => openRules()}>{t('rules')}</Btn>
           <a className="b" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
           <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
           {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}

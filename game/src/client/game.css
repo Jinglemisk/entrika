@@ -516,3 +516,35 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .tall .lobby .setup { left: 24px; right: 24px; top: 130px; width: auto; }
 .tall .lobby .side { left: 24px; right: 24px; top: 318px; bottom: 120px; width: auto; }
 .tall .homescreen .frieze, .tall .lobby .frieze { left: 24px; right: auto; bottom: 0; width: 345px; }
+
+/* ---------- the rules (ui/Rules.tsx): a grid of sections, then one section at a time; over everything but the rotate notice */
+.rules { z-index: 60; }
+.rl-head { display: flex; align-items: center; gap: 12px; height: 50px; padding: 6px 0 0 6px; }
+.rl-head .h-mid { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; font-size: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rl-back { flex: none; display: inline-flex; align-items: center; gap: 4px; height: 34px; padding: 0 12px 0 6px; border-radius: 17px; font: 700 13px/1 var(--f-ui); color: var(--fg2); box-shadow: inset 0 0 0 1px var(--line); }
+.rl-back .gl { width: 17px; height: 17px; }
+.rl-step { flex: none; display: inline-flex; align-items: center; gap: 6px; font: 700 12px/1 var(--f-ui); color: var(--fg2); }
+.rl-step button { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: var(--fg); box-shadow: inset 0 0 0 1px var(--line); }
+.rl-step button:disabled { opacity: .3; }
+.rl-close { flex: none; width: 40px; height: 40px; display: grid; place-items: center; color: var(--fg2); }
+.rl-grid { position: absolute; left: 6px; right: 4px; top: 62px; bottom: 14px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; }
+.rl-grid button { display: grid; justify-items: center; align-content: center; gap: 12px; padding: 8px 14px; border-radius: 6px; text-align: center; background: var(--raise); box-shadow: inset 0 0 0 1px var(--line); }
+.rl-grid b { font: 800 19px/1.15 var(--f-voice); }
+/* a longer section fades into its scroll */
+.rl-body { position: absolute; left: 6px; right: 0; top: 60px; bottom: 0; padding: 0 10px 14px 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 16px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 16px), transparent); }
+.rl-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 26px; }
+.rl-items li { display: grid; grid-template-columns: 22px 1fr; gap: 0 9px; align-items: start; }
+.rl-items li.wide { grid-column: 1 / -1; }
+.rl-items p { margin: 0; font: 500 14px/1.38 var(--f-ui); text-wrap: pretty; }
+.rl-items b { font-weight: 800; }
+.rl-lead { font-family: var(--f-voice); font-size: 15.5px; }
+.rl-link { display: inline; padding: 0; font-weight: 700; color: var(--s-lapis); text-decoration: underline; text-underline-offset: 3px; }
+.rl-spaces { grid-column: 2; list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 26px; font: 500 13.5px/1.35 var(--f-ui); }
+.rl-spaces li { grid-template-columns: 20px 1fr; gap: 0 7px; }
+.rl-spaces small { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font: 800 11px/1 var(--f-ui); box-shadow: inset 0 0 0 1px var(--s-al); color: var(--s-al); }
+.tall .rl-head { flex-wrap: wrap; height: auto; padding: 40px 14px 0 18px; gap: 10px; }
+.tall .rl-back ~ .h-mid { order: 1; flex-basis: 100%; }   /* in a section the title takes its own line */
+.tall .rl-grid { left: 18px; right: 18px; top: 100px; bottom: 30px; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+.tall .rl-body { left: 18px; right: 6px; top: 140px; }
+.tall .rl-items, .tall .rl-spaces { grid-template-columns: 1fr; }

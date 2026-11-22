@@ -693,6 +693,15 @@
     "wait.decree": "{name} is passing Judgment.",
     "ask.decreeFisilti": "{power.fisilti}: you pass Judgment.",
     "ask.appointHow": "Tap the seat for the {term.min1}, then the one for the {term.min2}.",
-    "btn.endKulis": "End the talk"
+    "btn.endKulis": "End the talk",
+    "rules.court": "The Game and its Schemes",
+    "rules.fate": "The Pouring",
+    "rules.goal.win": "The {term.loyalist:pl} win at {loyalty} cups of {term.hizmet}, the {term.traitor:pl} at {treason} {term.hiyanet:pl}: the last one is {treason.death}. More in [[fate]].",
+    "rules.crisis.kader": "The {term.min1} pours 3 cups in secret, tosses 1 and passes 2. The {term.min2} tosses 1 and serves the other. Nobody talks. More in [[fate]].",
+    "rules.crisis.result": "The served cup goes on its track; some {term.hiyanet} spaces hand {term.suleyman:the} a power. Then the {term.minister:pl} explain themselves. They may claim anything, but nobody shows a hidden card.",
+    "rules.fate.min1": "*The {term.min1}* pours 3 cups in secret, tosses 1 unseen and passes 2 to the {term.min2}.",
+    "rules.fate.min2": "*The {term.min2}* tosses 1 of the 2 and serves the other for all to see.",
+    "rules.fate.silence": "Nobody talks or shows a cup meanwhile. Either {term.minister} may toss or serve anything, so a {term.hiyanet} can always be blamed on the other.",
+    "rules.fate.deck": "The cups hold {h} {term.hizmet} and {x} {term.hiyanet:pl}: mostly poison. Tossed cups are shuffled back in when they run low."
   }
 }

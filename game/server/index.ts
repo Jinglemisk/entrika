@@ -18,7 +18,6 @@ const PROD = process.env.NODE_ENV === 'production';
 const ROOT = path.join(import.meta.dirname, '..');
 const ART = path.join(ROOT, '..', 'art');
 const DIST = path.join(ROOT, 'dist');
-const MANUAL = path.join(ROOT, '..', 'manual.html');
 
 const TYPES: Record<string, string> = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
@@ -60,7 +59,6 @@ server.on('request', (req, res) => {
   const url = new URL(req.url ?? '/', 'http://x');
   if (url.pathname.startsWith('/art/')) return serveFrom(ART, url.pathname.slice(5), req, res, REVALIDATE);
   if (url.pathname.startsWith('/mods/')) return serveFrom(MODS_DIR, url.pathname.slice(6), req, res, REVALIDATE);
-  if (url.pathname === '/kurallar') return manual(res);
   if (url.pathname === '/kaynaklar') return credits(req, res);
   if (!PROD && url.pathname === '/dev/content') return contentEdit(req, res);   // the card text editor, /?duzenle
   if (vite) return vite.middlewares(req, res);
@@ -68,19 +66,6 @@ server.on('request', (req, res) => {
   if (asset) return serveFrom(DIST, url.pathname.slice(1), req, res, 'public, max-age=31536000, immutable');
   sendFile(req, res, path.join(DIST, 'index.html'), 'no-cache');
 });
-
-// The rules: the manual published as an artifact, read fresh on each request so it never lags the repo. It is written
-// as an artifact body (no document shell), so the shell goes on here; the designer's Notes and the Lexicon editor need
-// claude.ai and mean nothing at the table, so they are hidden.
-const MANUAL_SHELL = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
-  + '<style>#notes,#lexicon,.toc li:has(> a[href="#notes"]),.toc li:has(> a[href="#lexicon"]){display:none!important}</style></head><body>';
-function manual(res: http.ServerResponse) {
-  fs.readFile(MANUAL, 'utf8', (err, body) => {
-    if (err) { res.writeHead(404); res.end(); return; }
-    res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-cache' });
-    res.end(MANUAL_SHELL + body + '</body></html>');
-  });
-}
 
 // ---------- WebSocket protocol
 

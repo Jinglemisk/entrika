@@ -5,6 +5,7 @@ import { send, useNet } from '../net.ts';
 import { t, tIn } from '../strings.ts';
 import { setPrefs, usePrefs } from '../prefs.ts';
 import { creditsHref, LANGS, MODS, modName } from '../words.ts';
+import { openRules } from '../ui/Rules.tsx';
 import { Frieze } from './Frieze.tsx';
 
 const NAME = 'entrika:name';
@@ -44,7 +45,7 @@ export function Home() {
           <b>Entrika</b>
           <p className="vo">{t('tagline')}</p>
           <span className="links">
-            <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a>
+            <button type="button" className="rules-link" onClick={() => openRules()}>{t('rules')}</button>
             <a className="rules-link" href={creditsHref()} target="_blank" rel="noopener">{t('credits')}</a>
             {/* the other language, named in itself */}
             <button type="button" className="rules-link" lang={other} onClick={() => setPrefs({ lang: other })}>{tIn(other, 'langName')}</button>

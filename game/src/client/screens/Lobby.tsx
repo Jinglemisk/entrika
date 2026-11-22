@@ -7,6 +7,7 @@ import { send, type RoomView } from '../net.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { MODS, modName } from '../words.ts';
+import { openRules } from '../ui/Rules.tsx';
 import { Frieze } from './Frieze.tsx';
 
 /** A setting the host switches: a checkbox, its name and one line on what it does. */
@@ -42,7 +43,7 @@ export function Lobby({ room }: { room: RoomView }) {
       <div className="bd block">
         <div className="title">
           <b>Entrika</b>
-          <p className="vo">{t('tagline')} <a className="rules-link" href="/kurallar" target="_blank" rel="noopener">{t('rules')}</a></p>
+          <p className="vo">{t('tagline')} <button type="button" className="rules-link" onClick={() => openRules()}>{t('rules')}</button></p>
         </div>
 
         <div className="setup">

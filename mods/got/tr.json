@@ -733,6 +733,14 @@
     "log.result": "{card} sunuldu. {term.hizmet} {loyalty}, {term.hiyanet} {treason}.",
     "ask.decreeGiveWhy": "{term.hizmet} sunuldu.",
     "ask.decreeTakeWhy": "{term.hiyanet} sunuldu. Kaybeden bir {term.intrigue} kartı çeker.",
-    "btn.decree": "Yargıyı ver"
+    "btn.decree": "Yargıyı ver",
+    "rules.fate": "Sunuş",
+    "rules.goal.win": "{term.loyalist:pl} {loyalty} {term.hizmet} kadehiyle, {term.traitor:pl} {treason} {term.hiyanet} kadehiyle kazanır. Sonuncusu {treason.death} demektir. Ayrıntılar: [[fate]].",
+    "rules.crisis.kader": "{term.min1} gizlice 3 kadeh doldurur, 1'ini döker, 2'sini {term.min2:dat} verir. O da 1'ini döküp ötekini sunar. Kimse konuşmaz. Ayrıntılar: [[fate]].",
+    "rules.crisis.result": "Sunulan kadeh kendi sırasına konur; bazı {term.hiyanet} haneleri {term.suleyman:dat} hemen bir güç verir. Sonra {term.minister:pl} kendini savunur: her şeyi iddia edebilirler, ama kimse gizli kart gösteremez.",
+    "rules.fate.min1": "*{term.min1}* gizlice 3 kadeh doldurur, 1'ini kimseye göstermeden döker, 2'sini {term.min2:dat} verir.",
+    "rules.fate.min2": "*{term.min2}* o 2 kadehten 1'ini döker, ötekini herkesin önünde sunar.",
+    "rules.fate.silence": "Bu arada kimse konuşmaz, kimse kadeh göstermez. Her iki {term.minister} istediğini döküp sunabilir; bir {term.hiyanet} çıkınca suç hep ötekine atılabilir.",
+    "rules.fate.deck": "Kadehlerin {h} tanesi {term.hizmet}, {x} tanesi {term.hiyanet}: çoğu zehirli. Kadehler azalınca dökülenler karıştırılıp geri konur."
   }
 }
