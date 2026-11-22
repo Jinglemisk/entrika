@@ -131,15 +131,15 @@
       ]
     },
     "hizmet": {
-      "name": "Arbor Kırmızısı",
+      "name": "Şarap",
       "stems": [
-        "Arbor Kırmızı"
+        "Şarap"
       ]
     },
     "hiyanet": {
-      "name": "Boğucu",
+      "name": "Zehir",
       "stems": [
-        "Boğucu"
+        "Zehir"
       ]
     },
     "intrigue": {
@@ -276,7 +276,7 @@
       },
       "favor": {
         "name": "Kaya'nın Altını",
-        "text": "Bundan sonra Danışmanken Arbor Kırmızısı sunulursa 1 Altın kazan."
+        "text": "Bundan sonra Danışmanken Şarap sunulursa 1 Altın kazan."
       },
       "flavor": "\"Ben kralım\" diyen, gerçek kral değildir."
     },
@@ -500,7 +500,7 @@
     },
     "kefalet": {
       "name": "Soytarı Bahsi",
-      "text": "Bir Danışmana koy. Sunuşta hâlâ Danışmansa: Arbor Kırmızısı sunulursa 1 Altın kazanırsın, Boğucu sunulursa 1 kaybedersin.",
+      "text": "Bir Danışmana koy. Sunuşta hâlâ Danışmansa: Şarap sunulursa 1 Altın kazanırsın, Zehir sunulursa 1 kaybedersin.",
       "flavor": "Danışmana ancak bir soytarı bahse girer."
     },
     "teftis": {
@@ -537,12 +537,12 @@
     },
     "suphe": {
       "name": "Kuşku Altında",
-      "text": "Boğucu sunulduğunda Danışman ol.",
+      "text": "Zehir sunulduğunda Danışman ol.",
       "flavor": "Yemin ederim, verdiğimde kadeh temizdi!"
     },
     "takdir": {
       "name": "Krala Kadeh Kaldır",
-      "text": "Arbor Kırmızısı sunulduğunda Danışman ol.",
+      "text": "Şarap sunulduğunda Danışman ol.",
       "flavor": "Uzun yaşasın Kral."
     },
     "gozden": {
@@ -650,7 +650,7 @@
   },
   "kader": {
     "h": {
-      "name": "Arbor Kırmızısı",
+      "name": "Şarap",
       "text": [
         "Uzun Saltanata konur.",
         "Yargı: Kral bir Danışmana 1 Altın verir."
@@ -658,7 +658,7 @@
       "flavor": "Krala!"
     },
     "x": {
-      "name": "Boğucu",
+      "name": "Zehir",
       "text": [
         "Mor Düğüne konur.",
         "Yargı: Kral bir Danışmandan 1 Altın alır."
@@ -670,7 +670,7 @@
     "loyalist": {
       "name": "Sadık",
       "text": [
-        "Uzun Saltanatta 4 Arbor Kırmızısı olunca kazanırsın.",
+        "Uzun Saltanatta 4 Şarap olunca kazanırsın.",
         "Bu kart gizlidir."
       ],
       "flavor": "Uzun yaşasın Kral."
@@ -678,7 +678,7 @@
     "traitor": {
       "name": "Dönek",
       "text": [
-        "Mor Düğünde 5 Boğucu olunca kazanırsın.",
+        "Mor Düğünde 5 Zehir olunca kazanırsın.",
         "Dönekler birbirini tanır."
       ],
       "flavor": "Tommen'i yönetmek daha kolay."

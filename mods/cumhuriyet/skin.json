@@ -311,7 +311,7 @@
  },
  "icons": {
   "dir": "icons/",
-  "version": "4"
+  "version": "5"
  },
  "niche": {
   "path": "M.5 119.5V28H12V16H24V6H76V16H88V28H99.5V119.5Z",

@@ -7,7 +7,7 @@ The same game can be played in three worlds, each in Turkish and English:
 | World | The court | The ruler | The Traitors win when |
 |---|---|---|---|
 | **Muhteşem Yüzyıl** (the original) | Süleyman's palace, 1520s–1550s | Sultan Süleyman | the Sultan dies |
-| **Game of Thrones** | Joffrey's court, from the Blackwater to the Purple Wedding | King Joffrey | the fifth Strangler is poured |
+| **Game of Thrones** | Joffrey's court, from the Blackwater to the Purple Wedding | King Joffrey | the fifth cup of Poison is poured |
 | **Cumhuriyet** | Ankara, November 1924 to August 1925 | Atatürk | the counter-revolution wins |
 
 The host picks the world in the lobby. Each phone picks its own language, so one table can play in both. The rules are the same in every world; only the names, text and look change.
@@ -45,7 +45,7 @@ Nobody is eliminated. On the winning side, the player with the most **Influence*
 | Ambition | Secret | A personal goal; completing it unlocks your second power. |
 | Influence | Public | Your score, and what you pay to object. |
 
-Each world names these its own way. For example, the fate deck is Kader (Hizmet / Hıyanet) in Muhteşem Yüzyıl, Cups (Arbor Red / Strangler) in Game of Thrones, and Tasarı (İnkılap / İrtica) in Cumhuriyet.
+Each world names these its own way. For example, the fate deck is Kader (Hizmet / Hıyanet) in Muhteşem Yüzyıl, Cups (Wine / Poison) in Game of Thrones, and Tasarı (İnkılap / İrtica) in Cumhuriyet.
 
 For a first game the lobby offers a **learning game**: no Companions, Ambitions or second powers.
 

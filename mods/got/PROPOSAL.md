@@ -16,7 +16,7 @@ Subtitle: **Entrika: Game of Thrones**. Written in English first. The Turkish fo
 
 | Glossary term (id) | `got` name | Why |
 |---|---|---|
-| Süleyman / the Sultan (`suleyman`) | **the King** (card: Joffrey Baratheon) | Public, always a Loyalist, alive until the fifth Strangler. |
+| Süleyman / the Sultan (`suleyman`) | **the King** (card: Joffrey Baratheon) | Public, always a Loyalist, alive until the fifth Poison. |
 | Loyalist / Traitor (`loyalist`, `traitor`) | **Loyalist / Turncloak** | Westeros's own word for a traitor. |
 | Allegiance (`allegiance`) | **Allegiance** | Kept. |
 | First / Second Minister (`min1`, `min2`) | **Hand of the King / Master of Coin** | The two seats that run the realm in season 3. |
@@ -32,7 +32,7 @@ Subtitle: **Entrika: Game of Thrones**. Written in English first. The Turkish fo
 | Decree (`decree`) | **The King's Judgment** | |
 | Ferman (`ferman`) | **I Am the King** | Joffrey's own line. |
 | Kader deck (`kader`) | **Cups** | |
-| Hizmet / Hıyanet (`h`, `x`) | **Arbor Red / Strangler** | The Strangler is the poison that kills Joffrey. |
+| Hizmet / Hıyanet (`h`, `x`) | **Wine / Poison** | The Poison is the poison that kills Joffrey. |
 | Kader step | **The Pouring** | The Hand pours three, passes two; the Master of Coin serves one. |
 | Loyalty / Treason track | **Long May He Reign / The Purple Wedding** | |
 | Süleyman's death (`death`) | **The Purple Wedding**: Joffrey dies, the Turncloaks win | |
@@ -58,7 +58,7 @@ Subtitle: **Entrika: Game of Thrones**. Written in English first. The Turkish fo
 |---|---|---|---|---|
 | `suleyman` | **Joffrey Baratheon** | I Am the King | — | Same. |
 | `hurrem` | **Margaery Tyrell** | The King's Ear | Rose and Thorn | Same powers. |
-| `ibrahim` | **Tywin Lannister** | Send Him to Bed | **Gold of the Rock** (new) | Base same. Favor changed from "gain 1 Gold when appointed" to "gain 1 Gold when Arbor Red is served while you're a Councillor". |
+| `ibrahim` | **Tywin Lannister** | Send Him to Bed | **Gold of the Rock** (new) | Base same. Favor changed from "gain 1 Gold when appointed" to "gain 1 Gold when Wine is served while you're a Councillor". |
 | `sahsultan` | **Cersei Lannister** | The Queen's Displeasure | Banishment | Was Mahidevran in v0.7; v0.9 gave those exact powers to `sahsultan`. |
 | `mustafa` | **Jaime Lannister** | **The Lord Commander's Seat** (new) | **Kingslayer's Price** (new) | Powers changed: take a seat when the Game ends, even under the King's Seal; whoever dissents against you pays you. Still Jaime: the Kingsguard walks in, and crossing the Kingslayer costs. |
 | `hatice` | **Tyrion Lannister** | The Slap | I Drink and I Know Things | Powers grew: the shield now covers Schemes as well as Judgment, and the knowing is "are these two on the same side" instead of an Ambition. Research names kept; they still say what the powers do. |
@@ -103,7 +103,7 @@ Dropped: **the High Septon**.
 | `muhurlu-evrak` | Holdfast 2 | **Dark Wings** | Look at the top 3 cups, put them back | Same. |
 | `saray-tabibi` | Holdfast 2 | **Maester's Remedy** | This player loses no Gold, Judgment included | Same. |
 | `iftira` | Holdfast 3 | **Slander** | −1 Gold | Same. |
-| `kefalet` | Holdfast 3 | **A Fool's Wager** (new) | On a Councillor: gain 1 on Arbor Red, lose 1 on Strangler | Replaces Lannister Gold. |
+| `kefalet` | Holdfast 3 | **A Fool's Wager** (new) | On a Councillor: gain 1 on Wine, lose 1 on Poison | Replaces Lannister Gold. |
 | `teftis` | Council 3 | **Confession** | See what this Councillor discarded | Same. |
 | `defterdar` | Council 2 | **The Crown's Ledgers** (new) | The Hand draws 4 and discards 2 | New in v0.9. |
 | `nobet` | Council 2 | **Kingsguard Watch** (new) | Learn who played one card on this player | New in v0.9. |
@@ -131,8 +131,8 @@ Dropped: **the High Septon**.
 | id | v0.9 goal | Name | From the research |
 |---|---|---|---|
 | `divanda-nufuz` | Unseat a Councillor with a Scheme | **Strip the Chain** (new) | Goal changed. |
-| `suphe` | Be a Councillor when Strangler is served | **Under Suspicion** | Same. |
-| `takdir` | Be a Councillor when Arbor Red is served | **A Toast to the King** (new) | Goal changed. |
+| `suphe` | Be a Councillor when Poison is served | **Under Suspicion** | Same. |
+| `takdir` | Be a Councillor when Wine is served | **A Toast to the King** (new) | Goal changed. |
 | `gozden` | Lose Gold | **A Lighter Purse** (new) | Goal changed (any loss, not only the Judgment). |
 | `kulisci` | Schemes on 3 different players | **Many Threads** (new) | Goal changed (3, not 2). |
 | `yukselen` | Be a Councillor in two crises | **A Seat at the Table** | Research name, moved to the goal it fits. |

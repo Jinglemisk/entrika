@@ -60,6 +60,7 @@ export function setWords(modId: string, l: Lang) {
   if (next === mod && l === lang) return;
   mod = next;
   lang = l;
+  if (globalThis.document) document.documentElement.lang = l;   // capitals follow the language (Turkish dotted İ)
   listeners.forEach(f => f());
 }
 export const currentLang = () => lang;

@@ -89,7 +89,7 @@ Each mod's `PROPOSAL.md` holds its world, roster and art direction, and the deci
 
 ## Next
 - **Sources:** `got` and `cumhuriyet` follow the designer's research pages, "Entrika Westeros" (https://claude.ai/artifact/KcTKLNY8bj3YjP9eHbaixP) and "Entrika Cumhuriyet" (https://claude.ai/artifact/5zr1hAMcnsd6ZuCZAQfCYB), adapted from rules v0.7 to v0.9. Each mod's `PROPOSAL.md` has the mapping.
-- **Check the Turkish names in `got`** against the official translation; `mods/got/art/manifest.json` lists the unverified ones (Hazine Ustası, Dönek, Arbor Kırmızısı, Boğucu, Mor Düğün, Serçeparmak and others).
+- **Check the Turkish names in `got`** against the official translation; `mods/got/art/manifest.json` lists the unverified ones (Hazine Ustası, Dönek, Mor Düğün, Serçeparmak and others).
 - **Weak images** (each mod's manifest marks them `weak`):
   - `got`: Dontos's portrait, Bastard Letters (a generic letter), a few season 1–2 stills (Kingsguard Watch, Talk in the Taverns, A Fool's Wager, Maester's Remedy);
   - `cumhuriyet`: Latife (not frontal), Halide (small head), portraits dated after 1925 (Celal Bayar, Recep Peker, Nuri Conker, Renda, Ali Fuat), Mahmut Esat in profile, Şeyh Said İsyanı and Şapka Kanunu (stand-ins: their real photos show leaders or the Gazi), Santral (a Seattle switchboard), Musul Meselesi (a map);

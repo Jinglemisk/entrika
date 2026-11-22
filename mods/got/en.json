@@ -95,14 +95,14 @@
       "the": "the Cup"
     },
     "hizmet": {
-      "name": "Arbor Red",
-      "a": "an Arbor Red",
-      "pl": "Arbor Red"
+      "name": "Wine",
+      "a": "Wine",
+      "pl": "Wine"
     },
     "hiyanet": {
-      "name": "Strangler",
-      "a": "a Strangler",
-      "pl": "Stranglers"
+      "name": "Poison",
+      "a": "Poison",
+      "pl": "Poison"
     },
     "intrigue": {
       "name": "Scheme",
@@ -220,7 +220,7 @@
       },
       "favor": {
         "name": "Gold of the Rock",
-        "text": "From now on, whenever Arbor Red is served while you are a Councillor, gain 1 Gold."
+        "text": "From now on, whenever Wine is served while you are a Councillor, gain 1 Gold."
       },
       "flavor": "A king who must say \"I am the king\" is no true king."
     },
@@ -444,7 +444,7 @@
     },
     "kefalet": {
       "name": "A Fool's Wager",
-      "text": "Place on a Councillor. If still one at the Pouring: gain 1 Gold if Arbor Red is served, lose 1 if a Strangler is.",
+      "text": "Place on a Councillor. If still one at the Pouring: gain 1 Gold if Wine is served, lose 1 if Poison is.",
       "flavor": "Only a fool bets on a councillor."
     },
     "teftis": {
@@ -481,12 +481,12 @@
     },
     "suphe": {
       "name": "Under Suspicion",
-      "text": "Be a Councillor when a Strangler is served.",
+      "text": "Be a Councillor when Poison is served.",
       "flavor": "I swear the cup was clean when I passed it!"
     },
     "takdir": {
       "name": "A Toast to the King",
-      "text": "Be a Councillor when Arbor Red is served.",
+      "text": "Be a Councillor when Wine is served.",
       "flavor": "Long may he reign."
     },
     "gozden": {
@@ -594,7 +594,7 @@
   },
   "kader": {
     "h": {
-      "name": "Arbor Red",
+      "name": "Wine",
       "text": [
         "Goes on Long May He Reign.",
         "Judgment: the King gives a Councillor 1 Gold."
@@ -602,7 +602,7 @@
       "flavor": "To the king!"
     },
     "x": {
-      "name": "Strangler",
+      "name": "Poison",
       "text": [
         "Goes on the Purple Wedding.",
         "Judgment: the King takes 1 Gold from a Councillor."
@@ -614,7 +614,7 @@
     "loyalist": {
       "name": "Loyalist",
       "text": [
-        "You win with 4 Arbor Red on Long May He Reign.",
+        "You win with 4 Wine on Long May He Reign.",
         "This card is secret."
       ],
       "flavor": "Long may he reign."
@@ -622,7 +622,7 @@
     "traitor": {
       "name": "Turncloak",
       "text": [
-        "You win with 5 Stranglers on the Purple Wedding.",
+        "You win with 5 Poison on the Purple Wedding.",
         "Turncloaks know each other."
       ],
       "flavor": "Tommen will be easier."
