@@ -95,6 +95,8 @@ Each mod's `PROPOSAL.md` holds its world, roster and art direction, and the deci
   - `cumhuriyet`: Latife (not frontal), Halide (small head), portraits dated after 1925 (Celal Bayar, Recep Peker, Nuri Conker, Renda, Ali Fuat), Mahmut Esat in profile, Şeyh Said İsyanı and Şapka Kanunu (stand-ins: their real photos show leaders or the Gazi), Santral (a Seattle switchboard), Musul Meselesi (a map);
   - `muhtesem`: Pledge, Counterplot (dark), Lokman (close-up).
 - **Cumhuriyet's Gazi** is under respect rules: real portraits only, on his card, seat and the frieze centre; the Traitors' win is "Karşı Devrim" and nobody dies. Seven research Yaverler with no portrait above 400 px were swapped for figures with the same fit (table in its proposal).
+- **Tablets:** the game is one 852×393 canvas scaled to the window, so a 4:3 screen gets black bands above and below. Letting the canvas grow taller means re-anchoring the court and the shelf.
+- **The crisis title** sits centred unless it is too long, when it slides toward the shorter side. Pinning it to the centre needs a width measurement in the top bar.
 - **Bundle size:** every mod's words and frame SVGs are bundled, so the app is over 800 kB. Load a mod's skin files on demand if it grows.
 
 ## Later
