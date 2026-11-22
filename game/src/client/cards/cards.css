@@ -45,14 +45,14 @@
 /* text plate */
 .c3 .plate{position:absolute;left:10.4cqw;right:10.4cqw;top:var(--py);height:var(--ph);border-radius:1.6cqw;z-index:2;
   background:#fafafa;box-shadow:0 0 0 .5cqw #8a8a8a}
-.c3 .pin{position:absolute;inset:0;padding:2.4cqw 2.8cqw 2cqw;display:grid;align-content:center;gap:1.8cqw;text-align:center;font:400 5cqw/1.3 var(--f-body)}
+.c3 .pin{position:absolute;inset:0;padding:2.4cqw 2.8cqw 2cqw;display:grid;align-content:center;gap:1.8cqw;text-align:center;font:400 calc(5cqw * var(--fit, 1))/1.3 var(--f-body)}
 .c3 .pin b{font-weight:700}
-.c3 .fl{font:italic 400 3.9cqw/1.2 var(--f-body);color:#666}
-.c3.v-full .pin{font-size:5.4cqw}
+.c3 .fl{font:italic 400 calc(3.9cqw * var(--fit, 1))/1.2 var(--f-body);color:#666}
+.c3.v-full .pin{font-size:calc(5.4cqw * var(--fit, 1))}
 
 /* Character powers: base and Lütuf in the same panel, a separator between them */
 .c3 .pw{border-radius:1.4cqw;padding:1.6cqw 2.2cqw 1.8cqw;display:grid;gap:.9cqw;position:relative;background:rgba(0,0,0,.04)}
-.c3 .pw p{font-size:4.7cqw;line-height:1.28}
+.c3 .pw p{font-size:calc(4.7cqw * var(--fit, 1));line-height:1.28}
 /* a power's name leads its text: a size up, a little tracking, so it reads as a heading beside the frequency icon */
 .c3 .pn{font-size:1.14em;letter-spacing:.03em}
 .c3 .pw b.pn{font-weight:700}
@@ -73,8 +73,8 @@
 .c3.t-char .pin{gap:.7cqw;padding:1cqw 2cqw .8cqw}
 /* two powers and a flavor line share the plate */
 .c3.t-char .pw{padding:1.2cqw 1.8cqw 1.3cqw;gap:.8cqw}
-.c3.t-char .pw p{font-size:4cqw;line-height:1.25}
-.c3.t-char .fl{font-size:3.5cqw}
+.c3.t-char .pw p{font-size:calc(4cqw * var(--fit, 1));line-height:1.25}
+.c3.t-char .fl{font-size:calc(3.5cqw * var(--fit, 1))}
 
 /* frequency icon on its disc */
 .c3 .fq{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:50%;vertical-align:-.32em;margin-right:.18em;cursor:help;
@@ -115,10 +115,10 @@
 /* a small whole card (shelf, hand): the flavor line waits for the big card in the pop-up, and the rules text takes its room */
 @container (max-width:149px){
   .whole > .c3 .fl{display:none}
-  .whole > .c3 .pin{font-size:6.2cqw;line-height:1.18}
-  .whole > .c3.v-full .pin{font-size:6.6cqw}
-  .whole > .c3 .pw p{font-size:5.4cqw;line-height:1.15}
-  .whole > .c3.dense .pw p{font-size:4.4cqw}
+  .whole > .c3 .pin{font-size:calc(6.2cqw * var(--fit, 1));line-height:1.18}
+  .whole > .c3.v-full .pin{font-size:calc(6.6cqw * var(--fit, 1))}
+  .whole > .c3 .pw p{font-size:calc(5.4cqw * var(--fit, 1));line-height:1.15}
+  .whole > .c3.dense .pw p{font-size:calc(4.4cqw * var(--fit, 1))}
 }
 @container (max-width:89px){
   :not(.whole) > .c3 .nm,:not(.whole) > .c3 .sname{display:none}

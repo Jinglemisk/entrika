@@ -24,9 +24,26 @@ function useFilterRepaint(ref: RefObject<HTMLDivElement | null>) {
   }, [ref]);
 }
 
+// The plate's type is sized for the usual card; a long text in a wide font (Turkish, Cumhuriyet's face) can overrun it.
+// Shrink that card's text in steps until it fits, once the fonts are in.
+function useFitText(ref: RefObject<HTMLDivElement | null>, html: string, width: number) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => el.querySelectorAll<HTMLElement>('.pin').forEach(pin => {
+      pin.style.removeProperty('--fit');
+      if (!pin.clientHeight) return; // the compact frame hides the plate
+      for (let f = .95; pin.scrollHeight > pin.clientHeight + 1 && f > .55; f -= .05) pin.style.setProperty('--fit', f.toFixed(2));
+    });
+    fit();
+    document.fonts?.ready.then(fit);
+  }, [ref, html, width]);
+}
+
 function Slot({ html, width, className }: { html: string; width: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useFilterRepaint(ref);
+  useFitText(ref, html, width);
   return (
     <div ref={ref} className={className ? `c3-slot ${className}` : 'c3-slot'}
       style={{ width, height: width * 1.4 }} dangerouslySetInnerHTML={{ __html: html }} />

@@ -1,5 +1,5 @@
 {
-  "about": "Damga icon colours by meaning for the cumhuriyet mod (PROPOSAL.md, section 3). Each icon is one silhouette in masks/; the game tints it with its paper colour on light grounds and its bakalit colour on dark ones (the shared build turns masks into set/). Names are the engine's internal icon ids; the pictures are this mod's own: kalpak (suleyman = Gazi), rostrum (divan = Meclis), door ajar (harem = Kulis), Ankara citadel (saray = Ankara), Morse key (kader = Telgraf), laurel (hizmet = Zafer), broken sabre (hiyanet = Hezimet), toppled rostrum (death = Meclis dağılır).",
+  "about": "Damga icon colours by meaning for the cumhuriyet mod (PROPOSAL.md, section 3). Each icon is one silhouette in masks/; the game tints it with its paper colour on light grounds and its bakalit colour on dark ones (the shared build turns masks into set/). Names are the engine's internal icon ids; the pictures are this mod's own: fedora (suleyman = Atatürk; the 1925 hat reform), rostrum (divan = Meclis), door ajar (harem = Kulis), Ankara citadel (saray = Ankara), Morse key (kader = Telgraf), laurel (hizmet = Zafer), broken sabre (hiyanet = Hezimet), toppled rostrum (death = Meclis dağılır).",
   "colours": {
     "al": {
       "paper": "#b3221f",
