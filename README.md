@@ -8,7 +8,7 @@ The same game can be played in three worlds, each in Turkish and English:
 |---|---|---|---|
 | **Muhteşem Yüzyıl** (the original) | Süleyman's palace, 1520s–1550s | Sultan Süleyman | the Sultan dies |
 | **Game of Thrones** | Joffrey's court, from the Blackwater to the Purple Wedding | King Joffrey | the fifth Strangler is poured |
-| **Cumhuriyet** | Ankara, November 1924 to August 1925 | Gazi Mustafa Kemal | the counter-revolution wins |
+| **Cumhuriyet** | Ankara, November 1924 to August 1925 | Atatürk | the counter-revolution wins |
 
 The host picks the world in the lobby. Each phone picks its own language, so one table can play in both. The rules are the same in every world; only the names, text and look change.
 
@@ -100,11 +100,6 @@ Entrika is an **unofficial, non-commercial fan project**, made to be played amon
 
 - **Code:** MIT.
 - **Entrika's own material:** the rules, the manual, the card text and the art made for Entrika (icons, card frames) are CC BY-NC 4.0, free to share and adapt for non-commercial use, with credit.
-- **Everyone else's material is theirs and isn't licensed here.**
-  - Muhteşem Yüzyıl belongs to Tims Productions.
-  - Game of Thrones belongs to HBO and George R. R. Martin.
-  - The Cumhuriyet photographs are public domain or CC BY-SA 4.0, as marked; the Albert-Kahn colour plates are by Frédéric Gadmer, at the Musée départemental Albert-Kahn.
-
-  The credits are in the game, under Credits on the home screen and in settings. Every picture's source is listed in its world's manifest. A rights holder who wants anything removed can ask, and it will be removed.
+- **Everyone else's material is theirs and isn't licensed here:** the series, books, characters, stills and photographs the worlds draw on belong to their owners. The credits are in the game, under Credits on the home screen and in settings, and every picture's source is listed in its world's manifest. A rights holder who wants anything removed can ask, and it will be removed.
 
 The full terms are in [LICENSE](LICENSE). The repository is private and the game is not published; keep it that way unless the borrowed images are replaced.

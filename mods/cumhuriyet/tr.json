@@ -1,15 +1,15 @@
 {
   "terms": {
     "suleyman": {
-      "name": "Gazi",
-      "acc": "Gazi'yi",
-      "dat": "Gazi'ye",
-      "gen": "Gazi'nin",
-      "loc": "Gazi'de",
-      "abl": "Gazi'den",
-      "you": "Gazi'sin",
+      "name": "Atatürk",
+      "acc": "Atatürk'ü",
+      "dat": "Atatürk'e",
+      "gen": "Atatürk'ün",
+      "loc": "Atatürk'te",
+      "abl": "Atatürk'ten",
+      "you": "Atatürk'sün",
       "stems": [
-        "Gazi"
+        "Atatürk"
       ]
     },
     "loyalist": {
@@ -274,8 +274,8 @@
   },
   "characters": {
     "suleyman": {
-      "name": "Gazi Mustafa Kemal",
-      "short": "Mustafa Kemal",
+      "name": "Atatürk",
+      "short": "Atatürk",
       "base": {
         "name": "Kararname",
         "text": "Kulis bitince bir Vekili uygun bir oyuncuyla değiştir, Tasdike rağmen. Çıkan 1 Entrika kartı çeker."
@@ -287,20 +287,20 @@
       "short": "Latife",
       "base": {
         "name": "Köşkün Hanımı",
-        "text": "Takdir ve Tekdirin hangi Vekile düşeceğini Gazi yerine sen seçersin."
+        "text": "Takdir ve Tekdirin hangi Vekile düşeceğini Atatürk yerine sen seçersin."
       },
       "favor": {
         "name": "Peçesiz",
         "text": "Bir dalgada bir yerine iki kart oyna."
       },
-      "flavor": "Gazi'nin eşi, Cumhuriyet'in ilk hanımı."
+      "flavor": "Atatürk'ün eşi, Cumhuriyet'in ilk hanımı."
     },
     "ibrahim": {
       "name": "İsmet Paşa",
       "short": "İsmet",
       "base": {
         "name": "Kabineyi Kurmak",
-        "text": "Bu buhranda iki Vekili Gazi yerine sen atarsın; kendini de atayabilirsin."
+        "text": "Bu buhranda iki Vekili Atatürk yerine sen atarsın; kendini de atayabilirsin."
       },
       "favor": {
         "name": "İkinci Adam",
@@ -343,7 +343,7 @@
       },
       "favor": {
         "name": "Paris'ten Mektup",
-        "text": "Gazi ve kendin dışında iki oyuncu seç: aynı safta olup olmadıklarını gizlice öğren."
+        "text": "Atatürk ve kendin dışında iki oyuncu seç: aynı safta olup olmadıklarını gizlice öğren."
       },
       "flavor": "1924-25'te Başvekil, sonra Paris sefiri."
     },
@@ -352,7 +352,7 @@
       "short": "Celal",
       "base": {
         "name": "Çankaya Sofrası",
-        "text": "Gazi atamadan önce onunla bir dakika baş başa konuş."
+        "text": "Atatürk atamadan önce onunla bir dakika baş başa konuş."
       },
       "favor": {
         "name": "Ciro",
@@ -460,7 +460,7 @@
     "gulfem": {
       "name": "Nuri Conker",
       "text": "Bir Entrika kartını Kefil olarak oyna.",
-      "flavor": "Gazi'nin çocukluk arkadaşı; kefil olduğunun kaderini paylaşır."
+      "flavor": "Atatürk'ün çocukluk arkadaşı; kefil olduğunun kaderini paylaşır."
     },
     "iskender": {
       "name": "Abdülhalik Renda",
@@ -475,7 +475,7 @@
     "gulaga": {
       "name": "Makbule Hanım",
       "text": "Bir Entrika kartını Sansür olarak oyna.",
-      "flavor": "Gazi'nin kız kardeşi; köşkte sessizliği o korur."
+      "flavor": "Atatürk'ün kız kardeşi; köşkte sessizliği o korur."
     },
     "lokman": {
       "name": "Halide Edib",
@@ -501,7 +501,7 @@
     },
     "azil": {
       "name": "Kabine Tadili",
-      "text": "Bir Vekile koy. Gazi onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
+      "text": "Bir Vekile koy. Atatürk onu uygun bir oyuncuyla değiştirir; yeni oyuncu aynı koltuğa oturur.",
       "flavor": "Bir tezkere, yeni bir kabine."
     },
     "casus": {
@@ -630,12 +630,12 @@
     },
     "venedik": {
       "name": "Elçilikler Ankara'ya",
-      "text": "Gazi'nin iki yanındaki oyuncular birer Entrika kartı çeker.",
+      "text": "Atatürk'ün iki yanındaki oyuncular birer Entrika kartı çeker.",
       "flavor": "Elçiler geliyor; şehirde otel yok."
     },
     "harem": {
       "name": "Köşkte Kavga",
-      "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Gazi seçer.",
+      "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Atatürk seçer.",
       "flavor": "Çankaya'da sesler yükseliyor."
     },
     "macar": {
@@ -655,17 +655,17 @@
     },
     "sehzade": {
       "name": "Veraset Meselesi",
-      "text": "Gazi'nin iki yanındaki oyuncular birer Entrika kartı çeker.",
+      "text": "Atatürk'ün iki yanındaki oyuncular birer Entrika kartı çeker.",
       "flavor": "Kimse yüksek sesle sormuyor."
     },
     "istanbul": {
       "name": "Şapka Kanunu",
-      "text": "Gazi dışında herkes birer Entrika kartı çeker.",
+      "text": "Atatürk dışında herkes birer Entrika kartı çeker.",
       "flavor": "Kasım 1925: her kahvede bir fikir."
     },
     "irakeyn": {
       "name": "Musul Meselesi",
-      "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Gazi seçer.",
+      "text": "İtibarı en az olan oyuncu 1 Entrika kartı çeker; eşitlikte Atatürk seçer.",
       "flavor": "Cemiyet-i Akvam kararını verdi."
     },
     "isabella": {
@@ -679,7 +679,7 @@
       "name": "İnkılap",
       "text": [
         "İnkılap yoluna konur.",
-        "Takdir: Gazi bir Vekile 1 İtibar verir."
+        "Takdir: Atatürk bir Vekile 1 İtibar verir."
       ],
       "flavor": "Kabul edilmiştir."
     },
@@ -687,7 +687,7 @@
       "name": "İrtica",
       "text": [
         "İrtica yoluna konur.",
-        "Tekdir: Gazi bir Vekilden 1 İtibar alır."
+        "Tekdir: Atatürk bir Vekilden 1 İtibar alır."
       ],
       "flavor": "«Paşam, vallahi elimden geleni yaptım, Meclis'ten geçmedi!»"
     }
@@ -717,15 +717,15 @@
     },
     "sorusturma": {
       "name": "İstiklal Mahkemesi",
-      "text": "Gazi bir müfettiş seçer. Müfettiş bir oyuncunun Saf kartına gizlice bakar, sonra istediğini söyler."
+      "text": "Atatürk bir müfettiş seçer. Müfettiş bir oyuncunun Saf kartına gizlice bakar, sonra istediğini söyler."
     },
     "hazineDefteri": {
       "name": "Emniyet Raporu",
-      "text": "Gelecek buhrandan önce Gazi bir oyuncu seçer. O oyuncu Tasarı destesinin üstteki 3 kartına gizlice bakar."
+      "text": "Gelecek buhrandan önce Atatürk bir oyuncu seçer. O oyuncu Tasarı destesinin üstteki 3 kartına gizlice bakar."
     },
     "fermanRefresh": {
       "name": "Takrir-i Sükûn",
-      "text": "Gazi Kararnameyi yeniden kullanabilir. Elinde birden fazla Kararname olmaz."
+      "text": "Atatürk Kararnameyi yeniden kullanabilir. Elinde birden fazla Kararname olmaz."
     },
     "death": {
       "name": "Karşı Devrim",

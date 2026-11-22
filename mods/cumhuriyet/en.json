@@ -1,11 +1,11 @@
 {
   "terms": {
     "suleyman": {
-      "name": "Gazi",
-      "the": "the Gazi",
-      "a": "the Gazi",
+      "name": "Atatürk",
+      "the": "Atatürk",
+      "a": "Atatürk",
       "stems": [
-        "Gazi"
+        "Atatürk"
       ]
     },
     "loyalist": {
@@ -203,8 +203,8 @@
   },
   "characters": {
     "suleyman": {
-      "name": "Gazi Mustafa Kemal",
-      "short": "Mustafa Kemal",
+      "name": "Atatürk",
+      "short": "Atatürk",
       "base": {
         "name": "Decree",
         "text": "When Lobbying ends, swap a Minister for an eligible player, even under Ratification. They draw 1 Intrigue card."
@@ -216,20 +216,20 @@
       "short": "Latife",
       "base": {
         "name": "Lady of the House",
-        "text": "At the Praise or Reproof, you choose which Minister it falls on, instead of the Gazi."
+        "text": "At the Praise or Reproof, you choose which Minister it falls on, instead of Atatürk."
       },
       "favor": {
         "name": "Unveiled",
         "text": "In one wave, play two cards instead of one."
       },
-      "flavor": "The Gazi's wife, the Republic's first lady."
+      "flavor": "Atatürk's wife, the Republic's first lady."
     },
     "ibrahim": {
       "name": "İsmet Pasha",
       "short": "İsmet",
       "base": {
         "name": "Forming the Cabinet",
-        "text": "This crisis, you appoint both Ministers instead of the Gazi. You may appoint yourself."
+        "text": "This crisis, you appoint both Ministers instead of Atatürk. You may appoint yourself."
       },
       "favor": {
         "name": "Second Man",
@@ -272,7 +272,7 @@
       },
       "favor": {
         "name": "Letter from Paris",
-        "text": "Pick two players other than the Gazi and you. Secretly learn if they share a side."
+        "text": "Pick two players other than Atatürk and you. Secretly learn if they share a side."
       },
       "flavor": "Prime Minister in 1924-25, then envoy in Paris."
     },
@@ -281,7 +281,7 @@
       "short": "Celal",
       "base": {
         "name": "Çankaya Table",
-        "text": "Before the Gazi appoints, talk with him alone for one minute."
+        "text": "Before Atatürk appoints, talk with him alone for one minute."
       },
       "favor": {
         "name": "Endorsement",
@@ -389,7 +389,7 @@
     "gulfem": {
       "name": "Nuri Conker",
       "text": "Play an Intrigue card as Guarantor.",
-      "flavor": "The Gazi's childhood friend; he shares his man's fate."
+      "flavor": "Atatürk's childhood friend; he shares his man's fate."
     },
     "iskender": {
       "name": "Abdülhalik Renda",
@@ -404,7 +404,7 @@
     "gulaga": {
       "name": "Makbule Hanım",
       "text": "Play an Intrigue card as Censor.",
-      "flavor": "The Gazi's sister; she keeps the house quiet."
+      "flavor": "Atatürk's sister; she keeps the house quiet."
     },
     "lokman": {
       "name": "Halide Edib",
@@ -430,7 +430,7 @@
     },
     "azil": {
       "name": "Cabinet Reshuffle",
-      "text": "Place on a Minister. The Gazi replaces them with an eligible player, who takes the same seat.",
+      "text": "Place on a Minister. Atatürk replaces them with an eligible player, who takes the same seat.",
       "flavor": "One memo, one new cabinet."
     },
     "casus": {
@@ -559,12 +559,12 @@
     },
     "venedik": {
       "name": "Embassies to Ankara",
-      "text": "The two players beside the Gazi draw 1 Intrigue card each.",
+      "text": "The two players beside Atatürk draw 1 Intrigue card each.",
       "flavor": "The envoys arrive; the town has no hotels."
     },
     "harem": {
       "name": "A Quarrel at the House",
-      "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.",
+      "text": "Least Standing draws 1 Intrigue card; on a tie, Atatürk picks.",
       "flavor": "Raised voices at Çankaya."
     },
     "macar": {
@@ -584,17 +584,17 @@
     },
     "sehzade": {
       "name": "The Succession",
-      "text": "The two players beside the Gazi draw 1 Intrigue card each.",
+      "text": "The two players beside Atatürk draw 1 Intrigue card each.",
       "flavor": "Nobody asks it out loud."
     },
     "istanbul": {
       "name": "The Hat Law",
-      "text": "Everyone except the Gazi draws 1 Intrigue card.",
+      "text": "Everyone except Atatürk draws 1 Intrigue card.",
       "flavor": "November 1925: every coffeehouse has an opinion."
     },
     "irakeyn": {
       "name": "The Mosul Question",
-      "text": "Least Standing draws 1 Intrigue card; on a tie, the Gazi picks.",
+      "text": "Least Standing draws 1 Intrigue card; on a tie, Atatürk picks.",
       "flavor": "The League of Nations has decided."
     },
     "isabella": {
@@ -608,7 +608,7 @@
       "name": "Reform",
       "text": [
         "Goes on the Reform track.",
-        "Praise: the Gazi gives a Minister 1 Standing."
+        "Praise: Atatürk gives a Minister 1 Standing."
       ],
       "flavor": "Passed."
     },
@@ -616,7 +616,7 @@
       "name": "Reaction",
       "text": [
         "Goes on the Reaction track.",
-        "Reproof: the Gazi takes 1 Standing from a Minister."
+        "Reproof: Atatürk takes 1 Standing from a Minister."
       ],
       "flavor": "\"Pasha, I swear I did all I could; the Assembly wouldn't pass it!\""
     }
@@ -646,15 +646,15 @@
     },
     "sorusturma": {
       "name": "Independence Tribunal",
-      "text": "The Gazi names an inspector, who secretly looks at one player's Allegiance card, then may say anything."
+      "text": "Atatürk names an inspector, who secretly looks at one player's Allegiance card, then may say anything."
     },
     "hazineDefteri": {
       "name": "Police Report",
-      "text": "Before the next crisis, the Gazi names a player, who secretly looks at the top 3 Bills."
+      "text": "Before the next crisis, Atatürk names a player, who secretly looks at the top 3 Bills."
     },
     "fermanRefresh": {
       "name": "Law on the Maintenance of Order",
-      "text": "The Gazi may use the Decree again. He never holds more than one."
+      "text": "Atatürk may use the Decree again. He never holds more than one."
     },
     "death": {
       "name": "Counter-Revolution",

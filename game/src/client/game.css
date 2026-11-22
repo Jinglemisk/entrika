@@ -136,8 +136,10 @@ body { -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user
 .settings .row .sw { grid-row: 1 / span 2; grid-column: 2; font: 800 12px/1 var(--f-ui); color: var(--fg2); }
 .settings .row.on .sw { color: var(--s-mal); }
 .settings { padding: 6px 8px 0; }
-.settings .bt { flex-wrap: wrap; gap: 8px; }
-.settings .about { margin: 6px 0 12px; font: 500 11.5px/1.35 var(--f-ui); color: var(--fg2); }
+.settings .h-step { margin: 0 0 8px; }
+.settings .acts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.settings .acts .b { width: 100%; justify-content: center; }
+.settings .about { margin: 14px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font: 500 11.5px/1.35 var(--f-ui); color: var(--fg2); }
 .settings .lang-pick { display: flex; align-items: center; gap: 8px; margin: 8px 0 4px; font: 700 13px/1 var(--f-ui); color: var(--fg2); }
 .credits .scroll { max-width: 620px; padding: 0 10px 40px 0; font: 500 14px/1.45 var(--f-ui); }
 .credits .scroll p { margin: 0 0 8px; }
@@ -393,9 +395,9 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .trow-head span { font-size: 13px; color: var(--fg2); }
 .trow-head i { margin-left: auto; font: italic 400 13px/1.2 var(--f-voice); color: var(--fg2); text-align: right; }
 .tsteps { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; }
-.tsteps li { position: relative; isolation: isolate; overflow: hidden; display: grid; justify-items: center; align-content: start; gap: 2px; padding: 5px 4px; border-radius: 4px; text-align: center; box-shadow: inset 0 0 0 1px var(--line); }
-/* the skin's still for the space, faded to a texture behind the words */
-.tsteps li[style]::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--still) var(--still-pos) / cover no-repeat; opacity: .2; filter: saturate(.6) contrast(.7); }
+.tsteps li { position: relative; isolation: isolate; overflow: hidden; display: grid; justify-items: center; align-content: start; gap: 2px; padding: 5px 4px; border-radius: 4px; text-align: center; background: var(--lake); box-shadow: inset 0 0 0 1px var(--line); }
+/* the skin's still for the space, faded to a texture over the tile's solid ground, behind the words */
+.tsteps li[style]::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--still) var(--still-pos) / cover no-repeat; opacity: .32; filter: saturate(.6) contrast(.8); }
 .tsteps li.next { box-shadow: inset 0 0 0 1.6px var(--s-gold); }
 .tsteps .slot-ic { width: 15px; height: 20px; border-radius: 9px 9px 2px 2px; box-shadow: inset 0 0 0 1.6px currentColor; opacity: .5; }
 .trow.h .tsteps .slot-ic { color: var(--s-mal); }
@@ -448,7 +450,7 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .mine .mc.tf { width: var(--back); }
 .mine .mc > .c3-slot { border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,.45); }
 /* the caption may use the gaps beside the back, never more, and at most three lines, so the back stays no taller than a card */
-.mine .mc small { justify-self: stretch; margin: 0 calc(-1 * var(--cgap)); font: 500 9.5px/10px var(--f-ui); color: var(--fg2); text-align: center; white-space: pre-line; overflow-wrap: anywhere;
+.mine .mc small { justify-self: stretch; margin: 0 calc(-1 * var(--cgap)); font: 500 8.5px/9.5px var(--f-ui); color: var(--fg2); text-align: center; white-space: pre-line; overflow-wrap: anywhere;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
 .mine .mc.live > .c3-slot { outline: 2px solid var(--gold-hi); outline-offset: 2px; animation: legal 1.6s ease-in-out infinite; }
 

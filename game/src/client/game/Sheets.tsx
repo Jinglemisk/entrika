@@ -317,14 +317,14 @@ function SettingsSheet({ close }: { close: () => void }) {
             </div>
           </div>
           <div>
-            <p className="vo small">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
-            <p className="about">{t('about')} {modRights()} {t('fiction')}</p>
-            <div className="bt left">
+            <p className="h-step">{t('roomCode', { code: room.code })} · {t(g.learning ? 'learningGame' : 'fullGame')}</p>
+            <div className="acts">
               <Btn onClick={() => openRules()}>{t('rules')}</Btn>
               <Btn onClick={() => setCredits(true)}>{t('credits')}</Btn>
               <Btn onClick={() => send({ t: 'leave' })}>{t('btn.leave')}</Btn>
               {room.host && <Btn onClick={() => send({ t: 'lobbyAgain' })}>{t('btn.endGame')}</Btn>}
             </div>
+            <p className="about">{t('about')} {t('fiction')}</p>
           </div>
         </div>
       </div>

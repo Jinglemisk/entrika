@@ -179,7 +179,7 @@
   "step.kader": "{term.kader}",
   "step.result": "Result",
   "step.decree": "{term.decree}",
-  "holdSecret": "{term.allegiance}, {term.ambition}\npress and hold",
+  "holdSecret": "{term.allegiance},\n{term.ambition}:\npress and hold",
   "sultanCard": "{term.suleyman}\nknown to all",
   "used": "used",
   "favorLocked": "unlocked by your {term.ambition}",
