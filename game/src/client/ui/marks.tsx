@@ -20,6 +20,7 @@ export function Gl({ k, className = '' }: { k: string; className?: string }) {
   if (k === 'eye') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10s3-5 8-5 8 5 8 5-3 5-8 5-8-5-8-5z" /><circle cx="10" cy="10" r="2.2" /></svg>;
   if (k === 'hold') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="2.6" /><circle cx="10" cy="10" r="7" strokeDasharray="2.5 3" /></svg>;
   if (k === 'clock') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.6 1.8" /></svg>;
+  if (k === 'help') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5" /><path d="M7.7 8a2.4 2.4 0 1 1 3.3 2.2c-.6.3-1 .8-1 1.4v.4M10 14.2v.1" /></svg>;
   if (k === 'bot') return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="6" width="12" height="10" rx="2" /><path d="M10 3v3M7.5 11h.01M12.5 11h.01" /></svg>;
   return <svg className={`gl ${className}`} viewBox="0 0 20 20" aria-hidden="true"><path d={G[k]} /></svg>;
 }

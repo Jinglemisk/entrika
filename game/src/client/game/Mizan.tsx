@@ -1,10 +1,13 @@
-// The top line: Hizmet track, the Crisis and its field, Hıyanet track, and the log and settings buttons.
+// The top line: Hizmet track, the Crisis and its field, Hıyanet track, and the log, settings and rules buttons (in a
+// test room with ?devmode=on, the bot button takes the rules button's place; the rules stay in settings).
 import { crisisById, crisisField, RULES } from '../../engine/index.ts';
 import { Em, Gl } from '../ui/marks.tsx';
 import { t } from '../strings.ts';
 import { crisisWords } from '../words.ts';
 import { useGame } from './ctx.ts';
 import { BotToggle } from './DevBar.tsx';
+import { DEVMODE } from '../devmode.ts';
+import { openRules } from '../ui/Rules.tsx';
 
 const FIELD_ICON = { harem: 'harem', divan: 'divan', saray: 'saray' } as const;
 
@@ -19,7 +22,7 @@ export function Slots({ n, on, fresh, end, big }: { n: number; on: number; fresh
 }
 
 export function Mizan() {
-  const { g, setSheet } = useGame();
+  const { g, room, setSheet } = useGame();
   const c = g.crisis ? crisisById[g.crisis] : null;
   const field = crisisField(g);
   const unread = g.log.length;
@@ -36,7 +39,7 @@ export function Mizan() {
         <div className="nav">
           <button type="button" className={unread ? 'dot' : ''} onClick={() => setSheet({ t: 'log' })} aria-label={t('sicil')}><Gl k="log" /></button>
           <button type="button" onClick={() => setSheet({ t: 'settings' })} aria-label={t('settings')}><Gl k="set" /></button>
-          <BotToggle />
+          {room.dev && DEVMODE ? <BotToggle /> : <button type="button" onClick={() => openRules()} aria-label={t('rules')}><Gl k="help" /></button>}
         </div>
       </div>
     </div>

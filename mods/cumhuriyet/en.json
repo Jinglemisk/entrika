@@ -679,6 +679,7 @@
     "moment.decreeGive": "Praise: {term.suleyman:the} will give {term.minister:a} 1 {term.influence}.",
     "moment.decreeTake": "Reproof: {term.suleyman:the} will take 1 {term.influence} from {term.minister:a}.",
     "ask.decreeGiveWhy": "{term.hizmet} passed.",
-    "ask.decreeTakeWhy": "{term.hiyanet} passed. Whoever loses draws {term.intrigue:a} card."
+    "ask.decreeTakeWhy": "{term.hiyanet} passed. Whoever loses draws {term.intrigue:a} card.",
+    "rules.fate": "Bills and the tracks"
   }
 }

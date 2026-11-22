@@ -6,6 +6,7 @@ import { Stage } from './Stage.tsx';
 import { Home } from './screens/Home.tsx';
 import { Lobby } from './screens/Lobby.tsx';
 import { Game } from './game/Game.tsx';
+import { RulesSheet } from './ui/Rules.tsx';
 import { t } from './strings.ts';
 import { usePrefs } from './prefs.ts';
 import { DEFAULT_MOD, setWords } from './words.ts';
@@ -24,6 +25,7 @@ export function App() {
   return (
     <Stage upright={!room?.game}>
       {room?.game ? <Game key={room.code} room={room} /> : room ? <Lobby room={room} /> : <Home />}
+      <RulesSheet />
       <AnimatePresence>
         {net.error && (
           <motion.div className="toast" key={net.errorAt} initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ opacity: 0 }} onClick={clearError}>

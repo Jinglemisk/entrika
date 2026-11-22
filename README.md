@@ -49,7 +49,7 @@ Each world names these its own way. For example, the fate deck is Kader (Hizmet 
 
 For a first game the lobby offers a **learning game**: no Companions, Ambitions or second powers.
 
-The full rules are in the manual (`manual.html`, written with the Muhteşem Yüzyıl names), served by the game at `/kurallar`.
+The game carries these rules in short, in every world and language: the Rules link on the home screen and in the lobby, and the **?** button at the top right in game. The long-form manual is `manual.html`, written with the Muhteşem Yüzyıl names.
 
 ## Playing it
 
@@ -63,7 +63,7 @@ npm install
 npm run dev     # prints http://localhost:4700 and the Wi-Fi address for phones
 ```
 
-To try it alone, open `http://localhost:4700/?hizli=got`: a game is dealt at once with every seat in this browser (`?hizli=muhtesem`, `?hizli=cumhuriyet`; `&n=6` for six players). `game/README.md` has the rest: the test aids, the card text editor, and how the code fits together.
+To try it alone, open `http://localhost:4700/?hizli=got`: a game is dealt at once with every seat in this browser (`?hizli=muhtesem`, `?hizli=cumhuriyet`; `&n=6` for six players). Such a link also turns on the test aids for the tab, as `?devmode=on` does. `game/README.md` has the rest: the test aids, the card text editor, and how the code fits together.
 
 ## Making a world
 
@@ -80,7 +80,7 @@ A world is a folder in `mods/`. It holds the names and text in each language, an
   - The image sources are listed in each world's `art/manifest.json` (Muhteşem Yüzyıl's in `art/stills/manifest.json`).
 - `art/`: the original world's stills and icons, plus the tools every world uses (the portrait cut-out tool and the icon build).
 - `ui/v3/`: the design system the screens are built on.
-- `manual.html`: the rules manual.
+- `manual.html`: the long-form rules manual.
 - `docs/`:
   - `direction.md`: the standing brief.
   - `mods.md`: how worlds work.

@@ -16,13 +16,13 @@ For production, run `npm run build`, then `npm start`. The `PORT` variable chang
 
 ## Test alone
 
-On the home screen, the quick-test row deals a game straight away (no lobby) in the world you pick, with every seat in this browser. A link does the same: `http://localhost:4700/?hizli=got`, or `?hizli=cumhuriyet&n=6` for six players (seven by default). In that game:
+The test aids show only with `?devmode=on` in the address. The flag lasts for the tab (a reload or going home keeps it), `?devmode=off` clears it, and a `?hizli=` link turns it on. With it, the home screen's quick-test row deals a game straight away (no lobby) in the world you pick, with every seat in this browser. A link does the same: `http://localhost:4700/?hizli=got`, or `?hizli=cumhuriyet&n=6` for six players (seven by default). In that game:
 
 - The small eye on each seat switches to that seat's phone. While the court is covered, the row of heads in the corner (or the Devam heads) does the same.
 - The robot button in the top bar hands every other seat to a bot, which plays random legal moves.
 - One Devam press answers for every seat this browser holds.
 
-These aids exist only in test rooms and are marked `DEV` in the code; normal rooms bind each phone to its own seat.
+These aids exist only in test rooms and are marked `DEV` in the code; normal rooms bind each phone to its own seat. Without devmode the robot button's place holds the rules button, as for any player.
 
 ## Change the game
 

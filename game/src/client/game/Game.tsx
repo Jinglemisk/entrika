@@ -16,6 +16,7 @@ import { FULL_ASKS, FullAsk, GameOver } from './Full.tsx';
 import { MomentView } from './Moments.tsx';
 import { PeekPopup, SheetView } from './Sheets.tsx';
 import { DevSeats } from './DevBar.tsx';
+import { DEVMODE } from '../devmode.ts';
 import { PowerBanner, useLogFx } from './Fx.tsx';
 
 const SEAT_KEY = 'entrika:view';
@@ -104,7 +105,7 @@ export function Game({ room }: { room: RoomView }) {
       <AnimatePresence>{!g.winner && <PeekPopup key="peek" />}</AnimatePresence>
       <AnimatePresence>{sheet && <SheetView key="sheet" />}</AnimatePresence>
       <AnimatePresence>{g.winner && <GameOver key="end" />}</AnimatePresence>
-      {room.dev && (fullAsk || g.winner) && <DevSeats />}
+      {room.dev && DEVMODE && (fullAsk || g.winner) && <DevSeats />}
     </Ctx.Provider>
   );
 }

@@ -41,8 +41,8 @@ export function fill(s: string, vars?: Record<string, unknown>): string {
       return form && lang === 'tr' ? suffix(v, form as Case) : v;
     }
     const w = ref(a, id, form) ?? m;
-    // a game word that opens a sentence takes a capital: "the King" → "The King is dead."
-    return /^\s*$|[.!?]\s+$/.test(s.slice(0, at)) ? w.charAt(0).toLocaleUpperCase(lang) + w.slice(1) : w;
+    // a game word that opens a sentence takes a capital: "the King" → "The King is dead." (the rules' *bold* counts as space)
+    return /^[\s*]*$|[.!?]\*?\s+\*?$/.test(s.slice(0, at)) ? w.charAt(0).toLocaleUpperCase(lang) + w.slice(1) : w;
   });
 }
 
