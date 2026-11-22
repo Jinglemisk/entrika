@@ -190,10 +190,19 @@ export function PeekBody({ p }: { p: Peek }) {
   switch (p.kind) {
     case 'role': {
       return (
-        <div className="peek">
-          <div className="peek-cards"><Card spec={spec({ t: 'taraf', side: p.side })} width={130} whole /></div>
-          <p className="pop-name">{t(p.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
-          {p.side === 'traitor' && words(p.traitors.length ? t('peek.traitors', { names: p.traitors.map(n).join(', ') }) : t('peek.alone'))}
+        <div className="peek role">
+          <div className="role-me">
+            <Card spec={spec({ t: 'taraf', side: p.side })} width={130} whole />
+            <p className="pop-name">{t(p.side === 'traitor' ? 'youTraitor' : 'youLoyalist')}</p>
+          </div>
+          {p.side === 'traitor' && p.traitors.length ? (
+            <div className="role-side">
+              <p className="pop-kind">{t('peek.allies')}</p>
+              <div className="role-allies">
+                {p.traitors.map(id => <span key={id} className="peek-who"><Head character={g.players[id].character} /><b>{n(id)}</b></span>)}
+              </div>
+            </div>
+          ) : <div className="role-side">{words(t(p.side === 'traitor' ? 'peek.alone' : 'peek.loyalist'))}</div>}
         </div>
       );
     }

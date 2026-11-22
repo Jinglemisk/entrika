@@ -306,6 +306,7 @@
   "sultanSecretWhy": "Everyone knows you are loyal. You have no {term.allegiance} or {term.ambition}; the powers of the {term.treason} are yours.",
   "noSecrets": "You haven't seen any secrets yet.",
   "peek.traitors": "The other {term.traitor:pl}: {names}.",
+  "peek.allies": "Your fellow {term.traitor:pl}",
   "peek.alone": "You are the only {term.traitor}.",
   "peek.loyalist": "You win when 4 {term.hizmet} are on the {term.loyalty}. Find the {term.traitor:pl}.",
   "peek.kaderTop.muhurlu-evrak": "{card.muhurlu-evrak}: the top 3 cards of the {term.kader} deck, in order.",

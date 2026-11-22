@@ -539,6 +539,11 @@ body:has(.gallery) { overflow: auto; -webkit-user-select: text; user-select: tex
 .pop .pop-who span, .pop .pop-note { color: rgba(239,230,207,.75); }
 .pop > .x-close { right: -54px; top: 6px; }
 
+/* your side: the card on the left, the players you're in league with on the right */
+.peek.role { grid-auto-flow: column; align-items: center; gap: 40px; }
+.role-me, .role-side { display: grid; justify-items: center; gap: 8px; }
+.role-side { max-width: 320px; }
+.role-allies { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
 /* Sezgi: the two players, same side or not */
 .peek-pair { align-items: center; gap: 18px; }
 .peek-who { display: flex; flex-direction: column; align-items: center; gap: 6px; font: 700 14px/1 var(--f-ui); }

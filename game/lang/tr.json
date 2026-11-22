@@ -306,6 +306,7 @@
   "sultanSecretWhy": "Herkes senin sadık olduğunu bilir. {term.allegiance} ve {term.ambition} kartın yok; {term.treason:gen} güçleri senin.",
   "noSecrets": "Henüz gizli bir şey görmedin.",
   "peek.traitors": "Öteki {term.traitor:pl}: {names}.",
+  "peek.allies": "Öteki {term.traitor:pl}",
   "peek.alone": "Tek {term.traitor} sensin.",
   "peek.loyalist": "{term.loyalty:loc} 4 {term.hizmet} olunca kazanırsın. {term.traitor:plAcc} bul.",
   "peek.kaderTop.muhurlu-evrak": "{card.muhurlu-evrak}: {term.kader} destesinin üstündeki 3 kart, sırasıyla.",
