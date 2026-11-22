@@ -98,8 +98,8 @@ Each mod's `PROPOSAL.md` holds its world, roster and art direction, and the deci
 - **Bundle size:** every mod's words and frame SVGs are bundled, so the app is over 800 kB. Load a mod's skin files on demand if it grows.
 
 ## Later
-- The rules manual for each mod and language. Today it is English with Ottoman names, at `/kurallar`. The mod files become the one source for names, and the manual's Lexicon retires.
-- Before release, remove the test aids marked `DEV` in the client: seat eyes, corner heads, the Devam heads that switch seats, the robot button, the test-game row on home, and the test rooms themselves.
+- The long rules manual for each mod and language. Today `manual.html` is English with Ottoman names; the game's own rules sheet (`rules.*` in `game/lang/`) already reads in every mod and language. The mod files become the one source for names, and the manual's Lexicon retires.
+- Before release, remove the test aids marked `DEV` in the client: seat eyes, corner heads, the Devam heads that switch seats, the robot button, the test-game row on home, the `?devmode` flag, and the test rooms themselves.
 - Playtests:
   - log every game (player count, winner, final tracks, minutes, what the losing side called unfair);
   - tune the Kader deck (7/11), the track lengths and the allegiance counts;

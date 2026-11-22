@@ -1,6 +1,7 @@
 // DEV ONLY (remove with test rooms before release): switch to any seat's phone, and hand seats to bots, so one person
 // can play a whole game. A tiny toggle sits on each seat in the court; when the court is covered (full screens,
-// moments), a row of small heads takes its place in the corner.
+// moments), a row of small heads takes its place in the corner. Only in test rooms, and only with ?devmode=on.
+import { DEVMODE } from '../devmode.ts';
 import type { PID } from '../../engine/index.ts';
 import { send } from '../net.ts';
 import { Gl } from '../ui/marks.tsx';
@@ -11,7 +12,7 @@ import { useGame } from './ctx.ts';
 /** DEV: the small switch on a seat. A span, because the seat itself is a button. */
 export function DevToggle({ id }: { id: PID }) {
   const { g, seat, setSeat, room } = useGame();
-  if (!room.dev) return null;
+  if (!room.dev || !DEVMODE) return null;
   const waiting = g.asks.some(a => a.to === id);
   const cls = ['devt', id === seat && 'on', waiting && 'wait', room.seats[id]?.bot && 'bot'].filter(Boolean).join(' ');
   return (
@@ -44,7 +45,7 @@ export function DevSeats() {
 /** DEV: hand every other seat to bots, or take them back. */
 export function BotToggle() {
   const { g, room, seat } = useGame();
-  if (!room.dev) return null;
+  if (!room.dev || !DEVMODE) return null;
   const bots = room.seats.map((s, i) => (s.bot ? i : -1)).filter(i => i >= 0);
   const setBots = (seats: number[]) => send({ t: 'lobby', o: { op: 'bots', seats } });
   return (

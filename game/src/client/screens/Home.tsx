@@ -5,12 +5,11 @@ import { send, useNet } from '../net.ts';
 import { t, tIn } from '../strings.ts';
 import { setPrefs, usePrefs } from '../prefs.ts';
 import { creditsHref, LANGS, MODS, modName } from '../words.ts';
+import { DEVMODE } from '../devmode.ts';
 import { openRules } from '../ui/Rules.tsx';
 import { Frieze } from './Frieze.tsx';
 
 const NAME = 'entrika:name';
-// DEV ONLY: test games are offered on the computer running the server, or with ?test (remove with test rooms)
-const TESTABLE = ['localhost', '127.0.0.1'].includes(location.hostname) || new URLSearchParams(location.search).has('test');
 // DEV ONLY: a test game goes straight to the deal, every seat on this device, in the picked world. ?hizli=got&n=6 does
 // it from a link (n defaults to 7); the world picked last is remembered.
 const TEST_MOD = 'entrika:testMod';
@@ -29,7 +28,7 @@ export function Home() {
   const { lang } = usePrefs();
   const other = LANGS.find(l => l !== lang)!;
   useEffect(() => {
-    if (!TESTABLE || busy || !QUICK.has('hizli')) return;
+    if (!DEVMODE || busy || !QUICK.has('hizli')) return;
     const mod = MODS.find(m => m.id === QUICK.get('hizli'))?.id ?? MODS[0].id;
     hotseat(name.trim(), Number(QUICK.get('n')) || 7, mod);
     history.replaceState(null, '', location.pathname);   // once: leaving the game must not start another
@@ -64,7 +63,7 @@ export function Home() {
           <div className="bt">
             <button type="button" className={`b ${joining ? 'quiet' : 'pri'}`} disabled={busy || !name.trim()} onClick={() => send({ t: 'create', name: name.trim() })}>{t('home.create')}</button>
           </div>
-          {TESTABLE && (
+          {DEVMODE && (
             <div className="testline">
               <span>{t('home.test')}</span>
               <select value={test} onChange={e => setTest(Number(e.target.value))}>

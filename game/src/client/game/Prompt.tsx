@@ -13,6 +13,7 @@ import { Refs } from '../ui/Refs.tsx';
 import { t } from '../strings.ts';
 import { cardWords, isPower, kulWords, powerName } from '../words.ts';
 import { sfx } from '../sound.ts';
+import { DEVMODE } from '../devmode.ts';
 import { shownWait, shownWaiting, useGame, useSecondsLeft } from './ctx.ts';
 
 const STEPS = ['crisis', 'appoint', 'court', 'kader', 'result', 'decree'] as const;
@@ -169,14 +170,15 @@ function FullScreenHint() {
 /** Heads of everyone, ticked once they pressed Devam. */
 function AckHeads() {
   const { g, room, seat, setSeat } = useGame();
+  const dev = room.dev && DEVMODE;
   // a player deciding a hidden window looks exactly like one who hasn't pressed Devam yet
   const pending = new Set(g.asks.filter(a => a.type === 'ack' || !shownWait(a)).map(a => a.to));
   return (
     <span className="ackheads">
       {g.players.map(p => (
         // DEV: in test rooms the heads switch seats, as the seat toggles do while the court is covered
-        <span key={p.id} className={[pending.has(p.id) ? '' : 'done', room.dev && p.id === seat && 'me'].filter(Boolean).join(' ')} title={p.name}
-          onClick={room.dev ? () => setSeat(p.id) : undefined}>
+        <span key={p.id} className={[pending.has(p.id) ? '' : 'done', dev && p.id === seat && 'me'].filter(Boolean).join(' ')} title={p.name}
+          onClick={dev ? () => setSeat(p.id) : undefined}>
           <Head character={p.character} />{!pending.has(p.id) && <Gl k="check" />}
         </span>
       ))}
